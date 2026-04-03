@@ -106,6 +106,12 @@ export class ReportService {
       },
     });
 
+    // Mark order as completed
+    await prisma.order.update({
+      where: { orderId: report.orderId },
+      data: { completedDate: now },
+    });
+
     // Generate report PDF
     try {
       const reportFileRecord = await pdfService.generateReportPdf(signed as Parameters<typeof pdfService.generateReportPdf>[0]);
