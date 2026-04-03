@@ -54,7 +54,7 @@ export default function QueryPage() {
     orderId: string;
     registeredDate: string;
     caseType?: string;
-    completedDate?: string;
+    isSignedOut: boolean;
     patient: { lastName: string; firstName: string; patientId: string };
     doctor: { lastName: string; firstName: string };
   }>;
@@ -130,7 +130,7 @@ export default function QueryPage() {
                     <TableCell>{order.doctor.lastName}, {order.doctor.firstName}</TableCell>
                     <TableCell>{new Date(order.registeredDate).toLocaleDateString()}</TableCell>
                     <TableCell>
-                      {order.completedDate
+                      {order.isSignedOut
                         ? <Chip label="Signed Out" color="success" size="small" />
                         : <Chip label="In Progress" size="small" />}
                     </TableCell>

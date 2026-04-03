@@ -133,16 +133,27 @@ export class OrderService {
       ...(params.orderId ? { orderId: { contains: params.orderId, mode: 'insensitive' as const } } : {}),
       ...(params.patientId ? { patientId: { contains: params.patientId, mode: 'insensitive' as const } } : {}),
     };
-    const [data, total] = await Promise.all([
+    const [rows, total] = await Promise.all([
       prisma.order.findMany({
         where,
         skip: (params.page - 1) * params.pageSize,
         take: params.pageSize,
         orderBy: { registeredDate: 'desc' },
-        include: { patient: true, doctor: true },
+        include: {
+          patient: true,
+          doctor: true,
+          reports: {
+            where: { isFinal: true, signedOutDatetime: { not: null } },
+            select: { reportId: true },
+          },
+        },
       }),
       prisma.order.count({ where }),
     ]);
+    const data = rows.map(({ reports, ...order }) => ({
+      ...order,
+      isSignedOut: reports.length > 0,
+    }));
     return { data, total, page: params.page, pageSize: params.pageSize };
   }
 }
