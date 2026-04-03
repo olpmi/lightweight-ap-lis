@@ -113,7 +113,7 @@ export class PdfService {
     y = this.drawBlankSection(page, 'GROSS DESCRIPTION', y, boldFont, 150);
     y = this.drawBlankSection(page, 'CLINICAL NOTES', y, boldFont, 100);
 
-    const fileName = `${order.orderId}-worksheet.pdf`;
+    const fileName = `${formatOrderIdDisplay(order.orderId)}-worksheet.pdf`;
     const storagePath = path.join(GENERATED_PDFS_DIR, fileName);
 
     const pdfBytes = await pdfDoc.save();
@@ -174,7 +174,7 @@ export class PdfService {
       y -= 10;
     }
 
-    const fileName = `${orderId}-reference-strips.pdf`;
+    const fileName = `${formatOrderIdDisplay(orderId)}-reference-strips.pdf`;
     const storagePath = path.join(GENERATED_PDFS_DIR, fileName);
     const pdfBytes = await pdfDoc.save();
     fs.writeFileSync(storagePath, pdfBytes);
@@ -243,7 +243,7 @@ export class PdfService {
     }
 
     const suffix = report.reactivationType ? `-${report.reactivationType}` : '';
-    const fileName = `${report.orderId}-report-v${report.versionNumber}${suffix}.pdf`;
+    const fileName = `${formatOrderIdDisplay(report.orderId)}-report-v${report.versionNumber}${suffix}.pdf`;
     const storagePath = path.join(GENERATED_PDFS_DIR, fileName);
 
     const pdfBytes = await pdfDoc.save();
