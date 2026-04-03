@@ -14,15 +14,17 @@ export class QueueService {
     showAll = false,
     search = ''
   ): Promise<{ data: object[]; total: number; page: number; pageSize: number }> {
-    // Orders that are not yet signed-out (no final report)
-    const notSignedOut = {
-      reports: {
-        none: {
-          isFinal: true,
-          signedOutDatetime: { not: null },
-        },
-      },
-    };
+    // Orders that are not yet signed-out (no final report) — skipped when showAll is true
+    const notSignedOut = showAll
+      ? {}
+      : {
+          reports: {
+            none: {
+              isFinal: true,
+              signedOutDatetime: { not: null },
+            },
+          },
+        };
 
     // For default view: also require no blocks or slides
     const noMaterials = showAll

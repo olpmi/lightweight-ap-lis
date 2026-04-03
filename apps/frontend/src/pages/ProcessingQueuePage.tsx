@@ -85,7 +85,7 @@ export default function ProcessingQueuePage() {
                 data-testid="show-all-toggle"
               />
             }
-            label="Show all (including with materials)"
+            label="Show all (including completed)"
           />
         </Box>
       </Box>
