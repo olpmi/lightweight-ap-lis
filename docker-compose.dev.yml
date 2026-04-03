@@ -1,0 +1,23 @@
+# Development override — use with: docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
+# Replaces the built frontend nginx container with a live Vite dev server
+# mounted from the local workspace for instant hot reload.
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/frontend.dev.Dockerfile
+    container_name: lis-frontend-dev
+    volumes:
+      # Mount the whole workspace so Vite can watch all files including shared
+      - .:/app
+      # Prevent host node_modules from bleeding in (use container's)
+      - /app/node_modules
+      - /app/apps/frontend/node_modules
+      - /app/packages/shared/node_modules
+    environment:
+      VITE_API_BASE_URL: http://backend:3001
+      CHOKIDAR_USEPOLLING: 'true'
+    ports:
+      - '5173:5173'
+    command: npm run dev --workspace=apps/frontend -- --host

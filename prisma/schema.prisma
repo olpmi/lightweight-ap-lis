@@ -1,0 +1,200 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Doctor {
+  doctorId  BigInt  @id @default(autoincrement()) @map("doctor_id")
+  lastName  String  @map("last_name") @db.VarChar(100)
+  firstName String  @map("first_name") @db.VarChar(100)
+
+  orders Order[]
+
+  @@map("doctor")
+}
+
+model Patient {
+  patientId   String   @id @map("patient_id") @db.VarChar(50)
+  lastName    String   @map("last_name") @db.VarChar(100)
+  firstName   String   @map("first_name") @db.VarChar(100)
+  dateOfBirth DateTime @map("date_of_birth") @db.Date
+  sex         String   @map("sex") @db.VarChar(20)
+
+  orders Order[]
+
+  @@map("patient")
+}
+
+model EmployeeRole {
+  employeeRoleId Int    @id @default(autoincrement()) @map("employee_role_id")
+  roleName       String @unique @map("role_name") @db.VarChar(30)
+
+  employees Employee[]
+
+  @@map("employee_role")
+}
+
+model Employee {
+  employeeId     BigInt       @id @default(autoincrement()) @map("employee_id")
+  lastName       String       @map("last_name") @db.VarChar(100)
+  firstName      String       @map("first_name") @db.VarChar(100)
+  userName       String       @unique @map("user_name") @db.VarChar(100)
+  employeeRoleId Int          @map("employee_role_id")
+  employeeRole   EmployeeRole @relation(fields: [employeeRoleId], references: [employeeRoleId])
+
+  reports Report[]
+
+  @@map("employee")
+}
+
+model BodySite {
+  bodySiteId   Int     @id @default(autoincrement()) @map("body_site_id")
+  bodySiteName String  @unique @map("body_site_name") @db.VarChar(255)
+  description  String? @db.Text
+
+  specimens Specimen[]
+
+  @@map("body_site")
+}
+
+model SpecimenType {
+  specimenTypeId   Int     @id @default(autoincrement()) @map("specimen_type_id")
+  specimenTypeName String  @unique @map("specimen_type_name") @db.VarChar(255)
+  description      String? @db.Text
+
+  specimens Specimen[]
+
+  @@map("specimen_type")
+}
+
+model ReportTemplate {
+  reportTemplateId Int     @id @default(autoincrement()) @map("report_template_id")
+  templateName     String  @unique @map("template_name") @db.VarChar(255)
+  templateText     String? @map("template_text") @db.Text
+  isActive         Boolean @default(true) @map("is_active")
+
+  reports Report[]
+
+  @@map("report_template")
+}
+
+/// Concurrency-safe sequence per year for order ID generation
+model OrderSequenceYear {
+  yearTwoDigit Int @id @map("year_two_digit")
+  lastValue    Int @default(0) @map("last_value")
+
+  @@map("order_sequence_year")
+}
+
+model Order {
+  orderId                 String    @id @map("order_id") @db.Char(11)
+  patientId               String    @map("patient_id") @db.VarChar(50)
+  doctorId                BigInt    @map("doctor_id")
+  caseType                String?   @map("case_type") @db.VarChar(50)
+  clinicalHistory         String?   @map("clinical_history") @db.Text
+  registeredDate          DateTime  @map("registered_date")
+  completedDate           DateTime? @map("completed_date")
+  isReactivated           Boolean   @default(false) @map("is_reactivated")
+  reactivatedFromReportId BigInt?   @map("reactivated_from_report_id")
+
+  patient               Patient  @relation(fields: [patientId], references: [patientId])
+  doctor                Doctor   @relation(fields: [doctorId], references: [doctorId])
+  reactivatedFromReport Report?  @relation("OrderReactivation", fields: [reactivatedFromReportId], references: [reportId])
+
+  specimens Specimen[]
+  reports   Report[]   @relation("OrderReports")
+
+  @@map("orders")
+}
+
+model Specimen {
+  specimenId     String @id @map("specimen_id") @db.VarChar(20)
+  orderId        String @map("order_id") @db.Char(11)
+  specimenCode   String @map("specimen_code") @db.VarChar(10)
+  bodySiteId     Int?   @map("body_site_id")
+  specimenTypeId Int?   @map("specimen_type_id")
+
+  order        Order         @relation(fields: [orderId], references: [orderId])
+  bodySite     BodySite?     @relation(fields: [bodySiteId], references: [bodySiteId])
+  specimenType SpecimenType? @relation(fields: [specimenTypeId], references: [specimenTypeId])
+
+  blocks Block[]
+
+  @@unique([orderId, specimenCode])
+  @@map("specimen")
+}
+
+model Block {
+  blockId         String    @id @map("block_id") @db.VarChar(30)
+  specimenId      String    @map("specimen_id") @db.VarChar(20)
+  blockNumber     Int       @map("block_number")
+  createdDatetime DateTime? @map("created_datetime")
+
+  specimen Specimen @relation(fields: [specimenId], references: [specimenId])
+  slides   Slide[]
+
+  @@unique([specimenId, blockNumber])
+  @@map("block")
+}
+
+model Slide {
+  slideId     String  @id @map("slide_id") @db.VarChar(40)
+  blockId     String  @map("block_id") @db.VarChar(30)
+  slideNumber Int     @map("slide_number")
+  slideType   String? @map("slide_type") @db.VarChar(50)
+
+  block Block @relation(fields: [blockId], references: [blockId])
+
+  @@unique([blockId, slideNumber])
+  @@map("slide")
+}
+
+model Report {
+  reportId              BigInt    @id @default(autoincrement()) @map("report_id")
+  orderId               String    @map("order_id") @db.Char(11)
+  versionNumber         Int       @map("version_number")
+  diagnosis             String?   @db.Text
+  comment               String?   @db.Text
+  reportTemplateId      Int?      @map("report_template_id")
+  gross                 String?   @db.Text
+  synopticData          String?   @map("synoptic_data") @db.Text
+  pathologistEmployeeId BigInt?   @map("pathologist_employee_id")
+  createdAt             DateTime  @default(now()) @map("created_at")
+  signedOutDatetime     DateTime? @map("signed_out_datetime")
+  isFinal               Boolean   @default(false) @map("is_final")
+  reactivationType      String?   @map("reactivation_type") @db.VarChar(20)
+  supersedesReportId    BigInt?   @map("supersedes_report_id")
+
+  order          Order          @relation("OrderReports", fields: [orderId], references: [orderId])
+  reportTemplate ReportTemplate? @relation(fields: [reportTemplateId], references: [reportTemplateId])
+  pathologist    Employee?       @relation(fields: [pathologistEmployeeId], references: [employeeId])
+  supersedesReport    Report?  @relation("ReportVersioning", fields: [supersedesReportId], references: [reportId])
+  supersededByReports Report[] @relation("ReportVersioning")
+
+  orderReactivations Order[]      @relation("OrderReactivation")
+  reportFiles        ReportFile[]
+
+  @@unique([orderId, versionNumber])
+  @@map("report")
+}
+
+model ReportFile {
+  reportFileId     BigInt   @id @default(autoincrement()) @map("report_file_id")
+  reportId         BigInt   @map("report_id")
+  fileType         String   @map("file_type") @db.VarChar(50)
+  fileName         String?  @map("file_name") @db.VarChar(255)
+  originalFileName String?  @map("original_file_name") @db.VarChar(255)
+  mimeType         String   @default("application/pdf") @map("mime_type") @db.VarChar(100)
+  storagePath      String?  @map("storage_path") @db.VarChar(500)
+  createdAt        DateTime @default(now()) @map("created_at")
+
+  report Report @relation(fields: [reportId], references: [reportId])
+
+  @@index([reportId, fileType, createdAt])
+  @@map("report_file")
+}

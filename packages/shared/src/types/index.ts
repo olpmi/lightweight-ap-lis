@@ -1,0 +1,216 @@
+// Domain types for the lightweight AP LIS
+
+export interface Doctor {
+  doctorId: number;
+  lastName: string;
+  firstName: string;
+}
+
+export interface Patient {
+  patientId: string;
+  lastName: string;
+  firstName: string;
+  dateOfBirth: string; // ISO date string
+  sex: string;
+}
+
+export interface EmployeeRole {
+  employeeRoleId: number;
+  roleName: string;
+}
+
+export interface Employee {
+  employeeId: number;
+  lastName: string;
+  firstName: string;
+  userName: string;
+  employeeRoleId: number;
+  employeeRole?: EmployeeRole;
+}
+
+export interface BodySite {
+  bodySiteId: number;
+  bodySiteName: string;
+  description?: string | null;
+}
+
+export interface SpecimenType {
+  specimenTypeId: number;
+  specimenTypeName: string;
+  description?: string | null;
+}
+
+export interface ReportTemplate {
+  reportTemplateId: number;
+  templateName: string;
+  templateText?: string | null;
+  isActive: boolean;
+}
+
+export type OrderStatus = 'registered' | 'in_progress' | 'signed_out' | 'reactivated';
+
+export interface Order {
+  orderId: string;
+  patientId: string;
+  doctorId: number;
+  caseType?: string | null;
+  clinicalHistory?: string | null;
+  registeredDate: string; // ISO datetime
+  completedDate?: string | null;
+  isReactivated: boolean;
+  reactivatedFromReportId?: number | null;
+  patient?: Patient;
+  doctor?: Doctor;
+}
+
+export interface Specimen {
+  specimenId: string;
+  orderId: string;
+  specimenCode: string;
+  bodySiteId?: number | null;
+  specimenTypeId?: number | null;
+  bodySite?: BodySite;
+  specimenType?: SpecimenType;
+}
+
+export interface Block {
+  blockId: string;
+  specimenId: string;
+  blockNumber: number;
+  createdDatetime?: string | null;
+}
+
+export interface Slide {
+  slideId: string;
+  blockId: string;
+  slideNumber: number;
+  slideType?: string | null;
+}
+
+export interface Report {
+  reportId: number;
+  orderId: string;
+  versionNumber: number;
+  diagnosis?: string | null;
+  comment?: string | null;
+  reportTemplateId?: number | null;
+  gross?: string | null;
+  pathologistEmployeeId?: number | null;
+  createdAt: string;
+  signedOutDatetime?: string | null;
+  isFinal: boolean;
+  isAmendment: boolean;
+  supersedesReportId?: number | null;
+  pathologist?: Employee;
+  reportTemplate?: ReportTemplate;
+}
+
+export interface ReportFile {
+  reportFileId: number;
+  reportId: number;
+  fileType: string;
+  fileName?: string | null;
+  originalFileName?: string | null;
+  mimeType: string;
+  storagePath?: string | null;
+  createdAt: string;
+}
+
+// DTO types (for API requests/responses)
+
+export interface CreateOrderDto {
+  patientId?: string;
+  patientLastName?: string;
+  patientFirstName?: string;
+  patientDateOfBirth?: string;
+  patientSex?: string;
+  doctorId?: number;
+  doctorLastName?: string;
+  doctorFirstName?: string;
+  caseType?: string;
+  clinicalHistory?: string;
+  registeredDate: string;
+  specimens: CreateSpecimenDto[];
+}
+
+export interface CreateSpecimenDto {
+  bodySiteId?: number;
+  specimenTypeId?: number;
+}
+
+export interface CreateBlockDto {
+  count: number;
+}
+
+export interface CreateSlideDto {
+  count: number;
+  slideType?: string;
+}
+
+export interface LoginDto {
+  employeeId?: number;
+  newEmployee?: CreateEmployeeDto;
+}
+
+export interface CreateEmployeeDto {
+  lastName: string;
+  firstName: string;
+  userName: string;
+  employeeRoleId: number;
+}
+
+export interface CreateDraftReportDto {
+  diagnosis?: string;
+  comment?: string;
+  reportTemplateId?: number;
+  gross?: string;
+  pathologistEmployeeId?: number;
+}
+
+export interface SignOutReportDto {
+  diagnosis: string;
+  comment?: string;
+  reportTemplateId?: number;
+  gross?: string;
+  pathologistEmployeeId: number;
+}
+
+export interface ReactivateOrderDto {
+  isAmendment: boolean;
+}
+
+// API response wrapper
+export interface ApiResponse<T> {
+  data: T;
+}
+
+export interface ApiError {
+  error: {
+    code: string;
+    message: string;
+    details?: Record<string, unknown>;
+  };
+}
+
+// Pagination
+export interface PaginatedResult<T> {
+  data: T[];
+  total: number;
+  page: number;
+  pageSize: number;
+}
+
+export interface OrderWithDetails extends Order {
+  patient: Patient;
+  doctor: Doctor;
+  specimens: Specimen[];
+  reports: Report[];
+}
+
+export interface OrderMaterials {
+  specimens: Array<
+    Specimen & {
+      blocks: Array<Block & { slides: Slide[] }>;
+    }
+  >;
+}

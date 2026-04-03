@@ -1,0 +1,47 @@
+{
+  "name": "@lis/frontend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --ext .ts,.tsx"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@hookform/resolvers": "^3.3.4",
+    "@lis/shared": "*",
+    "@mui/icons-material": "^5.15.15",
+    "@mui/material": "^5.15.15",
+    "@tanstack/react-query": "^5.28.0",
+    "@tanstack/react-query-devtools": "^5.28.0",
+    "axios": "^1.6.8",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.51.2",
+    "react-router-dom": "^6.22.3",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.43.1",
+    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/react": "^15.0.2",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/node": "^20.12.0",
+    "@types/react": "^18.2.79",
+    "@types/react-dom": "^18.2.25",
+    "@vitejs/plugin-react": "^4.2.1",
+    "@vitest/coverage-v8": "^1.4.0",
+    "jsdom": "^24.0.0",
+    "typescript": "*",
+    "vite": "^5.2.6",
+    "vitest": "^1.4.0"
+  }
+}

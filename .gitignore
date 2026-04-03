@@ -1,0 +1,21 @@
+node_modules/
+dist/
+build/
+.env
+.env.local
+*.log
+coverage/
+.nyc_output/
+
+# Storage directories (generated files)
+apps/backend/storage/
+
+# Prisma
+prisma/migrations/*.db
+
+# Docker
+docker/postgres-data/
+
+# OS
+.DS_Store
+Thumbs.db
