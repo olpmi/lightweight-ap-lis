@@ -40,7 +40,7 @@ export class QueueService {
     const searchFilter = search
       ? {
           OR: [
-            { orderId: { contains: search, mode: 'insensitive' as const } },
+            ...buildOrderIdConditions(search),
             { patient: { lastName: { contains: search, mode: 'insensitive' as const } } },
             { patient: { firstName: { contains: search, mode: 'insensitive' as const } } },
           ],
