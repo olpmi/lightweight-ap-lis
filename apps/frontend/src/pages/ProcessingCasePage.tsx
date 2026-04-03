@@ -30,7 +30,7 @@ import { ExpandMore, Add, Science, Download } from '@mui/icons-material';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useParams, useNavigate } from 'react-router-dom';
 import { orderApi, specimenApi, blockApi } from '../api';
-import { formatOrderIdDisplay } from '@lis/shared';
+import { formatOrderIdDisplay, formatMaterialIdDisplay } from '@lis/shared';
 
 interface Slide {
   slideId: string;
@@ -211,12 +211,12 @@ export default function ProcessingCasePage() {
                   {spec.blocks.map((block) => (
                     <TableRow key={block.blockId}>
                       <TableCell>
-                        <Typography variant="body2" fontWeight={600}>{block.blockId}</Typography>
+                        <Typography variant="body2" fontWeight={600}>{formatMaterialIdDisplay(block.blockId)}</Typography>
                       </TableCell>
                       <TableCell>
                         <Stack direction="row" spacing={0.5} flexWrap="wrap">
                           {block.slides.map((sl) => (
-                            <Chip key={sl.slideId} label={`${sl.slideId} [${sl.slideType ?? 'H&E'}]`} size="small" />
+                            <Chip key={sl.slideId} label={`${formatMaterialIdDisplay(sl.slideId)} [${sl.slideType ?? 'H&E'}]`} size="small" />
                           ))}
                           {block.slides.length === 0 && <Typography variant="caption" color="text.secondary">none</Typography>}
                         </Stack>

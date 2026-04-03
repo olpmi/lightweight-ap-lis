@@ -35,7 +35,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useParams, useNavigate } from 'react-router-dom';
 import { orderApi, reportApi, lookupApi } from '../api';
 import { useAuth } from '../hooks/useAuth';
-import { formatOrderIdDisplay } from '@lis/shared';
+import { formatOrderIdDisplay, formatMaterialIdDisplay } from '@lis/shared';
 
 interface Employee {
   employeeId: number | bigint;
@@ -580,9 +580,9 @@ export default function ResultCasePage() {
               <AccordionDetails>
                 {spec.blocks.map((block) => (
                   <Box key={block.blockId} mb={1}>
-                    <Typography variant="body2" fontWeight={600}>{block.blockId}</Typography>
+                    <Typography variant="body2" fontWeight={600}>{formatMaterialIdDisplay(block.blockId)}</Typography>
                     <Stack direction="row" spacing={0.5} flexWrap="wrap" mt={0.5}>
-                      {block.slides.map((sl) => <Chip key={sl.slideId} label={sl.slideId} size="small" />)}
+                      {block.slides.map((sl) => <Chip key={sl.slideId} label={formatMaterialIdDisplay(sl.slideId)} size="small" />)}
                     </Stack>
                   </Box>
                 ))}
