@@ -2,7 +2,7 @@ import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
 import fs from 'fs';
 import path from 'path';
 import { GENERATED_PDFS_DIR } from '../utils/storageDirs';
-import { formatOrderIdDisplay } from '@lis/shared';
+import { formatOrderIdDisplay, formatMaterialIdDisplay } from '@lis/shared';
 
 interface OrderForPdf {
   orderId: string;
@@ -158,10 +158,10 @@ export class PdfService {
       y = this.drawSection(page, `Specimen ${spec.specimenCode}${spec.bodySite ? ` — ${spec.bodySite.bodySiteName}` : ''}`, y, boldFont);
 
       for (const block of spec.blocks) {
-        page.drawText(`  Block:  ${block.blockId}`, { x: MARGIN + 10, y, font: boldFont, size: 13 });
+        page.drawText(`  Block:  ${formatMaterialIdDisplay(block.blockId)}`, { x: MARGIN + 10, y, font: boldFont, size: 13 });
         y -= 18;
         for (const slide of block.slides) {
-          page.drawText(`      Slide: ${slide.slideId}  [${slide.slideType ?? 'H&E'}]`, {
+          page.drawText(`      Slide: ${formatMaterialIdDisplay(slide.slideId)}  [${slide.slideType ?? 'H&E'}]`, {
             x: MARGIN + 20,
             y,
             font: regularFont,

@@ -47,6 +47,21 @@ export function formatOrderIdDisplay(orderId: string): string {
 }
 
 /**
+ * Convert a block or slide ID to human-readable form by replacing the raw order ID prefix.
+ * e.g. SU260000005-A1     → SU-26-5-A1
+ *      SU260000005-A1-S1  → SU-26-5-A1-S1
+ */
+export function formatMaterialIdDisplay(materialId: string): string {
+  // Order IDs are exactly 11 characters: 2 alpha + 2 digit year + 7 digit seq
+  if (materialId.length > 11 && materialId[11] === '-') {
+    const orderPart = materialId.slice(0, 11);
+    const rest = materialId.slice(11);
+    return formatOrderIdDisplay(orderPart) + rest;
+  }
+  return materialId;
+}
+
+/**
  * Normalize a human-readable or canonical order ID to the canonical form.
  * e.g. SU-26-5 → SU260000005  (canonical passthrough unchanged)
  */
