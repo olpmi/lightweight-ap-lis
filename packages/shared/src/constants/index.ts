@@ -16,3 +16,24 @@ export const FILE_TYPES = {
 export const SEX_OPTIONS = ['Male', 'Female', 'Other', 'Unknown'] as const;
 
 export const SLIDE_TYPES = ['H&E', 'Unstained', 'IHC', 'Special stain', 'Other'] as const;
+
+export const BODY_SITE_HIERARCHY: Record<string, readonly string[]> = {
+  'Gastrointestinal (GI)': [
+    'Esophagus', 'Stomach', 'Duodenum', 'Small bowel (jejunum/ileum)',
+    'Colon', 'Rectum', 'Appendix', 'Anus',
+  ],
+  'Hepatobiliary & Pancreas': ['Liver', 'Gallbladder', 'Bile duct', 'Pancreas'],
+  'Breast': ['Breast', 'Axillary tissue'],
+  'Gynecologic': ['Cervix', 'Endometrium', 'Myometrium', 'Ovary', 'Fallopian tube', 'Vulva', 'Vagina'],
+  'Urologic (GU)': ['Prostate', 'Bladder', 'Kidney', 'Ureter', 'Testis', 'Epididymis', 'Penis'],
+  'Head & Neck': [
+    'Oral cavity', 'Tongue', 'Salivary gland', 'Thyroid', 'Parathyroid',
+    'Larynx', 'Pharynx', 'Nasal cavity / Sinus', 'Neck (soft tissue/unspecified)',
+  ],
+  'Respiratory (Lung & Pleura)': ['Lung', 'Pleura', 'Bronchus'],
+  'Skin': ['Skin'],
+  'Lymph Node / Hematolymphoid': ['Lymph node', 'Spleen', 'Bone marrow'],
+  'Bone & Soft Tissue': ['Bone', 'Soft tissue'],
+  'Central Nervous System (CNS)': ['Brain', 'Spinal cord', 'Meninges'],
+  'Placenta / Products of Conception': ['Placenta', 'Products of conception'],
+};

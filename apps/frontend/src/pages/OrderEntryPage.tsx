@@ -22,12 +22,14 @@ import {
 import { Add, Delete, Download } from '@mui/icons-material';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { orderApi, lookupApi, patientApi, doctorApi } from '../api';
-import { formatOrderIdDisplay } from '@lis/shared';
+import { formatOrderIdDisplay, BODY_SITE_HIERARCHY } from '@lis/shared';
 
 interface SpecimenRow {
   id: string;
+  site: string;
   bodySiteId: number | '';
   specimenTypeId: number | '';
+  coldIschemicTime: string;
 }
 
 export default function OrderEntryPage() {
@@ -48,7 +50,7 @@ export default function OrderEntryPage() {
     doctorFirstName: '',
   });
 
-  const [specimens, setSpecimens] = useState<SpecimenRow[]>([{ id: '1', bodySiteId: '', specimenTypeId: '' }]);
+  const [specimens, setSpecimens] = useState<SpecimenRow[]>([{ id: '1', site: '', bodySiteId: '', specimenTypeId: '', coldIschemicTime: '' }]);
   const [createdOrder, setCreatedOrder] = useState<{ orderId: string } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [successOpen, setSuccessOpen] = useState(false);
@@ -90,13 +92,16 @@ export default function OrderEntryPage() {
   });
 
   const addSpecimen = () =>
-    setSpecimens([...specimens, { id: String(Date.now()), bodySiteId: '', specimenTypeId: '' }]);
+    setSpecimens([...specimens, { id: String(Date.now()), site: '', bodySiteId: '', specimenTypeId: '', coldIschemicTime: '' }]);
 
   const removeSpecimen = (id: string) =>
     setSpecimens(specimens.filter((s) => s.id !== id));
 
-  const updateSpecimen = (id: string, field: keyof SpecimenRow, value: number | '') =>
+  const updateSpecimen = (id: string, field: keyof SpecimenRow, value: number | string | '') =>
     setSpecimens(specimens.map((s) => (s.id === id ? { ...s, [field]: value } : s)));
+
+  const handleSiteChange = (id: string, site: string) =>
+    setSpecimens(specimens.map((s) => s.id === id ? { ...s, site, bodySiteId: '' } : s));
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -108,6 +113,7 @@ export default function OrderEntryPage() {
       specimens: specimens.map((s) => ({
         bodySiteId: s.bodySiteId || undefined,
         specimenTypeId: s.specimenTypeId || undefined,
+        coldIschemicTime: s.coldIschemicTime ? parseInt(s.coldIschemicTime) : undefined,
       })),
     };
 
@@ -255,7 +261,7 @@ export default function OrderEntryPage() {
               <Typography variant="subtitle1" fontWeight={700} mb={2}>
                 Case Details
               </Typography>
-              <FormControl size="small" sx={{ minWidth: 240 }}>
+              <FormControl size="small" sx={{ minWidth: 240 }} required>
                 <InputLabel>Case Type</InputLabel>
                 <Select label="Case Type" value={form.caseType} onChange={(e) => setForm({ ...form, caseType: e.target.value })}>
                   {['Surgical Pathology', 'Cytology'].map((t) => <MenuItem key={t} value={t}>{t}</MenuItem>)}
@@ -277,37 +283,70 @@ export default function OrderEntryPage() {
               </Box>
               <Stack spacing={1.5}>
                 {specimens.map((spec, index) => (
-                  <Box key={spec.id} display="flex" alignItems="center" gap={1.5}>
-                    <Typography variant="body2" color="text.secondary" sx={{ width: 20 }}>
-                      {String.fromCharCode(65 + index)}
-                    </Typography>
-                    <FormControl size="small" sx={{ flex: 1 }}>
-                      <InputLabel>Body Site</InputLabel>
-                      <Select
-                        label="Body Site"
-                        value={spec.bodySiteId}
-                        onChange={(e) => updateSpecimen(spec.id, 'bodySiteId', e.target.value as number)}
-                      >
-                        {(bodySites as Array<{ bodySiteId: number; bodySiteName: string }> ?? []).map((s) => (
-                          <MenuItem key={s.bodySiteId} value={s.bodySiteId}>{s.bodySiteName}</MenuItem>
-                        ))}
-                      </Select>
-                    </FormControl>
-                    <FormControl size="small" sx={{ flex: 1 }}>
-                      <InputLabel>Specimen Type</InputLabel>
-                      <Select
-                        label="Specimen Type"
-                        value={spec.specimenTypeId}
-                        onChange={(e) => updateSpecimen(spec.id, 'specimenTypeId', e.target.value as number)}
-                      >
-                        {(specimenTypes as Array<{ specimenTypeId: number; specimenTypeName: string }> ?? []).map((t) => (
-                          <MenuItem key={t.specimenTypeId} value={t.specimenTypeId}>{t.specimenTypeName}</MenuItem>
-                        ))}
-                      </Select>
-                    </FormControl>
-                    <IconButton size="small" onClick={() => removeSpecimen(spec.id)} disabled={specimens.length === 1}>
-                      <Delete fontSize="small" />
-                    </IconButton>
+                  <Box key={spec.id} sx={{ border: '1px solid', borderColor: 'divider', borderRadius: 1, p: 1.5 }}>
+                    <Box display="flex" alignItems="center" justifyContent="space-between" mb={1}>
+                      <Typography variant="body2" fontWeight={600} color="text.secondary">
+                        Specimen {String.fromCharCode(65 + index)}
+                      </Typography>
+                      <IconButton size="small" onClick={() => removeSpecimen(spec.id)} disabled={specimens.length === 1}>
+                        <Delete fontSize="small" />
+                      </IconButton>
+                    </Box>
+                    <Box display="grid" gridTemplateColumns="1fr 1fr" gap={1.5}>
+                      {/* Site */}
+                      <FormControl size="small" required>
+                        <InputLabel>Site</InputLabel>
+                        <Select
+                          label="Site"
+                          value={spec.site}
+                          onChange={(e) => handleSiteChange(spec.id, e.target.value)}
+                        >
+                          {Object.keys(BODY_SITE_HIERARCHY).map((site) => (
+                            <MenuItem key={site} value={site}>{site}</MenuItem>
+                          ))}
+                        </Select>
+                      </FormControl>
+                      {/* Organ */}
+                      <FormControl size="small" required disabled={!spec.site}>
+                        <InputLabel>Organ</InputLabel>
+                        <Select
+                          label="Organ"
+                          value={spec.bodySiteId}
+                          onChange={(e) => updateSpecimen(spec.id, 'bodySiteId', e.target.value as number)}
+                        >
+                          {spec.site && (BODY_SITE_HIERARCHY[spec.site] ?? []).map((organ) => {
+                            const match = (bodySites as Array<{ bodySiteId: number; bodySiteName: string }> ?? [])
+                              .find((s) => s.bodySiteName === organ);
+                            return match ? (
+                              <MenuItem key={match.bodySiteId} value={match.bodySiteId}>{organ}</MenuItem>
+                            ) : null;
+                          })}
+                        </Select>
+                      </FormControl>
+                      {/* Specimen Type */}
+                      <FormControl size="small" required>
+                        <InputLabel>Specimen Type</InputLabel>
+                        <Select
+                          label="Specimen Type"
+                          value={spec.specimenTypeId}
+                          onChange={(e) => updateSpecimen(spec.id, 'specimenTypeId', e.target.value as number)}
+                        >
+                          {(specimenTypes as Array<{ specimenTypeId: number; specimenTypeName: string }> ?? []).map((t) => (
+                            <MenuItem key={t.specimenTypeId} value={t.specimenTypeId}>{t.specimenTypeName}</MenuItem>
+                          ))}
+                        </Select>
+                      </FormControl>
+                      {/* Cold Ischemic Time */}
+                      <TextField
+                        label="Cold Ischemic Time (min)"
+                        size="small"
+                        type="number"
+                        inputProps={{ min: 0 }}
+                        value={spec.coldIschemicTime}
+                        onChange={(e) => updateSpecimen(spec.id, 'coldIschemicTime', e.target.value)}
+                        required
+                      />
+                    </Box>
                   </Box>
                 ))}
               </Stack>

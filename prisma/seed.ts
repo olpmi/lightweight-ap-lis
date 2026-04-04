@@ -24,21 +24,32 @@ function randInt(min: number, max: number): number {
 // Lookup data
 // ---------------------------------------------------------------------------
 const BODY_SITES = [
+  // Gastrointestinal (GI)
+  'Esophagus', 'Stomach', 'Duodenum', 'Small bowel (jejunum/ileum)',
+  'Colon', 'Rectum', 'Appendix', 'Anus',
+  // Hepatobiliary & Pancreas
+  'Liver', 'Gallbladder', 'Bile duct', 'Pancreas',
+  // Breast
+  'Breast', 'Axillary tissue',
+  // Gynecologic
+  'Cervix', 'Endometrium', 'Myometrium', 'Ovary', 'Fallopian tube', 'Vulva', 'Vagina',
+  // Urologic (GU)
+  'Prostate', 'Bladder', 'Kidney', 'Ureter', 'Testis', 'Epididymis', 'Penis',
+  // Head & Neck
+  'Oral cavity', 'Tongue', 'Salivary gland', 'Thyroid', 'Parathyroid',
+  'Larynx', 'Pharynx', 'Nasal cavity / Sinus', 'Neck (soft tissue/unspecified)',
+  // Respiratory
+  'Lung', 'Pleura', 'Bronchus',
+  // Skin
   'Skin',
-  'Breast',
-  'Colon',
-  'Lung',
-  'Prostate',
-  'Cervix',
-  'Endometrium',
-  'Thyroid',
-  'Liver',
-  'Kidney',
-  'Stomach',
-  'Bladder',
-  'Ovary',
-  'Lymph node',
-  'Bone marrow',
+  // Lymph Node / Hematolymphoid
+  'Lymph node', 'Spleen', 'Bone marrow',
+  // Bone & Soft Tissue
+  'Bone', 'Soft tissue',
+  // CNS
+  'Brain', 'Spinal cord', 'Meninges',
+  // Placenta / POC
+  'Placenta', 'Products of conception',
 ];
 
 const SPECIMEN_TYPES = [

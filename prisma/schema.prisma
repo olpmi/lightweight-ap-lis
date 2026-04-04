@@ -113,11 +113,12 @@ model Order {
 }
 
 model Specimen {
-  specimenId     String @id @map("specimen_id") @db.VarChar(20)
-  orderId        String @map("order_id") @db.Char(11)
-  specimenCode   String @map("specimen_code") @db.VarChar(10)
-  bodySiteId     Int?   @map("body_site_id")
-  specimenTypeId Int?   @map("specimen_type_id")
+  specimenId        String @id @map("specimen_id") @db.VarChar(20)
+  orderId           String @map("order_id") @db.Char(11)
+  specimenCode      String @map("specimen_code") @db.VarChar(10)
+  bodySiteId        Int?   @map("body_site_id")
+  specimenTypeId    Int?   @map("specimen_type_id")
+  coldIschemicTime  Int?   @map("cold_ischemic_time")
 
   order        Order         @relation(fields: [orderId], references: [orderId])
   bodySite     BodySite?     @relation(fields: [bodySiteId], references: [bodySiteId])

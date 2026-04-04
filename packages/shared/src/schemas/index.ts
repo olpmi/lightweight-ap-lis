@@ -23,8 +23,9 @@ export const loginSchema = z.union([
 ]);
 
 export const createSpecimenSchema = z.object({
-  bodySiteId: z.number().int().positive().optional(),
-  specimenTypeId: z.number().int().positive().optional(),
+  bodySiteId: z.number().int().positive('Body site is required'),
+  specimenTypeId: z.number().int().positive('Specimen type is required'),
+  coldIschemicTime: z.number().int().min(0).optional(),
 });
 
 export const createOrderSchema = z.object({

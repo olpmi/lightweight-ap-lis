@@ -90,6 +90,7 @@ export class OrderService {
             specimenCode: code,
             bodySiteId: spec.bodySiteId,
             specimenTypeId: spec.specimenTypeId,
+            coldIschemicTime: spec.coldIschemicTime,
           },
         });
       }
