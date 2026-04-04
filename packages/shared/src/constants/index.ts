@@ -17,6 +17,16 @@ export const SEX_OPTIONS = ['Male', 'Female', 'Other', 'Unknown'] as const;
 
 export const SLIDE_TYPES = ['H&E', 'Unstained', 'IHC', 'Special stain', 'Other'] as const;
 
+export const CYTOLOGY_SITE_HIERARCHY: Record<string, readonly string[]> = {
+  'GYN Cytology (Pap smears)': [],
+  'Fine Needle Aspiration (FNA)': ['Lymph node', 'Thyroid', 'Breast', 'Salivary gland', 'Soft tissue'],
+  'Fluid Cytology (Effusions)': ['Pleural fluid', 'Ascitic fluid', 'Pericardial fluid'],
+  'Urine Cytology': [],
+  'Respiratory Cytology': ['Sputum', 'Bronchial wash', 'Bronchial brush', 'BAL (bronchoalveolar lavage)'],
+  'CSF (Cerebrospinal fluid)': [],
+  'Body Fluid (Non-effusion)': ['Synovial fluid', 'Cyst fluid', 'Other'],
+};
+
 export const BODY_SITE_HIERARCHY: Record<string, readonly string[]> = {
   'Gastrointestinal (GI)': [
     'Esophagus', 'Stomach', 'Duodenum', 'Small bowel (jejunum/ileum)',

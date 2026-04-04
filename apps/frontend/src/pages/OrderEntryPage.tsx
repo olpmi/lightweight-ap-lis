@@ -22,7 +22,7 @@ import {
 import { Add, Delete, Download } from '@mui/icons-material';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { orderApi, lookupApi, patientApi, doctorApi } from '../api';
-import { formatOrderIdDisplay, BODY_SITE_HIERARCHY } from '@lis/shared';
+import { formatOrderIdDisplay, BODY_SITE_HIERARCHY, CYTOLOGY_SITE_HIERARCHY } from '@lis/shared';
 
 interface SpecimenRow {
   id: string;
@@ -100,8 +100,19 @@ export default function OrderEntryPage() {
   const updateSpecimen = (id: string, field: keyof SpecimenRow, value: number | string | '') =>
     setSpecimens(specimens.map((s) => (s.id === id ? { ...s, [field]: value } : s)));
 
-  const handleSiteChange = (id: string, site: string) =>
-    setSpecimens(specimens.map((s) => s.id === id ? { ...s, site, bodySiteId: '' } : s));
+  const handleSiteChange = (id: string, site: string) => {
+    const isCyto = form.caseType === 'Cytology';
+    const hierarchy = isCyto ? CYTOLOGY_SITE_HIERARCHY : BODY_SITE_HIERARCHY;
+    const organs = hierarchy[site] ?? [];
+    if (isCyto && organs.length === 0) {
+      // Site with no sub-organs: auto-resolve bodySiteId from DB
+      const match = (bodySites as Array<{ bodySiteId: number; bodySiteName: string }> ?? [])
+        .find((s) => s.bodySiteName === site);
+      setSpecimens(specimens.map((s) => s.id === id ? { ...s, site, bodySiteId: match?.bodySiteId ?? '' } : s));
+    } else {
+      setSpecimens(specimens.map((s) => s.id === id ? { ...s, site, bodySiteId: '' } : s));
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -263,7 +274,11 @@ export default function OrderEntryPage() {
               </Typography>
               <FormControl size="small" sx={{ minWidth: 240 }} required>
                 <InputLabel>Case Type</InputLabel>
-                <Select label="Case Type" value={form.caseType} onChange={(e) => setForm({ ...form, caseType: e.target.value })}>
+                <Select label="Case Type" value={form.caseType} onChange={(e) => {
+                  setForm({ ...form, caseType: e.target.value });
+                  // Reset specimens when switching case type
+                  setSpecimens([{ id: '1', site: '', bodySiteId: '', specimenTypeId: '', coldIschemicTime: '' }]);
+                }}>
                   {['Surgical Pathology', 'Cytology'].map((t) => <MenuItem key={t} value={t}>{t}</MenuItem>)}
                 </Select>
               </FormControl>
@@ -282,7 +297,11 @@ export default function OrderEntryPage() {
                 </Button>
               </Box>
               <Stack spacing={1.5}>
-                {specimens.map((spec, index) => (
+                {specimens.map((spec, index) => {
+                  const isCytology = form.caseType === 'Cytology';
+                  const hierarchy = isCytology ? CYTOLOGY_SITE_HIERARCHY : BODY_SITE_HIERARCHY;
+                  const hasSubOrgans = spec.site ? (hierarchy[spec.site] ?? []).length > 0 : false;
+                  return (
                   <Box key={spec.id} sx={{ border: '1px solid', borderColor: 'divider', borderRadius: 1, p: 1.5 }}>
                     <Box display="flex" alignItems="center" justifyContent="space-between" mb={1}>
                       <Typography variant="body2" fontWeight={600} color="text.secondary">
@@ -301,54 +320,64 @@ export default function OrderEntryPage() {
                           value={spec.site}
                           onChange={(e) => handleSiteChange(spec.id, e.target.value)}
                         >
-                          {Object.keys(BODY_SITE_HIERARCHY).map((site) => (
+                          {Object.keys(hierarchy).map((site) => (
                             <MenuItem key={site} value={site}>{site}</MenuItem>
                           ))}
                         </Select>
                       </FormControl>
-                      {/* Organ */}
-                      <FormControl size="small" required disabled={!spec.site}>
-                        <InputLabel>Organ</InputLabel>
-                        <Select
-                          label="Organ"
-                          value={spec.bodySiteId}
-                          onChange={(e) => updateSpecimen(spec.id, 'bodySiteId', e.target.value as number)}
-                        >
-                          {spec.site && (BODY_SITE_HIERARCHY[spec.site] ?? []).map((organ) => {
-                            const match = (bodySites as Array<{ bodySiteId: number; bodySiteName: string }> ?? [])
-                              .find((s) => s.bodySiteName === organ);
-                            return match ? (
-                              <MenuItem key={match.bodySiteId} value={match.bodySiteId}>{organ}</MenuItem>
-                            ) : null;
-                          })}
-                        </Select>
-                      </FormControl>
-                      {/* Specimen Type */}
-                      <FormControl size="small" required>
-                        <InputLabel>Specimen Type</InputLabel>
-                        <Select
-                          label="Specimen Type"
-                          value={spec.specimenTypeId}
-                          onChange={(e) => updateSpecimen(spec.id, 'specimenTypeId', e.target.value as number)}
-                        >
-                          {(specimenTypes as Array<{ specimenTypeId: number; specimenTypeName: string }> ?? []).map((t) => (
-                            <MenuItem key={t.specimenTypeId} value={t.specimenTypeId}>{t.specimenTypeName}</MenuItem>
-                          ))}
-                        </Select>
-                      </FormControl>
-                      {/* Cold Ischemic Time */}
-                      <TextField
-                        label="Cold Ischemic Time (min)"
-                        size="small"
-                        type="number"
-                        inputProps={{ min: 0 }}
-                        value={spec.coldIschemicTime}
-                        onChange={(e) => updateSpecimen(spec.id, 'coldIschemicTime', e.target.value)}
-                        required
-                      />
+                      {/* Organ — only shown when site has sub-organs */}
+                      {hasSubOrgans ? (
+                        <FormControl size="small" required disabled={!spec.site}>
+                          <InputLabel>Organ</InputLabel>
+                          <Select
+                            label="Organ"
+                            value={spec.bodySiteId}
+                            onChange={(e) => updateSpecimen(spec.id, 'bodySiteId', e.target.value as number)}
+                          >
+                            {spec.site && (hierarchy[spec.site] ?? []).map((organ) => {
+                              const match = (bodySites as Array<{ bodySiteId: number; bodySiteName: string }> ?? [])
+                                .find((s) => s.bodySiteName === organ);
+                              return match ? (
+                                <MenuItem key={match.bodySiteId} value={match.bodySiteId}>{organ}</MenuItem>
+                              ) : null;
+                            })}
+                          </Select>
+                        </FormControl>
+                      ) : (
+                        // Spacer to keep grid aligned when no organ dropdown
+                        <Box />
+                      )}
+                      {/* Specimen Type — surgical pathology only */}
+                      {!isCytology && (
+                        <FormControl size="small" required>
+                          <InputLabel>Specimen Type</InputLabel>
+                          <Select
+                            label="Specimen Type"
+                            value={spec.specimenTypeId}
+                            onChange={(e) => updateSpecimen(spec.id, 'specimenTypeId', e.target.value as number)}
+                          >
+                            {(specimenTypes as Array<{ specimenTypeId: number; specimenTypeName: string }> ?? []).map((t) => (
+                              <MenuItem key={t.specimenTypeId} value={t.specimenTypeId}>{t.specimenTypeName}</MenuItem>
+                            ))}
+                          </Select>
+                        </FormControl>
+                      )}
+                      {/* Cold Ischemic Time — surgical pathology only */}
+                      {!isCytology && (
+                        <TextField
+                          label="Cold Ischemic Time (min)"
+                          size="small"
+                          type="number"
+                          inputProps={{ min: 0 }}
+                          value={spec.coldIschemicTime}
+                          onChange={(e) => updateSpecimen(spec.id, 'coldIschemicTime', e.target.value)}
+                          required
+                        />
+                      )}
                     </Box>
                   </Box>
-                ))}
+                  );
+                })}
               </Stack>
             </Paper>
           </Grid>

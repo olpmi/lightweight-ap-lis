@@ -270,30 +270,83 @@ export default function ProcessingCasePage() {
             </Box>
           </AccordionSummary>
           <AccordionDetails>
-            <Box display="flex" alignItems="center" gap={1} mb={2}>
-              <TextField
-                label="# Blocks"
-                type="number"
-                size="small"
-                value={blockCounts[spec.specimenId] ?? 1}
-                onChange={(e) => setBlockCounts({ ...blockCounts, [spec.specimenId]: parseInt(e.target.value) || 1 })}
-                sx={{ width: 80 }}
-                inputProps={{ min: 1, max: 50 }}
-              />
-              <Button
-                variant="contained"
-                size="small"
-                startIcon={<Add />}
-                onClick={() => createBlocks({ specimenId: spec.specimenId, count: blockCounts[spec.specimenId] ?? 1 })}
-                disabled={creatingBlocks}
-                data-testid={`create-blocks-${spec.specimenCode}`}
-              >
-                Add Block{(blockCounts[spec.specimenId] ?? 1) > 1 ? 's' : ''}
-              </Button>
-            </Box>
-
-            {spec.blocks.length > 0 && (
-              <Table size="small">
+            {order?.caseType === 'Cytology' ? (
+              /* ── Cytology: simple slides-only UI ── */
+              <Box>
+                <Box display="flex" alignItems="center" gap={1} mb={2}>
+                  <TextField
+                    label="# Slides"
+                    type="number"
+                    size="small"
+                    value={slideCounts[spec.specimenId] ?? 1}
+                    onChange={(e) => setSlideCounts({ ...slideCounts, [spec.specimenId]: parseInt(e.target.value) || 1 })}
+                    sx={{ width: 80 }}
+                    inputProps={{ min: 1, max: 200 }}
+                  />
+                  <Button
+                    variant="contained"
+                    size="small"
+                    startIcon={<Add />}
+                    onClick={async () => {
+                      let blockId: string | undefined = spec.blocks[0]?.blockId;
+                      if (!blockId) {
+                        const result = await createBlocks({ specimenId: spec.specimenId, count: 1 });
+                        blockId = (result as Array<{ blockId: string }>)[0]?.blockId;
+                      }
+                      if (blockId) {
+                        await createSlides({ blockId, count: slideCounts[spec.specimenId] ?? 1, slideType: 'H&E' });
+                      }
+                    }}
+                    disabled={creatingBlocks || creatingSlides}
+                    data-testid={`add-slides-${spec.specimenCode}`}
+                  >
+                    Add Slide{(slideCounts[spec.specimenId] ?? 1) > 1 ? 's' : ''}
+                  </Button>
+                </Box>
+                <Stack direction="row" spacing={0.5} flexWrap="wrap">
+                  {spec.blocks.flatMap((b) => b.slides).map((sl) => (
+                    <Chip
+                      key={sl.slideId}
+                      label={`${formatMaterialIdDisplay(sl.slideId)} [${sl.slideType ?? 'H&E'}]`}
+                      size="small"
+                      onDelete={isSaved ? undefined : () => {
+                        const block = spec.blocks.find((b) => b.slides.some((s) => s.slideId === sl.slideId));
+                        if (block) doDeleteSlide({ blockId: block.blockId, slideId: sl.slideId });
+                      }}
+                      deleteIcon={<Delete fontSize="small" />}
+                    />
+                  ))}
+                  {spec.blocks.flatMap((b) => b.slides).length === 0 && (
+                    <Typography variant="caption" color="text.secondary">No slides yet</Typography>
+                  )}
+                </Stack>
+              </Box>
+            ) : (
+              /* ── Surgical Pathology: full blocks + slides UI ── */
+              <Box>
+                <Box display="flex" alignItems="center" gap={1} mb={2}>
+                  <TextField
+                    label="# Blocks"
+                    type="number"
+                    size="small"
+                    value={blockCounts[spec.specimenId] ?? 1}
+                    onChange={(e) => setBlockCounts({ ...blockCounts, [spec.specimenId]: parseInt(e.target.value) || 1 })}
+                    sx={{ width: 80 }}
+                    inputProps={{ min: 1, max: 50 }}
+                  />
+                  <Button
+                    variant="contained"
+                    size="small"
+                    startIcon={<Add />}
+                    onClick={() => createBlocks({ specimenId: spec.specimenId, count: blockCounts[spec.specimenId] ?? 1 })}
+                    disabled={creatingBlocks}
+                    data-testid={`create-blocks-${spec.specimenCode}`}
+                  >
+                    Add Block{(blockCounts[spec.specimenId] ?? 1) > 1 ? 's' : ''}
+                  </Button>
+                </Box>
+                {spec.blocks.length > 0 && (
+                <Table size="small">
                 <TableHead>
                   <TableRow>
                     <TableCell>Block ID</TableCell>
@@ -383,6 +436,8 @@ export default function ProcessingCasePage() {
                   ))}
                 </TableBody>
               </Table>
+            )}
+            </Box>
             )}
           </AccordionDetails>
         </Accordion>

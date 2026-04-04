@@ -50,6 +50,14 @@ const BODY_SITES = [
   'Brain', 'Spinal cord', 'Meninges',
   // Placenta / POC
   'Placenta', 'Products of conception',
+  // Cytology (sites with no sub-organs)
+  'GYN Cytology (Pap smears)', 'Urine Cytology', 'CSF (Cerebrospinal fluid)',
+  // Cytology — Fluid Cytology sub-sites
+  'Pleural fluid', 'Ascitic fluid', 'Pericardial fluid',
+  // Cytology — Respiratory sub-sites
+  'Sputum', 'Bronchial wash', 'Bronchial brush', 'BAL (bronchoalveolar lavage)',
+  // Cytology — Body Fluid sub-sites
+  'Synovial fluid', 'Cyst fluid', 'Other',
 ];
 
 const SPECIMEN_TYPES = [

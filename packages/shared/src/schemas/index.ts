@@ -24,7 +24,7 @@ export const loginSchema = z.union([
 
 export const createSpecimenSchema = z.object({
   bodySiteId: z.number().int().positive('Body site is required'),
-  specimenTypeId: z.number().int().positive('Specimen type is required'),
+  specimenTypeId: z.number().int().positive().optional(),
   coldIschemicTime: z.number().int().min(0).optional(),
 });
 
