@@ -103,6 +103,7 @@ export default function ProcessingCasePage() {
   const [grossDescription, setGrossDescription] = useState('');
   const [historyInit, setHistoryInit] = useState(false);
   const [grossInit, setGrossInit] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState<string | null>(null);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [blockCounts, setBlockCounts] = useState<Record<string, number>>({});
@@ -134,23 +135,19 @@ export default function ProcessingCasePage() {
     }
   }, [reportsData, grossInit]);
 
-  const saveHistoryMutation = useMutation({
-    mutationFn: () => orderApi.updateClinicalHistory(orderId!, clinicalHistory || null),
-    onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['order', orderId] });
-      setSaveSuccess('Clinical history saved');
-    },
-    onError: () => setSaveError('Failed to save clinical history'),
-  });
-
-  const saveGrossMutation = useMutation({
+  const saveMutation = useMutation({
     mutationFn: async () => {
+      await orderApi.updateClinicalHistory(orderId!, clinicalHistory || null);
       const pathologistEmployeeId = user?.employeeId ?? undefined;
       await reportApi.createDraft(orderId!, { gross: grossDescription, pathologistEmployeeId });
+      qc.invalidateQueries({ queryKey: ['order', orderId] });
       qc.invalidateQueries({ queryKey: ['reports', orderId] });
     },
-    onSuccess: () => setSaveSuccess('Gross description saved'),
-    onError: () => setSaveError('Failed to save gross description'),
+    onSuccess: () => {
+      setIsSaved(true);
+      setSaveSuccess('Case saved');
+    },
+    onError: () => setSaveError('Failed to save case'),
   });
 
   const specimens = materialsData?.data?.specimens ?? [];
@@ -175,16 +172,28 @@ export default function ProcessingCasePage() {
         <Typography variant="h5" data-testid="order-id-heading">
           {formatOrderIdDisplay(order?.orderId ?? '')}
         </Typography>
-        <Button
-          href={orderApi.referenceStripsPdfUrl(orderId!)}
-          target="_blank"
-          startIcon={<Download />}
-          variant="outlined"
-          size="small"
-          data-testid="download-strips-btn"
-        >
-          Reference Strips PDF
-        </Button>
+        <Box display="flex" gap={1}>
+          <Button
+            variant="contained"
+            size="small"
+            startIcon={saveMutation.isPending ? <CircularProgress size={14} /> : <Save />}
+            onClick={() => saveMutation.mutate()}
+            disabled={saveMutation.isPending}
+            data-testid="save-case-btn"
+          >
+            Save
+          </Button>
+          <Button
+            href={orderApi.referenceStripsPdfUrl(orderId!)}
+            target="_blank"
+            startIcon={<Download />}
+            variant="outlined"
+            size="small"
+            data-testid="download-strips-btn"
+          >
+            Reference Strips PDF
+          </Button>
+        </Box>
       </Box>
 
       {saveSuccess && (
@@ -230,20 +239,8 @@ export default function ProcessingCasePage() {
             fullWidth
             size="small"
             value={clinicalHistory}
-            onChange={(e) => setClinicalHistory(e.target.value)}
-            sx={{ mb: 1 }}
+            onChange={(e) => { setClinicalHistory(e.target.value); setIsSaved(false); }}
           />
-          <Box display="flex" justifyContent="flex-end">
-            <Button
-              size="small"
-              variant="outlined"
-              startIcon={saveHistoryMutation.isPending ? <CircularProgress size={14} /> : <Save />}
-              onClick={() => saveHistoryMutation.mutate()}
-              disabled={saveHistoryMutation.isPending}
-            >
-              Save
-            </Button>
-          </Box>
         </Paper>
         <Paper sx={{ p: 2 }}>
           <Typography variant="subtitle2" fontWeight={700} mb={1}>Gross Description</Typography>
@@ -253,20 +250,8 @@ export default function ProcessingCasePage() {
             fullWidth
             size="small"
             value={grossDescription}
-            onChange={(e) => setGrossDescription(e.target.value)}
-            sx={{ mb: 1 }}
+            onChange={(e) => { setGrossDescription(e.target.value); setIsSaved(false); }}
           />
-          <Box display="flex" justifyContent="flex-end">
-            <Button
-              size="small"
-              variant="outlined"
-              startIcon={saveGrossMutation.isPending ? <CircularProgress size={14} /> : <Save />}
-              onClick={() => saveGrossMutation.mutate()}
-              disabled={saveGrossMutation.isPending}
-            >
-              Save
-            </Button>
-          </Box>
         </Paper>
       </Box>
 
@@ -314,7 +299,7 @@ export default function ProcessingCasePage() {
                     <TableCell>Block ID</TableCell>
                     <TableCell>Slides</TableCell>
                     <TableCell>Add Slides</TableCell>
-                    <TableCell align="center">Delete</TableCell>
+                    {!isSaved && <TableCell align="center">Delete</TableCell>}
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -330,7 +315,7 @@ export default function ProcessingCasePage() {
                               key={sl.slideId}
                               label={`${formatMaterialIdDisplay(sl.slideId)} [${sl.slideType ?? 'H&E'}]`}
                               size="small"
-                              onDelete={() => doDeleteSlide({ blockId: block.blockId, slideId: sl.slideId })}
+                              onDelete={isSaved ? undefined : () => doDeleteSlide({ blockId: block.blockId, slideId: sl.slideId })}
                               deleteIcon={<Delete fontSize="small" />}
                             />
                           ))}
@@ -381,17 +366,19 @@ export default function ProcessingCasePage() {
                           </Button>
                         </Box>
                       </TableCell>
-                      <TableCell align="center">
-                        <Tooltip title="Delete block and all its slides">
-                          <IconButton
-                            size="small"
-                            color="error"
-                            onClick={() => doDeleteBlock(block.blockId)}
-                          >
-                            <Delete fontSize="small" />
-                          </IconButton>
-                        </Tooltip>
-                      </TableCell>
+                      {!isSaved && (
+                        <TableCell align="center">
+                          <Tooltip title="Delete block and all its slides">
+                            <IconButton
+                              size="small"
+                              color="error"
+                              onClick={() => doDeleteBlock(block.blockId)}
+                            >
+                              <Delete fontSize="small" />
+                            </IconButton>
+                          </Tooltip>
+                        </TableCell>
+                      )}
                     </TableRow>
                   ))}
                 </TableBody>
