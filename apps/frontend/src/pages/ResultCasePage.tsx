@@ -63,9 +63,9 @@ type PanelId = 'diagnosis' | 'comment' | 'synoptic' | 'gross' | 'clinicalHistory
 const DEFAULT_PANEL_ORDER: PanelId[] = ['diagnosis', 'comment', 'synoptic', 'gross', 'clinicalHistory'];
 
 const PANEL_LABELS: Record<PanelId, string> = {
-  diagnosis: 'Diagnosis',
+  diagnosis: 'Final Diagnosis',
   comment: 'Comment',
-  synoptic: 'Synoptic Template',
+  synoptic: 'Microscopic Description',
   gross: 'Gross Description',
   clinicalHistory: 'Clinical History',
 };
@@ -284,7 +284,7 @@ export default function ResultCasePage() {
       case 'diagnosis':
         return (
           <TextField
-            label="Diagnosis"
+            label="Final Diagnosis"
             multiline
             minRows={6}
             fullWidth
@@ -311,9 +311,9 @@ export default function ResultCasePage() {
         return (
           <Stack spacing={1.5}>
             <FormControl size="small" fullWidth>
-              <InputLabel>CAP Template</InputLabel>
+              <InputLabel>CAP Template (optional)</InputLabel>
               <Select
-                label="CAP Template"
+                label="CAP Template (optional)"
                 value={form.reportTemplateId}
                 onChange={(e) => handleTemplateSelect(e.target.value as number)}
               >
@@ -324,7 +324,7 @@ export default function ResultCasePage() {
               </Select>
             </FormControl>
             <TextField
-              label="Synoptic Content"
+              label="Microscopic Description"
               multiline
               minRows={8}
               fullWidth

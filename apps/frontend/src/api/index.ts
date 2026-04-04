@@ -93,6 +93,10 @@ export const blockApi = {
     apiClient
       .post<{ data: object[] }>(`/blocks/${blockId}/slides`, { count, slideType })
       .then((r) => r.data.data),
+  deleteBlock: (blockId: string): Promise<void> =>
+    apiClient.delete(`/blocks/${blockId}`).then(() => undefined),
+  deleteSlide: (blockId: string, slideId: string): Promise<void> =>
+    apiClient.delete(`/blocks/${blockId}/slides/${slideId}`).then(() => undefined),
 };
 
 export const reportApi = {

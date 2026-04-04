@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import {
   Box,
   Typography,
@@ -22,14 +22,16 @@ import {
   MenuItem,
   Stack,
   Chip,
-  Divider,
   Breadcrumbs,
   Link,
+  IconButton,
+  Tooltip,
 } from '@mui/material';
-import { ExpandMore, Add, Science, Download } from '@mui/icons-material';
+import { ExpandMore, Add, Science, Download, Delete, Save } from '@mui/icons-material';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useParams, useNavigate } from 'react-router-dom';
-import { orderApi, specimenApi, blockApi } from '../api';
+import { orderApi, specimenApi, blockApi, reportApi } from '../api';
+import { useAuth } from '../hooks/useAuth';
 import { formatOrderIdDisplay, formatMaterialIdDisplay } from '@lis/shared';
 
 interface Slide {
@@ -54,6 +56,7 @@ export default function ProcessingCasePage() {
   const { orderId } = useParams<{ orderId: string }>();
   const navigate = useNavigate();
   const qc = useQueryClient();
+  const { user } = useAuth();
 
   const { data: orderData, isLoading } = useQuery<{ data: object }>({
     queryKey: ['order', orderId],
@@ -64,6 +67,12 @@ export default function ProcessingCasePage() {
   const { data: materialsData, isLoading: loadingMaterials } = useQuery<{ data: { specimens: Specimen[] } }>({
     queryKey: ['materials', orderId],
     queryFn: () => orderApi.materials(orderId!) as Promise<{ data: { specimens: Specimen[] } }>,
+    enabled: Boolean(orderId),
+  });
+
+  const { data: reportsData } = useQuery<{ data: object[] }>({
+    queryKey: ['reports', orderId],
+    queryFn: () => reportApi.list(orderId!).then((d) => ({ data: d as object[] })),
     enabled: Boolean(orderId),
   });
 
@@ -79,16 +88,26 @@ export default function ProcessingCasePage() {
     onSuccess: () => qc.invalidateQueries({ queryKey: ['materials', orderId] }),
   });
 
+  const { mutateAsync: doDeleteBlock } = useMutation({
+    mutationFn: (blockId: string) => blockApi.deleteBlock(blockId),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ['materials', orderId] }),
+  });
+
+  const { mutateAsync: doDeleteSlide } = useMutation({
+    mutationFn: ({ blockId, slideId }: { blockId: string; slideId: string }) =>
+      blockApi.deleteSlide(blockId, slideId),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ['materials', orderId] }),
+  });
+
+  const [clinicalHistory, setClinicalHistory] = useState('');
+  const [grossDescription, setGrossDescription] = useState('');
+  const [historyInit, setHistoryInit] = useState(false);
+  const [grossInit, setGrossInit] = useState(false);
+  const [saveSuccess, setSaveSuccess] = useState<string | null>(null);
+  const [saveError, setSaveError] = useState<string | null>(null);
   const [blockCounts, setBlockCounts] = useState<Record<string, number>>({});
   const [slideCounts, setSlideCounts] = useState<Record<string, number>>({});
   const [slideTypes, setSlideTypes] = useState<Record<string, string>>({});
-
-  if (isLoading || loadingMaterials)
-    return (
-      <Box display="flex" justifyContent="center" mt={4}>
-        <CircularProgress />
-      </Box>
-    );
 
   const order = orderData?.data as {
     orderId: string;
@@ -99,7 +118,49 @@ export default function ProcessingCasePage() {
     doctor: { lastName: string; firstName: string };
   } | undefined;
 
+  useEffect(() => {
+    if (order && !historyInit) {
+      setClinicalHistory(order.clinicalHistory ?? '');
+      setHistoryInit(true);
+    }
+  }, [order, historyInit]);
+
+  useEffect(() => {
+    const drafts = (reportsData?.data ?? []) as Array<{ isFinal: boolean; gross?: string }>;
+    const latestDraft = drafts.filter((r) => !r.isFinal).at(-1);
+    if (latestDraft && !grossInit) {
+      setGrossDescription(latestDraft.gross ?? '');
+      setGrossInit(true);
+    }
+  }, [reportsData, grossInit]);
+
+  const saveHistoryMutation = useMutation({
+    mutationFn: () => orderApi.updateClinicalHistory(orderId!, clinicalHistory || null),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['order', orderId] });
+      setSaveSuccess('Clinical history saved');
+    },
+    onError: () => setSaveError('Failed to save clinical history'),
+  });
+
+  const saveGrossMutation = useMutation({
+    mutationFn: async () => {
+      const pathologistEmployeeId = user?.employeeId ?? undefined;
+      await reportApi.createDraft(orderId!, { gross: grossDescription, pathologistEmployeeId });
+      qc.invalidateQueries({ queryKey: ['reports', orderId] });
+    },
+    onSuccess: () => setSaveSuccess('Gross description saved'),
+    onError: () => setSaveError('Failed to save gross description'),
+  });
+
   const specimens = materialsData?.data?.specimens ?? [];
+
+  if (isLoading || loadingMaterials)
+    return (
+      <Box display="flex" justifyContent="center" mt={4}>
+        <CircularProgress />
+      </Box>
+    );
 
   return (
     <Box>
@@ -126,14 +187,26 @@ export default function ProcessingCasePage() {
         </Button>
       </Box>
 
-      {/* Order summary */}
+      {saveSuccess && (
+        <Alert severity="success" sx={{ mb: 2 }} onClose={() => setSaveSuccess(null)}>
+          {saveSuccess}
+        </Alert>
+      )}
+      {saveError && (
+        <Alert severity="error" sx={{ mb: 2 }} onClose={() => setSaveError(null)}>
+          {saveError}
+        </Alert>
+      )}
+
       {order && (
         <Paper sx={{ p: 2, mb: 3 }}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={4}>
               <Typography variant="caption" color="text.secondary">Patient</Typography>
               <Typography>{order.patient.lastName}, {order.patient.firstName}</Typography>
-              <Typography variant="caption">{order.patient.patientId} — DOB {new Date(order.patient.dateOfBirth).toLocaleDateString()}</Typography>
+              <Typography variant="caption">
+                {order.patient.patientId} — DOB {new Date(order.patient.dateOfBirth).toLocaleDateString()}
+              </Typography>
             </Grid>
             <Grid item xs={12} sm={4}>
               <Typography variant="caption" color="text.secondary">Clinician</Typography>
@@ -144,17 +217,59 @@ export default function ProcessingCasePage() {
               <Typography>{new Date(order.registeredDate).toLocaleDateString()}</Typography>
               {order.caseType && <Chip label={order.caseType} size="small" sx={{ mt: 0.5 }} />}
             </Grid>
-            {order.clinicalHistory && (
-              <Grid item xs={12}>
-                <Typography variant="caption" color="text.secondary">Clinical History</Typography>
-                <Typography variant="body2">{order.clinicalHistory}</Typography>
-              </Grid>
-            )}
           </Grid>
         </Paper>
       )}
 
-      {/* Specimens + materials */}
+      <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2, mb: 3 }}>
+        <Paper sx={{ p: 2 }}>
+          <Typography variant="subtitle2" fontWeight={700} mb={1}>Clinical History</Typography>
+          <TextField
+            multiline
+            minRows={4}
+            fullWidth
+            size="small"
+            value={clinicalHistory}
+            onChange={(e) => setClinicalHistory(e.target.value)}
+            sx={{ mb: 1 }}
+          />
+          <Box display="flex" justifyContent="flex-end">
+            <Button
+              size="small"
+              variant="outlined"
+              startIcon={saveHistoryMutation.isPending ? <CircularProgress size={14} /> : <Save />}
+              onClick={() => saveHistoryMutation.mutate()}
+              disabled={saveHistoryMutation.isPending}
+            >
+              Save
+            </Button>
+          </Box>
+        </Paper>
+        <Paper sx={{ p: 2 }}>
+          <Typography variant="subtitle2" fontWeight={700} mb={1}>Gross Description</Typography>
+          <TextField
+            multiline
+            minRows={4}
+            fullWidth
+            size="small"
+            value={grossDescription}
+            onChange={(e) => setGrossDescription(e.target.value)}
+            sx={{ mb: 1 }}
+          />
+          <Box display="flex" justifyContent="flex-end">
+            <Button
+              size="small"
+              variant="outlined"
+              startIcon={saveGrossMutation.isPending ? <CircularProgress size={14} /> : <Save />}
+              onClick={() => saveGrossMutation.mutate()}
+              disabled={saveGrossMutation.isPending}
+            >
+              Save
+            </Button>
+          </Box>
+        </Paper>
+      </Box>
+
       <Typography variant="h6" mb={1}>Materials</Typography>
       {specimens.length === 0 && (
         <Alert severity="info">No specimens found for this case.</Alert>
@@ -164,24 +279,19 @@ export default function ProcessingCasePage() {
           <AccordionSummary expandIcon={<ExpandMore />}>
             <Box display="flex" alignItems="center" gap={1.5}>
               <Science color="primary" />
-              <Typography fontWeight={600}>
-                Specimen {spec.specimenCode}
-              </Typography>
+              <Typography fontWeight={600}>Specimen {spec.specimenCode}</Typography>
               {spec.bodySite && <Chip label={spec.bodySite.bodySiteName} size="small" />}
               {spec.specimenType && <Chip label={spec.specimenType.specimenTypeName} size="small" variant="outlined" />}
             </Box>
           </AccordionSummary>
           <AccordionDetails>
-            {/* Create blocks */}
             <Box display="flex" alignItems="center" gap={1} mb={2}>
               <TextField
                 label="# Blocks"
                 type="number"
                 size="small"
                 value={blockCounts[spec.specimenId] ?? 1}
-                onChange={(e) =>
-                  setBlockCounts({ ...blockCounts, [spec.specimenId]: parseInt(e.target.value) || 1 })
-                }
+                onChange={(e) => setBlockCounts({ ...blockCounts, [spec.specimenId]: parseInt(e.target.value) || 1 })}
                 sx={{ width: 80 }}
                 inputProps={{ min: 1, max: 50 }}
               />
@@ -197,7 +307,6 @@ export default function ProcessingCasePage() {
               </Button>
             </Box>
 
-            {/* Existing blocks */}
             {spec.blocks.length > 0 && (
               <Table size="small">
                 <TableHead>
@@ -205,6 +314,7 @@ export default function ProcessingCasePage() {
                     <TableCell>Block ID</TableCell>
                     <TableCell>Slides</TableCell>
                     <TableCell>Add Slides</TableCell>
+                    <TableCell align="center">Delete</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -216,9 +326,17 @@ export default function ProcessingCasePage() {
                       <TableCell>
                         <Stack direction="row" spacing={0.5} flexWrap="wrap">
                           {block.slides.map((sl) => (
-                            <Chip key={sl.slideId} label={`${formatMaterialIdDisplay(sl.slideId)} [${sl.slideType ?? 'H&E'}]`} size="small" />
+                            <Chip
+                              key={sl.slideId}
+                              label={`${formatMaterialIdDisplay(sl.slideId)} [${sl.slideType ?? 'H&E'}]`}
+                              size="small"
+                              onDelete={() => doDeleteSlide({ blockId: block.blockId, slideId: sl.slideId })}
+                              deleteIcon={<Delete fontSize="small" />}
+                            />
                           ))}
-                          {block.slides.length === 0 && <Typography variant="caption" color="text.secondary">none</Typography>}
+                          {block.slides.length === 0 && (
+                            <Typography variant="caption" color="text.secondary">none</Typography>
+                          )}
                         </Stack>
                       </TableCell>
                       <TableCell>
@@ -227,7 +345,9 @@ export default function ProcessingCasePage() {
                             type="number"
                             size="small"
                             value={slideCounts[block.blockId] ?? 1}
-                            onChange={(e) => setSlideCounts({ ...slideCounts, [block.blockId]: parseInt(e.target.value) || 1 })}
+                            onChange={(e) =>
+                              setSlideCounts({ ...slideCounts, [block.blockId]: parseInt(e.target.value) || 1 })
+                            }
                             sx={{ width: 70 }}
                             inputProps={{ min: 1, max: 100 }}
                           />
@@ -260,6 +380,17 @@ export default function ProcessingCasePage() {
                             Slides
                           </Button>
                         </Box>
+                      </TableCell>
+                      <TableCell align="center">
+                        <Tooltip title="Delete block and all its slides">
+                          <IconButton
+                            size="small"
+                            color="error"
+                            onClick={() => doDeleteBlock(block.blockId)}
+                          >
+                            <Delete fontSize="small" />
+                          </IconButton>
+                        </Tooltip>
                       </TableCell>
                     </TableRow>
                   ))}
