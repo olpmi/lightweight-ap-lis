@@ -23,12 +23,14 @@ import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { orderApi } from '../api';
 import { formatOrderIdDisplay } from '@lis/shared';
+import { useLanguage } from '../hooks/useLanguage';
 
 export default function ProcessingQueuePage() {
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
   const [showAll, setShowAll] = useState(false);
   const [search, setSearch] = useState('');
+  const { t } = useLanguage();
   const PAGE_SIZE = 20;
 
   const { data, isLoading, isError } = useQuery<{
@@ -48,7 +50,7 @@ export default function ProcessingQueuePage() {
         <CircularProgress />
       </Box>
     );
-  if (isError) return <Alert severity="error">Failed to load processing queue</Alert>;
+  if (isError) return <Alert severity="error">{t('errorGeneric')}</Alert>;
 
   const orders = (data?.data ?? []) as Array<{
     orderId: string;
@@ -64,11 +66,11 @@ export default function ProcessingQueuePage() {
   return (
     <Box>
       <Box display="flex" alignItems="center" justifyContent="space-between" mb={2} gap={2} flexWrap="wrap">
-        <Typography variant="h5">Processing Queue</Typography>
+        <Typography variant="h5">{t('pq_title')}</Typography>
         <Box display="flex" alignItems="center" gap={2} flexWrap="wrap">
           <TextField
             size="small"
-            placeholder="Search case ID or patient name"
+            placeholder={t('pq_searchPlaceholder')}
             value={search}
             onChange={(e) => { setSearch(e.target.value); setPage(1); }}
             InputProps={{ startAdornment: <InputAdornment position="start"><Search fontSize="small" /></InputAdornment> }}
@@ -85,7 +87,7 @@ export default function ProcessingQueuePage() {
                 data-testid="show-all-toggle"
               />
             }
-            label="Show all (including completed)"
+            label={t('pq_showAll')}
           />
         </Box>
       </Box>
@@ -136,7 +138,7 @@ export default function ProcessingQueuePage() {
               {orders.length === 0 && (
                 <TableRow>
                   <TableCell colSpan={6} align="center" sx={{ py: 4 }}>
-                    <Typography color="text.secondary">No cases in queue</Typography>
+                    <Typography color="text.secondary">{t('pq_noCases')}</Typography>
                   </TableCell>
                 </TableRow>
               )}
@@ -145,7 +147,7 @@ export default function ProcessingQueuePage() {
         </TableContainer>
         <Box display="flex" justifyContent="space-between" alignItems="center" px={2} py={1}>
           <Typography variant="caption" color="text.secondary">
-            {data?.total ?? 0} cases
+            {data?.total ?? 0} {t('cases')}
           </Typography>
           <Pagination
             count={totalPages}

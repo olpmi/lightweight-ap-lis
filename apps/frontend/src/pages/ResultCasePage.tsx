@@ -35,6 +35,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useParams, useNavigate } from 'react-router-dom';
 import { orderApi, reportApi, lookupApi } from '../api';
 import { useAuth } from '../hooks/useAuth';
+import { useLanguage } from '../hooks/useLanguage';
 import { formatOrderIdDisplay, formatMaterialIdDisplay } from '@lis/shared';
 
 interface Employee {
@@ -62,19 +63,21 @@ type PanelId = 'diagnosis' | 'comment' | 'synoptic' | 'gross' | 'clinicalHistory
 
 const DEFAULT_PANEL_ORDER: PanelId[] = ['diagnosis', 'comment', 'synoptic', 'gross', 'clinicalHistory'];
 
-const PANEL_LABELS: Record<PanelId, string> = {
-  diagnosis: 'Final Diagnosis',
-  comment: 'Comment',
-  synoptic: 'Microscopic Description',
-  gross: 'Gross Description',
-  clinicalHistory: 'Clinical History',
-};
-
 export default function ResultCasePage() {
   const { orderId } = useParams<{ orderId: string }>();
   const navigate = useNavigate();
   const qc = useQueryClient();
   const { user } = useAuth();
+  const { t } = useLanguage();
+
+  // Panel labels depend on current language — defined inside component
+  const PANEL_LABELS: Record<PanelId, string> = {
+    diagnosis: t('rc_finalDiagnosis'),
+    comment: t('rc_comment'),
+    synoptic: t('rc_microscopicDescription'),
+    gross: t('rc_grossDescription'),
+    clinicalHistory: t('pc_clinicalHistory'),
+  };
 
   const [tab, setTab] = useState(0);
   const [form, setForm] = useState({
@@ -155,10 +158,10 @@ export default function ResultCasePage() {
     mutationFn: () => orderApi.updateClinicalHistory(orderId!, clinicalHistory || null),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['order', orderId] });
-      setSuccess('Clinical history saved');
+      setSuccess(t('rc_clinicalHistorySaved'));
     },
     onError: (err: unknown) =>
-      setError((err as { response?: { data?: { error?: { message?: string } } } })?.response?.data?.error?.message ?? 'Update failed'),
+      setError((err as { response?: { data?: { error?: { message?: string } } } })?.response?.data?.error?.message ?? t('errorGeneric')),
   });
 
   const saveDraftMutation = useMutation({
@@ -173,10 +176,10 @@ export default function ResultCasePage() {
       }),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['reports', orderId] });
-      setSuccess('Draft saved');
+      setSuccess(t('rc_draftSaved'));
     },
     onError: (err: unknown) =>
-      setError((err as { response?: { data?: { error?: { message?: string } } } })?.response?.data?.error?.message ?? 'Save failed'),
+      setError((err as { response?: { data?: { error?: { message?: string } } } })?.response?.data?.error?.message ?? t('errorGeneric')),
   });
 
   const signOutMutation = useMutation({
@@ -205,10 +208,10 @@ export default function ResultCasePage() {
       qc.invalidateQueries({ queryKey: ['reports', orderId] });
       qc.invalidateQueries({ queryKey: ['result-queue'] });
       setSignOutDialogOpen(false);
-      setSuccess('Report signed out successfully');
+      setSuccess(t('rc_signedOutSuccess'));
     },
     onError: (err: unknown) =>
-      setError((err as { response?: { data?: { error?: { message?: string } } } })?.response?.data?.error?.message ?? 'Sign-out failed'),
+      setError((err as { response?: { data?: { error?: { message?: string } } } })?.response?.data?.error?.message ?? t('errorGeneric')),
   });
 
   const reactivateMutation = useMutation({
@@ -217,10 +220,10 @@ export default function ResultCasePage() {
       qc.invalidateQueries({ queryKey: ['reports', orderId] });
       qc.invalidateQueries({ queryKey: ['order', orderId] });
       setReactivateDialogOpen(false);
-      setSuccess('Case reactivated. A new draft has been created.');
+      setSuccess(t('rc_reactivatedSuccess'));
     },
     onError: (err: unknown) =>
-      setError((err as { response?: { data?: { error?: { message?: string } } } })?.response?.data?.error?.message ?? 'Reactivation failed'),
+      setError((err as { response?: { data?: { error?: { message?: string } } } })?.response?.data?.error?.message ?? t('errorGeneric')),
   });
 
   // â”€â”€ Drag handlers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -284,7 +287,7 @@ export default function ResultCasePage() {
       case 'diagnosis':
         return (
           <TextField
-            label="Final Diagnosis"
+            label={t('rc_finalDiagnosis')}
             multiline
             minRows={6}
             fullWidth
@@ -298,7 +301,7 @@ export default function ResultCasePage() {
       case 'comment':
         return (
           <TextField
-            label="Comment"
+            label={t('rc_comment')}
             multiline
             minRows={6}
             fullWidth
@@ -311,26 +314,26 @@ export default function ResultCasePage() {
         return (
           <Stack spacing={1.5}>
             <FormControl size="small" fullWidth>
-              <InputLabel>CAP Template (optional)</InputLabel>
+              <InputLabel>{t('rc_capTemplate')}</InputLabel>
               <Select
-                label="CAP Template (optional)"
+                label={t('rc_capTemplate')}
                 value={form.reportTemplateId}
                 onChange={(e) => handleTemplateSelect(e.target.value as number)}
               >
-                <MenuItem value="">None</MenuItem>
+                <MenuItem value="">{t('rc_none')}</MenuItem>
                 {(templates as Array<{ reportTemplateId: number; templateName: string }> ?? []).map((t) => (
                   <MenuItem key={t.reportTemplateId} value={t.reportTemplateId}>{t.templateName}</MenuItem>
                 ))}
               </Select>
             </FormControl>
             <TextField
-              label="Microscopic Description"
+              label={t('rc_microscopicDescription')}
               multiline
               minRows={8}
               fullWidth
               value={form.synopticData}
               onChange={(e) => setForm({ ...form, synopticData: e.target.value })}
-              placeholder="Select a CAP template above, then fill in the fields"
+              placeholder={t('rc_capTemplatePlaceholder')}
               inputProps={{ 'data-testid': 'synoptic-input', style: { fontFamily: 'monospace', fontSize: 13 } }}
               sx={{ '& .MuiInputBase-root': { resize: 'vertical', overflow: 'auto' } }}
             />
@@ -339,7 +342,7 @@ export default function ResultCasePage() {
       case 'gross':
         return (
           <TextField
-            label="Gross Description"
+            label={t('rc_grossDescription')}
             multiline
             minRows={8}
             fullWidth
@@ -354,7 +357,7 @@ export default function ResultCasePage() {
         return (
           <Stack spacing={1}>
             <TextField
-              label="Clinical History"
+              label={t('pc_clinicalHistory')}
               multiline
               minRows={4}
               fullWidth
@@ -370,7 +373,7 @@ export default function ResultCasePage() {
                 onClick={() => saveHistoryMutation.mutate()}
                 disabled={saveHistoryMutation.isPending}
               >
-                {saveHistoryMutation.isPending ? <CircularProgress size={16} /> : 'Save History'}
+                {saveHistoryMutation.isPending ? <CircularProgress size={16} /> : t('rc_saveHistory')}
               </Button>
             </Box>
           </Stack>
@@ -399,14 +402,14 @@ export default function ResultCasePage() {
     doctor: { lastName: string; firstName: string };
   } | undefined;
 
-  if (!order) return <Alert severity="error">Order not found</Alert>;
+  if (!order) return <Alert severity="error">{t('errorGeneric')}</Alert>;
 
   return (
     <Box>
       {/* Breadcrumb */}
       <Breadcrumbs sx={{ mb: 1 }}>
         <Link underline="hover" color="inherit" sx={{ cursor: 'pointer' }} onClick={() => navigate('/result')}>
-          Result
+          {t('nav_result')}
         </Link>
         <Typography color="text.primary">{formatOrderIdDisplay(orderId ?? '')}</Typography>
       </Breadcrumbs>
@@ -419,10 +422,10 @@ export default function ResultCasePage() {
               <Typography variant="h5" fontWeight={700} data-testid="result-order-id">
                 {formatOrderIdDisplay(order.orderId)}
               </Typography>
-              {order.isReactivated && <Chip label="Reactivated" color="warning" size="small" />}
-              {isSignedOut && <Chip label={`Signed Out v${latestFinal!.versionNumber}`} color="success" size="small" />}
-              {latestDraft && <Chip label={`Draft v${latestDraft.versionNumber}`} size="small" />}
-              {order.caseType && <Chip label={order.caseType} variant="outlined" size="small" />}
+              {order.isReactivated && <Chip label={t('rq_reactivated')} color="warning" size="small" />}
+              {isSignedOut && <Chip label={`${t('rc_signedOut')} v${latestFinal!.versionNumber}`} color="success" size="small" />}
+              {latestDraft && <Chip label={`${t('rc_draft')} v${latestDraft.versionNumber}`} size="small" />}
+              {order.caseType && <Chip label={order.caseType === 'Surgical Pathology' ? t('oe_surgicalPathology') : order.caseType === 'Cytology' ? t('oe_cytology') : order.caseType} variant="outlined" size="small" />}
             </Box>
             <Typography variant="body1" fontWeight={600}>
               {order.patient.lastName}, {order.patient.firstName}
@@ -430,14 +433,14 @@ export default function ResultCasePage() {
             <Stack direction="row" spacing={2} mt={0.25} flexWrap="wrap">
               <Typography variant="body2" color="text.secondary">{order.patient.patientId}</Typography>
               <Typography variant="body2" color="text.secondary">
-                DOB: {new Date(order.patient.dateOfBirth).toLocaleDateString()}
+                {t('rc_dob')}: {new Date(order.patient.dateOfBirth).toLocaleDateString()}
               </Typography>
-              <Typography variant="body2" color="text.secondary">Sex: {order.patient.sex}</Typography>
+              <Typography variant="body2" color="text.secondary">{t('rc_sex')}: {order.patient.sex}</Typography>
               <Typography variant="body2" color="text.secondary">
-                Clinician: {order.doctor.lastName}, {order.doctor.firstName}
+                {t('oe_clinician')}: {order.doctor.lastName}, {order.doctor.firstName}
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                Registered: {new Date(order.registeredDate).toLocaleDateString()}
+                {t('pq_registered')}: {new Date(order.registeredDate).toLocaleDateString()}
               </Typography>
             </Stack>
           </Box>
@@ -450,9 +453,9 @@ export default function ResultCasePage() {
 
       {/* Tabs */}
       <Tabs value={tab} onChange={(_, v) => setTab(v)} sx={{ mb: 2 }}>
-        <Tab label="Result Entry" />
-        <Tab label="Materials" />
-        <Tab label="Report History" />
+        <Tab label={t('rc_resultEntry')} />
+        <Tab label={t('pc_materials')} />
+        <Tab label={t('rc_reportHistory')} />
       </Tabs>
 
       {/* â”€â”€ Result Entry tab â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
@@ -470,7 +473,7 @@ export default function ResultCasePage() {
                   size="small"
                   data-testid="view-report-pdf"
                 >
-                  View Report PDF
+                  {t('rc_viewReportPdf')}
                 </Button>
                 <Button
                   startIcon={<Refresh />}
@@ -480,7 +483,7 @@ export default function ResultCasePage() {
                   onClick={() => setReactivateDialogOpen(true)}
                   data-testid="reactivate-btn"
                 >
-                  Reactivate
+                  {t('rc_reactivate')}
                 </Button>
               </>
             ) : (
@@ -492,7 +495,7 @@ export default function ResultCasePage() {
                   size="small"
                   data-testid="save-draft-btn"
                 >
-                  {saveDraftMutation.isPending ? <CircularProgress size={16} /> : 'Save Draft'}
+                  {saveDraftMutation.isPending ? <CircularProgress size={16} /> : t('rc_saveDraft')}
                 </Button>
                 <Button
                   variant="contained"
@@ -501,7 +504,7 @@ export default function ResultCasePage() {
                   onClick={() => setSignOutDialogOpen(true)}
                   data-testid="sign-out-btn"
                 >
-                  Sign Out
+                  {t('rc_signOut')}
                 </Button>
               </>
             )}
@@ -509,7 +512,7 @@ export default function ResultCasePage() {
 
           {isSignedOut && (
             <Alert severity="info" sx={{ mb: 2 }}>
-              This case is signed out. Use Reactivate to create a revision or addendum.
+              {t('rc_signedOutAlert')}
             </Alert>
           )}
 
@@ -564,7 +567,7 @@ export default function ResultCasePage() {
       {/* â”€â”€ Materials tab â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       {tab === 1 && (
         <Paper sx={{ p: 2 }}>
-          <Typography variant="subtitle1" fontWeight={700} mb={2}>Materials</Typography>
+          <Typography variant="subtitle1" fontWeight={700} mb={2}>{t('pc_materials')}</Typography>
           {(((materialsData as { data?: { specimens: unknown[] } })?.data?.specimens ?? []) as Array<{
             specimenId: string;
             specimenCode: string;
@@ -574,7 +577,7 @@ export default function ResultCasePage() {
           }>).map((spec) => (
             <Accordion key={spec.specimenId} defaultExpanded>
               <AccordionSummary expandIcon={<ExpandMore />}>
-                <Typography fontWeight={600}>Specimen {spec.specimenCode}</Typography>
+                <Typography fontWeight={600}>{t('oe_specimen')} {spec.specimenCode}</Typography>
                 {spec.bodySite && <Chip label={spec.bodySite.bodySiteName} size="small" sx={{ ml: 1 }} />}
               </AccordionSummary>
               <AccordionDetails>
@@ -595,14 +598,14 @@ export default function ResultCasePage() {
       {/* â”€â”€ Report History tab â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       {tab === 2 && (
         <Paper sx={{ p: 2 }}>
-          <Typography variant="subtitle1" fontWeight={700} mb={2}>Report History</Typography>
+          <Typography variant="subtitle1" fontWeight={700} mb={2}>{t('rc_reportHistory')}</Typography>
           <Table size="small">
             <TableHead>
               <TableRow>
-                <TableCell>Version</TableCell>
-                <TableCell>Status</TableCell>
-                <TableCell>Signed Out</TableCell>
-                <TableCell>Pathologist</TableCell>
+                <TableCell>{t('rc_version')}</TableCell>
+                <TableCell>{t('rq_status')}</TableCell>
+                <TableCell>{t('rc_signedOut')}</TableCell>
+                <TableCell>{t('rc_pathologist')}</TableCell>
                 <TableCell>PDF</TableCell>
               </TableRow>
             </TableHead>
@@ -615,8 +618,8 @@ export default function ResultCasePage() {
                   </TableCell>
                   <TableCell>
                     {report.isFinal
-                      ? <Chip label="Final" color="success" size="small" />
-                      : <Chip label="Draft" size="small" />}
+                      ? <Chip label={t('rc_final')} color="success" size="small" />
+                      : <Chip label={t('rc_draft')} size="small" />}
                   </TableCell>
                   <TableCell>
                     {report.signedOutDatetime ? new Date(report.signedOutDatetime).toLocaleString() : 'â€”'}
@@ -645,17 +648,17 @@ export default function ResultCasePage() {
 
       {/* Sign-out confirmation dialog */}
       <Dialog open={signOutDialogOpen} onClose={() => setSignOutDialogOpen(false)} maxWidth="xs" fullWidth>
-        <DialogTitle>Confirm Sign-Out</DialogTitle>
+        <DialogTitle>{t('rc_confirmSignOut')}</DialogTitle>
         <DialogContent>
           <Typography>
-            Sign out report for case <strong>{formatOrderIdDisplay(orderId ?? '')}</strong>?
+            {t('rc_signOut')} <strong>{formatOrderIdDisplay(orderId ?? '')}</strong>?
           </Typography>
           <Typography variant="body2" color="text.secondary" mt={1}>
-            This action is final. The report will become immutable once signed out.
+            {t('rc_confirmSignOutMsg')}
           </Typography>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setSignOutDialogOpen(false)}>Cancel</Button>
+          <Button onClick={() => setSignOutDialogOpen(false)}>{t('cancel')}</Button>
           <Button
             onClick={() => signOutMutation.mutate()}
             variant="contained"
@@ -663,26 +666,26 @@ export default function ResultCasePage() {
             disabled={signOutMutation.isPending}
             data-testid="confirm-sign-out-btn"
           >
-            {signOutMutation.isPending ? <CircularProgress size={20} /> : 'Sign Out'}
+            {signOutMutation.isPending ? <CircularProgress size={20} /> : t('rc_signOut')}
           </Button>
         </DialogActions>
       </Dialog>
 
       {/* Reactivate dialog */}
       <Dialog open={reactivateDialogOpen} onClose={() => setReactivateDialogOpen(false)} maxWidth="xs" fullWidth>
-        <DialogTitle>Reactivate Case</DialogTitle>
+        <DialogTitle>{t('rc_reactivateCase')}</DialogTitle>
         <DialogContent>
-          <Typography>Reactivating will create a new draft report. Prior reports remain immutable.</Typography>
+          <Typography>{t('rc_reactivateMsg')}</Typography>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setReactivateDialogOpen(false)}>Cancel</Button>
+          <Button onClick={() => setReactivateDialogOpen(false)}>{t('cancel')}</Button>
           <Button
             onClick={() => reactivateMutation.mutate('revise')}
             variant="outlined"
             color="warning"
             data-testid="reactivate-revise-btn"
           >
-            Revise
+            {t('rc_revise')}
           </Button>
           <Button
             onClick={() => reactivateMutation.mutate('addend')}
@@ -690,7 +693,7 @@ export default function ResultCasePage() {
             color="warning"
             data-testid="confirm-reactivate-btn"
           >
-            Addend
+            {t('rc_addend')}
           </Button>
         </DialogActions>
       </Dialog>

@@ -23,6 +23,7 @@ import { Add, Delete, Download } from '@mui/icons-material';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { orderApi, lookupApi, patientApi, doctorApi } from '../api';
 import { formatOrderIdDisplay, BODY_SITE_HIERARCHY, CYTOLOGY_SITE_HIERARCHY } from '@lis/shared';
+import { useLanguage } from '../hooks/useLanguage';
 
 interface SpecimenRow {
   id: string;
@@ -33,6 +34,7 @@ interface SpecimenRow {
 }
 
 export default function OrderEntryPage() {
+  const { t, tSite, tOrgan } = useLanguage();
   const [patientMode, setPatientMode] = useState<'existing' | 'new'>('existing');
   const [doctorMode, setDoctorMode] = useState<'existing' | 'new'>('existing');
   const [patientSearch, setPatientSearch] = useState('');
@@ -150,7 +152,7 @@ export default function OrderEntryPage() {
   return (
     <Box>
       <Typography variant="h5" mb={3} data-testid="page-title">
-        Order Entry
+        {t('oe_title')}
       </Typography>
 
       {error && (
@@ -171,12 +173,12 @@ export default function OrderEntryPage() {
               size="small"
               startIcon={<Download />}
             >
-              Worksheet PDF
+              {t('oe_worksheetPdf')}
             </Button>
           }
         >
           <Typography fontWeight={700} variant="h6" component="span">
-            Case created: {formatOrderIdDisplay(createdOrder.orderId)}
+            {t('oe_caseCreated')} {formatOrderIdDisplay(createdOrder.orderId)}
           </Typography>
         </Alert>
       )}
@@ -187,18 +189,18 @@ export default function OrderEntryPage() {
           <Grid item xs={12} md={6}>
             <Paper sx={{ p: 2 }}>
               <Typography variant="subtitle1" fontWeight={700} mb={2}>
-                Patient
+                {t('oe_patient')}
               </Typography>
               <Stack direction="row" spacing={1} mb={2}>
                 <Chip
-                  label="Existing"
+                  label={t('oe_existing')}
                   onClick={() => setPatientMode('existing')}
                   color={patientMode === 'existing' ? 'primary' : 'default'}
                   clickable
                   size="small"
                 />
                 <Chip
-                  label="New"
+                  label={t('oe_new')}
                   onClick={() => setPatientMode('new')}
                   color={patientMode === 'new' ? 'primary' : 'default'}
                   clickable
@@ -217,19 +219,22 @@ export default function OrderEntryPage() {
                   onInputChange={(_, v) => setPatientSearch(v)}
                   onChange={(_, v) => setSelectedPatient(v)}
                   renderInput={(params) => (
-                    <TextField {...params} label="Search patient" size="small" fullWidth />
+                    <TextField {...params} label={t('oe_searchPatient')} size="small" fullWidth />
                   )}
                   size="small"
                 />
               ) : (
                 <Stack spacing={1.5}>
-                  <TextField label="Last Name" required size="small" value={form.patientLastName} onChange={(e) => setForm({ ...form, patientLastName: e.target.value })} />
-                  <TextField label="First Name" required size="small" value={form.patientFirstName} onChange={(e) => setForm({ ...form, patientFirstName: e.target.value })} />
-                  <TextField label="Date of Birth" required type="date" size="small" value={form.patientDateOfBirth} onChange={(e) => setForm({ ...form, patientDateOfBirth: e.target.value })} InputLabelProps={{ shrink: true }} />
+                  <TextField label={t('oe_lastName')} required size="small" value={form.patientLastName} onChange={(e) => setForm({ ...form, patientLastName: e.target.value })} />
+                  <TextField label={t('oe_firstName')} required size="small" value={form.patientFirstName} onChange={(e) => setForm({ ...form, patientFirstName: e.target.value })} />
+                  <TextField label={t('oe_dateOfBirth')} required type="date" size="small" value={form.patientDateOfBirth} onChange={(e) => setForm({ ...form, patientDateOfBirth: e.target.value })} InputLabelProps={{ shrink: true }} />
                   <FormControl size="small" required>
-                    <InputLabel>Sex</InputLabel>
-                    <Select label="Sex" value={form.patientSex} onChange={(e) => setForm({ ...form, patientSex: e.target.value })}>
-                      {['Male', 'Female', 'Other', 'Unknown'].map((s) => <MenuItem key={s} value={s}>{s}</MenuItem>)}
+                    <InputLabel>{t('oe_sex')}</InputLabel>
+                    <Select label={t('oe_sex')} value={form.patientSex} onChange={(e) => setForm({ ...form, patientSex: e.target.value })}>
+                      {(['Male', 'Female', 'Other', 'Unknown'] as const).map((s) => {
+                        const labels = { Male: t('oe_sexMale'), Female: t('oe_sexFemale'), Other: t('oe_sexOther'), Unknown: t('oe_sexUnknown') };
+                        return <MenuItem key={s} value={s}>{labels[s]}</MenuItem>;
+                      })}
                     </Select>
                   </FormControl>
                 </Stack>
@@ -241,11 +246,11 @@ export default function OrderEntryPage() {
           <Grid item xs={12} md={6}>
             <Paper sx={{ p: 2 }}>
               <Typography variant="subtitle1" fontWeight={700} mb={2}>
-                Clinician
+                {t('oe_clinician')}
               </Typography>
               <Stack direction="row" spacing={1} mb={2}>
-                <Chip label="Existing" onClick={() => setDoctorMode('existing')} color={doctorMode === 'existing' ? 'primary' : 'default'} clickable size="small" />
-                <Chip label="New" onClick={() => setDoctorMode('new')} color={doctorMode === 'new' ? 'primary' : 'default'} clickable size="small" />
+                <Chip label={t('oe_existing')} onClick={() => setDoctorMode('existing')} color={doctorMode === 'existing' ? 'primary' : 'default'} clickable size="small" />
+                <Chip label={t('oe_new')} onClick={() => setDoctorMode('new')} color={doctorMode === 'new' ? 'primary' : 'default'} clickable size="small" />
               </Stack>
               {doctorMode === 'existing' ? (
                 <Autocomplete
@@ -254,13 +259,13 @@ export default function OrderEntryPage() {
                   loading={searchingDoctors}
                   onInputChange={(_, v) => setDoctorSearch(v)}
                   onChange={(_, v) => setSelectedDoctor(v)}
-                  renderInput={(params) => <TextField {...params} label="Search clinician" size="small" fullWidth />}
+                  renderInput={(params) => <TextField {...params} label={t('oe_searchClinician')} size="small" fullWidth />}
                   size="small"
                 />
               ) : (
                 <Stack spacing={1.5}>
-                  <TextField label="Last Name" required size="small" value={form.doctorLastName} onChange={(e) => setForm({ ...form, doctorLastName: e.target.value })} />
-                  <TextField label="First Name" required size="small" value={form.doctorFirstName} onChange={(e) => setForm({ ...form, doctorFirstName: e.target.value })} />
+                  <TextField label={t('oe_lastName')} required size="small" value={form.doctorLastName} onChange={(e) => setForm({ ...form, doctorLastName: e.target.value })} />
+                  <TextField label={t('oe_firstName')} required size="small" value={form.doctorFirstName} onChange={(e) => setForm({ ...form, doctorFirstName: e.target.value })} />
                 </Stack>
               )}
             </Paper>
@@ -270,16 +275,17 @@ export default function OrderEntryPage() {
           <Grid item xs={12}>
             <Paper sx={{ p: 2 }}>
               <Typography variant="subtitle1" fontWeight={700} mb={2}>
-                Case Details
+                {t('oe_caseDetails')}
               </Typography>
               <FormControl size="small" sx={{ minWidth: 240 }} required>
-                <InputLabel>Case Type</InputLabel>
-                <Select label="Case Type" value={form.caseType} onChange={(e) => {
+                <InputLabel>{t('oe_caseType')}</InputLabel>
+                <Select label={t('oe_caseType')} value={form.caseType} onChange={(e) => {
                   setForm({ ...form, caseType: e.target.value });
                   // Reset specimens when switching case type
                   setSpecimens([{ id: '1', site: '', bodySiteId: '', specimenTypeId: '', coldIschemicTime: '' }]);
                 }}>
-                  {['Surgical Pathology', 'Cytology'].map((t) => <MenuItem key={t} value={t}>{t}</MenuItem>)}
+                  <MenuItem value="Surgical Pathology">{t('oe_surgicalPathology')}</MenuItem>
+                  <MenuItem value="Cytology">{t('oe_cytology')}</MenuItem>
                 </Select>
               </FormControl>
             </Paper>
@@ -290,10 +296,10 @@ export default function OrderEntryPage() {
             <Paper sx={{ p: 2 }}>
               <Box display="flex" alignItems="center" justifyContent="space-between" mb={2}>
                 <Typography variant="subtitle1" fontWeight={700}>
-                  Specimens
+                  {t('oe_specimens')}
                 </Typography>
                 <Button startIcon={<Add />} size="small" onClick={addSpecimen} data-testid="add-specimen-btn">
-                  Add Specimen
+                  {t('oe_addSpecimen')}
                 </Button>
               </Box>
               <Stack spacing={1.5}>
@@ -305,7 +311,7 @@ export default function OrderEntryPage() {
                   <Box key={spec.id} sx={{ border: '1px solid', borderColor: 'divider', borderRadius: 1, p: 1.5 }}>
                     <Box display="flex" alignItems="center" justifyContent="space-between" mb={1}>
                       <Typography variant="body2" fontWeight={600} color="text.secondary">
-                        Specimen {String.fromCharCode(65 + index)}
+                        {t('oe_specimen')} {String.fromCharCode(65 + index)}
                       </Typography>
                       <IconButton size="small" onClick={() => removeSpecimen(spec.id)} disabled={specimens.length === 1}>
                         <Delete fontSize="small" />
@@ -314,23 +320,23 @@ export default function OrderEntryPage() {
                     <Box display="grid" gridTemplateColumns="1fr 1fr" gap={1.5}>
                       {/* Site */}
                       <FormControl size="small" required>
-                        <InputLabel>Site</InputLabel>
+                        <InputLabel>{t('oe_site')}</InputLabel>
                         <Select
-                          label="Site"
+                          label={t('oe_site')}
                           value={spec.site}
                           onChange={(e) => handleSiteChange(spec.id, e.target.value)}
                         >
                           {Object.keys(hierarchy).map((site) => (
-                            <MenuItem key={site} value={site}>{site}</MenuItem>
+                            <MenuItem key={site} value={site}>{tSite(site)}</MenuItem>
                           ))}
                         </Select>
                       </FormControl>
                       {/* Organ — only shown when site has sub-organs */}
                       {hasSubOrgans ? (
                         <FormControl size="small" required disabled={!spec.site}>
-                          <InputLabel>Organ</InputLabel>
+                          <InputLabel>{t('oe_organ')}</InputLabel>
                           <Select
-                            label="Organ"
+                            label={t('oe_organ')}
                             value={spec.bodySiteId}
                             onChange={(e) => updateSpecimen(spec.id, 'bodySiteId', e.target.value as number)}
                           >
@@ -338,7 +344,7 @@ export default function OrderEntryPage() {
                               const match = (bodySites as Array<{ bodySiteId: number; bodySiteName: string }> ?? [])
                                 .find((s) => s.bodySiteName === organ);
                               return match ? (
-                                <MenuItem key={match.bodySiteId} value={match.bodySiteId}>{organ}</MenuItem>
+                                <MenuItem key={match.bodySiteId} value={match.bodySiteId}>{tOrgan(organ)}</MenuItem>
                               ) : null;
                             })}
                           </Select>
@@ -350,9 +356,9 @@ export default function OrderEntryPage() {
                       {/* Specimen Type — surgical pathology only */}
                       {!isCytology && (
                         <FormControl size="small" required>
-                          <InputLabel>Specimen Type</InputLabel>
+                          <InputLabel>{t('oe_specimenType')}</InputLabel>
                           <Select
-                            label="Specimen Type"
+                            label={t('oe_specimenType')}
                             value={spec.specimenTypeId}
                             onChange={(e) => updateSpecimen(spec.id, 'specimenTypeId', e.target.value as number)}
                           >
@@ -365,7 +371,7 @@ export default function OrderEntryPage() {
                       {/* Cold Ischemic Time — surgical pathology only */}
                       {!isCytology && (
                         <TextField
-                          label="Cold Ischemic Time (min)"
+                          label={t('oe_coldIschemicTime')}
                           size="small"
                           type="number"
                           inputProps={{ min: 0 }}
@@ -391,7 +397,7 @@ export default function OrderEntryPage() {
               disabled={createMutation.isPending}
               data-testid="submit-order-btn"
             >
-              {createMutation.isPending ? <CircularProgress size={24} /> : 'Create Case'}
+              {createMutation.isPending ? <CircularProgress size={24} /> : t('oe_createCase')}
             </Button>
           </Grid>
         </Grid>

@@ -7,6 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { theme } from './theme/theme';
 import App from './App';
 import { AuthProvider } from './hooks/useAuth';
+import { LanguageProvider } from './hooks/useLanguage';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,8 +22,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <CssBaseline />
         <BrowserRouter>
           <AuthProvider>
-            <App />
-          </AuthProvider>
+              <LanguageProvider>
+                <App />
+              </LanguageProvider>
+            </AuthProvider>
         </BrowserRouter>
       </ThemeProvider>
       <ReactQueryDevtools initialIsOpen={false} />

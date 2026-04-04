@@ -14,6 +14,8 @@ import {
   Button,
   Avatar,
   Tooltip,
+  ToggleButtonGroup,
+  ToggleButton,
 } from '@mui/material';
 import {
   Assignment,
@@ -28,22 +30,24 @@ import {
 } from '@mui/icons-material';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
+import { useLanguage } from '../../hooks/useLanguage';
 
 const DRAWER_WIDTH = 220;
-
-const NAV_ITEMS = [
-  { label: 'Home', path: '/', icon: <Home /> },
-  { label: 'Order Entry', path: '/order-entry', icon: <Add /> },
-  { label: 'Processing', path: '/processing', icon: <Science /> },
-  { label: 'Result', path: '/result', icon: <Description /> },
-  { label: 'Query', path: '/query', icon: <Search /> },
-];
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
   const { user, logout } = useAuth();
+  const { lang, setLang, t } = useLanguage();
+
+  const NAV_ITEMS = [
+    { label: t('nav_home'), path: '/', icon: <Home /> },
+    { label: t('nav_orderEntry'), path: '/order-entry', icon: <Add /> },
+    { label: t('nav_processing'), path: '/processing', icon: <Science /> },
+    { label: t('nav_result'), path: '/result', icon: <Description /> },
+    { label: t('nav_query'), path: '/query', icon: <Search /> },
+  ];
 
   const handleLogout = async () => {
     await logout();
@@ -60,8 +64,19 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
           </IconButton>
           <Assignment sx={{ mr: 1 }} />
           <Typography variant="h6" noWrap sx={{ flexGrow: 1 }}>
-            AP LIS
+            {t('appName')}
           </Typography>
+          {/* Language switcher */}
+          <ToggleButtonGroup
+            value={lang}
+            exclusive
+            onChange={(_, v) => v && setLang(v)}
+            size="small"
+            sx={{ mr: 1, '& .MuiToggleButton-root': { color: 'inherit', borderColor: 'rgba(255,255,255,0.4)', fontSize: 12, py: 0.3, px: 1 }, '& .Mui-selected': { bgcolor: 'rgba(255,255,255,0.2) !important', color: '#fff' } }}
+          >
+            <ToggleButton value="en">EN</ToggleButton>
+            <ToggleButton value="sw">SW</ToggleButton>
+          </ToggleButtonGroup>
           {user && (
             <Box display="flex" alignItems="center" gap={1}>
               <Tooltip title={`${user.userName} — ${user.role}`}>
@@ -70,7 +85,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                 </Avatar>
               </Tooltip>
               <Button color="inherit" startIcon={<Logout />} onClick={handleLogout} size="small">
-                Logout
+                {t('nav_logout')}
               </Button>
             </Box>
           )}

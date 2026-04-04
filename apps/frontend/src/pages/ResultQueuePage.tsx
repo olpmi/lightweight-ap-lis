@@ -21,11 +21,13 @@ import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { orderApi } from '../api';
 import { formatOrderIdDisplay } from '@lis/shared';
+import { useLanguage } from '../hooks/useLanguage';
 
 export default function ResultQueuePage() {
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
+  const { t } = useLanguage();
   const PAGE_SIZE = 20;
 
   const { data, isLoading, isError } = useQuery<{
@@ -40,7 +42,7 @@ export default function ResultQueuePage() {
   });
 
   if (isLoading) return <Box display="flex" justifyContent="center" mt={4}><CircularProgress /></Box>;
-  if (isError) return <Alert severity="error">Failed to load result queue</Alert>;
+  if (isError) return <Alert severity="error">{t('errorGeneric')}</Alert>;
 
   const orders = (data?.data ?? []) as Array<{
     orderId: string;
@@ -55,10 +57,10 @@ export default function ResultQueuePage() {
   return (
     <Box>
       <Box display="flex" alignItems="center" justifyContent="space-between" mb={2} gap={2} flexWrap="wrap">
-        <Typography variant="h5">Result Queue</Typography>
+        <Typography variant="h5">{t('rq_title')}</Typography>
         <TextField
           size="small"
-          placeholder="Search case ID or patient name"
+          placeholder={t('pq_searchPlaceholder')}
           value={search}
           onChange={(e) => { setSearch(e.target.value); setPage(1); }}
           InputProps={{ startAdornment: <InputAdornment position="start"><Search fontSize="small" /></InputAdornment> }}
@@ -71,10 +73,10 @@ export default function ResultQueuePage() {
             <TableHead>
               <TableRow>
                 <TableCell>Case ID</TableCell>
-                <TableCell>Patient</TableCell>
-                <TableCell>Clinician</TableCell>
-                <TableCell>Registered</TableCell>
-                <TableCell>Status</TableCell>
+                <TableCell>{t('pq_patient')}</TableCell>
+                <TableCell>{t('pq_clinician')}</TableCell>
+                <TableCell>{t('pq_registered')}</TableCell>
+                <TableCell>{t('rq_status')}</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -99,9 +101,9 @@ export default function ResultQueuePage() {
                   <TableCell>{new Date(order.registeredDate).toLocaleDateString()}</TableCell>
                   <TableCell>
                     {order.isReactivated ? (
-                      <Chip label="Reactivated" color="warning" size="small" />
+                      <Chip label={t('rq_reactivated')} color="warning" size="small" />
                     ) : (
-                      <Chip label="Pending Result" size="small" />
+                      <Chip label={t('rq_pendingResult')} size="small" />
                     )}
                   </TableCell>
                 </TableRow>
@@ -109,7 +111,7 @@ export default function ResultQueuePage() {
               {orders.length === 0 && (
                 <TableRow>
                   <TableCell colSpan={5} align="center" sx={{ py: 4 }}>
-                    <Typography color="text.secondary">No cases pending result</Typography>
+                    <Typography color="text.secondary">{t('rq_noCases')}</Typography>
                   </TableCell>
                 </TableRow>
               )}
@@ -117,7 +119,7 @@ export default function ResultQueuePage() {
           </Table>
         </TableContainer>
         <Box display="flex" justifyContent="space-between" alignItems="center" px={2} py={1}>
-          <Typography variant="caption" color="text.secondary">{data?.total ?? 0} cases</Typography>
+          <Typography variant="caption" color="text.secondary">{data?.total ?? 0} {t('cases')}</Typography>
           <Pagination count={Math.ceil((data?.total ?? 0) / PAGE_SIZE)} page={page} onChange={(_, p) => setPage(p)} size="small" />
         </Box>
       </Paper>

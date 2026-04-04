@@ -12,61 +12,42 @@ import {
 import { Assignment, Science, Description, Search } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
-
-const SECTIONS = [
-  {
-    title: 'Order Entry',
-    description: 'Register a new pathology case. Enter patient and clinician details, add specimens, and generate the case worksheet.',
-    icon: <Assignment fontSize="large" color="primary" />,
-    path: '/order-entry',
-  },
-  {
-    title: 'Processing Queue',
-    description: 'Cases awaiting grossing and block/slide preparation. Select a case to record blocks and slides for each specimen.',
-    icon: <Science fontSize="large" color="primary" />,
-    path: '/processing',
-  },
-  {
-    title: 'Result Queue',
-    description: 'Cases with slides prepared, ready for microscopic examination and reporting. Sign out completed cases here.',
-    icon: <Description fontSize="large" color="primary" />,
-    path: '/result',
-  },
-  {
-    title: 'Query',
-    description: 'Search for any case by case ID or patient ID to review its current status, materials, and reports.',
-    icon: <Search fontSize="large" color="primary" />,
-    path: '/query',
-  },
-];
+import { useLanguage } from '../hooks/useLanguage';
 
 export default function DashboardPage() {
   const navigate = useNavigate();
   const { user } = useAuth();
+  const { t } = useLanguage();
+
+  const SECTIONS = [
+    { titleKey: 'dash_orderEntry_title' as const, descKey: 'dash_orderEntry_desc' as const, icon: <Assignment fontSize="large" color="primary" />, path: '/order-entry' },
+    { titleKey: 'dash_processing_title' as const, descKey: 'dash_processing_desc' as const, icon: <Science fontSize="large" color="primary" />, path: '/processing' },
+    { titleKey: 'dash_result_title' as const, descKey: 'dash_result_desc' as const, icon: <Description fontSize="large" color="primary" />, path: '/result' },
+    { titleKey: 'dash_query_title' as const, descKey: 'dash_query_desc' as const, icon: <Search fontSize="large" color="primary" />, path: '/query' },
+  ];
 
   return (
     <Box>
       <Paper sx={{ p: 3, mb: 4, background: 'linear-gradient(135deg, #1565c0 0%, #0d47a1 100%)', color: '#fff' }}>
         <Typography variant="h4" fontWeight={700} gutterBottom>
-          AP LIS
+          {t('appName')}
         </Typography>
         <Typography variant="h6" fontWeight={400} gutterBottom>
-          Anatomic Pathology Laboratory Information System
+          {t('appFull')}
         </Typography>
         <Divider sx={{ my: 1.5, borderColor: 'rgba(255,255,255,0.3)' }} />
         <Typography variant="body1">
-          A lightweight workflow management system for anatomic pathology laboratories. Track cases from initial registration
-          through grossing, slide preparation, microscopic examination, and final sign-out.
+          {t('dash_systemDesc')}
         </Typography>
         {user && (
           <Typography variant="body2" sx={{ mt: 1.5, opacity: 0.85 }}>
-            Logged in as <strong>{user.userName}</strong> &middot; {user.role}
+            {t('dash_loggedInAs')} <strong>{user.userName}</strong> &middot; {user.role}
           </Typography>
         )}
       </Paper>
 
       <Typography variant="h6" fontWeight={600} mb={2}>
-        Workflow
+        {t('dash_workflow')}
       </Typography>
 
       <Grid container spacing={3}>
@@ -81,11 +62,11 @@ export default function DashboardPage() {
                   <Box display="flex" alignItems="center" gap={1.5} mb={1.5}>
                     {section.icon}
                     <Typography variant="h6" fontWeight={600}>
-                      {section.title}
+                      {t(section.titleKey)}
                     </Typography>
                   </Box>
                   <Typography variant="body2" color="text.secondary">
-                    {section.description}
+                    {t(section.descKey)}
                   </Typography>
                 </CardContent>
               </CardActionArea>

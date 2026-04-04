@@ -22,6 +22,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { orderApi } from '../api';
 import { formatOrderIdDisplay } from '@lis/shared';
+import { useLanguage } from '../hooks/useLanguage';
 
 export default function QueryPage() {
   const navigate = useNavigate();
@@ -29,6 +30,7 @@ export default function QueryPage() {
   const [patientIdInput, setPatientIdInput] = useState('');
   const [page, setPage] = useState(1);
   const [submitted, setSubmitted] = useState(false);
+  const { t } = useLanguage();
   const PAGE_SIZE = 20;
 
   // Only search when submitted
@@ -61,13 +63,13 @@ export default function QueryPage() {
 
   return (
     <Box>
-      <Typography variant="h5" mb={3}>Query</Typography>
+      <Typography variant="h5" mb={3}>{t('q_title')}</Typography>
 
       <Paper sx={{ p: 2, mb: 3 }}>
         <Box component="form" onSubmit={handleSearch}>
           <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} alignItems="flex-end">
             <TextField
-              label="Case ID"
+              label={t('q_caseId')}
               size="small"
               value={orderIdInput}
               onChange={(e) => setOrderIdInput(e.target.value)}
@@ -76,7 +78,7 @@ export default function QueryPage() {
               inputProps={{ 'data-testid': 'query-order-id' }}
             />
             <TextField
-              label="Patient ID"
+              label={t('q_patientId')}
               size="small"
               value={patientIdInput}
               onChange={(e) => setPatientIdInput(e.target.value)}
@@ -91,13 +93,13 @@ export default function QueryPage() {
               disabled={(!orderIdInput && !patientIdInput) || isLoading}
               data-testid="query-search-btn"
             >
-              Search
+              {t('q_search')}
             </Button>
           </Stack>
         </Box>
       </Paper>
 
-      {isError && <Alert severity="error">Search failed. Please try again.</Alert>}
+      {isError && <Alert severity="error">{t('q_searchFailed')}</Alert>}
 
       {submitted && (
         <Paper>
@@ -106,11 +108,11 @@ export default function QueryPage() {
               <TableHead>
                 <TableRow>
                   <TableCell>Case ID</TableCell>
-                  <TableCell>Patient</TableCell>
-                  <TableCell>Patient ID</TableCell>
-                  <TableCell>Clinician</TableCell>
-                  <TableCell>Registered</TableCell>
-                  <TableCell>Status</TableCell>
+                  <TableCell>{t('pq_patient')}</TableCell>
+                  <TableCell>{t('q_patientId')}</TableCell>
+                  <TableCell>{t('pq_clinician')}</TableCell>
+                  <TableCell>{t('pq_registered')}</TableCell>
+                  <TableCell>{t('rq_status')}</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -131,15 +133,15 @@ export default function QueryPage() {
                     <TableCell>{new Date(order.registeredDate).toLocaleDateString()}</TableCell>
                     <TableCell>
                       {order.isSignedOut
-                        ? <Chip label="Signed Out" color="success" size="small" />
-                        : <Chip label="In Progress" size="small" />}
+                        ? <Chip label={t('q_signedOut')} color="success" size="small" />
+                        : <Chip label={t('q_inProgress')} size="small" />}
                     </TableCell>
                   </TableRow>
                 ))}
                 {orders.length === 0 && (
                   <TableRow>
                     <TableCell colSpan={6} align="center" sx={{ py: 4 }}>
-                      <Typography color="text.secondary">No matching cases found</Typography>
+                      <Typography color="text.secondary">{t('q_noResults')}</Typography>
                     </TableCell>
                   </TableRow>
                 )}
@@ -147,7 +149,7 @@ export default function QueryPage() {
             </Table>
           </TableContainer>
           <Box display="flex" justifyContent="space-between" alignItems="center" px={2} py={1}>
-            <Typography variant="caption" color="text.secondary">{data?.total ?? 0} results</Typography>
+            <Typography variant="caption" color="text.secondary">{data?.total ?? 0} {t('results')}</Typography>
             <Pagination
               count={Math.ceil(((data as { total?: number })?.total ?? 0) / PAGE_SIZE)}
               page={page}

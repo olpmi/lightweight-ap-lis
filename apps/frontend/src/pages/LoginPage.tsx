@@ -24,11 +24,13 @@ import { Person, Add } from '@mui/icons-material';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
+import { useLanguage } from '../hooks/useLanguage';
 import { employeeApi, lookupApi } from '../api';
 import type { Employee, EmployeeRole } from '@lis/shared';
 
 export default function LoginPage() {
   const { login } = useAuth();
+  const { t } = useLanguage();
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [mode, setMode] = useState<'search' | 'new'>('search');
@@ -73,7 +75,7 @@ export default function LoginPage() {
     e.preventDefault();
     setError(null);
     if (!newForm.firstName || !newForm.lastName || !newForm.userName || !newForm.employeeRoleId) {
-      setError('All fields are required for a new employee');
+      setError(t('login_allFieldsRequired'));
       return;
     }
     loginMutation.mutate({
@@ -101,10 +103,10 @@ export default function LoginPage() {
         <CardContent sx={{ p: 4 }}>
           <Box textAlign="center" mb={3}>
             <Typography variant="h5" fontWeight={700} color="primary">
-              AP LIS
+              {t('appName')}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Anatomic Pathology Laboratory Information System
+              {t('appFull')}
             </Typography>
           </Box>
 
@@ -122,7 +124,7 @@ export default function LoginPage() {
               onClick={() => setMode('search')}
               size="small"
             >
-              Find employee
+              {t('login_findEmployee')}
             </Button>
             <Button
               variant={mode === 'new' ? 'contained' : 'outlined'}
@@ -131,7 +133,7 @@ export default function LoginPage() {
               startIcon={<Add />}
               size="small"
             >
-              New employee
+              {t('login_newEmployee')}
             </Button>
           </Stack>
 
@@ -140,7 +142,7 @@ export default function LoginPage() {
           {mode === 'search' && (
             <>
               <TextField
-                label="Search by name or username"
+                label={t('login_searchPlaceholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 fullWidth
@@ -173,7 +175,7 @@ export default function LoginPage() {
               )}
               {searchResults?.length === 0 && searchQuery.length > 0 && (
                 <Typography variant="body2" color="text.secondary" textAlign="center" sx={{ py: 2 }}>
-                  No employees found. Try creating a new one.
+                  {t('login_noEmployeesFound')}
                 </Typography>
               )}
             </>
@@ -183,7 +185,7 @@ export default function LoginPage() {
             <Box component="form" onSubmit={handleNewEmployeeSubmit}>
               <Stack spacing={2}>
                 <TextField
-                  label="First Name"
+                  label={t('login_firstName')}
                   required
                   value={newForm.firstName}
                   onChange={(e) => setNewForm({ ...newForm, firstName: e.target.value })}
@@ -192,7 +194,7 @@ export default function LoginPage() {
                   inputProps={{ 'data-testid': 'new-employee-firstname' }}
                 />
                 <TextField
-                  label="Last Name"
+                  label={t('login_lastName')}
                   required
                   value={newForm.lastName}
                   onChange={(e) => setNewForm({ ...newForm, lastName: e.target.value })}
@@ -201,7 +203,7 @@ export default function LoginPage() {
                   inputProps={{ 'data-testid': 'new-employee-lastname' }}
                 />
                 <TextField
-                  label="Username"
+                  label={t('login_username')}
                   required
                   value={newForm.userName}
                   onChange={(e) => setNewForm({ ...newForm, userName: e.target.value })}
@@ -210,9 +212,9 @@ export default function LoginPage() {
                   inputProps={{ 'data-testid': 'new-employee-username' }}
                 />
                 <FormControl size="small" required fullWidth>
-                  <InputLabel>Role</InputLabel>
+                  <InputLabel>{t('login_role')}</InputLabel>
                   <Select
-                    label="Role"
+                    label={t('login_role')}
                     value={newForm.employeeRoleId}
                     onChange={(e) => setNewForm({ ...newForm, employeeRoleId: e.target.value as number })}
                     inputProps={{ 'data-testid': 'new-employee-role' }}
@@ -231,7 +233,7 @@ export default function LoginPage() {
                   disabled={loginMutation.isPending}
                   data-testid="new-employee-submit"
                 >
-                  {loginMutation.isPending ? <CircularProgress size={20} /> : 'Create & Login'}
+                  {loginMutation.isPending ? <CircularProgress size={20} /> : t('login_createAndLogin')}
                 </Button>
               </Stack>
             </Box>

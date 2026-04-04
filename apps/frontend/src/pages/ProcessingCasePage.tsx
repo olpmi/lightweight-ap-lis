@@ -32,6 +32,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useParams, useNavigate } from 'react-router-dom';
 import { orderApi, specimenApi, blockApi, reportApi } from '../api';
 import { useAuth } from '../hooks/useAuth';
+import { useLanguage } from '../hooks/useLanguage';
 import { formatOrderIdDisplay, formatMaterialIdDisplay } from '@lis/shared';
 
 interface Slide {
@@ -57,6 +58,7 @@ export default function ProcessingCasePage() {
   const navigate = useNavigate();
   const qc = useQueryClient();
   const { user } = useAuth();
+  const { t } = useLanguage();
 
   const { data: orderData, isLoading } = useQuery<{ data: object }>({
     queryKey: ['order', orderId],
@@ -145,9 +147,9 @@ export default function ProcessingCasePage() {
     },
     onSuccess: () => {
       setIsSaved(true);
-      setSaveSuccess('Case saved');
+      setSaveSuccess(t('pc_caseSaved'));
     },
-    onError: () => setSaveError('Failed to save case'),
+    onError: () => setSaveError(t('pc_saveFailed')),
   });
 
   const specimens = materialsData?.data?.specimens ?? [];
@@ -163,7 +165,7 @@ export default function ProcessingCasePage() {
     <Box>
       <Breadcrumbs sx={{ mb: 2 }}>
         <Link underline="hover" color="inherit" sx={{ cursor: 'pointer' }} onClick={() => navigate('/processing')}>
-          Processing
+          {t('nav_processing')}
         </Link>
         <Typography color="text.primary">{formatOrderIdDisplay(orderId ?? '')}</Typography>
       </Breadcrumbs>
@@ -181,7 +183,7 @@ export default function ProcessingCasePage() {
             disabled={saveMutation.isPending}
             data-testid="save-case-btn"
           >
-            Save
+            {t('pc_save')}
           </Button>
           <Button
             href={orderApi.referenceStripsPdfUrl(orderId!)}
@@ -191,7 +193,7 @@ export default function ProcessingCasePage() {
             size="small"
             data-testid="download-strips-btn"
           >
-            Reference Strips PDF
+            {t('pc_referenceStripsPdf')}
           </Button>
         </Box>
       </Box>
@@ -211,20 +213,20 @@ export default function ProcessingCasePage() {
         <Paper sx={{ p: 2, mb: 3 }}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={4}>
-              <Typography variant="caption" color="text.secondary">Patient</Typography>
+              <Typography variant="caption" color="text.secondary">{t('oe_patient')}</Typography>
               <Typography>{order.patient.lastName}, {order.patient.firstName}</Typography>
               <Typography variant="caption">
                 {order.patient.patientId} — DOB {new Date(order.patient.dateOfBirth).toLocaleDateString()}
               </Typography>
             </Grid>
             <Grid item xs={12} sm={4}>
-              <Typography variant="caption" color="text.secondary">Clinician</Typography>
+              <Typography variant="caption" color="text.secondary">{t('oe_clinician')}</Typography>
               <Typography>{order.doctor.lastName}, {order.doctor.firstName}</Typography>
             </Grid>
             <Grid item xs={12} sm={4}>
-              <Typography variant="caption" color="text.secondary">Registered</Typography>
+              <Typography variant="caption" color="text.secondary">{t('pq_registered')}</Typography>
               <Typography>{new Date(order.registeredDate).toLocaleDateString()}</Typography>
-              {order.caseType && <Chip label={order.caseType} size="small" sx={{ mt: 0.5 }} />}
+              {order.caseType && <Chip label={order.caseType === 'Surgical Pathology' ? t('oe_surgicalPathology') : order.caseType === 'Cytology' ? t('oe_cytology') : order.caseType} size="small" sx={{ mt: 0.5 }} />}
             </Grid>
           </Grid>
         </Paper>
@@ -232,7 +234,7 @@ export default function ProcessingCasePage() {
 
       <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2, mb: 3 }}>
         <Paper sx={{ p: 2 }}>
-          <Typography variant="subtitle2" fontWeight={700} mb={1}>Clinical History</Typography>
+          <Typography variant="subtitle2" fontWeight={700} mb={1}>{t('pc_clinicalHistory')}</Typography>
           <TextField
             multiline
             minRows={4}
@@ -243,7 +245,7 @@ export default function ProcessingCasePage() {
           />
         </Paper>
         <Paper sx={{ p: 2 }}>
-          <Typography variant="subtitle2" fontWeight={700} mb={1}>Gross Description</Typography>
+          <Typography variant="subtitle2" fontWeight={700} mb={1}>{t('pc_grossDescription')}</Typography>
           <TextField
             multiline
             minRows={4}
@@ -255,16 +257,16 @@ export default function ProcessingCasePage() {
         </Paper>
       </Box>
 
-      <Typography variant="h6" mb={1}>Materials</Typography>
+      <Typography variant="h6" mb={1}>{t('pc_materials')}</Typography>
       {specimens.length === 0 && (
-        <Alert severity="info">No specimens found for this case.</Alert>
+        <Alert severity="info">{t('pc_noSpecimens')}</Alert>
       )}
       {specimens.map((spec) => (
         <Accordion key={spec.specimenId} defaultExpanded>
           <AccordionSummary expandIcon={<ExpandMore />}>
             <Box display="flex" alignItems="center" gap={1.5}>
               <Science color="primary" />
-              <Typography fontWeight={600}>Specimen {spec.specimenCode}</Typography>
+              <Typography fontWeight={600}>{t('oe_specimen')} {spec.specimenCode}</Typography>
               {spec.bodySite && <Chip label={spec.bodySite.bodySiteName} size="small" />}
               {spec.specimenType && <Chip label={spec.specimenType.specimenTypeName} size="small" variant="outlined" />}
             </Box>
@@ -275,7 +277,7 @@ export default function ProcessingCasePage() {
               <Box>
                 <Box display="flex" alignItems="center" gap={1} mb={2}>
                   <TextField
-                    label="# Slides"
+                    label={t('pc_numSlides')}
                     type="number"
                     size="small"
                     value={slideCounts[spec.specimenId] ?? 1}
@@ -300,7 +302,7 @@ export default function ProcessingCasePage() {
                     disabled={creatingBlocks || creatingSlides}
                     data-testid={`add-slides-${spec.specimenCode}`}
                   >
-                    Add Slide{(slideCounts[spec.specimenId] ?? 1) > 1 ? 's' : ''}
+                    {t('pc_addSlides')}
                   </Button>
                 </Box>
                 <Stack direction="row" spacing={0.5} flexWrap="wrap">
@@ -317,7 +319,7 @@ export default function ProcessingCasePage() {
                     />
                   ))}
                   {spec.blocks.flatMap((b) => b.slides).length === 0 && (
-                    <Typography variant="caption" color="text.secondary">No slides yet</Typography>
+                    <Typography variant="caption" color="text.secondary">{t('pc_noSlidesYet')}</Typography>
                   )}
                 </Stack>
               </Box>
@@ -326,7 +328,7 @@ export default function ProcessingCasePage() {
               <Box>
                 <Box display="flex" alignItems="center" gap={1} mb={2}>
                   <TextField
-                    label="# Blocks"
+                    label={t('pc_numBlocks')}
                     type="number"
                     size="small"
                     value={blockCounts[spec.specimenId] ?? 1}
@@ -342,17 +344,17 @@ export default function ProcessingCasePage() {
                     disabled={creatingBlocks}
                     data-testid={`create-blocks-${spec.specimenCode}`}
                   >
-                    Add Block{(blockCounts[spec.specimenId] ?? 1) > 1 ? 's' : ''}
+                    {t('pc_addBlocks')}
                   </Button>
                 </Box>
                 {spec.blocks.length > 0 && (
                 <Table size="small">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Block ID</TableCell>
-                    <TableCell>Slides</TableCell>
-                    <TableCell>Add Slides</TableCell>
-                    {!isSaved && <TableCell align="center">Delete</TableCell>}
+                    <TableCell>{t('pc_blockId')}</TableCell>
+                    <TableCell>{t('pc_slides')}</TableCell>
+                    <TableCell>{t('pc_addSlidesHeader')}</TableCell>
+                    {!isSaved && <TableCell align="center">{t('common_delete')}</TableCell>}
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -373,7 +375,7 @@ export default function ProcessingCasePage() {
                             />
                           ))}
                           {block.slides.length === 0 && (
-                            <Typography variant="caption" color="text.secondary">none</Typography>
+                            <Typography variant="caption" color="text.secondary">{t('pc_none')}</Typography>
                           )}
                         </Stack>
                       </TableCell>
@@ -390,14 +392,14 @@ export default function ProcessingCasePage() {
                             inputProps={{ min: 1, max: 100 }}
                           />
                           <FormControl size="small" sx={{ width: 120 }}>
-                            <InputLabel>Type</InputLabel>
+                            <InputLabel>{t('pc_slideType')}</InputLabel>
                             <Select
-                              label="Type"
+                              label={t('pc_slideType')}
                               value={slideTypes[block.blockId] ?? 'H&E'}
                               onChange={(e) => setSlideTypes({ ...slideTypes, [block.blockId]: e.target.value })}
                             >
-                              {['H&E', 'Unstained', 'IHC', 'Special stain'].map((t) => (
-                                <MenuItem key={t} value={t}>{t}</MenuItem>
+                              {['H&E', 'Unstained', 'IHC', 'Special stain'].map((st) => (
+                                <MenuItem key={st} value={st}>{st}</MenuItem>
                               ))}
                             </Select>
                           </FormControl>
@@ -415,13 +417,13 @@ export default function ProcessingCasePage() {
                             disabled={creatingSlides}
                             data-testid={`create-slides-${block.blockId}`}
                           >
-                            Slides
+                            {t('pc_slides')}
                           </Button>
                         </Box>
                       </TableCell>
                       {!isSaved && (
                         <TableCell align="center">
-                          <Tooltip title="Delete block and all its slides">
+                          <Tooltip title={t('pc_deleteBlockTooltip')}>
                             <IconButton
                               size="small"
                               color="error"
