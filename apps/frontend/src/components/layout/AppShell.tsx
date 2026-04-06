@@ -94,8 +94,8 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                   },
                 }}
               >
-                <ToggleButton value="en">EN</ToggleButton>
-                <ToggleButton value="sw">SW</ToggleButton>
+                <ToggleButton value="en">English</ToggleButton>
+                <ToggleButton value="sw">Kiswahili</ToggleButton>
               </ToggleButtonGroup>
             </Box>
           </Tooltip>
@@ -142,6 +142,33 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
             </ListItemButton>
           ))}
         </List>
+        <Divider />
+        <Box sx={{ p: 1.5 }}>
+          <Box display="flex" alignItems="center" gap={0.5} sx={{ mb: 0.75, px: 0.5 }}>
+            <Translate sx={{ fontSize: 16, color: 'text.secondary' }} />
+            <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600, letterSpacing: 0.3 }}>
+              Language / Lugha
+            </Typography>
+          </Box>
+          <ToggleButtonGroup
+            value={lang}
+            exclusive
+            onChange={(_, v) => v && setLang(v)}
+            size="small"
+            fullWidth
+            sx={{
+              '& .MuiToggleButton-root': {
+                fontSize: 12,
+                py: 0.5,
+                textTransform: 'none',
+                fontWeight: 500,
+              },
+            }}
+          >
+            <ToggleButton value="en">English</ToggleButton>
+            <ToggleButton value="sw">Kiswahili</ToggleButton>
+          </ToggleButtonGroup>
+        </Box>
       </Drawer>
 
       {/* Main content */}
