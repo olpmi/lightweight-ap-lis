@@ -1,9 +1,9 @@
 import { describe, it, expect, beforeAll } from 'vitest';
 import request from 'supertest';
-import { createApp } from '../../app';
+import { createApp } from '../../app.js';
 
 // These are integration tests that require a live test database.
-// They are intentionally narrow — testing auth endpoints only.
+// They are intentionally narrow â€” testing auth endpoints only.
 // Skip if DATABASE_URL is not set.
 
 const hasDb = Boolean(process.env.DATABASE_URL && process.env.SESSION_SECRET);

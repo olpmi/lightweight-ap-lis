@@ -1,11 +1,11 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import { prisma } from '../lib/prisma';
-import { requireAuth } from '../middleware/auth.middleware';
-import { ReportService } from '../services/report.service';
-import { validateBody } from '../middleware/validate.middleware';
+import { prisma } from '../lib/prisma.js';
+import { requireAuth } from '../middleware/auth.middleware.js';
+import { ReportService } from '../services/report.service.js';
+import { validateBody } from '../middleware/validate.middleware.js';
 import { createDraftReportSchema, reactivateOrderSchema } from '@lis/shared';
 import fs from 'fs';
-import { AppError } from '../middleware/error.middleware';
+import { AppError } from '../middleware/error.middleware.js';
 
 const router = Router();
 const reportService = new ReportService();

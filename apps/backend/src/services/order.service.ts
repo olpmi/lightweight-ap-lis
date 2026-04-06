@@ -1,9 +1,9 @@
-import { prisma } from '../lib/prisma';
-import { generateOrderId, nextSpecimenCode } from '../utils/idGenerator';
-import { AppError } from '../middleware/error.middleware';
+import { prisma } from '../lib/prisma.js';
+import { generateOrderId, nextSpecimenCode } from '../utils/idGenerator.js';
+import { AppError } from '../middleware/error.middleware.js';
 import { CreateOrderInput } from '@lis/shared';
-import { DoctorService } from './doctor.service';
-import { PatientService } from './patient.service';
+import { DoctorService } from './doctor.service.js';
+import { PatientService } from './patient.service.js';
 
 const doctorService = new DoctorService();
 const patientService = new PatientService();

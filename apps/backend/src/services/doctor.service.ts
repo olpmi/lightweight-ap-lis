@@ -1,5 +1,5 @@
-import { prisma } from '../lib/prisma';
-import { AppError } from '../middleware/error.middleware';
+import { prisma } from '../lib/prisma.js';
+import { AppError } from '../middleware/error.middleware.js';
 
 export class DoctorService {
   async search(query: string): Promise<object[]> {

@@ -1,7 +1,7 @@
 import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
 import fs from 'fs';
 import path from 'path';
-import { GENERATED_PDFS_DIR } from '../utils/storageDirs';
+import { GENERATED_PDFS_DIR } from '../utils/storageDirs.js';
 import { formatOrderIdDisplay, formatMaterialIdDisplay } from '@lis/shared';
 
 interface OrderForPdf {
@@ -95,7 +95,7 @@ export class PdfService {
     for (const spec of order.specimens) {
       const site = spec.bodySite?.bodySiteName ?? 'Not specified';
       const type = spec.specimenType?.specimenTypeName ?? 'Not specified';
-      page.drawText(`${spec.specimenCode}.  ${type} — ${site}`, { x: MARGIN + 10, y, font: regularFont, size: 11 });
+      page.drawText(`${spec.specimenCode}.  ${type} â€” ${site}`, { x: MARGIN + 10, y, font: regularFont, size: 11 });
       y -= 16;
     }
     y -= 8;
@@ -155,7 +155,7 @@ export class PdfService {
     for (const spec of specimens) {
       if (y < 100) break; // Simple pagination guard
 
-      y = this.drawSection(page, `Specimen ${spec.specimenCode}${spec.bodySite ? ` — ${spec.bodySite.bodySiteName}` : ''}`, y, boldFont);
+      y = this.drawSection(page, `Specimen ${spec.specimenCode}${spec.bodySite ? ` â€” ${spec.bodySite.bodySiteName}` : ''}`, y, boldFont);
 
       for (const block of spec.blocks) {
         page.drawText(`  Block:  ${formatMaterialIdDisplay(block.blockId)}`, { x: MARGIN + 10, y, font: boldFont, size: 13 });

@@ -1,6 +1,6 @@
-import { prisma } from '../lib/prisma';
-import { AppError } from '../middleware/error.middleware';
-import { EmployeeService } from './employee.service';
+import { prisma } from '../lib/prisma.js';
+import { AppError } from '../middleware/error.middleware.js';
+import { EmployeeService } from './employee.service.js';
 import { CreateEmployeeInput } from '@lis/shared';
 
 const employeeService = new EmployeeService();

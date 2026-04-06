@@ -1,10 +1,10 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import { SlideService } from '../services/slide.service';
-import { requireAuth } from '../middleware/auth.middleware';
-import { validateBody } from '../middleware/validate.middleware';
+import { SlideService } from '../services/slide.service.js';
+import { requireAuth } from '../middleware/auth.middleware.js';
+import { validateBody } from '../middleware/validate.middleware.js';
 import { createSlidesSchema } from '@lis/shared';
-import { prisma } from '../lib/prisma';
-import { AppError } from '../middleware/error.middleware';
+import { prisma } from '../lib/prisma.js';
+import { AppError } from '../middleware/error.middleware.js';
 
 const router = Router();
 const service = new SlideService();

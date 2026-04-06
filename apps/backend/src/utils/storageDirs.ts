@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { logger } from '../lib/logger';
+import { logger } from '../lib/logger.js';
 
 const STORAGE_BASE = process.env.STORAGE_PATH
   ? path.resolve(process.env.STORAGE_PATH)

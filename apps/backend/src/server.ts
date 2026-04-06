@@ -4,9 +4,9 @@ import dotenv from 'dotenv';
 // Load .env from repo root when running locally, then fallback to local .env
 dotenv.config({ path: path.resolve(__dirname, '../../../../.env') });
 dotenv.config();
-import { createApp } from './app';
-import { logger } from './lib/logger';
-import { ensureStorageDirs } from './utils/storageDirs';
+import { createApp } from './app.js';
+import { logger } from './lib/logger.js';
+import { ensureStorageDirs } from './utils/storageDirs.js';
 
 const PORT = parseInt(process.env.PORT ?? '3001', 10);
 

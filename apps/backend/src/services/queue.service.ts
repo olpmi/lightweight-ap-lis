@@ -1,6 +1,6 @@
-import { prisma } from '../lib/prisma';
-import { AppError } from '../middleware/error.middleware';
-import { buildOrderIdConditions } from '../utils/searchUtils';
+import { prisma } from '../lib/prisma.js';
+import { AppError } from '../middleware/error.middleware.js';
+import { buildOrderIdConditions } from '../utils/searchUtils.js';
 
 /**
  * Processing queue:
@@ -14,7 +14,7 @@ export class QueueService {
     showAll = false,
     search = ''
   ): Promise<{ data: object[]; total: number; page: number; pageSize: number }> {
-    // Orders that are not yet signed-out (no final report) — skipped when showAll is true
+    // Orders that are not yet signed-out (no final report) â€” skipped when showAll is true
     const notSignedOut = showAll
       ? {}
       : {

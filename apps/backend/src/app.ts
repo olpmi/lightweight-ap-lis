@@ -4,24 +4,24 @@ import compression from 'compression';
 import session from 'express-session';
 import helmet from 'helmet';
 import pinoHttp from 'pino-http';
-import { logger } from './lib/logger';
-import { notFound, errorHandler } from './middleware/error.middleware';
+import { logger } from './lib/logger.js';
+import { notFound, errorHandler } from './middleware/error.middleware.js';
 
 // Route imports
-import authRoutes from './routes/auth.routes';
-import employeeRoutes from './routes/employee.routes';
-import doctorRoutes from './routes/doctor.routes';
-import patientRoutes from './routes/patient.routes';
-import orderRoutes from './routes/order.routes';
-import specimenRoutes from './routes/specimen.routes';
-import blockRoutes from './routes/block.routes';
-import reportRoutes from './routes/report.routes';
-import fileRoutes from './routes/file.routes';
-import lookupRoutes from './routes/lookup.routes';
-import { ReportService } from './services/report.service';
-import { validateBody } from './middleware/validate.middleware';
+import authRoutes from './routes/auth.routes.js';
+import employeeRoutes from './routes/employee.routes.js';
+import doctorRoutes from './routes/doctor.routes.js';
+import patientRoutes from './routes/patient.routes.js';
+import orderRoutes from './routes/order.routes.js';
+import specimenRoutes from './routes/specimen.routes.js';
+import blockRoutes from './routes/block.routes.js';
+import reportRoutes from './routes/report.routes.js';
+import fileRoutes from './routes/file.routes.js';
+import lookupRoutes from './routes/lookup.routes.js';
+import { ReportService } from './services/report.service.js';
+import { validateBody } from './middleware/validate.middleware.js';
 import { createDraftReportSchema, reactivateOrderSchema } from '@lis/shared';
-import { requireAuth } from './middleware/auth.middleware';
+import { requireAuth } from './middleware/auth.middleware.js';
 
 export function createApp(): express.Application {
   const app = express();

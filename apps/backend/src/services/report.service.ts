@@ -1,7 +1,7 @@
-import { prisma } from '../lib/prisma';
-import { AppError } from '../middleware/error.middleware';
+import { prisma } from '../lib/prisma.js';
+import { AppError } from '../middleware/error.middleware.js';
 import { CreateDraftReportInput, SignOutReportInput, ReactivateOrderInput } from '@lis/shared';
-import { PdfService } from './pdf.service';
+import { PdfService } from './pdf.service.js';
 
 const pdfService = new PdfService();
 

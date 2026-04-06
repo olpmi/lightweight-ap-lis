@@ -1,6 +1,6 @@
-import { prisma } from '../lib/prisma';
-import { AppError } from '../middleware/error.middleware';
-import { generateBlockId } from '../utils/idGenerator';
+import { prisma } from '../lib/prisma.js';
+import { AppError } from '../middleware/error.middleware.js';
+import { generateBlockId } from '../utils/idGenerator.js';
 
 export class BlockService {
   async createBlocks(specimenId: string, count: number): Promise<object[]> {

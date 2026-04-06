@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { nextSpecimenCode, generateBlockId, generateSlideId } from '../../utils/idGenerator';
+import { nextSpecimenCode, generateBlockId, generateSlideId } from '../../utils/idGenerator.js';
 
 describe('nextSpecimenCode', () => {
   it('returns A for empty list', () => {

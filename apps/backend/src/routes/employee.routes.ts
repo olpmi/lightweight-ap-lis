@@ -1,7 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import { EmployeeService } from '../services/employee.service';
-import { requireAuth } from '../middleware/auth.middleware';
-import { validateBody } from '../middleware/validate.middleware';
+import { EmployeeService } from '../services/employee.service.js';
+import { requireAuth } from '../middleware/auth.middleware.js';
+import { validateBody } from '../middleware/validate.middleware.js';
 import { createEmployeeSchema } from '@lis/shared';
 
 const router = Router();

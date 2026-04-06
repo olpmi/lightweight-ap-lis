@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { logger } from '../lib/logger';
+import { logger } from '../lib/logger.js';
 
 /**
  * Requires an authenticated session. Returns 401 if no employee is in the session.

@@ -1,6 +1,6 @@
-import { prisma } from '../lib/prisma';
-import { AppError } from '../middleware/error.middleware';
-import { generateSlideId } from '../utils/idGenerator';
+import { prisma } from '../lib/prisma.js';
+import { AppError } from '../middleware/error.middleware.js';
+import { generateSlideId } from '../utils/idGenerator.js';
 
 export class SlideService {
   async createSlides(blockId: string, count: number, slideType?: string): Promise<object[]> {

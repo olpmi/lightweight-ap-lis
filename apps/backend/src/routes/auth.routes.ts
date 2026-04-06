@@ -1,6 +1,6 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import { AuthService } from '../services/auth.service';
-import { validateBody } from '../middleware/validate.middleware';
+import { AuthService } from '../services/auth.service.js';
+import { validateBody } from '../middleware/validate.middleware.js';
 import { loginSchema } from '@lis/shared';
 
 const router = Router();

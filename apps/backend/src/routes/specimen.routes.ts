@@ -1,7 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import { BlockService } from '../services/block.service';
-import { requireAuth } from '../middleware/auth.middleware';
-import { validateBody } from '../middleware/validate.middleware';
+import { BlockService } from '../services/block.service.js';
+import { requireAuth } from '../middleware/auth.middleware.js';
+import { validateBody } from '../middleware/validate.middleware.js';
 import { createBlocksSchema } from '@lis/shared';
 
 const router = Router();

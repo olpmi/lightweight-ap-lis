@@ -1,13 +1,13 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import { OrderService } from '../services/order.service';
-import { QueueService } from '../services/queue.service';
-import { PdfService } from '../services/pdf.service';
-import { requireAuth } from '../middleware/auth.middleware';
-import { validateBody } from '../middleware/validate.middleware';
+import { OrderService } from '../services/order.service.js';
+import { QueueService } from '../services/queue.service.js';
+import { PdfService } from '../services/pdf.service.js';
+import { requireAuth } from '../middleware/auth.middleware.js';
+import { validateBody } from '../middleware/validate.middleware.js';
 import { createOrderSchema, normalizeOrderId } from '@lis/shared';
-import { prisma } from '../lib/prisma';
+import { prisma } from '../lib/prisma.js';
 import fs from 'fs';
-import { GENERATED_PDFS_DIR } from '../utils/storageDirs';
+import { GENERATED_PDFS_DIR } from '../utils/storageDirs.js';
 import path from 'path';
 
 const router = Router();
