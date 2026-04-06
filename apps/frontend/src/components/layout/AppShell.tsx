@@ -27,6 +27,7 @@ import {
   ChevronLeft,
   Add,
   Home,
+  Translate,
 } from '@mui/icons-material';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
@@ -67,16 +68,38 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
             {t('appName')}
           </Typography>
           {/* Language switcher */}
-          <ToggleButtonGroup
-            value={lang}
-            exclusive
-            onChange={(_, v) => v && setLang(v)}
-            size="small"
-            sx={{ mr: 1, '& .MuiToggleButton-root': { color: 'inherit', borderColor: 'rgba(255,255,255,0.4)', fontSize: 12, py: 0.3, px: 1 }, '& .Mui-selected': { bgcolor: 'rgba(255,255,255,0.2) !important', color: '#fff' } }}
-          >
-            <ToggleButton value="en">EN</ToggleButton>
-            <ToggleButton value="sw">SW</ToggleButton>
-          </ToggleButtonGroup>
+          <Divider orientation="vertical" flexItem sx={{ mx: 1.5, borderColor: 'rgba(255,255,255,0.25)' }} />
+          <Tooltip title="Language / Lugha" arrow>
+            <Box display="flex" alignItems="center" gap={0.75}>
+              <Translate sx={{ fontSize: 20, opacity: 0.9, color: 'inherit' }} />
+              <ToggleButtonGroup
+                value={lang}
+                exclusive
+                onChange={(_, v) => v && setLang(v)}
+                size="small"
+                sx={{
+                  '& .MuiToggleButton-root': {
+                    color: 'rgba(255,255,255,0.7)',
+                    borderColor: 'rgba(255,255,255,0.4)',
+                    fontSize: 12,
+                    fontWeight: 600,
+                    py: 0.4,
+                    px: 1.2,
+                    lineHeight: 1.4,
+                  },
+                  '& .Mui-selected': {
+                    bgcolor: 'rgba(255,255,255,0.25) !important',
+                    color: '#fff !important',
+                    borderBottom: '2px solid #fff',
+                  },
+                }}
+              >
+                <ToggleButton value="en">EN</ToggleButton>
+                <ToggleButton value="sw">SW</ToggleButton>
+              </ToggleButtonGroup>
+            </Box>
+          </Tooltip>
+          <Divider orientation="vertical" flexItem sx={{ mx: 1.5, borderColor: 'rgba(255,255,255,0.25)' }} />
           {user && (
             <Box display="flex" alignItems="center" gap={1}>
               <Tooltip title={`${user.userName} — ${user.role}`}>

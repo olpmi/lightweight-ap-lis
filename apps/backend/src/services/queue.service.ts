@@ -45,6 +45,7 @@ export class QueueService {
             ...buildOrderIdConditions(search),
             { patient: { lastName: { contains: search, mode: 'insensitive' as const } } },
             { patient: { firstName: { contains: search, mode: 'insensitive' as const } } },
+            { patient: { patientId: { contains: search, mode: 'insensitive' as const } } },
           ],
         }
       : {};
@@ -60,7 +61,7 @@ export class QueueService {
         where,
         skip: (page - 1) * pageSize,
         take: pageSize,
-        orderBy: { registeredDate: 'asc' },
+        orderBy: { registeredDate: 'desc' },
         include: {
           patient: true,
           doctor: true,
@@ -110,6 +111,7 @@ export class QueueService {
             ...buildOrderIdConditions(search),
             { patient: { lastName: { contains: search, mode: 'insensitive' as const } } },
             { patient: { firstName: { contains: search, mode: 'insensitive' as const } } },
+            { patient: { patientId: { contains: search, mode: 'insensitive' as const } } },
           ],
         }
       : {};
@@ -121,7 +123,7 @@ export class QueueService {
         where,
         skip: (page - 1) * pageSize,
         take: pageSize,
-        orderBy: { registeredDate: 'asc' },
+        orderBy: { registeredDate: 'desc' },
         include: {
           patient: true,
           doctor: true,

@@ -60,7 +60,7 @@ const en = {
 
   // Processing Queue
   pq_title: 'Processing Queue',
-  pq_searchPlaceholder: 'Search case ID or patient name',
+  pq_searchPlaceholder: 'Search case ID, patient ID or patient name',
   pq_showAll: 'Show all (including completed)',
   pq_caseId: 'Case ID',
   pq_patient: 'Patient',
@@ -338,7 +338,7 @@ const sw: Record<keyof typeof en, string> = {
   dash_loggedInAs: 'Umeingia kama',
 
   pq_title: 'Foleni ya Kusindika',
-  pq_searchPlaceholder: 'Tafuta nambari ya kesi au jina la mgonjwa',
+  pq_searchPlaceholder: 'Tafuta nambari ya kesi, kitambulisho au jina la mgonjwa',
   pq_showAll: 'Onyesha zote (pamoja na zilizokamilika)',
   pq_caseId: 'Nambari ya Kesi',
   pq_patient: 'Mgonjwa',
