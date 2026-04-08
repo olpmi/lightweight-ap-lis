@@ -30,12 +30,22 @@
     "prettier": "^3.3.0",
     "typescript": "^5.4.0",
     "tsx": "^4.7.0",
-    "dotenv": "^16.4.0"
+    "dotenv": "^16.4.0",
+    "prisma": "^5.13.0",
+    "@prisma/client": "^5.13.0"
   },
   "engines": {
     "node": ">=20.0.0"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@prisma/client",
+      "@prisma/engines",
+      "esbuild",
+      "prisma"
+    ]
   }
 }
