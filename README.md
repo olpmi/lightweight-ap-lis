@@ -37,7 +37,7 @@ A lightweight **Anatomic Pathology Laboratory Information System** prototype imp
 ## Prerequisites
 
 - Node.js 20+
-- npm 10+
+- pnpm 10+ (`npm install -g pnpm`)
 - Docker (for containerized run) or PostgreSQL 16+ (for local dev)
 
 ## Quick start — Docker Compose
@@ -64,7 +64,7 @@ Docker Compose will automatically:
 ### 1. Install dependencies
 
 ```bash
-npm install
+pnpm install
 ```
 
 ### 2. Set up environment variables
@@ -78,13 +78,13 @@ cp .env.example .env
 
 ```bash
 # Run migrations
-npm run db:migrate
+pnpm run db:migrate
 
 # Generate the Prisma client
-npm run db:generate
+pnpm run db:generate
 
 # Seed with demo data
-npm run db:seed
+pnpm run db:seed
 ```
 
 ### 4. Start development servers
@@ -93,10 +93,10 @@ In separate terminals:
 
 ```bash
 # Terminal 1 — backend (hot reload)
-npm run dev:backend
+pnpm run dev:backend
 
 # Terminal 2 — frontend (Vite HMR)
-npm run dev:frontend
+pnpm run dev:frontend
 ```
 
 Frontend: **http://localhost:5173**  
@@ -167,29 +167,29 @@ Specimen codes use Excel-style progression: A → Z → AA → AZ → BA → ...
 
 ```bash
 # All tests
-npm test
+pnpm test
 
 # Backend unit + integration tests only
-npm run test:backend
+pnpm run test:backend
 
 # Frontend component tests only
-npm run test:frontend
+pnpm run test:frontend
 
 # Playwright E2E (requires running app)
-npm run test:e2e --workspace=apps/frontend
+pnpm --filter @lis/frontend run test:e2e
 
 # Typecheck all packages
-npm run typecheck
+pnpm run typecheck
 ```
 
 ## Database commands
 
 ```bash
-npm run db:migrate        # Apply pending migrations (dev)
-npm run db:generate       # Re-generate Prisma client after schema changes
-npm run db:seed           # Seed the database
-npm run db:studio         # Open Prisma Studio
-npm run db:reset          # Reset and re-seed (destructive)
+pnpm run db:migrate        # Apply pending migrations (dev)
+pnpm run db:generate       # Re-generate Prisma client after schema changes
+pnpm run db:seed           # Seed the database
+pnpm run db:studio         # Open Prisma Studio
+pnpm run db:reset          # Reset and re-seed (destructive)
 ```
 
 ## PDF files
