@@ -37,6 +37,7 @@ interface ReportForPdf {
   gross?: string | null;
   signedOutDatetime?: Date | null;
   reactivationType?: string | null;
+  reactivationReason?: string | null;
   pathologist?: { firstName: string; lastName: string } | null;
   order: OrderForPdf;
 }
@@ -183,9 +184,9 @@ export class PdfService {
   }
 
   /**
-   * Generate a report PDF for a signed-out report.
+   * Generate a report PDF. reportType 'final' produces a Final Report, 'preliminary' keeps the case active.
    */
-  async generateReportPdf(report: ReportForPdf): Promise<{ fileName: string; storagePath: string }> {
+  async generateReportPdf(report: ReportForPdf, reportType: 'final' | 'preliminary' = 'final'): Promise<{ fileName: string; storagePath: string }> {
     const pdfDoc = await PDFDocument.create();
     const page = pdfDoc.addPage([PAGE_WIDTH, PAGE_HEIGHT]);
     const boldFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
@@ -195,7 +196,11 @@ export class PdfService {
 
     // Header
     page.drawText('ANATOMIC PATHOLOGY REPORT', { x: MARGIN, y, font: boldFont, size: 14, color: rgb(0.1, 0.1, 0.5) });
-    y -= 24;
+    y -= 20;
+    const typeLabel = reportType === 'preliminary' ? 'PRELIMINARY REPORT' : 'FINAL REPORT';
+    const typeLabelColor = reportType === 'preliminary' ? rgb(0.6, 0.3, 0) : rgb(0.05, 0.45, 0.05);
+    page.drawText(typeLabel, { x: MARGIN, y, font: boldFont, size: 12, color: typeLabelColor });
+    y -= 20;
     if (report.reactivationType) {
       const label = report.reactivationType === 'addend' ? 'ADDENDUM REPORT' : 'REVISED REPORT';
       page.drawText(label, { x: MARGIN, y, font: boldFont, size: 12, color: rgb(0.8, 0.2, 0) });
@@ -214,6 +219,13 @@ export class PdfService {
     y = this.drawField(page, 'Clinician', `${report.order.doctor.lastName}, ${report.order.doctor.firstName}`, y, boldFont, regularFont);
     y -= 12;
 
+    // Clinical History
+    if (report.order.clinicalHistory) {
+      y = this.drawSection(page, 'CLINICAL HISTORY', y, boldFont);
+      y = this.drawWrappedText(page, report.order.clinicalHistory, y, regularFont);
+      y -= 8;
+    }
+
     if (report.gross) {
       y = this.drawSection(page, 'GROSS DESCRIPTION', y, boldFont);
       y = this.drawWrappedText(page, report.gross, y, regularFont);
@@ -230,6 +242,12 @@ export class PdfService {
       y -= 8;
     }
 
+    if (report.reactivationReason) {
+      y = this.drawSection(page, 'REASON FOR REACTIVATION', y, boldFont);
+      y = this.drawWrappedText(page, report.reactivationReason, y, regularFont);
+      y -= 8;
+    }
+
     // Sign-out
     y -= 20;
     page.drawLine({ start: { x: MARGIN, y }, end: { x: PAGE_WIDTH - MARGIN, y }, thickness: 0.5 });
@@ -243,7 +261,8 @@ export class PdfService {
     }
 
     const suffix = report.reactivationType ? `-${report.reactivationType}` : '';
-    const fileName = `${formatOrderIdDisplay(report.orderId)}-report-v${report.versionNumber}${suffix}.pdf`;
+    const typeSuffix = reportType === 'preliminary' ? '-prelim' : '';
+    const fileName = `${formatOrderIdDisplay(report.orderId)}-report-v${report.versionNumber}${suffix}${typeSuffix}.pdf`;
     const storagePath = path.join(GENERATED_PDFS_DIR, fileName);
 
     const pdfBytes = await pdfDoc.save();

@@ -14,6 +14,7 @@ router.post('/login', validateBody(loginSchema), async (req: Request, res: Respo
     req.session.employeeId = employee.employeeId;
     req.session.employeeUserName = employee.userName;
     req.session.employeeRole = employee.roleName;
+    req.session.employeeDefaultLanguage = employee.defaultLanguage;
 
     res.json({ data: employee });
   } catch (err) {
@@ -41,6 +42,7 @@ router.get('/me', async (req: Request, res: Response) => {
       employeeId: req.session.employeeId,
       userName: req.session.employeeUserName,
       role: req.session.employeeRole,
+      defaultLanguage: req.session.employeeDefaultLanguage ?? 'en',
     },
   });
 });

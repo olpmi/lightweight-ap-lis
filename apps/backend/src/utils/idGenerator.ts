@@ -2,17 +2,19 @@ import { prisma } from '../lib/prisma.js';
 
 /**
  * Generate the next order ID using a transaction-safe sequence.
- * Format: SU{YY}{NNNNNNN}  e.g. SU250000001
+ * Format: {PREFIX}{YY}{NNNNNNN}  e.g. SU250000001 or CN250000001
+ * Prefix is 'CN' for Cytology cases, 'SU' for all others.
  * The sequence resets each year.
  */
-export async function generateOrderId(): Promise<string> {
+export async function generateOrderId(caseType?: string): Promise<string> {
+  const prefix = caseType === 'Cytology' ? 'CN' : 'SU';
   const yearTwoDigit = new Date().getFullYear() % 100;
 
   const result = await prisma.$transaction(async (tx) => {
-    // Upsert the sequence row for this year (if it doesn't exist yet)
+    // Upsert the sequence row for this year+prefix (independent counters per prefix)
     const seq = await tx.orderSequenceYear.upsert({
-      where: { yearTwoDigit },
-      create: { yearTwoDigit, lastValue: 1 },
+      where: { yearTwoDigit_prefix: { yearTwoDigit, prefix } },
+      create: { yearTwoDigit, prefix, lastValue: 1 },
       update: { lastValue: { increment: 1 } },
     });
     return seq.lastValue;
@@ -20,7 +22,7 @@ export async function generateOrderId(): Promise<string> {
 
   const yearStr = String(yearTwoDigit).padStart(2, '0');
   const seqStr = String(result).padStart(7, '0');
-  return `SU${yearStr}${seqStr}`;
+  return `${prefix}${yearStr}${seqStr}`;
 }
 
 /**

@@ -24,9 +24,9 @@ export class ReportService {
     const order = await prisma.order.findUnique({ where: { orderId } });
     if (!order) throw new AppError(404, 'NOT_FOUND', `Order ${orderId} not found`);
 
-    // Check if there's already an unsigned draft
+    // Check if there's already an unsigned, non-prelim draft
     const existingDraft = await prisma.report.findFirst({
-      where: { orderId, isFinal: false },
+      where: { orderId, isFinal: false, isPrelim: false },
       orderBy: { versionNumber: 'desc' },
     });
 
@@ -114,7 +114,7 @@ export class ReportService {
 
     // Generate report PDF
     try {
-      const reportFileRecord = await pdfService.generateReportPdf(signed as Parameters<typeof pdfService.generateReportPdf>[0]);
+      const reportFileRecord = await pdfService.generateReportPdf(signed as Parameters<typeof pdfService.generateReportPdf>[0], 'final');
       await prisma.reportFile.create({
         data: {
           reportId: BigInt(reportId),
@@ -130,6 +130,78 @@ export class ReportService {
     }
 
     return signed;
+  }
+
+  async signPrelim(reportId: number, data: SignOutReportInput): Promise<object> {
+    const report = await prisma.report.findUnique({
+      where: { reportId: BigInt(reportId) },
+      include: REPORT_INCLUDE,
+    });
+    if (!report) throw new AppError(404, 'NOT_FOUND', `Report ${reportId} not found`);
+    if (report.isFinal) throw new AppError(409, 'CONFLICT', 'Report is already signed out and cannot be modified');
+
+    const now = new Date();
+
+    // Freeze this version as the preliminary report
+    const prelim = await prisma.report.update({
+      where: { reportId: BigInt(reportId) },
+      data: {
+        diagnosis: data.diagnosis,
+        comment: data.comment,
+        reportTemplateId: data.reportTemplateId,
+        gross: data.gross,
+        synopticData: data.synopticData,
+        pathologistEmployeeId: BigInt(data.pathologistEmployeeId),
+        isPrelim: true,
+        signedOutDatetime: now,
+      },
+      include: {
+        ...REPORT_INCLUDE,
+        order: {
+          include: {
+            patient: true,
+            doctor: true,
+            specimens: { include: { bodySite: true, specimenType: true } },
+          },
+        },
+      },
+    });
+
+    // Generate preliminary PDF
+    try {
+      const reportFileRecord = await pdfService.generateReportPdf(
+        prelim as Parameters<typeof pdfService.generateReportPdf>[0],
+        'preliminary'
+      );
+      await prisma.reportFile.create({
+        data: {
+          reportId: BigInt(reportId),
+          fileType: 'prelim_pdf',
+          fileName: reportFileRecord.fileName,
+          originalFileName: reportFileRecord.fileName,
+          mimeType: 'application/pdf',
+          storagePath: reportFileRecord.storagePath,
+        },
+      });
+    } catch (err) {
+      // PDF generation failure should not block prelim sign-out
+    }
+
+    // Create a new editable draft (copy of prelim content) for continued editing
+    await prisma.report.create({
+      data: {
+        orderId: prelim.orderId,
+        versionNumber: prelim.versionNumber + 1,
+        diagnosis: prelim.diagnosis ?? undefined,
+        comment: prelim.comment ?? undefined,
+        gross: prelim.gross ?? undefined,
+        synopticData: prelim.synopticData ?? undefined,
+        reportTemplateId: prelim.reportTemplateId ?? undefined,
+        pathologistEmployeeId: prelim.pathologistEmployeeId ?? undefined,
+      },
+    });
+
+    return prelim;
   }
 
   async reactivate(orderId: string, data: ReactivateOrderInput): Promise<object> {
@@ -164,6 +236,7 @@ export class ReportService {
         synopticData: latestFinal.synopticData ?? undefined,
         reportTemplateId: latestFinal.reportTemplateId ?? undefined,
         reactivationType: data.reactivationType,
+        reactivationReason: data.reactivationReason ?? undefined,
         supersedesReportId: latestFinal.reportId,
       },
       include: REPORT_INCLUDE,

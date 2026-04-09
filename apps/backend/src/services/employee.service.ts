@@ -41,7 +41,19 @@ export class EmployeeService {
         firstName: data.firstName,
         userName: data.userName,
         employeeRoleId: data.employeeRoleId,
+        defaultLanguage: data.defaultLanguage ?? 'en',
       },
+      include: { employeeRole: true },
+    });
+  }
+
+  async updateLanguage(employeeId: number, language: string): Promise<object> {
+    const emp = await prisma.employee.findUnique({ where: { employeeId: BigInt(employeeId) } });
+    if (!emp) throw new AppError(404, 'NOT_FOUND', `Employee ${employeeId} not found`);
+
+    return prisma.employee.update({
+      where: { employeeId: BigInt(employeeId) },
+      data: { defaultLanguage: language },
       include: { employeeRole: true },
     });
   }

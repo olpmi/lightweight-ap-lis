@@ -62,8 +62,8 @@ export class OrderService {
       doctorId = doctor.doctorId;
     }
 
-    // Generate order ID
-    const orderId = await generateOrderId();
+    // Generate order ID (CN prefix for Cytology, SU for Surgical Pathology)
+    const orderId = await generateOrderId(data.caseType);
 
     // Create order + specimens in a transaction
     await prisma.$transaction(async (tx) => {

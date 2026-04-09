@@ -9,6 +9,11 @@ export const createEmployeeSchema = z.object({
     .max(100)
     .regex(/^[a-zA-Z0-9._-]+$/, 'Username may only contain letters, numbers, dots, hyphens, underscores'),
   employeeRoleId: z.number().int().positive('Employee role is required'),
+  defaultLanguage: z.enum(['en', 'sw']).default('en').optional(),
+});
+
+export const updateEmployeeLanguageSchema = z.object({
+  language: z.enum(['en', 'sw']),
 });
 
 export const loginSchema = z.union([
@@ -77,6 +82,7 @@ export const signOutReportSchema = z.object({
 
 export const reactivateOrderSchema = z.object({
   reactivationType: z.enum(['revise', 'addend']),
+  reactivationReason: z.string().min(1, 'Explanation is required').optional(),
 });
 
 export const querySchema = z.object({
@@ -87,6 +93,7 @@ export const querySchema = z.object({
 });
 
 export type CreateEmployeeInput = z.infer<typeof createEmployeeSchema>;
+export type UpdateEmployeeLanguageInput = z.infer<typeof updateEmployeeLanguageSchema>;
 export type LoginInput = z.infer<typeof loginSchema>;
 export type CreateOrderInput = z.infer<typeof createOrderSchema>;
 export type CreateBlocksInput = z.infer<typeof createBlocksSchema>;

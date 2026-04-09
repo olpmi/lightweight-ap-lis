@@ -17,6 +17,7 @@ export interface SessionEmployee {
   lastName: string;
   roleName: string;
   roleId: number;
+  defaultLanguage: string;
 }
 
 export class AuthService {
@@ -49,6 +50,7 @@ export class AuthService {
       lastName: employee.lastName,
       roleName: role.roleName,
       roleId: role.employeeRoleId,
+      defaultLanguage: employee.defaultLanguage ?? 'en',
     };
   }
 }

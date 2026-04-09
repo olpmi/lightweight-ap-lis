@@ -45,4 +45,14 @@ router.post('/:reportId/signout', requireAuth, validateBody(signOutReportSchema)
   }
 });
 
+// POST /api/reports/:reportId/signprelim
+router.post('/:reportId/signprelim', requireAuth, validateBody(signOutReportSchema), async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const data = await service.signPrelim(parseInt(req.params.reportId), req.body);
+    res.json({ data });
+  } catch (err) {
+    next(err);
+  }
+});
+
 export default router;

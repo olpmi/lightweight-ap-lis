@@ -6,5 +6,6 @@ declare module 'express-session' {
     employeeId: number;
     employeeUserName: string;
     employeeRole: string;
+    employeeDefaultLanguage: string;
   }
 }
