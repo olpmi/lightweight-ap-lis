@@ -36,6 +36,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { orderApi, reportApi, lookupApi } from '../api';
 import { useAuth } from '../hooks/useAuth';
 import { useLanguage } from '../hooks/useLanguage';
+import { useNavigationGuard } from '../hooks/useNavigationGuard';
 import { formatOrderIdDisplay, formatMaterialIdDisplay } from '@lis/shared';
 
 interface Employee {
@@ -52,6 +53,7 @@ interface Report {
   gross?: string;
   synopticData?: string;
   isFinal: boolean;
+  isPrelim: boolean;
   reactivationType?: string;
   signedOutDatetime?: string;
   pathologist?: Employee;
@@ -89,9 +91,12 @@ export default function ResultCasePage() {
   });
   const [clinicalHistory, setClinicalHistory] = useState('');
   const [signOutDialogOpen, setSignOutDialogOpen] = useState(false);
+  const [signPrelimDialogOpen, setSignPrelimDialogOpen] = useState(false);
   const [reactivateDialogOpen, setReactivateDialogOpen] = useState(false);
+  const [reactivationReason, setReactivationReason] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+  const [isDirty, setIsDirty] = useState(false);
 
   // Panel drag-to-reorder state
   const [panelOrder, setPanelOrder] = useState<PanelId[]>([...DEFAULT_PANEL_ORDER]);
@@ -125,11 +130,13 @@ export default function ResultCasePage() {
 
   // â”€â”€ Derived state â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-  const drafts = reportsData?.data?.filter((r) => !r.isFinal) ?? [];
+  const editableDrafts = reportsData?.data?.filter((r) => !r.isFinal && !r.isPrelim) ?? [];
+  const prelims = reportsData?.data?.filter((r) => !r.isFinal && r.isPrelim) ?? [];
   const finalReports = reportsData?.data?.filter((r) => r.isFinal) ?? [];
-  const latestDraft = drafts[drafts.length - 1];
-  const latestFinal = finalReports[finalReports.length - 1];
-  const isSignedOut = Boolean(latestFinal && !drafts.length);
+  const latestDraft = editableDrafts.at(-1);          // active editable draft
+  const latestPrelim = prelims.at(-1);                // most recent prelim snapshot
+  const latestFinal = finalReports.at(-1);
+  const isSignedOut = Boolean(latestFinal && editableDrafts.length === 0);
   const canSignOut = Boolean(form.diagnosis.trim() && form.gross.trim());
 
   // â”€â”€ Effects â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -177,6 +184,38 @@ export default function ResultCasePage() {
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['reports', orderId] });
       setSuccess(t('rc_draftSaved'));
+      setIsDirty(false);
+    },
+    onError: (err: unknown) =>
+      setError((err as { response?: { data?: { error?: { message?: string } } } })?.response?.data?.error?.message ?? t('errorGeneric')),
+  });
+
+  const signPrelimMutation = useMutation({
+    mutationFn: async () => {
+      const pathologistId = user?.employeeId;
+      if (!pathologistId) throw new Error('Not authenticated');
+      const data = {
+        diagnosis: form.diagnosis,
+        comment: form.comment || undefined,
+        gross: form.gross,
+        reportTemplateId: form.reportTemplateId || undefined,
+        synopticData: form.synopticData || undefined,
+        pathologistEmployeeId: Number(pathologistId),
+      };
+      let reportId: number;
+      if (latestDraft) {
+        reportId = Number(latestDraft.reportId);
+      } else {
+        const created = await reportApi.createDraft(orderId!, data) as { reportId: number | bigint };
+        reportId = Number(created.reportId);
+      }
+      return reportApi.signPrelim(reportId, data);
+    },
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['reports', orderId] });
+      setSignPrelimDialogOpen(false);
+      setSuccess(t('rc_signedPrelimSuccess'));
+      setIsDirty(false);
     },
     onError: (err: unknown) =>
       setError((err as { response?: { data?: { error?: { message?: string } } } })?.response?.data?.error?.message ?? t('errorGeneric')),
@@ -209,24 +248,45 @@ export default function ResultCasePage() {
       qc.invalidateQueries({ queryKey: ['result-queue'] });
       setSignOutDialogOpen(false);
       setSuccess(t('rc_signedOutSuccess'));
+      setIsDirty(false);
     },
     onError: (err: unknown) =>
       setError((err as { response?: { data?: { error?: { message?: string } } } })?.response?.data?.error?.message ?? t('errorGeneric')),
   });
 
   const reactivateMutation = useMutation({
-    mutationFn: (reactivationType: 'revise' | 'addend') => reportApi.reactivate(orderId!, reactivationType),
+    mutationFn: (reactivationType: 'revise' | 'addend') =>
+      reportApi.reactivate(orderId!, reactivationType, reactivationReason),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['reports', orderId] });
       qc.invalidateQueries({ queryKey: ['order', orderId] });
       setReactivateDialogOpen(false);
+      setReactivationReason('');
       setSuccess(t('rc_reactivatedSuccess'));
     },
     onError: (err: unknown) =>
       setError((err as { response?: { data?: { error?: { message?: string } } } })?.response?.data?.error?.message ?? t('errorGeneric')),
   });
 
-  // â”€â”€ Drag handlers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  // ── Navigation guard ──────────────────────────────────────────────────────
+  const { setDirty, guardedNavigate } = useNavigationGuard();
+  React.useEffect(() => {
+    setDirty(isDirty);
+    return () => setDirty(false);
+  }, [isDirty, setDirty]);
+
+  React.useEffect(() => {
+    const handler = (e: BeforeUnloadEvent) => {
+      if (isDirty) {
+        e.preventDefault();
+        e.returnValue = '';
+      }
+    };
+    window.addEventListener('beforeunload', handler);
+    return () => window.removeEventListener('beforeunload', handler);
+  }, [isDirty]);
+
+  // ── Drag handlers ─────────────────────────────────────────────────────────
 
   const handleDragStart = (e: React.DragEvent, id: PanelId) => {
     e.dataTransfer.effectAllowed = 'move';
@@ -293,7 +353,7 @@ export default function ResultCasePage() {
             fullWidth
             required
             value={form.diagnosis}
-            onChange={(e) => setForm({ ...form, diagnosis: e.target.value })}
+            onChange={(e) => { setForm({ ...form, diagnosis: e.target.value }); setIsDirty(true); }}
             inputProps={{ 'data-testid': 'diagnosis-input' }}
             sx={{ '& .MuiInputBase-root': { resize: 'vertical', overflow: 'auto' } }}
           />
@@ -306,7 +366,7 @@ export default function ResultCasePage() {
             minRows={6}
             fullWidth
             value={form.comment}
-            onChange={(e) => setForm({ ...form, comment: e.target.value })}
+            onChange={(e) => { setForm({ ...form, comment: e.target.value }); setIsDirty(true); }}
             sx={{ '& .MuiInputBase-root': { resize: 'vertical', overflow: 'auto' } }}
           />
         );
@@ -332,7 +392,7 @@ export default function ResultCasePage() {
               minRows={8}
               fullWidth
               value={form.synopticData}
-              onChange={(e) => setForm({ ...form, synopticData: e.target.value })}
+              onChange={(e) => { setForm({ ...form, synopticData: e.target.value }); setIsDirty(true); }}
               placeholder={t('rc_capTemplatePlaceholder')}
               inputProps={{ 'data-testid': 'synoptic-input', style: { fontFamily: 'monospace', fontSize: 13 } }}
               sx={{ '& .MuiInputBase-root': { resize: 'vertical', overflow: 'auto' } }}
@@ -348,7 +408,7 @@ export default function ResultCasePage() {
             fullWidth
             required
             value={form.gross}
-            onChange={(e) => setForm({ ...form, gross: e.target.value })}
+            onChange={(e) => { setForm({ ...form, gross: e.target.value }); setIsDirty(true); }}
             inputProps={{ 'data-testid': 'gross-input' }}
             sx={{ '& .MuiInputBase-root': { resize: 'vertical', overflow: 'auto' } }}
           />
@@ -362,7 +422,7 @@ export default function ResultCasePage() {
               minRows={4}
               fullWidth
               value={clinicalHistory}
-              onChange={(e) => setClinicalHistory(e.target.value)}
+              onChange={(e) => { setClinicalHistory(e.target.value); setIsDirty(true); }}
               inputProps={{ 'data-testid': 'clinical-history-input' }}
               sx={{ '& .MuiInputBase-root': { resize: 'vertical', overflow: 'auto' } }}
             />
@@ -408,7 +468,7 @@ export default function ResultCasePage() {
     <Box>
       {/* Breadcrumb */}
       <Breadcrumbs sx={{ mb: 1 }}>
-        <Link underline="hover" color="inherit" sx={{ cursor: 'pointer' }} onClick={() => navigate('/result')}>
+        <Link underline="hover" color="inherit" sx={{ cursor: 'pointer' }} onClick={() => guardedNavigate('/result')}>
           {t('nav_result')}
         </Link>
         <Typography color="text.primary">{formatOrderIdDisplay(orderId ?? '')}</Typography>
@@ -496,6 +556,26 @@ export default function ResultCasePage() {
                   data-testid="save-draft-btn"
                 >
                   {saveDraftMutation.isPending ? <CircularProgress size={16} /> : t('rc_saveDraft')}
+                </Button>
+                {latestPrelim?.reportFiles && (latestPrelim.reportFiles as Array<unknown>).length > 0 && (
+                  <Button
+                    href={reportApi.pdfUrl(Number(latestPrelim.reportId))}
+                    target="_blank"
+                    startIcon={<PictureAsPdf />}
+                    variant="outlined"
+                    size="small"
+                  >
+                    {t('rc_viewPrelimPdf')}
+                  </Button>
+                )}
+                <Button
+                  variant="outlined"
+                  color="secondary"
+                  disabled={!canSignOut || signPrelimMutation.isPending}
+                  onClick={() => setSignPrelimDialogOpen(true)}
+                  data-testid="sign-prelim-btn"
+                >
+                  {signPrelimMutation.isPending ? <CircularProgress size={16} /> : t('rc_signPrelim')}
                 </Button>
                 <Button
                   variant="contained"
@@ -619,16 +699,18 @@ export default function ResultCasePage() {
                   <TableCell>
                     {report.isFinal
                       ? <Chip label={t('rc_final')} color="success" size="small" />
-                      : <Chip label={t('rc_draft')} size="small" />}
+                      : report.isPrelim
+                        ? <Chip label={t('rc_prelim')} color="warning" size="small" />
+                        : <Chip label={t('rc_draft')} size="small" />}
                   </TableCell>
                   <TableCell>
-                    {report.signedOutDatetime ? new Date(report.signedOutDatetime).toLocaleString() : 'â€”'}
+                    {report.signedOutDatetime ? new Date(report.signedOutDatetime).toLocaleString() : '\u2014'}
                   </TableCell>
                   <TableCell>
-                    {report.pathologist ? `${report.pathologist.lastName}, ${report.pathologist.firstName}` : 'â€”'}
+                    {report.pathologist ? `${report.pathologist.lastName}, ${report.pathologist.firstName}` : '\u2014'}
                   </TableCell>
                   <TableCell>
-                    {report.isFinal && (
+                    {(report.isFinal || (report.isPrelim && report.reportFiles && report.reportFiles.length > 0)) && (
                       <Button
                         href={reportApi.pdfUrl(Number(report.reportId))}
                         target="_blank"
@@ -671,18 +753,50 @@ export default function ResultCasePage() {
         </DialogActions>
       </Dialog>
 
-      {/* Reactivate dialog */}
-      <Dialog open={reactivateDialogOpen} onClose={() => setReactivateDialogOpen(false)} maxWidth="xs" fullWidth>
-        <DialogTitle>{t('rc_reactivateCase')}</DialogTitle>
+      {/* Sign prelim confirmation dialog */}
+      <Dialog open={signPrelimDialogOpen} onClose={() => setSignPrelimDialogOpen(false)} maxWidth="xs" fullWidth>
+        <DialogTitle>{t('rc_confirmSignPrelim')}</DialogTitle>
         <DialogContent>
-          <Typography>{t('rc_reactivateMsg')}</Typography>
+          <Typography variant="body2" color="text.secondary">
+            {t('rc_confirmSignPrelimMsg')}
+          </Typography>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setReactivateDialogOpen(false)}>{t('cancel')}</Button>
+          <Button onClick={() => setSignPrelimDialogOpen(false)}>{t('cancel')}</Button>
+          <Button
+            onClick={() => signPrelimMutation.mutate()}
+            variant="contained"
+            color="secondary"
+            disabled={signPrelimMutation.isPending}
+          >
+            {signPrelimMutation.isPending ? <CircularProgress size={20} /> : t('rc_signPrelim')}
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Reactivate dialog */}
+      <Dialog open={reactivateDialogOpen} onClose={() => setReactivateDialogOpen(false)} maxWidth="sm" fullWidth>
+        <DialogTitle>{t('rc_reactivateCase')}</DialogTitle>
+        <DialogContent>
+          <Typography mb={2}>{t('rc_reactivateMsg')}</Typography>
+          <TextField
+            label={t('rc_reactivateExplanation')}
+            placeholder={t('rc_reactivateExplanationPlaceholder')}
+            multiline
+            minRows={3}
+            fullWidth
+            required
+            value={reactivationReason}
+            onChange={(e) => setReactivationReason(e.target.value)}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => { setReactivateDialogOpen(false); setReactivationReason(''); }}>{t('cancel')}</Button>
           <Button
             onClick={() => reactivateMutation.mutate('revise')}
             variant="outlined"
             color="warning"
+            disabled={!reactivationReason.trim() || reactivateMutation.isPending}
             data-testid="reactivate-revise-btn"
           >
             {t('rc_revise')}
@@ -691,12 +805,15 @@ export default function ResultCasePage() {
             onClick={() => reactivateMutation.mutate('addend')}
             variant="contained"
             color="warning"
+            disabled={!reactivationReason.trim() || reactivateMutation.isPending}
             data-testid="confirm-reactivate-btn"
           >
-            {t('rc_addend')}
+            {reactivateMutation.isPending ? <CircularProgress size={20} /> : t('rc_addend')}
           </Button>
         </DialogActions>
       </Dialog>
+
+      {/* Navigation guard dialog handled by NavigationGuardProvider */}
     </Box>
   );
 }

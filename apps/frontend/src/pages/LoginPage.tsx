@@ -19,8 +19,10 @@ import {
   Alert,
   CircularProgress,
   Stack,
+  ToggleButtonGroup,
+  ToggleButton,
 } from '@mui/material';
-import { Person, Add } from '@mui/icons-material';
+import { Person, Add, Translate } from '@mui/icons-material';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
@@ -42,6 +44,7 @@ export default function LoginPage() {
     lastName: '',
     userName: '',
     employeeRoleId: '' as number | '',
+    defaultLanguage: 'en' as 'en' | 'sw',
   });
 
   const { data: roles } = useQuery<EmployeeRole[]>({
@@ -84,6 +87,7 @@ export default function LoginPage() {
         lastName: newForm.lastName,
         userName: newForm.userName,
         employeeRoleId: Number(newForm.employeeRoleId),
+        defaultLanguage: newForm.defaultLanguage,
       },
     });
   };
@@ -226,6 +230,24 @@ export default function LoginPage() {
                     ))}
                   </Select>
                 </FormControl>
+                <Box>
+                  <Box display="flex" alignItems="center" gap={0.75} mb={0.75}>
+                    <Translate sx={{ fontSize: 16, color: 'text.secondary' }} />
+                    <Typography variant="caption" color="text.secondary" fontWeight={600}>
+                      {t('login_defaultLanguage')}
+                    </Typography>
+                  </Box>
+                  <ToggleButtonGroup
+                    value={newForm.defaultLanguage}
+                    exclusive
+                    onChange={(_, v) => v && setNewForm({ ...newForm, defaultLanguage: v })}
+                    size="small"
+                    fullWidth
+                  >
+                    <ToggleButton value="en">English</ToggleButton>
+                    <ToggleButton value="sw">Kiswahili</ToggleButton>
+                  </ToggleButtonGroup>
+                </Box>
                 <Button
                   type="submit"
                   variant="contained"

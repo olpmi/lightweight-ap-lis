@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect, ReactNode } from
 import { authApi } from '../api';
 
 interface AuthContextValue {
-  user: { employeeId: number; userName: string; role: string } | null;
+  user: { employeeId: number; userName: string; role: string; defaultLanguage: string } | null;
   loading: boolean;
   login: (payload: object) => Promise<void>;
   logout: () => Promise<void>;

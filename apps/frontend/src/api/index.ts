@@ -5,6 +5,7 @@ export interface SessionEmployee {
   employeeId: number;
   userName: string;
   role: string;
+  defaultLanguage: string;
 }
 
 export const authApi = {
@@ -30,6 +31,8 @@ export const employeeApi = {
     apiClient.get<{ data: Employee[] }>(`/employees/search?q=${encodeURIComponent(q)}`).then((r) => r.data.data),
   create: (data: object): Promise<Employee> =>
     apiClient.post<{ data: Employee }>('/employees', data).then((r) => r.data.data),
+  updateLanguage: (employeeId: number, language: string): Promise<void> =>
+    apiClient.patch(`/employees/${employeeId}/language`, { language }).then(() => undefined),
 };
 
 export const doctorApi = {
@@ -109,9 +112,12 @@ export const reportApi = {
   signOut: (reportId: number, data: object): Promise<object> =>
     apiClient.post<{ data: object }>(`/reports/${reportId}/signout`, data).then((r) => r.data.data),
 
-  reactivate: (orderId: string, reactivationType: 'revise' | 'addend'): Promise<object> =>
+  signPrelim: (reportId: number, data: object): Promise<object> =>
+    apiClient.post<{ data: object }>(`/reports/${reportId}/signprelim`, data).then((r) => r.data.data),
+
+  reactivate: (orderId: string, reactivationType: 'revise' | 'addend', reactivationReason: string): Promise<object> =>
     apiClient
-      .post<{ data: object }>(`/orders/${orderId}/reactivate`, { reactivationType })
+      .post<{ data: object }>(`/orders/${orderId}/reactivate`, { reactivationType, reactivationReason })
       .then((r) => r.data.data),
 
   pdfUrl: (reportId: number) => `/api/reports/${reportId}/pdf`,

@@ -18,12 +18,18 @@ import {
   Autocomplete,
   CircularProgress,
   Snackbar,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
 } from '@mui/material';
 import { Add, Delete, Download } from '@mui/icons-material';
 import { useQuery, useMutation } from '@tanstack/react-query';
+import { useBlocker } from 'react-router-dom';
 import { orderApi, lookupApi, patientApi, doctorApi } from '../api';
 import { formatOrderIdDisplay, BODY_SITE_HIERARCHY, CYTOLOGY_SITE_HIERARCHY } from '@lis/shared';
 import { useLanguage } from '../hooks/useLanguage';
+import { useNavigationGuard } from '../hooks/useNavigationGuard';
 
 interface SpecimenRow {
   id: string;
@@ -56,6 +62,32 @@ export default function OrderEntryPage() {
   const [createdOrder, setCreatedOrder] = useState<{ orderId: string } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [successOpen, setSuccessOpen] = useState(false);
+
+  // Dirty when the user has entered data but not yet created the case
+  const isDirty = !createdOrder && (
+    selectedPatient !== null ||
+    selectedDoctor !== null ||
+    !!form.patientLastName || !!form.patientFirstName || !!form.patientDateOfBirth || !!form.patientSex ||
+    !!form.doctorLastName || !!form.doctorFirstName ||
+    specimens.some((s) => s.bodySiteId !== '' || s.specimenTypeId !== '')
+  );
+
+  const { setDirty } = useNavigationGuard();
+  React.useEffect(() => {
+    setDirty(isDirty);
+    return () => setDirty(false);
+  }, [isDirty, setDirty]);
+
+  React.useEffect(() => {
+    const handler = (e: BeforeUnloadEvent) => {
+      if (isDirty) {
+        e.preventDefault();
+        e.returnValue = '';
+      }
+    };
+    window.addEventListener('beforeunload', handler);
+    return () => window.removeEventListener('beforeunload', handler);
+  }, [isDirty]);
 
   const { data: bodySites } = useQuery<object[]>({
     queryKey: ['body-sites'],
@@ -409,6 +441,8 @@ export default function OrderEntryPage() {
         onClose={() => setSuccessOpen(false)}
         message={`Case ${createdOrder?.orderId} created successfully`}
       />
+
+      {/* Navigation guard dialog handled by NavigationGuardProvider */}
     </Box>
   );
 }

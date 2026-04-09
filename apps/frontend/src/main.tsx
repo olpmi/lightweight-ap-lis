@@ -8,6 +8,7 @@ import { theme } from './theme/theme';
 import App from './App';
 import { AuthProvider } from './hooks/useAuth';
 import { LanguageProvider } from './hooks/useLanguage';
+import { NavigationGuardProvider } from './hooks/useNavigationGuard';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,7 +24,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <BrowserRouter>
           <AuthProvider>
               <LanguageProvider>
-                <App />
+                <NavigationGuardProvider>
+                  <App />
+                </NavigationGuardProvider>
               </LanguageProvider>
             </AuthProvider>
         </BrowserRouter>

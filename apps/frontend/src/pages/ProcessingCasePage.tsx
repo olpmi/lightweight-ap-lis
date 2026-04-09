@@ -26,10 +26,15 @@ import {
   Link,
   IconButton,
   Tooltip,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
 } from '@mui/material';
 import { ExpandMore, Add, Science, Download, Delete, Save } from '@mui/icons-material';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigationGuard } from '../hooks/useNavigationGuard';
 import { orderApi, specimenApi, blockApi, reportApi } from '../api';
 import { useAuth } from '../hooks/useAuth';
 import { useLanguage } from '../hooks/useLanguage';
@@ -106,6 +111,7 @@ export default function ProcessingCasePage() {
   const [historyInit, setHistoryInit] = useState(false);
   const [grossInit, setGrossInit] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
+  const [isDirty, setIsDirty] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState<string | null>(null);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [blockCounts, setBlockCounts] = useState<Record<string, number>>({});
@@ -147,10 +153,28 @@ export default function ProcessingCasePage() {
     },
     onSuccess: () => {
       setIsSaved(true);
+      setIsDirty(false);
       setSaveSuccess(t('pc_caseSaved'));
     },
     onError: () => setSaveError(t('pc_saveFailed')),
   });
+
+  const { setDirty, guardedNavigate } = useNavigationGuard();
+  useEffect(() => {
+    setDirty(isDirty);
+    return () => setDirty(false);
+  }, [isDirty, setDirty]);
+
+  useEffect(() => {
+    const handler = (e: BeforeUnloadEvent) => {
+      if (isDirty) {
+        e.preventDefault();
+        e.returnValue = '';
+      }
+    };
+    window.addEventListener('beforeunload', handler);
+    return () => window.removeEventListener('beforeunload', handler);
+  }, [isDirty]);
 
   const specimens = materialsData?.data?.specimens ?? [];
 
@@ -164,7 +188,7 @@ export default function ProcessingCasePage() {
   return (
     <Box>
       <Breadcrumbs sx={{ mb: 2 }}>
-        <Link underline="hover" color="inherit" sx={{ cursor: 'pointer' }} onClick={() => navigate('/processing')}>
+        <Link underline="hover" color="inherit" sx={{ cursor: 'pointer' }} onClick={() => guardedNavigate('/processing')}>
           {t('nav_processing')}
         </Link>
         <Typography color="text.primary">{formatOrderIdDisplay(orderId ?? '')}</Typography>
@@ -241,7 +265,7 @@ export default function ProcessingCasePage() {
             fullWidth
             size="small"
             value={clinicalHistory}
-            onChange={(e) => { setClinicalHistory(e.target.value); setIsSaved(false); }}
+            onChange={(e) => { setClinicalHistory(e.target.value); setIsSaved(false); setIsDirty(true); }}
           />
         </Paper>
         <Paper sx={{ p: 2 }}>
@@ -252,7 +276,7 @@ export default function ProcessingCasePage() {
             fullWidth
             size="small"
             value={grossDescription}
-            onChange={(e) => { setGrossDescription(e.target.value); setIsSaved(false); }}
+            onChange={(e) => { setGrossDescription(e.target.value); setIsSaved(false); setIsDirty(true); }}
           />
         </Paper>
       </Box>
@@ -443,7 +467,9 @@ export default function ProcessingCasePage() {
             )}
           </AccordionDetails>
         </Accordion>
-      ))}
+      ))}      
+
+      {/* Navigation guard dialog handled by NavigationGuardProvider */}
     </Box>
   );
 }

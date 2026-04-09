@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Drawer,
@@ -32,6 +32,8 @@ import {
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { useLanguage } from '../../hooks/useLanguage';
+import { useNavigationGuard } from '../../hooks/useNavigationGuard';
+import { employeeApi } from '../../api';
 
 const DRAWER_WIDTH = 220;
 
@@ -41,6 +43,21 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const location = useLocation();
   const { user, logout } = useAuth();
   const { lang, setLang, t } = useLanguage();
+  const { guardedNavigate } = useNavigationGuard();
+
+  // Apply the employee's saved language preference on login / session restore
+  useEffect(() => {
+    if (user?.defaultLanguage === 'en' || user?.defaultLanguage === 'sw') {
+      setLang(user.defaultLanguage);
+    }
+  }, [user?.employeeId]);
+
+  const handleSetLang = (l: 'en' | 'sw') => {
+    setLang(l);
+    if (user) {
+      employeeApi.updateLanguage(user.employeeId, l).catch(() => {/* non-fatal */});
+    }
+  };
 
   const NAV_ITEMS = [
     { label: t('nav_home'), path: '/', icon: <Home /> },
@@ -75,7 +92,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
               <ToggleButtonGroup
                 value={lang}
                 exclusive
-                onChange={(_, v) => v && setLang(v)}
+                onChange={(_, v) => v && handleSetLang(v)}
                 size="small"
                 sx={{
                   '& .MuiToggleButton-root': {
@@ -135,7 +152,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
             <ListItemButton
               key={item.path}
               selected={item.path === '/' ? location.pathname === '/' : location.pathname.startsWith(item.path)}
-              onClick={() => navigate(item.path)}
+              onClick={() => guardedNavigate(item.path)}
             >
               <ListItemIcon sx={{ minWidth: 36 }}>{item.icon}</ListItemIcon>
               <ListItemText primary={item.label} />
@@ -153,7 +170,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
           <ToggleButtonGroup
             value={lang}
             exclusive
-            onChange={(_, v) => v && setLang(v)}
+            onChange={(_, v) => v && handleSetLang(v)}
             size="small"
             fullWidth
             sx={{

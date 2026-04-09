@@ -44,6 +44,7 @@ const en = {
   login_createAndLogin: 'Create & Login',
   login_allFieldsRequired: 'All fields are required for a new employee',
   login_failed: 'Login failed. Please try again.',
+  login_defaultLanguage: 'Default Language',
 
   // Dashboard
   dash_workflow: 'Workflow',
@@ -195,8 +196,20 @@ const en = {
   rc_none: 'None',
   rc_final: 'Final',
   rc_draft: 'Draft',
+  rc_prelim: 'Prelim',
   rc_signedOutSuccess: 'Report signed out successfully',
   rc_reactivatedSuccess: 'Case reactivated. A new draft has been created.',
+  rc_signPrelim: 'Sign Prelim',
+  rc_confirmSignPrelim: 'Confirm Preliminary Sign-Out',
+  rc_confirmSignPrelimMsg: 'This will generate a Preliminary Report PDF. The case will remain active for further editing.',
+  rc_signedPrelimSuccess: 'Preliminary report generated. Case remains active.',
+  rc_viewPrelimPdf: 'View Prelim PDF',
+  rc_reactivateExplanation: 'Explanation (required)',
+  rc_reactivateExplanationPlaceholder: 'Provide reason for reactivation or addendum...',
+  nav_unsavedTitle: 'Unsaved Changes',
+  nav_unsavedChanges: 'You have unsaved changes. Are you sure you want to leave?',
+  nav_leave: 'Leave',
+  nav_stay: 'Stay',
 
   // Body sites (surgical)
   site_gi: 'Gastrointestinal (GI)',
@@ -324,6 +337,7 @@ const sw: Record<keyof typeof en, string> = {
   login_createAndLogin: 'Unda & Ingia',
   login_allFieldsRequired: 'Sehemu zote zinahitajika kwa mfanyakazi mpya',
   login_failed: 'Kuingia kumeshindwa. Tafadhali jaribu tena.',
+  login_defaultLanguage: 'Lugha ya Msingi',
 
   dash_workflow: 'Mtiririko wa Kazi',
   dash_orderEntry_title: 'Kuingiza Oda',
@@ -468,8 +482,20 @@ const sw: Record<keyof typeof en, string> = {
   rc_none: 'Hakuna',
   rc_final: 'ya Mwisho',
   rc_draft: 'Rasimu',
+  rc_prelim: 'Awali',
   rc_signedOutSuccess: 'Ripoti imetolewa sahihi',
   rc_reactivatedSuccess: 'Kesi imeanzishwa upya. Rasimu mpya imeundwa.',
+  rc_signPrelim: 'Saini Awali',
+  rc_confirmSignPrelim: 'Thibitisha Kutoa Ripoti ya Awali',
+  rc_confirmSignPrelimMsg: 'Hii itaunda PDF ya Ripoti ya Awali. Kesi itabaki wazi kwa mabadiliko zaidi.',
+  rc_signedPrelimSuccess: 'Ripoti ya awali imeundwa. Kesi iko wazi.',
+  rc_viewPrelimPdf: 'Tazama PDF ya Awali',
+  rc_reactivateExplanation: 'Maelezo (inahitajika)',
+  rc_reactivateExplanationPlaceholder: 'Toa sababu ya kuanzisha upya au kuongeza...',
+  nav_unsavedTitle: 'Mabadiliko Hayajahifadhiwa',
+  nav_unsavedChanges: 'Una mabadiliko ambayo hayajahifadhiwa. Je, una uhakika unataka kuondoka?',
+  nav_leave: 'Ondoka',
+  nav_stay: 'Kaa',
 
   // Body sites
   site_gi: 'Mfumo wa Mmeng\'enyo wa Chakula (GI)',
