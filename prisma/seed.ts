@@ -450,20 +450,22 @@ async function main() {
   console.log('  ✓ Patients');
 
   // 8. Order sequence bootstrap for year 25
-  await prisma.orderSequenceYear.upsert({
-    where: { yearTwoDigit: 25 },
-    create: { yearTwoDigit: 25, lastValue: 0 },
-    update: {},
-  });
+  for (const prefix of ['SU', 'CN']) {
+    await prisma.orderSequenceYear.upsert({
+      where: { yearTwoDigit_prefix: { yearTwoDigit: 25, prefix } },
+      create: { yearTwoDigit: 25, prefix, lastValue: 0 },
+      update: {},
+    });
+  }
 
   // 9. Orders, specimens, blocks, slides, reports
   const now = new Date();
   const ORDER_COUNT = 300;
 
   for (let i = 0; i < ORDER_COUNT; i++) {
-    // Generate order ID by incrementing the sequence
+    // Generate order ID by_prefix: { yearTwoDigit: 25, prefix: 'SU' }rementing the sequence
     const seq = await prisma.orderSequenceYear.update({
-      where: { yearTwoDigit: 25 },
+      where: { yearTwoDigit_prefix: { yearTwoDigit: 25, prefix: 'SU' } },
       data: { lastValue: { increment: 1 } },
     });
     const orderId = `SU25${String(seq.lastValue).padStart(7, '0')}`;

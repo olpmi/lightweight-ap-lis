@@ -40,12 +40,13 @@ model EmployeeRole {
 }
 
 model Employee {
-  employeeId     BigInt       @id @default(autoincrement()) @map("employee_id")
-  lastName       String       @map("last_name") @db.VarChar(100)
-  firstName      String       @map("first_name") @db.VarChar(100)
-  userName       String       @unique @map("user_name") @db.VarChar(100)
-  employeeRoleId Int          @map("employee_role_id")
-  employeeRole   EmployeeRole @relation(fields: [employeeRoleId], references: [employeeRoleId])
+  employeeId      BigInt       @id @default(autoincrement()) @map("employee_id")
+  lastName        String       @map("last_name") @db.VarChar(100)
+  firstName       String       @map("first_name") @db.VarChar(100)
+  userName        String       @unique @map("user_name") @db.VarChar(100)
+  employeeRoleId  Int          @map("employee_role_id")
+  employeeRole    EmployeeRole @relation(fields: [employeeRoleId], references: [employeeRoleId])
+  defaultLanguage String       @default("en") @map("default_language") @db.VarChar(10)
 
   reports Report[]
 
@@ -83,11 +84,13 @@ model ReportTemplate {
   @@map("report_template")
 }
 
-/// Concurrency-safe sequence per year for order ID generation
+/// Concurrency-safe sequence per year+prefix for order ID generation
 model OrderSequenceYear {
-  yearTwoDigit Int @id @map("year_two_digit")
-  lastValue    Int @default(0) @map("last_value")
+  yearTwoDigit Int    @map("year_two_digit")
+  prefix       String @map("prefix") @db.Char(2)
+  lastValue    Int    @default(0) @map("last_value")
 
+  @@id([yearTwoDigit, prefix])
   @@map("order_sequence_year")
 }
 
@@ -168,7 +171,9 @@ model Report {
   createdAt             DateTime  @default(now()) @map("created_at")
   signedOutDatetime     DateTime? @map("signed_out_datetime")
   isFinal               Boolean   @default(false) @map("is_final")
+  isPrelim              Boolean   @default(false) @map("is_prelim")
   reactivationType      String?   @map("reactivation_type") @db.VarChar(20)
+  reactivationReason    String?   @map("reactivation_reason") @db.Text
   supersedesReportId    BigInt?   @map("supersedes_report_id")
 
   order          Order          @relation("OrderReports", fields: [orderId], references: [orderId])
