@@ -1,0 +1,220 @@
+{
+  "template_id": "colon_rectum_resection_gross_tumor_v1",
+  "domain": "anatomic_pathology",
+  "title": "Colon and Rectum Resection for Tumor (Gross Template)",
+
+  "specimen": {
+    "label": "Specimen",
+    "fields": {
+      "procedure_type": {
+        "label": "Procedure type (as stated by clinician)",
+        "type": "text",
+        "value": ""
+      },
+      "specimen_length_mm": {
+        "label": "Specimen length (mm)",
+        "type": "number",
+        "value": ""
+      },
+      "anatomical_components_included": {
+        "label": "Anatomical components included (with size)",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "tumor_perforation": {
+        "label": "Tumor perforation",
+        "type": "select",
+        "options": ["Absent", "Present"],
+        "value": ""
+      },
+      "tumor_dimensions_mm": {
+        "label": "Tumor dimensions (mm)",
+        "type": "measurement_3d",
+        "value": ""
+      },
+      "tumor_site": {
+        "label": "Tumor site",
+        "type": "select",
+        "options": [
+          "Caecum",
+          "Ascending colon",
+          "Hepatic flexure",
+          "Transverse colon",
+          "Splenic flexure",
+          "Descending colon",
+          "Sigmoid colon",
+          "Rectosigmoid colon",
+          "Rectum"
+        ],
+        "value": ""
+      },
+      "invades_peritoneal_surface": {
+        "label": "Tumor invades peritoneal surface",
+        "type": "select",
+        "options": ["Yes", "No"],
+        "value": ""
+      },
+      "forms_discrete_serosal_nodules": {
+        "label": "Tumor forms discrete serosal nodules",
+        "type": "select",
+        "options": ["Yes", "No"],
+        "value": ""
+      }
+    }
+  },
+
+  "margins": {
+    "label": "Margins",
+    "fields": {
+      "distance_to_proximal_margin_mm": {
+        "label": "Distance to proximal margin (mm)",
+        "type": "number",
+        "value": ""
+      },
+      "distance_to_distal_margin_mm": {
+        "label": "Distance to distal margin (mm)",
+        "type": "number",
+        "value": ""
+      },
+      "distance_to_circumferential_margin_mm": {
+        "label": "Distance to non-peritonealised circumferential margin (mm)",
+        "type": "number",
+        "value": ""
+      }
+    }
+  },
+
+  "rectal_tumor_only": {
+    "label": "For Rectal Tumors Only",
+    "fields": {
+      "mesorectum_intactness": {
+        "label": "Intactness of mesorectum",
+        "type": "select",
+        "options": [
+          "Incomplete (Grade 1)",
+          "Near complete (Grade 2)",
+          "Complete (Grade 3)"
+        ],
+        "value": ""
+      },
+      "relationship_to_anterior_peritoneal_reflection": {
+        "label": "Tumor relationship to anterior peritoneal reflection",
+        "type": "select",
+        "options": ["Entirely above", "Astride", "Entirely below"],
+        "value": ""
+      },
+      "distance_from_dentate_line_mm": {
+        "label": "Distance from dentate line (mm) if abdominoperineal resection",
+        "type": "number",
+        "value": ""
+      }
+    }
+  },
+
+  "polyps": {
+    "label": "Polyps",
+    "fields": {
+      "status": {
+        "label": "Polyps",
+        "type": "select",
+        "options": ["Absent", "Present"],
+        "value": ""
+      },
+      "if_present_details": {
+        "label": "If present, record number, size range, and gross appearance",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "lymph_nodes": {
+    "label": "Lymph Nodes",
+    "fields": {
+      "number_identified": {
+        "label": "Number identified",
+        "type": "integer",
+        "value": ""
+      },
+      "size_range_mm": {
+        "label": "Size range (mm)",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "other_findings": {
+    "label": "Other Relevant Macroscopic Findings",
+    "fields": {
+      "findings": {
+        "label": "Other relevant macroscopic findings",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "block_identification_key": {
+    "label": "Block Identification Key",
+    "fields": {
+      "tumor": {
+        "label": "Tumor",
+        "type": "text",
+        "value": ""
+      },
+      "proximal_margin": {
+        "label": "Proximal margin",
+        "type": "text",
+        "value": ""
+      },
+      "distal_margin": {
+        "label": "Distal margin",
+        "type": "text",
+        "value": ""
+      },
+      "circumferential_margin": {
+        "label": "Circumferential margin",
+        "type": "text",
+        "value": ""
+      },
+      "non_neoplastic_colon": {
+        "label": "Non-neoplastic colon",
+        "type": "text",
+        "value": ""
+      },
+      "lymph_nodes": {
+        "label": "Lymph nodes",
+        "type": "text",
+        "value": ""
+      },
+      "additional_sections": {
+        "label": "Additional sections",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "grossing": {
+    "label": "Grossing",
+    "fields": {
+      "grossed_by_initials": {
+        "label": "Grossed by (initials)",
+        "type": "text",
+        "value": ""
+      },
+      "date": {
+        "label": "Date",
+        "type": "date",
+        "value": ""
+      }
+    }
+  }
+}

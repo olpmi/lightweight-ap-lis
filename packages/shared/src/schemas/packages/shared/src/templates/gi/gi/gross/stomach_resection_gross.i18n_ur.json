@@ -1,0 +1,10 @@
+{
+  "template_id": "gastric_tumor_resection_gross_v1",
+  "lang": "ur",
+  "title": "گیسٹرک ٹیومر ریسیکشن (گراس ٹیمپلیٹ)",
+  "specimen": { "label": "نمونہ" },
+  "tumor": { "label": "ٹیومر" },
+  "lymph_nodes": { "label": "لمف نوڈز" },
+  "block_identification_key": { "label": "بلاک شناختی کلید" },
+  "grossing": { "label": "گروسنگ" }
+}

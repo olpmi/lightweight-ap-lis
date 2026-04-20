@@ -1,0 +1,11 @@
+{
+  "template_id": "ovary_fallopian_tube_primary_peritoneum_v1",
+  "lang": "fr",
+  "title": "Ovaire ou trompe de Fallope ou péritoine primitif",
+  "tumor": { "label": "Tumeur" },
+  "regional_lymph_nodes": { "label": "Ganglions lymphatiques régionaux" },
+  "distant_metastasis": { "label": "Métastase à distance" },
+  "ptnm_classification": { "label": "Classification pTNM" },
+  "figo_stage": { "label": "Stade FIGO" },
+  "additional_findings": { "label": "Constatations supplémentaires" }
+}

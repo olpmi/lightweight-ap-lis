@@ -1,0 +1,96 @@
+{
+  "template_id": "general_tumor_biopsy_v1",
+  "domain": "anatomic_pathology",
+  "title": "General Tumor Biopsy",
+  "protocol_posting_date": "June 2021",
+
+  "clinical": {
+    "label": "Clinical",
+    "fields": {
+      "treatment_history": {
+        "label": "Treatment history",
+        "type": "select",
+        "options": [
+          "No known prior treatment",
+          "Prior treatment given",
+          "Not specified"
+        ],
+        "value": "",
+        "prior_treatment_specify": ""
+      }
+    }
+  },
+
+  "specimen": {
+    "label": "Specimen",
+    "fields": {
+      "site": {
+        "label": "Specimen site",
+        "type": "text",
+        "value": ""
+      },
+      "laterality": {
+        "label": "Specimen laterality",
+        "type": "select",
+        "options": ["Right", "Left", "Not specified", "Not applicable"],
+        "value": ""
+      },
+      "procedure": {
+        "label": "Procedure",
+        "type": "select",
+        "options": [
+          "Needle biopsy",
+          "Incisional biopsy",
+          "Excisional biopsy",
+          "Fine needle aspiration",
+          "Biopsy, not otherwise specified",
+          "Other"
+        ],
+        "value": "",
+        "other_specify": ""
+      },
+      "adequacy": {
+        "label": "Specimen adequacy",
+        "type": "select",
+        "options": ["Adequate", "Suboptimal"],
+        "value": "",
+        "suboptimal_explain": ""
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "histologic_type": {
+        "label": "Histologic type",
+        "type": "text",
+        "value": ""
+      },
+      "histologic_grade": {
+        "label": "Histologic grade",
+        "type": "text",
+        "value": ""
+      },
+      "lymphovascular_invasion": {
+        "label": "Lymphovascular invasion",
+        "type": "select",
+        "options": ["Not identified", "Present", "Cannot be determined"],
+        "value": "",
+        "cannot_be_determined_specify": ""
+      },
+      "perineural_invasion": {
+        "label": "Perineural invasion",
+        "type": "select",
+        "options": ["Not identified", "Present", "Cannot be determined"],
+        "value": "",
+        "cannot_be_determined_specify": ""
+      },
+      "additional_pathologic_findings": {
+        "label": "Additional pathologic findings",
+        "type": "text",
+        "value": ""
+      }
+    }
+  }
+}

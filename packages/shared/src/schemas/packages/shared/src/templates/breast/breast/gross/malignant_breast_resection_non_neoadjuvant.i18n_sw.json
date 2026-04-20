@@ -1,0 +1,15 @@
+{
+  "template_id": "malignant_breast_resection_non_neoadjuvant_v1",
+  "lang": "sw",
+
+  "clinical_case_summary": { "label": "Muhtasari wa kliniki" },
+  "specimen": { "label": "Kipande cha upasuaji" },
+  "lymph_nodes": { "label": "Nodi za limfu" },
+  "breast_measurements": { "label": "Vipimo vya titi" },
+  "skin": { "label": "Ngozi" },
+  "nipple": { "label": "Chuchu" },
+  "tumor": { "label": "Uvimbe" },
+  "margins": { "label": "Mipaka" },
+  "muscle": { "label": "Misuli ya mifupa" },
+  "block_key": { "label": "Uwekaji wa vizuizi" }
+}

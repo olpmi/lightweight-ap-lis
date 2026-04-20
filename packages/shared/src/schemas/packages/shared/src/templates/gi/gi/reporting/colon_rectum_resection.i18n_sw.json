@@ -1,0 +1,13 @@
+{
+  "template_id": "colorectal_malignant_tumor_resection_v1",
+  "lang": "sw",
+  "title": "Uvimbe mbaya wa colorectum, resection",
+  "specimen": { "label": "Sampuli" },
+  "tumor": { "label": "Uvimbe" },
+  "margins": { "label": "Mipaka" },
+  "regional_lymph_nodes": { "label": "Nodi za limfu za eneo" },
+  "distant_metastasis": { "label": "Metastasi ya mbali" },
+  "ptnm": { "label": "Uainishaji wa pTNM (AJCC toleo la 8)" },
+  "additional_findings": { "label": "Matokeo ya ziada" },
+  "comments": { "label": "Maoni" }
+}

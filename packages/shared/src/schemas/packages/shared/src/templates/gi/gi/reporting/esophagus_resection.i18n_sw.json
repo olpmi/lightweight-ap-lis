@@ -1,0 +1,12 @@
+{
+  "template_id": "esophagus_resection_v1",
+  "lang": "sw",
+  "title": "Umio",
+  "specimen": { "label": "Sampuli" },
+  "tumor": { "label": "Uvimbe" },
+  "margins": { "label": "Mipaka" },
+  "regional_lymph_nodes": { "label": "Nodi za limfu za eneo" },
+  "distant_metastasis": { "label": "Metastasi ya mbali" },
+  "pathologic_stage": { "label": "Uainishaji wa hatua ya patholojia (pTNM)" },
+  "additional_findings": { "label": "Matokeo ya ziada" }
+}

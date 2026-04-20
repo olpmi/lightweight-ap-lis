@@ -1,0 +1,377 @@
+{
+  "template_id": "general_tumor_resection_v1",
+  "domain": "anatomic_pathology",
+  "title": "General Tumor Resection",
+  "protocol_posting_date": "June 2021",
+
+  "specimen": {
+    "label": "Specimen",
+    "fields": {
+      "procedure": {
+        "label": "Procedure",
+        "type": "text",
+        "value": ""
+      },
+      "laterality": {
+        "label": "Specimen laterality",
+        "type": "select",
+        "options": ["Right", "Left", "Not specified", "Not applicable"],
+        "value": ""
+      },
+      "lymph_node_sampling": {
+        "label": "Lymph node sampling",
+        "type": "select",
+        "options": ["Performed", "Not performed", "Not known"],
+        "value": "",
+        "lymph_nodes_sampled": ""
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "site": {
+        "label": "Tumor site(s)",
+        "type": "text",
+        "value": ""
+      },
+      "histologic_type": {
+        "label": "Histologic type",
+        "type": "text",
+        "value": ""
+      },
+      "histologic_grade": {
+        "label": "Histologic grade",
+        "type": "text",
+        "value": ""
+      },
+      "tumor_size": {
+        "label": "Tumor size",
+        "fields": {
+          "measurement_type": {
+            "label": "Measurement type",
+            "type": "select",
+            "options": [
+              "Greatest dimension in centimeters (cm)",
+              "Cannot be determined"
+            ],
+            "value": ""
+          },
+          "greatest_dimension_cm": {
+            "label": "Greatest dimension (cm)",
+            "type": "number",
+            "value": ""
+          },
+          "additional_dimensions_cm": {
+            "label": "Additional dimensions (cm)",
+            "type": "measurement_2d",
+            "value": ""
+          },
+          "cannot_be_determined_specify": {
+            "label": "Cannot be determined (explain)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "tumor_extent": {
+        "label": "Tumor extent (structures or organs involved)",
+        "type": "text",
+        "value": ""
+      },
+      "mitotic_rate": {
+        "label": "Mitotic rate",
+        "type": "text",
+        "value": ""
+      },
+      "tumor_necrosis": {
+        "label": "Tumor necrosis",
+        "fields": {
+          "status": {
+            "label": "Tumor necrosis status",
+            "type": "select",
+            "options": ["Not identified", "Present", "Cannot be determined"],
+            "value": ""
+          },
+          "percentage_type": {
+            "label": "Percentage of tumor necrosis",
+            "type": "select",
+            "options": ["Specify percentage", "Other", "Cannot be determined"],
+            "value": ""
+          },
+          "percentage_value": {
+            "label": "Percentage (%)",
+            "type": "number",
+            "value": ""
+          },
+          "other_specify": {
+            "label": "Other (specify)",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_specify": {
+            "label": "Cannot be determined (explain)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "lymphovascular_invasion": {
+        "label": "Lymphovascular invasion",
+        "type": "select",
+        "options": ["Not identified", "Present", "Cannot be determined"],
+        "value": "",
+        "cannot_be_determined_specify": ""
+      },
+      "treatment_effect": {
+        "label": "Treatment effect",
+        "fields": {
+          "status": {
+            "label": "Treatment effect status",
+            "type": "select",
+            "options": [
+              "No known preoperative therapy",
+              "Not identified",
+              "Present",
+              "Cannot be determined"
+            ],
+            "value": ""
+          },
+          "preoperative_therapy_given": {
+            "label": "Preoperative therapy given",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_specify": {
+            "label": "Cannot be determined (explain)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "tumor_comment": {
+        "label": "Tumor comment",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "margins": {
+    "label": "Margins",
+    "fields": {
+      "margin_status": {
+        "label": "Margin status",
+        "type": "select",
+        "options": [
+          "All margins negative for tumor",
+          "Tumor present at margin",
+          "Not applicable"
+        ],
+        "value": ""
+      },
+      "distance_to_closest_margin": {
+        "label": "Distance from tumor to closest margin",
+        "fields": {
+          "distance_type": {
+            "label": "Distance type",
+            "type": "select",
+            "options": [
+              "Exact distance",
+              "Greater than",
+              "At least",
+              "Less than",
+              "Less than 1 mm",
+              "Other",
+              "Cannot be determined"
+            ],
+            "value": ""
+          },
+          "distance_mm": {
+            "label": "Distance (mm)",
+            "type": "number",
+            "value": ""
+          },
+          "other_specify": {
+            "label": "Other (specify)",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_specify": {
+            "label": "Cannot be determined (explain)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "closest_margins_to_tumor": {
+        "label": "Closest margin(s) to tumor",
+        "fields": {
+          "status": {
+            "label": "Closest margin(s) status",
+            "type": "select",
+            "options": ["Specify closest margin(s)", "Cannot be determined"],
+            "value": ""
+          },
+          "specify": {
+            "label": "Specify closest margin(s)",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_specify": {
+            "label": "Cannot be determined (explain)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "margins_involved_by_tumor": {
+        "label": "Margin(s) involved by tumor",
+        "fields": {
+          "status": {
+            "label": "Involved margin(s) status",
+            "type": "select",
+            "options": [
+              "Specify involved margin(s)",
+              "Other",
+              "Cannot be determined"
+            ],
+            "value": ""
+          },
+          "specify": {
+            "label": "Specify involved margin(s)",
+            "type": "text",
+            "value": ""
+          },
+          "other_specify": {
+            "label": "Other (specify)",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_specify": {
+            "label": "Cannot be determined (explain)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      }
+    }
+  },
+
+  "regional_lymph_nodes": {
+    "label": "Regional Lymph Nodes",
+    "fields": {
+      "regional_lymph_node_status": {
+        "label": "Regional lymph node status",
+        "type": "select",
+        "options": [
+          "Not applicable (no regional lymph nodes submitted or found)",
+          "Regional lymph nodes present",
+          "All regional lymph nodes negative for tumor",
+          "Tumor present in regional lymph node(s)"
+        ],
+        "value": ""
+      },
+      "number_with_tumor": {
+        "label": "Number of lymph nodes with tumor",
+        "fields": {
+          "count_type": {
+            "label": "Count type",
+            "type": "select",
+            "options": [
+              "Exact number",
+              "At least",
+              "Other",
+              "Cannot be determined"
+            ],
+            "value": ""
+          },
+          "count_value": {
+            "label": "Count",
+            "type": "integer",
+            "value": ""
+          },
+          "other_specify": {
+            "label": "Other (specify)",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_specify": {
+            "label": "Cannot be determined (explain)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "extranodal_extension": {
+        "label": "Extranodal extension",
+        "fields": {
+          "status": {
+            "label": "Extranodal extension status",
+            "type": "select",
+            "options": [
+              "Not identified",
+              "Present",
+              "Other",
+              "Cannot be determined"
+            ],
+            "value": ""
+          },
+          "other_specify": {
+            "label": "Other (specify)",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_specify": {
+            "label": "Cannot be determined (explain)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "number_examined": {
+        "label": "Number of lymph nodes examined",
+        "fields": {
+          "count_type": {
+            "label": "Count type",
+            "type": "select",
+            "options": [
+              "Exact number",
+              "At least",
+              "Other",
+              "Cannot be determined"
+            ],
+            "value": ""
+          },
+          "count_value": {
+            "label": "Count",
+            "type": "integer",
+            "value": ""
+          },
+          "other_specify": {
+            "label": "Other (specify)",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_specify": {
+            "label": "Cannot be determined (explain)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      }
+    }
+  },
+
+  "additional_findings": {
+    "label": "Additional Findings",
+    "fields": {
+      "findings": {
+        "label": "Additional findings",
+        "type": "text",
+        "value": ""
+      }
+    }
+  }
+}

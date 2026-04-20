@@ -1,0 +1,66 @@
+{
+  "template_id": "lung_tumor_biopsy_v1",
+  "lang": "fr",
+  "title": "Tumeur pulmonaire, biopsie",
+
+  "tumor": {
+    "label": "Tumeur",
+    "fields": {
+      "histologic_type": {
+        "label": "Type histologique",
+        "options": [
+          "Adénocarcinome lépidique invasif",
+          "Adénocarcinome acinaire invasif",
+          "Adénocarcinome papillaire invasif",
+          "Adénocarcinome micropapillaire invasif",
+          "Adénocarcinome solide invasif",
+          "Adénocarcinome mucineux invasif",
+          "Adénocarcinome invasif mixte mucineux et non mucineux",
+          "Adénocarcinome colloïde",
+          "Adénocarcinome fœtal",
+          "Adénocarcinome de type entérique",
+          "Carcinome épidermoïde in situ (SCIS)",
+          "Carcinome épidermoïde invasif, kératinisant",
+          "Carcinome épidermoïde invasif, non kératinisant",
+          "Carcinome épidermoïde invasif, basaloïde",
+          "Carcinome lymphoépithélial",
+          "Carcinome à grandes cellules",
+          "Carcinome adénosquameux",
+          "Carcinome pléomorphe",
+          "Tumeur carcinoïde, SAI / Tumeur neuroendocrine, SAI",
+          "Carcinome à petites cellules",
+          "Carcinome combiné à petites cellules (carcinome à petites cellules et composante non à petites cellules)",
+          "Carcinome neuroendocrine à grandes cellules",
+          "Carcinome neuroendocrine combiné à grandes cellules (LCNEC et autre composante non à petites cellules)",
+          "Carcinome, type indéterminable",
+          "Carcinome non à petites cellules, sous-type indéterminable",
+          "Autre type histologique non listé",
+          "Aucune tumeur viable présente"
+        ]
+      },
+      "histologic_patterns": {
+        "label": "Patterns histologiques (applicables aux adénocarcinomes non mucineux uniquement)",
+        "options": [
+          "Non applicable",
+          "Acinaire",
+          "Papillaire",
+          "Lépidique",
+          "Solide",
+          "Micropapillaire",
+          "Glandes complexes (cribriformes et fusionnées)",
+          "Autre"
+        ]
+      },
+      "histologic_grade": {
+        "label": "Grade histologique"
+      },
+      "lymphovascular_invasion": {
+        "label": "Invasion lymphatique et / ou vasculaire"
+      }
+    }
+  },
+
+  "additional_findings": {
+    "label": "Constatations supplémentaires"
+  }
+}

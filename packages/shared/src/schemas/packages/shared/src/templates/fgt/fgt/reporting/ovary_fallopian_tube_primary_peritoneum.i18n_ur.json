@@ -1,0 +1,11 @@
+{
+  "template_id": "ovary_fallopian_tube_primary_peritoneum_v1",
+  "lang": "ur",
+  "title": "اووری یا فاللوپین ٹیوب یا پرائمری پیریٹونیم",
+  "tumor": { "label": "ٹیومر" },
+  "regional_lymph_nodes": { "label": "علاقائی لمف نوڈز" },
+  "distant_metastasis": { "label": "بعید میٹاسٹاسس" },
+  "ptnm_classification": { "label": "pTNM درجہ بندی" },
+  "figo_stage": { "label": "FIGO مرحلہ" },
+  "additional_findings": { "label": "اضافی مشاہدات" }
+}

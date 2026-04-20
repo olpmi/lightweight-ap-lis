@@ -1,0 +1,27 @@
+{
+  "template_id": "breast_dcis_resection_v1",
+  "lang": "sw",
+  "title": "DCIS ya titi, resection",
+
+  "case_summary": {
+    "label": "Muhtasari wa kesi (DCIS ya titi: resection)"
+  },
+  "specimen": {
+    "label": "Sampuli"
+  },
+  "tumor": {
+    "label": "Uvimbe"
+  },
+  "margins": {
+    "label": "Mipaka"
+  },
+  "regional_lymph_nodes": {
+    "label": "Nodi za limfu za eneo"
+  },
+  "distant_metastasis": {
+    "label": "Metastasi ya mbali"
+  },
+  "pathologic_stage": {
+    "label": "Uainishaji wa hatua ya patholojia (pTNM, AJCC toleo la 8)"
+  }
+}

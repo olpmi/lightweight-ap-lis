@@ -1,0 +1,90 @@
+{
+  "template_id": "breast_invasive_carcinoma_resection_v1",
+  "lang": "ar",
+  "ui": {
+    "direction": "rtl"
+  },
+  "title": "سرطان الثدي الغازي، الاستئصال",
+
+  "specimen": {
+    "label": "العينة",
+    "fields": {
+      "procedure": {
+        "label": "الإجراء",
+        "options": [
+          "استئصال أقل من استئصال الثدي الكلي",
+          "استئصال الثدي الكلي (بما في ذلك الحفاظ على الحلمة والحفاظ على الجلد)",
+          "أخرى",
+          "غير محدد"
+        ]
+      },
+      "laterality": {
+        "label": "جهة العينة",
+        "options": [
+          "اليمنى",
+          "اليسرى",
+          "غير محدد"
+        ]
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "الورم",
+    "fields": {
+      "tumor_site": {
+        "label": "موضع الورم",
+        "options": [
+          "الربع العلوي الخارجي",
+          "الربع السفلي الخارجي",
+          "الربع العلوي الداخلي",
+          "الربع السفلي الداخلي",
+          "مركزي",
+          "الحلمة",
+          "موضع الساعة",
+          "غير محدد"
+        ]
+      },
+      "histologic_type": {
+        "label": "النوع النسيجي"
+      },
+      "histologic_grade": {
+        "label": "الدرجة النسيجية (درجة نوتنغهام)"
+      },
+      "tumor_size": {
+        "label": "حجم الورم"
+      },
+      "tumor_focality": {
+        "label": "بؤرية الورم"
+      }
+    }
+  },
+
+  "dcis_lcis": {
+    "label": "السرطان الموضعي"
+  },
+  "tumor_extent": {
+    "label": "امتداد الورم"
+  },
+  "invasion_and_calcifications": {
+    "label": "الغزو والتكلسات الدقيقة"
+  },
+  "treatment_effect_and_rcb": {
+    "label": "تأثير العلاج والعبء السرطاني المتبقي"
+  },
+  "margins": {
+    "label": "الهوامش"
+  },
+  "regional_lymph_nodes": {
+    "label": "العقد اللمفاوية الإقليمية"
+  },
+  "distant_metastasis": {
+    "label": "النقائل البعيدة"
+  },
+  "ptnm_classification": {
+    "label": "تصنيف pTNM (الإصدار الثامن AJCC)"
+  },
+  "additional_findings": {
+    "label": "النتائج الإضافية"
+  }
+}

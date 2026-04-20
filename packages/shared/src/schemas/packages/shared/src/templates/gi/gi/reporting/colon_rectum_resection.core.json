@@ -1,0 +1,517 @@
+{
+  "template_id": "colorectal_malignant_tumor_resection_v1",
+  "domain": "anatomic_pathology",
+  "title": "Colorectal Malignant Tumor, Resection",
+  "protocol_posting_date": "September 2025",
+  "standards": ["AJCC 8"],
+
+  "specimen": {
+    "label": "Specimen",
+    "fields": {
+      "procedure": {
+        "label": "Procedure",
+        "type": "select",
+        "options": [
+          "Right hemicolectomy",
+          "Transverse colectomy",
+          "Left hemicolectomy",
+          "Sigmoidectomy",
+          "Low anterior resection",
+          "Total abdominal colectomy",
+          "Abdominoperineal resection",
+          "Other",
+          "Not specified"
+        ],
+        "value": "",
+        "other_specify": ""
+      },
+
+      "macroscopic_mesorectum": {
+        "label": "Macroscopic evaluation of mesorectum",
+        "type": "select",
+        "options": [
+          "Not applicable",
+          "Complete",
+          "Near complete",
+          "Incomplete",
+          "Cannot be determined"
+        ],
+        "value": "",
+        "cannot_be_determined_specify": ""
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "tumor_site": {
+        "label": "Tumor site",
+        "type": "multi_select",
+        "options": [
+          "Cecum",
+          "Ileocecal valve",
+          "Ascending colon",
+          "Hepatic flexure",
+          "Transverse colon",
+          "Splenic flexure",
+          "Descending colon",
+          "Sigmoid colon",
+          "Rectosigmoid",
+          "Rectum",
+          "Colon, NOS",
+          "Cannot be determined"
+        ],
+        "value": []
+      },
+
+      "rectal_tumor_location": {
+        "label": "Rectal tumor location",
+        "type": "select",
+        "options": [
+          "Not applicable",
+          "Entirely above anterior peritoneal reflection",
+          "Entirely below anterior peritoneal reflection",
+          "Straddles anterior peritoneal reflection",
+          "Not specified"
+        ],
+        "value": ""
+      },
+
+      "histologic_type": {
+        "label": "Histologic type",
+        "type": "select",
+        "options": [
+          "Adenocarcinoma",
+          "Mucinous adenocarcinoma",
+          "Poorly cohesive carcinoma",
+          "Signet-ring cell carcinoma",
+          "Medullary carcinoma",
+          "Serrated adenocarcinoma",
+          "Micropapillary adenocarcinoma",
+          "Adenoma-like adenocarcinoma",
+          "Adenosquamous carcinoma",
+          "Undifferentiated carcinoma, NOS",
+          "Carcinoma with sarcomatoid component",
+          "Large cell neuroendocrine carcinoma",
+          "Small cell neuroendocrine carcinoma",
+          "Mixed neuroendocrine-non-neuroendocrine neoplasm (MiNEN)",
+          "Carcinoma, type cannot be determined"
+        ],
+        "value": "",
+        "specify_components": "",
+        "comment": ""
+      },
+
+      "histologic_grade": {
+        "label": "Histologic grade",
+        "type": "select",
+        "options": [
+          "G1, well-differentiated",
+          "G2, moderately differentiated",
+          "G3, poorly differentiated",
+          "G4, undifferentiated",
+          "Other",
+          "GX, cannot be assessed",
+          "Not applicable"
+        ],
+        "value": "",
+        "other_specify": "",
+        "cannot_be_assessed_specify": "",
+        "not_applicable_specify": ""
+      },
+
+      "tumor_size": {
+        "label": "Tumor size",
+        "fields": {
+          "greatest_dimension_cm": {
+            "label": "Greatest dimension (cm)",
+            "type": "number",
+            "value": ""
+          },
+          "additional_dimensions_cm": {
+            "label": "Additional dimensions (cm)",
+            "type": "measurement_2d",
+            "value": ""
+          },
+          "cannot_be_determined_explain": {
+            "label": "Cannot be determined",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+
+      "multiple_primary_sites": {
+        "label": "Multiple primary sites",
+        "type": "select",
+        "options": ["Not applicable", "Present"],
+        "value": "",
+        "present_specify": ""
+      },
+
+      "tumor_extent": {
+        "label": "Tumor extent",
+        "type": "select",
+        "options": [
+          "No invasion (high-grade dysplasia)",
+          "Invades lamina propria / muscularis mucosae",
+          "Invades submucosa",
+          "Invades into muscularis propria",
+          "Invades through muscularis propria into pericolic or perirectal tissue",
+          "Invades visceral peritoneum",
+          "Directly invades or adheres to adjacent structures",
+          "Cannot be determined",
+          "No evidence of primary tumor"
+        ],
+        "value": "",
+        "adjacent_structure_specify": "",
+        "cannot_be_determined_specify": ""
+      },
+
+      "submucosal_invasion": {
+        "label": "Submucosal invasion (pT1 only)",
+        "fields": {
+          "status": {
+            "label": "Submucosal invasion",
+            "type": "select",
+            "options": ["Not applicable", "Not identified", "Present"],
+            "value": ""
+          },
+          "depth": {
+            "label": "Depth of submucosal invasion",
+            "type": "select",
+            "options": [
+              "Less than 1 mm",
+              "Greater than or equal to 1 mm and less than 2 mm",
+              "Greater than 2 mm",
+              "Exact depth in millimeters",
+              "Cannot be determined"
+            ],
+            "value": "",
+            "exact_depth_mm": "",
+            "cannot_be_determined_specify": ""
+          },
+          "extent": {
+            "label": "Extent of submucosal invasion",
+            "type": "select",
+            "options": [
+              "Upper one third",
+              "Middle one third",
+              "Lower one third",
+              "Cannot be determined"
+            ],
+            "value": ""
+          }
+        }
+      },
+
+      "macroscopic_tumor_perforation": {
+        "label": "Macroscopic tumor perforation",
+        "type": "select",
+        "options": ["Not identified", "Present", "Cannot be determined"],
+        "value": ""
+      },
+
+      "lymphovascular_invasion": {
+        "label": "Lymphatic and / or vascular invasion",
+        "type": "multi_select",
+        "options": [
+          "Not identified",
+          "Small vessel",
+          "Large vessel (venous), intramural",
+          "Large vessel (venous), extramural",
+          "Present, NOS",
+          "Cannot be determined"
+        ],
+        "value": []
+      },
+
+      "perineural_invasion": {
+        "label": "Perineural invasion",
+        "type": "select",
+        "options": ["Not identified", "Present", "Cannot be determined"],
+        "value": ""
+      },
+
+      "tumor_budding_score": {
+        "label": "Tumor budding score",
+        "type": "select",
+        "options": [
+          "Not applicable",
+          "Low (0-4)",
+          "Intermediate (5-9)",
+          "High (10 or more)",
+          "Cannot be determined"
+        ],
+        "value": ""
+      },
+
+      "number_of_tumor_buds": {
+        "label": "Number of tumor buds per hotspot field",
+        "type": "text",
+        "value": ""
+      },
+
+      "polyp_origin": {
+        "label": "Type of polyp in which invasive carcinoma arose",
+        "type": "select",
+        "options": [
+          "None identified",
+          "Tubular adenoma",
+          "Villous adenoma",
+          "Tubulovillous adenoma",
+          "Traditional serrated adenoma",
+          "Sessile serrated adenoma / sessile serrated polyp",
+          "Hamartomatous polyp",
+          "Other"
+        ],
+        "value": "",
+        "other_specify": ""
+      },
+
+      "treatment_effect": {
+        "label": "Treatment effect",
+        "type": "select",
+        "options": [
+          "No known presurgical therapy",
+          "Complete response (score 0)",
+          "Near complete response (score 1)",
+          "Partial response (score 2)",
+          "Present, NOS",
+          "Poor or no response (score 3)",
+          "Cannot be determined"
+        ],
+        "value": ""
+      },
+
+      "tumor_comment": {
+        "label": "Tumor comment",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "margins": {
+    "label": "Margins",
+    "fields": {
+      "margin_status_invasive": {
+        "label": "Margin status for invasive carcinoma",
+        "type": "select",
+        "options": [
+          "All margins negative for invasive carcinoma",
+          "Invasive carcinoma present at margin",
+          "Not applicable"
+        ],
+        "value": ""
+      },
+
+      "closest_margin": {
+        "label": "Closest margin(s) to invasive carcinoma",
+        "type": "multi_select",
+        "options": [
+          "Proximal",
+          "Distal",
+          "Radial (circumferential)",
+          "Mesenteric",
+          "Deep",
+          "Mucosal",
+          "Other",
+          "Cannot be determined"
+        ],
+        "value": []
+      },
+
+      "distance_to_closest_margin": {
+        "label": "Distance from invasive carcinoma to closest margin",
+        "type": "text",
+        "value": ""
+      },
+
+      "distance_to_radial_margin_rectum": {
+        "label": "Distance to radial margin (rectal tumors only)",
+        "type": "text",
+        "value": ""
+      },
+
+      "distance_to_distal_margin_rectum": {
+        "label": "Distance to distal margin (rectal tumors only)",
+        "type": "text",
+        "value": ""
+      },
+
+      "non_invasive_margin_status": {
+        "label": "Margin status for non-invasive tumor",
+        "type": "multi_select",
+        "options": [
+          "All margins negative for high-grade dysplasia / intramucosal carcinoma and low-grade dysplasia",
+          "High-grade dysplasia / intramucosal carcinoma present at margin",
+          "Low-grade dysplasia present at margin",
+          "Not applicable"
+        ],
+        "value": []
+      },
+
+      "margin_comment": {
+        "label": "Margin comment",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "regional_lymph_nodes": {
+    "label": "Regional Lymph Nodes",
+    "fields": {
+      "status": {
+        "label": "Regional lymph node status",
+        "type": "select",
+        "options": [
+          "Not applicable",
+          "Regional lymph nodes present",
+          "All regional lymph nodes negative for tumor",
+          "Tumor present in regional lymph node(s)"
+        ],
+        "value": ""
+      },
+
+      "number_with_tumor": {
+        "label": "Number of lymph nodes with tumor",
+        "type": "text",
+        "value": ""
+      },
+
+      "number_examined": {
+        "label": "Number of lymph nodes examined",
+        "type": "text",
+        "value": ""
+      },
+
+      "tumor_deposits": {
+        "label": "Tumor deposits",
+        "type": "select",
+        "options": ["Not identified", "Present", "Cannot be determined"],
+        "value": ""
+      },
+
+      "number_of_tumor_deposits": {
+        "label": "Number of tumor deposits",
+        "type": "text",
+        "value": ""
+      },
+
+      "comment": {
+        "label": "Regional lymph node comment",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "distant_metastasis": {
+    "label": "Distant Metastasis",
+    "fields": {
+      "sites": {
+        "label": "Distant site(s) involved",
+        "type": "multi_select",
+        "options": [
+          "Not applicable",
+          "Non-regional lymph node(s)",
+          "Liver",
+          "Other",
+          "Cannot be determined"
+        ],
+        "value": []
+      }
+    }
+  },
+
+  "ptnm": {
+    "label": "pTNM Classification (AJCC 8th Edition)",
+    "fields": {
+      "modified_classification": {
+        "label": "Modified classification",
+        "type": "multi_select",
+        "options": [
+          "Not applicable",
+          "y (post-neoadjuvant therapy)",
+          "r (recurrence)"
+        ],
+        "value": []
+      },
+
+      "pT_category": {
+        "label": "pT category",
+        "type": "select",
+        "options": ["pT0", "pTis", "pT1", "pT2", "pT3", "pT4a", "pT4b", "pT4"],
+        "value": ""
+      },
+
+      "T_suffix": {
+        "label": "T suffix",
+        "type": "select",
+        "options": [
+          "Not applicable",
+          "(m) multiple primary synchronous tumors in a single organ"
+        ],
+        "value": ""
+      },
+
+      "pN_category": {
+        "label": "pN category",
+        "type": "select",
+        "options": [
+          "pN0",
+          "pN1a",
+          "pN1b",
+          "pN1c",
+          "pN1",
+          "pN2a",
+          "pN2b",
+          "pN2"
+        ],
+        "value": ""
+      },
+
+      "pM_category": {
+        "label": "pM category",
+        "type": "select",
+        "options": ["Not applicable", "pM1a", "pM1b", "pM1c", "pM1"],
+        "value": ""
+      }
+    }
+  },
+
+  "additional_findings": {
+    "label": "Additional Findings",
+    "fields": {
+      "findings": {
+        "label": "Additional findings",
+        "type": "multi_select",
+        "options": [
+          "None identified",
+          "Adenoma(s)",
+          "Ulcerative colitis",
+          "Crohn disease",
+          "Diverticulosis",
+          "Dysplasia arising in inflammatory bowel disease",
+          "Other"
+        ],
+        "value": [],
+        "other_specify": ""
+      }
+    }
+  },
+
+  "comments": {
+    "label": "Comments",
+    "fields": {
+      "comment": {
+        "label": "Comment(s)",
+        "type": "text",
+        "value": ""
+      }
+    }
+  }
+}

@@ -1,0 +1,309 @@
+{
+  "template_id": "uterine_cervix_resection_v1",
+  "domain": "anatomic_pathology",
+  "title": "Uterine Cervix Resection",
+  "protocol_posting_date": "March 2023",
+  "standards": ["FIGO Cancer Report 2018", "AJCC-UICC 9"],
+
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "histologic_type": {
+        "label": "Histologic type",
+        "type": "select",
+        "options": [
+          "Squamous cell carcinoma, HPV-associated",
+          "Squamous cell carcinoma, HPV-independent",
+          "Squamous cell carcinoma, NOS",
+          "Adenocarcinoma, NOS",
+          "Adenocarcinoma, HPV-associated",
+          "Adenocarcinoma, HPV-independent, NOS",
+          "Adenocarcinoma, HPV-independent, gastric type",
+          "Adenocarcinoma, HPV-independent, clear cell type",
+          "Adenocarcinoma, HPV-independent, mesonephric type",
+          "Endometrioid adenocarcinoma, NOS",
+          "Carcinosarcoma",
+          "Adenosquamous carcinoma",
+          "Adenoid basal carcinoma",
+          "Mucoepidermoid carcinoma",
+          "Carcinoma, unclassifiable",
+          "Neuroendocrine tumor, NOS",
+          "Neuroendocrine tumor grade 1",
+          "Neuroendocrine tumor grade 2",
+          "Small cell neuroendocrine carcinoma, high grade",
+          "Large cell neuroendocrine carcinoma, high grade",
+          "Neuroendocrine carcinoma, NOS",
+          "Mixed neuroendocrine non-neuroendocrine carcinoma",
+          "Other",
+          "Cannot be determined"
+        ],
+        "value": ""
+      },
+
+      "histologic_grade": {
+        "label": "Histologic grade",
+        "type": "select",
+        "options": [
+          "G1 well differentiated",
+          "G2 moderately differentiated",
+          "G3 poorly differentiated",
+          "GX cannot be assessed",
+          "Not applicable"
+        ],
+        "value": ""
+      },
+
+      "stromal_invasion_depth": {
+        "label": "Depth of stromal invasion",
+        "type": "select",
+        "options": [
+          "Specify in mm",
+          "Not more than 3 mm",
+          "Greater than 3 mm but not more than 5 mm",
+          "Greater than 5 mm",
+          "Cannot be determined"
+        ],
+        "value": ""
+      },
+
+      "stromal_invasion_extent": {
+        "label": "Extent of depth of stromal invasion",
+        "type": "select",
+        "options": [
+          "Superficial one-third",
+          "Middle one-third",
+          "Deep one-third",
+          "Cannot be determined"
+        ],
+        "value": ""
+      },
+
+      "horizontal_extent": {
+        "label": "Horizontal extent of stromal invasion",
+        "type": "text",
+        "value": ""
+      },
+
+      "silva_system": {
+        "label": "Silva system for invasion",
+        "type": "select",
+        "options": ["Not applicable", "Pattern A", "Pattern B", "Pattern C"],
+        "value": ""
+      },
+
+      "other_tissue_involvement": {
+        "label": "Other tissue / organ involvement",
+        "type": "multi_select",
+        "options": [
+          "Not applicable",
+          "Not identified",
+          "Parametrium",
+          "Vagina upper two-thirds",
+          "Vagina lower one-third",
+          "Pelvic wall",
+          "Bladder wall",
+          "Bladder mucosa",
+          "Rectal wall",
+          "Bowel mucosa",
+          "Other",
+          "Cannot be determined"
+        ],
+        "value": []
+      },
+
+      "lymphovascular_invasion": {
+        "label": "Lymphatic and / or vascular invasion",
+        "type": "select",
+        "options": [
+          "Not identified",
+          "Present",
+          "Equivocal",
+          "Cannot be determined"
+        ],
+        "value": ""
+      }
+    }
+  },
+
+  "margins": {
+    "label": "Margins",
+    "fields": {
+      "margin_status_invasive": {
+        "label": "Margin status for invasive carcinoma",
+        "type": "select",
+        "options": [
+          "All margins negative",
+          "Invasive carcinoma present at margin",
+          "Not applicable"
+        ],
+        "value": ""
+      },
+
+      "closest_margin": {
+        "label": "Closest margin(s)",
+        "type": "multi_select",
+        "options": [
+          "Ectocervical",
+          "Radial / circumferential",
+          "Endocervical / lower uterine segment",
+          "Vaginal cuff",
+          "Other",
+          "Cannot be determined"
+        ],
+        "value": []
+      },
+
+      "distance_to_margin": {
+        "label": "Distance from invasive carcinoma to closest margin",
+        "type": "text",
+        "value": ""
+      },
+
+      "hsil_ais_margin_status": {
+        "label": "Margin status for HSIL / AIS",
+        "type": "multi_select",
+        "options": [
+          "All margins negative",
+          "HSIL present at margin",
+          "AIS present at margin",
+          "Not applicable"
+        ],
+        "value": []
+      }
+    }
+  },
+
+  "regional_lymph_nodes": {
+    "label": "Regional Lymph Nodes",
+    "fields": {
+      "status": {
+        "label": "Regional lymph node status",
+        "type": "select",
+        "options": [
+          "Not applicable",
+          "Regional lymph nodes present",
+          "All negative",
+          "Tumor present in pelvic lymph node(s)",
+          "Tumor present in para-aortic lymph node(s)"
+        ],
+        "value": ""
+      },
+
+      "pelvic_nodes_examined": {
+        "label": "Total pelvic nodes examined",
+        "type": "text",
+        "value": ""
+      },
+
+      "para_aortic_nodes_examined": {
+        "label": "Total para-aortic nodes examined",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "distant_metastasis": {
+    "label": "Distant Metastasis",
+    "fields": {
+      "sites": {
+        "label": "Distant site(s) involved",
+        "type": "multi_select",
+        "options": [
+          "Not applicable",
+          "Uterine serosa",
+          "Adnexa",
+          "Inguinal lymph node(s)",
+          "Omentum",
+          "Extrapelvic peritoneum",
+          "Lung",
+          "Liver",
+          "Bone",
+          "Other",
+          "Cannot be determined"
+        ],
+        "value": []
+      }
+    }
+  },
+
+  "pathologic_stage": {
+    "label": "Pathologic Stage Classification",
+    "fields": {
+      "pT_category": {
+        "label": "pT category",
+        "type": "select",
+        "options": [
+          "pT0",
+          "pT1a1",
+          "pT1a2",
+          "pT1b1",
+          "pT1b2",
+          "pT1b3",
+          "pT2a1",
+          "pT2a2",
+          "pT2b",
+          "pT3a",
+          "pT3b",
+          "pT4"
+        ],
+        "value": ""
+      },
+
+      "pN_category": {
+        "label": "pN category",
+        "type": "select",
+        "options": ["pN0", "pN0(i+)", "pN1mi", "pN1a", "pN2mi", "pN2a"],
+        "value": ""
+      },
+
+      "pM_category": {
+        "label": "pM category",
+        "type": "select",
+        "options": ["Not applicable", "pM1"],
+        "value": ""
+      },
+
+      "figo_stage": {
+        "label": "FIGO stage",
+        "type": "select",
+        "options": [
+          "IA1",
+          "IA2",
+          "IB1",
+          "IB2",
+          "IB3",
+          "IIA1",
+          "IIA2",
+          "IIB",
+          "IIIA",
+          "IIIB",
+          "IIIC1",
+          "IIIC2",
+          "IVA",
+          "IVB"
+        ],
+        "value": ""
+      }
+    }
+  },
+
+  "additional_findings": {
+    "label": "Additional Findings",
+    "fields": {
+      "findings": {
+        "label": "Additional findings",
+        "type": "multi_select",
+        "options": [
+          "None identified",
+          "Low-grade squamous intraepithelial lesion (CIN 1)",
+          "High-grade squamous intraepithelial lesion (CIN 2 or 3)",
+          "Endocervical adenocarcinoma in situ",
+          "Inflammation",
+          "Other"
+        ],
+        "value": []
+      }
+    }
+  }
+}

@@ -1,0 +1,180 @@
+{
+  "template_id": "gastric_tumor_resection_gross_v1",
+  "domain": "anatomic_pathology",
+  "title": "Gastric Tumor Resection (Gross Template)",
+
+  "specimen": {
+    "label": "Specimen",
+    "fields": {
+      "type_of_resection": {
+        "label": "Type of resection",
+        "type": "select",
+        "options": [
+          "Esophago-gastrectomy",
+          "Total gastrectomy",
+          "Subtotal gastrectomy, proximal",
+          "Subtotal gastrectomy, distal",
+          "Other"
+        ],
+        "value": "",
+        "other_specify": ""
+      },
+      "stomach_greater_curvature_mm": {
+        "label": "Stomach, greater curvature (mm)",
+        "type": "number",
+        "value": ""
+      },
+      "stomach_lesser_curvature_mm": {
+        "label": "Stomach, lesser curvature (mm)",
+        "type": "number",
+        "value": ""
+      },
+      "esophagus_mm": {
+        "label": "Esophagus (mm)",
+        "type": "number",
+        "value": ""
+      },
+      "duodenum_mm": {
+        "label": "Duodenum (mm)",
+        "type": "number",
+        "value": ""
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "macroscopic_tumor_site": {
+        "label": "Macroscopic tumor site",
+        "type": "multi_select",
+        "options": [
+          "Cardia",
+          "Fundus",
+          "Body",
+          "Antrum",
+          "Pylorus",
+          "Lesser curvature",
+          "Greater curvature",
+          "Anterior wall",
+          "Posterior wall"
+        ],
+        "value": []
+      },
+      "morphologic_classification": {
+        "label": "Morphologic classification",
+        "type": "select",
+        "options": [
+          "Type 0-I (Protruded)",
+          "Type 0-IIa (Elevated)",
+          "Type 0-IIb (Flat)",
+          "Type 0-IIc (Depressed)",
+          "Type 0-III (Excavated)",
+          "Type I (Polypoid)",
+          "Type II (Fungating)",
+          "Type III (Ulcerated)",
+          "Type IV (Infiltrative)"
+        ],
+        "value": ""
+      },
+      "tumor_dimensions_mm": {
+        "label": "Tumor dimensions (mm)",
+        "type": "measurement_3d",
+        "value": ""
+      },
+      "distance_to_proximal_margin_mm": {
+        "label": "Distance to proximal margin (mm)",
+        "type": "number",
+        "value": ""
+      },
+      "distance_to_distal_margin_mm": {
+        "label": "Distance to distal margin (mm)",
+        "type": "number",
+        "value": ""
+      },
+      "distance_to_lesser_curvature_margin_mm": {
+        "label": "Distance to lesser curvature margin (mm)",
+        "type": "number",
+        "value": ""
+      },
+      "distance_to_greater_curvature_margin_mm": {
+        "label": "Distance to greater curvature margin (mm)",
+        "type": "number",
+        "value": ""
+      }
+    }
+  },
+
+  "lymph_nodes": {
+    "label": "Lymph Nodes",
+    "fields": {
+      "number_identified": {
+        "label": "Number identified",
+        "type": "integer",
+        "value": ""
+      },
+      "size_range_min_mm": {
+        "label": "Size range minimum (mm)",
+        "type": "number",
+        "value": ""
+      },
+      "size_range_max_mm": {
+        "label": "Size range maximum (mm)",
+        "type": "number",
+        "value": ""
+      }
+    }
+  },
+
+  "block_identification_key": {
+    "label": "Block Identification Key",
+    "fields": {
+      "tumor_representative_sections": {
+        "label": "Tumor (representative sections)",
+        "type": "text",
+        "value": ""
+      },
+      "proximal_margin": {
+        "label": "Proximal margin",
+        "type": "text",
+        "value": ""
+      },
+      "distal_margin": {
+        "label": "Distal margin",
+        "type": "text",
+        "value": ""
+      },
+      "circumferential_non_peritonealised_margin": {
+        "label": "Circumferential / non-peritonealised margin",
+        "type": "text",
+        "value": ""
+      },
+      "non_neoplastic_stomach": {
+        "label": "Non-neoplastic stomach",
+        "type": "text",
+        "value": ""
+      },
+      "lymph_nodes": {
+        "label": "Lymph nodes",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "grossing": {
+    "label": "Grossing",
+    "fields": {
+      "grossed_by": {
+        "label": "Grossed by",
+        "type": "text",
+        "value": ""
+      },
+      "date": {
+        "label": "Date",
+        "type": "date",
+        "value": ""
+      }
+    }
+  }
+}

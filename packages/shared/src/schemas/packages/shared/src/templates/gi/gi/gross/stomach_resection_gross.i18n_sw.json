@@ -1,0 +1,10 @@
+{
+  "template_id": "gastric_tumor_resection_gross_v1",
+  "lang": "sw",
+  "title": "Resection ya uvimbe wa tumbo (gross template)",
+  "specimen": { "label": "Sampuli" },
+  "tumor": { "label": "Uvimbe" },
+  "lymph_nodes": { "label": "Nodi za limfu" },
+  "block_identification_key": { "label": "Ufunguo wa utambulisho wa block" },
+  "grossing": { "label": "Grossing" }
+}

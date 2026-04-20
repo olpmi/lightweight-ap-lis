@@ -1,0 +1,12 @@
+{
+  "template_id": "stomach_tumor_resection_v1",
+  "lang": "fr",
+  "title": "Tumeur gastrique, résection",
+  "specimen": { "label": "Pièce" },
+  "tumor": { "label": "Tumeur" },
+  "margins": { "label": "Marges" },
+  "regional_lymph_nodes": { "label": "Ganglions lymphatiques régionaux" },
+  "distant_metastasis": { "label": "Métastase à distance" },
+  "ptnm": { "label": "Classification pTNM" },
+  "additional_findings": { "label": "Constatations supplémentaires" }
+}

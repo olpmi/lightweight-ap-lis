@@ -1,0 +1,10 @@
+{
+  "template_id": "gastric_tumor_resection_gross_v1",
+  "lang": "fr",
+  "title": "Résection de tumeur gastrique (examen macroscopique)",
+  "specimen": { "label": "Pièce" },
+  "tumor": { "label": "Tumeur" },
+  "lymph_nodes": { "label": "Ganglions lymphatiques" },
+  "block_identification_key": { "label": "Clé d’identification des blocs" },
+  "grossing": { "label": "Macroscopie" }
+}

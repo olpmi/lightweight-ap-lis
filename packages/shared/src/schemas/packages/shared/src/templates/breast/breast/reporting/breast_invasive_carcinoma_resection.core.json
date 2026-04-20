@@ -1,0 +1,1036 @@
+{
+  "template_id": "breast_invasive_carcinoma_resection_v1",
+  "domain": "anatomic_pathology",
+  "title": "Breast Invasive Carcinoma, Resection",
+  "protocol_posting_date": "June 2024",
+  "standards": ["AJCC-UICC 8"],
+
+  "specimen": {
+    "label": "Specimen",
+    "fields": {
+      "procedure": {
+        "label": "Procedure",
+        "type": "select",
+        "options": [
+          "Excision (less than total mastectomy)",
+          "Total mastectomy (including nipple-sparing and skin-sparing mastectomy)",
+          "Other",
+          "Not specified"
+        ],
+        "value": "",
+        "other_specify": ""
+      },
+      "laterality": {
+        "label": "Specimen laterality",
+        "type": "select",
+        "options": ["Right", "Left", "Not specified"],
+        "value": ""
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "tumor_site": {
+        "label": "Tumor site",
+        "type": "multi_select",
+        "options": [
+          "Upper outer quadrant",
+          "Lower outer quadrant",
+          "Upper inner quadrant",
+          "Lower inner quadrant",
+          "Central",
+          "Nipple",
+          "Clock position",
+          "Not specified"
+        ],
+        "value": [],
+        "clock_position_specify": ""
+      },
+
+      "histologic_type": {
+        "label": "Histologic type",
+        "type": "select",
+        "options": [
+          "No residual invasive carcinoma",
+          "Invasive carcinoma of no special type (ductal)",
+          "Micro-invasive carcinoma",
+          "Invasive lobular carcinoma",
+          "Invasive carcinoma with mixed ductal and lobular features",
+          "Invasive carcinoma with features of",
+          "Tubular carcinoma",
+          "Invasive cribriform carcinoma",
+          "Mucinous carcinoma",
+          "Invasive micropapillary carcinoma",
+          "Apocrine adenocarcinoma",
+          "Metaplastic carcinoma",
+          "Encapsulated papillary carcinoma with invasion",
+          "Solid papillary carcinoma with invasion",
+          "Intraductal papillary adenocarcinoma with invasion",
+          "Adenoid cystic carcinoma",
+          "Neuroendocrine tumor",
+          "Neuroendocrine carcinoma",
+          "Invasive carcinoma, type cannot be determined",
+          "Other histologic type not listed"
+        ],
+        "value": "",
+        "features_specify": "",
+        "cannot_be_determined_specify": "",
+        "other_specify": "",
+        "comment": ""
+      },
+
+      "histologic_grade": {
+        "label": "Histologic grade (Nottingham Histologic Score)",
+        "fields": {
+          "applicability": {
+            "label": "Applicability",
+            "type": "select",
+            "options": [
+              "Not applicable (no residual carcinoma or microinvasion only)",
+              "Nottingham Score"
+            ],
+            "value": ""
+          },
+          "glandular_tubular_differentiation": {
+            "label": "Glandular (Acinar) / Tubular differentiation",
+            "type": "select",
+            "options": [
+              "Score 1 (greater than 75% of tumor area forming glandular / tubular structures)",
+              "Score 2 (10 to 75% of tumor area forming glandular / tubular structures)",
+              "Score 3 (less than 10% of tumor area forming glandular / tubular structures)",
+              "Only microinvasion present (not graded)",
+              "Score cannot be determined"
+            ],
+            "value": "",
+            "cannot_be_determined_specify": ""
+          },
+          "nuclear_pleomorphism": {
+            "label": "Nuclear pleomorphism",
+            "type": "select",
+            "options": [
+              "Score 1 (Nuclei small with little increase in size in comparison with normal breast epithelial cells, regular outlines, uniform nuclear chromatin, little variation in size)",
+              "Score 2 (Cells larger than normal with open vesicular nuclei, visible nucleoli, and moderate variability in both size and shape)",
+              "Score 3 (Vesicular nuclei, often with prominent nucleoli, exhibiting marked variation in size and shape, occasionally with very large and bizarre forms)",
+              "Only microinvasion present (not graded)",
+              "Score cannot be determined"
+            ],
+            "value": "",
+            "cannot_be_determined_specify": ""
+          },
+          "mitotic_rate": {
+            "label": "Mitotic rate",
+            "type": "select",
+            "options": [
+              "Score 1",
+              "Score 2",
+              "Score 3",
+              "Only microinvasion present (not graded)",
+              "Score cannot be determined"
+            ],
+            "value": "",
+            "cannot_be_determined_specify": "",
+            "reference_note": "See Table 1 in Note D"
+          },
+          "overall_grade": {
+            "label": "Overall grade",
+            "type": "select",
+            "options": [
+              "Grade 1 (scores of 3, 4 or 5)",
+              "Grade 2 (scores of 6 or 7)",
+              "Grade 3 (scores of 8 or 9)",
+              "Only microinvasion present (not graded)",
+              "Score cannot be determined"
+            ],
+            "value": "",
+            "cannot_be_determined_specify": ""
+          }
+        }
+      },
+
+      "tumor_size": {
+        "label": "Tumor size",
+        "fields": {
+          "size_type": {
+            "label": "Tumor size",
+            "type": "select",
+            "options": [
+              "No residual invasive carcinoma",
+              "Microinvasion only (less than or equal to 1 mm)",
+              "Greatest dimension of largest invasive focus greater than 1 mm",
+              "Size of largest invasive focus cannot be determined"
+            ],
+            "value": ""
+          },
+          "greatest_dimension_mm": {
+            "label": "Greatest dimension (mm)",
+            "type": "number",
+            "value": ""
+          },
+          "additional_dimensions_mm": {
+            "label": "Additional dimensions (mm)",
+            "type": "measurement_2d",
+            "value": ""
+          },
+          "cannot_be_determined_explain": {
+            "label": "Size of largest invasive focus cannot be determined (explain)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+
+      "tumor_focality": {
+        "label": "Tumor focality",
+        "fields": {
+          "status": {
+            "label": "Tumor focality",
+            "type": "select",
+            "options": [
+              "Single focus of invasive carcinoma",
+              "Multiple foci of invasive carcinoma"
+            ],
+            "value": ""
+          },
+          "number_of_foci": {
+            "label": "Number of foci",
+            "fields": {
+              "count_type": {
+                "label": "Count type",
+                "type": "select",
+                "options": [
+                  "Specify number",
+                  "At least",
+                  "Cannot be determined"
+                ],
+                "value": ""
+              },
+              "count_value": {
+                "label": "Number of foci",
+                "type": "integer",
+                "value": ""
+              }
+            }
+          },
+          "sizes_of_individual_foci_mm": {
+            "label": "Sizes of individual foci in millimeters (mm)",
+            "type": "text",
+            "value": ""
+          },
+          "sizes_cannot_be_determined": {
+            "label": "Sizes of individual foci cannot be determined",
+            "type": "text",
+            "value": ""
+          }
+        }
+      }
+    }
+  },
+
+  "dcis_lcis": {
+    "label": "In Situ Carcinoma",
+    "fields": {
+      "dcis": {
+        "label": "Ductal carcinoma in situ (DCIS)",
+        "fields": {
+          "presence": {
+            "label": "DCIS",
+            "type": "select",
+            "options": [
+              "Not identified",
+              "Present",
+              "Negative for extensive intraductal component (EIC)",
+              "Positive for extensive intraductal component (EIC)",
+              "Only DCIS is present after presurgical (neoadjuvant) therapy"
+            ],
+            "value": ""
+          },
+          "size_extent": {
+            "label": "Size (extent) of DCIS",
+            "fields": {
+              "at_least_mm": {
+                "label": "Estimated size (extent) of DCIS is at least in millimeters (mm)",
+                "type": "number",
+                "value": ""
+              },
+              "additional_dimensions_mm": {
+                "label": "Additional dimensions (mm)",
+                "type": "measurement_2d",
+                "value": ""
+              },
+              "cannot_be_determined": {
+                "label": "Cannot be determined",
+                "type": "text",
+                "value": ""
+              }
+            }
+          },
+          "architectural_patterns": {
+            "label": "Architectural patterns",
+            "type": "multi_select",
+            "options": [
+              "Comedo",
+              "Paget disease (DCIS involving nipple skin)",
+              "Cribriform",
+              "Micropapillary",
+              "Papillary",
+              "Solid",
+              "Other"
+            ],
+            "value": [],
+            "other_specify": ""
+          },
+          "nuclear_grade": {
+            "label": "Nuclear grade",
+            "type": "select",
+            "options": [
+              "Grade I (low)",
+              "Grade II (intermediate)",
+              "Grade III (high)"
+            ],
+            "value": ""
+          },
+          "necrosis": {
+            "label": "Necrosis",
+            "type": "select",
+            "options": [
+              "Not identified",
+              "Present, focal (small foci or single cell necrosis)",
+              "Present, central (expansive \"comedo\" necrosis)"
+            ],
+            "value": ""
+          },
+          "number_of_blocks_with_dcis": {
+            "label": "Number of blocks with DCIS",
+            "type": "integer",
+            "value": ""
+          },
+          "number_of_blocks_examined": {
+            "label": "Number of blocks examined",
+            "type": "integer",
+            "value": ""
+          },
+          "cannot_be_excluded": {
+            "label": "Cannot be excluded",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "lcis": {
+        "label": "Lobular carcinoma in situ (LCIS)",
+        "type": "select",
+        "options": ["Not identified", "Present"],
+        "value": ""
+      }
+    }
+  },
+
+  "tumor_extent": {
+    "label": "Tumor Extent",
+    "fields": {
+      "extent_status": {
+        "label": "Tumor extent",
+        "type": "multi_select",
+        "options": [
+          "Not applicable (skin, nipple, and skeletal muscle are absent OR are uninvolved)",
+          "Skin is present and involved",
+          "DCIS involves nipple epidermis (Paget disease of the nipple)",
+          "Skeletal muscle is present and involved"
+        ],
+        "value": []
+      },
+      "skin_invasion": {
+        "label": "Skin invasion",
+        "type": "select",
+        "options": [
+          "Carcinoma directly invades into the dermis or epidermis without skin ulceration",
+          "Carcinoma directly invades into the dermis or epidermis with skin ulceration (classified as T4b)",
+          "Carcinoma does not directly invade into the dermis or epidermis"
+        ],
+        "value": ""
+      },
+      "skin_satellite_foci": {
+        "label": "Skin satellite foci",
+        "type": "select",
+        "options": [
+          "Satellite foci not identified",
+          "Satellite skin foci of invasive carcinoma are present"
+        ],
+        "value": ""
+      },
+      "skeletal_muscle": {
+        "label": "Skeletal muscle",
+        "type": "select",
+        "options": [
+          "Carcinoma invades skeletal muscle",
+          "Carcinoma invades into skeletal muscle and into the chest wall (classified as T4a)"
+        ],
+        "value": "",
+        "note": "Invasion into pectoralis muscle is not considered chest wall invasion unless deeper structures are involved."
+      }
+    }
+  },
+
+  "invasion_and_calcifications": {
+    "label": "Invasion and Microcalcifications",
+    "fields": {
+      "lymphovascular_invasion": {
+        "label": "Lymphatic and / or vascular invasion",
+        "fields": {
+          "status": {
+            "label": "Lymphatic and / or vascular invasion",
+            "type": "select",
+            "options": ["Not identified", "Present", "Cannot be determined"],
+            "value": "",
+            "cannot_be_determined_specify": ""
+          },
+          "extent": {
+            "label": "Extent of lymphovascular invasion",
+            "type": "select",
+            "options": [
+              "Focal (LVI in one block only)",
+              "Extensive (LVI in two or more blocks)"
+            ],
+            "value": ""
+          }
+        }
+      },
+      "dermal_lymphovascular_invasion": {
+        "label": "Dermal lymphatic and / or vascular invasion",
+        "type": "select",
+        "options": [
+          "No skin present",
+          "Not identified",
+          "Present",
+          "Cannot be determined"
+        ],
+        "value": "",
+        "cannot_be_determined_specify": ""
+      },
+      "microcalcifications": {
+        "label": "Microcalcifications",
+        "type": "multi_select",
+        "options": [
+          "Not identified",
+          "Present in DCIS",
+          "Present in invasive carcinoma",
+          "Present in non-neoplastic tissue",
+          "Other"
+        ],
+        "value": [],
+        "other_specify": ""
+      }
+    }
+  },
+
+  "treatment_effect_and_rcb": {
+    "label": "Treatment Effect and Residual Cancer Burden",
+    "fields": {
+      "treatment_effect_breast": {
+        "label": "Treatment effect in the breast",
+        "type": "select",
+        "options": [
+          "No known presurgical therapy",
+          "No definite response to presurgical therapy in the invasive carcinoma",
+          "Probable or definite response to presurgical therapy in the invasive carcinoma",
+          "No residual invasive carcinoma is present in the breast after presurgical therapy"
+        ],
+        "value": "",
+        "note": "The largest contiguous focus of residual tumor, if present, is used to determine ypT category."
+      },
+      "treatment_effect_lymph_nodes": {
+        "label": "Treatment effect in the lymph nodes",
+        "type": "select",
+        "options": [
+          "Not applicable",
+          "No definite response to presurgical therapy in metastatic carcinoma",
+          "Probable or definite response to presurgical therapy in metastatic carcinoma",
+          "No lymph node metastases. Fibrous scarring or histiocytic aggregates, possibly related to prior lymph node metastases with pathologic complete response",
+          "No lymph node metastases and no fibrous scarring or histiocytic aggregates in the nodes"
+        ],
+        "value": "",
+        "note": "Required if nodes are submitted and it is known that the patient had presurgical therapy."
+      },
+      "rcb_parameters": {
+        "label": "Residual cancer burden (RCB) parameters",
+        "fields": {
+          "primary_tumor_bed_greatest_dimension_mm": {
+            "label": "Greatest dimension of primary tumor bed area (mm)",
+            "type": "number",
+            "value": ""
+          },
+          "primary_tumor_bed_second_dimension_mm": {
+            "label": "Second greatest dimension of primary tumor bed area (mm)",
+            "type": "number",
+            "value": ""
+          },
+          "overall_cancer_cellularity_percent": {
+            "label": "Percentage of overall cancer cellularity",
+            "type": "number",
+            "value": ""
+          },
+          "in_situ_disease_percent": {
+            "label": "Percentage of cancer that is in situ disease",
+            "type": "number",
+            "value": ""
+          },
+          "number_of_positive_lymph_nodes": {
+            "label": "Number of positive lymph nodes",
+            "type": "integer",
+            "value": ""
+          },
+          "largest_nodal_metastasis_diameter_mm": {
+            "label": "Diameter of largest nodal metastasis (mm)",
+            "type": "number",
+            "value": ""
+          },
+          "residual_cancer_burden": {
+            "label": "Residual cancer burden",
+            "type": "text",
+            "value": ""
+          },
+          "residual_cancer_burden_class": {
+            "label": "Residual cancer burden class",
+            "type": "select",
+            "options": ["RCB-0 (pCR)", "RCB-I", "RCB-II", "RCB-III"],
+            "value": ""
+          }
+        }
+      }
+    }
+  },
+
+  "margins": {
+    "label": "Margins",
+    "fields": {
+      "invasive_carcinoma_margin_status": {
+        "label": "Margin status for invasive carcinoma",
+        "fields": {
+          "status": {
+            "label": "Margin status for invasive carcinoma",
+            "type": "select",
+            "options": [
+              "Not applicable (residual invasive carcinoma in specimen is absent)",
+              "All margins negative for invasive carcinoma",
+              "Invasive carcinoma present at margin"
+            ],
+            "value": ""
+          },
+          "distance_to_closest_margin": {
+            "label": "Distance from invasive carcinoma to closest margin",
+            "fields": {
+              "distance_type": {
+                "label": "Distance type",
+                "type": "select",
+                "options": [
+                  "Exact distance",
+                  "Less than",
+                  "Greater than",
+                  "Other",
+                  "Cannot be determined"
+                ],
+                "value": ""
+              },
+              "distance_mm": {
+                "label": "Distance (mm)",
+                "type": "number",
+                "value": ""
+              },
+              "other_specify": {
+                "label": "Other (specify)",
+                "type": "text",
+                "value": ""
+              },
+              "cannot_be_determined_explain": {
+                "label": "Cannot be determined (explain)",
+                "type": "text",
+                "value": ""
+              }
+            }
+          },
+          "closest_margins": {
+            "label": "Closest margin(s) to invasive carcinoma",
+            "type": "multi_select",
+            "options": [
+              "Anterior",
+              "Posterior",
+              "Superior",
+              "Inferior",
+              "Medial",
+              "Lateral",
+              "Other",
+              "Cannot be determined"
+            ],
+            "value": [],
+            "other_specify": "",
+            "cannot_be_determined_explain": ""
+          },
+          "margins_involved": {
+            "label": "Margin(s) involved by invasive carcinoma",
+            "type": "repeatable_group",
+            "item_label": "Margin involved by invasive carcinoma",
+            "fields": {
+              "margin": {
+                "label": "Margin",
+                "type": "select",
+                "options": [
+                  "Anterior",
+                  "Posterior",
+                  "Superior",
+                  "Inferior",
+                  "Medial",
+                  "Lateral",
+                  "Other",
+                  "Cannot be determined"
+                ],
+                "value": ""
+              },
+              "extent": {
+                "label": "Extent",
+                "type": "text",
+                "value": ""
+              },
+              "other_specify": {
+                "label": "Other (specify)",
+                "type": "text",
+                "value": ""
+              },
+              "cannot_be_determined_explain": {
+                "label": "Cannot be determined (explain)",
+                "type": "text",
+                "value": ""
+              }
+            }
+          }
+        }
+      },
+
+      "dcis_margin_status": {
+        "label": "Margin status for DCIS",
+        "fields": {
+          "status": {
+            "label": "Margin status for DCIS",
+            "type": "select",
+            "options": [
+              "Not applicable (no DCIS in specimen)",
+              "All margins negative for DCIS",
+              "DCIS present at margin"
+            ],
+            "value": ""
+          },
+          "distance_to_closest_margin": {
+            "label": "Distance from DCIS to closest margin",
+            "fields": {
+              "distance_type": {
+                "label": "Distance type",
+                "type": "select",
+                "options": [
+                  "Exact distance",
+                  "Less than",
+                  "Greater than",
+                  "Other",
+                  "Cannot be determined"
+                ],
+                "value": ""
+              },
+              "distance_mm": {
+                "label": "Distance (mm)",
+                "type": "number",
+                "value": ""
+              },
+              "other_specify": {
+                "label": "Other (specify)",
+                "type": "text",
+                "value": ""
+              },
+              "cannot_be_determined_explain": {
+                "label": "Cannot be determined (explain)",
+                "type": "text",
+                "value": ""
+              }
+            }
+          },
+          "closest_margins": {
+            "label": "Closest margin(s) to DCIS",
+            "type": "multi_select",
+            "options": [
+              "Not applicable",
+              "Anterior",
+              "Posterior",
+              "Superior",
+              "Inferior",
+              "Medial",
+              "Lateral",
+              "Other",
+              "Cannot be determined"
+            ],
+            "value": [],
+            "other_specify": "",
+            "cannot_be_determined_explain": ""
+          },
+          "margins_involved": {
+            "label": "Margin(s) involved by DCIS",
+            "type": "repeatable_group",
+            "item_label": "Margin involved by DCIS",
+            "fields": {
+              "margin": {
+                "label": "Margin",
+                "type": "select",
+                "options": [
+                  "Anterior",
+                  "Posterior",
+                  "Superior",
+                  "Inferior",
+                  "Medial",
+                  "Lateral",
+                  "Other",
+                  "Cannot be determined"
+                ],
+                "value": ""
+              },
+              "extent": {
+                "label": "Extent, if possible",
+                "type": "text",
+                "value": ""
+              },
+              "other_specify": {
+                "label": "Other (specify)",
+                "type": "text",
+                "value": ""
+              },
+              "cannot_be_determined_explain": {
+                "label": "Cannot be determined (explain)",
+                "type": "text",
+                "value": ""
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "regional_lymph_nodes": {
+    "label": "Regional Lymph Nodes",
+    "fields": {
+      "regional_lymph_node_status": {
+        "label": "Regional lymph node status",
+        "type": "select",
+        "options": [
+          "Not applicable (no regional lymph nodes submitted or found)",
+          "Regional lymph nodes present",
+          "All regional lymph nodes negative for tumor",
+          "Tumor present in regional lymph node(s)"
+        ],
+        "value": ""
+      },
+      "number_with_macrometastases": {
+        "label": "Number of lymph nodes with macrometastases",
+        "fields": {
+          "count_type": {
+            "label": "Count type",
+            "type": "select",
+            "options": [
+              "Exact number",
+              "At least",
+              "Other",
+              "Cannot be determined"
+            ],
+            "value": ""
+          },
+          "count_value": {
+            "label": "Count",
+            "type": "integer",
+            "value": ""
+          },
+          "other_specify": "",
+          "cannot_be_determined_explain": ""
+        }
+      },
+      "number_with_micrometastases": {
+        "label": "Number of lymph nodes with micrometastases",
+        "fields": {
+          "count_type": {
+            "label": "Count type",
+            "type": "select",
+            "options": [
+              "Exact number",
+              "At least",
+              "Other",
+              "Cannot be determined"
+            ],
+            "value": ""
+          },
+          "count_value": {
+            "label": "Count",
+            "type": "integer",
+            "value": ""
+          },
+          "other_specify": "",
+          "cannot_be_determined_explain": ""
+        }
+      },
+      "number_with_isolated_tumor_cells": {
+        "label": "Number of lymph nodes with isolated tumor cells",
+        "fields": {
+          "count_type": {
+            "label": "Count type",
+            "type": "select",
+            "options": [
+              "Not applicable",
+              "Exact number",
+              "At least",
+              "Other",
+              "Cannot be determined"
+            ],
+            "value": ""
+          },
+          "count_value": {
+            "label": "Count",
+            "type": "integer",
+            "value": ""
+          },
+          "other_specify": "",
+          "cannot_be_determined_explain": ""
+        }
+      },
+      "size_of_largest_nodal_metastatic_deposit": {
+        "label": "Size of largest nodal metastatic deposit",
+        "fields": {
+          "size_type": {
+            "label": "Size type",
+            "type": "select",
+            "options": [
+              "Exact size",
+              "Less than",
+              "Greater than",
+              "Other",
+              "Cannot be determined"
+            ],
+            "value": ""
+          },
+          "size_mm": {
+            "label": "Size (mm)",
+            "type": "number",
+            "value": ""
+          },
+          "other_specify": "",
+          "cannot_be_determined_explain": ""
+        }
+      },
+      "extranodal_extension": {
+        "label": "Extranodal extension",
+        "fields": {
+          "status": {
+            "label": "Extranodal extension",
+            "type": "select",
+            "options": [
+              "Not identified",
+              "Present, 2 mm or less",
+              "Present, greater than 2 mm",
+              "Present",
+              "Cannot be determined",
+              "Other"
+            ],
+            "value": ""
+          },
+          "amount": {
+            "label": "Specify amount",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_specify": "",
+          "other_specify": "",
+          "cannot_be_determined_explain": ""
+        }
+      },
+      "total_number_examined": {
+        "label": "Total number of lymph nodes examined (sentinel and non-sentinel)",
+        "fields": {
+          "count_type": {
+            "label": "Count type",
+            "type": "select",
+            "options": [
+              "Exact number",
+              "At least",
+              "Other",
+              "Cannot be determined"
+            ],
+            "value": ""
+          },
+          "count_value": {
+            "label": "Count",
+            "type": "integer",
+            "value": ""
+          },
+          "other_specify": "",
+          "cannot_be_determined_explain": ""
+        }
+      },
+      "number_of_sentinel_nodes_examined": {
+        "label": "Number of sentinel nodes examined",
+        "fields": {
+          "count_type": {
+            "label": "Count type",
+            "type": "select",
+            "options": [
+              "Not applicable",
+              "Exact number",
+              "At least",
+              "Other",
+              "Cannot be determined"
+            ],
+            "value": ""
+          },
+          "count_value": {
+            "label": "Count",
+            "type": "integer",
+            "value": ""
+          },
+          "other_specify": "",
+          "cannot_be_determined_explain": ""
+        }
+      },
+      "comment": {
+        "label": "Regional lymph node comment",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "distant_metastasis": {
+    "label": "Distant Metastasis",
+    "fields": {
+      "sites_involved": {
+        "label": "Distant site(s) involved",
+        "type": "multi_select",
+        "options": [
+          "Not applicable",
+          "Non-regional lymph node(s)",
+          "Lung",
+          "Liver",
+          "Bone",
+          "Brain",
+          "Other",
+          "Cannot be determined"
+        ],
+        "value": [],
+        "non_regional_lymph_nodes_specify": "",
+        "lung_specify": "",
+        "liver_specify": "",
+        "bone_specify": "",
+        "brain_specify": "",
+        "other_specify": "",
+        "cannot_be_determined_specify": ""
+      }
+    }
+  },
+
+  "ptnm_classification": {
+    "label": "pTNM Classification (AJCC 8th Edition)",
+    "note": "Reporting of pT, pN, and when applicable pM categories is based on information available to the pathologist at the time the report is issued.",
+    "fields": {
+      "modified_classification": {
+        "label": "Modified classification",
+        "type": "multi_select",
+        "options": [
+          "Not applicable",
+          "y (post-neoadjuvant therapy)",
+          "r (recurrence)"
+        ],
+        "value": []
+      },
+      "pT_category": {
+        "label": "pT category",
+        "type": "select",
+        "options": [
+          "pT not assigned (cannot be determined based on available pathological information)",
+          "pT0: No evidence of primary tumor",
+          "pTis (DCIS): Ductal carcinoma in situ",
+          "pTis (Paget): Paget disease of the nipple NOT associated with invasive carcinoma and / or carcinoma in situ (DCIS) in the underlying breast parenchyma",
+          "pT1mi: Tumor less than or equal to 1 mm in greatest dimension",
+          "pT1a: Tumor greater than 1 mm but less than or equal to 5 mm in greatest dimension",
+          "pT1b: Tumor greater than 5 mm but less than or equal to 10 mm in greatest dimension",
+          "pT1c: Tumor greater than 10 mm but less than or equal to 20 mm in greatest dimension",
+          "pT1 (subcategory cannot be determined)",
+          "pT2: Tumor greater than 20 mm but less than or equal to 50 mm in greatest dimension",
+          "pT3: Tumor greater than 50 mm in greatest dimension",
+          "pT4a: Extension to the chest wall",
+          "pT4b: Ulceration and / or ipsilateral satellite nodules and / or edema of the skin",
+          "pT4c: Both T4a and T4b are present",
+          "pT4d: Inflammatory carcinoma",
+          "pT4 (subcategory cannot be determined)"
+        ],
+        "value": ""
+      },
+      "T_suffix": {
+        "label": "T suffix",
+        "type": "select",
+        "options": [
+          "Not applicable",
+          "(m) multiple primary synchronous tumors in a single organ"
+        ],
+        "value": ""
+      },
+      "pN_category": {
+        "label": "pN category",
+        "type": "select",
+        "options": [
+          "pN not assigned (no nodes submitted or found)",
+          "pN not assigned (cannot be determined based on available pathological information)",
+          "pN0: No regional lymph node metastasis identified or ITCs only",
+          "pN0 (i+): ITCs only in regional lymph node(s)",
+          "pN0 (mol+): Positive molecular findings by RT-PCR; no ITCs detected",
+          "pN1mi: Micrometastases",
+          "pN1a: Metastases in 1-3 axillary lymph nodes, at least one metastasis larger than 2.0 mm",
+          "pN1b: Metastases in ipsilateral internal mammary sentinel nodes, excluding ITCs",
+          "pN1c: pN1a and pN1b combined",
+          "pN2a: Metastases in 4-9 axillary lymph nodes",
+          "pN2b: Metastases in clinically detected internal mammary lymph nodes with pathologically negative axillary nodes",
+          "pN3a: Metastases in 10 or more axillary lymph nodes or infraclavicular nodes",
+          "pN3b: pN1a or pN2a in the presence of cN2b, or pN2a in the presence of pN1b",
+          "pN3c: Metastases in ipsilateral supraclavicular lymph nodes"
+        ],
+        "value": ""
+      },
+      "N_suffix": {
+        "label": "N suffix",
+        "type": "multi_select",
+        "options": [
+          "Not applicable",
+          "(sn): Sentinel node(s) evaluated",
+          "(f): Nodal metastasis confirmed by fine needle aspiration or core needle biopsy"
+        ],
+        "value": []
+      },
+      "pM_category": {
+        "label": "pM category",
+        "type": "select",
+        "options": [
+          "Not applicable - pM cannot be determined from the submitted specimen(s)",
+          "pM1: Histologically proven metastases larger than 0.2 mm"
+        ],
+        "value": ""
+      },
+      "previous_case_number": {
+        "label": "Specify case number (if from a previous procedure)",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "additional_findings": {
+    "label": "Additional Findings",
+    "fields": {
+      "findings": {
+        "label": "Additional findings",
+        "type": "text",
+        "value": ""
+      }
+    }
+  }
+}

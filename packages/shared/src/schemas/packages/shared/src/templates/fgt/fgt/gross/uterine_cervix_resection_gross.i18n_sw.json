@@ -1,0 +1,13 @@
+{
+  "template_id": "uterine_cervix_resection_gross_v1",
+  "lang": "sw",
+  "title": "Resection ya seviksi ya uterasi (gross template)",
+  "specimen": { "label": "Sampuli" },
+  "tumor": { "label": "Uvimbe" },
+  "margins": { "label": "Mipaka" },
+  "parametrial_involvement": { "label": "Ushirikishwaji wa parametrium" },
+  "vaginal_cuff_involvement": { "label": "Ushirikishwaji wa vaginal cuff" },
+  "lymph_nodes": { "label": "Nodi za limfu" },
+  "block_allocation_key": { "label": "Ufunguo wa upangaji wa block" },
+  "grossing": { "label": "Grossing" }
+}

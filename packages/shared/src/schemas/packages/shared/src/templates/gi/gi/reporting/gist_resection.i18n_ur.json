@@ -1,0 +1,13 @@
+{
+  "template_id": "gist_resection_v1",
+  "lang": "ur",
+  "title": "جی آئی ایس ٹی: ریسیکشن",
+  "clinical": { "label": "کلینیکل" },
+  "specimen": { "label": "نمونہ" },
+  "tumor": { "label": "ٹیومر" },
+  "margins": { "label": "حاشیے" },
+  "regional_lymph_nodes": { "label": "علاقائی لمف نوڈز" },
+  "distant_metastasis": { "label": "بعید میٹاسٹاسس" },
+  "ptnm": { "label": "pTNM درجہ بندی" },
+  "additional_findings": { "label": "اضافی مشاہدات" }
+}

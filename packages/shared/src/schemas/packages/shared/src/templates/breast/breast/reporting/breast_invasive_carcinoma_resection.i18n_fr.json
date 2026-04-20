@@ -1,0 +1,87 @@
+{
+  "template_id": "breast_invasive_carcinoma_resection_v1",
+  "lang": "fr",
+  "title": "Carcinome mammaire invasif, résection",
+
+  "specimen": {
+    "label": "Pièce",
+    "fields": {
+      "procedure": {
+        "label": "Procédure",
+        "options": [
+          "Excision (moins qu’une mastectomie totale)",
+          "Mastectomie totale (y compris mastectomie avec conservation du mamelon et de la peau)",
+          "Autre",
+          "Non précisé"
+        ]
+      },
+      "laterality": {
+        "label": "Latéralité de la pièce",
+        "options": [
+          "Droite",
+          "Gauche",
+          "Non précisé"
+        ]
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "Tumeur",
+    "fields": {
+      "tumor_site": {
+        "label": "Site tumoral",
+        "options": [
+          "Quadrant supéro-externe",
+          "Quadrant inféro-externe",
+          "Quadrant supéro-interne",
+          "Quadrant inféro-interne",
+          "Central",
+          "Mamelon",
+          "Position horaire",
+          "Non précisé"
+        ]
+      },
+      "histologic_type": {
+        "label": "Type histologique"
+      },
+      "histologic_grade": {
+        "label": "Grade histologique (score histologique de Nottingham)"
+      },
+      "tumor_size": {
+        "label": "Taille tumorale"
+      },
+      "tumor_focality": {
+        "label": "Focalité tumorale"
+      }
+    }
+  },
+
+  "dcis_lcis": {
+    "label": "Carcinome in situ"
+  },
+  "tumor_extent": {
+    "label": "Extension tumorale"
+  },
+  "invasion_and_calcifications": {
+    "label": "Invasion et microcalcifications"
+  },
+  "treatment_effect_and_rcb": {
+    "label": "Effet du traitement et charge résiduelle tumorale"
+  },
+  "margins": {
+    "label": "Marges"
+  },
+  "regional_lymph_nodes": {
+    "label": "Ganglions lymphatiques régionaux"
+  },
+  "distant_metastasis": {
+    "label": "Métastase à distance"
+  },
+  "ptnm_classification": {
+    "label": "Classification pTNM (AJCC 8e édition)"
+  },
+  "additional_findings": {
+    "label": "Constatations supplémentaires"
+  }
+}

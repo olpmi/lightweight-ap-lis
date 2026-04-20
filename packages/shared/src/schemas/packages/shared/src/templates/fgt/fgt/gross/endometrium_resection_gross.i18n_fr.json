@@ -1,0 +1,19 @@
+{
+  "template_id": "endometrium_resection_gross_v1",
+  "lang": "fr",
+  "title": "Pièce de résection de l’endomètre (examen macroscopique)",
+  "specimen": { "label": "Pièce" },
+  "uterus": { "label": "Utérus" },
+  "cervix": { "label": "Col" },
+  "vaginal_cuff": { "label": "Manchon vaginal" },
+  "parametrium": { "label": "Paramètre" },
+  "corpus": { "label": "Corps utérin" },
+  "tumor": { "label": "Tumeur" },
+  "polyps": { "label": "Polypes" },
+  "fibroids": { "label": "Fibromes" },
+  "adnexa": { "label": "Annexes" },
+  "omentum": { "label": "Épiploon" },
+  "lymph_nodes": { "label": "Ganglions lymphatiques" },
+  "block_allocation_key": { "label": "Clé d’attribution des blocs" },
+  "grossing": { "label": "Macroscopie" }
+}

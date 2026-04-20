@@ -1,0 +1,7 @@
+{
+  "template_id": "uterine_cervix_biopsy_v1",
+  "lang": "sw",
+  "title": "Seviksi ya uterasi, biopsy",
+  "tumor": { "label": "Uvimbe" },
+  "additional_findings": { "label": "Matokeo ya ziada" }
+}

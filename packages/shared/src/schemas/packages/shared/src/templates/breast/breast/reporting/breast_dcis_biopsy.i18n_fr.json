@@ -1,0 +1,102 @@
+{
+  "template_id": "breast_dcis_biopsy_v1",
+  "lang": "fr",
+  "title": "CCIS du sein, biopsie",
+  "case_summary": {
+    "label": "Résumé du cas (CCIS du sein : biopsie)"
+  },
+  "specimen": {
+    "label": "Pièce",
+    "fields": {
+      "procedure": {
+        "label": "Procédure",
+        "options": [
+          "Biopsie à l’aiguille",
+          "Ponction à l’aiguille fine",
+          "Autre",
+          "Non précisé"
+        ]
+      },
+      "laterality": {
+        "label": "Latéralité de la pièce",
+        "options": ["Droite", "Gauche", "Non précisé"]
+      }
+    }
+  },
+  "tumor": {
+    "label": "Tumeur",
+    "fields": {
+      "tumor_site": {
+        "label": "Site tumoral",
+        "options": [
+          "Quadrant supéro-externe",
+          "Quadrant inféro-externe",
+          "Quadrant supéro-interne",
+          "Quadrant inféro-interne",
+          "Central",
+          "Mamelon",
+          "Position horaire",
+          "Non précisé"
+        ]
+      },
+      "histologic_type": {
+        "label": "Type histologique",
+        "options": [
+          "Carcinome canalaire in situ (CCIS)",
+          "Maladie de Paget",
+          "Carcinome papillaire encapsulé sans carcinome invasif",
+          "Carcinome papillaire solide sans carcinome invasif"
+        ]
+      },
+      "architectural_patterns": {
+        "label": "Patterns architecturaux",
+        "options": [
+          "Comédo",
+          "Maladie de Paget (CCIS impliquant la peau du mamelon)",
+          "Cribriforme",
+          "Micropapillaire",
+          "Papillaire",
+          "Solide",
+          "Autre"
+        ]
+      },
+      "nuclear_grade": {
+        "label": "Grade nucléaire",
+        "options": [
+          "Grade I (faible)",
+          "Grade II (intermédiaire)",
+          "Grade III (élevé)",
+          "Autre",
+          "Ne peut pas être déterminé"
+        ]
+      },
+      "necrosis": {
+        "label": "Nécrose",
+        "options": [
+          "Non identifiée",
+          "Présente, focale (petits foyers ou nécrose cellulaire isolée)",
+          "Présente, centrale (nécrose de type « comédo » expansive)",
+          "Autre",
+          "Ne peut pas être déterminée"
+        ]
+      },
+      "microcalcifications": {
+        "label": "Microcalcifications",
+        "options": [
+          "Non identifiées",
+          "Présentes dans le CCIS",
+          "Présentes dans le tissu non néoplasique",
+          "Autre"
+        ]
+      }
+    }
+  },
+  "additional_findings": {
+    "label": "Constatations supplémentaires",
+    "fields": {
+      "findings": {
+        "label": "Constatations supplémentaires"
+      }
+    }
+  }
+}

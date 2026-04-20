@@ -1,0 +1,369 @@
+{
+  "template_id": "esophagus_resection_v1",
+  "domain": "anatomic_pathology",
+  "title": "Esophagus",
+  "protocol_posting_date": "June 2022",
+  "standards": ["AJCC-UICC 8"],
+
+  "specimen": {
+    "label": "Specimen",
+    "fields": {
+      "procedure": {
+        "label": "Procedure",
+        "type": "select",
+        "options": [
+          "Endoscopic resection",
+          "Esophagectomy",
+          "Esophagogastrectomy",
+          "Other",
+          "Not specified"
+        ],
+        "value": "",
+        "other_specify": ""
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "tumor_site": {
+        "label": "Tumor site",
+        "type": "multi_select",
+        "options": [
+          "Cervical (proximal) esophagus",
+          "Mid esophagus, upper thoracic",
+          "Mid esophagus, middle thoracic",
+          "Mid esophagus, NOS",
+          "Distal esophagus",
+          "Esophagogastric junction (EGJ)",
+          "Proximal stomach / cardia",
+          "Other",
+          "Esophagus, NOS"
+        ],
+        "value": []
+      },
+
+      "relationship_to_egj": {
+        "label": "Relationship of tumor to esophagogastric junction",
+        "type": "select",
+        "options": [
+          "Entirely within tubular esophagus without EGJ involvement",
+          "Tumor midpoint in distal esophagus and involves EGJ",
+          "Tumor midpoint located at EGJ",
+          "Tumor midpoint 2 cm or less into proximal stomach/cardia and involves EGJ",
+          "Not specified",
+          "Cannot be determined"
+        ],
+        "value": ""
+      },
+
+      "distance_of_center_from_egj": {
+        "label": "Distance of tumor center from EGJ",
+        "type": "text",
+        "value": ""
+      },
+
+      "histologic_type": {
+        "label": "Histologic type",
+        "type": "select",
+        "options": [
+          "Adenocarcinoma",
+          "Adenoid cystic carcinoma",
+          "Mucoepidermoid carcinoma",
+          "Adenosquamous carcinoma",
+          "Squamous cell carcinoma",
+          "Basaloid squamous cell carcinoma",
+          "Spindle cell squamous cell carcinoma",
+          "Verrucous squamous cell carcinoma",
+          "Undifferentiated carcinoma",
+          "Lymphoepithelioma-like carcinoma",
+          "Large cell neuroendocrine carcinoma",
+          "Small cell neuroendocrine carcinoma",
+          "Neuroendocrine carcinoma (poorly differentiated)",
+          "Mixed squamous cell carcinoma-neuroendocrine carcinoma",
+          "Mixed adenocarcinoma-neuroendocrine carcinoma",
+          "Mixed adenocarcinoma-neuroendocrine tumor",
+          "G1 well-differentiated neuroendocrine tumor",
+          "G2 well-differentiated neuroendocrine tumor",
+          "G3 well-differentiated neuroendocrine tumor",
+          "Other",
+          "Carcinoma, type cannot be determined"
+        ],
+        "value": "",
+        "comment": ""
+      },
+
+      "histologic_grade": {
+        "label": "Histologic grade",
+        "type": "select",
+        "options": [
+          "G1 well differentiated",
+          "G2 moderately differentiated",
+          "G3 poorly differentiated / undifferentiated",
+          "Other",
+          "GX cannot be assessed",
+          "Not applicable"
+        ],
+        "value": ""
+      },
+
+      "tumor_size": {
+        "label": "Tumor size",
+        "type": "text",
+        "value": ""
+      },
+
+      "tumor_extent": {
+        "label": "Tumor extent",
+        "type": "select",
+        "options": [
+          "High-grade dysplasia / carcinoma in situ",
+          "Invades lamina propria",
+          "Invades muscularis mucosae",
+          "Invades submucosa",
+          "Invades muscularis propria",
+          "Invades adventitia",
+          "Invades adjacent structures or organs",
+          "Cannot be determined",
+          "No evidence of primary tumor"
+        ],
+        "value": ""
+      },
+
+      "adjacent_structures": {
+        "label": "Adjacent structures involved",
+        "type": "multi_select",
+        "options": [
+          "Pleura",
+          "Pericardium",
+          "Azygos vein",
+          "Diaphragm",
+          "Peritoneum",
+          "Aorta",
+          "Vertebral body",
+          "Airway",
+          "Other"
+        ],
+        "value": []
+      },
+
+      "treatment_effect": {
+        "label": "Treatment effect",
+        "type": "select",
+        "options": [
+          "No known presurgical therapy",
+          "Complete response (score 0)",
+          "Near complete response (score 1)",
+          "Partial response (score 2)",
+          "Present NOS",
+          "Poor or no response (score 3)",
+          "Cannot be determined"
+        ],
+        "value": ""
+      },
+
+      "lymphovascular_invasion": {
+        "label": "Lymphovascular invasion",
+        "type": "select",
+        "options": ["Not identified", "Present", "Cannot be determined"],
+        "value": ""
+      },
+
+      "perineural_invasion": {
+        "label": "Perineural invasion",
+        "type": "select",
+        "options": ["Not identified", "Present", "Cannot be determined"],
+        "value": ""
+      },
+
+      "tumor_comment": {
+        "label": "Tumor comment",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "margins": {
+    "label": "Margins",
+    "fields": {
+      "margin_status_invasive": {
+        "label": "Margin status for invasive carcinoma",
+        "type": "select",
+        "options": [
+          "All margins negative",
+          "Invasive carcinoma present at margin",
+          "Not applicable"
+        ],
+        "value": ""
+      },
+
+      "closest_margins": {
+        "label": "Closest margin(s)",
+        "type": "multi_select",
+        "options": [
+          "Proximal",
+          "Distal",
+          "Radial",
+          "Mucosal",
+          "Deep",
+          "Other",
+          "Cannot be determined"
+        ],
+        "value": []
+      },
+
+      "distance_to_closest_margin": {
+        "label": "Distance to closest margin",
+        "type": "text",
+        "value": ""
+      },
+
+      "dysplasia_and_barrett_margins": {
+        "label": "Margin status for dysplasia / intestinal metaplasia",
+        "type": "multi_select",
+        "options": [
+          "All margins negative for dysplasia",
+          "Low-grade squamous dysplasia at margin",
+          "High-grade squamous dysplasia at margin",
+          "Low-grade glandular dysplasia at margin",
+          "High-grade glandular dysplasia at margin",
+          "Intestinal metaplasia (Barrett esophagus) at margin",
+          "Not applicable"
+        ],
+        "value": []
+      },
+
+      "margin_comment": {
+        "label": "Margin comment",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "regional_lymph_nodes": {
+    "label": "Regional Lymph Nodes",
+    "fields": {
+      "status": {
+        "label": "Regional lymph node status",
+        "type": "select",
+        "options": [
+          "Not applicable",
+          "Regional lymph nodes present",
+          "All negative for tumor",
+          "Tumor present in regional lymph node(s)"
+        ],
+        "value": ""
+      },
+
+      "number_with_tumor": {
+        "label": "Number of lymph nodes with tumor",
+        "type": "text",
+        "value": ""
+      },
+
+      "number_examined": {
+        "label": "Number of lymph nodes examined",
+        "type": "text",
+        "value": ""
+      },
+
+      "comment": {
+        "label": "Regional lymph node comment",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "distant_metastasis": {
+    "label": "Distant Metastasis",
+    "fields": {
+      "sites": {
+        "label": "Distant site(s) involved",
+        "type": "multi_select",
+        "options": [
+          "Not applicable",
+          "Non-regional lymph node(s)",
+          "Liver",
+          "Other",
+          "Cannot be determined"
+        ],
+        "value": []
+      }
+    }
+  },
+
+  "pathologic_stage": {
+    "label": "Pathologic Stage Classification (pTNM, AJCC 8th Edition)",
+    "fields": {
+      "tnm_descriptors": {
+        "label": "TNM descriptors",
+        "type": "multi_select",
+        "options": [
+          "Not applicable",
+          "m (multiple primary tumors)",
+          "r (recurrent)",
+          "y (post-treatment)"
+        ],
+        "value": []
+      },
+
+      "pT_category": {
+        "label": "pT category",
+        "type": "select",
+        "options": [
+          "pT0",
+          "pTis",
+          "pT1a",
+          "pT1b",
+          "pT1",
+          "pT2",
+          "pT3",
+          "pT4a",
+          "pT4b",
+          "pT4"
+        ],
+        "value": ""
+      },
+
+      "pN_category": {
+        "label": "pN category",
+        "type": "select",
+        "options": ["pN0", "pN1", "pN2", "pN3"],
+        "value": ""
+      },
+
+      "pM_category": {
+        "label": "pM category",
+        "type": "select",
+        "options": ["Not applicable", "pM1"],
+        "value": ""
+      }
+    }
+  },
+
+  "additional_findings": {
+    "label": "Additional Findings",
+    "fields": {
+      "findings": {
+        "label": "Additional findings",
+        "type": "multi_select",
+        "options": [
+          "None identified",
+          "Intestinal metaplasia (Barrett's esophagus)",
+          "Low-grade squamous dysplasia",
+          "High-grade squamous dysplasia",
+          "Low-grade glandular dysplasia",
+          "High-grade glandular dysplasia",
+          "Esophagitis",
+          "Gastritis",
+          "Other"
+        ],
+        "value": []
+      }
+    }
+  }
+}

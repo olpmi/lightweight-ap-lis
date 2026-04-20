@@ -1,0 +1,214 @@
+{
+  "template_id": "breast_invasive_carcinoma_biopsy_v1",
+  "lang": "sw",
+  "title": "Karsinoma vamizi ya titi, biopsy",
+
+  "specimen": {
+    "label": "Sampuli",
+    "fields": {
+      "procedure": {
+        "label": "Utaratibu",
+        "options": [
+          "Biopsy ya sindano",
+          "Fine needle aspiration",
+          "Nyingine",
+          "Haijabainishwa"
+        ]
+      },
+      "laterality": {
+        "label": "Upande wa sampuli",
+        "options": ["Kulia", "Kushoto", "Haijabainishwa"]
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "Uvimbe",
+    "fields": {
+      "tumor_site": {
+        "label": "Eneo la uvimbe",
+        "options": [
+          "Quadrant ya juu ya nje",
+          "Quadrant ya chini ya nje",
+          "Quadrant ya juu ya ndani",
+          "Quadrant ya chini ya ndani",
+          "Katikati",
+          "Chuchu",
+          "Nafasi ya saa",
+          "Haijabainishwa"
+        ]
+      },
+      "histologic_type": {
+        "label": "Aina ya histolojia",
+        "options": [
+          "Hakuna karsinoma vamizi iliyobaki",
+          "Karsinoma vamizi isiyo na aina maalum (ductal)",
+          "Karsinoma yenye uvamizi mdogo",
+          "Karsinoma lobular vamizi",
+          "Karsinoma vamizi yenye sifa mchanganyiko za ductal na lobular",
+          "Karsinoma vamizi yenye sifa za",
+          "Karsinoma tubular",
+          "Karsinoma cribriform vamizi",
+          "Karsinoma ya mucinous",
+          "Karsinoma micropapillary vamizi",
+          "Adenokarsinoma ya apocrine",
+          "Karsinoma metaplastic",
+          "Karsinoma papillary iliyofunikwa yenye uvamizi",
+          "Karsinoma solid papillary yenye uvamizi",
+          "Adenokarsinoma ya intraductal papillary yenye uvamizi",
+          "Karsinoma adenoid cystic",
+          "Uvímbe wa neuroendocrine",
+          "Karsinoma ya neuroendocrine",
+          "Karsinoma vamizi, aina haiwezi kubainishwa",
+          "Aina nyingine ya histolojia ambayo haijaorodheshwa"
+        ]
+      },
+      "histologic_grade": {
+        "label": "Daraja la histolojia (alama ya histolojia ya Nottingham)",
+        "fields": {
+          "applicability": {
+            "label": "Utekelezekaji",
+            "options": [
+              "Haihusiki (hakuna karsinoma iliyobaki au microinvasion pekee)",
+              "Alama ya Nottingham"
+            ]
+          },
+          "glandular_tubular_differentiation": {
+            "label": "Utofautishaji wa tezi (acinar) / tubular",
+            "options": [
+              "Alama 1 (zaidi ya 75% ya eneo la uvimbe linaunda miundo ya tezi / tubular)",
+              "Alama 2 (10% hadi 75% ya eneo la uvimbe linaunda miundo ya tezi / tubular)",
+              "Alama 3 (chini ya 10% ya eneo la uvimbe linaunda miundo ya tezi / tubular)",
+              "Alama haiwezi kubainishwa"
+            ]
+          },
+          "nuclear_pleomorphism": {
+            "label": "Pleomofizimu ya nyuklia",
+            "options": [
+              "Alama 1 (viini vidogo vyenye ongezeko dogo la ukubwa ikilinganishwa na seli za kawaida za epitheliamu ya titi, mipaka ya kawaida, kromatini ya nyuklia iliyo sawia, tofauti ndogo ya ukubwa)",
+              "Alama 2 (seli kubwa kuliko kawaida zenye viini vya vesicular vilivyo wazi, nucleoli zinazoonekana, na tofauti ya wastani katika ukubwa na umbo)",
+              "Alama 3 (viini vya vesicular, mara nyingi vikiwa na nucleoli zilizo dhahiri, vinaonyesha tofauti kubwa ya ukubwa na umbo, wakati mwingine vikiwa na maumbo makubwa sana na yasiyo ya kawaida)",
+              "Alama haiwezi kubainishwa"
+            ]
+          },
+          "mitotic_rate": {
+            "label": "Kiwango cha mitosi",
+            "options": [
+              "Alama 1",
+              "Alama 2",
+              "Alama 3",
+              "Alama haiwezi kubainishwa"
+            ],
+            "reference_note": "Tazama Jedwali la 1 katika Itifaki ya CAP."
+          },
+          "overall_grade": {
+            "label": "Daraja la jumla",
+            "options": [
+              "Daraja 1 (alama 3, 4 au 5)",
+              "Daraja 2 (alama 6 au 7)",
+              "Daraja 3 (alama 8 au 9)",
+              "Alama haiwezi kubainishwa"
+            ]
+          }
+        }
+      },
+      "largest_invasive_focus": {
+        "label": "Fokasi kubwa zaidi ya uvamizi katika sampuli hii ndogo ya biopsy",
+        "fields": {
+          "measurement_type": {
+            "label": "Aina ya kipimo",
+            "options": [
+              "Kipimo halisi kwa milimita (mm)",
+              "Angalau kwa milimita (mm)",
+              "Haiwezi kubainishwa"
+            ]
+          },
+          "measurement_mm": {
+            "label": "Kipimo (mm)"
+          },
+          "cannot_be_determined_specify": {
+            "label": "Haiwezi kubainishwa (eleza)"
+          }
+        }
+      }
+    }
+  },
+
+  "dcis": {
+    "label": "Ductal carcinoma in situ (DCIS)",
+    "fields": {
+      "presence": {
+        "label": "Uwepo wa DCIS",
+        "options": ["Haijaonekana", "Ipo"]
+      },
+      "architectural_patterns": {
+        "label": "Miundo ya usanifu",
+        "options": [
+          "Comedo",
+          "Ugonjwa wa Paget (DCIS inayohusisha ngozi ya chuchu)",
+          "Cribriform",
+          "Micropapillary",
+          "Papillary",
+          "Solid",
+          "Nyingine"
+        ]
+      },
+      "nuclear_grade": {
+        "label": "Daraja la nyuklia",
+        "options": [
+          "Daraja I (chini)",
+          "Daraja II (la kati)",
+          "Daraja III (juu)",
+          "Nyingine",
+          "Haiwezi kubainishwa"
+        ]
+      },
+      "necrosis": {
+        "label": "Nekrosisi",
+        "options": [
+          "Haijaonekana",
+          "Ipo, ya sehemu ndogo (foci ndogo au nekrosisi ya seli moja)",
+          "Ipo, ya katikati (nekrosisi pana ya \"comedo\")",
+          "Nyingine",
+          "Haiwezi kubainishwa",
+          "Haiwezi kutengwa"
+        ]
+      }
+    }
+  },
+
+  "lymphovascular_invasion": {
+    "label": "Uvamizi wa limfatiki na / au mishipa ya damu",
+    "fields": {
+      "status": {
+        "label": "Uvamizi wa limfatiki na / au mishipa ya damu",
+        "options": ["Haujaonekana", "Upo", "Haiwezi kubainishwa"]
+      }
+    }
+  },
+
+  "microcalcifications": {
+    "label": "Mikrokalsifikesheni",
+    "fields": {
+      "status": {
+        "label": "Mikrokalsifikesheni",
+        "options": [
+          "Hazijaonekana",
+          "Zipo katika DCIS",
+          "Zipo katika karsinoma vamizi",
+          "Zipo katika tishu isiyo ya neoplasia",
+          "Nyingine"
+        ]
+      }
+    }
+  },
+
+  "additional_findings": {
+    "label": "Matokeo ya ziada",
+    "fields": {
+      "findings": {
+        "label": "Matokeo ya ziada"
+      }
+    }
+  }
+}

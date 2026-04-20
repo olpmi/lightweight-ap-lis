@@ -1,0 +1,87 @@
+{
+  "template_id": "breast_invasive_carcinoma_resection_v1",
+  "lang": "ur",
+  "title": "بریسٹ اِنویسیو کارسینوما، ریسیکشن",
+
+  "specimen": {
+    "label": "نمونہ",
+    "fields": {
+      "procedure": {
+        "label": "طریقۂ کار",
+        "options": [
+          "ایکسسیژن (ٹوٹل ماسٹیکٹومی سے کم)",
+          "ٹوٹل ماسٹیکٹومی (بشمول nipple-sparing اور skin-sparing mastectomy)",
+          "دیگر",
+          "واضح نہیں"
+        ]
+      },
+      "laterality": {
+        "label": "نمونے کی جانب",
+        "options": [
+          "دائیں",
+          "بائیں",
+          "واضح نہیں"
+        ]
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "ٹیومر",
+    "fields": {
+      "tumor_site": {
+        "label": "ٹیومر کی جگہ",
+        "options": [
+          "اوپری بیرونی کواڈرینٹ",
+          "زیریں بیرونی کواڈرینٹ",
+          "اوپری اندرونی کواڈرینٹ",
+          "زیریں اندرونی کواڈرینٹ",
+          "مرکزی",
+          "نپل",
+          "گھڑی کی پوزیشن",
+          "واضح نہیں"
+        ]
+      },
+      "histologic_type": {
+        "label": "ہسٹولوجک قسم"
+      },
+      "histologic_grade": {
+        "label": "ہسٹولوجک گریڈ (ناٹنگھم ہسٹولوجک اسکور)"
+      },
+      "tumor_size": {
+        "label": "ٹیومر کا سائز"
+      },
+      "tumor_focality": {
+        "label": "ٹیومر فوکالیٹی"
+      }
+    }
+  },
+
+  "dcis_lcis": {
+    "label": "اِن سیٹو کارسینوما"
+  },
+  "tumor_extent": {
+    "label": "ٹیومر کا پھیلاؤ"
+  },
+  "invasion_and_calcifications": {
+    "label": "اِنویژن اور مائیکروکیلسیفیکیشنز"
+  },
+  "treatment_effect_and_rcb": {
+    "label": "علاج کا اثر اور residual cancer burden"
+  },
+  "margins": {
+    "label": "حاشیے"
+  },
+  "regional_lymph_nodes": {
+    "label": "علاقائی لمف نوڈز"
+  },
+  "distant_metastasis": {
+    "label": "بعید میٹاسٹاسس"
+  },
+  "ptnm_classification": {
+    "label": "pTNM درجہ بندی (AJCC آٹھواں ایڈیشن)"
+  },
+  "additional_findings": {
+    "label": "اضافی مشاہدات"
+  }
+}

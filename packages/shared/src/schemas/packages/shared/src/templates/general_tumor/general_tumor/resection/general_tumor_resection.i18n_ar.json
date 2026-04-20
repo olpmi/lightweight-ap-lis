@@ -1,0 +1,266 @@
+{
+  "template_id": "general_tumor_resection_v1",
+  "lang": "ar",
+  "ui": {
+    "direction": "rtl"
+  },
+  "title": "استئصال ورمي عام",
+
+  "specimen": {
+    "label": "العينة",
+    "fields": {
+      "procedure": {
+        "label": "الإجراء"
+      },
+      "laterality": {
+        "label": "جهة العينة",
+        "options": ["اليمنى", "اليسرى", "غير محدد", "غير منطبق"]
+      },
+      "lymph_node_sampling": {
+        "label": "أخذ عينات من العقد اللمفاوية",
+        "options": ["تم", "لم يتم", "غير معروف"],
+        "lymph_nodes_sampled": "العقد اللمفاوية التي تم أخذها"
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "الورم",
+    "fields": {
+      "site": {
+        "label": "موضع أو مواضع الورم"
+      },
+      "histologic_type": {
+        "label": "النوع النسيجي"
+      },
+      "histologic_grade": {
+        "label": "الدرجة النسيجية"
+      },
+      "tumor_size": {
+        "label": "حجم الورم",
+        "fields": {
+          "measurement_type": {
+            "label": "نوع القياس",
+            "options": ["أكبر بُعد بالسنتيمتر (سم)", "لا يمكن تحديده"]
+          },
+          "greatest_dimension_cm": {
+            "label": "أكبر بُعد (سم)"
+          },
+          "additional_dimensions_cm": {
+            "label": "الأبعاد الإضافية (سم)"
+          },
+          "cannot_be_determined_specify": {
+            "label": "لا يمكن تحديده (اشرح)"
+          }
+        }
+      },
+      "tumor_extent": {
+        "label": "امتداد الورم (البنى أو الأعضاء المتأثرة)"
+      },
+      "mitotic_rate": {
+        "label": "معدل الانقسام الميتوزي"
+      },
+      "tumor_necrosis": {
+        "label": "نخر الورم",
+        "fields": {
+          "status": {
+            "label": "حالة نخر الورم",
+            "options": ["غير موجود", "موجود", "لا يمكن تحديده"]
+          },
+          "percentage_type": {
+            "label": "نسبة نخر الورم",
+            "options": ["حدد النسبة المئوية", "أخرى", "لا يمكن تحديدها"]
+          },
+          "percentage_value": {
+            "label": "النسبة المئوية (%)"
+          },
+          "other_specify": {
+            "label": "أخرى (حدد)"
+          },
+          "cannot_be_determined_specify": {
+            "label": "لا يمكن تحديدها (اشرح)"
+          }
+        }
+      },
+      "lymphovascular_invasion": {
+        "label": "الغزو اللمفاوي الوعائي",
+        "options": ["غير موجود", "موجود", "لا يمكن تحديده"]
+      },
+      "treatment_effect": {
+        "label": "تأثير العلاج",
+        "fields": {
+          "status": {
+            "label": "حالة تأثير العلاج",
+            "options": [
+              "لا يوجد علاج قبل الجراحة معروف",
+              "غير موجود",
+              "موجود",
+              "لا يمكن تحديده"
+            ]
+          },
+          "preoperative_therapy_given": {
+            "label": "العلاج المعطى قبل الجراحة"
+          },
+          "cannot_be_determined_specify": {
+            "label": "لا يمكن تحديده (اشرح)"
+          }
+        }
+      },
+      "tumor_comment": {
+        "label": "تعليق على الورم"
+      }
+    }
+  },
+
+  "margins": {
+    "label": "الهوامش",
+    "fields": {
+      "margin_status": {
+        "label": "حالة الهوامش",
+        "options": [
+          "جميع الهوامش سلبية للورم",
+          "الورم موجود عند الهامش",
+          "غير منطبق"
+        ]
+      },
+      "distance_to_closest_margin": {
+        "label": "المسافة من الورم إلى أقرب هامش",
+        "fields": {
+          "distance_type": {
+            "label": "نوع المسافة",
+            "options": [
+              "مسافة دقيقة",
+              "أكبر من",
+              "على الأقل",
+              "أقل من",
+              "أقل من 1 مم",
+              "أخرى",
+              "لا يمكن تحديدها"
+            ]
+          },
+          "distance_mm": {
+            "label": "المسافة (مم)"
+          },
+          "other_specify": {
+            "label": "أخرى (حدد)"
+          },
+          "cannot_be_determined_specify": {
+            "label": "لا يمكن تحديدها (اشرح)"
+          }
+        }
+      },
+      "closest_margins_to_tumor": {
+        "label": "أقرب هامش أو هوامش إلى الورم",
+        "fields": {
+          "status": {
+            "label": "حالة أقرب هامش أو هوامش",
+            "options": ["حدد أقرب هامش أو هوامش", "لا يمكن تحديدها"]
+          },
+          "specify": {
+            "label": "حدد أقرب هامش أو هوامش"
+          },
+          "cannot_be_determined_specify": {
+            "label": "لا يمكن تحديدها (اشرح)"
+          }
+        }
+      },
+      "margins_involved_by_tumor": {
+        "label": "الهامش أو الهوامش المتأثرة بالورم",
+        "fields": {
+          "status": {
+            "label": "حالة الهامش أو الهوامش المتأثرة",
+            "options": [
+              "حدد الهامش أو الهوامش المتأثرة",
+              "أخرى",
+              "لا يمكن تحديدها"
+            ]
+          },
+          "specify": {
+            "label": "حدد الهامش أو الهوامش المتأثرة"
+          },
+          "other_specify": {
+            "label": "أخرى (حدد)"
+          },
+          "cannot_be_determined_specify": {
+            "label": "لا يمكن تحديدها (اشرح)"
+          }
+        }
+      }
+    }
+  },
+
+  "regional_lymph_nodes": {
+    "label": "العقد اللمفاوية الإقليمية",
+    "fields": {
+      "regional_lymph_node_status": {
+        "label": "حالة العقد اللمفاوية الإقليمية",
+        "options": [
+          "غير منطبق (لم تُرسل أو تُعثر على عقد لمفاوية إقليمية)",
+          "العقد اللمفاوية الإقليمية موجودة",
+          "جميع العقد اللمفاوية الإقليمية سلبية للورم",
+          "الورم موجود في عقدة أو عقد لمفاوية إقليمية"
+        ]
+      },
+      "number_with_tumor": {
+        "label": "عدد العقد اللمفاوية التي تحتوي على ورم",
+        "fields": {
+          "count_type": {
+            "label": "نوع العدد",
+            "options": ["عدد دقيق", "على الأقل", "أخرى", "لا يمكن تحديده"]
+          },
+          "count_value": {
+            "label": "العدد"
+          },
+          "other_specify": {
+            "label": "أخرى (حدد)"
+          },
+          "cannot_be_determined_specify": {
+            "label": "لا يمكن تحديده (اشرح)"
+          }
+        }
+      },
+      "extranodal_extension": {
+        "label": "الامتداد خارج العقدة",
+        "fields": {
+          "status": {
+            "label": "حالة الامتداد خارج العقدة",
+            "options": ["غير موجود", "موجود", "أخرى", "لا يمكن تحديده"]
+          },
+          "other_specify": {
+            "label": "أخرى (حدد)"
+          },
+          "cannot_be_determined_specify": {
+            "label": "لا يمكن تحديده (اشرح)"
+          }
+        }
+      },
+      "number_examined": {
+        "label": "عدد العقد اللمفاوية المفحوصة",
+        "fields": {
+          "count_type": {
+            "label": "نوع العدد",
+            "options": ["عدد دقيق", "على الأقل", "أخرى", "لا يمكن تحديده"]
+          },
+          "count_value": {
+            "label": "العدد"
+          },
+          "other_specify": {
+            "label": "أخرى (حدد)"
+          },
+          "cannot_be_determined_specify": {
+            "label": "لا يمكن تحديده (اشرح)"
+          }
+        }
+      }
+    }
+  },
+
+  "additional_findings": {
+    "label": "النتائج الإضافية",
+    "fields": {
+      "findings": {
+        "label": "النتائج الإضافية"
+      }
+    }
+  }
+}

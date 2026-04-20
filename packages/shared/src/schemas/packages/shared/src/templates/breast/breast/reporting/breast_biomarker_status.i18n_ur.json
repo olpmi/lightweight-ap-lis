@@ -1,0 +1,114 @@
+{
+  "template_id": "breast_biomarker_status_v1",
+  "lang": "ur",
+
+  "title": "بریسٹ بایومارکر اسٹیٹس",
+
+  "er_status": {
+    "label": "ایسٹروجن ریسیپٹر (ER) اسٹیٹس",
+    "fields": {
+      "percentage_nuclear_positivity": {
+        "label": "نیوکلیئر مثبتیت والے خلیات کا فیصد"
+      },
+      "average_intensity": {
+        "label": "رنگ پذیری کی اوسط شدت"
+      }
+    }
+  },
+
+  "pgr_status": {
+    "label": "پروجیسٹرون ریسیپٹر (PgR) اسٹیٹس",
+    "fields": {
+      "percentage_nuclear_positivity": {
+        "label": "نیوکلیئر مثبتیت والے خلیات کا فیصد"
+      },
+      "average_intensity": {
+        "label": "رنگ پذیری کی اوسط شدت"
+      }
+    }
+  },
+
+  "her2_ihc_status": {
+    "label": "HER2 بذریعہ امیونوہسٹوکیمسٹری (IHC) اسٹیٹس",
+    "comment": "وہ بریسٹ کینسر جن کے HER2 IHC اسکور 0+، 1+، یا 2+ (ISH منفی) ہوں، metastatic صورتحال میں HER2 اظہار کی غیر amplified سطحوں کو ہدف بنانے والے علاج کے لیے اہل ہو سکتے ہیں۔ فی الحال وہ مریض جن میں IHC کے ذریعے membrane staining موجود نہ ہو (0) اہل نہیں یا خارج کیے جاتے ہیں۔ metastatic صورتحال میں HER2 IHC staining کی کم سطحوں کی clinical اہمیت اور clinical trials میں استعمال ہونے والی ultralow اور low HER2 تعریفوں کی وضاحت کے لیے اختیاری معیاری HER2 IHC رپورٹ تبصرہ استعمال کرنے پر غور کریں۔",
+    "fields": {
+      "overall_score": {
+        "label": "مجموعی HER2 IHC اسکور",
+        "options": [
+          "منفی (اسکور 0)",
+          "منفی (اسکور 1+)",
+          "غیر واضح (اسکور 2+)",
+          "مثبت (اسکور 3+)"
+        ]
+      },
+      "score_0_pattern": {
+        "label": "اسکور 0 پیٹرن",
+        "options": [
+          "کوئی membrane staining نہیں دیکھی گئی (0 / membrane staining غیر حاضر)",
+          "membrane staining نامکمل ہو اور نہایت ہلکی یا بمشکل محسوس ہو، اور ٹیومر خلیات کے 10% یا اس سے کم میں ہو (0+ / membrane staining کے ساتھ)",
+          "دیگر"
+        ]
+      },
+      "score_1_pattern": {
+        "label": "اسکور 1+ پیٹرن",
+        "options": [
+          "نامکمل membrane staining جو ہلکی یا بمشکل محسوس ہو، اور ٹیومر خلیات کے 10% سے زیادہ میں ہو",
+          "دیگر"
+        ]
+      },
+      "score_2_pattern": {
+        "label": "اسکور 2+ پیٹرن",
+        "options": [
+          "کمزور سے درمیانی مکمل membrane staining جو ٹیومر خلیات کے 10% سے زیادہ میں دیکھی جائے",
+          "درمیانی سے شدید لیکن نامکمل membrane staining (basolateral)",
+          "کینسر کے 10% یا اس سے کم حصے میں circumferential staining مکمل اور شدید (3+) ہو (غیر یکساں مگر بہت محدود؛ اضافی نمونوں کے نتائج پر غور کریں)",
+          "سائٹوپلازم میں بہت زیادہ staining موجود ہو جو membrane stain intensity کے جائزے کو ڈھانپ دے",
+          "دیگر"
+        ]
+      },
+      "score_3_pattern": {
+        "label": "اسکور 3+ پیٹرن",
+        "options": [
+          "circumferential membrane staining جو مکمل، شدید ہو، اور ٹیومر خلیات کے 10% سے زیادہ میں ہو",
+          "دیگر"
+        ]
+      }
+    }
+  },
+
+  "ki67_status": {
+    "label": "Ki-67 افزائشی اشاریہ",
+    "fields": {
+      "value": {
+        "label": "Ki-67 افزائشی اشاریہ"
+      }
+    }
+  },
+
+  "methods": {
+    "label": "طریقہ کار",
+    "fields": {
+      "block_numbers": {
+        "label": "جن بلاک نمبروں پر ٹیسٹنگ کی گئی"
+      },
+      "er_primary_antibody": {
+        "label": "ایسٹروجن ریسیپٹر: بنیادی اینٹی باڈی"
+      },
+      "pgr_primary_antibody": {
+        "label": "پروجیسٹرون ریسیپٹر: بنیادی اینٹی باڈی"
+      },
+      "er_pgr_reporting_guideline": {
+        "label": "ER اور PgR کی رپورٹنگ"
+      },
+      "her2_primary_antibody": {
+        "label": "HER2 (امیونوہسٹوکیمسٹری کے ذریعے): بنیادی اینٹی باڈی"
+      },
+      "her2_reporting_guideline": {
+        "label": "امیونوہسٹوکیمسٹری (IHC) کے ذریعے HER2 ٹیسٹنگ کی رپورٹنگ"
+      },
+      "ki67_primary_antibody": {
+        "label": "Ki-67 اشاریہ: بنیادی اینٹی باڈی"
+      }
+    }
+  }
+}

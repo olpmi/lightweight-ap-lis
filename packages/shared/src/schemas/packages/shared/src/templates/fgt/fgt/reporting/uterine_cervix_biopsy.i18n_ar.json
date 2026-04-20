@@ -1,0 +1,8 @@
+{
+  "template_id": "uterine_cervix_biopsy_v1",
+  "lang": "ar",
+  "ui": { "direction": "rtl" },
+  "title": "عنق الرحم، خزعة",
+  "tumor": { "label": "الورم" },
+  "additional_findings": { "label": "النتائج الإضافية" }
+}

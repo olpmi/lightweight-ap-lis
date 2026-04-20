@@ -1,0 +1,11 @@
+{
+  "template_id": "ovary_fallopian_tube_primary_peritoneum_gross_v1",
+  "lang": "sw",
+  "title": "Ovari au mrija wa fallopia au peritoneamu ya msingi (gross template)",
+  "specimen": { "label": "Sampuli" },
+  "ovarian_integrity": { "label": "Uadilifu wa ovari" },
+  "fallopian_tube_integrity": { "label": "Uadilifu wa mrija wa fallopia" },
+  "uterus_integrity": { "label": "Uadilifu wa uterasi" },
+  "block_allocation_key": { "label": "Ufunguo wa upangaji wa block" },
+  "grossing": { "label": "Grossing" }
+}

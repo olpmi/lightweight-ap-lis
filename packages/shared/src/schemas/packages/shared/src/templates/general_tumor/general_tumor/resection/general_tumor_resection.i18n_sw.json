@@ -1,0 +1,305 @@
+{
+  "template_id": "general_tumor_resection_v1",
+  "lang": "sw",
+  "title": "Resection ya jumla ya uvimbe",
+
+  "specimen": {
+    "label": "Sampuli",
+    "fields": {
+      "procedure": {
+        "label": "Utaratibu"
+      },
+      "laterality": {
+        "label": "Upande wa sampuli",
+        "options": [
+          "Kulia",
+          "Kushoto",
+          "Haijabainishwa",
+          "Haihusiki"
+        ]
+      },
+      "lymph_node_sampling": {
+        "label": "Uchukuaji wa nodi za limfu",
+        "options": [
+          "Umefanywa",
+          "Haujafanywa",
+          "Haijulikani"
+        ],
+        "lymph_nodes_sampled": "Nodi za limfu zilizochukuliwa"
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "Uvimbe",
+    "fields": {
+      "site": {
+        "label": "Eneo au maeneo ya uvimbe"
+      },
+      "histologic_type": {
+        "label": "Aina ya histolojia"
+      },
+      "histologic_grade": {
+        "label": "Daraja la histolojia"
+      },
+      "tumor_size": {
+        "label": "Ukubwa wa uvimbe",
+        "fields": {
+          "measurement_type": {
+            "label": "Aina ya kipimo",
+            "options": [
+              "Kipimo kikubwa zaidi kwa sentimita (cm)",
+              "Haiwezi kubainishwa"
+            ]
+          },
+          "greatest_dimension_cm": {
+            "label": "Kipimo kikubwa zaidi (cm)"
+          },
+          "additional_dimensions_cm": {
+            "label": "Vipimo vya ziada (cm)"
+          },
+          "cannot_be_determined_specify": {
+            "label": "Haiwezi kubainishwa (eleza)"
+          }
+        }
+      },
+      "tumor_extent": {
+        "label": "Ueneaji wa uvimbe (miundo au viungo vilivyohusishwa)"
+      },
+      "mitotic_rate": {
+        "label": "Kiwango cha mitosi"
+      },
+      "tumor_necrosis": {
+        "label": "Nekrosisi ya uvimbe",
+        "fields": {
+          "status": {
+            "label": "Hali ya nekrosisi ya uvimbe",
+            "options": [
+              "Haijaonekana",
+              "Ipo",
+              "Haiwezi kubainishwa"
+            ]
+          },
+          "percentage_type": {
+            "label": "Asilimia ya nekrosisi ya uvimbe",
+            "options": [
+              "Taja asilimia",
+              "Nyingine",
+              "Haiwezi kubainishwa"
+            ]
+          },
+          "percentage_value": {
+            "label": "Asilimia (%)"
+          },
+          "other_specify": {
+            "label": "Nyingine (taja)"
+          },
+          "cannot_be_determined_specify": {
+            "label": "Haiwezi kubainishwa (eleza)"
+          }
+        }
+      },
+      "lymphovascular_invasion": {
+        "label": "Uvamizi wa limfovaskula",
+        "options": [
+          "Haujaonekana",
+          "Upo",
+          "Haiwezi kubainishwa"
+        ]
+      },
+      "treatment_effect": {
+        "label": "Athari ya matibabu",
+        "fields": {
+          "status": {
+            "label": "Hali ya athari ya matibabu",
+            "options": [
+              "Hakuna matibabu ya kabla ya upasuaji yanayojulikana",
+              "Haijaonekana",
+              "Ipo",
+              "Haiwezi kubainishwa"
+            ]
+          },
+          "preoperative_therapy_given": {
+            "label": "Matibabu ya kabla ya upasuaji yaliyotolewa"
+          },
+          "cannot_be_determined_specify": {
+            "label": "Haiwezi kubainishwa (eleza)"
+          }
+        }
+      },
+      "tumor_comment": {
+        "label": "Maoni kuhusu uvimbe"
+      }
+    }
+  },
+
+  "margins": {
+    "label": "Mipaka",
+    "fields": {
+      "margin_status": {
+        "label": "Hali ya mipaka",
+        "options": [
+          "Mipaka yote haina uvimbe",
+          "Uvimbe upo kwenye mpaka",
+          "Haihusiki"
+        ]
+      },
+      "distance_to_closest_margin": {
+        "label": "Umbali kutoka kwenye uvimbe hadi mpaka wa karibu zaidi",
+        "fields": {
+          "distance_type": {
+            "label": "Aina ya umbali",
+            "options": [
+              "Umbali halisi",
+              "Zaidi ya",
+              "Angalau",
+              "Chini ya",
+              "Chini ya 1 mm",
+              "Nyingine",
+              "Haiwezi kubainishwa"
+            ]
+          },
+          "distance_mm": {
+            "label": "Umbali (mm)"
+          },
+          "other_specify": {
+            "label": "Nyingine (taja)"
+          },
+          "cannot_be_determined_specify": {
+            "label": "Haiwezi kubainishwa (eleza)"
+          }
+        }
+      },
+      "closest_margins_to_tumor": {
+        "label": "Mpaka au mipaka iliyo karibu zaidi na uvimbe",
+        "fields": {
+          "status": {
+            "label": "Hali ya mpaka wa karibu zaidi",
+            "options": [
+              "Taja mpaka au mipaka ya karibu zaidi",
+              "Haiwezi kubainishwa"
+            ]
+          },
+          "specify": {
+            "label": "Taja mpaka au mipaka ya karibu zaidi"
+          },
+          "cannot_be_determined_specify": {
+            "label": "Haiwezi kubainishwa (eleza)"
+          }
+        }
+      },
+      "margins_involved_by_tumor": {
+        "label": "Mpaka au mipaka iliyoathiriwa na uvimbe",
+        "fields": {
+          "status": {
+            "label": "Hali ya mpaka ulioathiriwa",
+            "options": [
+              "Taja mpaka au mipaka iliyoathiriwa",
+              "Nyingine",
+              "Haiwezi kubainishwa"
+            ]
+          },
+          "specify": {
+            "label": "Taja mpaka au mipaka iliyoathiriwa"
+          },
+          "other_specify": {
+            "label": "Nyingine (taja)"
+          },
+          "cannot_be_determined_specify": {
+            "label": "Haiwezi kubainishwa (eleza)"
+          }
+        }
+      }
+    }
+  },
+
+  "regional_lymph_nodes": {
+    "label": "Nodi za limfu za eneo",
+    "fields": {
+      "regional_lymph_node_status": {
+        "label": "Hali ya nodi za limfu za eneo",
+        "options": [
+          "Haihusiki (hakuna nodi za limfu za eneo zilizowasilishwa au kupatikana)",
+          "Nodi za limfu za eneo zipo",
+          "Nodi zote za limfu za eneo hazina uvimbe",
+          "Uvimbe upo katika nodi moja au zaidi za limfu za eneo"
+        ]
+      },
+      "number_with_tumor": {
+        "label": "Idadi ya nodi za limfu zenye uvimbe",
+        "fields": {
+          "count_type": {
+            "label": "Aina ya hesabu",
+            "options": [
+              "Idadi halisi",
+              "Angalau",
+              "Nyingine",
+              "Haiwezi kubainishwa"
+            ]
+          },
+          "count_value": {
+            "label": "Idadi"
+          },
+          "other_specify": {
+            "label": "Nyingine (taja)"
+          },
+          "cannot_be_determined_specify": {
+            "label": "Haiwezi kubainishwa (eleza)"
+          }
+        }
+      },
+      "extranodal_extension": {
+        "label": "Ueneaji nje ya nodi",
+        "fields": {
+          "status": {
+            "label": "Hali ya ueneaji nje ya nodi",
+            "options": [
+              "Haujaonekana",
+              "Upo",
+              "Nyingine",
+              "Haiwezi kubainishwa"
+            ]
+          },
+          "other_specify": {
+            "label": "Nyingine (taja)"
+          },
+          "cannot_be_determined_specify": {
+            "label": "Haiwezi kubainishwa (eleza)"
+          }
+        }
+      },
+      "number_examined": {
+        "label": "Idadi ya nodi za limfu zilizochunguzwa",
+        "fields": {
+          "count_type": {
+            "label": "Aina ya hesabu",
+            "options": [
+              "Idadi halisi",
+              "Angalau",
+              "Nyingine",
+              "Haiwezi kubainishwa"
+            ]
+          },
+          "count_value": {
+            "label": "Idadi"
+          },
+          "other_specify": {
+            "label": "Nyingine (taja)"
+          },
+          "cannot_be_determined_specify": {
+            "label": "Haiwezi kubainishwa (eleza)"
+          }
+        }
+      }
+    }
+  },
+
+  "additional_findings": {
+    "label": "Matokeo ya ziada",
+    "fields": {
+      "findings": {
+        "label": "Matokeo ya ziada"
+      }
+    }
+  }
+}

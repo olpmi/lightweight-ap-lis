@@ -1,0 +1,19 @@
+{
+  "template_id": "endometrium_resection_gross_v1",
+  "lang": "sw",
+  "title": "Sampuli ya resection ya endometriamu (grossing template)",
+  "specimen": { "label": "Sampuli" },
+  "uterus": { "label": "Uterasi" },
+  "cervix": { "label": "Seviksi" },
+  "vaginal_cuff": { "label": "Vaginal cuff" },
+  "parametrium": { "label": "Parametrium" },
+  "corpus": { "label": "Corpus" },
+  "tumor": { "label": "Uvimbe" },
+  "polyps": { "label": "Polypi" },
+  "fibroids": { "label": "Fibroids" },
+  "adnexa": { "label": "Adnexa" },
+  "omentum": { "label": "Omentamu" },
+  "lymph_nodes": { "label": "Nodi za limfu" },
+  "block_allocation_key": { "label": "Ufunguo wa upangaji wa block" },
+  "grossing": { "label": "Grossing" }
+}

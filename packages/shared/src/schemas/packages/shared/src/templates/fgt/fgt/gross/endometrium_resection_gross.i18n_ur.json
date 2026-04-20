@@ -1,0 +1,19 @@
+{
+  "template_id": "endometrium_resection_gross_v1",
+  "lang": "ur",
+  "title": "اینڈومیٹریم ریسیکشن اسپیسمن (گروسنگ ٹیمپلیٹ)",
+  "specimen": { "label": "نمونہ" },
+  "uterus": { "label": "رحم" },
+  "cervix": { "label": "سروکس" },
+  "vaginal_cuff": { "label": "ویجائنل کف" },
+  "parametrium": { "label": "پیرا میٹریئم" },
+  "corpus": { "label": "کارپس" },
+  "tumor": { "label": "ٹیومر" },
+  "polyps": { "label": "پولپس" },
+  "fibroids": { "label": "فائبرائڈز" },
+  "adnexa": { "label": "ایڈنیکسا" },
+  "omentum": { "label": "اومینٹم" },
+  "lymph_nodes": { "label": "لمف نوڈز" },
+  "block_allocation_key": { "label": "بلاک الاٹمنٹ کلید" },
+  "grossing": { "label": "گروسنگ" }
+}

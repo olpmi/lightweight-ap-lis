@@ -1,0 +1,7 @@
+{
+  "template_id": "uterine_cervix_biopsy_v1",
+  "lang": "ur",
+  "title": "یوٹرائن سروکس، بایوپسی",
+  "tumor": { "label": "ٹیومر" },
+  "additional_findings": { "label": "اضافی مشاہدات" }
+}

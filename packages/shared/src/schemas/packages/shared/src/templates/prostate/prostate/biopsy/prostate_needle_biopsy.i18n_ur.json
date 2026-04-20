@@ -1,0 +1,352 @@
+{
+  "template_id": "prostate_needle_biopsy_v1",
+  "lang": "ur",
+  "title": "پروسٹیٹ گلینڈ: نیڈل بایوپسی",
+
+  "tumor": {
+    "label": "ٹیومر",
+    "fields": {
+      "treatment_effect": {
+        "label": "علاج کا اثر",
+        "fields": {
+          "effects": {
+            "label": "علاج کا اثر",
+            "options": [
+              "کسی معلوم پری سرجیکل علاج کی تاریخ نہیں",
+              "شناخت نہیں ہوا",
+              "ریڈی ایشن تھراپی کا اثر موجود ہے",
+              "ہارمونل تھراپی کا اثر موجود ہے",
+              "دیگر علاجی اثرات موجود ہیں",
+              "متعین نہیں کیا جا سکتا"
+            ]
+          },
+          "radiation_therapy_effect_specify": {
+            "label": "ریڈی ایشن تھراپی کا اثر موجود ہے"
+          },
+          "hormonal_therapy_effect_specify": {
+            "label": "ہارمونل تھراپی کا اثر موجود ہے"
+          },
+          "other_therapy_effects_specify": {
+            "label": "دیگر علاجی اثرات موجود ہیں"
+          },
+          "cannot_be_determined_specify": {
+            "label": "متعین نہیں کیا جا سکتا"
+          },
+          "comment": {
+            "label": "علاج کے اثر پر تبصرہ"
+          }
+        }
+      }
+    }
+  },
+
+  "positive_specimens": {
+    "label": "مثبت نمونہ یا زون",
+    "item_label": "مثبت نمونہ",
+    "fields": {
+      "positive_specimen_location": {
+        "label": "مثبت نمونے کی جگہ",
+        "options": [
+          "دائیں",
+          "دائیں بیس (RB)",
+          "دائیں بیس لیٹرل (RBL)",
+          "دائیں بیس میڈیئل (RBM)",
+          "دائیں مڈ (RM)",
+          "دائیں مڈ لیٹرل (RML)",
+          "دائیں مڈ میڈیئل (RMM)",
+          "دائیں ایپکس (RA)",
+          "دائیں ایپکس لیٹرل (RAL)",
+          "دائیں ایپکس میڈیئل (RAM)",
+          "دائیں ٹرانزیشن زون (RTZ)",
+          "بائیں",
+          "بائیں بیس (LB)",
+          "بائیں بیس لیٹرل (LBL)",
+          "بائیں بیس میڈیئل (LBM)",
+          "بائیں مڈ (LM)",
+          "بائیں مڈ لیٹرل (LML)",
+          "بائیں مڈ میڈیئل (LMM)",
+          "بائیں ایپکس (LA)",
+          "بائیں ایپکس لیٹرل (LAL)",
+          "بائیں ایپکس میڈیئل (LAM)",
+          "بائیں ٹرانزیشن زون (LTZ)",
+          "دیگر TRUS lesion",
+          "MRI-guided biopsy",
+          "واضح نہیں"
+        ]
+      },
+
+      "histologic_type": {
+        "label": "ہسٹولوجک قسم",
+        "fields": {
+          "category": {
+            "label": "زمرہ",
+            "options": [
+              "غدودی",
+              "اسکوامس",
+              "نیورواینڈوکرائن",
+              "فہرست میں شامل نہ ہونے والی دیگر ہسٹولوجک قسم",
+              "کارسینوما، قسم متعین نہیں کی جا سکتی"
+            ]
+          },
+          "type": {
+            "label": "ہسٹولوجک قسم",
+            "options": [
+              "ایسینر ایڈینوکارسینوما، روایتی",
+              "ایسینر ایڈینوکارسینوما، سگنیٹ رنگ نما سیل",
+              "ایسینر ایڈینوکارسینوما، پلیومارفک جائنٹ سیل",
+              "ایسینر ایڈینوکارسینوما، سارکومیٹوئڈ",
+              "ایسینر ایڈینوکارسینوما، پروسٹیٹک اِنٹراایپی تھیلیئل نیوپلازیا نما",
+              "آئیسولیٹڈ اِنٹراڈکٹل کارسینوما",
+              "ڈکٹل ایڈینوکارسینوما",
+              "ایڈینواسکوامس کارسینوما",
+              "اسکوامس سیل کارسینوما",
+              "بیزل سیل (ایڈینوئڈ سسٹک) کارسینوما",
+              "ایڈینوکارسینوما مع نیورواینڈوکرائن ڈفرنشی ایشن",
+              "خوب ڈفرنشی ایٹڈ نیورواینڈوکرائن ٹیومر",
+              "سمال سیل نیورواینڈوکرائن کارسینوما",
+              "لارج سیل نیورواینڈوکرائن کارسینوما",
+              "فہرست میں شامل نہ ہونے والی دیگر ہسٹولوجک قسم",
+              "کارسینوما، قسم متعین نہیں کی جا سکتی"
+            ]
+          },
+          "comment": {
+            "label": "ہسٹولوجک قسم پر تبصرہ"
+          }
+        }
+      },
+
+      "histologic_grade": {
+        "label": "ہسٹولوجک گریڈ",
+        "fields": {
+          "grade_status": {
+            "label": "گریڈ",
+            "options": [
+              "قابل اطلاق نہیں",
+              "جانچا نہیں جا سکتا",
+              "جانچا جا سکتا ہے"
+            ]
+          },
+          "tumor_microfocus": {
+            "label": "ٹیومر مائیکروفوکس",
+            "options": [
+              "شناخت نہیں ہوا",
+              "موجود"
+            ]
+          },
+          "grade_group": {
+            "label": "گریڈ گروپ",
+            "options": [
+              "گریڈ گروپ 1 (Gleason Score 3 + 3 = 6)",
+              "گریڈ گروپ 2 (Gleason Score 3 + 4 = 7)",
+              "گریڈ گروپ 3 (Gleason Score 4 + 3 = 7)",
+              "گریڈ گروپ 4 (Gleason Score 4 + 4 = 8)",
+              "گریڈ گروپ 4 (Gleason Score 3 + 5 = 8)",
+              "گریڈ گروپ 4 (Gleason Score 5 + 3 = 8)",
+              "گریڈ گروپ 5 (Gleason Score 4 + 5 = 9)",
+              "گریڈ گروپ 5 (Gleason Score 5 + 4 = 9)",
+              "گریڈ گروپ 5 (Gleason Score 5 + 5 = 10)"
+            ]
+          },
+          "pattern_4_percentage_for_grade_group_2": {
+            "label": "گریڈ گروپ 2 کے لیے پیٹرن 4 کا فیصد",
+            "options": [
+              "قابل اطلاق نہیں (اس کیس کے دیگر نمونوں میں Gleason Score 8 یا اس سے زیادہ ہے)",
+              "5% یا اس سے کم",
+              "6 - 10%",
+              "11 - 20%",
+              "21 - 30%",
+              "31 - 40%",
+              "40% سے زیادہ"
+            ]
+          },
+          "pattern_4_percentage_for_grade_group_3": {
+            "label": "گریڈ گروپ 3 کے لیے پیٹرن 4 کا فیصد",
+            "options": [
+              "قابل اطلاق نہیں (اس کیس کے دیگر نمونوں میں Gleason Score 8 یا اس سے زیادہ ہے)",
+              "61% سے کم",
+              "61 - 70%",
+              "71 - 80%",
+              "81 - 90%",
+              "90% سے زیادہ"
+            ]
+          },
+          "pattern_4_percentage_for_gleason_8_and_above": {
+            "label": "پیٹرن 4 کا فیصد (Gleason Score 8 اور اس سے اوپر)"
+          },
+          "pattern_5_percentage_for_gleason_8_and_above": {
+            "label": "پیٹرن 5 کا فیصد (Gleason Score 8 اور اس سے اوپر)"
+          }
+        }
+      },
+
+      "intraductal_carcinoma": {
+        "label": "اِنٹراڈکٹل کارسینوما (IDC)",
+        "fields": {
+          "status": {
+            "label": "IDC",
+            "options": [
+              "شناخت نہیں ہوا",
+              "موجود"
+            ]
+          },
+          "incorporated_into_grade": {
+            "label": "IDC گریڈ میں شامل کیا گیا",
+            "options": [
+              "ہاں",
+              "نہیں",
+              "متعین نہیں کیا جا سکتا"
+            ]
+          }
+        }
+      },
+
+      "cribriform_glands": {
+        "label": "کریبریفارم گلینڈز",
+        "fields": {
+          "status": {
+            "label": "کریبریفارم گلینڈز",
+            "options": [
+              "قابل اطلاق نہیں",
+              "شناخت نہیں ہوئیں",
+              "موجود",
+              "غیر واضح",
+              "متعین نہیں کیا جا سکتا"
+            ]
+          }
+        }
+      },
+
+      "tumor_quantitation": {
+        "label": "ٹیومر کی مقدار",
+        "fields": {
+          "total_number_of_cores": {
+            "label": "کورز کی کل تعداد",
+            "options": [
+              "تعداد درج کریں",
+              "متعین نہیں کیا جا سکتا"
+            ]
+          },
+          "number_of_positive_cores": {
+            "label": "مثبت کورز کی تعداد",
+            "options": [
+              "تعداد درج کریں",
+              "متعین نہیں کیا جا سکتا"
+            ]
+          },
+          "tumor_measurement_technique": {
+            "label": "ٹیومر پیمائش کی تکنیک",
+            "options": [
+              "ایک مسلسل فوکس",
+              "متعدد فوکس کو مسلسل ٹیومر سمجھیں",
+              "متعدد فوکس کو غیر مسلسل ٹیومر سمجھیں"
+            ]
+          },
+          "percentage_of_prostatic_tissue_involved": {
+            "label": "ٹیومر سے متاثرہ پروسٹیٹک ٹشو کا فیصد",
+            "options": [
+              "1% سے کم",
+              "1 - 5%",
+              "6 - 10%",
+              "11 - 20%",
+              "21 - 30%",
+              "31 - 40%",
+              "41 - 50%",
+              "51 - 60%",
+              "61 - 70%",
+              "71 - 80%",
+              "81 - 90%",
+              "90% سے زیادہ",
+              "متعین نہیں کیا جا سکتا"
+            ]
+          },
+          "length_of_prostatic_tissue_involved": {
+            "label": "ٹیومر سے متاثرہ پروسٹیٹک ٹشو کی لمبائی",
+            "options": [
+              "ملی میٹر (mm) میں درج کریں",
+              "1 ملی میٹر سے کم"
+            ]
+          }
+        }
+      },
+
+      "periprostatic_fat_invasion": {
+        "label": "پیری پروسٹیٹک چربی میں اِنویژن",
+        "options": [
+          "شناخت نہیں ہوا",
+          "موجود",
+          "غیر واضح",
+          "متعین نہیں کیا جا سکتا"
+        ]
+      },
+
+      "seminal_vesicle_or_ejaculatory_duct_invasion": {
+        "label": "سیمنل ویسیکل / ایجیکیولیٹری ڈکٹ اِنویژن",
+        "options": [
+          "شناخت نہیں ہوا",
+          "موجود",
+          "غیر واضح",
+          "متعین نہیں کیا جا سکتا"
+        ]
+      },
+
+      "lymphovascular_invasion": {
+        "label": "لیمفیٹک اور / یا ویسکیولر اِنویژن",
+        "options": [
+          "شناخت نہیں ہوا",
+          "موجود",
+          "غیر واضح",
+          "متعین نہیں کیا جا سکتا"
+        ]
+      },
+
+      "perineural_invasion": {
+        "label": "پیری نیورل اِنویژن",
+        "options": [
+          "شناخت نہیں ہوا",
+          "موجود"
+        ]
+      },
+
+      "additional_findings": {
+        "label": "اضافی مشاہدات",
+        "fields": {
+          "findings": {
+            "label": "اضافی مشاہدات",
+            "options": [
+              "کوئی نہیں",
+              "Atypical intraductal proliferation (AIP)",
+              "High-grade prostatic intraepithelial neoplasia (PIN)",
+              "Atypical small acinar proliferation / small focus of atypical glands (ASAP / ATYP)",
+              "Inflammation",
+              "Other"
+            ]
+          },
+          "none_identified_specify": {
+            "label": "کوئی نہیں"
+          },
+          "pin_specify": {
+            "label": "High-grade prostatic intraepithelial neoplasia (PIN)"
+          },
+          "asap_atyp_specify": {
+            "label": "Atypical small acinar proliferation / small focus of atypical glands (ASAP / ATYP)"
+          },
+          "inflammation_specify_type": {
+            "label": "Inflammation (قسم درج کریں)"
+          },
+          "other_specify": {
+            "label": "Other (specify)"
+          }
+        }
+      }
+    }
+  },
+
+  "comments": {
+    "label": "تبصرے",
+    "fields": {
+      "comment_text": {
+        "label": "تبصرہ"
+      }
+    }
+  }
+}

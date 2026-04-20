@@ -1,0 +1,345 @@
+{
+  "template_id": "gist_resection_v1",
+  "domain": "anatomic_pathology",
+  "title": "Gastrointestinal Stromal Tumor (GIST): Resection",
+  "standards": ["AJCC-UICC 8"],
+
+  "clinical": {
+    "label": "Clinical",
+    "fields": {
+      "preresection_treatment": {
+        "label": "Preresection treatment",
+        "type": "multi_select",
+        "options": [
+          "No known preresection therapy",
+          "Previous biopsy or surgery",
+          "Systemic therapy performed",
+          "Therapy performed, type not specified",
+          "Not specified"
+        ],
+        "value": []
+      }
+    }
+  },
+
+  "specimen": {
+    "label": "Specimen",
+    "fields": {
+      "procedure": {
+        "label": "Procedure",
+        "type": "select",
+        "options": [
+          "Local excision",
+          "Resection",
+          "Metastasectomy",
+          "Other",
+          "Not specified"
+        ],
+        "value": ""
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "tumor_focality": {
+        "label": "Tumor focality",
+        "type": "select",
+        "options": ["Unifocal", "Multifocal"],
+        "value": ""
+      },
+
+      "number_of_tumors": {
+        "label": "Number of tumors",
+        "type": "text",
+        "value": ""
+      },
+
+      "sizes_of_tumors": {
+        "label": "Sizes of tumors",
+        "type": "text",
+        "value": ""
+      },
+
+      "multiple_primary_sites": {
+        "label": "Multiple primary sites",
+        "type": "select",
+        "options": ["Not applicable", "Present"],
+        "value": ""
+      },
+
+      "tumor_site": {
+        "label": "Tumor site",
+        "type": "multi_select",
+        "options": [
+          "Esophagus",
+          "Gastroesophageal junction",
+          "Stomach",
+          "Duodenum",
+          "Jejunum",
+          "Ileum",
+          "Meckel diverticulum",
+          "Small intestine NOS",
+          "Appendix",
+          "Ileocecal valve",
+          "Cecum",
+          "Ascending colon",
+          "Transverse colon",
+          "Descending colon",
+          "Sigmoid colon",
+          "Rectosigmoid junction",
+          "Rectum",
+          "Large intestine NOS",
+          "Retroperitoneum",
+          "Peritoneum / abdomen",
+          "Other",
+          "Cannot be determined",
+          "Not specified"
+        ],
+        "value": []
+      },
+
+      "histologic_type": {
+        "label": "Histologic type",
+        "type": "select",
+        "options": ["Spindle cell type", "Epithelioid type", "Mixed", "Other"],
+        "value": ""
+      },
+
+      "tumor_size": {
+        "label": "Tumor size (clinicoradiologic estimate)",
+        "type": "text",
+        "value": ""
+      },
+
+      "mitotic_rate": {
+        "label": "Mitotic rate per 5 mm²",
+        "type": "text",
+        "value": ""
+      },
+
+      "histologic_grade": {
+        "label": "Histologic grade",
+        "type": "select",
+        "options": [
+          "G1 low grade (≤5 per 5 mm²)",
+          "G2 high grade (>5 per 5 mm²)",
+          "Other",
+          "GX cannot be assessed"
+        ],
+        "value": ""
+      },
+
+      "necrosis": {
+        "label": "Necrosis",
+        "type": "select",
+        "options": ["Not identified", "Present"],
+        "value": ""
+      },
+
+      "extent_of_necrosis": {
+        "label": "Extent of necrosis",
+        "type": "text",
+        "value": ""
+      },
+
+      "treatment_effect": {
+        "label": "Treatment effect",
+        "type": "select",
+        "options": [
+          "No known presurgical therapy",
+          "Not identified",
+          "Present",
+          "Cannot be determined"
+        ],
+        "value": ""
+      },
+
+      "percentage_viable_tumor": {
+        "label": "Percentage of viable tumor",
+        "type": "text",
+        "value": ""
+      },
+
+      "risk_assessment": {
+        "label": "Risk assessment",
+        "type": "select",
+        "options": [
+          "None",
+          "Very low risk",
+          "Low risk",
+          "Moderate risk",
+          "High risk",
+          "Overtly malignant / metastatic",
+          "Cannot be determined"
+        ],
+        "value": ""
+      },
+
+      "tumor_comment": {
+        "label": "Tumor comment",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "margins": {
+    "label": "Margins",
+    "fields": {
+      "margin_status": {
+        "label": "Margin status",
+        "type": "select",
+        "options": [
+          "All margins negative for GIST",
+          "GIST present at margin",
+          "Not applicable"
+        ],
+        "value": ""
+      },
+
+      "closest_margins": {
+        "label": "Closest margin(s)",
+        "type": "multi_select",
+        "options": [
+          "Proximal",
+          "Distal",
+          "Omental (radial)",
+          "Mucosal",
+          "Deep",
+          "Other",
+          "Cannot be determined"
+        ],
+        "value": []
+      },
+
+      "distance_to_closest_margin": {
+        "label": "Distance from GIST to closest margin",
+        "type": "text",
+        "value": ""
+      },
+
+      "margins_involved": {
+        "label": "Margin(s) involved by GIST",
+        "type": "multi_select",
+        "options": [
+          "Proximal",
+          "Distal",
+          "Omental (radial)",
+          "Mucosal",
+          "Deep",
+          "Other",
+          "Cannot be determined"
+        ],
+        "value": []
+      }
+    }
+  },
+
+  "regional_lymph_nodes": {
+    "label": "Regional Lymph Nodes",
+    "fields": {
+      "status": {
+        "label": "Regional lymph node status",
+        "type": "select",
+        "options": [
+          "Not applicable",
+          "Regional lymph nodes present",
+          "All negative for tumor",
+          "Tumor present in regional lymph node(s)"
+        ],
+        "value": ""
+      },
+
+      "number_with_tumor": {
+        "label": "Number of lymph nodes with tumor",
+        "type": "text",
+        "value": ""
+      },
+
+      "number_examined": {
+        "label": "Number of lymph nodes examined",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "distant_metastasis": {
+    "label": "Distant Metastasis",
+    "fields": {
+      "sites": {
+        "label": "Distant site(s) involved",
+        "type": "multi_select",
+        "options": ["Not applicable", "Liver", "Other", "Cannot be determined"],
+        "value": []
+      }
+    }
+  },
+
+  "ptnm": {
+    "label": "pTNM Classification (AJCC 8th Edition)",
+    "fields": {
+      "modified_classification": {
+        "label": "Modified classification",
+        "type": "multi_select",
+        "options": [
+          "Not applicable",
+          "y (post-neoadjuvant therapy)",
+          "r (recurrence)"
+        ],
+        "value": []
+      },
+
+      "pT_category": {
+        "label": "pT category",
+        "type": "select",
+        "options": [
+          "pT0",
+          "pT1 (≤2 cm)",
+          "pT2 (>2 cm to ≤5 cm)",
+          "pT3 (>5 cm to ≤10 cm)",
+          "pT4 (>10 cm)",
+          "pT not assigned"
+        ],
+        "value": ""
+      },
+
+      "T_suffix": {
+        "label": "T suffix",
+        "type": "select",
+        "options": [
+          "Not applicable",
+          "(m) multiple primary synchronous tumors"
+        ],
+        "value": ""
+      },
+
+      "pN_category": {
+        "label": "pN category",
+        "type": "select",
+        "options": ["pN not assigned", "pN0", "pN1"],
+        "value": ""
+      },
+
+      "pM_category": {
+        "label": "pM category",
+        "type": "select",
+        "options": ["Not applicable", "pM1"],
+        "value": ""
+      }
+    }
+  },
+
+  "additional_findings": {
+    "label": "Additional Findings",
+    "fields": {
+      "findings": {
+        "label": "Additional findings",
+        "type": "text",
+        "value": ""
+      }
+    }
+  }
+}

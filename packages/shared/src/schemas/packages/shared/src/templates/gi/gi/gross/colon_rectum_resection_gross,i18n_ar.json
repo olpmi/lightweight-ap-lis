@@ -1,0 +1,15 @@
+{
+  "template_id": "colon_rectum_resection_gross_tumor_v1",
+  "lang": "ar",
+  "ui": { "direction": "rtl" },
+  "title": "استئصال القولون والمستقيم للورم (قالب الفحص العياني)",
+  "specimen": { "label": "العينة" },
+  "tumor": { "label": "الورم" },
+  "margins": { "label": "الهوامش" },
+  "rectal_tumor_only": { "label": "لأورام المستقيم فقط" },
+  "polyps": { "label": "السلائل" },
+  "lymph_nodes": { "label": "العقد اللمفاوية" },
+  "other_findings": { "label": "نتائج عيانية أخرى ذات صلة" },
+  "block_identification_key": { "label": "مفتاح تعريف البلوكات" },
+  "grossing": { "label": "الفحص العياني" }
+}
