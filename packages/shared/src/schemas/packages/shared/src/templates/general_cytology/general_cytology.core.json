@@ -1,0 +1,212 @@
+{
+  "templateId": "general_cytology",
+  "templateName": "GENERAL CYTOLOGY REPORTING TEMPLATE",
+  "language": "en",
+  "sections": [
+    {
+      "id": "specimen",
+      "title": "Specimen",
+      "fields": [
+        {
+          "id": "specimen_type",
+          "label": "Type",
+          "type": "select",
+          "options": [
+            "FNA",
+            "Exfoliative cytology",
+            "Brushings",
+            "Washings",
+            "Body fluid",
+            "Other"
+          ]
+        },
+        {
+          "id": "site",
+          "label": "Site",
+          "type": "text"
+        },
+        {
+          "id": "laterality",
+          "label": "Laterality (if applicable)",
+          "type": "select",
+          "options": ["Right", "Left", "Bilateral", "Midline"]
+        },
+        {
+          "id": "procedure_guidance",
+          "label": "Procedure guidance",
+          "type": "select",
+          "options": ["Palpation", "Ultrasound", "CT", "Endoscopic", "Other"]
+        },
+        {
+          "id": "clinical_history_indication",
+          "label": "Clinical history / indication",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "id": "sample_adequacy",
+      "title": "Sample Adequacy",
+      "fields": [
+        {
+          "id": "adequacy_status",
+          "label": "Sample Adequacy",
+          "type": "select",
+          "options": [
+            "Satisfactory for evaluation",
+            "Limited cellularity but adequate",
+            "Unsatisfactory / non-diagnostic"
+          ]
+        },
+        {
+          "id": "unsatisfactory_reason",
+          "label": "Reason (if unsatisfactory)",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "preparation_methods",
+      "title": "Preparation Methods",
+      "fields": [
+        {
+          "id": "preparation_methods_used",
+          "label": "Preparation Methods",
+          "type": "multiselect",
+          "options": [
+            "Conventional smears",
+            "Liquid-based preparation",
+            "Cytospin"
+          ]
+        },
+        {
+          "id": "cell_block_prepared",
+          "label": "Cell block prepared",
+          "type": "select",
+          "options": ["Yes", "No"]
+        },
+        {
+          "id": "preparation_other",
+          "label": "Other",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "microscopic_description",
+      "title": "Microscopic Description",
+      "fields": [
+        {
+          "id": "microscopic_description_text",
+          "label": "Microscopic Description (free text)",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "id": "diagnostic_category",
+      "title": "Diagnostic Category",
+      "fields": [
+        {
+          "id": "diagnostic_category",
+          "label": "Diagnostic Category",
+          "type": "select",
+          "options": [
+            "Non-diagnostic / Unsatisfactory",
+            "Negative for malignancy / Benign",
+            "Atypical cells present",
+            "Suspicious for malignancy",
+            "Positive for malignancy",
+            "Neoplasm present (benign / low grade / malignant)",
+            "Other"
+          ]
+        },
+        {
+          "id": "diagnostic_category_other",
+          "label": "Other",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "final_interpretation",
+      "title": "Final Interpretation",
+      "fields": [
+        {
+          "id": "final_interpretation_text",
+          "label": "Final Interpretation",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "id": "favor_diagnosis",
+      "title": "If Positive / Suspicious / Neoplastic, Favor",
+      "fields": [
+        {
+          "id": "favor_diagnosis_options",
+          "label": "If Positive / Suspicious / Neoplastic, Favor",
+          "type": "multiselect",
+          "options": [
+            "Carcinoma",
+            "Adenocarcinoma",
+            "Squamous cell carcinoma",
+            "Neuroendocrine neoplasm",
+            "Lymphoma / hematolymphoid neoplasm",
+            "Melanoma",
+            "Sarcoma",
+            "Other"
+          ]
+        },
+        {
+          "id": "favor_diagnosis_other",
+          "label": "Other",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "ancillary_studies",
+      "title": "Ancillary Studies (if performed)",
+      "fields": [
+        {
+          "id": "cell_block_findings",
+          "label": "Cell block findings",
+          "type": "text"
+        },
+        {
+          "id": "immunocytochemistry",
+          "label": "Immunocytochemistry",
+          "type": "text"
+        },
+        {
+          "id": "flow_cytometry",
+          "label": "Flow cytometry",
+          "type": "text"
+        },
+        {
+          "id": "microbiology_stains_cultures",
+          "label": "Microbiology stains / cultures",
+          "type": "text"
+        },
+        {
+          "id": "molecular_studies",
+          "label": "Molecular studies",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "comment_recommendation",
+      "title": "Comment / Recommendation",
+      "fields": [
+        {
+          "id": "comment_text",
+          "label": "Comment / Recommendation",
+          "type": "textarea",
+          "default": "Correlate with clinical and imaging findings. Histologic biopsy / repeat sampling / further workup as indicated."
+        }
+      ]
+    }
+  ]
+}

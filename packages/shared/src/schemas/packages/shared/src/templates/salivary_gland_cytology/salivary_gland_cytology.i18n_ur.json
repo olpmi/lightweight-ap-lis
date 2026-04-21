@@ -1,0 +1,48 @@
+{
+  "templateName": "لعابی غدود کی سائٹولوجی رپورٹنگ ٹیمپلیٹ (لعابی غدود کی سائٹوپیتھولوجی کے لیے میلان سسٹم)",
+  "language": "ur",
+  "sections": {
+    "specimen": "نمونہ",
+    "adequacy": "کفایت",
+    "milan_category": "میلان زمرہ",
+    "microscopic_description": "خردبینی تفصیل",
+    "final_interpretation": "حتمی تشریح",
+    "recommended_management": "تجویز کردہ انتظام",
+    "comment": "تبصرہ"
+  },
+  "fields": {
+    "salivary_gland_fna_site": "لعابی غدود کی FNA (مناسب انتخاب کریں)",
+    "laterality": "سمت / جانب (مناسب انتخاب کریں)",
+    "lesion_size_cm": "گٹھلی / لیژن کا سائز (cm)",
+    "imaging_findings": "امیجنگ کے نتائج (اگر فراہم کیے گئے ہوں)",
+    "adequacy_status": "کفایت",
+    "milan_category": "میلان زمرہ",
+    "microscopic_description_text": "خردبینی تفصیل (آزاد متن)",
+    "final_interpretation_category": "میلان زمرہ",
+    "final_interpretation_text": "حتمی تشریح",
+    "recommended_management_options": "تجویز کردہ انتظام",
+    "comment_text": "تبصرہ"
+  },
+  "options": {
+    "Parotid": "پیروٹڈ",
+    "Submandibular": "سب مینڈیبیولر",
+    "Minor salivary gland": "چھوٹا لعابی غدود",
+    "Other": "دیگر",
+    "Right": "دائیں",
+    "Left": "بائیں",
+    "Midline": "درمیانی خط",
+    "Satisfactory for evaluation": "جانچ کے لیے مناسب",
+    "Non-diagnostic": "غیر تشخیصی",
+    "I. Non-diagnostic": "I. غیر تشخیصی",
+    "II. Non-neoplastic": "II. غیر نیوپلاسٹک",
+    "III. Atypia of Undetermined Significance (AUS)": "III. غیر متعین اہمیت کی ایٹائپیا (AUS)",
+    "IVa. Benign Neoplasm": "IVa. خوش خیم نیوپلازم",
+    "IVb. Salivary Gland Neoplasm of Uncertain Malignant Potential (SUMP)": "IVb. لعابی غدود کا ایسا نیوپلازم جس کی خباثتی صلاحیت غیر یقینی ہو (SUMP)",
+    "V. Suspicious for Malignancy": "V. خباثت کے لیے مشتبہ",
+    "VI. Malignant": "VI. خبیث",
+    "Clinical / radiologic correlation": "کلینیکل / ریڈیولوجیکل مطابقت",
+    "Repeat FNA": "FNA دوبارہ کریں",
+    "Excision / surgical consultation": "ایکسژن / جراحی مشاورت",
+    "Further ancillary studies (cell block / immunocytochemistry / molecular testing if available)": "مزید اضافی مطالعات (سیل بلاک / امیونوسائٹو کیمسٹری / مالیکیولر ٹیسٹنگ اگر دستیاب ہو)"
+  }
+}

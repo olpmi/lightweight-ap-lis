@@ -1,0 +1,42 @@
+{
+  "templateName": "MODÈLE DE COMPTE RENDU DE CYTOLOGIE THYROÏDIENNE (SYSTÈME DE BETHESDA, 3E ÉDITION)",
+  "language": "fr",
+  "sections": {
+    "specimen": "Prélèvement",
+    "adequacy": "Adéquation",
+    "bethesda_category": "Catégorie Bethesda",
+    "microscopic_description": "Description microscopique",
+    "final_interpretation": "Interprétation finale",
+    "recommended_management": "Prise en charge recommandée",
+    "comment": "Commentaire"
+  },
+  "fields": {
+    "thyroid_fna_site": "FNA thyroïdienne (sélectionner l’option appropriée)",
+    "nodule_size_cm": "Taille du nodule (cm)",
+    "ultrasound_features": "Caractéristiques échographiques (si fournies)",
+    "adequacy_status": "Adéquation",
+    "bethesda_category": "Catégorie Bethesda",
+    "microscopic_description_text": "Description microscopique (texte libre)",
+    "final_interpretation_category": "Catégorie Bethesda",
+    "final_interpretation_text": "Interprétation finale",
+    "recommended_management_options": "Prise en charge recommandée (sélectionner l’option appropriée)",
+    "comment_text": "Commentaire"
+  },
+  "options": {
+    "Right": "Droite",
+    "Left": "Gauche",
+    "Isthmus": "Isthme",
+    "Satisfactory for evaluation": "Satisfaisant pour l’évaluation",
+    "Unsatisfactory / non-diagnostic": "Non satisfaisant / non diagnostique",
+    "I. Non-diagnostic / Unsatisfactory": "I. Non diagnostique / non satisfaisant",
+    "II. Benign": "II. Bénin",
+    "III. Atypia of Undetermined Significance (AUS)": "III. Atypies de signification indéterminée (AUS)",
+    "IV. Follicular Neoplasm / Suspicious for Follicular Neoplasm": "IV. Néoplasme folliculaire / suspect de néoplasme folliculaire",
+    "V. Suspicious for Malignancy": "V. Suspect de malignité",
+    "VI. Malignant": "VI. Malin",
+    "Clinical / radiologic follow-up": "Suivi clinique / radiologique",
+    "Repeat FNA": "Répéter la FNA",
+    "Molecular testing (if available)": "Analyse moléculaire (si disponible)",
+    "Surgical consultation / lobectomy / thyroidectomy": "Consultation chirurgicale / lobectomie / thyroïdectomie"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "templateName": "KIELELEZO CHA RIPOTI YA SAITOLOJIA YA TEZI ZA MATE (MFUMO WA MILAN WA KURIPOTI SAITOPATHOLOJIA YA TEZI ZA MATE)",
+  "language": "sw",
+  "sections": {
+    "specimen": "Sampuli",
+    "adequacy": "Ubora",
+    "milan_category": "Kategoria ya Milan",
+    "microscopic_description": "Maelezo ya Kimaikroskopi",
+    "final_interpretation": "Tafsiri ya Mwisho",
+    "recommended_management": "Usimamizi Unaopendekezwa",
+    "comment": "Maoni"
+  },
+  "fields": {
+    "salivary_gland_fna_site": "FNA ya tezi ya mate (chagua inayofaa)",
+    "laterality": "Upande (chagua inayofaa)",
+    "lesion_size_cm": "Ukubwa wa kidonda (cm)",
+    "imaging_findings": "Matokeo ya picha za uchunguzi (ikiwa yametolewa)",
+    "adequacy_status": "Ubora",
+    "milan_category": "Kategoria ya Milan",
+    "microscopic_description_text": "Maelezo ya kimaikroskopi (maandishi huru)",
+    "final_interpretation_category": "Kategoria ya Milan",
+    "final_interpretation_text": "Tafsiri ya mwisho",
+    "recommended_management_options": "Usimamizi unaopendekezwa",
+    "comment_text": "Maoni"
+  },
+  "options": {
+    "Parotid": "Parotidi",
+    "Submandibular": "Submandibula",
+    "Minor salivary gland": "Tezi ndogo ya mate",
+    "Other": "Nyingine",
+    "Right": "Kulia",
+    "Left": "Kushoto",
+    "Midline": "Katikati",
+    "Satisfactory for evaluation": "Inafaa kwa tathmini",
+    "Non-diagnostic": "Isiyo ya uchunguzi",
+    "I. Non-diagnostic": "I. Isiyo ya uchunguzi",
+    "II. Non-neoplastic": "II. Isiyo ya neoplasia",
+    "III. Atypia of Undetermined Significance (AUS)": "III. Atypia yenye umuhimu usiojulikana (AUS)",
+    "IVa. Benign Neoplasm": "IVa. Neoplasia ya benigni",
+    "IVb. Salivary Gland Neoplasm of Uncertain Malignant Potential (SUMP)": "IVb. Neoplasia ya tezi ya mate yenye uwezekano usiojulikana wa kuwa mbaya (SUMP)",
+    "V. Suspicious for Malignancy": "V. Inatiliwa shaka kuwa mbaya",
+    "VI. Malignant": "VI. Mbaya",
+    "Clinical / radiologic correlation": "Ulinganifu wa kliniki / radiolojia",
+    "Repeat FNA": "Rudia FNA",
+    "Excision / surgical consultation": "Excision / ushauri wa upasuaji",
+    "Further ancillary studies (cell block / immunocytochemistry / molecular testing if available)": "Uchunguzi wa ziada (cell block / immunocytochemistry / upimaji wa molekuli ikiwa unapatikana)"
+  }
+}

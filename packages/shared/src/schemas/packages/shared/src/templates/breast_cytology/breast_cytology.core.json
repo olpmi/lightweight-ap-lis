@@ -1,0 +1,203 @@
+{
+  "templateId": "breast_cytology_yokohama",
+  "templateName": "BREAST CYTOLOGY REPORTING TEMPLATE (YOKOHAMA SYSTEM FOR REPORTING BREAST FINE NEEDLE ASPIRATION BIOPSY CYTOPATHOLOGY)",
+  "language": "en",
+  "sections": [
+    {
+      "id": "specimen",
+      "title": "Specimen",
+      "fields": [
+        {
+          "id": "breast_side",
+          "label": "Breast FNA",
+          "type": "select",
+          "options": ["Right", "Left"]
+        },
+        {
+          "id": "site",
+          "label": "Site",
+          "type": "select",
+          "options": [
+            "Upper outer quadrant",
+            "Upper inner",
+            "Lower outer",
+            "Lower inner",
+            "Central",
+            "Axillary tail",
+            "Other"
+          ]
+        },
+        {
+          "id": "lesion_size_cm",
+          "label": "Lesion size (cm)",
+          "type": "text"
+        },
+        {
+          "id": "imaging_category",
+          "label": "Imaging category (if provided)",
+          "type": "text"
+        },
+        {
+          "id": "guidance",
+          "label": "Guidance",
+          "type": "select",
+          "options": ["Palpation", "Ultrasound-guided", "Other"]
+        }
+      ]
+    },
+    {
+      "id": "specimen_adequacy",
+      "title": "Specimen Adequacy",
+      "fields": [
+        {
+          "id": "adequacy_status",
+          "label": "Specimen Adequacy (select appropriate)",
+          "type": "select",
+          "options": [
+            "Satisfactory for evaluation",
+            "Limited cellularity but adequate",
+            "Inadequate / non-diagnostic"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "diagnostic_category",
+      "title": "Diagnostic Category (Yokohama)",
+      "fields": [
+        {
+          "id": "yokohama_category",
+          "label": "Diagnostic Category (Yokohama)",
+          "type": "select",
+          "options": [
+            "I: Insufficient / Inadequate",
+            "II: Benign",
+            "III: Atypical",
+            "IV: Suspicious for Malignancy",
+            "V: Malignant"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "microscopic_description",
+      "title": "Microscopic Description",
+      "fields": [
+        {
+          "id": "microscopic_description_text",
+          "label": "Microscopic Description (free text)",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "id": "final_interpretation",
+      "title": "Final Interpretation",
+      "fields": [
+        {
+          "id": "final_interpretation_category",
+          "label": "Final Interpretation Category",
+          "type": "select",
+          "options": ["Benign", "Atypical", "Suspicious", "Malignant"]
+        },
+        {
+          "id": "benign_interpretation",
+          "label": "Benign",
+          "type": "multiselect",
+          "options": [
+            "Fibrocystic change",
+            "Fibroadenoma",
+            "Inflammatory lesion",
+            "Fat necrosis",
+            "Galactocele"
+          ]
+        },
+        {
+          "id": "atypical_interpretation",
+          "label": "Atypical",
+          "type": "multiselect",
+          "options": [
+            "Proliferative epithelial lesion with atypia",
+            "Limited atypical cells"
+          ]
+        },
+        {
+          "id": "suspicious_interpretation",
+          "label": "Suspicious",
+          "type": "multiselect",
+          "options": [
+            "Strongly suspicious for carcinoma but quantitatively/qualitatively limited"
+          ]
+        },
+        {
+          "id": "malignant_interpretation",
+          "label": "Malignant",
+          "type": "multiselect",
+          "options": [
+            "Carcinoma (no special type)",
+            "Metastatic carcinoma",
+            "Lymphoma",
+            "Other malignancy"
+          ]
+        },
+        {
+          "id": "malignant_other",
+          "label": "Other malignancy",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "ancillary_studies",
+      "title": "Ancillary Studies (if performed)",
+      "fields": [
+        {
+          "id": "cell_block",
+          "label": "Cell block",
+          "type": "select",
+          "options": ["Yes", "No"]
+        },
+        {
+          "id": "immunocytochemistry",
+          "label": "Immunocytochemistry",
+          "type": "text"
+        },
+        {
+          "id": "biomarker_testing",
+          "label": "Biomarker testing (ER / PR / HER2 if validated)",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "risk_of_malignancy",
+      "title": "Risk of Malignancy (approximate)",
+      "fields": [
+        {
+          "id": "risk_of_malignancy_category",
+          "label": "Risk of Malignancy (approximate)",
+          "type": "select",
+          "options": [
+            "Category 1: Low but non-zero / requires repeat sampling",
+            "Category 2: Very low",
+            "Category 3: Intermediate",
+            "Category 4: High",
+            "Category 5: Very high"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "comment_recommendation",
+      "title": "Comment / Recommendation",
+      "fields": [
+        {
+          "id": "comment_text",
+          "label": "Comment / Recommendation",
+          "type": "textarea",
+          "default": "Correlate with triple assessment (clinical, imaging, pathology). Core biopsy / repeat FNA / excision as clinically indicated."
+        }
+      ]
+    }
+  ]
+}

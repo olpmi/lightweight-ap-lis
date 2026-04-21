@@ -1,0 +1,48 @@
+{
+  "templateName": "MODÈLE DE COMPTE RENDU DE CYTOLOGIE DES GLANDES SALIVAIRES (SYSTÈME DE MILAN POUR LA CYTOPATHOLOGIE DES GLANDES SALIVAIRES)",
+  "language": "fr",
+  "sections": {
+    "specimen": "Prélèvement",
+    "adequacy": "Adéquation",
+    "milan_category": "Catégorie de Milan",
+    "microscopic_description": "Description microscopique",
+    "final_interpretation": "Interprétation finale",
+    "recommended_management": "Prise en charge recommandée",
+    "comment": "Commentaire"
+  },
+  "fields": {
+    "salivary_gland_fna_site": "FNA de glande salivaire (sélectionner l’option appropriée)",
+    "laterality": "Latéralité (sélectionner l’option appropriée)",
+    "lesion_size_cm": "Taille de la lésion (cm)",
+    "imaging_findings": "Résultats de l’imagerie (si fournis)",
+    "adequacy_status": "Adéquation",
+    "milan_category": "Catégorie de Milan",
+    "microscopic_description_text": "Description microscopique (texte libre)",
+    "final_interpretation_category": "Catégorie de Milan",
+    "final_interpretation_text": "Interprétation finale",
+    "recommended_management_options": "Prise en charge recommandée",
+    "comment_text": "Commentaire"
+  },
+  "options": {
+    "Parotid": "Parotide",
+    "Submandibular": "Sous-mandibulaire",
+    "Minor salivary gland": "Glande salivaire accessoire",
+    "Other": "Autre",
+    "Right": "Droite",
+    "Left": "Gauche",
+    "Midline": "Ligne médiane",
+    "Satisfactory for evaluation": "Satisfaisant pour l’évaluation",
+    "Non-diagnostic": "Non diagnostique",
+    "I. Non-diagnostic": "I. Non diagnostique",
+    "II. Non-neoplastic": "II. Non néoplasique",
+    "III. Atypia of Undetermined Significance (AUS)": "III. Atypies de signification indéterminée (AUS)",
+    "IVa. Benign Neoplasm": "IVa. Néoplasme bénin",
+    "IVb. Salivary Gland Neoplasm of Uncertain Malignant Potential (SUMP)": "IVb. Néoplasme salivaire à potentiel malin incertain (SUMP)",
+    "V. Suspicious for Malignancy": "V. Suspect de malignité",
+    "VI. Malignant": "VI. Malin",
+    "Clinical / radiologic correlation": "Corrélation clinique / radiologique",
+    "Repeat FNA": "Répéter la FNA",
+    "Excision / surgical consultation": "Exérèse / consultation chirurgicale",
+    "Further ancillary studies (cell block / immunocytochemistry / molecular testing if available)": "Études complémentaires supplémentaires (cell block / immunocytochemie / analyses moléculaires si disponibles)"
+  }
+}
