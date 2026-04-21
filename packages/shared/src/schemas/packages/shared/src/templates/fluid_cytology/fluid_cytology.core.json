@@ -1,0 +1,181 @@
+{
+  "templateId": "fluid_cytology_international_serous_fluid",
+  "templateName": "FLUID CYTOLOGY REPORTING TEMPLATE (CURRENT INTERNATIONAL SYSTEM FOR REPORTING SEROUS FLUID CYTOPATHOLOGY)",
+  "language": "en",
+  "sections": [
+    {
+      "id": "specimen",
+      "title": "Specimen",
+      "fields": [
+        {
+          "id": "fluid_type",
+          "label": "Fluid type (select appropriate)",
+          "type": "select",
+          "options": [
+            "Pleural",
+            "Peritoneal",
+            "Ascitic",
+            "Pericardial",
+            "Other"
+          ]
+        },
+        {
+          "id": "laterality",
+          "label": "Laterality (if applicable)",
+          "type": "select",
+          "options": ["Right", "Left", "Bilateral"]
+        },
+        {
+          "id": "volume_received_ml",
+          "label": "Volume received (mL)",
+          "type": "text"
+        },
+        {
+          "id": "appearance",
+          "label": "Appearance",
+          "type": "select",
+          "options": ["Clear", "Straw", "Hemorrhagic", "Turbid", "Other"]
+        }
+      ]
+    },
+    {
+      "id": "preparation_methods",
+      "title": "Preparation Methods",
+      "fields": [
+        {
+          "id": "preparation_methods_used",
+          "label": "Preparation methods",
+          "type": "multiselect",
+          "options": [
+            "Conventional smear",
+            "Cytospin",
+            "Liquid-based preparation"
+          ]
+        },
+        {
+          "id": "cell_block_prepared",
+          "label": "Cell block prepared",
+          "type": "select",
+          "options": ["Yes", "No"]
+        }
+      ]
+    },
+    {
+      "id": "adequacy",
+      "title": "Adequacy",
+      "fields": [
+        {
+          "id": "adequacy_status",
+          "label": "Adequacy",
+          "type": "select",
+          "options": [
+            "Satisfactory for evaluation",
+            "Limited / Scant cellularity",
+            "Unsatisfactory"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "diagnostic_category",
+      "title": "Diagnostic Category",
+      "fields": [
+        {
+          "id": "diagnostic_category",
+          "label": "Diagnostic Category",
+          "type": "select",
+          "options": [
+            "I. Non-diagnostic (ND)",
+            "II. Negative for Malignancy (NFM)",
+            "III. Atypia of Undetermined Significance (AUS)",
+            "IV. Suspicious for Malignancy (SFM)",
+            "V. Malignant (MAL)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "microscopic_description",
+      "title": "Microscopic Description",
+      "fields": [
+        {
+          "id": "microscopic_description_brief",
+          "label": "Microscopic Description (brief)",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "id": "final_interpretation",
+      "title": "Final Interpretation",
+      "fields": [
+        {
+          "id": "final_interpretation_category",
+          "label": "Category",
+          "type": "text"
+        },
+        {
+          "id": "final_interpretation_text",
+          "label": "Final Interpretation",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "malignant_suspicious_favor",
+      "title": "If Malignant / Suspicious, Favor",
+      "fields": [
+        {
+          "id": "favor_diagnosis",
+          "label": "If Malignant / Suspicious, Favor",
+          "type": "multiselect",
+          "options": [
+            "Metastatic adenocarcinoma",
+            "Mesothelioma",
+            "Hematolymphoid malignancy",
+            "Poorly differentiated carcinoma",
+            "Other"
+          ]
+        },
+        {
+          "id": "favor_other",
+          "label": "Other",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "ancillary_studies",
+      "title": "Ancillary Studies (if performed)",
+      "fields": [
+        {
+          "id": "cell_block_immunocytochemistry",
+          "label": "Cell block immunocytochemistry",
+          "type": "text"
+        },
+        {
+          "id": "flow_cytometry",
+          "label": "Flow cytometry",
+          "type": "text"
+        },
+        {
+          "id": "molecular_studies",
+          "label": "Molecular studies",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "comment",
+      "title": "Comment",
+      "fields": [
+        {
+          "id": "comment_text",
+          "label": "Comment",
+          "type": "textarea",
+          "default": "Correlate with clinical history, imaging, and prior pathology. Further tissue sampling may be recommended if clinically indicated."
+        }
+      ]
+    }
+  ]
+}

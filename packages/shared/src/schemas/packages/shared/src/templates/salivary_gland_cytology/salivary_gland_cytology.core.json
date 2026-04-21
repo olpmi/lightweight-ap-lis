@@ -1,0 +1,127 @@
+{
+  "templateId": "salivary_gland_cytology_milan",
+  "templateName": "SALIVARY GLAND CYTOLOGY REPORTING TEMPLATE (MILAN SYSTEM FOR REPORTING SALIVARY GLAND CYTOPATHOLOGY)",
+  "language": "en",
+  "sections": [
+    {
+      "id": "specimen",
+      "title": "Specimen",
+      "fields": [
+        {
+          "id": "salivary_gland_fna_site",
+          "label": "Salivary gland FNA (select appropriate)",
+          "type": "select",
+          "options": [
+            "Parotid",
+            "Submandibular",
+            "Minor salivary gland",
+            "Other"
+          ]
+        },
+        {
+          "id": "laterality",
+          "label": "Laterality (select appropriate)",
+          "type": "select",
+          "options": ["Right", "Left", "Midline"]
+        },
+        {
+          "id": "lesion_size_cm",
+          "label": "Lesion size (cm)",
+          "type": "text"
+        },
+        {
+          "id": "imaging_findings",
+          "label": "Imaging findings (if provided)",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "adequacy",
+      "title": "Adequacy",
+      "fields": [
+        {
+          "id": "adequacy_status",
+          "label": "Adequacy",
+          "type": "select",
+          "options": ["Satisfactory for evaluation", "Non-diagnostic"]
+        }
+      ]
+    },
+    {
+      "id": "milan_category",
+      "title": "Milan Category",
+      "fields": [
+        {
+          "id": "milan_category",
+          "label": "Milan Category",
+          "type": "select",
+          "options": [
+            "I. Non-diagnostic",
+            "II. Non-neoplastic",
+            "III. Atypia of Undetermined Significance (AUS)",
+            "IVa. Benign Neoplasm",
+            "IVb. Salivary Gland Neoplasm of Uncertain Malignant Potential (SUMP)",
+            "V. Suspicious for Malignancy",
+            "VI. Malignant"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "microscopic_description",
+      "title": "Microscopic Description",
+      "fields": [
+        {
+          "id": "microscopic_description_text",
+          "label": "Microscopic Description (free text)",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "id": "final_interpretation",
+      "title": "Final Interpretation",
+      "fields": [
+        {
+          "id": "final_interpretation_category",
+          "label": "Milan Category",
+          "type": "text"
+        },
+        {
+          "id": "final_interpretation_text",
+          "label": "Final Interpretation",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "recommended_management",
+      "title": "Recommended Management",
+      "fields": [
+        {
+          "id": "recommended_management_options",
+          "label": "Recommended Management",
+          "type": "multiselect",
+          "options": [
+            "Clinical / radiologic correlation",
+            "Repeat FNA",
+            "Excision / surgical consultation",
+            "Further ancillary studies (cell block / immunocytochemistry / molecular testing if available)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "comment",
+      "title": "Comment",
+      "fields": [
+        {
+          "id": "comment_text",
+          "label": "Comment",
+          "type": "textarea"
+        }
+      ]
+    }
+  ]
+}

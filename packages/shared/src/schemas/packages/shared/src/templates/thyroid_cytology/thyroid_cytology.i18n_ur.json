@@ -1,0 +1,42 @@
+{
+  "templateName": "تھائیرائڈ سائٹولوجی رپورٹنگ ٹیمپلیٹ (تیسرا ایڈیشن بیتھیسڈا سسٹم)",
+  "language": "ur",
+  "sections": {
+    "specimen": "نمونہ",
+    "adequacy": "کفایت",
+    "bethesda_category": "بیتھیسڈا زمرہ",
+    "microscopic_description": "خردبینی تفصیل",
+    "final_interpretation": "حتمی تشریح",
+    "recommended_management": "تجویز کردہ انتظام",
+    "comment": "تبصرہ"
+  },
+  "fields": {
+    "thyroid_fna_site": "تھائیرائڈ FNA (مناسب انتخاب کریں)",
+    "nodule_size_cm": "نوڈیول کا سائز (cm)",
+    "ultrasound_features": "الٹراساؤنڈ کی خصوصیات (اگر فراہم کی گئی ہوں)",
+    "adequacy_status": "کفایت",
+    "bethesda_category": "بیتھیسڈا زمرہ",
+    "microscopic_description_text": "خردبینی تفصیل (آزاد متن)",
+    "final_interpretation_category": "بیتھیسڈا زمرہ",
+    "final_interpretation_text": "حتمی تشریح",
+    "recommended_management_options": "تجویز کردہ انتظام (مناسب انتخاب کریں)",
+    "comment_text": "تبصرہ"
+  },
+  "options": {
+    "Right": "دائیں",
+    "Left": "بائیں",
+    "Isthmus": "استھمس",
+    "Satisfactory for evaluation": "جانچ کے لیے مناسب",
+    "Unsatisfactory / non-diagnostic": "غیر مناسب / غیر تشخیصی",
+    "I. Non-diagnostic / Unsatisfactory": "I. غیر تشخیصی / غیر مناسب",
+    "II. Benign": "II. خوش خیم",
+    "III. Atypia of Undetermined Significance (AUS)": "III. غیر متعین اہمیت کی ایٹائپیا (AUS)",
+    "IV. Follicular Neoplasm / Suspicious for Follicular Neoplasm": "IV. فولیکیولر نیوپلازم / فولیکیولر نیوپلازم کے لیے مشتبہ",
+    "V. Suspicious for Malignancy": "V. خباثت کے لیے مشتبہ",
+    "VI. Malignant": "VI. خبیث",
+    "Clinical / radiologic follow-up": "کلینیکل / ریڈیولوجیکل فالو اپ",
+    "Repeat FNA": "FNA دوبارہ کریں",
+    "Molecular testing (if available)": "مالیکیولر ٹیسٹنگ (اگر دستیاب ہو)",
+    "Surgical consultation / lobectomy / thyroidectomy": "جراحی مشاورت / لوبیکٹومی / تھائیرائڈیکٹومی"
+  }
+}

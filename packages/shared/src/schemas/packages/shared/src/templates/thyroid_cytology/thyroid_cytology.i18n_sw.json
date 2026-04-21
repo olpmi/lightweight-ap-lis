@@ -1,0 +1,42 @@
+{
+  "templateName": "KIELELEZO CHA RIPOTI YA SAITOLOJIA YA TEZI YA THYROID (MFUMO WA BETHESDA TOLEO LA 3)",
+  "language": "sw",
+  "sections": {
+    "specimen": "Sampuli",
+    "adequacy": "Ubora",
+    "bethesda_category": "Kategoria ya Bethesda",
+    "microscopic_description": "Maelezo ya Kimaikroskopi",
+    "final_interpretation": "Tafsiri ya Mwisho",
+    "recommended_management": "Usimamizi Unaopendekezwa",
+    "comment": "Maoni"
+  },
+  "fields": {
+    "thyroid_fna_site": "FNA ya tezi ya thyroid (chagua inayofaa)",
+    "nodule_size_cm": "Ukubwa wa noduli (cm)",
+    "ultrasound_features": "Vipengele vya ultrasound (ikiwa vimetolewa)",
+    "adequacy_status": "Ubora",
+    "bethesda_category": "Kategoria ya Bethesda",
+    "microscopic_description_text": "Maelezo ya kimaikroskopi (maandishi huru)",
+    "final_interpretation_category": "Kategoria ya Bethesda",
+    "final_interpretation_text": "Tafsiri ya mwisho",
+    "recommended_management_options": "Usimamizi unaopendekezwa (chagua inayofaa)",
+    "comment_text": "Maoni"
+  },
+  "options": {
+    "Right": "Kulia",
+    "Left": "Kushoto",
+    "Isthmus": "Isthmus",
+    "Satisfactory for evaluation": "Inafaa kwa tathmini",
+    "Unsatisfactory / non-diagnostic": "Haifai / isiyo ya uchunguzi",
+    "I. Non-diagnostic / Unsatisfactory": "I. Isiyo ya uchunguzi / haifai",
+    "II. Benign": "II. Benigni",
+    "III. Atypia of Undetermined Significance (AUS)": "III. Atypia yenye umuhimu usiojulikana (AUS)",
+    "IV. Follicular Neoplasm / Suspicious for Follicular Neoplasm": "IV. Neoplasia ya follicular / inatiliwa shaka kuwa neoplasia ya follicular",
+    "V. Suspicious for Malignancy": "V. Inatiliwa shaka kuwa mbaya",
+    "VI. Malignant": "VI. Mbaya",
+    "Clinical / radiologic follow-up": "Ufuatiliaji wa kliniki / radiolojia",
+    "Repeat FNA": "Rudia FNA",
+    "Molecular testing (if available)": "Upimaji wa molekuli (ikiwa unapatikana)",
+    "Surgical consultation / lobectomy / thyroidectomy": "Ushauri wa upasuaji / lobectomy / thyroidectomy"
+  }
+}

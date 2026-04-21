@@ -1,0 +1,118 @@
+{
+  "templateId": "thyroid_cytology_bethesda_3rd_edition",
+  "templateName": "THYROID CYTOLOGY REPORTING TEMPLATE (3RD EDITION BETHESDA SYSTEM)",
+  "language": "en",
+  "sections": [
+    {
+      "id": "specimen",
+      "title": "Specimen",
+      "fields": [
+        {
+          "id": "thyroid_fna_site",
+          "label": "Thyroid FNA (select appropriate)",
+          "type": "select",
+          "options": ["Right", "Left", "Isthmus"]
+        },
+        {
+          "id": "nodule_size_cm",
+          "label": "Nodule size (cm)",
+          "type": "text"
+        },
+        {
+          "id": "ultrasound_features",
+          "label": "Ultrasound features (if provided)",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "adequacy",
+      "title": "Adequacy",
+      "fields": [
+        {
+          "id": "adequacy_status",
+          "label": "Adequacy",
+          "type": "select",
+          "options": [
+            "Satisfactory for evaluation",
+            "Unsatisfactory / non-diagnostic"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bethesda_category",
+      "title": "Bethesda Category",
+      "fields": [
+        {
+          "id": "bethesda_category",
+          "label": "Bethesda Category",
+          "type": "select",
+          "options": [
+            "I. Non-diagnostic / Unsatisfactory",
+            "II. Benign",
+            "III. Atypia of Undetermined Significance (AUS)",
+            "IV. Follicular Neoplasm / Suspicious for Follicular Neoplasm",
+            "V. Suspicious for Malignancy",
+            "VI. Malignant"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "microscopic_description",
+      "title": "Microscopic Description",
+      "fields": [
+        {
+          "id": "microscopic_description_text",
+          "label": "Microscopic Description (free text)",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "id": "final_interpretation",
+      "title": "Final Interpretation",
+      "fields": [
+        {
+          "id": "final_interpretation_category",
+          "label": "Bethesda Category",
+          "type": "text"
+        },
+        {
+          "id": "final_interpretation_text",
+          "label": "Final Interpretation",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "recommended_management",
+      "title": "Recommended Management",
+      "fields": [
+        {
+          "id": "recommended_management_options",
+          "label": "Recommended Management (select appropriate)",
+          "type": "multiselect",
+          "options": [
+            "Clinical / radiologic follow-up",
+            "Repeat FNA",
+            "Molecular testing (if available)",
+            "Surgical consultation / lobectomy / thyroidectomy"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "comment",
+      "title": "Comment",
+      "fields": [
+        {
+          "id": "comment_text",
+          "label": "Comment",
+          "type": "textarea"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "templateName": "قالب تقرير سيتولوجيا الغدد اللعابية (نظام ميلانو لتقرير سيتوباثولوجيا الغدد اللعابية)",
+  "language": "ar",
+  "direction": "rtl",
+  "rtl": true,
+  "sections": {
+    "specimen": "العينة",
+    "adequacy": "الكفاية",
+    "milan_category": "فئة ميلانو",
+    "microscopic_description": "الوصف المجهري",
+    "final_interpretation": "التفسير النهائي",
+    "recommended_management": "التدبير الموصى به",
+    "comment": "التعليق"
+  },
+  "fields": {
+    "salivary_gland_fna_site": "شفط بالإبرة الدقيقة من الغدة اللعابية (اختر المناسب)",
+    "laterality": "الجهة (اختر المناسب)",
+    "lesion_size_cm": "حجم الآفة (سم)",
+    "imaging_findings": "نتائج التصوير (إن وُجدت)",
+    "adequacy_status": "الكفاية",
+    "milan_category": "فئة ميلانو",
+    "microscopic_description_text": "الوصف المجهري (نص حر)",
+    "final_interpretation_category": "فئة ميلانو",
+    "final_interpretation_text": "التفسير النهائي",
+    "recommended_management_options": "التدبير الموصى به",
+    "comment_text": "التعليق"
+  },
+  "options": {
+    "Parotid": "النكفية",
+    "Submandibular": "تحت الفك السفلي",
+    "Minor salivary gland": "غدة لعابية صغيرة",
+    "Other": "أخرى",
+    "Right": "أيمن",
+    "Left": "أيسر",
+    "Midline": "منتصف",
+    "Satisfactory for evaluation": "مرضٍ للتقييم",
+    "Non-diagnostic": "غير تشخيصي",
+    "I. Non-diagnostic": "I. غير تشخيصي",
+    "II. Non-neoplastic": "II. غير ورمي",
+    "III. Atypia of Undetermined Significance (AUS)": "III. لانمطية ذات أهمية غير محددة (AUS)",
+    "IVa. Benign Neoplasm": "IVa. ورم حميد",
+    "IVb. Salivary Gland Neoplasm of Uncertain Malignant Potential (SUMP)": "IVb. ورم غدة لعابية ذو احتمال خباثة غير مؤكد (SUMP)",
+    "V. Suspicious for Malignancy": "V. مشتبه للخباثة",
+    "VI. Malignant": "VI. خبيث",
+    "Clinical / radiologic correlation": "الربط السريري / الشعاعي",
+    "Repeat FNA": "إعادة الشفط بالإبرة الدقيقة",
+    "Excision / surgical consultation": "الاستئصال / الاستشارة الجراحية",
+    "Further ancillary studies (cell block / immunocytochemistry / molecular testing if available)": "دراسات إضافية مساندة (بلوك خلوي / كيمياء مناعية خلوية / فحوص جزيئية إن توفرت)"
+  }
+}

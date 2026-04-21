@@ -1,0 +1,44 @@
+{
+  "templateName": "قالب تقرير سيتولوجيا الغدة الدرقية (نظام بيثيسدا، الطبعة الثالثة)",
+  "language": "ar",
+  "direction": "rtl",
+  "rtl": true,
+  "sections": {
+    "specimen": "العينة",
+    "adequacy": "الكفاية",
+    "bethesda_category": "فئة بيثيسدا",
+    "microscopic_description": "الوصف المجهري",
+    "final_interpretation": "التفسير النهائي",
+    "recommended_management": "التدبير الموصى به",
+    "comment": "التعليق"
+  },
+  "fields": {
+    "thyroid_fna_site": "شفط الغدة الدرقية بالإبرة الدقيقة (اختر المناسب)",
+    "nodule_size_cm": "حجم العقيدة (سم)",
+    "ultrasound_features": "خصائص الألتراساوند (إن وُجدت)",
+    "adequacy_status": "الكفاية",
+    "bethesda_category": "فئة بيثيسدا",
+    "microscopic_description_text": "الوصف المجهري (نص حر)",
+    "final_interpretation_category": "فئة بيثيسدا",
+    "final_interpretation_text": "التفسير النهائي",
+    "recommended_management_options": "التدبير الموصى به (اختر المناسب)",
+    "comment_text": "التعليق"
+  },
+  "options": {
+    "Right": "أيمن",
+    "Left": "أيسر",
+    "Isthmus": "البرزخ",
+    "Satisfactory for evaluation": "مرضٍ للتقييم",
+    "Unsatisfactory / non-diagnostic": "غير مرضٍ / غير تشخيصي",
+    "I. Non-diagnostic / Unsatisfactory": "I. غير تشخيصي / غير مرضٍ",
+    "II. Benign": "II. حميد",
+    "III. Atypia of Undetermined Significance (AUS)": "III. لانمطية ذات أهمية غير محددة (AUS)",
+    "IV. Follicular Neoplasm / Suspicious for Follicular Neoplasm": "IV. ورم جريبي / مشتبه بورم جريبي",
+    "V. Suspicious for Malignancy": "V. مشتبه للخباثة",
+    "VI. Malignant": "VI. خبيث",
+    "Clinical / radiologic follow-up": "المتابعة السريرية / الشعاعية",
+    "Repeat FNA": "إعادة الشفط بالإبرة الدقيقة",
+    "Molecular testing (if available)": "الفحص الجزيئي (إن توفر)",
+    "Surgical consultation / lobectomy / thyroidectomy": "الاستشارة الجراحية / استئصال الفص / استئصال الغدة الدرقية"
+  }
+}
