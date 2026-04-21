@@ -1,0 +1,13 @@
+{
+  "template_id": "endometrium_resection_v1",
+  "lang": "ur",
+  "title": "اینڈومیٹریم",
+  "specimen": { "label": "نمونہ" },
+  "tumor": { "label": "ٹیومر" },
+  "margins": { "label": "حاشیے" },
+  "regional_lymph_nodes": { "label": "علاقائی لمف نوڈز" },
+  "distant_metastasis": { "label": "بعید میٹاسٹاسس" },
+  "ptnm_classification": { "label": "pTNM درجہ بندی" },
+  "figo_stage": { "label": "FIGO مرحلہ" },
+  "additional_findings": { "label": "اضافی مشاہدات" }
+}

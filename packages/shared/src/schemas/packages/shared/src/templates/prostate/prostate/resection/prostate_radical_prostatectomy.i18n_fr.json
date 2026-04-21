@@ -1,0 +1,107 @@
+{
+  "template_id": "prostate_radical_prostatectomy_v1",
+  "lang": "fr",
+  "title": "Prostate : prostatectomie radicale",
+
+  "specimen": {
+    "label": "Pièce",
+    "fields": {
+      "procedure": {
+        "label": "Procédure",
+        "options": [
+          "Prostatectomie radicale",
+          "Autre",
+          "Non précisé"
+        ]
+      },
+      "prostate_weight_g": {
+        "label": "Poids de la prostate (g)"
+      },
+      "prostate_size_cm": {
+        "label": "Taille de la prostate (cm)"
+      },
+      "additional_prostate_dimensions_cm": {
+        "label": "Dimensions supplémentaires de la prostate (cm)"
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "Tumeur",
+    "fields": {
+      "histologic_type": {
+        "label": "Type histologique",
+        "fields": {
+          "category": {
+            "label": "Catégorie",
+            "options": [
+              "Glandulaire",
+              "Malpighienne",
+              "Neuroendocrine",
+              "Autre type histologique non listé",
+              "Carcinome, type indéterminable"
+            ]
+          },
+          "type": {
+            "label": "Type histologique",
+            "options": [
+              "Adénocarcinome acinaire, conventionnel (habituel)",
+              "Adénocarcinome acinaire, à cellules en bague à chaton",
+              "Adénocarcinome acinaire, à cellules géantes pléomorphes",
+              "Adénocarcinome acinaire, sarcomatoïde",
+              "Adénocarcinome acinaire, de type néoplasie intraépithéliale prostatique",
+              "Carcinome intracanalaire",
+              "Adénocarcinome canalaire",
+              "Carcinome adénosquameux",
+              "Carcinome épidermoïde",
+              "Carcinome basocellulaire (adénoïde kystique)",
+              "Adénocarcinome avec différenciation neuroendocrine",
+              "Tumeur neuroendocrine bien différenciée",
+              "Carcinome neuroendocrine à petites cellules",
+              "Carcinome neuroendocrine à grandes cellules",
+              "Autre type histologique non listé",
+              "Carcinome, type indéterminable"
+            ]
+          },
+          "comment": {
+            "label": "Commentaire sur le type histologique"
+          }
+        }
+      },
+      "histologic_grade": {
+        "label": "Grade histologique"
+      },
+      "intraductal_carcinoma": {
+        "label": "Carcinome intracanalaire (IDC)"
+      },
+      "cribriform_glands": {
+        "label": "Glandes cribriformes"
+      },
+      "treatment_effect": {
+        "label": "Effet du traitement"
+      }
+    }
+  },
+
+  "tumor_quantitation": {
+    "label": "Quantification tumorale"
+  },
+  "extension_and_invasion": {
+    "label": "Extension et invasion"
+  },
+  "margins": {
+    "label": "Marges"
+  },
+  "regional_lymph_nodes": {
+    "label": "Ganglions lymphatiques régionaux"
+  },
+  "distant_metastasis": {
+    "label": "Métastase à distance"
+  },
+  "ptnm_classification": {
+    "label": "Classification pTNM (AJCC 8e édition)"
+  },
+  "additional_findings": {
+    "label": "Constatations supplémentaires"
+  }
+}

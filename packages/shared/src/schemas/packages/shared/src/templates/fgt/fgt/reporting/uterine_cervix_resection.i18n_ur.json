@@ -1,0 +1,11 @@
+{
+  "template_id": "uterine_cervix_resection_v1",
+  "lang": "ur",
+  "title": "یوٹرائن سروکس ریسیکشن",
+  "tumor": { "label": "ٹیومر" },
+  "margins": { "label": "حاشیے" },
+  "regional_lymph_nodes": { "label": "علاقائی لمف نوڈز" },
+  "distant_metastasis": { "label": "دور دراز میٹاسٹیسس" },
+  "pathologic_stage": { "label": "پیتھولوجیکل درجہ بندی" },
+  "additional_findings": { "label": "اضافی مشاہدات" }
+}

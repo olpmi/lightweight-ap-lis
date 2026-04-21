@@ -1,0 +1,272 @@
+{
+  "template_id": "breast_invasive_carcinoma_biopsy_v1",
+  "domain": "anatomic_pathology",
+  "title": "Breast Invasive Carcinoma, Biopsy",
+  "protocol_posting_date": "March 2023",
+
+  "specimen": {
+    "label": "Specimen",
+    "fields": {
+      "procedure": {
+        "label": "Procedure",
+        "type": "select",
+        "options": [
+          "Needle biopsy",
+          "Fine needle aspiration",
+          "Other",
+          "Not specified"
+        ],
+        "value": "",
+        "other_specify": ""
+      },
+      "laterality": {
+        "label": "Specimen laterality",
+        "type": "select",
+        "options": ["Right", "Left", "Not specified"],
+        "value": ""
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "tumor_site": {
+        "label": "Tumor site",
+        "type": "multi_select",
+        "options": [
+          "Upper outer quadrant",
+          "Lower outer quadrant",
+          "Upper inner quadrant",
+          "Lower inner quadrant",
+          "Central",
+          "Nipple",
+          "Clock position",
+          "Not specified"
+        ],
+        "value": [],
+        "clock_position_specify": ""
+      },
+
+      "histologic_type": {
+        "label": "Histologic type",
+        "type": "select",
+        "options": [
+          "No residual invasive carcinoma",
+          "Invasive carcinoma of no special type (ductal)",
+          "Micro-invasive carcinoma",
+          "Invasive lobular carcinoma",
+          "Invasive carcinoma with mixed ductal and lobular features",
+          "Invasive carcinoma with features of",
+          "Tubular carcinoma",
+          "Invasive cribriform carcinoma",
+          "Mucinous carcinoma",
+          "Invasive micropapillary carcinoma",
+          "Apocrine adenocarcinoma",
+          "Metaplastic carcinoma",
+          "Encapsulated papillary carcinoma with invasion",
+          "Solid papillary carcinoma with invasion",
+          "Intraductal papillary adenocarcinoma with invasion",
+          "Adenoid cystic carcinoma",
+          "Neuroendocrine tumor",
+          "Neuroendocrine carcinoma",
+          "Invasive carcinoma, type cannot be determined",
+          "Other histologic type not listed"
+        ],
+        "value": "",
+        "features_specify": "",
+        "cannot_be_determined_specify": "",
+        "other_specify": ""
+      },
+
+      "histologic_grade": {
+        "label": "Histologic grade (Nottingham Histologic Score)",
+        "fields": {
+          "applicability": {
+            "label": "Applicability",
+            "type": "select",
+            "options": [
+              "Not applicable (no residual carcinoma or microinvasion only)",
+              "Nottingham Score"
+            ],
+            "value": ""
+          },
+          "glandular_tubular_differentiation": {
+            "label": "Glandular (Acinar) / Tubular differentiation",
+            "type": "select",
+            "options": [
+              "Score 1 (greater than 75% of tumor area forming glandular / tubular structures)",
+              "Score 2 (10% to 75% of tumor area forming glandular / tubular structures)",
+              "Score 3 (less than 10% of tumor area forming glandular / tubular structures)",
+              "Score cannot be determined"
+            ],
+            "value": "",
+            "cannot_be_determined_specify": ""
+          },
+          "nuclear_pleomorphism": {
+            "label": "Nuclear pleomorphism",
+            "type": "select",
+            "options": [
+              "Score 1 (Nuclei small with little increase in size in comparison with normal breast epithelial cells, regular outlines, uniform nuclear chromatin, little variation in size)",
+              "Score 2 (Cells larger than normal with open vesicular nuclei, visible nucleoli, and moderate variability in both size and shape)",
+              "Score 3 (Vesicular nuclei, often with prominent nucleoli, exhibiting marked variation in size and shape, occasionally with very large and bizarre forms)",
+              "Score cannot be determined"
+            ],
+            "value": "",
+            "cannot_be_determined_specify": ""
+          },
+          "mitotic_rate": {
+            "label": "Mitotic rate",
+            "type": "select",
+            "options": [
+              "Score 1",
+              "Score 2",
+              "Score 3",
+              "Score cannot be determined"
+            ],
+            "value": "",
+            "cannot_be_determined_specify": "",
+            "reference_note": "See Table 1 in CAP Protocol."
+          },
+          "overall_grade": {
+            "label": "Overall grade",
+            "type": "select",
+            "options": [
+              "Grade 1 (scores of 3, 4 or 5)",
+              "Grade 2 (scores of 6 or 7)",
+              "Grade 3 (scores of 8 or 9)",
+              "Score cannot be determined"
+            ],
+            "value": "",
+            "cannot_be_determined_specify": ""
+          }
+        }
+      },
+
+      "largest_invasive_focus": {
+        "label": "Largest invasive focus in this limited biopsy sample",
+        "fields": {
+          "measurement_type": {
+            "label": "Measurement type",
+            "type": "select",
+            "options": [
+              "Exact measurement in millimeters (mm)",
+              "At least in millimeters (mm)",
+              "Cannot be determined"
+            ],
+            "value": ""
+          },
+          "measurement_mm": {
+            "label": "Measurement (mm)",
+            "type": "number",
+            "value": ""
+          },
+          "cannot_be_determined_specify": {
+            "label": "Cannot be determined (explain)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      }
+    }
+  },
+
+  "dcis": {
+    "label": "Ductal Carcinoma In Situ (DCIS)",
+    "fields": {
+      "presence": {
+        "label": "DCIS presence",
+        "type": "select",
+        "options": ["Not identified", "Present"],
+        "value": ""
+      },
+      "architectural_patterns": {
+        "label": "Architectural patterns",
+        "type": "multi_select",
+        "options": [
+          "Comedo",
+          "Paget disease (DCIS involving nipple skin)",
+          "Cribriform",
+          "Micropapillary",
+          "Papillary",
+          "Solid",
+          "Other"
+        ],
+        "value": [],
+        "other_specify": ""
+      },
+      "nuclear_grade": {
+        "label": "Nuclear grade",
+        "type": "select",
+        "options": [
+          "Grade I (low)",
+          "Grade II (intermediate)",
+          "Grade III (high)",
+          "Other",
+          "Cannot be determined"
+        ],
+        "value": "",
+        "other_specify": "",
+        "cannot_be_determined_specify": ""
+      },
+      "necrosis": {
+        "label": "Necrosis",
+        "type": "select",
+        "options": [
+          "Not identified",
+          "Present, focal (small foci or single cell necrosis)",
+          "Present, central (expansive \"comedo\" necrosis)",
+          "Other",
+          "Cannot be determined",
+          "Cannot be excluded"
+        ],
+        "value": "",
+        "other_specify": "",
+        "cannot_be_determined_specify": ""
+      }
+    }
+  },
+
+  "lymphovascular_invasion": {
+    "label": "Lymphatic and / or Vascular Invasion",
+    "fields": {
+      "status": {
+        "label": "Lymphatic and / or vascular invasion",
+        "type": "select",
+        "options": ["Not identified", "Present", "Cannot be determined"],
+        "value": "",
+        "cannot_be_determined_specify": ""
+      }
+    }
+  },
+
+  "microcalcifications": {
+    "label": "Microcalcifications",
+    "fields": {
+      "status": {
+        "label": "Microcalcifications",
+        "type": "multi_select",
+        "options": [
+          "Not identified",
+          "Present in DCIS",
+          "Present in invasive carcinoma",
+          "Present in non-neoplastic tissue",
+          "Other"
+        ],
+        "value": [],
+        "other_specify": ""
+      }
+    }
+  },
+
+  "additional_findings": {
+    "label": "Additional Findings",
+    "fields": {
+      "findings": {
+        "label": "Additional findings",
+        "type": "text",
+        "value": ""
+      }
+    }
+  }
+}

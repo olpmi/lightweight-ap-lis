@@ -1,0 +1,445 @@
+{
+  "template_id": "prostate_needle_biopsy_v1",
+  "domain": "anatomic_pathology",
+  "title": "Prostate Gland: Needle Biopsy",
+  "protocol_posting_date": "September 2023",
+
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "treatment_effect": {
+        "label": "Treatment effect",
+        "fields": {
+          "effects": {
+            "label": "Treatment effect",
+            "type": "multi_select",
+            "options": [
+              "No known presurgical therapy",
+              "Not identified",
+              "Radiation therapy effect present",
+              "Hormonal therapy effect present",
+              "Other therapy effect(s) present",
+              "Cannot be determined"
+            ],
+            "value": []
+          },
+          "radiation_therapy_effect_specify": {
+            "label": "Radiation therapy effect present",
+            "type": "text",
+            "value": ""
+          },
+          "hormonal_therapy_effect_specify": {
+            "label": "Hormonal therapy effect present",
+            "type": "text",
+            "value": ""
+          },
+          "other_therapy_effects_specify": {
+            "label": "Other therapy effect(s) present",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_specify": {
+            "label": "Cannot be determined",
+            "type": "text",
+            "value": ""
+          },
+          "comment": {
+            "label": "Treatment effect comment",
+            "type": "text",
+            "value": ""
+          }
+        }
+      }
+    }
+  },
+
+  "positive_specimens": {
+    "label": "Positive Specimen or Zone",
+    "type": "repeatable_group",
+    "item_label": "Positive specimen",
+    "fields": {
+      "positive_specimen_location": {
+        "label": "Positive specimen location",
+        "type": "select",
+        "options": [
+          "Right",
+          "Right Base (RB)",
+          "Right Base Lateral (RBL)",
+          "Right Base Medial (RBM)",
+          "Right Mid (RM)",
+          "Right Mid Lateral (RML)",
+          "Right Mid Medial (RMM)",
+          "Right Apex (RA)",
+          "Right Apex Lateral (RAL)",
+          "Right Apex Medial (RAM)",
+          "Right Transition Zone (RTZ)",
+          "Left",
+          "Left Base (LB)",
+          "Left Base Lateral (LBL)",
+          "Left Base Medial (LBM)",
+          "Left Mid (LM)",
+          "Left Mid Lateral (LML)",
+          "Left Mid Medial (LMM)",
+          "Left Apex (LA)",
+          "Left Apex Lateral (LAL)",
+          "Left Apex Medial (LAM)",
+          "Left Transition Zone (LTZ)",
+          "Other Transrectal Ultrasound (TRUS) lesion",
+          "MRI-guided biopsy",
+          "Not specified"
+        ],
+        "value": "",
+        "location_specify": ""
+      },
+
+      "histologic_type": {
+        "label": "Histologic type",
+        "fields": {
+          "category": {
+            "label": "Category",
+            "type": "select",
+            "options": [
+              "Glandular",
+              "Squamous",
+              "Neuroendocrine",
+              "Other histologic type not listed",
+              "Carcinoma, type cannot be determined"
+            ],
+            "value": ""
+          },
+          "type": {
+            "label": "Histologic type",
+            "type": "select",
+            "options": [
+              "Acinar adenocarcinoma, conventional (usual)",
+              "Acinar adenocarcinoma, signet-ring-like cell",
+              "Acinar adenocarcinoma, pleomorphic giant cell",
+              "Acinar adenocarcinoma, sarcomatoid",
+              "Acinar adenocarcinoma, prostatic intraepithelial neoplasia-like",
+              "Isolated intraductal carcinoma",
+              "Ductal adenocarcinoma",
+              "Adenosquamous carcinoma",
+              "Squamous cell carcinoma",
+              "Basal cell (adenoid cystic) carcinoma",
+              "Adenocarcinoma with neuroendocrine differentiation",
+              "Well-differentiated neuroendocrine tumor",
+              "Small cell neuroendocrine carcinoma",
+              "Large cell neuroendocrine carcinoma",
+              "Other histologic type not listed",
+              "Carcinoma, type cannot be determined"
+            ],
+            "value": "",
+            "other_specify": "",
+            "cannot_be_determined_specify": ""
+          },
+          "comment": {
+            "label": "Histologic type comment",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+
+      "histologic_grade": {
+        "label": "Histologic grade",
+        "fields": {
+          "grade_status": {
+            "label": "Grade",
+            "type": "select",
+            "options": [
+              "Not applicable",
+              "Cannot be assessed",
+              "Assessable"
+            ],
+            "value": "",
+            "not_applicable_specify": "",
+            "cannot_be_assessed_specify": ""
+          },
+          "tumor_microfocus": {
+            "label": "Tumor microfocus",
+            "type": "select",
+            "options": [
+              "Not identified",
+              "Present"
+            ],
+            "value": ""
+          },
+          "grade_group": {
+            "label": "Grade group",
+            "type": "select",
+            "options": [
+              "Grade group 1 (Gleason Score 3 + 3 = 6)",
+              "Grade group 2 (Gleason Score 3 + 4 = 7)",
+              "Grade group 3 (Gleason Score 4 + 3 = 7)",
+              "Grade group 4 (Gleason Score 4 + 4 = 8)",
+              "Grade group 4 (Gleason Score 3 + 5 = 8)",
+              "Grade group 4 (Gleason Score 5 + 3 = 8)",
+              "Grade group 5 (Gleason Score 4 + 5 = 9)",
+              "Grade group 5 (Gleason Score 5 + 4 = 9)",
+              "Grade group 5 (Gleason Score 5 + 5 = 10)"
+            ],
+            "value": ""
+          },
+          "pattern_4_percentage_for_grade_group_2": {
+            "label": "Percentage of pattern 4 for grade group 2",
+            "type": "select",
+            "options": [
+              "Not applicable (other specimens in this case have Gleason Scores of 8 or higher)",
+              "Less than or equal to 5%",
+              "6 - 10%",
+              "11 - 20%",
+              "21 - 30%",
+              "31 - 40%",
+              "Greater than 40%"
+            ],
+            "value": ""
+          },
+          "pattern_4_percentage_for_grade_group_3": {
+            "label": "Percentage of pattern 4 for grade group 3",
+            "type": "select",
+            "options": [
+              "Not applicable (other specimens in this case have Gleason Scores of 8 or higher)",
+              "Less than 61%",
+              "61 - 70%",
+              "71 - 80%",
+              "81 - 90%",
+              "Greater than 90%"
+            ],
+            "value": ""
+          },
+          "pattern_4_percentage_for_gleason_8_and_above": {
+            "label": "Percentage of pattern 4 (Gleason Score 8 and above)",
+            "type": "number",
+            "value": ""
+          },
+          "pattern_5_percentage_for_gleason_8_and_above": {
+            "label": "Percentage of pattern 5 (Gleason Score 8 and above)",
+            "type": "number",
+            "value": ""
+          }
+        }
+      },
+
+      "intraductal_carcinoma": {
+        "label": "Intraductal carcinoma (IDC)",
+        "fields": {
+          "status": {
+            "label": "IDC",
+            "type": "select",
+            "options": [
+              "Not identified",
+              "Present"
+            ],
+            "value": ""
+          },
+          "incorporated_into_grade": {
+            "label": "IDC incorporated into grade",
+            "type": "select",
+            "options": [
+              "Yes",
+              "No",
+              "Cannot be determined"
+            ],
+            "value": "",
+            "cannot_be_determined_specify": ""
+          }
+        }
+      },
+
+      "cribriform_glands": {
+        "label": "Cribriform glands",
+        "fields": {
+          "status": {
+            "label": "Cribriform glands",
+            "type": "select",
+            "options": [
+              "Not applicable",
+              "Not identified",
+              "Present",
+              "Equivocal",
+              "Cannot be determined"
+            ],
+            "value": "",
+            "present_specify": "",
+            "equivocal_explain": "",
+            "cannot_be_determined_explain": ""
+          }
+        }
+      },
+
+      "tumor_quantitation": {
+        "label": "Tumor quantitation",
+        "fields": {
+          "total_number_of_cores": {
+            "label": "Total number of cores",
+            "type": "select",
+            "options": [
+              "Specify number",
+              "Cannot be determined"
+            ],
+            "value": "",
+            "number": ""
+          },
+          "number_of_positive_cores": {
+            "label": "Number of positive cores",
+            "type": "select",
+            "options": [
+              "Specify number",
+              "Cannot be determined"
+            ],
+            "value": "",
+            "number": ""
+          },
+          "tumor_measurement_technique": {
+            "label": "Tumor measurement technique",
+            "type": "multi_select",
+            "options": [
+              "Single continuous focus",
+              "Consider multiple foci as continuous tumor",
+              "Consider multiple foci as discontinuous tumor"
+            ],
+            "value": []
+          },
+          "percentage_of_prostatic_tissue_involved": {
+            "label": "Percentage of prostatic tissue involved by tumor",
+            "type": "select",
+            "options": [
+              "Less than 1%",
+              "1 - 5%",
+              "6 - 10%",
+              "11 - 20%",
+              "21 - 30%",
+              "31 - 40%",
+              "41 - 50%",
+              "51 - 60%",
+              "61 - 70%",
+              "71 - 80%",
+              "81 - 90%",
+              "Greater than 90%",
+              "Cannot be determined"
+            ],
+            "value": "",
+            "cannot_be_determined_explain": ""
+          },
+          "length_of_prostatic_tissue_involved": {
+            "label": "Length of prostatic tissue involved by tumor",
+            "type": "select",
+            "options": [
+              "Specify in millimeters (mm)",
+              "Less than 1 mm"
+            ],
+            "value": "",
+            "length_mm": ""
+          }
+        }
+      },
+
+      "periprostatic_fat_invasion": {
+        "label": "Periprostatic fat invasion",
+        "type": "select",
+        "options": [
+          "Not identified",
+          "Present",
+          "Equivocal",
+          "Cannot be determined"
+        ],
+        "value": "",
+        "equivocal_explain": "",
+        "cannot_be_determined_explain": ""
+      },
+
+      "seminal_vesicle_or_ejaculatory_duct_invasion": {
+        "label": "Seminal vesicle invasion / ejaculatory duct invasion",
+        "type": "select",
+        "options": [
+          "Not identified",
+          "Present",
+          "Equivocal",
+          "Cannot be determined"
+        ],
+        "value": "",
+        "equivocal_explain": "",
+        "cannot_be_determined_explain": ""
+      },
+
+      "lymphovascular_invasion": {
+        "label": "Lymphatic and / or vascular invasion",
+        "type": "select",
+        "options": [
+          "Not identified",
+          "Present",
+          "Equivocal",
+          "Cannot be determined"
+        ],
+        "value": "",
+        "equivocal_explain": "",
+        "cannot_be_determined_specify": ""
+      },
+
+      "perineural_invasion": {
+        "label": "Perineural invasion",
+        "type": "select",
+        "options": [
+          "Not identified",
+          "Present"
+        ],
+        "value": ""
+      },
+
+      "additional_findings": {
+        "label": "Additional findings",
+        "fields": {
+          "findings": {
+            "label": "Additional findings",
+            "type": "multi_select",
+            "options": [
+              "None identified",
+              "Atypical intraductal proliferation (AIP)",
+              "High-grade prostatic intraepithelial neoplasia (PIN)",
+              "Atypical small acinar proliferation / small focus of atypical glands (ASAP / ATYP)",
+              "Inflammation",
+              "Other"
+            ],
+            "value": []
+          },
+          "none_identified_specify": {
+            "label": "None identified",
+            "type": "text",
+            "value": ""
+          },
+          "pin_specify": {
+            "label": "High-grade prostatic intraepithelial neoplasia (PIN)",
+            "type": "text",
+            "value": ""
+          },
+          "asap_atyp_specify": {
+            "label": "Atypical small acinar proliferation / small focus of atypical glands (ASAP / ATYP)",
+            "type": "text",
+            "value": ""
+          },
+          "inflammation_specify_type": {
+            "label": "Inflammation (specify type)",
+            "type": "text",
+            "value": ""
+          },
+          "other_specify": {
+            "label": "Other (specify)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      }
+    }
+  },
+
+  "comments": {
+    "label": "Comments",
+    "fields": {
+      "comment_text": {
+        "label": "Comment(s)",
+        "type": "text",
+        "value": ""
+      }
+    }
+  }
+}

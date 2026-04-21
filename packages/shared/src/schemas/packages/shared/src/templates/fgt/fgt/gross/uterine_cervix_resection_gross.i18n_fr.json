@@ -1,0 +1,13 @@
+{
+  "template_id": "uterine_cervix_resection_gross_v1",
+  "lang": "fr",
+  "title": "Résection du col utérin (examen macroscopique)",
+  "specimen": { "label": "Pièce" },
+  "tumor": { "label": "Tumeur" },
+  "margins": { "label": "Marges" },
+  "parametrial_involvement": { "label": "Atteinte paramétriale" },
+  "vaginal_cuff_involvement": { "label": "Atteinte du manchon vaginal" },
+  "lymph_nodes": { "label": "Ganglions lymphatiques" },
+  "block_allocation_key": { "label": "Clé d’attribution des blocs" },
+  "grossing": { "label": "Macroscopie" }
+}

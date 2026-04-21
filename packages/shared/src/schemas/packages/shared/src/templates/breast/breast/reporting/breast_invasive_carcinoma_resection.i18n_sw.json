@@ -1,0 +1,87 @@
+{
+  "template_id": "breast_invasive_carcinoma_resection_v1",
+  "lang": "sw",
+  "title": "Karsinoma vamizi ya titi, resection",
+
+  "specimen": {
+    "label": "Sampuli",
+    "fields": {
+      "procedure": {
+        "label": "Utaratibu",
+        "options": [
+          "Excision (chini ya total mastectomy)",
+          "Total mastectomy (ikiwemo nipple-sparing na skin-sparing mastectomy)",
+          "Nyingine",
+          "Haijabainishwa"
+        ]
+      },
+      "laterality": {
+        "label": "Upande wa sampuli",
+        "options": [
+          "Kulia",
+          "Kushoto",
+          "Haijabainishwa"
+        ]
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "Uvimbe",
+    "fields": {
+      "tumor_site": {
+        "label": "Eneo la uvimbe",
+        "options": [
+          "Quadrant ya juu ya nje",
+          "Quadrant ya chini ya nje",
+          "Quadrant ya juu ya ndani",
+          "Quadrant ya chini ya ndani",
+          "Katikati",
+          "Chuchu",
+          "Nafasi ya saa",
+          "Haijabainishwa"
+        ]
+      },
+      "histologic_type": {
+        "label": "Aina ya histolojia"
+      },
+      "histologic_grade": {
+        "label": "Daraja la histolojia (alama ya Nottingham)"
+      },
+      "tumor_size": {
+        "label": "Ukubwa wa uvimbe"
+      },
+      "tumor_focality": {
+        "label": "Focality ya uvimbe"
+      }
+    }
+  },
+
+  "dcis_lcis": {
+    "label": "Carcinoma in situ"
+  },
+  "tumor_extent": {
+    "label": "Ueneaji wa uvimbe"
+  },
+  "invasion_and_calcifications": {
+    "label": "Uvamizi na mikrokalsifikesheni"
+  },
+  "treatment_effect_and_rcb": {
+    "label": "Athari ya matibabu na residual cancer burden"
+  },
+  "margins": {
+    "label": "Mipaka"
+  },
+  "regional_lymph_nodes": {
+    "label": "Nodi za limfu za eneo"
+  },
+  "distant_metastasis": {
+    "label": "Metastasi ya mbali"
+  },
+  "ptnm_classification": {
+    "label": "Uainishaji wa pTNM (toleo la 8 la AJCC)"
+  },
+  "additional_findings": {
+    "label": "Matokeo ya ziada"
+  }
+}

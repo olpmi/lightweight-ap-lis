@@ -1,0 +1,439 @@
+{
+  "template_id": "endometrium_resection_gross_v1",
+  "domain": "anatomic_pathology",
+  "title": "Endometrium Resection Specimen (Grossing Template)",
+
+  "specimen": {
+    "label": "Specimen",
+    "fields": {
+      "anatomic_structures_included": {
+        "label": "Anatomic structures included in the specimen submitted",
+        "type": "text",
+        "value": ""
+      },
+      "specimen_integrity": {
+        "label": "Specimen integrity",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "uterus": {
+    "label": "Uterus",
+    "fields": {
+      "uterus_dimensions_cm": {
+        "label": "Uterus dimensions (cm)",
+        "type": "text",
+        "value": ""
+      },
+      "serosal_surface": {
+        "label": "Serosal surface",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "cervix": {
+    "label": "Cervix",
+    "fields": {
+      "dimensions": {
+        "label": "Dimensions",
+        "type": "text",
+        "value": ""
+      },
+      "diameter_cm": {
+        "label": "Diameter (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "length_cm": {
+        "label": "Length (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "cervical_os": {
+        "label": "Cervical os",
+        "type": "text",
+        "value": ""
+      },
+      "portio_vaginalis": {
+        "label": "Portio vaginalis",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "vaginal_cuff": {
+    "label": "Vaginal Cuff",
+    "fields": {
+      "maximum_length_cm": {
+        "label": "Maximum length (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "minimum_length_cm": {
+        "label": "Minimum length (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "appearance": {
+        "label": "Appearance",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "parametrium": {
+    "label": "Parametrium",
+    "fields": {
+      "left_parametrium_lateral_extent_cm": {
+        "label": "Left parametrium lateral extent (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "right_parametrium_lateral_extent_cm": {
+        "label": "Right parametrium lateral extent (cm)",
+        "type": "number",
+        "value": ""
+      }
+    }
+  },
+
+  "corpus": {
+    "label": "Corpus",
+    "fields": {
+      "endometrial_cavity_dimensions": {
+        "label": "Endometrial cavity dimensions",
+        "type": "text",
+        "value": ""
+      },
+      "endometrial_thickness": {
+        "label": "Endometrial thickness",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "tumor_site": {
+        "label": "Tumor site",
+        "type": "text",
+        "value": ""
+      },
+      "tumor_size_greatest_dimension_cm": {
+        "label": "Greatest dimension (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "tumor_size_additional_dimensions_cm": {
+        "label": "Additional dimensions (cm)",
+        "type": "measurement_2d",
+        "value": ""
+      },
+      "appearance": {
+        "label": "Appearance",
+        "type": "text",
+        "value": ""
+      },
+      "myometrial_invasion_depth_cm": {
+        "label": "Depth of invasion (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "myometrial_thickness_cm": {
+        "label": "Myometrial thickness (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "lower_uterine_segment_involvement": {
+        "label": "Lower uterine segment involvement",
+        "type": "text",
+        "value": ""
+      },
+      "cervical_stromal_involvement": {
+        "label": "Cervical stromal involvement",
+        "type": "text",
+        "value": ""
+      },
+      "distance_to_ectocervical_margin_cm": {
+        "label": "Distance to ectocervical margin (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "distance_to_paracervical_parametrial_margin_cm": {
+        "label": "Distance to paracervical / parametrial margin (cm)",
+        "type": "number",
+        "value": ""
+      }
+    }
+  },
+
+  "polyps": {
+    "label": "Polyps",
+    "fields": {
+      "location": {
+        "label": "Location",
+        "type": "text",
+        "value": ""
+      },
+      "number": {
+        "label": "Number",
+        "type": "integer",
+        "value": ""
+      },
+      "dimensions": {
+        "label": "Dimensions",
+        "type": "text",
+        "value": ""
+      },
+      "appearance": {
+        "label": "Appearance",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "fibroids": {
+    "label": "Fibroids",
+    "fields": {
+      "location": {
+        "label": "Location",
+        "type": "text",
+        "value": ""
+      },
+      "number": {
+        "label": "Number",
+        "type": "integer",
+        "value": ""
+      },
+      "dimensions": {
+        "label": "Dimensions",
+        "type": "text",
+        "value": ""
+      },
+      "appearance": {
+        "label": "Appearance",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "adnexa": {
+    "label": "Adnexa",
+    "fields": {
+      "left_fallopian_tube_dimensions": {
+        "label": "Left fallopian tube dimensions",
+        "type": "text",
+        "value": ""
+      },
+      "left_fallopian_tube_appearance": {
+        "label": "Left fallopian tube appearance",
+        "type": "text",
+        "value": ""
+      },
+      "left_ovary_dimensions": {
+        "label": "Left ovary dimensions",
+        "type": "text",
+        "value": ""
+      },
+      "left_ovary_appearance": {
+        "label": "Left ovary appearance",
+        "type": "text",
+        "value": ""
+      },
+      "right_fallopian_tube_dimensions": {
+        "label": "Right fallopian tube dimensions",
+        "type": "text",
+        "value": ""
+      },
+      "right_fallopian_tube_appearance": {
+        "label": "Right fallopian tube appearance",
+        "type": "text",
+        "value": ""
+      },
+      "right_ovary_dimensions": {
+        "label": "Right ovary dimensions",
+        "type": "text",
+        "value": ""
+      },
+      "right_ovary_appearance": {
+        "label": "Right ovary appearance",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "omentum": {
+    "label": "Omentum",
+    "fields": {
+      "dimensions": {
+        "label": "Dimensions",
+        "type": "text",
+        "value": ""
+      },
+      "appearance": {
+        "label": "Appearance",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "lymph_nodes": {
+    "label": "Lymph Nodes",
+    "fields": {
+      "left_pelvic_appearance": {
+        "label": "Left pelvic lymph nodes appearance",
+        "type": "text",
+        "value": ""
+      },
+      "left_pelvic_number": {
+        "label": "Left pelvic lymph nodes number",
+        "type": "integer",
+        "value": ""
+      },
+      "left_pelvic_size_range": {
+        "label": "Left pelvic lymph nodes size range",
+        "type": "text",
+        "value": ""
+      },
+      "right_pelvic_appearance": {
+        "label": "Right pelvic lymph nodes appearance",
+        "type": "text",
+        "value": ""
+      },
+      "right_pelvic_number": {
+        "label": "Right pelvic lymph nodes number",
+        "type": "integer",
+        "value": ""
+      },
+      "right_pelvic_size_range": {
+        "label": "Right pelvic lymph nodes size range",
+        "type": "text",
+        "value": ""
+      },
+      "left_para_aortic_appearance": {
+        "label": "Left para-aortic lymph nodes appearance",
+        "type": "text",
+        "value": ""
+      },
+      "left_para_aortic_number": {
+        "label": "Left para-aortic lymph nodes number",
+        "type": "integer",
+        "value": ""
+      },
+      "left_para_aortic_size_range": {
+        "label": "Left para-aortic lymph nodes size range",
+        "type": "text",
+        "value": ""
+      },
+      "right_para_aortic_appearance": {
+        "label": "Right para-aortic lymph nodes appearance",
+        "type": "text",
+        "value": ""
+      },
+      "right_para_aortic_number": {
+        "label": "Right para-aortic lymph nodes number",
+        "type": "integer",
+        "value": ""
+      },
+      "right_para_aortic_size_range": {
+        "label": "Right para-aortic lymph nodes size range",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "block_allocation_key": {
+    "label": "Block Allocation Key",
+    "fields": {
+      "full_thickness_endo_myometrium_with_tumor": {
+        "label": "Full thickness endo-myometrium with tumor",
+        "type": "text",
+        "value": ""
+      },
+      "anterior_and_posterior_lower_uterine_segment": {
+        "label": "Anterior and posterior lower uterine segment",
+        "type": "text",
+        "value": ""
+      },
+      "anterior_and_posterior_cervix": {
+        "label": "Anterior and posterior cervix",
+        "type": "text",
+        "value": ""
+      },
+      "ectocervical_margin": {
+        "label": "Ectocervical margin",
+        "type": "text",
+        "value": ""
+      },
+      "left_parametrium_paracervical_margin": {
+        "label": "Left parametrium / paracervical margin",
+        "type": "text",
+        "value": ""
+      },
+      "right_parametrium_paracervical_margin": {
+        "label": "Right parametrium / paracervical margin",
+        "type": "text",
+        "value": ""
+      },
+      "left_fallopian_tube": {
+        "label": "Left fallopian tube",
+        "type": "text",
+        "value": ""
+      },
+      "left_ovary": {
+        "label": "Left ovary",
+        "type": "text",
+        "value": ""
+      },
+      "right_fallopian_tube": {
+        "label": "Right fallopian tube",
+        "type": "text",
+        "value": ""
+      },
+      "right_ovary": {
+        "label": "Right ovary",
+        "type": "text",
+        "value": ""
+      },
+      "omentum": {
+        "label": "Omentum",
+        "type": "text",
+        "value": ""
+      },
+      "lymph_nodes": {
+        "label": "Lymph nodes",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "grossing": {
+    "label": "Grossing",
+    "fields": {
+      "grossed_by": {
+        "label": "Grossed by",
+        "type": "text",
+        "value": ""
+      },
+      "date": {
+        "label": "Date",
+        "type": "date",
+        "value": ""
+      }
+    }
+  }
+}

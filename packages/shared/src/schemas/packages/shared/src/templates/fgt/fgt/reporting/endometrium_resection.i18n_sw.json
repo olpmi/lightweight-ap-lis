@@ -1,0 +1,13 @@
+{
+  "template_id": "endometrium_resection_v1",
+  "lang": "sw",
+  "title": "Endometriamu",
+  "specimen": { "label": "Sampuli" },
+  "tumor": { "label": "Uvimbe" },
+  "margins": { "label": "Mipaka" },
+  "regional_lymph_nodes": { "label": "Nodi za limfu za eneo" },
+  "distant_metastasis": { "label": "Metastasi ya mbali" },
+  "ptnm_classification": { "label": "Uainishaji wa pTNM" },
+  "figo_stage": { "label": "Hatua ya FIGO" },
+  "additional_findings": { "label": "Matokeo ya ziada" }
+}

@@ -1,0 +1,14 @@
+{
+  "template_id": "colorectal_malignant_tumor_resection_v1",
+  "lang": "ar",
+  "ui": { "direction": "rtl" },
+  "title": "ورم خبيث قولوني مستقيمي، الاستئصال",
+  "specimen": { "label": "العينة" },
+  "tumor": { "label": "الورم" },
+  "margins": { "label": "الهوامش" },
+  "regional_lymph_nodes": { "label": "العقد اللمفاوية الإقليمية" },
+  "distant_metastasis": { "label": "النقائل البعيدة" },
+  "ptnm": { "label": "تصنيف pTNM (الإصدار الثامن AJCC)" },
+  "additional_findings": { "label": "النتائج الإضافية" },
+  "comments": { "label": "التعليقات" }
+}

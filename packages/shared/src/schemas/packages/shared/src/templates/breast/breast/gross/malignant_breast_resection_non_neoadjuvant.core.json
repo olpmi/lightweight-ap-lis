@@ -1,0 +1,251 @@
+{
+  "template_id": "malignant_breast_resection_non_neoadjuvant_v1",
+  "domain": "anatomic_pathology",
+  "title": "Malignant Breast Resection (Non-Neoadjuvant)",
+
+  "clinical_case_summary": {
+    "label": "Clinical Case Summary",
+    "fields": {
+      "tumor_characteristics": {
+        "label": "Tumor characteristics",
+        "type": "text",
+        "value": ""
+      },
+      "site": { "label": "Site", "type": "text", "value": "" },
+      "focality": { "label": "Focality", "type": "text", "value": "" },
+      "dimensions": {
+        "label": "Dimensions (mm)",
+        "type": "measurement_3d",
+        "value": ""
+      },
+      "baseline_biomarker": {
+        "label": "Baseline tumor biomarker",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "specimen": {
+    "label": "Specimen",
+    "fields": {
+      "intraoperative_consult": {
+        "label": "Intraoperative consultation performed",
+        "type": "select",
+        "options": ["Yes", "No"],
+        "value": "",
+        "reason": ""
+      },
+      "weight": {
+        "label": "Specimen weight (g)",
+        "type": "number",
+        "value": ""
+      },
+      "laterality": {
+        "label": "Laterality",
+        "type": "select",
+        "options": ["Left", "Right", "Not specified"],
+        "value": ""
+      },
+      "type": {
+        "label": "Specimen type",
+        "type": "select",
+        "options": [
+          "Modified radical mastectomy",
+          "Simple mastectomy",
+          "Skin-sparing mastectomy",
+          "Nipple-sparing mastectomy",
+          "Lumpectomy (Wide local excision)",
+          "Quadrantectomy (Segmental resection)",
+          "Oncoplastic breast-conserving surgery"
+        ],
+        "value": ""
+      }
+    }
+  },
+
+  "lymph_nodes": {
+    "label": "Lymph Nodes",
+    "fields": {
+      "present": {
+        "label": "Lymph nodes present",
+        "type": "boolean",
+        "value": ""
+      },
+
+      "sentinel": {
+        "label": "Sentinel lymph nodes",
+        "fields": {
+          "site": { "label": "Site", "type": "text", "value": "" },
+          "radioactive_count": {
+            "label": "Radioactive count",
+            "type": "text",
+            "value": ""
+          },
+          "dye_uptake": {
+            "label": "Dye uptake",
+            "type": "boolean",
+            "value": ""
+          },
+          "number": { "label": "Number", "type": "integer", "value": "" },
+          "dimensions": {
+            "label": "Dimensions of each node",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+
+      "non_sentinel": {
+        "label": "Non-sentinel lymph nodes",
+        "fields": {
+          "total_number": {
+            "label": "Total number of nodes",
+            "type": "integer",
+            "value": ""
+          },
+          "size_range": { "label": "Size range", "type": "text", "value": "" }
+        }
+      }
+    }
+  },
+
+  "breast_measurements": {
+    "label": "Breast Dimensions",
+    "fields": {
+      "medial_lateral": {
+        "label": "Medial–lateral length",
+        "type": "measurement",
+        "value": ""
+      },
+      "superior_inferior": {
+        "label": "Superior–inferior length",
+        "type": "measurement",
+        "value": ""
+      },
+      "anterior_posterior": {
+        "label": "Anterior–posterior length",
+        "type": "measurement",
+        "value": ""
+      }
+    }
+  },
+
+  "skin": {
+    "label": "Skin",
+    "fields": {
+      "present": { "label": "Skin present", "type": "boolean", "value": "" },
+      "dimensions": { "label": "Skin dimensions", "type": "text", "value": "" },
+      "abnormalities": {
+        "label": "Skin abnormalities",
+        "type": "multi_select",
+        "options": [
+          "Ulceration",
+          "Previous surgical scar",
+          "Erythema",
+          ">30% involvement",
+          "Satellite skin nodules",
+          "Other"
+        ]
+      }
+    }
+  },
+
+  "nipple": {
+    "label": "Nipple",
+    "fields": {
+      "present": { "label": "Nipple present", "type": "boolean", "value": "" },
+      "description": {
+        "label": "Nipple description",
+        "type": "select",
+        "options": ["Normal", "Abnormal"]
+      },
+      "abnormal_features": {
+        "label": "Abnormal features",
+        "type": "multi_select",
+        "options": [
+          "Paget’s disease",
+          "Scaling crust",
+          "Retracted",
+          "Fixed to tumor",
+          "Other"
+        ]
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "macroscopic_present": {
+        "label": "Macroscopically visible tumor",
+        "type": "boolean",
+        "value": ""
+      },
+
+      "site": {
+        "label": "Tumor site",
+        "type": "select",
+        "options": [
+          "Upper outer quadrant",
+          "Upper inner quadrant",
+          "Lower outer quadrant",
+          "Lower inner quadrant",
+          "Central",
+          "Nipple",
+          "Not specified"
+        ]
+      },
+
+      "focality": {
+        "label": "Focality",
+        "type": "select",
+        "options": ["Unifocal", "Multifocal"]
+      },
+
+      "size": {
+        "label": "Tumor size (mm)",
+        "type": "measurement_3d",
+        "value": ""
+      },
+      "skin_involvement": { "label": "Fixed to skin", "type": "boolean" },
+      "chest_wall_involvement": {
+        "label": "Fixed to chest wall",
+        "type": "boolean"
+      }
+    }
+  },
+
+  "margins": {
+    "label": "Margins",
+    "fields": {
+      "medial": { "label": "Medial margin", "type": "text" },
+      "lateral": { "label": "Lateral margin", "type": "text" },
+      "superior": { "label": "Superior margin", "type": "text" },
+      "inferior": { "label": "Inferior margin", "type": "text" },
+      "posterior": { "label": "Posterior margin", "type": "text" },
+      "anterior": { "label": "Anterior margin", "type": "text" },
+      "skin": { "label": "Overlying skin", "type": "text" }
+    }
+  },
+
+  "muscle": {
+    "label": "Skeletal Muscle",
+    "type": "select",
+    "options": ["Present", "Absent"]
+  },
+
+  "block_key": {
+    "label": "Block Allocation Key",
+    "fields": {
+      "nipple": {},
+      "tumor": {},
+      "surrounding_breast": {},
+      "margins": {},
+      "lymph_nodes": {}
+    }
+  },
+
+  "grossed_by": "",
+  "date": ""
+}

@@ -1,0 +1,11 @@
+{
+  "template_id": "gastric_tumor_resection_gross_v1",
+  "lang": "ar",
+  "ui": { "direction": "rtl" },
+  "title": "استئصال ورم المعدة (قالب الفحص العياني)",
+  "specimen": { "label": "العينة" },
+  "tumor": { "label": "الورم" },
+  "lymph_nodes": { "label": "العقد اللمفاوية" },
+  "block_identification_key": { "label": "مفتاح تعريف البلوكات" },
+  "grossing": { "label": "الفحص العياني" }
+}

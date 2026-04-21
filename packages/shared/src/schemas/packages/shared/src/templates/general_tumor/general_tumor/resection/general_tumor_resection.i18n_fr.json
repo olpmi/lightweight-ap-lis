@@ -1,0 +1,292 @@
+{
+  "template_id": "general_tumor_resection_v1",
+  "lang": "fr",
+  "title": "Résection tumorale générale",
+
+  "specimen": {
+    "label": "Pièce",
+    "fields": {
+      "procedure": {
+        "label": "Procédure"
+      },
+      "laterality": {
+        "label": "Latéralité de la pièce",
+        "options": ["Droite", "Gauche", "Non précisé", "Non applicable"]
+      },
+      "lymph_node_sampling": {
+        "label": "Prélèvement ganglionnaire",
+        "options": ["Effectué", "Non effectué", "Inconnu"],
+        "lymph_nodes_sampled": "Ganglions prélevés"
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "Tumeur",
+    "fields": {
+      "site": {
+        "label": "Site(s) tumoral(aux)"
+      },
+      "histologic_type": {
+        "label": "Type histologique"
+      },
+      "histologic_grade": {
+        "label": "Grade histologique"
+      },
+      "tumor_size": {
+        "label": "Taille tumorale",
+        "fields": {
+          "measurement_type": {
+            "label": "Type de mesure",
+            "options": [
+              "Plus grande dimension en centimètres (cm)",
+              "Ne peut pas être déterminée"
+            ]
+          },
+          "greatest_dimension_cm": {
+            "label": "Plus grande dimension (cm)"
+          },
+          "additional_dimensions_cm": {
+            "label": "Dimensions supplémentaires (cm)"
+          },
+          "cannot_be_determined_specify": {
+            "label": "Ne peut pas être déterminée (expliquer)"
+          }
+        }
+      },
+      "tumor_extent": {
+        "label": "Extension tumorale (structures ou organes atteints)"
+      },
+      "mitotic_rate": {
+        "label": "Taux mitotique"
+      },
+      "tumor_necrosis": {
+        "label": "Nécrose tumorale",
+        "fields": {
+          "status": {
+            "label": "Statut de la nécrose tumorale",
+            "options": [
+              "Non identifiée",
+              "Présente",
+              "Ne peut pas être déterminée"
+            ]
+          },
+          "percentage_type": {
+            "label": "Pourcentage de nécrose tumorale",
+            "options": [
+              "Préciser le pourcentage",
+              "Autre",
+              "Ne peut pas être déterminé"
+            ]
+          },
+          "percentage_value": {
+            "label": "Pourcentage (%)"
+          },
+          "other_specify": {
+            "label": "Autre (préciser)"
+          },
+          "cannot_be_determined_specify": {
+            "label": "Ne peut pas être déterminé (expliquer)"
+          }
+        }
+      },
+      "lymphovascular_invasion": {
+        "label": "Invasion lymphovasculaire",
+        "options": ["Non identifiée", "Présente", "Ne peut pas être déterminée"]
+      },
+      "treatment_effect": {
+        "label": "Effet du traitement",
+        "fields": {
+          "status": {
+            "label": "Statut de l’effet du traitement",
+            "options": [
+              "Aucun traitement préopératoire connu",
+              "Non identifié",
+              "Présent",
+              "Ne peut pas être déterminé"
+            ]
+          },
+          "preoperative_therapy_given": {
+            "label": "Traitement préopératoire administré"
+          },
+          "cannot_be_determined_specify": {
+            "label": "Ne peut pas être déterminé (expliquer)"
+          }
+        }
+      },
+      "tumor_comment": {
+        "label": "Commentaire tumoral"
+      }
+    }
+  },
+
+  "margins": {
+    "label": "Marges",
+    "fields": {
+      "margin_status": {
+        "label": "Statut des marges",
+        "options": [
+          "Toutes les marges sont négatives pour la tumeur",
+          "Tumeur présente à la marge",
+          "Non applicable"
+        ]
+      },
+      "distance_to_closest_margin": {
+        "label": "Distance entre la tumeur et la marge la plus proche",
+        "fields": {
+          "distance_type": {
+            "label": "Type de distance",
+            "options": [
+              "Distance exacte",
+              "Supérieure à",
+              "Au moins",
+              "Inférieure à",
+              "Inférieure à 1 mm",
+              "Autre",
+              "Ne peut pas être déterminée"
+            ]
+          },
+          "distance_mm": {
+            "label": "Distance (mm)"
+          },
+          "other_specify": {
+            "label": "Autre (préciser)"
+          },
+          "cannot_be_determined_specify": {
+            "label": "Ne peut pas être déterminée (expliquer)"
+          }
+        }
+      },
+      "closest_margins_to_tumor": {
+        "label": "Marge(s) la/les plus proche(s) de la tumeur",
+        "fields": {
+          "status": {
+            "label": "Statut de la/des marge(s) la/les plus proche(s)",
+            "options": [
+              "Préciser la/les marge(s) la/les plus proche(s)",
+              "Ne peut pas être déterminé"
+            ]
+          },
+          "specify": {
+            "label": "Préciser la/les marge(s) la/les plus proche(s)"
+          },
+          "cannot_be_determined_specify": {
+            "label": "Ne peut pas être déterminé (expliquer)"
+          }
+        }
+      },
+      "margins_involved_by_tumor": {
+        "label": "Marge(s) envahie(s) par la tumeur",
+        "fields": {
+          "status": {
+            "label": "Statut de la/des marge(s) envahie(s)",
+            "options": [
+              "Préciser la/les marge(s) envahie(s)",
+              "Autre",
+              "Ne peut pas être déterminé"
+            ]
+          },
+          "specify": {
+            "label": "Préciser la/les marge(s) envahie(s)"
+          },
+          "other_specify": {
+            "label": "Autre (préciser)"
+          },
+          "cannot_be_determined_specify": {
+            "label": "Ne peut pas être déterminé (expliquer)"
+          }
+        }
+      }
+    }
+  },
+
+  "regional_lymph_nodes": {
+    "label": "Ganglions lymphatiques régionaux",
+    "fields": {
+      "regional_lymph_node_status": {
+        "label": "Statut des ganglions lymphatiques régionaux",
+        "options": [
+          "Non applicable (aucun ganglion régional soumis ni trouvé)",
+          "Ganglions lymphatiques régionaux présents",
+          "Tous les ganglions lymphatiques régionaux sont négatifs pour la tumeur",
+          "Tumeur présente dans un ou plusieurs ganglions lymphatiques régionaux"
+        ]
+      },
+      "number_with_tumor": {
+        "label": "Nombre de ganglions lymphatiques avec tumeur",
+        "fields": {
+          "count_type": {
+            "label": "Type de nombre",
+            "options": [
+              "Nombre exact",
+              "Au moins",
+              "Autre",
+              "Ne peut pas être déterminé"
+            ]
+          },
+          "count_value": {
+            "label": "Nombre"
+          },
+          "other_specify": {
+            "label": "Autre (préciser)"
+          },
+          "cannot_be_determined_specify": {
+            "label": "Ne peut pas être déterminé (expliquer)"
+          }
+        }
+      },
+      "extranodal_extension": {
+        "label": "Extension extranodale",
+        "fields": {
+          "status": {
+            "label": "Statut de l’extension extranodale",
+            "options": [
+              "Non identifiée",
+              "Présente",
+              "Autre",
+              "Ne peut pas être déterminée"
+            ]
+          },
+          "other_specify": {
+            "label": "Autre (préciser)"
+          },
+          "cannot_be_determined_specify": {
+            "label": "Ne peut pas être déterminée (expliquer)"
+          }
+        }
+      },
+      "number_examined": {
+        "label": "Nombre de ganglions lymphatiques examinés",
+        "fields": {
+          "count_type": {
+            "label": "Type de nombre",
+            "options": [
+              "Nombre exact",
+              "Au moins",
+              "Autre",
+              "Ne peut pas être déterminé"
+            ]
+          },
+          "count_value": {
+            "label": "Nombre"
+          },
+          "other_specify": {
+            "label": "Autre (préciser)"
+          },
+          "cannot_be_determined_specify": {
+            "label": "Ne peut pas être déterminé (expliquer)"
+          }
+        }
+      }
+    }
+  },
+
+  "additional_findings": {
+    "label": "Constatations supplémentaires",
+    "fields": {
+      "findings": {
+        "label": "Constatations supplémentaires"
+      }
+    }
+  }
+}

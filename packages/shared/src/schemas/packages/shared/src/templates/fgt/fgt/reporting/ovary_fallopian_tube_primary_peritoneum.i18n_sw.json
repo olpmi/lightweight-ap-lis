@@ -1,0 +1,11 @@
+{
+  "template_id": "ovary_fallopian_tube_primary_peritoneum_v1",
+  "lang": "sw",
+  "title": "Ovari au mrija wa fallopia au peritoneamu ya msingi",
+  "tumor": { "label": "Uvimbe" },
+  "regional_lymph_nodes": { "label": "Nodi za limfu za eneo" },
+  "distant_metastasis": { "label": "Metastasi ya mbali" },
+  "ptnm_classification": { "label": "Uainishaji wa pTNM" },
+  "figo_stage": { "label": "Hatua ya FIGO" },
+  "additional_findings": { "label": "Matokeo ya ziada" }
+}

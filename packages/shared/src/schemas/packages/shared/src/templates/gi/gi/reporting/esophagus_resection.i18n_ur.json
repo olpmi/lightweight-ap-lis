@@ -1,0 +1,12 @@
+{
+  "template_id": "esophagus_resection_v1",
+  "lang": "ur",
+  "title": "غذائی نالی",
+  "specimen": { "label": "نمونہ" },
+  "tumor": { "label": "ٹیومر" },
+  "margins": { "label": "حاشیے" },
+  "regional_lymph_nodes": { "label": "علاقائی لمف نوڈز" },
+  "distant_metastasis": { "label": "بعید میٹاسٹاسس" },
+  "pathologic_stage": { "label": "پیتھولوجک اسٹیج درجہ بندی (pTNM)" },
+  "additional_findings": { "label": "اضافی مشاہدات" }
+}

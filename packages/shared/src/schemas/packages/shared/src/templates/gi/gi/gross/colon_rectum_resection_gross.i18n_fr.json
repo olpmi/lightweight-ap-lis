@@ -1,0 +1,16 @@
+{
+  "template_id": "colon_rectum_resection_gross_tumor_v1",
+  "lang": "fr",
+  "title": "Résection du côlon et du rectum pour tumeur (examen macroscopique)",
+  "specimen": { "label": "Pièce" },
+  "tumor": { "label": "Tumeur" },
+  "margins": { "label": "Marges" },
+  "rectal_tumor_only": { "label": "Pour les tumeurs rectales uniquement" },
+  "polyps": { "label": "Polypes" },
+  "lymph_nodes": { "label": "Ganglions lymphatiques" },
+  "other_findings": {
+    "label": "Autres constatations macroscopiques pertinentes"
+  },
+  "block_identification_key": { "label": "Clé d’identification des blocs" },
+  "grossing": { "label": "Macroscopie" }
+}

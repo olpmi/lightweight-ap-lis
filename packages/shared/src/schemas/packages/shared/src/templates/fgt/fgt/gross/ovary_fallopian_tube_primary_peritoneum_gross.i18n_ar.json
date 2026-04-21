@@ -1,0 +1,12 @@
+{
+  "template_id": "ovary_fallopian_tube_primary_peritoneum_gross_v1",
+  "lang": "ar",
+  "ui": { "direction": "rtl" },
+  "title": "المبيض أو قناة فالوب أو الصفاق الأولي (قالب الفحص العياني)",
+  "specimen": { "label": "العينة" },
+  "ovarian_integrity": { "label": "سلامة المبيض" },
+  "fallopian_tube_integrity": { "label": "سلامة قناة فالوب" },
+  "uterus_integrity": { "label": "سلامة الرحم" },
+  "block_allocation_key": { "label": "مفتاح توزيع البلوكات" },
+  "grossing": { "label": "الفحص العياني" }
+}

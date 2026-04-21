@@ -1,0 +1,107 @@
+{
+  "template_id": "prostate_radical_prostatectomy_v1",
+  "lang": "sw",
+  "title": "Prostate: radical prostatectomy",
+
+  "specimen": {
+    "label": "Sampuli",
+    "fields": {
+      "procedure": {
+        "label": "Utaratibu",
+        "options": [
+          "Radical prostatectomy",
+          "Nyingine",
+          "Haijabainishwa"
+        ]
+      },
+      "prostate_weight_g": {
+        "label": "Uzito wa prostate (g)"
+      },
+      "prostate_size_cm": {
+        "label": "Ukubwa wa prostate (cm)"
+      },
+      "additional_prostate_dimensions_cm": {
+        "label": "Vipimo vya ziada vya prostate (cm)"
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "Uvimbe",
+    "fields": {
+      "histologic_type": {
+        "label": "Aina ya histolojia",
+        "fields": {
+          "category": {
+            "label": "Kategoria",
+            "options": [
+              "Ya tezi",
+              "Squamous",
+              "Neuroendocrine",
+              "Aina nyingine ya histolojia ambayo haijaorodheshwa",
+              "Karsinoma, aina haiwezi kubainishwa"
+            ]
+          },
+          "type": {
+            "label": "Aina ya histolojia",
+            "options": [
+              "Acinar adenocarcinoma, ya kawaida",
+              "Acinar adenocarcinoma, yenye seli kama signet-ring",
+              "Acinar adenocarcinoma, yenye giant cell pleomorphic",
+              "Acinar adenocarcinoma, sarcomatoid",
+              "Acinar adenocarcinoma, inayofanana na prostatic intraepithelial neoplasia",
+              "Intraductal carcinoma",
+              "Ductal adenocarcinoma",
+              "Adenosquamous carcinoma",
+              "Squamous cell carcinoma",
+              "Basal cell (adenoid cystic) carcinoma",
+              "Adenocarcinoma yenye utofautishaji wa neuroendocrine",
+              "Uvímbe wa neuroendocrine uliotofautishwa vizuri",
+              "Small cell neuroendocrine carcinoma",
+              "Large cell neuroendocrine carcinoma",
+              "Aina nyingine ya histolojia ambayo haijaorodheshwa",
+              "Karsinoma, aina haiwezi kubainishwa"
+            ]
+          },
+          "comment": {
+            "label": "Maoni kuhusu aina ya histolojia"
+          }
+        }
+      },
+      "histologic_grade": {
+        "label": "Daraja la histolojia"
+      },
+      "intraductal_carcinoma": {
+        "label": "Intraductal carcinoma (IDC)"
+      },
+      "cribriform_glands": {
+        "label": "Tezi za cribriform"
+      },
+      "treatment_effect": {
+        "label": "Athari ya matibabu"
+      }
+    }
+  },
+
+  "tumor_quantitation": {
+    "label": "Kiasi cha uvimbe"
+  },
+  "extension_and_invasion": {
+    "label": "Ueneaji na uvamizi"
+  },
+  "margins": {
+    "label": "Mipaka"
+  },
+  "regional_lymph_nodes": {
+    "label": "Nodi za limfu za eneo"
+  },
+  "distant_metastasis": {
+    "label": "Metastasi ya mbali"
+  },
+  "ptnm_classification": {
+    "label": "Uainishaji wa pTNM (toleo la 8 la AJCC)"
+  },
+  "additional_findings": {
+    "label": "Matokeo ya ziada"
+  }
+}

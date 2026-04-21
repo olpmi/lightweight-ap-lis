@@ -1,0 +1,129 @@
+{
+  "template_id": "breast_dcis_biopsy_v1",
+  "domain": "anatomic_pathology",
+  "title": "Breast DCIS, Biopsy",
+  "protocol_posting_date": "June 2021",
+  "case_summary": {
+    "label": "Case Summary (DCIS of the Breast: Biopsy)"
+  },
+  "specimen": {
+    "label": "Specimen",
+    "fields": {
+      "procedure": {
+        "label": "Procedure",
+        "type": "select",
+        "options": [
+          "Needle biopsy",
+          "Fine needle aspiration",
+          "Other",
+          "Not specified"
+        ],
+        "value": "",
+        "other_specify": ""
+      },
+      "laterality": {
+        "label": "Specimen laterality",
+        "type": "select",
+        "options": ["Right", "Left", "Not specified"],
+        "value": ""
+      }
+    }
+  },
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "tumor_site": {
+        "label": "Tumor site",
+        "type": "multi_select",
+        "options": [
+          "Upper outer quadrant",
+          "Lower outer quadrant",
+          "Upper inner quadrant",
+          "Lower inner quadrant",
+          "Central",
+          "Nipple",
+          "Clock position",
+          "Not specified"
+        ],
+        "value": [],
+        "clock_position_specify": ""
+      },
+      "histologic_type": {
+        "label": "Histologic type",
+        "type": "select",
+        "options": [
+          "Ductal carcinoma in situ (DCIS)",
+          "Paget disease",
+          "Encapsulated papillary carcinoma without invasive carcinoma",
+          "Solid papillary carcinoma without invasive carcinoma"
+        ],
+        "value": ""
+      },
+      "architectural_patterns": {
+        "label": "Architectural patterns",
+        "type": "multi_select",
+        "options": [
+          "Comedo",
+          "Paget disease (DCIS involving nipple skin)",
+          "Cribriform",
+          "Micropapillary",
+          "Papillary",
+          "Solid",
+          "Other"
+        ],
+        "value": [],
+        "other_specify": ""
+      },
+      "nuclear_grade": {
+        "label": "Nuclear grade",
+        "type": "select",
+        "options": [
+          "Grade I (low)",
+          "Grade II (intermediate)",
+          "Grade III (high)",
+          "Other",
+          "Cannot be determined"
+        ],
+        "value": "",
+        "other_specify": "",
+        "cannot_be_determined_specify": ""
+      },
+      "necrosis": {
+        "label": "Necrosis",
+        "type": "select",
+        "options": [
+          "Not identified",
+          "Present, focal (small foci or single cell necrosis)",
+          "Present, central (expansive \"comedo\" necrosis)",
+          "Other",
+          "Cannot be determined"
+        ],
+        "value": "",
+        "other_specify": "",
+        "cannot_be_determined_specify": ""
+      },
+      "microcalcifications": {
+        "label": "Microcalcifications",
+        "type": "multi_select",
+        "options": [
+          "Not identified",
+          "Present in DCIS",
+          "Present in non-neoplastic tissue",
+          "Other"
+        ],
+        "value": [],
+        "other_specify": ""
+      }
+    }
+  },
+  "additional_findings": {
+    "label": "Additional Findings",
+    "fields": {
+      "findings": {
+        "label": "Additional findings",
+        "type": "text",
+        "value": ""
+      }
+    }
+  }
+}

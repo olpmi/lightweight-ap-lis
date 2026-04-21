@@ -1,0 +1,13 @@
+{
+  "template_id": "uterine_cervix_resection_gross_v1",
+  "lang": "ur",
+  "title": "یوٹرائن سروکس ریسیکشن (گراس ٹیمپلیٹ)",
+  "specimen": { "label": "نمونہ" },
+  "tumor": { "label": "ٹیومر" },
+  "margins": { "label": "حاشیے" },
+  "parametrial_involvement": { "label": "پیرا میٹریئل شمولیت" },
+  "vaginal_cuff_involvement": { "label": "ویجائنل کف شمولیت" },
+  "lymph_nodes": { "label": "لمف نوڈز" },
+  "block_allocation_key": { "label": "بلاک الاٹمنٹ کلید" },
+  "grossing": { "label": "گروسنگ" }
+}

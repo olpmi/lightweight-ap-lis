@@ -1,0 +1,11 @@
+{
+  "template_id": "uterine_cervix_resection_v1",
+  "lang": "fr",
+  "title": "Résection du col utérin",
+  "tumor": { "label": "Tumeur" },
+  "margins": { "label": "Marges" },
+  "regional_lymph_nodes": { "label": "Ganglions lymphatiques régionaux" },
+  "distant_metastasis": { "label": "Métastase à distance" },
+  "pathologic_stage": { "label": "Classification pathologique" },
+  "additional_findings": { "label": "Constatations supplémentaires" }
+}

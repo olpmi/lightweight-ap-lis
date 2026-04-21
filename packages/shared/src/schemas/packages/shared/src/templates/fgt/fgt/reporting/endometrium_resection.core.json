@@ -1,0 +1,741 @@
+{
+  "template_id": "endometrium_resection_v1",
+  "domain": "anatomic_pathology",
+  "title": "Endometrium",
+  "protocol_posting_date": "December 2024",
+  "standards": [
+    "AJCC 8",
+    "FIGO 2009 Staging (2018 Annual Report)",
+    "FIGO 2023 Staging"
+  ],
+
+  "specimen": {
+    "label": "Specimen",
+    "fields": {
+      "procedure": {
+        "label": "Procedure",
+        "type": "multi_select",
+        "options": [
+          "Total hysterectomy",
+          "Supracervical hysterectomy",
+          "Radical hysterectomy",
+          "Hysterectomy",
+          "Bilateral salpingo-oophorectomy",
+          "Right salpingo-oophorectomy",
+          "Left salpingo-oophorectomy",
+          "Salpingo-oophorectomy, side not specified",
+          "Right oophorectomy",
+          "Left oophorectomy",
+          "Oophorectomy, side not specified",
+          "Bilateral salpingectomy",
+          "Right salpingectomy",
+          "Left salpingectomy",
+          "Salpingectomy, side not specified",
+          "Vaginal cuff resection",
+          "Omentectomy",
+          "Peritoneal biopsy(ies)",
+          "Peritoneal / pelvic washing",
+          "Other"
+        ],
+        "value": [],
+        "other_specify": ""
+      },
+      "specimen_integrity": {
+        "label": "Specimen integrity",
+        "type": "select",
+        "options": ["Intact", "Opened", "Morcellated", "Other"],
+        "value": "",
+        "other_specify": ""
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "tumor_size": {
+        "label": "Tumor size",
+        "fields": {
+          "size_type": {
+            "label": "Tumor size type",
+            "type": "select",
+            "options": [
+              "Greatest gross dimension (if mass)",
+              "Greatest microscopic dimension (if no mass)",
+              "Cannot be determined"
+            ],
+            "value": ""
+          },
+          "greatest_dimension_cm": {
+            "label": "Greatest dimension (cm)",
+            "type": "number",
+            "value": ""
+          },
+          "additional_dimensions_cm": {
+            "label": "Additional dimensions (cm)",
+            "type": "measurement_2d",
+            "value": ""
+          },
+          "cannot_be_determined_explain": {
+            "label": "Cannot be determined (explain)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+
+      "histologic_type": {
+        "label": "Histologic type",
+        "type": "select",
+        "options": [
+          "Endometrioid carcinoma",
+          "Serous carcinoma",
+          "Clear cell carcinoma",
+          "Dedifferentiated carcinoma",
+          "Undifferentiated carcinoma",
+          "Carcinosarcoma",
+          "Mesonephric-like adenocarcinoma",
+          "Squamous cell carcinoma",
+          "Gastric (gastrointestinal)-type carcinoma",
+          "Mixed carcinoma",
+          "Small cell neuroendocrine carcinoma",
+          "Large cell neuroendocrine carcinoma",
+          "Other histologic type not listed"
+        ],
+        "value": "",
+        "mixed_carcinoma_specify": "",
+        "other_specify": ""
+      },
+
+      "histologic_grade": {
+        "label": "Histologic grade",
+        "note": "FIGO grading applies to endometrioid carcinomas only. All other subtypes are considered high-grade.",
+        "type": "select",
+        "options": [
+          "FIGO grade 1 (endometrioid carcinoma)",
+          "FIGO grade 2 (endometrioid carcinoma)",
+          "FIGO grade 3 (endometrioid carcinoma)",
+          "High-grade (non-endometrioid carcinoma)",
+          "Other",
+          "Cannot be assessed"
+        ],
+        "value": "",
+        "other_specify": "",
+        "cannot_be_assessed_explain": ""
+      },
+
+      "myometrial_invasion": {
+        "label": "Myometrial invasion",
+        "fields": {
+          "status": {
+            "label": "Myometrial invasion",
+            "type": "select",
+            "options": [
+              "Not applicable",
+              "Not identified",
+              "Present, inner half (less than 50%)",
+              "Present, outer half (greater than or equal to 50%)",
+              "Cannot be determined"
+            ],
+            "value": ""
+          },
+          "percentage": {
+            "label": "Specify percentage",
+            "type": "number",
+            "value": ""
+          },
+          "comment": {
+            "label": "Myometrial invasion comment",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_explain": {
+            "label": "Cannot be determined (explain)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+
+      "adenomyosis": {
+        "label": "Adenomyosis",
+        "type": "select",
+        "options": [
+          "Not identified",
+          "Present, uninvolved by carcinoma",
+          "Present, involved by carcinoma",
+          "Cannot be determined"
+        ],
+        "value": "",
+        "cannot_be_determined_specify": ""
+      },
+
+      "uterine_serosal_involvement": {
+        "label": "Uterine serosal involvement",
+        "type": "select",
+        "options": ["Not identified", "Present", "Cannot be determined"],
+        "value": "",
+        "cannot_be_determined_explain": ""
+      },
+
+      "lower_uterine_segment_involvement": {
+        "label": "Lower uterine segment involvement",
+        "type": "select",
+        "options": [
+          "Not identified",
+          "Present, non-myoinvasive",
+          "Present, myoinvasive",
+          "Cannot be determined"
+        ],
+        "value": "",
+        "cannot_be_determined_explain": ""
+      },
+
+      "cervical_involvement": {
+        "label": "Cervical involvement",
+        "fields": {
+          "status": {
+            "label": "Cervical involvement",
+            "type": "select",
+            "options": [
+              "Cannot be assessed (supracervical hysterectomy)",
+              "Not identified",
+              "Cervical stromal invasion",
+              "Endocervical glandular involvement only",
+              "Cannot be determined"
+            ],
+            "value": ""
+          },
+          "percentage_of_cervical_wall_involved": {
+            "label": "Percentage of cervical wall involved",
+            "type": "number",
+            "value": ""
+          },
+          "cannot_be_determined_explain": {
+            "label": "Cannot be determined (explain)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+
+      "other_tissue_organ_involvement": {
+        "label": "Other tissue / organ involvement",
+        "type": "multi_select",
+        "options": [
+          "Not applicable (no other tissues / organs submitted)",
+          "Not identified (other tissues / organs submitted and not involved)",
+          "Right ovary",
+          "Left ovary",
+          "Ovary (side not specified)",
+          "Right fallopian tube",
+          "Left fallopian tube",
+          "Fallopian tube (side not specified)",
+          "Vagina",
+          "Right parametrium",
+          "Left parametrium",
+          "Parametrium (side not specified)",
+          "Pelvic wall",
+          "Bladder wall without mucosal involvement",
+          "Bladder wall with mucosal involvement",
+          "Bowel wall without mucosal involvement",
+          "Bowel wall with mucosal involvement",
+          "Other organs / tissue",
+          "Cannot be determined"
+        ],
+        "value": [],
+        "other_specify": "",
+        "cannot_be_determined_explain": ""
+      },
+
+      "peritoneal_pelvic_washings": {
+        "label": "Peritoneal / pelvic washings / ascitic fluid",
+        "type": "select",
+        "options": [
+          "Not submitted",
+          "Negative for malignant cells",
+          "Malignant cells present",
+          "Atypical",
+          "Suspicious for malignancy",
+          "Results pending"
+        ],
+        "value": "",
+        "atypical_explain": "",
+        "suspicious_explain": ""
+      },
+
+      "lymphovascular_invasion": {
+        "label": "Lymphatic and / or vascular invasion",
+        "note": "Report the maximum number of LVI foci present on the single slide with the highest number of foci.",
+        "fields": {
+          "status": {
+            "label": "Lymphatic and / or vascular invasion",
+            "type": "select",
+            "options": ["Not identified", "Present", "Cannot be determined"],
+            "value": ""
+          },
+          "extent": {
+            "label": "Extent of LVI",
+            "type": "select",
+            "options": [
+              "Less than or equal to 4 foci",
+              "Greater than or equal to 5 foci"
+            ],
+            "value": ""
+          },
+          "number_of_foci": {
+            "label": "Specify number of foci",
+            "type": "integer",
+            "value": ""
+          },
+          "cannot_be_determined_explain": {
+            "label": "Cannot be determined (explain)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+
+      "tumor_comment": {
+        "label": "Tumor comment",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "margins": {
+    "label": "Margins",
+    "fields": {
+      "margin_status": {
+        "label": "Margin status",
+        "note": "Required only if cervix and / or parametrium / paracervix is involved by carcinoma.",
+        "type": "select",
+        "options": [
+          "Not applicable",
+          "All margins negative for carcinoma",
+          "Carcinoma present at margin"
+        ],
+        "value": ""
+      },
+
+      "closest_margins_to_carcinoma": {
+        "label": "Closest margin(s) to carcinoma",
+        "type": "multi_select",
+        "options": [
+          "Ectocervical",
+          "Vaginal cuff",
+          "Parametrial",
+          "Paracervical",
+          "Other",
+          "Cannot be determined"
+        ],
+        "value": [],
+        "ectocervical_specify": "",
+        "vaginal_cuff_specify": "",
+        "parametrial_specify": "",
+        "paracervical_specify": "",
+        "other_specify": "",
+        "cannot_be_determined_specify": ""
+      },
+
+      "distance_from_carcinoma_to_closest_margin": {
+        "label": "Distance from carcinoma to closest margin",
+        "fields": {
+          "distance_type": {
+            "label": "Distance type",
+            "type": "select",
+            "options": [
+              "Exact distance",
+              "At least",
+              "Less than",
+              "Less than 1 mm",
+              "Cannot be determined"
+            ],
+            "value": ""
+          },
+          "distance_mm": {
+            "label": "Distance (mm)",
+            "type": "number",
+            "value": ""
+          },
+          "cannot_be_determined_specify": {
+            "label": "Cannot be determined",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+
+      "margins_involved_by_carcinoma": {
+        "label": "Margin(s) involved by carcinoma",
+        "type": "multi_select",
+        "options": [
+          "Ectocervical",
+          "Vaginal cuff",
+          "Parametrial",
+          "Paracervical",
+          "Other",
+          "Cannot be determined"
+        ],
+        "value": [],
+        "ectocervical_specify": "",
+        "vaginal_cuff_specify": "",
+        "parametrial_specify": "",
+        "paracervical_specify": "",
+        "other_specify": "",
+        "cannot_be_determined_specify": "",
+        "cannot_be_determined_explain": ""
+      },
+
+      "margin_comment": {
+        "label": "Margin comment",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "regional_lymph_nodes": {
+    "label": "Regional Lymph Nodes",
+    "fields": {
+      "regional_lymph_node_status": {
+        "label": "Regional lymph node status",
+        "type": "select",
+        "options": [
+          "Not applicable (no regional lymph nodes submitted or found)",
+          "Regional lymph nodes present",
+          "All regional lymph nodes negative for tumor cells",
+          "Tumor present in pelvic lymph node(s)",
+          "Tumor present in para-aortic lymph node(s)"
+        ],
+        "value": ""
+      },
+
+      "pelvic_nodes": {
+        "label": "Pelvic lymph nodes",
+        "fields": {
+          "macrometastasis_total": {
+            "label": "Total number of pelvic nodes with macrometastasis",
+            "type": "text",
+            "value": ""
+          },
+          "macrometastasis_sentinel": {
+            "label": "Number of pelvic sentinel nodes with macrometastasis",
+            "type": "text",
+            "value": ""
+          },
+          "micrometastasis_total": {
+            "label": "Total number of pelvic nodes with micrometastasis",
+            "type": "text",
+            "value": ""
+          },
+          "micrometastasis_sentinel": {
+            "label": "Number of pelvic sentinel nodes with micrometastasis",
+            "type": "text",
+            "value": ""
+          },
+          "itc_total": {
+            "label": "Total number of pelvic nodes with isolated tumor cells",
+            "type": "text",
+            "value": ""
+          },
+          "itc_sentinel": {
+            "label": "Number of pelvic sentinel nodes with isolated tumor cells",
+            "type": "text",
+            "value": ""
+          },
+          "laterality_with_tumor": {
+            "label": "Laterality of pelvic node(s) with tumor",
+            "type": "multi_select",
+            "options": [
+              "Right sentinel",
+              "Right non-sentinel",
+              "Left sentinel",
+              "Left non-sentinel",
+              "Cannot be determined"
+            ],
+            "value": [],
+            "cannot_be_determined_specify": ""
+          },
+          "largest_metastatic_deposit_size_mm": {
+            "label": "Size of largest pelvic nodal metastatic deposit",
+            "type": "text",
+            "value": ""
+          },
+          "total_examined": {
+            "label": "Total number of pelvic nodes examined",
+            "type": "text",
+            "value": ""
+          },
+          "sentinel_examined": {
+            "label": "Number of pelvic sentinel nodes examined",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+
+      "para_aortic_nodes": {
+        "label": "Para-aortic lymph nodes",
+        "fields": {
+          "macrometastasis_total": {
+            "label": "Total number of para-aortic nodes with macrometastasis",
+            "type": "text",
+            "value": ""
+          },
+          "macrometastasis_sentinel": {
+            "label": "Number of para-aortic sentinel nodes with macrometastasis",
+            "type": "text",
+            "value": ""
+          },
+          "micrometastasis_total": {
+            "label": "Total number of para-aortic nodes with micrometastasis",
+            "type": "text",
+            "value": ""
+          },
+          "micrometastasis_sentinel": {
+            "label": "Number of para-aortic sentinel nodes with micrometastasis",
+            "type": "text",
+            "value": ""
+          },
+          "itc_total": {
+            "label": "Total number of para-aortic nodes with isolated tumor cells",
+            "type": "text",
+            "value": ""
+          },
+          "itc_sentinel": {
+            "label": "Number of para-aortic sentinel nodes with isolated tumor cells",
+            "type": "text",
+            "value": ""
+          },
+          "laterality_with_tumor": {
+            "label": "Laterality of para-aortic node(s) with tumor",
+            "type": "multi_select",
+            "options": [
+              "Right sentinel",
+              "Right non-sentinel",
+              "Left sentinel",
+              "Left non-sentinel",
+              "Cannot be determined"
+            ],
+            "value": [],
+            "cannot_be_determined_specify": ""
+          },
+          "largest_metastatic_deposit_size_mm": {
+            "label": "Size of largest para-aortic nodal metastatic deposit",
+            "type": "text",
+            "value": ""
+          },
+          "total_examined": {
+            "label": "Total number of para-aortic nodes examined",
+            "type": "text",
+            "value": ""
+          },
+          "sentinel_examined": {
+            "label": "Number of para-aortic sentinel nodes examined",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+
+      "regional_lymph_node_comment": {
+        "label": "Regional lymph node comment",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "distant_metastasis": {
+    "label": "Distant Metastasis",
+    "fields": {
+      "sites_involved": {
+        "label": "Distant site(s) involved",
+        "type": "multi_select",
+        "options": [
+          "Not applicable",
+          "Omentum",
+          "Extrapelvic peritoneum",
+          "Inguinal lymph node(s)",
+          "Lung",
+          "Liver",
+          "Bone",
+          "Other",
+          "Cannot be determined"
+        ],
+        "value": [],
+        "omentum_specify": "",
+        "extrapelvic_peritoneum_specify": "",
+        "inguinal_lymph_nodes_specify": "",
+        "lung_specify": "",
+        "liver_specify": "",
+        "bone_specify": "",
+        "other_specify": "",
+        "cannot_be_determined_specify": ""
+      }
+    }
+  },
+
+  "ptnm_classification": {
+    "label": "pTNM Classification (AJCC 8th Edition)",
+    "fields": {
+      "modified_classification": {
+        "label": "Modified classification",
+        "type": "multi_select",
+        "options": [
+          "Not applicable",
+          "y (post-neoadjuvant therapy)",
+          "r (recurrence)"
+        ],
+        "value": []
+      },
+
+      "pT_category": {
+        "label": "pT category",
+        "type": "select",
+        "options": [
+          "pT not assigned",
+          "pT0",
+          "pT1a",
+          "pT1b",
+          "pT1",
+          "pT2",
+          "pT3a",
+          "pT3b",
+          "pT3",
+          "pT4"
+        ],
+        "value": ""
+      },
+
+      "T_suffix": {
+        "label": "T suffix",
+        "type": "select",
+        "options": [
+          "Not applicable",
+          "(m) multiple primary synchronous tumors in a single organ"
+        ],
+        "value": ""
+      },
+
+      "pN_category": {
+        "label": "pN category",
+        "type": "select",
+        "options": [
+          "pN not assigned (no nodes submitted or found)",
+          "pN not assigned (cannot be determined based on available pathological information)",
+          "pN0",
+          "pN0(i+)",
+          "pN1mi",
+          "pN1a",
+          "pN1",
+          "pN2mi",
+          "pN2a",
+          "pN2"
+        ],
+        "value": ""
+      },
+
+      "N_suffix": {
+        "label": "N suffix",
+        "type": "multi_select",
+        "options": [
+          "Not applicable",
+          "(sn) Sentinel node procedure",
+          "(f) FNA or core biopsy"
+        ],
+        "value": []
+      },
+
+      "pM_category": {
+        "label": "pM category",
+        "type": "select",
+        "options": [
+          "Not applicable - pM cannot be determined from the submitted specimen(s)",
+          "pM1"
+        ],
+        "value": ""
+      }
+    }
+  },
+
+  "figo_stage": {
+    "label": "FIGO Stage",
+    "fields": {
+      "figo_2009_2018": {
+        "label": "FIGO Stage (FIGO 2009 / 2018 Report)",
+        "type": "select",
+        "options": [
+          "I",
+          "IA",
+          "IB",
+          "II",
+          "IIIA",
+          "IIIB",
+          "IIIC",
+          "IIIC1",
+          "IIIC2",
+          "IVA",
+          "IVB"
+        ],
+        "value": ""
+      },
+      "figo_2023": {
+        "label": "FIGO Stage (2023 Staging for Cancer of the Endometrium)",
+        "type": "select",
+        "options": [
+          "I",
+          "IA",
+          "IA1",
+          "IA2",
+          "IA3",
+          "IAm (POLEmut)",
+          "IB",
+          "IC",
+          "II",
+          "IIA",
+          "IIB",
+          "IIC",
+          "IICm (p53abn)",
+          "III",
+          "IIIA",
+          "IIIA1",
+          "IIIA2",
+          "IIIB",
+          "IIIB1",
+          "IIIB2",
+          "IIIC",
+          "IIIC1",
+          "IIIC1i",
+          "IIIC1ii",
+          "IIIC2",
+          "IIIC2i",
+          "IIIC2ii",
+          "IVA",
+          "IVB",
+          "IVC"
+        ],
+        "value": ""
+      }
+    }
+  },
+
+  "additional_findings": {
+    "label": "Additional Findings",
+    "fields": {
+      "findings": {
+        "label": "Additional findings",
+        "type": "multi_select",
+        "options": [
+          "None identified",
+          "Atypical hyperplasia / endometrioid intraepithelial neoplasia (EIN)",
+          "Other"
+        ],
+        "value": [],
+        "other_specify": ""
+      }
+    }
+  }
+}

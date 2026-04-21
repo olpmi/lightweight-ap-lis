@@ -1,0 +1,15 @@
+{
+  "template_id": "malignant_breast_resection_non_neoadjuvant_v1",
+  "lang": "ur",
+
+  "clinical_case_summary": { "label": "کلینیکل خلاصہ" },
+  "specimen": { "label": "نمونہ" },
+  "lymph_nodes": { "label": "لمفی نوڈز" },
+  "breast_measurements": { "label": "چھاتی کی پیمائش" },
+  "skin": { "label": "جلد" },
+  "nipple": { "label": "نپل" },
+  "tumor": { "label": "ٹیومر" },
+  "margins": { "label": "حاشیے" },
+  "muscle": { "label": "کنکال عضلہ" },
+  "block_key": { "label": "بلاک کلید" }
+}

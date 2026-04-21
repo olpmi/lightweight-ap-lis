@@ -1,0 +1,12 @@
+{
+  "template_id": "ovary_fallopian_tube_primary_peritoneum_v1",
+  "lang": "ar",
+  "ui": { "direction": "rtl" },
+  "title": "المبيض أو قناة فالوب أو الصفاق الأولي",
+  "tumor": { "label": "الورم" },
+  "regional_lymph_nodes": { "label": "العقد اللمفاوية الإقليمية" },
+  "distant_metastasis": { "label": "النقائل البعيدة" },
+  "ptnm_classification": { "label": "تصنيف pTNM" },
+  "figo_stage": { "label": "مرحلة FIGO" },
+  "additional_findings": { "label": "النتائج الإضافية" }
+}

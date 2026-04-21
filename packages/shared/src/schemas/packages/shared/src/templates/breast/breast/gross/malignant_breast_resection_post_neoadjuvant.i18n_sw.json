@@ -1,0 +1,18 @@
+{
+  "template_id": "malignant_breast_resection_post_neoadjuvant_v1",
+  "lang": "sw",
+
+  "clinical_case_summary": {
+    "label": "Muhtasari wa kliniki (kabla ya chemotherapy ya neoadjuvant)"
+  },
+  "specimen": { "label": "Kipande cha upasuaji" },
+  "lymph_nodes": { "label": "Nodi za limfu" },
+  "breast_measurements": { "label": "Vipimo vya titi" },
+  "skin": { "label": "Ngozi" },
+  "nipple": { "label": "Chuchu" },
+  "tumor_bed": { "label": "Eneo la uvimbe" },
+  "tumor": { "label": "Uvimbe" },
+  "margins": { "label": "Mipaka" },
+  "muscle": { "label": "Misuli ya mifupa" },
+  "block_key": { "label": "Uwekaji wa vizuizi vya sampuli" }
+}

@@ -1,0 +1,11 @@
+{
+  "template_id": "ovary_fallopian_tube_primary_peritoneum_gross_v1",
+  "lang": "fr",
+  "title": "Ovaire ou trompe de Fallope ou péritoine primitif (examen macroscopique)",
+  "specimen": { "label": "Pièce" },
+  "ovarian_integrity": { "label": "Intégrité ovarienne" },
+  "fallopian_tube_integrity": { "label": "Intégrité de la trompe de Fallope" },
+  "uterus_integrity": { "label": "Intégrité utérine" },
+  "block_allocation_key": { "label": "Clé d’attribution des blocs" },
+  "grossing": { "label": "Macroscopie" }
+}

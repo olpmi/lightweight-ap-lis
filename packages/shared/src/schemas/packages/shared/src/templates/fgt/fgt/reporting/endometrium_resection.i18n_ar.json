@@ -1,0 +1,14 @@
+{
+  "template_id": "endometrium_resection_v1",
+  "lang": "ar",
+  "ui": { "direction": "rtl" },
+  "title": "بطانة الرحم",
+  "specimen": { "label": "العينة" },
+  "tumor": { "label": "الورم" },
+  "margins": { "label": "الهوامش" },
+  "regional_lymph_nodes": { "label": "العقد اللمفاوية الإقليمية" },
+  "distant_metastasis": { "label": "النقائل البعيدة" },
+  "ptnm_classification": { "label": "تصنيف pTNM" },
+  "figo_stage": { "label": "مرحلة FIGO" },
+  "additional_findings": { "label": "النتائج الإضافية" }
+}

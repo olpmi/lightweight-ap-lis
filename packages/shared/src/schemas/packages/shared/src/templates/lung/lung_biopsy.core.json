@@ -1,0 +1,167 @@
+{
+  "template_id": "lung_tumor_biopsy_v1",
+  "domain": "anatomic_pathology",
+  "title": "Lung Tumor, Biopsy",
+  "protocol_posting_date": "September 2025",
+  "standards": ["AJCC 9"],
+
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "histologic_type": {
+        "label": "Histologic type",
+        "type": "select",
+        "options": [
+          "Invasive lepidic adenocarcinoma",
+          "Invasive acinar adenocarcinoma",
+          "Invasive papillary adenocarcinoma",
+          "Invasive micropapillary adenocarcinoma",
+          "Invasive solid adenocarcinoma",
+          "Invasive mucinous adenocarcinoma",
+          "Mixed invasive mucinous and non-mucinous adenocarcinoma",
+          "Colloid adenocarcinoma",
+          "Fetal adenocarcinoma",
+          "Enteric-type adenocarcinoma",
+          "Squamous cell carcinoma in situ (SCIS)",
+          "Invasive squamous cell carcinoma, keratinizing",
+          "Invasive squamous cell carcinoma, non-keratinizing",
+          "Invasive squamous cell carcinoma, basaloid",
+          "Lymphoepithelial carcinoma",
+          "Large cell carcinoma",
+          "Adenosquamous carcinoma",
+          "Pleomorphic carcinoma",
+          "Carcinoid tumor, NOS / Neuroendocrine tumor, NOS",
+          "Small cell carcinoma",
+          "Combined small cell carcinoma (small cell carcinoma and non-small cell component)",
+          "Large cell neuroendocrine carcinoma",
+          "Combined large cell neuroendocrine carcinoma (LCNEC and other non-small cell component)",
+          "Carcinoma, type cannot be determined",
+          "Non-small cell carcinoma, subtype cannot be determined",
+          "Other histologic type not listed",
+          "No viable tumor present"
+        ],
+        "value": "",
+        "combined_small_cell_non_small_cell_component_specify": "",
+        "combined_large_cell_neuroendocrine_other_component_specify": "",
+        "carcinoma_type_cannot_be_determined_specify": "",
+        "non_small_cell_subtype_cannot_be_determined_specify": "",
+        "other_histologic_type_specify": "",
+        "no_viable_tumor_present_explain": ""
+      },
+
+      "histologic_patterns": {
+        "label": "Histologic patterns (applicable to non-mucinous adenocarcinomas only)",
+        "type": "multi_select",
+        "options": [
+          "Not applicable",
+          "Acinar",
+          "Papillary",
+          "Lepidic",
+          "Solid",
+          "Micropapillary",
+          "Complex glands (cribriform and fused glands)",
+          "Other"
+        ],
+        "value": [],
+        "acinar_specify": "",
+        "papillary_specify": "",
+        "lepidic_specify": "",
+        "solid_specify": "",
+        "micropapillary_specify": "",
+        "complex_glands_specify": "",
+        "other_specify": ""
+      },
+
+      "histologic_grade": {
+        "label": "Histologic grade",
+        "note": "High-grade patterns in invasive non-mucinous adenocarcinoma include solid, micropapillary, cribriform, and fused glands patterns.",
+        "type": "select",
+        "options": [
+          "G1, well-differentiated (includes invasive lepidic adenocarcinoma with less than 20% high-grade pattern; typical carcinoid tumor)",
+          "G2, moderately differentiated (includes invasive acinar and papillary adenocarcinoma with less than 20% high-grade pattern; atypical carcinoid tumor)",
+          "G3, poorly differentiated (includes invasive non-mucinous adenocarcinoma with equal to or greater than 20% high-grade pattern)",
+          "G4, undifferentiated (includes small cell carcinoma; large cell carcinoma)",
+          "Other",
+          "GX, cannot be assessed",
+          "Not applicable"
+        ],
+        "value": "",
+        "other_specify": "",
+        "cannot_be_assessed_specify": "",
+        "not_applicable_specify": ""
+      },
+
+      "lymphovascular_invasion": {
+        "label": "Lymphatic and / or vascular invasion",
+        "fields": {
+          "status": {
+            "label": "Lymphatic and / or vascular invasion",
+            "type": "select",
+            "options": [
+              "Not identified",
+              "Present",
+              "Cannot be determined"
+            ],
+            "value": "",
+            "cannot_be_determined_specify": ""
+          },
+          "subtypes": {
+            "label": "Invasion subtype(s)",
+            "type": "multi_select",
+            "options": [
+              "Lymphatic invasion present",
+              "Arterial invasion present",
+              "Venous invasion present",
+              "Other"
+            ],
+            "value": [],
+            "other_specify": ""
+          }
+        }
+      }
+    }
+  },
+
+  "additional_findings": {
+    "label": "Additional Findings",
+    "fields": {
+      "findings": {
+        "label": "Additional findings",
+        "type": "multi_select",
+        "options": [
+          "None identified",
+          "Atypical adenomatous hyperplasia",
+          "Squamous dysplasia",
+          "Diffuse neuroendocrine hyperplasia",
+          "Biopsy site changes",
+          "Granulomatous inflammation",
+          "Post-obstructive changes",
+          "Fibrosis",
+          "Emphysema",
+          "Other"
+        ],
+        "value": []
+      },
+      "atypical_adenomatous_hyperplasia_specify": {
+        "label": "Atypical adenomatous hyperplasia",
+        "type": "text",
+        "value": ""
+      },
+      "granulomatous_inflammation_specify": {
+        "label": "Granulomatous inflammation (specify necrotizing or non-necrotizing if discernible)",
+        "type": "text",
+        "value": ""
+      },
+      "fibrosis_specify_pattern": {
+        "label": "Fibrosis (specify pattern if discernible)",
+        "type": "text",
+        "value": ""
+      },
+      "other_specify": {
+        "label": "Other (specify)",
+        "type": "text",
+        "value": ""
+      }
+    }
+  }
+}

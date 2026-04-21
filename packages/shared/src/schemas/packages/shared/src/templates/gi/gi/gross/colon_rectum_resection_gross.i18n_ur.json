@@ -1,0 +1,14 @@
+{
+  "template_id": "colon_rectum_resection_gross_tumor_v1",
+  "lang": "ur",
+  "title": "کولون اور ریکٹم ریسیکشن برائے ٹیومر (گراس ٹیمپلیٹ)",
+  "specimen": { "label": "نمونہ" },
+  "tumor": { "label": "ٹیومر" },
+  "margins": { "label": "حاشیے" },
+  "rectal_tumor_only": { "label": "صرف ریکٹل ٹیومر کے لیے" },
+  "polyps": { "label": "پولپس" },
+  "lymph_nodes": { "label": "لمف نوڈز" },
+  "other_findings": { "label": "دیگر متعلقہ میکروسکوپک مشاہدات" },
+  "block_identification_key": { "label": "بلاک شناختی کلید" },
+  "grossing": { "label": "گروسنگ" }
+}

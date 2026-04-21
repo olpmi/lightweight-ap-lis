@@ -1,0 +1,17 @@
+{
+  "template_id": "malignant_breast_resection_post_neoadjuvant_v1",
+  "lang": "ar",
+  "ui": { "direction": "rtl" },
+
+  "clinical_case_summary": { "label": "ملخص الحالة السريرية (قبل العلاج الكيميائي المساعد)" },
+  "specimen": { "label": "العينة الجراحية" },
+  "lymph_nodes": { "label": "العقد اللمفاوية" },
+  "breast_measurements": { "label": "أبعاد الثدي" },
+  "skin": { "label": "الجلد" },
+  "nipple": { "label": "الحلمة" },
+  "tumor_bed": { "label": "سرير الورم" },
+  "tumor": { "label": "الورم" },
+  "margins": { "label": "الحواف" },
+  "muscle": { "label": "العضلات الهيكلية" },
+  "block_key": { "label": "مفتاح توزيع الكتل" }
+}

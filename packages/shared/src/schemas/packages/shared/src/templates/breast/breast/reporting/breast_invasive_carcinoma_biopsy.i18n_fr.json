@@ -1,0 +1,214 @@
+{
+  "template_id": "breast_invasive_carcinoma_biopsy_v1",
+  "lang": "fr",
+  "title": "Carcinome mammaire invasif, biopsie",
+
+  "specimen": {
+    "label": "Pièce",
+    "fields": {
+      "procedure": {
+        "label": "Procédure",
+        "options": [
+          "Biopsie à l’aiguille",
+          "Ponction à l’aiguille fine",
+          "Autre",
+          "Non précisé"
+        ]
+      },
+      "laterality": {
+        "label": "Latéralité de la pièce",
+        "options": ["Droite", "Gauche", "Non précisé"]
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "Tumeur",
+    "fields": {
+      "tumor_site": {
+        "label": "Site tumoral",
+        "options": [
+          "Quadrant supéro-externe",
+          "Quadrant inféro-externe",
+          "Quadrant supéro-interne",
+          "Quadrant inféro-interne",
+          "Central",
+          "Mamelon",
+          "Position horaire",
+          "Non précisé"
+        ]
+      },
+      "histologic_type": {
+        "label": "Type histologique",
+        "options": [
+          "Pas de carcinome invasif résiduel",
+          "Carcinome invasif sans type particulier (canalaire)",
+          "Microcarcinome invasif",
+          "Carcinome lobulaire invasif",
+          "Carcinome invasif à composantes canalaires et lobulaires mixtes",
+          "Carcinome invasif avec caractéristiques de",
+          "Carcinome tubulaire",
+          "Carcinome cribriforme invasif",
+          "Carcinome mucineux",
+          "Carcinome micropapillaire invasif",
+          "Adénocarcinome apocrine",
+          "Carcinome métaplasique",
+          "Carcinome papillaire encapsulé avec invasion",
+          "Carcinome papillaire solide avec invasion",
+          "Adénocarcinome papillaire intracanalaire avec invasion",
+          "Carcinome adénoïde kystique",
+          "Tumeur neuroendocrine",
+          "Carcinome neuroendocrine",
+          "Carcinome invasif, type indéterminable",
+          "Autre type histologique non listé"
+        ]
+      },
+      "histologic_grade": {
+        "label": "Grade histologique (score histologique de Nottingham)",
+        "fields": {
+          "applicability": {
+            "label": "Applicabilité",
+            "options": [
+              "Non applicable (pas de carcinome résiduel ou micro-invasion seulement)",
+              "Score de Nottingham"
+            ]
+          },
+          "glandular_tubular_differentiation": {
+            "label": "Différenciation glandulaire (aciniaire) / tubulaire",
+            "options": [
+              "Score 1 (plus de 75 % de la tumeur formant des structures glandulaires / tubulaires)",
+              "Score 2 (10 % à 75 % de la tumeur formant des structures glandulaires / tubulaires)",
+              "Score 3 (moins de 10 % de la tumeur formant des structures glandulaires / tubulaires)",
+              "Le score ne peut pas être déterminé"
+            ]
+          },
+          "nuclear_pleomorphism": {
+            "label": "Pléomorphisme nucléaire",
+            "options": [
+              "Score 1 (noyaux petits avec faible augmentation de taille par rapport aux cellules épithéliales mammaires normales, contours réguliers, chromatine nucléaire uniforme, faible variation de taille)",
+              "Score 2 (cellules plus grandes que la normale avec noyaux vésiculeux ouverts, nucléoles visibles, et variabilité modérée de la taille et de la forme)",
+              "Score 3 (noyaux vésiculeux, souvent avec nucléoles proéminents, montrant une variation marquée de la taille et de la forme, parfois avec des formes très grandes et bizarres)",
+              "Le score ne peut pas être déterminé"
+            ]
+          },
+          "mitotic_rate": {
+            "label": "Taux mitotique",
+            "options": [
+              "Score 1",
+              "Score 2",
+              "Score 3",
+              "Le score ne peut pas être déterminé"
+            ],
+            "reference_note": "Voir le tableau 1 du protocole CAP."
+          },
+          "overall_grade": {
+            "label": "Grade global",
+            "options": [
+              "Grade 1 (scores de 3, 4 ou 5)",
+              "Grade 2 (scores de 6 ou 7)",
+              "Grade 3 (scores de 8 ou 9)",
+              "Le score ne peut pas être déterminé"
+            ]
+          }
+        }
+      },
+      "largest_invasive_focus": {
+        "label": "Plus grand foyer invasif dans cet échantillon limité de biopsie",
+        "fields": {
+          "measurement_type": {
+            "label": "Type de mesure",
+            "options": [
+              "Mesure exacte en millimètres (mm)",
+              "Au moins en millimètres (mm)",
+              "Ne peut pas être déterminé"
+            ]
+          },
+          "measurement_mm": {
+            "label": "Mesure (mm)"
+          },
+          "cannot_be_determined_specify": {
+            "label": "Ne peut pas être déterminé (expliquer)"
+          }
+        }
+      }
+    }
+  },
+
+  "dcis": {
+    "label": "Carcinome canalaire in situ (CCIS)",
+    "fields": {
+      "presence": {
+        "label": "Présence de CCIS",
+        "options": ["Non identifié", "Présent"]
+      },
+      "architectural_patterns": {
+        "label": "Patterns architecturaux",
+        "options": [
+          "Comédo",
+          "Maladie de Paget (CCIS impliquant la peau du mamelon)",
+          "Cribriforme",
+          "Micropapillaire",
+          "Papillaire",
+          "Solide",
+          "Autre"
+        ]
+      },
+      "nuclear_grade": {
+        "label": "Grade nucléaire",
+        "options": [
+          "Grade I (faible)",
+          "Grade II (intermédiaire)",
+          "Grade III (élevé)",
+          "Autre",
+          "Ne peut pas être déterminé"
+        ]
+      },
+      "necrosis": {
+        "label": "Nécrose",
+        "options": [
+          "Non identifiée",
+          "Présente, focale (petits foyers ou nécrose d’une cellule isolée)",
+          "Présente, centrale (nécrose expansive de type « comédo »)",
+          "Autre",
+          "Ne peut pas être déterminée",
+          "Ne peut pas être exclue"
+        ]
+      }
+    }
+  },
+
+  "lymphovascular_invasion": {
+    "label": "Invasion lymphatique et / ou vasculaire",
+    "fields": {
+      "status": {
+        "label": "Invasion lymphatique et / ou vasculaire",
+        "options": ["Non identifiée", "Présente", "Ne peut pas être déterminée"]
+      }
+    }
+  },
+
+  "microcalcifications": {
+    "label": "Microcalcifications",
+    "fields": {
+      "status": {
+        "label": "Microcalcifications",
+        "options": [
+          "Non identifiées",
+          "Présentes dans le CCIS",
+          "Présentes dans le carcinome invasif",
+          "Présentes dans le tissu non néoplasique",
+          "Autre"
+        ]
+      }
+    }
+  },
+
+  "additional_findings": {
+    "label": "Constatations supplémentaires",
+    "fields": {
+      "findings": {
+        "label": "Constatations supplémentaires"
+      }
+    }
+  }
+}

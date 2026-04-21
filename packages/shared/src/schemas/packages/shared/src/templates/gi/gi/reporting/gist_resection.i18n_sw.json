@@ -1,0 +1,13 @@
+{
+  "template_id": "gist_resection_v1",
+  "lang": "sw",
+  "title": "GIST: resection",
+  "clinical": { "label": "Kliniki" },
+  "specimen": { "label": "Sampuli" },
+  "tumor": { "label": "Uvimbe" },
+  "margins": { "label": "Mipaka" },
+  "regional_lymph_nodes": { "label": "Nodi za limfu za eneo" },
+  "distant_metastasis": { "label": "Metastasi ya mbali" },
+  "ptnm": { "label": "Uainishaji wa pTNM" },
+  "additional_findings": { "label": "Matokeo ya ziada" }
+}

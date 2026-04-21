@@ -1,0 +1,12 @@
+{
+  "template_id": "uterine_cervix_resection_v1",
+  "lang": "ar",
+  "ui": { "direction": "rtl" },
+  "title": "استئصال عنق الرحم",
+  "tumor": { "label": "الورم" },
+  "margins": { "label": "الهوامش" },
+  "regional_lymph_nodes": { "label": "العقد اللمفاوية الإقليمية" },
+  "distant_metastasis": { "label": "النقائل البعيدة" },
+  "pathologic_stage": { "label": "التصنيف المرضي" },
+  "additional_findings": { "label": "النتائج الإضافية" }
+}

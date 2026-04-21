@@ -1,0 +1,7 @@
+{
+  "template_id": "uterine_cervix_biopsy_v1",
+  "lang": "fr",
+  "title": "Col utérin, biopsie",
+  "tumor": { "label": "Tumeur" },
+  "additional_findings": { "label": "Constatations supplémentaires" }
+}

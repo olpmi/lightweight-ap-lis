@@ -1,0 +1,70 @@
+{
+  "template_id": "general_tumor_biopsy_v1",
+  "lang": "fr",
+  "title": "Biopsie tumorale générale",
+
+  "clinical": {
+    "label": "Clinique",
+    "fields": {
+      "treatment_history": {
+        "label": "Antécédents thérapeutiques",
+        "options": [
+          "Aucun traitement antérieur connu",
+          "Traitement antérieur administré",
+          "Non précisé"
+        ]
+      }
+    }
+  },
+
+  "specimen": {
+    "label": "Pièce",
+    "fields": {
+      "site": {
+        "label": "Site du prélèvement"
+      },
+      "laterality": {
+        "label": "Latéralité du prélèvement",
+        "options": ["Droite", "Gauche", "Non précisé", "Non applicable"]
+      },
+      "procedure": {
+        "label": "Procédure",
+        "options": [
+          "Biopsie à l’aiguille",
+          "Biopsie incisionnelle",
+          "Biopsie excisionnelle",
+          "Ponction à l’aiguille fine",
+          "Biopsie, sans autre précision",
+          "Autre"
+        ]
+      },
+      "adequacy": {
+        "label": "Adéquation du prélèvement",
+        "options": ["Adéquat", "Sous-optimal"]
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "Tumeur",
+    "fields": {
+      "histologic_type": {
+        "label": "Type histologique"
+      },
+      "histologic_grade": {
+        "label": "Grade histologique"
+      },
+      "lymphovascular_invasion": {
+        "label": "Invasion lymphovasculaire",
+        "options": ["Non identifiée", "Présente", "Ne peut pas être déterminée"]
+      },
+      "perineural_invasion": {
+        "label": "Invasion périnerveuse",
+        "options": ["Non identifiée", "Présente", "Ne peut pas être déterminée"]
+      },
+      "additional_pathologic_findings": {
+        "label": "Résultats pathologiques supplémentaires"
+      }
+    }
+  }
+}

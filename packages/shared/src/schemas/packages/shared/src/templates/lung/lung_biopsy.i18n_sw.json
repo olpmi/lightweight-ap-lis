@@ -1,0 +1,66 @@
+{
+  "template_id": "lung_tumor_biopsy_v1",
+  "lang": "sw",
+  "title": "Uvimbe wa mapafu, biopsy",
+
+  "tumor": {
+    "label": "Uvimbe",
+    "fields": {
+      "histologic_type": {
+        "label": "Aina ya histolojia",
+        "options": [
+          "Invasive lepidic adenocarcinoma",
+          "Invasive acinar adenocarcinoma",
+          "Invasive papillary adenocarcinoma",
+          "Invasive micropapillary adenocarcinoma",
+          "Invasive solid adenocarcinoma",
+          "Invasive mucinous adenocarcinoma",
+          "Mixed invasive mucinous and non-mucinous adenocarcinoma",
+          "Colloid adenocarcinoma",
+          "Fetal adenocarcinoma",
+          "Enteric-type adenocarcinoma",
+          "Squamous cell carcinoma in situ (SCIS)",
+          "Invasive squamous cell carcinoma, keratinizing",
+          "Invasive squamous cell carcinoma, non-keratinizing",
+          "Invasive squamous cell carcinoma, basaloid",
+          "Lymphoepithelial carcinoma",
+          "Large cell carcinoma",
+          "Adenosquamous carcinoma",
+          "Pleomorphic carcinoma",
+          "Carcinoid tumor, NOS / Neuroendocrine tumor, NOS",
+          "Small cell carcinoma",
+          "Combined small cell carcinoma (small cell carcinoma and non-small cell component)",
+          "Large cell neuroendocrine carcinoma",
+          "Combined large cell neuroendocrine carcinoma (LCNEC and other non-small cell component)",
+          "Carcinoma, type cannot be determined",
+          "Non-small cell carcinoma, subtype cannot be determined",
+          "Other histologic type not listed",
+          "No viable tumor present"
+        ]
+      },
+      "histologic_patterns": {
+        "label": "Miundo ya histolojia (hutumika kwa adenocarcinoma zisizo za mucinous pekee)",
+        "options": [
+          "Haihusiki",
+          "Acinar",
+          "Papillary",
+          "Lepidic",
+          "Solid",
+          "Micropapillary",
+          "Complex glands (cribriform and fused glands)",
+          "Nyingine"
+        ]
+      },
+      "histologic_grade": {
+        "label": "Daraja la histolojia"
+      },
+      "lymphovascular_invasion": {
+        "label": "Uvamizi wa limfatiki na / au mishipa ya damu"
+      }
+    }
+  },
+
+  "additional_findings": {
+    "label": "Matokeo ya ziada"
+  }
+}

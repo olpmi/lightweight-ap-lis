@@ -1,0 +1,13 @@
+{
+  "template_id": "esophagus_resection_v1",
+  "lang": "ar",
+  "ui": { "direction": "rtl" },
+  "title": "المريء",
+  "specimen": { "label": "العينة" },
+  "tumor": { "label": "الورم" },
+  "margins": { "label": "الهوامش" },
+  "regional_lymph_nodes": { "label": "العقد اللمفاوية الإقليمية" },
+  "distant_metastasis": { "label": "النقائل البعيدة" },
+  "pathologic_stage": { "label": "تصنيف المرحلة المرضية (pTNM)" },
+  "additional_findings": { "label": "النتائج الإضافية" }
+}

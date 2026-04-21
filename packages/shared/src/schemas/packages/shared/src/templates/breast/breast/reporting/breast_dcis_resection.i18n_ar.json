@@ -1,0 +1,30 @@
+{
+  "template_id": "breast_dcis_resection_v1",
+  "lang": "ar",
+  "ui": {
+    "direction": "rtl"
+  },
+  "title": "DCIS الثدي، الاستئصال",
+
+  "case_summary": {
+    "label": "ملخص الحالة (DCIS الثدي: الاستئصال)"
+  },
+  "specimen": {
+    "label": "العينة"
+  },
+  "tumor": {
+    "label": "الورم"
+  },
+  "margins": {
+    "label": "الهوامش"
+  },
+  "regional_lymph_nodes": {
+    "label": "العقد اللمفاوية الإقليمية"
+  },
+  "distant_metastasis": {
+    "label": "النقائل البعيدة"
+  },
+  "pathologic_stage": {
+    "label": "تصنيف المرحلة المرضية (pTNM، الإصدار الثامن AJCC)"
+  }
+}

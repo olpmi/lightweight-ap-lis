@@ -1,0 +1,114 @@
+{
+  "template_id": "breast_biomarker_status_v1",
+  "lang": "sw",
+
+  "title": "Hali ya Biomaka za Saratani ya Titi",
+
+  "er_status": {
+    "label": "Hali ya Kipokezi cha Estrojeni (ER)",
+    "fields": {
+      "percentage_nuclear_positivity": {
+        "label": "Asilimia ya seli zenye chanya ya nyuklia"
+      },
+      "average_intensity": {
+        "label": "Wastani wa ukali wa uchukuaji rangi"
+      }
+    }
+  },
+
+  "pgr_status": {
+    "label": "Hali ya Kipokezi cha Progesteroni (PgR)",
+    "fields": {
+      "percentage_nuclear_positivity": {
+        "label": "Asilimia ya seli zenye chanya ya nyuklia"
+      },
+      "average_intensity": {
+        "label": "Wastani wa ukali wa uchukuaji rangi"
+      }
+    }
+  },
+
+  "her2_ihc_status": {
+    "label": "Hali ya HER2 kwa Immunohistokemia (IHC)",
+    "comment": "Saratani za titi zenye alama za HER2 IHC za 0+, 1+, au 2+ (ISH hasi) zinaweza kustahili matibabu yanayolenga viwango visivyo na amplification vya uonyeshaji wa HER2 katika mazingira ya ugonjwa wa metastatic. Kwa sasa, wagonjwa wasio na uchukuaji rangi wa membrani kwa IHC (0) hawastahili au huondolewa. Zingatia kutumia maoni ya hiari yaliyo sanifishwa ya ripoti ya HER2 IHC kueleza umuhimu wa kitabibu wa viwango vya chini vya uchukuaji rangi wa HER2 IHC katika mazingira ya metastatic pamoja na ufafanuzi wa HER2 ya ultralow na low uliotumika katika majaribio ya kitabibu.",
+    "fields": {
+      "overall_score": {
+        "label": "Alama ya jumla ya HER2 IHC",
+        "options": [
+          "Hasi (Alama 0)",
+          "Hasi (Alama 1+)",
+          "Tafsiri si dhahiri (Alama 2+)",
+          "Chanya (Alama 3+)"
+        ]
+      },
+      "score_0_pattern": {
+        "label": "Muundo wa alama 0",
+        "options": [
+          "Hakuna uchukuaji rangi wa membrani uliobainika (0 / hakuna uchukuaji rangi wa membrani)",
+          "Uchukuaji rangi wa membrani usiokamilika, hafifu au unaoonekana kwa shida, katika chini ya au sawa na 10% ya seli za uvimbe (0+ / wenye uchukuaji rangi wa membrani)",
+          "Nyingine"
+        ]
+      },
+      "score_1_pattern": {
+        "label": "Muundo wa alama 1+",
+        "options": [
+          "Uchukuaji rangi wa membrani usiokamilika, hafifu au unaoonekana kwa shida, katika zaidi ya 10% ya seli za uvimbe",
+          "Nyingine"
+        ]
+      },
+      "score_2_pattern": {
+        "label": "Muundo wa alama 2+",
+        "options": [
+          "Uchukuaji rangi kamili wa membrani ulio hafifu hadi wa wastani unaoonekana katika zaidi ya 10% ya seli za uvimbe",
+          "Uchukuaji rangi wa membrani usiokamilika wa wastani hadi mkali (basolateral)",
+          "Chini ya au sawa na 10% ya saratani ina uchukuaji rangi wa mviringo, kamili na mkali (3+) (usambazaji tofauti lakini mdogo sana; zingatia matokeo ya sampuli za ziada)",
+          "Uchukuaji rangi mwingi wa saitoplazimu upo, ukificha tathmini ya ukali wa uchukuaji rangi wa membrani",
+          "Nyingine"
+        ]
+      },
+      "score_3_pattern": {
+        "label": "Muundo wa alama 3+",
+        "options": [
+          "Uchukuaji rangi wa membrani wa mviringo, kamili, mkali, na katika zaidi ya 10% ya seli za uvimbe",
+          "Nyingine"
+        ]
+      }
+    }
+  },
+
+  "ki67_status": {
+    "label": "Kielezo cha Uzalishaji Ki-67",
+    "fields": {
+      "value": {
+        "label": "Kielezo cha uzalishaji Ki-67"
+      }
+    }
+  },
+
+  "methods": {
+    "label": "Mbinu",
+    "fields": {
+      "block_numbers": {
+        "label": "Upimaji ulifanywa kwenye namba ya block"
+      },
+      "er_primary_antibody": {
+        "label": "Kipokezi cha Estrojeni: Kingamwili ya msingi"
+      },
+      "pgr_primary_antibody": {
+        "label": "Kipokezi cha Progesteroni: Kingamwili ya msingi"
+      },
+      "er_pgr_reporting_guideline": {
+        "label": "Utoaji wa taarifa wa ER na PgR"
+      },
+      "her2_primary_antibody": {
+        "label": "HER2 (kwa immunohistokemia): Kingamwili ya msingi"
+      },
+      "her2_reporting_guideline": {
+        "label": "Utoaji wa taarifa wa upimaji wa HER2 kwa immunohistokemia (IHC)"
+      },
+      "ki67_primary_antibody": {
+        "label": "Kielezo cha Ki-67: Kingamwili ya msingi"
+      }
+    }
+  }
+}

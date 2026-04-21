@@ -1,0 +1,18 @@
+{
+  "template_id": "malignant_breast_resection_post_neoadjuvant_v1",
+  "lang": "fr",
+
+  "clinical_case_summary": {
+    "label": "Résumé clinique (pré-chimiothérapie néoadjuvante)"
+  },
+  "specimen": { "label": "Pièce opératoire" },
+  "lymph_nodes": { "label": "Ganglions lymphatiques" },
+  "breast_measurements": { "label": "Dimensions du sein" },
+  "skin": { "label": "Peau" },
+  "nipple": { "label": "Mamelon" },
+  "tumor_bed": { "label": "Lit tumoral" },
+  "tumor": { "label": "Tumeur" },
+  "margins": { "label": "Marges" },
+  "muscle": { "label": "Muscle squelettique" },
+  "block_key": { "label": "Clé de prélèvement des blocs" }
+}

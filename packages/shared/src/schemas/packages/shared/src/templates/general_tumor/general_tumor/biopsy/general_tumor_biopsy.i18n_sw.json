@@ -1,0 +1,70 @@
+{
+  "template_id": "general_tumor_biopsy_v1",
+  "lang": "sw",
+  "title": "Biopsy ya jumla ya uvimbe",
+
+  "clinical": {
+    "label": "Kliniki",
+    "fields": {
+      "treatment_history": {
+        "label": "Historia ya matibabu",
+        "options": [
+          "Hakuna matibabu ya awali yanayojulikana",
+          "Matibabu ya awali yalitolewa",
+          "Haijabainishwa"
+        ]
+      }
+    }
+  },
+
+  "specimen": {
+    "label": "Sampuli",
+    "fields": {
+      "site": {
+        "label": "Eneo la sampuli"
+      },
+      "laterality": {
+        "label": "Upande wa sampuli",
+        "options": ["Kulia", "Kushoto", "Haijabainishwa", "Haihusiki"]
+      },
+      "procedure": {
+        "label": "Utaratibu",
+        "options": [
+          "Biopsy ya sindano",
+          "Biopsy ya kukata sehemu",
+          "Biopsy ya kuondoa",
+          "Fine needle aspiration",
+          "Biopsy, isiyoainishwa vinginevyo",
+          "Nyingine"
+        ]
+      },
+      "adequacy": {
+        "label": "Ubora wa sampuli",
+        "options": ["Inatosha", "Si bora vya kutosha"]
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "Uvimbe",
+    "fields": {
+      "histologic_type": {
+        "label": "Aina ya histolojia"
+      },
+      "histologic_grade": {
+        "label": "Daraja la histolojia"
+      },
+      "lymphovascular_invasion": {
+        "label": "Uvamizi wa limfovaskula",
+        "options": ["Haujaonekana", "Upo", "Haiwezi kubainishwa"]
+      },
+      "perineural_invasion": {
+        "label": "Uvamizi wa perineural",
+        "options": ["Haujaonekana", "Upo", "Haiwezi kubainishwa"]
+      },
+      "additional_pathologic_findings": {
+        "label": "Matokeo ya ziada ya patholojia"
+      }
+    }
+  }
+}

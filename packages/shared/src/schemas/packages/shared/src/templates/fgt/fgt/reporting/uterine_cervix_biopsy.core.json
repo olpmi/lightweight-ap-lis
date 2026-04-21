@@ -1,0 +1,95 @@
+{
+  "template_id": "uterine_cervix_biopsy_v1",
+  "domain": "anatomic_pathology",
+  "title": "Uterine Cervix, Biopsy",
+  "protocol_posting_date": "March 2023",
+
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "histologic_type": {
+        "label": "Histologic type",
+        "type": "select",
+        "options": [
+          "Squamous cell carcinoma, HPV-associated",
+          "Squamous cell carcinoma, HPV-independent",
+          "Squamous cell carcinoma, NOS",
+          "Adenocarcinoma, NOS",
+          "Adenocarcinoma, HPV-associated",
+          "Adenocarcinoma, HPV-independent, NOS",
+          "Adenocarcinoma, HPV-independent, gastric type",
+          "Adenocarcinoma, HPV-independent, clear cell type",
+          "Adenocarcinoma, HPV-independent, mesonephric type",
+          "Endometrioid adenocarcinoma, NOS",
+          "Carcinosarcoma",
+          "Adenosquamous carcinoma",
+          "Adenoid basal carcinoma",
+          "Mucoepidermoid carcinoma",
+          "Carcinoma, unclassifiable (undifferentiated carcinoma)",
+          "Neuroendocrine tumor, NOS",
+          "Neuroendocrine tumor, grade 1",
+          "Neuroendocrine tumor, grade 2",
+          "Small cell neuroendocrine carcinoma, high grade",
+          "Large cell neuroendocrine carcinoma, high grade",
+          "Neuroendocrine carcinoma, NOS",
+          "Mixed neuroendocrine non-neuroendocrine carcinoma",
+          "Other histologic type not listed",
+          "Carcinoma, type cannot be determined"
+        ],
+        "value": "",
+        "other_specify": "",
+        "cannot_be_determined_specify": "",
+        "comment": ""
+      },
+
+      "histologic_grade": {
+        "label": "Histologic grade",
+        "type": "select",
+        "options": [
+          "G1, well differentiated",
+          "G2, moderately differentiated",
+          "G3, poorly differentiated",
+          "GX, cannot be assessed",
+          "Not applicable"
+        ],
+        "value": "",
+        "cannot_be_assessed_specify": "",
+        "not_applicable_specify": ""
+      },
+
+      "lymphovascular_invasion": {
+        "label": "Lymphatic and / or vascular invasion",
+        "type": "select",
+        "options": [
+          "Not identified",
+          "Present",
+          "Equivocal",
+          "Cannot be determined"
+        ],
+        "value": "",
+        "equivocal_explain": "",
+        "cannot_be_determined_specify": ""
+      }
+    }
+  },
+
+  "additional_findings": {
+    "label": "Additional Findings",
+    "fields": {
+      "findings": {
+        "label": "Additional findings",
+        "type": "multi_select",
+        "options": [
+          "None identified",
+          "Low-grade squamous intraepithelial lesion (CIN 1)",
+          "High-grade squamous intraepithelial lesion (CIN 2 or 3)",
+          "Endocervical adenocarcinoma in situ",
+          "Inflammation",
+          "Other"
+        ],
+        "value": [],
+        "other_specify": ""
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "template_id": "uterine_cervix_resection_gross_v1",
+  "lang": "ar",
+  "ui": { "direction": "rtl" },
+  "title": "استئصال عنق الرحم (قالب الفحص العياني)",
+  "specimen": { "label": "العينة" },
+  "tumor": { "label": "الورم" },
+  "margins": { "label": "الهوامش" },
+  "parametrial_involvement": { "label": "امتداد البراميتريوم" },
+  "vaginal_cuff_involvement": { "label": "امتداد الكفة المهبلية" },
+  "lymph_nodes": { "label": "العقد اللمفاوية" },
+  "block_allocation_key": { "label": "مفتاح توزيع البلوكات" },
+  "grossing": { "label": "الفحص العياني" }
+}

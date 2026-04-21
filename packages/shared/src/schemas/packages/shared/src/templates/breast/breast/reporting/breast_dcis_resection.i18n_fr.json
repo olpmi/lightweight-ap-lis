@@ -1,0 +1,27 @@
+{
+  "template_id": "breast_dcis_resection_v1",
+  "lang": "fr",
+  "title": "CCIS du sein, résection",
+
+  "case_summary": {
+    "label": "Résumé du cas (CCIS du sein : résection)"
+  },
+  "specimen": {
+    "label": "Pièce"
+  },
+  "tumor": {
+    "label": "Tumeur"
+  },
+  "margins": {
+    "label": "Marges"
+  },
+  "regional_lymph_nodes": {
+    "label": "Ganglions lymphatiques régionaux"
+  },
+  "distant_metastasis": {
+    "label": "Métastase à distance"
+  },
+  "pathologic_stage": {
+    "label": "Classification du stade pathologique (pTNM, AJCC 8e édition)"
+  }
+}

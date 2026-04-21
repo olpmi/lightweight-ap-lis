@@ -1,0 +1,11 @@
+{
+  "template_id": "uterine_cervix_resection_v1",
+  "lang": "sw",
+  "title": "Resection ya seviksi ya uterasi",
+  "tumor": { "label": "Uvimbe" },
+  "margins": { "label": "Mipaka" },
+  "regional_lymph_nodes": { "label": "Nodi za limfu za eneo" },
+  "distant_metastasis": { "label": "Metastasis ya mbali" },
+  "pathologic_stage": { "label": "Uainishaji wa patholojia" },
+  "additional_findings": { "label": "Matokeo ya ziada" }
+}

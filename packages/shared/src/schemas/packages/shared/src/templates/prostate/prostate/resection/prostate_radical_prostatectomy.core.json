@@ -1,0 +1,850 @@
+{
+  "template_id": "prostate_radical_prostatectomy_v1",
+  "domain": "anatomic_pathology",
+  "title": "Prostate Gland: Radical Prostatectomy",
+  "protocol_posting_date": "September 2023",
+  "standards": ["AJCC-UICC 8"],
+
+  "specimen": {
+    "label": "Specimen",
+    "fields": {
+      "procedure": {
+        "label": "Procedure",
+        "type": "select",
+        "options": [
+          "Radical prostatectomy",
+          "Other",
+          "Not specified"
+        ],
+        "value": "",
+        "radical_prostatectomy_specify": "",
+        "other_specify": ""
+      },
+      "prostate_weight_g": {
+        "label": "Prostate weight (g)",
+        "type": "number",
+        "value": ""
+      },
+      "prostate_size_cm": {
+        "label": "Prostate size (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "additional_prostate_dimensions_cm": {
+        "label": "Additional prostate dimensions (cm)",
+        "type": "measurement_2d",
+        "value": ""
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "histologic_type": {
+        "label": "Histologic type",
+        "fields": {
+          "category": {
+            "label": "Category",
+            "type": "select",
+            "options": [
+              "Glandular",
+              "Squamous",
+              "Neuroendocrine",
+              "Other histologic type not listed",
+              "Carcinoma, type cannot be determined"
+            ],
+            "value": ""
+          },
+          "type": {
+            "label": "Histologic type",
+            "type": "select",
+            "options": [
+              "Acinar adenocarcinoma, conventional (usual)",
+              "Acinar adenocarcinoma, signet-ring-like cell",
+              "Acinar adenocarcinoma, pleomorphic giant cell",
+              "Acinar adenocarcinoma, sarcomatoid",
+              "Acinar adenocarcinoma, prostatic intraepithelial neoplasia-like",
+              "Intraductal carcinoma",
+              "Ductal adenocarcinoma",
+              "Adenosquamous carcinoma",
+              "Squamous cell carcinoma",
+              "Basal cell (adenoid cystic) carcinoma",
+              "Adenocarcinoma with neuroendocrine differentiation",
+              "Well-differentiated neuroendocrine tumor",
+              "Small cell neuroendocrine carcinoma",
+              "Large cell neuroendocrine carcinoma",
+              "Other histologic type not listed",
+              "Carcinoma, type cannot be determined"
+            ],
+            "value": "",
+            "other_specify": "",
+            "cannot_be_determined_specify": ""
+          },
+          "comment": {
+            "label": "Histologic type comment",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+
+      "histologic_grade": {
+        "label": "Histologic grade",
+        "fields": {
+          "grade_group": {
+            "label": "Grade",
+            "type": "select",
+            "options": [
+              "Grade group 1 (Gleason Score 3 + 3 = 6)",
+              "Grade group 2 (Gleason Score 3 + 4 = 7)",
+              "Grade group 3 (Gleason Score 4 + 3 = 7)",
+              "Grade group 4 (Gleason Score 4 + 4 = 8)",
+              "Grade group 4 (Gleason Score 3 + 5 = 8)",
+              "Grade group 4 (Gleason Score 5 + 3 = 8)",
+              "Grade group 5 (Gleason Score 4 + 5 = 9)",
+              "Grade group 5 (Gleason Score 5 + 4 = 9)",
+              "Grade group 5 (Gleason Score 5 + 5 = 10)",
+              "Cannot be assessed",
+              "Not applicable"
+            ],
+            "value": "",
+            "cannot_be_assessed_specify": "",
+            "not_applicable_specify": ""
+          },
+          "minor_tertiary_pattern_5_for_group_2": {
+            "label": "Minor tertiary pattern 5 for grade group 2",
+            "type": "select",
+            "options": [
+              "Not applicable / not identified",
+              "Present"
+            ],
+            "value": ""
+          },
+          "pattern_4_percentage_for_group_2": {
+            "label": "Percentage of pattern 4 for grade group 2",
+            "type": "select",
+            "options": [
+              "Less than or equal to 5%",
+              "6 - 10%",
+              "11 - 20%",
+              "21 - 30%",
+              "31 - 40%",
+              "Greater than 40%"
+            ],
+            "value": ""
+          },
+          "minor_tertiary_pattern_5_for_group_3": {
+            "label": "Minor tertiary pattern 5 for grade group 3",
+            "type": "select",
+            "options": [
+              "Not applicable / not identified",
+              "Present"
+            ],
+            "value": ""
+          },
+          "pattern_4_percentage_for_group_3": {
+            "label": "Percentage of pattern 4 for grade group 3",
+            "type": "select",
+            "options": [
+              "Less than 61%",
+              "61 - 70%",
+              "71 - 80%",
+              "81 - 90%",
+              "Greater than 90%"
+            ],
+            "value": ""
+          },
+          "pattern_4_percentage_if_greater_than_7": {
+            "label": "Percentage of pattern 4 if Gleason score is greater than 7",
+            "type": "number",
+            "value": ""
+          },
+          "pattern_5_percentage_if_greater_than_7": {
+            "label": "Percentage of pattern 5 if Gleason score is greater than 7",
+            "type": "number",
+            "value": ""
+          }
+        }
+      },
+
+      "intraductal_carcinoma": {
+        "label": "Intraductal carcinoma (IDC)",
+        "fields": {
+          "status": {
+            "label": "IDC",
+            "type": "select",
+            "options": [
+              "Not identified",
+              "Present"
+            ],
+            "value": ""
+          },
+          "incorporated_into_grade": {
+            "label": "IDC incorporated into grade",
+            "type": "select",
+            "options": [
+              "Yes",
+              "No",
+              "Cannot be determined"
+            ],
+            "value": ""
+          }
+        }
+      },
+
+      "cribriform_glands": {
+        "label": "Cribriform glands",
+        "fields": {
+          "status": {
+            "label": "Cribriform glands",
+            "type": "select",
+            "options": [
+              "Not applicable",
+              "Not identified",
+              "Present",
+              "Cannot be determined"
+            ],
+            "value": "",
+            "cannot_be_determined_explain": ""
+          }
+        }
+      },
+
+      "treatment_effect": {
+        "label": "Treatment effect",
+        "fields": {
+          "effects": {
+            "label": "Treatment effect",
+            "type": "multi_select",
+            "options": [
+              "No known presurgical therapy",
+              "Not identified",
+              "Radiation therapy effect present",
+              "Hormonal therapy effect present",
+              "Other therapy effect(s) present",
+              "Cannot be determined"
+            ],
+            "value": []
+          },
+          "radiation_therapy_effect_specify": {
+            "label": "Radiation therapy effect present",
+            "type": "text",
+            "value": ""
+          },
+          "hormonal_therapy_effect_specify": {
+            "label": "Hormonal therapy effect present",
+            "type": "text",
+            "value": ""
+          },
+          "other_therapy_effects_specify": {
+            "label": "Other therapy effect(s) present",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_specify": {
+            "label": "Cannot be determined",
+            "type": "text",
+            "value": ""
+          }
+        }
+      }
+    }
+  },
+
+  "tumor_quantitation": {
+    "label": "Tumor Quantitation",
+    "fields": {
+      "quantitation_methods": {
+        "label": "Tumor quantitation methods",
+        "type": "multi_select",
+        "options": [
+          "Via percentage",
+          "Via dimension"
+        ],
+        "value": []
+      },
+      "estimated_percentage_of_prostate_involved": {
+        "label": "Estimated percentage of prostate involved by tumor",
+        "type": "select",
+        "options": [
+          "Less than 1%",
+          "1 - 5%",
+          "6 - 10%",
+          "11 - 20%",
+          "21 - 30%",
+          "31 - 40%",
+          "41 - 50%",
+          "51 - 60%",
+          "61 - 70%",
+          "71 - 80%",
+          "81 - 90%",
+          "Greater than 90%",
+          "Cannot be determined"
+        ],
+        "value": "",
+        "cannot_be_determined_explain": ""
+      },
+      "dominant_nodule_greatest_dimension_mm": {
+        "label": "Greatest dimension of dominant nodule (mm)",
+        "type": "number",
+        "value": ""
+      },
+      "dominant_nodule_additional_dimensions_mm": {
+        "label": "Additional dimensions of dominant nodule (mm)",
+        "type": "measurement_2d",
+        "value": ""
+      },
+      "dominant_nodule_location": {
+        "label": "Location of dominant nodule",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "extension_and_invasion": {
+    "label": "Extension and Invasion",
+    "fields": {
+      "extraprostatic_extension": {
+        "label": "Extraprostatic extension (EPE)",
+        "fields": {
+          "status": {
+            "label": "Extraprostatic extension",
+            "type": "select",
+            "options": [
+              "Not identified",
+              "Present, focal",
+              "Present, nonfocal",
+              "Cannot be determined"
+            ],
+            "value": "",
+            "cannot_be_determined_specify": ""
+          },
+          "locations": {
+            "label": "Location of extraprostatic extension",
+            "type": "multi_select",
+            "options": [
+              "Right apical",
+              "Right bladder neck",
+              "Right anterior",
+              "Right lateral",
+              "Right posterolateral (neurovascular bundle)",
+              "Right posterior",
+              "Left apical",
+              "Left bladder neck",
+              "Left anterior",
+              "Left lateral",
+              "Left posterolateral (neurovascular bundle)",
+              "Left posterior",
+              "Other",
+              "Cannot be determined"
+            ],
+            "value": [],
+            "other_specify": "",
+            "cannot_be_determined_specify": ""
+          }
+        }
+      },
+      "urinary_bladder_neck_invasion": {
+        "label": "Urinary bladder neck invasion",
+        "type": "select",
+        "options": [
+          "Not identified",
+          "Present",
+          "Cannot be determined"
+        ],
+        "value": "",
+        "cannot_be_determined_specify": ""
+      },
+      "seminal_vesicle_invasion": {
+        "label": "Seminal vesicle invasion",
+        "type": "select",
+        "options": [
+          "Not identified",
+          "Present, right",
+          "Present, left",
+          "Present, bilateral",
+          "Present, laterality cannot be determined",
+          "No seminal vesicle present"
+        ],
+        "value": ""
+      },
+      "lymphovascular_invasion": {
+        "label": "Lymphatic and / or vascular invasion",
+        "type": "select",
+        "options": [
+          "Not identified",
+          "Present",
+          "Cannot be determined"
+        ],
+        "value": "",
+        "cannot_be_determined_explain": ""
+      },
+      "perineural_invasion": {
+        "label": "Perineural invasion",
+        "type": "select",
+        "options": [
+          "Not identified",
+          "Present"
+        ],
+        "value": "",
+        "present_specify": ""
+      }
+    }
+  },
+
+  "margins": {
+    "label": "Margins",
+    "fields": {
+      "margin_status": {
+        "label": "Margin status",
+        "type": "select",
+        "options": [
+          "Cannot be assessed",
+          "All margins negative for invasive carcinoma",
+          "Invasive carcinoma present at margin"
+        ],
+        "value": "",
+        "cannot_be_assessed_specify": ""
+      },
+      "linear_length_of_margin_involved": {
+        "label": "Linear length of margin(s) involved by carcinoma",
+        "fields": {
+          "length_type": {
+            "label": "Length type",
+            "type": "select",
+            "options": [
+              "Specify exact length in millimeters (mm)",
+              "Less than 3 mm (limited)",
+              "Greater than or equal to 3 mm (non-limited)",
+              "Cannot be determined"
+            ],
+            "value": "",
+            "cannot_be_determined_explain": ""
+          },
+          "length_mm": {
+            "label": "Length (mm)",
+            "type": "number",
+            "value": ""
+          }
+        }
+      },
+      "focality_of_margin_involvement": {
+        "label": "Focality of margin involvement",
+        "type": "select",
+        "options": [
+          "Unifocal",
+          "Multifocal"
+        ],
+        "value": ""
+      },
+      "margins_involved_by_invasive_carcinoma": {
+        "label": "Margin(s) involved by invasive carcinoma",
+        "type": "multi_select",
+        "options": [
+          "Right apical",
+          "Right bladder neck",
+          "Right anterior",
+          "Right lateral",
+          "Right posterolateral (neurovascular bundle)",
+          "Right posterior",
+          "Left apical",
+          "Left bladder neck",
+          "Left anterior",
+          "Left lateral",
+          "Left posterolateral (neurovascular bundle)",
+          "Left posterior",
+          "Cannot be determined"
+        ],
+        "value": [],
+        "cannot_be_determined_specify": ""
+      },
+      "margin_involvement_in_area_of_epe": {
+        "label": "Margin involvement by invasive carcinoma in area of EPE",
+        "fields": {
+          "status": {
+            "label": "Margin involvement in area of EPE",
+            "type": "select",
+            "options": [
+              "Not identified",
+              "Present"
+            ],
+            "value": ""
+          },
+          "margins_involved": {
+            "label": "Margin(s) involved by invasive carcinoma in area of EPE",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "gleason_pattern_at_margin": {
+        "label": "Gleason pattern at margin(s) involved by carcinoma",
+        "type": "multi_select",
+        "options": [
+          "Pattern 3",
+          "Pattern 4",
+          "Pattern 5"
+        ],
+        "value": []
+      },
+      "margin_comment": {
+        "label": "Margin comment",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "regional_lymph_nodes": {
+    "label": "Regional Lymph Nodes",
+    "fields": {
+      "regional_lymph_node_status": {
+        "label": "Regional lymph node status",
+        "type": "select",
+        "options": [
+          "Not applicable (no regional lymph nodes submitted or found)",
+          "Regional lymph nodes present",
+          "All regional lymph nodes negative for tumor",
+          "Tumor present in regional lymph node(s)"
+        ],
+        "value": ""
+      },
+      "number_of_lymph_nodes_with_tumor": {
+        "label": "Number of lymph nodes with tumor",
+        "fields": {
+          "count_type": {
+            "label": "Count type",
+            "type": "select",
+            "options": [
+              "Exact number",
+              "At least",
+              "Other",
+              "Cannot be determined"
+            ],
+            "value": ""
+          },
+          "count_value": {
+            "label": "Count",
+            "type": "integer",
+            "value": ""
+          },
+          "other_specify": {
+            "label": "Other (specify)",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_explain": {
+            "label": "Cannot be determined (explain)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "nodal_sites_with_tumor": {
+        "label": "Nodal site(s) with tumor",
+        "type": "repeatable_group",
+        "item_label": "Nodal site with tumor",
+        "fields": {
+          "site": {
+            "label": "Nodal site",
+            "type": "select",
+            "options": [
+              "Hypogastric",
+              "Obturator",
+              "Internal iliac",
+              "External iliac",
+              "Iliac, NOS",
+              "Pelvic, NOS",
+              "Lateral sacral",
+              "Presacral",
+              "Promontory",
+              "Sacral, NOS",
+              "Other"
+            ],
+            "value": "",
+            "site_specify": ""
+          },
+          "site_detail": {
+            "label": "Site detail",
+            "type": "text",
+            "value": ""
+          },
+          "laterality": {
+            "label": "Laterality",
+            "type": "multi_select",
+            "options": [
+              "Right",
+              "Left",
+              "Cannot be determined"
+            ],
+            "value": [],
+            "cannot_be_determined_specify": ""
+          }
+        }
+      },
+      "size_of_largest_nodal_metastatic_deposit": {
+        "label": "Size of largest nodal metastatic deposit",
+        "fields": {
+          "size_type": {
+            "label": "Size type",
+            "type": "select",
+            "options": [
+              "Exact size",
+              "At least",
+              "Greater than",
+              "Less than",
+              "Other",
+              "Cannot be determined"
+            ],
+            "value": ""
+          },
+          "size_cm": {
+            "label": "Size (cm)",
+            "type": "number",
+            "value": ""
+          },
+          "other_specify": {
+            "label": "Other (specify)",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_explain": {
+            "label": "Cannot be determined (explain)",
+            "type": "text",
+            "value": ""
+          },
+          "site": {
+            "label": "Nodal site with largest metastatic deposit",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "size_of_largest_lymph_node_with_tumor": {
+        "label": "Size of largest lymph node with tumor",
+        "fields": {
+          "size_type": {
+            "label": "Size type",
+            "type": "select",
+            "options": [
+              "Exact size",
+              "At least",
+              "Greater than",
+              "Less than",
+              "Other",
+              "Cannot be determined"
+            ],
+            "value": ""
+          },
+          "size_cm": {
+            "label": "Size (cm)",
+            "type": "number",
+            "value": ""
+          },
+          "other_specify": {
+            "label": "Other (specify)",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_explain": {
+            "label": "Cannot be determined (explain)",
+            "type": "text",
+            "value": ""
+          },
+          "site": {
+            "label": "Largest lymph node with tumor (specify site)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "extranodal_extension": {
+        "label": "Extranodal extension",
+        "fields": {
+          "status": {
+            "label": "Extranodal extension",
+            "type": "select",
+            "options": [
+              "Not identified",
+              "Present",
+              "Cannot be determined",
+              "Other"
+            ],
+            "value": ""
+          },
+          "cannot_be_determined_specify": {
+            "label": "Cannot be determined",
+            "type": "text",
+            "value": ""
+          },
+          "other_specify": {
+            "label": "Other (specify)",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_explain": {
+            "label": "Cannot be determined (explain)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "number_of_lymph_nodes_examined": {
+        "label": "Number of lymph nodes examined",
+        "fields": {
+          "count_type": {
+            "label": "Count type",
+            "type": "select",
+            "options": [
+              "Exact number",
+              "At least",
+              "Other",
+              "Cannot be determined"
+            ],
+            "value": ""
+          },
+          "count_value": {
+            "label": "Count",
+            "type": "integer",
+            "value": ""
+          },
+          "other_specify": {
+            "label": "Other (specify)",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_explain": {
+            "label": "Cannot be determined (explain)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "regional_lymph_node_comment": {
+        "label": "Regional lymph node comment",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "distant_metastasis": {
+    "label": "Distant Metastasis",
+    "fields": {
+      "sites_involved": {
+        "label": "Distant site(s) involved",
+        "type": "multi_select",
+        "options": [
+          "Not applicable",
+          "Nonregional lymph node(s)",
+          "Bone",
+          "Other",
+          "Cannot be determined"
+        ],
+        "value": [],
+        "nonregional_lymph_nodes_specify": "",
+        "bone_specify": "",
+        "other_specify": "",
+        "cannot_be_determined_specify": ""
+      }
+    }
+  },
+
+  "ptnm_classification": {
+    "label": "pTNM Classification (AJCC 8th Edition)",
+    "note": "Reporting of pT, pN, and when applicable pM categories is based on information available to the pathologist at the time the report is issued. As per AJCC 8th Edition, it is the managing physician’s responsibility to establish the final pathologic stage based upon all pertinent information.",
+    "fields": {
+      "modified_classification": {
+        "label": "Modified classification",
+        "type": "multi_select",
+        "options": [
+          "Not applicable",
+          "y (post-neoadjuvant therapy)",
+          "r (recurrence)"
+        ],
+        "value": []
+      },
+      "pT_category": {
+        "label": "pT category",
+        "type": "select",
+        "options": [
+          "pT2: Organ confined",
+          "pT3a: Extraprostatic extension or microscopic invasion of bladder neck",
+          "pT3b: Tumor invades seminal vesicle(s)",
+          "pT3 (subcategory cannot be determined)",
+          "pT4: Tumor is fixed or invades adjacent structures other than seminal vesicles"
+        ],
+        "value": ""
+      },
+      "T_suffix": {
+        "label": "T suffix",
+        "type": "select",
+        "options": [
+          "Not applicable",
+          "(m) multiple primary synchronous tumors in a single organ"
+        ],
+        "value": ""
+      },
+      "pN_category": {
+        "label": "pN category",
+        "type": "select",
+        "options": [
+          "pN not assigned (no nodes submitted or found)",
+          "pN not assigned (cannot be determined based on available pathological information)",
+          "pN0: No positive regional nodes",
+          "pN1: Metastasis in regional nodes"
+        ],
+        "value": ""
+      },
+      "pM_category": {
+        "label": "pM category",
+        "type": "select",
+        "options": [
+          "Not applicable - pM cannot be determined from the submitted specimen(s)",
+          "pM1a: Nonregional lymph node(s)",
+          "pM1b: Bone(s)",
+          "pM1c: Other site(s) with or without bone disease",
+          "pM1 (subcategory cannot be determined)"
+        ],
+        "value": ""
+      }
+    }
+  },
+
+  "additional_findings": {
+    "label": "Additional Findings",
+    "fields": {
+      "findings": {
+        "label": "Additional findings",
+        "type": "multi_select",
+        "options": [
+          "None identified",
+          "Atypical intraductal proliferation (AIP)",
+          "High-grade prostatic intraepithelial neoplasia (PIN)",
+          "Atypical adenomatous hyperplasia (adenosis)",
+          "Nodular prostatic hyperplasia",
+          "Inflammation",
+          "Other"
+        ],
+        "value": []
+      },
+      "pin_specify": {
+        "label": "High-grade prostatic intraepithelial neoplasia (PIN)",
+        "type": "text",
+        "value": ""
+      },
+      "inflammation_specify_type": {
+        "label": "Inflammation (specify type)",
+        "type": "text",
+        "value": ""
+      },
+      "other_specify": {
+        "label": "Other (specify)",
+        "type": "text",
+        "value": ""
+      }
+    }
+  }
+}

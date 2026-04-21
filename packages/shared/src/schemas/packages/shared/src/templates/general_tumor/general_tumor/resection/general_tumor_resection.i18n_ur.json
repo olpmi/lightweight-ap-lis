@@ -1,0 +1,284 @@
+{
+  "template_id": "general_tumor_resection_v1",
+  "lang": "ur",
+  "title": "جنرل ٹیومر ریسیکشن",
+
+  "specimen": {
+    "label": "نمونہ",
+    "fields": {
+      "procedure": {
+        "label": "طریقۂ کار"
+      },
+      "laterality": {
+        "label": "نمونے کی جانب",
+        "options": ["دائیں", "بائیں", "واضح نہیں", "قابل اطلاق نہیں"]
+      },
+      "lymph_node_sampling": {
+        "label": "لمف نوڈ سیمپلنگ",
+        "options": ["کی گئی", "نہیں کی گئی", "معلوم نہیں"],
+        "lymph_nodes_sampled": "نمونہ لیے گئے لمف نوڈز"
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "ٹیومر",
+    "fields": {
+      "site": {
+        "label": "ٹیومر کی جگہ / جگہیں"
+      },
+      "histologic_type": {
+        "label": "ہسٹولوجک قسم"
+      },
+      "histologic_grade": {
+        "label": "ہسٹولوجک گریڈ"
+      },
+      "tumor_size": {
+        "label": "ٹیومر کا سائز",
+        "fields": {
+          "measurement_type": {
+            "label": "پیمائش کی قسم",
+            "options": [
+              "سب سے بڑی جہت سینٹی میٹر (cm) میں",
+              "متعین نہیں کیا جا سکتا"
+            ]
+          },
+          "greatest_dimension_cm": {
+            "label": "سب سے بڑی جہت (cm)"
+          },
+          "additional_dimensions_cm": {
+            "label": "اضافی جہات (cm)"
+          },
+          "cannot_be_determined_specify": {
+            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
+          }
+        }
+      },
+      "tumor_extent": {
+        "label": "ٹیومر کا پھیلاؤ (متاثرہ ساختیں یا اعضاء)"
+      },
+      "mitotic_rate": {
+        "label": "مائٹوٹک ریٹ"
+      },
+      "tumor_necrosis": {
+        "label": "ٹیومر نیکروسس",
+        "fields": {
+          "status": {
+            "label": "ٹیومر نیکروسس کی حالت",
+            "options": ["شناخت نہیں ہوئی", "موجود", "متعین نہیں کیا جا سکتا"]
+          },
+          "percentage_type": {
+            "label": "ٹیومر نیکروسس کا فیصد",
+            "options": ["فیصد درج کریں", "دیگر", "متعین نہیں کیا جا سکتا"]
+          },
+          "percentage_value": {
+            "label": "فیصد (%)"
+          },
+          "other_specify": {
+            "label": "دیگر (وضاحت کریں)"
+          },
+          "cannot_be_determined_specify": {
+            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
+          }
+        }
+      },
+      "lymphovascular_invasion": {
+        "label": "لیمفوویسکیولر اِنویژن",
+        "options": ["شناخت نہیں ہوئی", "موجود", "متعین نہیں کیا جا سکتا"]
+      },
+      "treatment_effect": {
+        "label": "علاج کا اثر",
+        "fields": {
+          "status": {
+            "label": "علاج کے اثر کی حالت",
+            "options": [
+              "پری آپریٹو علاج معلوم نہیں",
+              "شناخت نہیں ہوا",
+              "موجود",
+              "متعین نہیں کیا جا سکتا"
+            ]
+          },
+          "preoperative_therapy_given": {
+            "label": "دیا گیا پری آپریٹو علاج"
+          },
+          "cannot_be_determined_specify": {
+            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
+          }
+        }
+      },
+      "tumor_comment": {
+        "label": "ٹیومر پر تبصرہ"
+      }
+    }
+  },
+
+  "margins": {
+    "label": "حاشیے",
+    "fields": {
+      "margin_status": {
+        "label": "حاشیے کی حالت",
+        "options": [
+          "تمام حاشیے ٹیومر کے لیے منفی ہیں",
+          "ٹیومر حاشیے پر موجود ہے",
+          "قابل اطلاق نہیں"
+        ]
+      },
+      "distance_to_closest_margin": {
+        "label": "ٹیومر سے قریب ترین حاشیے تک فاصلہ",
+        "fields": {
+          "distance_type": {
+            "label": "فاصلے کی قسم",
+            "options": [
+              "بالکل درست فاصلہ",
+              "سے زیادہ",
+              "کم از کم",
+              "سے کم",
+              "1 ملی میٹر سے کم",
+              "دیگر",
+              "متعین نہیں کیا جا سکتا"
+            ]
+          },
+          "distance_mm": {
+            "label": "فاصلہ (mm)"
+          },
+          "other_specify": {
+            "label": "دیگر (وضاحت کریں)"
+          },
+          "cannot_be_determined_specify": {
+            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
+          }
+        }
+      },
+      "closest_margins_to_tumor": {
+        "label": "ٹیومر کے قریب ترین حاشیہ / حاشیے",
+        "fields": {
+          "status": {
+            "label": "قریب ترین حاشیے کی حالت",
+            "options": [
+              "قریب ترین حاشیہ / حاشیے درج کریں",
+              "متعین نہیں کیا جا سکتا"
+            ]
+          },
+          "specify": {
+            "label": "قریب ترین حاشیہ / حاشیے درج کریں"
+          },
+          "cannot_be_determined_specify": {
+            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
+          }
+        }
+      },
+      "margins_involved_by_tumor": {
+        "label": "ٹیومر سے متاثرہ حاشیہ / حاشیے",
+        "fields": {
+          "status": {
+            "label": "متاثرہ حاشیے کی حالت",
+            "options": [
+              "متاثرہ حاشیہ / حاشیے درج کریں",
+              "دیگر",
+              "متعین نہیں کیا جا سکتا"
+            ]
+          },
+          "specify": {
+            "label": "متاثرہ حاشیہ / حاشیے درج کریں"
+          },
+          "other_specify": {
+            "label": "دیگر (وضاحت کریں)"
+          },
+          "cannot_be_determined_specify": {
+            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
+          }
+        }
+      }
+    }
+  },
+
+  "regional_lymph_nodes": {
+    "label": "علاقائی لمف نوڈز",
+    "fields": {
+      "regional_lymph_node_status": {
+        "label": "علاقائی لمف نوڈ کی حالت",
+        "options": [
+          "قابل اطلاق نہیں (کوئی علاقائی لمف نوڈ جمع نہیں کیے گئے یا نہیں ملے)",
+          "علاقائی لمف نوڈز موجود ہیں",
+          "تمام علاقائی لمف نوڈز ٹیومر کے لیے منفی ہیں",
+          "علاقائی لمف نوڈ / نوڈز میں ٹیومر موجود ہے"
+        ]
+      },
+      "number_with_tumor": {
+        "label": "ٹیومر والے لمف نوڈز کی تعداد",
+        "fields": {
+          "count_type": {
+            "label": "تعداد کی قسم",
+            "options": [
+              "بالکل درست تعداد",
+              "کم از کم",
+              "دیگر",
+              "متعین نہیں کیا جا سکتا"
+            ]
+          },
+          "count_value": {
+            "label": "تعداد"
+          },
+          "other_specify": {
+            "label": "دیگر (وضاحت کریں)"
+          },
+          "cannot_be_determined_specify": {
+            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
+          }
+        }
+      },
+      "extranodal_extension": {
+        "label": "ایکسٹرانوڈل ایکسٹینشن",
+        "fields": {
+          "status": {
+            "label": "ایکسٹرانوڈل ایکسٹینشن کی حالت",
+            "options": [
+              "شناخت نہیں ہوئی",
+              "موجود",
+              "دیگر",
+              "متعین نہیں کیا جا سکتا"
+            ]
+          },
+          "other_specify": {
+            "label": "دیگر (وضاحت کریں)"
+          },
+          "cannot_be_determined_specify": {
+            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
+          }
+        }
+      },
+      "number_examined": {
+        "label": "جائزہ لیے گئے لمف نوڈز کی تعداد",
+        "fields": {
+          "count_type": {
+            "label": "تعداد کی قسم",
+            "options": [
+              "بالکل درست تعداد",
+              "کم از کم",
+              "دیگر",
+              "متعین نہیں کیا جا سکتا"
+            ]
+          },
+          "count_value": {
+            "label": "تعداد"
+          },
+          "other_specify": {
+            "label": "دیگر (وضاحت کریں)"
+          },
+          "cannot_be_determined_specify": {
+            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
+          }
+        }
+      }
+    }
+  },
+
+  "additional_findings": {
+    "label": "اضافی مشاہدات",
+    "fields": {
+      "findings": {
+        "label": "اضافی مشاہدات"
+      }
+    }
+  }
+}

@@ -1,0 +1,375 @@
+{
+  "template_id": "stomach_tumor_resection_v1",
+  "domain": "anatomic_pathology",
+  "title": "Stomach Tumor, Resection",
+  "protocol_posting_date": "March 2023",
+  "standards": ["AJCC-UICC 8"],
+
+  "specimen": {
+    "label": "Specimen",
+    "fields": {
+      "procedure": {
+        "label": "Procedure",
+        "type": "select",
+        "options": [
+          "Endoscopic resection",
+          "Partial gastrectomy, proximal",
+          "Partial gastrectomy, distal",
+          "Partial gastrectomy, other",
+          "Total gastrectomy",
+          "Other",
+          "Not specified"
+        ],
+        "value": ""
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "tumor_site": {
+        "label": "Tumor site",
+        "type": "multi_select",
+        "options": [
+          "Cardia",
+          "Fundus",
+          "Body",
+          "Antrum",
+          "Pylorus",
+          "Anterior wall",
+          "Posterior wall",
+          "Lesser curvature",
+          "Greater curvature",
+          "Other",
+          "Not specified"
+        ],
+        "value": []
+      },
+
+      "histologic_type": {
+        "label": "Histologic type",
+        "type": "select",
+        "options": [
+          "Adenocarcinoma",
+          "Tubular adenocarcinoma",
+          "Poorly cohesive carcinoma",
+          "Mucinous adenocarcinoma",
+          "Papillary adenocarcinoma",
+          "Mixed carcinoma",
+          "Hepatoid adenocarcinoma",
+          "Carcinoma with lymphoid stroma",
+          "Micropapillary adenocarcinoma",
+          "Fundic-gland type adenocarcinoma",
+          "Squamous cell carcinoma",
+          "Adenosquamous carcinoma",
+          "Undifferentiated carcinoma",
+          "Gastroblastoma",
+          "Large cell neuroendocrine carcinoma",
+          "Small cell neuroendocrine carcinoma",
+          "Neuroendocrine carcinoma",
+          "Mixed adenocarcinoma-neuroendocrine carcinoma",
+          "Mixed adenocarcinoma-neuroendocrine tumor",
+          "Other"
+        ],
+        "value": ""
+      },
+
+      "lauren_classification": {
+        "label": "Lauren classification",
+        "type": "select",
+        "options": [
+          "Intestinal type",
+          "Diffuse type",
+          "Mixed",
+          "Other",
+          "Cannot be determined"
+        ],
+        "value": ""
+      },
+
+      "histologic_grade": {
+        "label": "Histologic grade",
+        "type": "select",
+        "options": [
+          "G1 well differentiated",
+          "G2 moderately differentiated",
+          "G3 poorly differentiated / undifferentiated",
+          "Other",
+          "GX cannot be assessed",
+          "Not applicable"
+        ],
+        "value": ""
+      },
+
+      "tumor_size": {
+        "label": "Tumor size",
+        "type": "text",
+        "value": ""
+      },
+
+      "tumor_extent": {
+        "label": "Tumor extent",
+        "type": "select",
+        "options": [
+          "Carcinoma in situ",
+          "Invades lamina propria",
+          "Invades muscularis mucosae",
+          "Invades submucosa",
+          "Invades muscularis propria",
+          "Penetrates subserosal connective tissue",
+          "Invades serosa",
+          "Directly invades adjacent structures",
+          "Cannot be determined",
+          "No evidence of primary tumor"
+        ],
+        "value": ""
+      },
+
+      "adjacent_structures": {
+        "label": "Adjacent structures involved",
+        "type": "multi_select",
+        "options": [
+          "Spleen",
+          "Transverse colon",
+          "Liver",
+          "Diaphragm",
+          "Pancreas",
+          "Abdominal wall",
+          "Adrenal gland",
+          "Kidney",
+          "Small intestine",
+          "Retroperitoneum",
+          "Other"
+        ],
+        "value": []
+      },
+
+      "treatment_effect": {
+        "label": "Treatment effect",
+        "type": "select",
+        "options": [
+          "No known presurgical therapy",
+          "Complete response (score 0)",
+          "Near complete response (score 1)",
+          "Partial response (score 2)",
+          "Present NOS",
+          "Poor or no response (score 3)",
+          "Cannot be determined"
+        ],
+        "value": ""
+      },
+
+      "lymphovascular_invasion": {
+        "label": "Lymphatic and / or vascular invasion",
+        "type": "select",
+        "options": ["Not identified", "Present", "Cannot be determined"],
+        "value": ""
+      },
+
+      "perineural_invasion": {
+        "label": "Perineural invasion",
+        "type": "select",
+        "options": ["Not identified", "Present", "Cannot be determined"],
+        "value": ""
+      }
+    }
+  },
+
+  "margins": {
+    "label": "Margins",
+    "fields": {
+      "margin_status_invasive": {
+        "label": "Margin status for invasive carcinoma",
+        "type": "select",
+        "options": [
+          "All margins negative",
+          "Invasive carcinoma present at margin",
+          "Not applicable"
+        ],
+        "value": ""
+      },
+
+      "closest_margins": {
+        "label": "Closest margin(s)",
+        "type": "multi_select",
+        "options": [
+          "Proximal",
+          "Distal",
+          "Omental (radial)",
+          "Mucosal",
+          "Deep",
+          "Other",
+          "Cannot be determined"
+        ],
+        "value": []
+      },
+
+      "distance_to_closest_margin": {
+        "label": "Distance to closest margin",
+        "type": "text",
+        "value": ""
+      },
+
+      "margin_status_dysplasia": {
+        "label": "Margin status for dysplasia",
+        "type": "multi_select",
+        "options": [
+          "All margins negative for dysplasia",
+          "Carcinoma in situ present at margin",
+          "Low-grade dysplasia present at margin",
+          "Not applicable"
+        ],
+        "value": []
+      },
+
+      "margin_comment": {
+        "label": "Margin comment",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "regional_lymph_nodes": {
+    "label": "Regional Lymph Nodes",
+    "fields": {
+      "status": {
+        "label": "Regional lymph node status",
+        "type": "select",
+        "options": [
+          "Not applicable",
+          "Regional lymph nodes present",
+          "All negative for tumor",
+          "Tumor present in regional lymph node(s)"
+        ],
+        "value": ""
+      },
+
+      "number_with_tumor": {
+        "label": "Number of lymph nodes with tumor",
+        "type": "text",
+        "value": ""
+      },
+
+      "number_examined": {
+        "label": "Number of lymph nodes examined",
+        "type": "text",
+        "value": ""
+      },
+
+      "comment": {
+        "label": "Regional lymph node comment",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "distant_metastasis": {
+    "label": "Distant Metastasis",
+    "fields": {
+      "sites": {
+        "label": "Distant site(s) involved",
+        "type": "multi_select",
+        "options": [
+          "Not applicable",
+          "Non-regional lymph node(s)",
+          "Liver",
+          "Other",
+          "Cannot be determined"
+        ],
+        "value": []
+      }
+    }
+  },
+
+  "ptnm": {
+    "label": "pTNM Classification (AJCC 8th Edition)",
+    "fields": {
+      "modified_classification": {
+        "label": "Modified classification",
+        "type": "multi_select",
+        "options": [
+          "Not applicable",
+          "y (post-neoadjuvant therapy)",
+          "r (recurrence)"
+        ],
+        "value": []
+      },
+
+      "pT_category": {
+        "label": "pT category",
+        "type": "select",
+        "options": [
+          "pT0",
+          "pTis",
+          "pT1a",
+          "pT1b",
+          "pT1",
+          "pT2",
+          "pT3",
+          "pT4a",
+          "pT4b",
+          "pT4",
+          "pT not assigned"
+        ],
+        "value": ""
+      },
+
+      "T_suffix": {
+        "label": "T suffix",
+        "type": "select",
+        "options": [
+          "Not applicable",
+          "(m) multiple primary synchronous tumors"
+        ],
+        "value": ""
+      },
+
+      "pN_category": {
+        "label": "pN category",
+        "type": "select",
+        "options": [
+          "pN not assigned",
+          "pN0",
+          "pN1",
+          "pN2",
+          "pN3a",
+          "pN3b",
+          "pN3"
+        ],
+        "value": ""
+      },
+
+      "pM_category": {
+        "label": "pM category",
+        "type": "select",
+        "options": ["Not applicable", "pM1"],
+        "value": ""
+      }
+    }
+  },
+
+  "additional_findings": {
+    "label": "Additional Findings",
+    "fields": {
+      "findings": {
+        "label": "Additional findings",
+        "type": "multi_select",
+        "options": [
+          "None identified",
+          "Intestinal metaplasia",
+          "Low-grade dysplasia",
+          "High-grade dysplasia",
+          "Chronic gastritis",
+          "Helicobacter pylori present",
+          "Polyp(s)",
+          "Autoimmune atrophic chronic gastritis",
+          "Other"
+        ],
+        "value": []
+      }
+    }
+  }
+}

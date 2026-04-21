@@ -1,0 +1,155 @@
+{
+  "template_id": "breast_biomarker_status_v1",
+  "domain": "anatomic_pathology",
+  "title": "Breast Biomarker Status",
+
+  "er_status": {
+    "label": "Estrogen Receptor (ER) Status",
+    "fields": {
+      "percentage_nuclear_positivity": {
+        "label": "Percentage of cells with nuclear positivity",
+        "type": "number",
+        "value": ""
+      },
+      "average_intensity": {
+        "label": "Average intensity of staining",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "pgr_status": {
+    "label": "Progesterone Receptor (PgR) Status",
+    "fields": {
+      "percentage_nuclear_positivity": {
+        "label": "Percentage of cells with nuclear positivity",
+        "type": "number",
+        "value": ""
+      },
+      "average_intensity": {
+        "label": "Average intensity of staining",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "her2_ihc_status": {
+    "label": "HER2 by Immunohistochemistry (IHC) Status",
+    "comment": "Breast cancers with HER2 IHC scores of 0+, 1+, or 2+ (ISH negative) may be eligible for treatment targeting non-amplified levels of HER2 expression in the metastatic setting. Currently, patients with no membrane staining by IHC (0) are ineligible or excluded. Consider using the optional standardized HER2 IHC report comment to explain the clinical relevance of lower levels of HER2 IHC staining in the metastatic setting and definitions of ultralow and low HER2 used in clinical trials.",
+    "fields": {
+      "overall_score": {
+        "label": "Overall HER2 IHC score",
+        "type": "select",
+        "options": [
+          "Negative (Score 0)",
+          "Negative (Score 1+)",
+          "Equivocal (Score 2+)",
+          "Positive (Score 3+)"
+        ],
+        "value": ""
+      },
+
+      "score_0_pattern": {
+        "label": "Score 0 pattern",
+        "type": "select",
+        "options": [
+          "No membrane staining detected (0 / absent membrane staining)",
+          "Membrane staining that is incomplete and is faint or barely perceptible and in less than or equal to 10% of tumor cells (0+ / with membrane staining)",
+          "Other"
+        ],
+        "value": "",
+        "other_specify": ""
+      },
+
+      "score_1_pattern": {
+        "label": "Score 1+ pattern",
+        "type": "select",
+        "options": [
+          "Incomplete membrane staining that is faint or barely perceptible and in greater than 10% of tumor cells",
+          "Other"
+        ],
+        "value": "",
+        "other_specify": ""
+      },
+
+      "score_2_pattern": {
+        "label": "Score 2+ pattern",
+        "type": "select",
+        "options": [
+          "Weak to moderate complete membrane staining observed in greater than 10% of tumor cells",
+          "Moderate to intense but incomplete membrane staining (basolateral)",
+          "Less than or equal to 10% of the cancer has circumferential staining that is complete and intense (3+) (heterogeneous, but very limited in extent; consider results of additional samples)",
+          "Abundant cytoplasmic staining present, obscuring evaluation of membrane stain intensity",
+          "Other"
+        ],
+        "value": "",
+        "other_specify": ""
+      },
+
+      "score_3_pattern": {
+        "label": "Score 3+ pattern",
+        "type": "select",
+        "options": [
+          "Circumferential membrane staining that is complete, intense, and in greater than 10% of tumor cells",
+          "Other"
+        ],
+        "value": "",
+        "other_specify": ""
+      }
+    }
+  },
+
+  "ki67_status": {
+    "label": "Ki-67 Proliferation Index",
+    "fields": {
+      "value": {
+        "label": "Ki-67 proliferation index",
+        "type": "number",
+        "value": ""
+      }
+    }
+  },
+
+  "methods": {
+    "label": "Methods",
+    "fields": {
+      "block_numbers": {
+        "label": "Testing performed on block number(s)",
+        "type": "text",
+        "value": ""
+      },
+      "er_primary_antibody": {
+        "label": "Estrogen Receptor: Primary antibody",
+        "type": "text",
+        "value": ""
+      },
+      "pgr_primary_antibody": {
+        "label": "Progesterone Receptor: Primary antibody",
+        "type": "text",
+        "value": ""
+      },
+      "er_pgr_reporting_guideline": {
+        "label": "Reporting of ER and PgR",
+        "type": "fixed_text",
+        "value": "ASCO/CAP 2020 Guideline"
+      },
+      "her2_primary_antibody": {
+        "label": "HER2 (by immunohistochemistry): Primary antibody",
+        "type": "text",
+        "value": ""
+      },
+      "her2_reporting_guideline": {
+        "label": "Reporting of HER2 Testing by Immunohistochemistry (IHC)",
+        "type": "fixed_text",
+        "value": "ASCO/CAP 2025 Guideline"
+      },
+      "ki67_primary_antibody": {
+        "label": "Ki-67 index: Primary antibody",
+        "type": "fixed_text",
+        "value": "MIB-1"
+      }
+    }
+  }
+}

@@ -1,0 +1,278 @@
+{
+  "template_id": "uterine_cervix_resection_gross_v1",
+  "domain": "anatomic_pathology",
+  "title": "Uterine Cervix Resection (Gross Template)",
+
+  "specimen": {
+    "label": "Specimen",
+    "fields": {
+      "procedure": {
+        "label": "Procedure",
+        "type": "multi_select",
+        "options": [
+          "Trachelectomy",
+          "Total hysterectomy and bilateral salpingo-oophorectomy",
+          "Radical hysterectomy",
+          "Simple hysterectomy",
+          "Pelvic exenteration",
+          "Bilateral salpingo-oophorectomy",
+          "Right salpingo-oophorectomy",
+          "Left salpingo-oophorectomy",
+          "Salpingo-oophorectomy, side not specified",
+          "Right oophorectomy",
+          "Left oophorectomy",
+          "Oophorectomy, side not specified",
+          "Bilateral salpingectomy",
+          "Right salpingectomy",
+          "Left salpingectomy",
+          "Salpingectomy, side not specified",
+          "Vaginal cuff resection",
+          "Omentectomy",
+          "Other"
+        ],
+        "value": [],
+        "pelvic_exenteration_specify_included_organs": "",
+        "other_specify": ""
+      },
+      "hysterectomy_type": {
+        "label": "Hysterectomy type",
+        "type": "select",
+        "options": [
+          "Abdominal",
+          "Vaginal",
+          "Vaginal, laparoscopic-assisted",
+          "Laparoscopic",
+          "Laparoscopic, robotic-assisted",
+          "Other",
+          "Not specified"
+        ],
+        "value": "",
+        "other_specify": ""
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "tumor_site": {
+        "label": "Tumor site",
+        "type": "multi_select",
+        "options": [
+          "Left superior (anterior) quadrant (12 to 3 o’clock)",
+          "Left inferior (posterior) quadrant (3 to 6 o’clock)",
+          "Right inferior (posterior) quadrant (6 to 9 o’clock)",
+          "Right superior (anterior) quadrant (9 to 12 o’clock)",
+          "Other",
+          "Not specified"
+        ],
+        "value": [],
+        "other_specify": ""
+      },
+      "tumor_size": {
+        "label": "Tumor size",
+        "fields": {
+          "size_type": {
+            "label": "Tumor size",
+            "type": "select",
+            "options": [
+              "Greatest dimension in centimeters (cm)",
+              "Cannot be determined"
+            ],
+            "value": ""
+          },
+          "greatest_dimension_cm": {
+            "label": "Greatest dimension (cm)",
+            "type": "number",
+            "value": ""
+          },
+          "additional_dimensions_cm": {
+            "label": "Additional dimensions (cm)",
+            "type": "measurement_2d",
+            "value": ""
+          },
+          "cannot_be_determined_explain": {
+            "label": "Cannot be determined (explain)",
+            "type": "text",
+            "value": ""
+          },
+          "note": {
+            "label": "Tumor size note",
+            "type": "text",
+            "value": "Per AJCC Staging Manual, tumor size is reported in centimeters. All dimensions are important; see definition for superficially invasive squamous cell carcinoma under T1a1 / IA1."
+          }
+        }
+      },
+      "depth_of_invasion_cm": {
+        "label": "Depth of stromal invasion (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "horizontal_extent_cm": {
+        "label": "Horizontal extent (cm)",
+        "type": "number",
+        "value": ""
+      }
+    }
+  },
+
+  "margins": {
+    "label": "Margins",
+    "fields": {
+      "ectocervical_margin_cm": {
+        "label": "Distance to ectocervical margin (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "endocervical_margin_cm": {
+        "label": "Distance to endocervical margin (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "parametrial_margin_cm": {
+        "label": "Distance to parametrial margin (cm)",
+        "type": "number",
+        "value": ""
+      }
+    }
+  },
+
+  "parametrial_involvement": {
+    "label": "Parametrial Involvement",
+    "fields": {
+      "status": {
+        "label": "Parametrial involvement",
+        "type": "select",
+        "options": ["Absent", "Present"],
+        "value": ""
+      },
+      "laterality": {
+        "label": "Parametrial laterality",
+        "type": "multi_select",
+        "options": ["Right", "Left", "Bilateral"],
+        "value": []
+      }
+    }
+  },
+
+  "vaginal_cuff_involvement": {
+    "label": "Vaginal Cuff Involvement",
+    "fields": {
+      "status": {
+        "label": "Vaginal cuff involvement",
+        "type": "select",
+        "options": ["Absent", "Present"],
+        "value": ""
+      }
+    }
+  },
+
+  "lymph_nodes": {
+    "label": "Lymph Nodes",
+    "fields": {
+      "status": {
+        "label": "Lymph nodes",
+        "type": "select",
+        "options": ["Present", "Absent"],
+        "value": ""
+      },
+      "total_number_of_nodes": {
+        "label": "Total number of nodes",
+        "type": "integer",
+        "value": ""
+      },
+      "size_range": {
+        "label": "Size range",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "block_allocation_key": {
+    "label": "Block Allocation Key",
+    "fields": {
+      "tumor": {
+        "label": "Tumor",
+        "type": "text",
+        "value": ""
+      },
+      "endocervical_margin": {
+        "label": "Endocervical margin",
+        "type": "text",
+        "value": ""
+      },
+      "ectocervical_margin": {
+        "label": "Ectocervical margin",
+        "type": "text",
+        "value": ""
+      },
+      "right_parametrium": {
+        "label": "Right parametrium",
+        "type": "text",
+        "value": ""
+      },
+      "left_parametrium": {
+        "label": "Left parametrium",
+        "type": "text",
+        "value": ""
+      },
+      "vaginal_cuff_margin": {
+        "label": "Vaginal cuff margin",
+        "type": "text",
+        "value": ""
+      },
+      "endometrium": {
+        "label": "Endometrium",
+        "type": "text",
+        "value": ""
+      },
+      "myometrium": {
+        "label": "Myometrium",
+        "type": "text",
+        "value": ""
+      },
+      "right_ovary": {
+        "label": "Right ovary",
+        "type": "text",
+        "value": ""
+      },
+      "left_ovary": {
+        "label": "Left ovary",
+        "type": "text",
+        "value": ""
+      },
+      "right_fallopian_tube": {
+        "label": "Right fallopian tube",
+        "type": "text",
+        "value": ""
+      },
+      "left_fallopian_tube": {
+        "label": "Left fallopian tube",
+        "type": "text",
+        "value": ""
+      },
+      "lymph_nodes": {
+        "label": "Lymph nodes",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "grossing": {
+    "label": "Grossing",
+    "fields": {
+      "grossed_by": {
+        "label": "Grossed by",
+        "type": "text",
+        "value": ""
+      },
+      "date": {
+        "label": "Date",
+        "type": "date",
+        "value": ""
+      }
+    }
+  }
+}

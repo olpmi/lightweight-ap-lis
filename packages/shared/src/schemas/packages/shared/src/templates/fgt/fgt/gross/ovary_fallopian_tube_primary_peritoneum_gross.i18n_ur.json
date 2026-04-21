@@ -1,0 +1,11 @@
+{
+  "template_id": "ovary_fallopian_tube_primary_peritoneum_gross_v1",
+  "lang": "ur",
+  "title": "اووری یا فاللوپین ٹیوب یا پرائمری پیریٹونیم (گراس ٹیمپلیٹ)",
+  "specimen": { "label": "نمونہ" },
+  "ovarian_integrity": { "label": "اووری کی سالمیت" },
+  "fallopian_tube_integrity": { "label": "فاللوپین ٹیوب کی سالمیت" },
+  "uterus_integrity": { "label": "رحم کی سالمیت" },
+  "block_allocation_key": { "label": "بلاک الاٹمنٹ کلید" },
+  "grossing": { "label": "گروسنگ" }
+}

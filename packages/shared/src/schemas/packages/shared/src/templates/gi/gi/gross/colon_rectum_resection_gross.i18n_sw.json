@@ -1,0 +1,14 @@
+{
+  "template_id": "colon_rectum_resection_gross_tumor_v1",
+  "lang": "sw",
+  "title": "Resection ya koloni na rektamu kwa uvimbe (gross template)",
+  "specimen": { "label": "Sampuli" },
+  "tumor": { "label": "Uvimbe" },
+  "margins": { "label": "Mipaka" },
+  "rectal_tumor_only": { "label": "Kwa uvimbe wa rektamu pekee" },
+  "polyps": { "label": "Polypi" },
+  "lymph_nodes": { "label": "Nodi za limfu" },
+  "other_findings": { "label": "Matokeo mengine muhimu ya makroskopiki" },
+  "block_identification_key": { "label": "Ufunguo wa utambulisho wa block" },
+  "grossing": { "label": "Grossing" }
+}

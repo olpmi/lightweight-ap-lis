@@ -1,0 +1,659 @@
+{
+  "template_id": "ovary_fallopian_tube_primary_peritoneum_v1",
+  "domain": "anatomic_pathology",
+  "title": "Ovary or Fallopian Tube or Primary Peritoneum",
+  "protocol_posting_date": "June 2024",
+  "standards": ["AJCC-UICC 8", "FIGO Cancer Report 2021"],
+
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "tumor_site": {
+        "label": "Tumor site",
+        "note": "Please select the primary tumor site of origin only.",
+        "type": "multi_select",
+        "options": [
+          "Right ovary",
+          "Left ovary",
+          "Bilateral ovaries",
+          "Ovary, laterality cannot be determined",
+          "Right fallopian tube",
+          "Left fallopian tube",
+          "Bilateral fallopian tubes",
+          "Fallopian tube, laterality cannot be determined",
+          "Right tubo-ovarian",
+          "Left tubo-ovarian",
+          "Bilateral tubo-ovarian",
+          "Tubo-ovarian, laterality cannot be determined",
+          "Primary peritoneum",
+          "Other"
+        ],
+        "value": [],
+        "right_ovary_specify": "",
+        "left_ovary_specify": "",
+        "bilateral_ovaries_specify": "",
+        "ovary_laterality_cannot_be_determined_explain": "",
+        "right_fallopian_tube_specify": "",
+        "left_fallopian_tube_specify": "",
+        "bilateral_fallopian_tubes_specify": "",
+        "fallopian_tube_laterality_cannot_be_determined_explain": "",
+        "right_tubo_ovarian_specify": "",
+        "left_tubo_ovarian_specify": "",
+        "bilateral_tubo_ovarian_specify": "",
+        "tubo_ovarian_laterality_cannot_be_determined_explain": "",
+        "primary_peritoneum_specify": "",
+        "other_specify": ""
+      },
+
+      "tumor_size": {
+        "label": "Tumor size",
+        "note": "For bilateral tumors, report maximum dimension for the largest borderline or malignant tumor. For carcinomas arising in a borderline tumor, report the carcinoma component only.",
+        "fields": {
+          "size_type": {
+            "label": "Tumor size",
+            "type": "select",
+            "options": [
+              "Greatest dimension in centimeters (cm)",
+              "Cannot be determined"
+            ],
+            "value": ""
+          },
+          "greatest_dimension_cm": {
+            "label": "Greatest dimension (cm)",
+            "type": "number",
+            "value": ""
+          },
+          "additional_dimensions_cm": {
+            "label": "Additional dimensions (cm)",
+            "type": "measurement_2d",
+            "value": ""
+          },
+          "cannot_be_determined_explain": {
+            "label": "Cannot be determined (explain)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+
+      "histologic_type": {
+        "label": "Histologic type",
+        "type": "multi_select",
+        "options": [
+          "Serous borderline tumor",
+          "Serous borderline tumor, micropapillary / cribriform variant",
+          "Serous borderline tumor with microinvasion",
+          "Microinvasive low-grade serous carcinoma",
+          "Low-grade serous carcinoma",
+          "High-grade serous carcinoma",
+          "Mucinous borderline tumor",
+          "Mucinous borderline tumor with intraepithelial carcinoma",
+          "Mucinous borderline tumor with microinvasion",
+          "Microinvasive mucinous adenocarcinoma",
+          "Mucinous adenocarcinoma",
+          "Endometrioid borderline tumor",
+          "Endometrioid carcinoma",
+          "Endometrioid carcinoma, seromucinous type",
+          "Seromucinous borderline tumor",
+          "Clear cell borderline tumor",
+          "Clear cell carcinoma",
+          "Borderline Brenner tumor",
+          "Malignant Brenner tumor",
+          "Mesonephric-like adenocarcinoma",
+          "Small cell carcinoma, hypercalcemic type",
+          "Dedifferentiated carcinoma",
+          "Undifferentiated carcinoma, NOS",
+          "Carcinosarcoma",
+          "Carcinoma, subtype cannot be determined",
+          "Mixed epithelial borderline tumor",
+          "Mixed carcinoma",
+          "Endometrioid stromal sarcoma, low-grade",
+          "Endometrioid stromal sarcoma, high-grade",
+          "Adenosarcoma",
+          "Leiomyosarcoma",
+          "Fibrosarcoma",
+          "Granulosa cell tumor, adult type",
+          "Granulosa cell tumor, juvenile type",
+          "Steroid cell tumor, NOS",
+          "Steroid cell tumor, malignant",
+          "Sertoli-Leydig cell tumor",
+          "Other sex cord-stromal tumor",
+          "Immature teratoma",
+          "Teratoma with malignant transformation",
+          "Malignant struma ovarii",
+          "Dysgerminoma",
+          "Yolk sac tumor",
+          "Embryonal carcinoma",
+          "Gonadoblastoma",
+          "Choriocarcinoma, non-gestational type",
+          "Mixed malignant germ cell tumor",
+          "Gastrointestinal stromal tumor",
+          "Solitary fibrous tumor, malignant",
+          "Desmoplastic small round cell tumor",
+          "Other histologic type not listed"
+        ],
+        "value": [],
+        "mixed_epithelial_borderline_tumor_specify": "",
+        "mixed_carcinoma_specify": "",
+        "other_sex_cord_stromal_tumor_specify": "",
+        "teratoma_with_malignant_transformation_specify": "",
+        "malignant_struma_ovarii_specify": "",
+        "mixed_malignant_germ_cell_tumor_specify": "",
+        "other_histologic_type_specify": "",
+        "comment": ""
+      },
+
+      "histologic_grade": {
+        "label": "Histologic grade",
+        "note": "Required for endometrioid and mucinous carcinomas, immature teratomas, and Sertoli-Leydig cell tumors.",
+        "fields": {
+          "grade_system": {
+            "label": "Grading system",
+            "type": "select",
+            "options": [
+              "Not applicable",
+              "WHO Grading System",
+              "FIGO Grading System",
+              "Silverberg Grading System",
+              "Growth Pattern-based Grading",
+              "2-Tier Grading System",
+              "3-Tier Grading System"
+            ],
+            "value": ""
+          },
+          "grade_value": {
+            "label": "Grade value",
+            "type": "select",
+            "options": [
+              "GB, borderline tumor",
+              "G1, well-differentiated",
+              "G2, moderately differentiated",
+              "G3, poorly differentiated",
+              "GX, cannot be assessed",
+              "FIGO Grade 1",
+              "FIGO Grade 2",
+              "FIGO Grade 3",
+              "Silverberg Grade 1",
+              "Silverberg Grade 2",
+              "Silverberg Grade 3",
+              "Low-grade, growth pattern-based",
+              "High-grade, growth pattern-based",
+              "Other growth pattern-based grading",
+              "Low-grade",
+              "High-grade",
+              "Grade 1 (low-grade)",
+              "Grade 2 (high-grade)",
+              "Grade 3 (high-grade)"
+            ],
+            "value": ""
+          },
+          "other_growth_pattern_based_grading_specify": {
+            "label": "Other growth pattern-based grading (specify)",
+            "type": "text",
+            "value": ""
+          },
+          "gx_cannot_be_assessed_specify": {
+            "label": "GX, cannot be assessed",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+
+      "ovarian_surface_involvement": {
+        "label": "Ovarian surface involvement",
+        "type": "select",
+        "options": [
+          "Not applicable",
+          "Not identified",
+          "Present, right",
+          "Present, left",
+          "Present, right and left",
+          "Present",
+          "Cannot be determined"
+        ],
+        "value": "",
+        "cannot_be_determined_explain": ""
+      },
+
+      "fallopian_tube_surface_involvement": {
+        "label": "Fallopian tube surface involvement",
+        "type": "select",
+        "options": [
+          "Not applicable",
+          "Not identified",
+          "Present, right",
+          "Present, left",
+          "Present, right and left",
+          "Present",
+          "Cannot be determined"
+        ],
+        "value": "",
+        "cannot_be_determined_explain": ""
+      },
+
+      "implants": {
+        "label": "Implants",
+        "note": "Required for advanced stage serous / seromucinous borderline tumors only.",
+        "type": "select",
+        "options": [
+          "Not applicable",
+          "Not sampled",
+          "Not identified",
+          "Present",
+          "Indeterminate"
+        ],
+        "value": "",
+        "present_specify_sites": ""
+      },
+
+      "other_tissue_organ_involvement": {
+        "label": "Other tissue / organ involvement",
+        "type": "multi_select",
+        "options": [
+          "Not applicable",
+          "Not identified",
+          "Right ovary",
+          "Left ovary",
+          "Ovary (side not specified)",
+          "Right fallopian tube",
+          "Left fallopian tube",
+          "Fallopian tube (side not specified)",
+          "Uterine corpus",
+          "Uterine cervix",
+          "Pelvic peritoneum",
+          "Abdominal peritoneum",
+          "Omentum",
+          "Other organs / tissue",
+          "Cannot be determined"
+        ],
+        "value": [],
+        "other_organs_tissue_specify": "",
+        "cannot_be_determined_explain": ""
+      },
+
+      "largest_extrapelvic_peritoneal_focus": {
+        "label": "Largest extrapelvic peritoneal focus",
+        "type": "select",
+        "options": [
+          "Not applicable",
+          "Microscopic",
+          "Macroscopic (2 cm or less)",
+          "Macroscopic (greater than 2 cm)",
+          "Cannot be determined"
+        ],
+        "value": "",
+        "macroscopic_2cm_or_less_specify_site": "",
+        "macroscopic_greater_than_2cm_specify_site": "",
+        "cannot_be_determined_explain": ""
+      },
+
+      "peritoneal_ascitic_fluid_involvement": {
+        "label": "Peritoneal / ascitic fluid involvement",
+        "type": "multi_select",
+        "options": [
+          "Not submitted / unknown",
+          "Negative for malignant cells",
+          "Atypical",
+          "Neoplastic cells present (serous neoplasm, low-grade, see corresponding surgical specimen)",
+          "Other",
+          "Suspicious",
+          "Malignant cells present",
+          "Cannot be determined",
+          "Results pending"
+        ],
+        "value": [],
+        "atypical_explain": "",
+        "other_specify": "",
+        "suspicious_explain": "",
+        "cannot_be_determined_explain": ""
+      },
+
+      "chemotherapy_response_score": {
+        "label": "Chemotherapy response score (CRS)",
+        "note": "Required only for high-grade serous carcinomas.",
+        "type": "select",
+        "options": [
+          "Not applicable",
+          "No known presurgical therapy",
+          "CRS1 (no definite or minimal response)",
+          "CRS2 (moderate response)",
+          "CRS3 (marked response with no or minimal residual cancer)",
+          "Cannot be determined"
+        ],
+        "value": "",
+        "cannot_be_determined_specify": ""
+      },
+
+      "tumor_comment": {
+        "label": "Tumor comment",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "regional_lymph_nodes": {
+    "label": "Regional Lymph Nodes",
+    "fields": {
+      "regional_lymph_node_status": {
+        "label": "Regional lymph node status",
+        "type": "select",
+        "options": [
+          "Not applicable (no regional lymph nodes submitted or found)",
+          "Regional lymph nodes present",
+          "All regional lymph nodes negative for tumor cells",
+          "Tumor present in regional lymph node(s)"
+        ],
+        "value": ""
+      },
+
+      "nodes_with_metastasis_gt_10mm": {
+        "label": "Number of nodes with metastasis greater than 10 mm",
+        "type": "text",
+        "value": ""
+      },
+
+      "nodes_with_metastasis_10mm_or_less": {
+        "label": "Number of nodes with metastasis 10 mm or less",
+        "type": "text",
+        "value": ""
+      },
+
+      "nodes_with_itcs": {
+        "label": "Number of nodes with isolated tumor cells (ITCs)",
+        "type": "text",
+        "value": ""
+      },
+
+      "nodal_sites_with_tumor": {
+        "label": "Nodal site(s) with tumor",
+        "type": "multi_select",
+        "options": [
+          "Right pelvic",
+          "Left pelvic",
+          "Pelvic, NOS",
+          "Right para-aortic",
+          "Left para-aortic",
+          "Para-aortic, NOS",
+          "Other",
+          "Cannot be determined"
+        ],
+        "value": [],
+        "right_pelvic_specify": "",
+        "left_pelvic_specify": "",
+        "pelvic_nos_specify": "",
+        "right_para_aortic_specify": "",
+        "left_para_aortic_specify": "",
+        "para_aortic_nos_specify": "",
+        "other_specify": "",
+        "cannot_be_determined_specify": ""
+      },
+
+      "size_of_largest_nodal_metastatic_deposit": {
+        "label": "Size of largest nodal metastatic deposit",
+        "fields": {
+          "size_type": {
+            "label": "Size type",
+            "type": "select",
+            "options": [
+              "Exact size",
+              "At least",
+              "Greater than",
+              "Less than",
+              "Other",
+              "Cannot be determined"
+            ],
+            "value": ""
+          },
+          "size_mm": {
+            "label": "Size (mm)",
+            "type": "number",
+            "value": ""
+          },
+          "other_specify": {
+            "label": "Other (specify)",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_explain": {
+            "label": "Cannot be determined (explain)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+
+      "location_of_largest_nodal_metastatic_deposit": {
+        "label": "Location of largest nodal metastatic deposit",
+        "type": "multi_select",
+        "options": [
+          "Right pelvic",
+          "Left pelvic",
+          "Pelvic, NOS",
+          "Right para-aortic",
+          "Left para-aortic",
+          "Para-aortic, NOS",
+          "Other",
+          "Cannot be determined"
+        ],
+        "value": [],
+        "right_pelvic_specify": "",
+        "left_pelvic_specify": "",
+        "pelvic_nos_specify": "",
+        "right_para_aortic_specify": "",
+        "left_para_aortic_specify": "",
+        "para_aortic_nos_specify": "",
+        "other_specify": "",
+        "cannot_be_determined_specify": "",
+        "cannot_be_determined_explain": ""
+      },
+
+      "number_of_lymph_nodes_examined": {
+        "label": "Number of lymph nodes examined",
+        "type": "text",
+        "value": ""
+      },
+
+      "nodal_sites_examined": {
+        "label": "Nodal site(s) examined",
+        "type": "multi_select",
+        "options": [
+          "Right pelvic",
+          "Left pelvic",
+          "Pelvic, NOS",
+          "Right para-aortic",
+          "Left para-aortic",
+          "Para-aortic, NOS",
+          "Other",
+          "Cannot be determined"
+        ],
+        "value": [],
+        "right_pelvic_specify": "",
+        "left_pelvic_specify": "",
+        "pelvic_nos_specify": "",
+        "right_para_aortic_specify": "",
+        "left_para_aortic_specify": "",
+        "para_aortic_nos_specify": "",
+        "other_specify": "",
+        "cannot_be_determined_specify": ""
+      },
+
+      "regional_lymph_node_comment": {
+        "label": "Regional lymph node comment",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "distant_metastasis": {
+    "label": "Distant Metastasis",
+    "fields": {
+      "distant_sites_involved": {
+        "label": "Distant site(s) involved",
+        "type": "multi_select",
+        "options": [
+          "Not applicable",
+          "Pleural effusion with positive cytology",
+          "Liver parenchyma",
+          "Splenic parenchyma",
+          "Extra-abdominal organ(s)",
+          "Inguinal lymph node(s) and lymph node(s) outside of the abdominal cavity",
+          "Transmural involvement of intestine",
+          "Other",
+          "Cannot be determined"
+        ],
+        "value": [],
+        "pleural_effusion_specify": "",
+        "liver_parenchyma_specify": "",
+        "splenic_parenchyma_specify": "",
+        "extra_abdominal_organs_specify": "",
+        "inguinal_lymph_nodes_specify": "",
+        "transmural_involvement_specify": "",
+        "other_specify": "",
+        "cannot_be_determined_specify": ""
+      }
+    }
+  },
+
+  "ptnm_classification": {
+    "label": "pTNM Classification (AJCC 8th Edition)",
+    "fields": {
+      "modified_classification": {
+        "label": "Modified classification",
+        "type": "multi_select",
+        "options": [
+          "Not applicable",
+          "y (post-neoadjuvant therapy)",
+          "r (recurrence)"
+        ],
+        "value": []
+      },
+
+      "pT_category": {
+        "label": "pT category",
+        "type": "select",
+        "options": [
+          "pT not assigned",
+          "pT0",
+          "pT1a",
+          "pT1b",
+          "pT1c1",
+          "pT1c2",
+          "pT1c3",
+          "pT1",
+          "pT2a",
+          "pT2b",
+          "pT2",
+          "pT3a",
+          "pT3b",
+          "pT3c",
+          "pT3"
+        ],
+        "value": ""
+      },
+
+      "T_suffix": {
+        "label": "T suffix",
+        "type": "select",
+        "options": [
+          "Not applicable",
+          "(m) multiple primary synchronous tumors in a single organ"
+        ],
+        "value": ""
+      },
+
+      "pN_category": {
+        "label": "pN category",
+        "type": "select",
+        "options": [
+          "pN not assigned (no nodes submitted or found)",
+          "pN not assigned (cannot be determined based on available pathological information)",
+          "pN0",
+          "pN0(i+)",
+          "pN1a",
+          "pN1b",
+          "pN1"
+        ],
+        "value": ""
+      },
+
+      "N_suffix": {
+        "label": "N suffix",
+        "type": "multi_select",
+        "options": [
+          "Not applicable",
+          "(sn) metastasis is identified only by sentinel lymph node biopsy",
+          "(f) metastasis is identified only by FNA or core biopsy"
+        ],
+        "value": []
+      },
+
+      "pM_category": {
+        "label": "pM category",
+        "type": "select",
+        "options": [
+          "Not applicable - pM cannot be determined from the submitted specimen(s)",
+          "pM1a",
+          "pM1b",
+          "pM1"
+        ],
+        "value": ""
+      }
+    }
+  },
+
+  "figo_stage": {
+    "label": "FIGO Stage",
+    "fields": {
+      "figo_stage_2021": {
+        "label": "FIGO Stage (2021 FIGO Cancer Report)",
+        "type": "select",
+        "options": [
+          "IA",
+          "IB",
+          "IC1",
+          "IC2",
+          "IC3",
+          "IC",
+          "IIA",
+          "IIB",
+          "IIIA1",
+          "IIIA1(i)",
+          "IIIA1(ii)",
+          "IIIA2",
+          "IIIB",
+          "IIIC",
+          "IVA",
+          "IVB"
+        ],
+        "value": ""
+      }
+    }
+  },
+
+  "additional_findings": {
+    "label": "Additional Findings",
+    "fields": {
+      "findings": {
+        "label": "Additional findings",
+        "type": "multi_select",
+        "options": [
+          "None identified",
+          "Serous tubal intraepithelial carcinoma (STIC)",
+          "Endometriosis",
+          "Endosalpingiosis",
+          "Other"
+        ],
+        "value": [],
+        "stic_left": false,
+        "stic_right": false,
+        "stic_bilateral": false,
+        "endometriosis_within_tumor": false,
+        "endometriosis_outside_of_tumor": false,
+        "other_specify": ""
+      }
+    }
+  }
+}

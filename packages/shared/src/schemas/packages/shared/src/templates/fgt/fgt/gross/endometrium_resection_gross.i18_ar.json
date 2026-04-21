@@ -1,0 +1,20 @@
+{
+  "template_id": "endometrium_resection_gross_v1",
+  "lang": "ar",
+  "ui": { "direction": "rtl" },
+  "title": "عينة استئصال بطانة الرحم (قالب الفحص العياني)",
+  "specimen": { "label": "العينة" },
+  "uterus": { "label": "الرحم" },
+  "cervix": { "label": "عنق الرحم" },
+  "vaginal_cuff": { "label": "الكفة المهبلية" },
+  "parametrium": { "label": "الباراميتريوم" },
+  "corpus": { "label": "جسم الرحم" },
+  "tumor": { "label": "الورم" },
+  "polyps": { "label": "السلائل" },
+  "fibroids": { "label": "الأورام الليفية" },
+  "adnexa": { "label": "الملحقات" },
+  "omentum": { "label": "الثرب" },
+  "lymph_nodes": { "label": "العقد اللمفاوية" },
+  "block_allocation_key": { "label": "مفتاح توزيع البلوكات" },
+  "grossing": { "label": "الفحص العياني" }
+}

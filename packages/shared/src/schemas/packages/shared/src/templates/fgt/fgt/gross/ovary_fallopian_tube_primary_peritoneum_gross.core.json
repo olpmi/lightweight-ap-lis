@@ -1,0 +1,282 @@
+{
+  "template_id": "ovary_fallopian_tube_primary_peritoneum_gross_v1",
+  "domain": "anatomic_pathology",
+  "title": "Ovary or Fallopian Tube or Primary Peritoneum (Gross Template)",
+
+  "specimen": {
+    "label": "Specimen",
+    "fields": {
+      "procedure": {
+        "label": "Procedure",
+        "type": "multi_select",
+        "options": [
+          "Total hysterectomy and bilateral salpingo-oophorectomy",
+          "Radical hysterectomy",
+          "Simple hysterectomy",
+          "Supracervical hysterectomy",
+          "Bilateral salpingo-oophorectomy",
+          "Right salpingo-oophorectomy",
+          "Left salpingo-oophorectomy",
+          "Salpingo-oophorectomy, side not specified",
+          "Right oophorectomy",
+          "Left oophorectomy",
+          "Oophorectomy, side not specified",
+          "Bilateral salpingectomy",
+          "Right salpingectomy",
+          "Left salpingectomy",
+          "Salpingectomy, side not specified",
+          "Omentectomy",
+          "Peritoneal biopsies",
+          "Peritoneal tumor debulking",
+          "Peritoneal washing",
+          "Pelvic washing",
+          "Ascitic fluid",
+          "Pleurocentesis (pleural fluid)",
+          "Other"
+        ],
+        "value": [],
+        "other_specify": ""
+      },
+
+      "hysterectomy_type": {
+        "label": "Hysterectomy type",
+        "type": "select",
+        "options": [
+          "Abdominal",
+          "Vaginal",
+          "Vaginal, laparoscopic-assisted",
+          "Laparoscopic",
+          "Laparoscopic, robotic-assisted",
+          "Other",
+          "Not specified"
+        ],
+        "value": "",
+        "other_specify": ""
+      },
+
+      "specimen_integrity_note": {
+        "label": "Specimen integrity note",
+        "type": "text",
+        "value": "For primary ovarian tumors, if the ovary containing primary tumor is removed intact into a laparoscopy bag and ruptured in the bag by the surgeon without spillage into the peritoneal cavity, the specimen integrity should be listed as capsule intact with a comment explaining this in the report. For primary peritoneal tumors in women with prior salpingo-oophorectomy, select not applicable."
+      },
+
+      "specimen_integrity_applicability": {
+        "label": "Specimen integrity applicability",
+        "type": "select",
+        "options": ["Not applicable"],
+        "value": ""
+      }
+    }
+  },
+
+  "ovarian_integrity": {
+    "label": "Ovarian Integrity",
+    "fields": {
+      "right_ovary_present": {
+        "label": "Right ovary",
+        "type": "boolean",
+        "value": false
+      },
+      "right_ovary_integrity": {
+        "label": "Right ovary integrity",
+        "type": "select",
+        "options": [
+          "Capsule intact",
+          "Capsule ruptured",
+          "Fragmented",
+          "Other"
+        ],
+        "value": "",
+        "other_specify": ""
+      },
+      "right_ovary_time_of_rupture": {
+        "label": "Right ovary time of rupture",
+        "type": "select",
+        "options": ["Preoperative", "Intraoperative", "Unknown"],
+        "value": ""
+      },
+
+      "left_ovary_present": {
+        "label": "Left ovary",
+        "type": "boolean",
+        "value": false
+      },
+      "left_ovary_integrity": {
+        "label": "Left ovary integrity",
+        "type": "select",
+        "options": [
+          "Capsule intact",
+          "Capsule ruptured",
+          "Fragmented",
+          "Other"
+        ],
+        "value": "",
+        "other_specify": ""
+      },
+      "left_ovary_time_of_rupture": {
+        "label": "Left ovary time of rupture",
+        "type": "select",
+        "options": ["Preoperative", "Intraoperative", "Unknown"],
+        "value": ""
+      },
+
+      "ovary_laterality_not_specified_present": {
+        "label": "Ovary, laterality not specified",
+        "type": "boolean",
+        "value": false
+      },
+      "ovary_laterality_not_specified_integrity": {
+        "label": "Ovary integrity",
+        "type": "select",
+        "options": [
+          "Capsule intact",
+          "Capsule ruptured",
+          "Fragmented",
+          "Other"
+        ],
+        "value": "",
+        "other_specify": ""
+      },
+      "ovary_laterality_not_specified_time_of_rupture": {
+        "label": "Time of rupture",
+        "type": "select",
+        "options": ["Preoperative", "Intraoperative", "Unknown"],
+        "value": ""
+      }
+    }
+  },
+
+  "fallopian_tube_integrity": {
+    "label": "Fallopian Tube Integrity",
+    "fields": {
+      "right_fallopian_tube_present": {
+        "label": "Right fallopian tube",
+        "type": "boolean",
+        "value": false
+      },
+      "right_fallopian_tube_integrity": {
+        "label": "Right fallopian tube integrity",
+        "type": "select",
+        "options": ["Serosa intact", "Serosa ruptured", "Fragmented", "Other"],
+        "value": "",
+        "other_specify": ""
+      },
+
+      "left_fallopian_tube_present": {
+        "label": "Left fallopian tube",
+        "type": "boolean",
+        "value": false
+      },
+      "left_fallopian_tube_integrity": {
+        "label": "Left fallopian tube integrity",
+        "type": "select",
+        "options": ["Serosa intact", "Serosa ruptured", "Fragmented", "Other"],
+        "value": "",
+        "other_specify": ""
+      },
+
+      "fallopian_tube_laterality_not_specified_present": {
+        "label": "Fallopian tube, laterality not specified",
+        "type": "boolean",
+        "value": false
+      },
+      "fallopian_tube_laterality_not_specified_integrity": {
+        "label": "Fallopian tube integrity",
+        "type": "select",
+        "options": ["Serosa intact", "Serosa ruptured", "Fragmented", "Other"],
+        "value": "",
+        "other_specify": ""
+      }
+    }
+  },
+
+  "uterus_integrity": {
+    "label": "Uterus Integrity",
+    "fields": {
+      "status": {
+        "label": "Uterus integrity",
+        "type": "select",
+        "options": ["Intact", "Opened", "Morcellated", "Other"],
+        "value": "",
+        "other_specify": ""
+      }
+    }
+  },
+
+  "block_allocation_key": {
+    "label": "Block Allocation Key",
+    "fields": {
+      "tumor_representative_sections": {
+        "label": "Tumor (representative sections – solid, cystic, papillary areas)",
+        "type": "text",
+        "value": ""
+      },
+      "tumor_capsule_interface": {
+        "label": "Tumor-capsule interface",
+        "type": "text",
+        "value": ""
+      },
+      "capsule_non_tumor_areas": {
+        "label": "Capsule (non-tumor areas)",
+        "type": "text",
+        "value": ""
+      },
+      "fallopian_tube_fimbrial_end": {
+        "label": "Fallopian tube (fimbrial end)",
+        "type": "text",
+        "value": ""
+      },
+      "fallopian_tube_cross_sections": {
+        "label": "Fallopian tube (cross sections)",
+        "type": "text",
+        "value": ""
+      },
+      "contralateral_ovary_if_present": {
+        "label": "Contralateral ovary (if present)",
+        "type": "text",
+        "value": ""
+      },
+      "endometrium": {
+        "label": "Endometrium",
+        "type": "text",
+        "value": ""
+      },
+      "myometrium": {
+        "label": "Myometrium",
+        "type": "text",
+        "value": ""
+      },
+      "cervix": {
+        "label": "Cervix",
+        "type": "text",
+        "value": ""
+      },
+      "omentum": {
+        "label": "Omentum",
+        "type": "text",
+        "value": ""
+      },
+      "lymph_nodes": {
+        "label": "Lymph nodes",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "grossing": {
+    "label": "Grossing",
+    "fields": {
+      "grossed_by": {
+        "label": "Grossed by",
+        "type": "text",
+        "value": ""
+      },
+      "date": {
+        "label": "Date",
+        "type": "date",
+        "value": ""
+      }
+    }
+  }
+}
