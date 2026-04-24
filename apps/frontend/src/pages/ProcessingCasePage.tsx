@@ -31,14 +31,29 @@ import {
   DialogContent,
   DialogActions,
 } from '@mui/material';
-import { ExpandMore, Add, Science, Download, Delete, Save } from '@mui/icons-material';
+import { ExpandMore, Add, Science, Download, Delete, Save, Description as DescriptionIcon } from '@mui/icons-material';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useNavigationGuard } from '../hooks/useNavigationGuard';
-import { orderApi, specimenApi, blockApi, reportApi } from '../api';
+import { orderApi, specimenApi, blockApi, reportApi, lookupApi } from '../api';
 import { useAuth } from '../hooks/useAuth';
 import { useLanguage } from '../hooks/useLanguage';
-import { formatOrderIdDisplay, formatMaterialIdDisplay } from '@lis/shared';
+import {
+  formatOrderIdDisplay,
+  formatMaterialIdDisplay,
+  type TemplateCatalogEntry,
+  type TemplateDefinition,
+} from '@lis/shared';
+import StructuredTemplateEditor from '../components/reporting/StructuredTemplateEditor';
+import {
+  normalizeTemplateDefinition,
+  parseStructuredTemplatePayload,
+  renderStructuredTemplateText,
+  resolveTemplateFormValues,
+  serializeStructuredTemplatePayload,
+  type RawTemplateDefinition,
+  type TemplateFormValues,
+} from '../utils/templateForms';
 
 interface Slide {
   slideId: string;
@@ -58,12 +73,21 @@ interface Specimen {
   blocks: Block[];
 }
 
+interface ReportSummary {
+  reportId: number | bigint;
+  isFinal: boolean;
+  gross?: string;
+  grossPayload?: string;
+}
+
 export default function ProcessingCasePage() {
   const { orderId } = useParams<{ orderId: string }>();
   const navigate = useNavigate();
   const qc = useQueryClient();
   const { user } = useAuth();
-  const { t } = useLanguage();
+  const { t, lang, direction, tSite, tOrgan, tSpecimenType, tSlideType, tCaseType } = useLanguage();
+  const showKeyboardLayoutHint = lang === 'ar' || lang === 'ur';
+  const narrativeInputProps = { lang, dir: direction };
 
   const { data: orderData, isLoading } = useQuery<{ data: object }>({
     queryKey: ['order', orderId],
@@ -77,9 +101,9 @@ export default function ProcessingCasePage() {
     enabled: Boolean(orderId),
   });
 
-  const { data: reportsData } = useQuery<{ data: object[] }>({
+  const { data: reportsData } = useQuery<{ data: ReportSummary[] }>({
     queryKey: ['reports', orderId],
-    queryFn: () => reportApi.list(orderId!).then((d) => ({ data: d as object[] })),
+    queryFn: () => reportApi.list(orderId!).then((d) => ({ data: d as ReportSummary[] })),
     enabled: Boolean(orderId),
   });
 
@@ -108,6 +132,9 @@ export default function ProcessingCasePage() {
 
   const [clinicalHistory, setClinicalHistory] = useState('');
   const [grossDescription, setGrossDescription] = useState('');
+  const [grossPayload, setGrossPayload] = useState('');
+  const [grossTemplateKey, setGrossTemplateKey] = useState('');
+  const [grossTemplateValues, setGrossTemplateValues] = useState<TemplateFormValues>({});
   const [historyInit, setHistoryInit] = useState(false);
   const [grossInit, setGrossInit] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
@@ -118,6 +145,17 @@ export default function ProcessingCasePage() {
   const [slideCounts, setSlideCounts] = useState<Record<string, number>>({});
   const [slideTypes, setSlideTypes] = useState<Record<string, string>>({});
 
+  const { data: grossTemplates = [] } = useQuery<TemplateCatalogEntry[]>({
+    queryKey: ['template-catalog', 'gross', lang],
+    queryFn: () => lookupApi.templateCatalog({ kind: 'gross', language: lang }),
+  });
+
+  const { data: grossTemplateDefinition, isLoading: grossTemplateLoading } = useQuery<TemplateDefinition>({
+    queryKey: ['template-definition', grossTemplateKey, lang],
+    queryFn: () => lookupApi.templateDefinition(grossTemplateKey, lang),
+    enabled: Boolean(grossTemplateKey),
+  });
+
   const order = orderData?.data as {
     orderId: string;
     caseType?: string;
@@ -126,6 +164,7 @@ export default function ProcessingCasePage() {
     patient: { lastName: string; firstName: string; patientId: string; dateOfBirth: string; sex: string };
     doctor: { lastName: string; firstName: string };
   } | undefined;
+  const latestDraft = reportsData?.data?.filter((report) => !report.isFinal).at(-1);
 
   useEffect(() => {
     if (order && !historyInit) {
@@ -135,19 +174,39 @@ export default function ProcessingCasePage() {
   }, [order, historyInit]);
 
   useEffect(() => {
-    const drafts = (reportsData?.data ?? []) as Array<{ isFinal: boolean; gross?: string }>;
-    const latestDraft = drafts.filter((r) => !r.isFinal).at(-1);
     if (latestDraft && !grossInit) {
+      const parsedGrossPayload = parseStructuredTemplatePayload(latestDraft.grossPayload);
       setGrossDescription(latestDraft.gross ?? '');
+      setGrossPayload(latestDraft.grossPayload ?? '');
+      setGrossTemplateKey(parsedGrossPayload?.templateKey ?? '');
+      setGrossTemplateValues(parsedGrossPayload?.values ?? {});
       setGrossInit(true);
     }
   }, [reportsData, grossInit]);
+
+  useEffect(() => {
+    if (!grossTemplateKey || !grossTemplateDefinition) {
+      return;
+    }
+
+    const normalizedTemplate = normalizeTemplateDefinition(grossTemplateDefinition as RawTemplateDefinition);
+    const effectiveValues = resolveTemplateFormValues(normalizedTemplate, grossTemplateValues);
+    const nextGross = renderStructuredTemplateText(normalizedTemplate, effectiveValues);
+    const nextGrossPayload = serializeStructuredTemplatePayload(normalizedTemplate, lang, effectiveValues);
+
+    setGrossDescription((current) => (current === nextGross ? current : nextGross));
+    setGrossPayload((current) => (current === nextGrossPayload ? current : nextGrossPayload));
+  }, [grossTemplateDefinition, grossTemplateKey, grossTemplateValues, lang]);
 
   const saveMutation = useMutation({
     mutationFn: async () => {
       await orderApi.updateClinicalHistory(orderId!, clinicalHistory || null);
       const pathologistEmployeeId = user?.employeeId ?? undefined;
-      await reportApi.createDraft(orderId!, { gross: grossDescription, pathologistEmployeeId });
+      await reportApi.createDraft(orderId!, {
+        gross: grossDescription,
+        grossPayload: grossPayload || undefined,
+        pathologistEmployeeId,
+      });
       qc.invalidateQueries({ queryKey: ['order', orderId] });
       qc.invalidateQueries({ queryKey: ['reports', orderId] });
     },
@@ -178,6 +237,15 @@ export default function ProcessingCasePage() {
 
   const specimens = materialsData?.data?.specimens ?? [];
 
+  const localizeBodySiteName = (name: string) => {
+    const organLabel = tOrgan(name);
+    if (organLabel !== name) {
+      return organLabel;
+    }
+
+    return tSite(name);
+  };
+
   if (isLoading || loadingMaterials)
     return (
       <Box display="flex" justifyContent="center" mt={4}>
@@ -199,6 +267,15 @@ export default function ProcessingCasePage() {
           {formatOrderIdDisplay(order?.orderId ?? '')}
         </Typography>
         <Box display="flex" gap={1}>
+          <Button
+            variant="outlined"
+            size="small"
+            startIcon={<DescriptionIcon />}
+            onClick={() => guardedNavigate(`/result/${orderId}`)}
+            data-testid="open-results-btn"
+          >
+            {t('pc_openResults')}
+          </Button>
           <Button
             variant="contained"
             size="small"
@@ -240,7 +317,7 @@ export default function ProcessingCasePage() {
               <Typography variant="caption" color="text.secondary">{t('oe_patient')}</Typography>
               <Typography>{order.patient.lastName}, {order.patient.firstName}</Typography>
               <Typography variant="caption">
-                {order.patient.patientId} — DOB {new Date(order.patient.dateOfBirth).toLocaleDateString()}
+                {order.patient.patientId} — {t('oe_dob')} {new Date(order.patient.dateOfBirth).toLocaleDateString()}
               </Typography>
             </Grid>
             <Grid item xs={12} sm={4}>
@@ -250,14 +327,19 @@ export default function ProcessingCasePage() {
             <Grid item xs={12} sm={4}>
               <Typography variant="caption" color="text.secondary">{t('pq_registered')}</Typography>
               <Typography>{new Date(order.registeredDate).toLocaleDateString()}</Typography>
-              {order.caseType && <Chip label={order.caseType === 'Surgical Pathology' ? t('oe_surgicalPathology') : order.caseType === 'Cytology' ? t('oe_cytology') : order.caseType} size="small" sx={{ mt: 0.5 }} />}
+              {order.caseType && <Chip label={tCaseType(order.caseType)} size="small" sx={{ mt: 0.5 }} />}
             </Grid>
           </Grid>
         </Paper>
       )}
 
-      <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2, mb: 3 }}>
+      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1.3fr' }, gap: 2, mb: 3 }}>
         <Paper sx={{ p: 2 }}>
+          {showKeyboardLayoutHint && (
+            <Alert severity="info" sx={{ mb: 2 }}>
+              {t('input_keyboardLayoutHint')}
+            </Alert>
+          )}
           <Typography variant="subtitle2" fontWeight={700} mb={1}>{t('pc_clinicalHistory')}</Typography>
           <TextField
             multiline
@@ -266,17 +348,44 @@ export default function ProcessingCasePage() {
             size="small"
             value={clinicalHistory}
             onChange={(e) => { setClinicalHistory(e.target.value); setIsSaved(false); setIsDirty(true); }}
+            inputProps={narrativeInputProps}
           />
         </Paper>
         <Paper sx={{ p: 2 }}>
           <Typography variant="subtitle2" fontWeight={700} mb={1}>{t('pc_grossDescription')}</Typography>
-          <TextField
-            multiline
-            minRows={4}
-            fullWidth
-            size="small"
-            value={grossDescription}
-            onChange={(e) => { setGrossDescription(e.target.value); setIsSaved(false); setIsDirty(true); }}
+          <StructuredTemplateEditor
+            templateLabel={t('rc_grossTemplate')}
+            outputLabel={t('pc_grossDescription')}
+            templates={grossTemplates}
+            selectedTemplateKey={grossTemplateKey}
+            onTemplateKeyChange={(templateKey) => {
+              setGrossTemplateKey(templateKey);
+              setGrossTemplateValues({});
+              setGrossPayload('');
+              setIsSaved(false);
+              setIsDirty(true);
+            }}
+            definition={grossTemplateDefinition as RawTemplateDefinition | undefined}
+            values={grossTemplateValues}
+            onValuesChange={(values) => {
+              setGrossTemplateValues(values);
+              setIsSaved(false);
+              setIsDirty(true);
+            }}
+            rawText={grossDescription}
+            onRawTextChange={(text) => {
+              setGrossDescription(text);
+              setGrossTemplateKey('');
+              setGrossTemplateValues({});
+              setGrossPayload('');
+              setIsSaved(false);
+              setIsDirty(true);
+            }}
+            loading={grossTemplateLoading}
+            selectTestId="processing-gross-template-select"
+            outputTestId="processing-gross-input"
+            loadingText={t('rc_templateLoading')}
+            unavailableText={t('rc_templateUnavailable')}
           />
         </Paper>
       </Box>
@@ -291,8 +400,8 @@ export default function ProcessingCasePage() {
             <Box display="flex" alignItems="center" gap={1.5}>
               <Science color="primary" />
               <Typography fontWeight={600}>{t('oe_specimen')} {spec.specimenCode}</Typography>
-              {spec.bodySite && <Chip label={spec.bodySite.bodySiteName} size="small" />}
-              {spec.specimenType && <Chip label={spec.specimenType.specimenTypeName} size="small" variant="outlined" />}
+              {spec.bodySite && <Chip label={localizeBodySiteName(spec.bodySite.bodySiteName)} size="small" />}
+              {spec.specimenType && <Chip label={tSpecimenType(spec.specimenType.specimenTypeName)} size="small" variant="outlined" />}
             </Box>
           </AccordionSummary>
           <AccordionDetails>
@@ -333,7 +442,7 @@ export default function ProcessingCasePage() {
                   {spec.blocks.flatMap((b) => b.slides).map((sl) => (
                     <Chip
                       key={sl.slideId}
-                      label={`${formatMaterialIdDisplay(sl.slideId)} [${sl.slideType ?? 'H&E'}]`}
+                      label={`${formatMaterialIdDisplay(sl.slideId)} [${tSlideType(sl.slideType ?? 'H&E')}]`}
                       size="small"
                       onDelete={isSaved ? undefined : () => {
                         const block = spec.blocks.find((b) => b.slides.some((s) => s.slideId === sl.slideId));
@@ -392,7 +501,7 @@ export default function ProcessingCasePage() {
                           {block.slides.map((sl) => (
                             <Chip
                               key={sl.slideId}
-                              label={`${formatMaterialIdDisplay(sl.slideId)} [${sl.slideType ?? 'H&E'}]`}
+                              label={`${formatMaterialIdDisplay(sl.slideId)} [${tSlideType(sl.slideType ?? 'H&E')}]`}
                               size="small"
                               onDelete={isSaved ? undefined : () => doDeleteSlide({ blockId: block.blockId, slideId: sl.slideId })}
                               deleteIcon={<Delete fontSize="small" />}
@@ -423,7 +532,7 @@ export default function ProcessingCasePage() {
                               onChange={(e) => setSlideTypes({ ...slideTypes, [block.blockId]: e.target.value })}
                             >
                               {['H&E', 'Unstained', 'IHC', 'Special stain'].map((st) => (
-                                <MenuItem key={st} value={st}>{st}</MenuItem>
+                                <MenuItem key={st} value={st}>{tSlideType(st)}</MenuItem>
                               ))}
                             </Select>
                           </FormControl>

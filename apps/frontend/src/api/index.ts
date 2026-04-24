@@ -1,11 +1,18 @@
 import apiClient from './client';
-import type { Employee, EmployeeRole } from '@lis/shared';
+import type {
+  AppLanguageCode,
+  Employee,
+  EmployeeRole,
+  TemplateCatalogEntry,
+  TemplateDefinition,
+  TemplateKind,
+} from '@lis/shared';
 
 export interface SessionEmployee {
   employeeId: number;
   userName: string;
   role: string;
-  defaultLanguage: string;
+  defaultLanguage: AppLanguageCode;
 }
 
 export const authApi = {
@@ -22,6 +29,20 @@ export const lookupApi = {
   bodySites: () => apiClient.get<{ data: object[] }>('/lookups/body-sites').then((r) => r.data.data),
   specimenTypes: () => apiClient.get<{ data: object[] }>('/lookups/specimen-types').then((r) => r.data.data),
   reportTemplates: () => apiClient.get<{ data: object[] }>('/lookups/report-templates').then((r) => r.data.data),
+  templateCatalog: (params?: { language?: AppLanguageCode; kind?: TemplateKind }) => {
+    const query = new URLSearchParams();
+    if (params?.language) query.set('language', params.language);
+    if (params?.kind) query.set('kind', params.kind);
+    const suffix = query.toString() ? `?${query.toString()}` : '';
+    return apiClient.get<{ data: TemplateCatalogEntry[] }>(`/lookups/template-catalog${suffix}`).then((r) => r.data.data);
+  },
+  templateDefinition: (templateKey: string, language?: AppLanguageCode) => {
+    const query = new URLSearchParams({ templateKey });
+    if (language) query.set('language', language);
+    return apiClient
+      .get<{ data: TemplateDefinition }>(`/lookups/template-definition?${query.toString()}`)
+      .then((r) => r.data.data);
+  },
   employeeRoles: (): Promise<EmployeeRole[]> =>
     apiClient.get<{ data: EmployeeRole[] }>('/lookups/employee-roles').then((r) => r.data.data),
 };

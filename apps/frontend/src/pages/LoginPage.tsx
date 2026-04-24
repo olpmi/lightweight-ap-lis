@@ -26,13 +26,13 @@ import { Person, Add, Translate } from '@mui/icons-material';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
-import { useLanguage } from '../hooks/useLanguage';
+import { type Lang, useLanguage } from '../hooks/useLanguage';
 import { employeeApi, lookupApi } from '../api';
 import type { Employee, EmployeeRole } from '@lis/shared';
 
 export default function LoginPage() {
   const { login } = useAuth();
-  const { t } = useLanguage();
+  const { t, languageOptions, tRole } = useLanguage();
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [mode, setMode] = useState<'search' | 'new'>('search');
@@ -44,7 +44,7 @@ export default function LoginPage() {
     lastName: '',
     userName: '',
     employeeRoleId: '' as number | '',
-    defaultLanguage: 'en' as 'en' | 'sw',
+    defaultLanguage: 'en' as Lang,
   });
 
   const { data: roles } = useQuery<EmployeeRole[]>({
@@ -64,7 +64,7 @@ export default function LoginPage() {
     onError: (err: unknown) => {
       setError(
         (err as { response?: { data?: { error?: { message?: string } } } })?.response?.data?.error
-          ?.message ?? 'Login failed. Please try again.'
+          ?.message ?? t('login_failed')
       );
     },
   });
@@ -171,7 +171,7 @@ export default function LoginPage() {
                       </ListItemAvatar>
                       <ListItemText
                         primary={`${emp.lastName}, ${emp.firstName}`}
-                        secondary={`${emp.userName} — ${(emp.employeeRole as { roleName?: string })?.roleName ?? ''}`}
+                        secondary={`${emp.userName} — ${tRole((emp.employeeRole as { roleName?: string })?.roleName ?? '')}`}
                       />
                     </ListItemButton>
                   ))}
@@ -225,7 +225,7 @@ export default function LoginPage() {
                   >
                     {roles?.map((r) => (
                       <MenuItem key={r.employeeRoleId} value={r.employeeRoleId}>
-                        {r.roleName}
+                        {tRole(r.roleName)}
                       </MenuItem>
                     ))}
                   </Select>
@@ -244,8 +244,11 @@ export default function LoginPage() {
                     size="small"
                     fullWidth
                   >
-                    <ToggleButton value="en">English</ToggleButton>
-                    <ToggleButton value="sw">Kiswahili</ToggleButton>
+                    {languageOptions.map((option) => (
+                      <ToggleButton key={option.code} value={option.code}>
+                        {option.nativeLabel}
+                      </ToggleButton>
+                    ))}
                   </ToggleButtonGroup>
                 </Box>
                 <Button

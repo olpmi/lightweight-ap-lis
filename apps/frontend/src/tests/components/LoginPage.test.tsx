@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from '../../theme/theme';
+import { LanguageProvider } from '../../hooks/useLanguage';
 import LoginPage from '../../pages/LoginPage';
 import * as api from '../../api';
 
@@ -43,7 +44,9 @@ function renderWithProviders(ui: React.ReactElement) {
   return render(
     <QueryClientProvider client={qc}>
       <ThemeProvider theme={theme}>
-        <MemoryRouter>{ui}</MemoryRouter>
+        <LanguageProvider>
+          <MemoryRouter>{ui}</MemoryRouter>
+        </LanguageProvider>
       </ThemeProvider>
     </QueryClientProvider>
   );
@@ -72,8 +75,8 @@ describe('LoginPage', () => {
   it('shows validation error when new employee form is incomplete', async () => {
     renderWithProviders(<LoginPage />);
     fireEvent.click(screen.getByText(/New employee/i));
-    await waitFor(() => screen.getByTestId('new-employee-submit'));
-    fireEvent.click(screen.getByTestId('new-employee-submit'));
+    const submitButton = await waitFor(() => screen.getByTestId('new-employee-submit'));
+    fireEvent.submit(submitButton.closest('form') as HTMLFormElement);
     await waitFor(() => {
       expect(screen.getByText(/All fields are required/i)).toBeInTheDocument();
     });

@@ -10,10 +10,6 @@ import {
   Button,
   CircularProgress,
   Alert,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
   Chip,
   Stack,
   Table,
@@ -30,14 +26,29 @@ import {
   Tabs,
   Tab,
 } from '@mui/material';
-import { ExpandMore, Send, Refresh, PictureAsPdf, DragIndicator } from '@mui/icons-material';
+import { ExpandMore, Send, Refresh, PictureAsPdf, DragIndicator, Science } from '@mui/icons-material';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useParams, useNavigate } from 'react-router-dom';
 import { orderApi, reportApi, lookupApi } from '../api';
 import { useAuth } from '../hooks/useAuth';
 import { useLanguage } from '../hooks/useLanguage';
 import { useNavigationGuard } from '../hooks/useNavigationGuard';
-import { formatOrderIdDisplay, formatMaterialIdDisplay } from '@lis/shared';
+import {
+  formatOrderIdDisplay,
+  formatMaterialIdDisplay,
+  type TemplateCatalogEntry,
+  type TemplateDefinition,
+} from '@lis/shared';
+import StructuredTemplateEditor from '../components/reporting/StructuredTemplateEditor';
+import {
+  normalizeTemplateDefinition,
+  parseStructuredTemplatePayload,
+  renderStructuredTemplateText,
+  resolveTemplateFormValues,
+  serializeStructuredTemplatePayload,
+  type RawTemplateDefinition,
+  type TemplateFormValues,
+} from '../utils/templateForms';
 
 interface Employee {
   employeeId: number | bigint;
@@ -51,7 +62,9 @@ interface Report {
   diagnosis?: string;
   comment?: string;
   gross?: string;
+  grossPayload?: string;
   synopticData?: string;
+  synopticPayload?: string;
   isFinal: boolean;
   isPrelim: boolean;
   reactivationType?: string;
@@ -70,7 +83,9 @@ export default function ResultCasePage() {
   const navigate = useNavigate();
   const qc = useQueryClient();
   const { user } = useAuth();
-  const { t } = useLanguage();
+  const { t, lang, direction, tSite, tOrgan, tCaseType, tSex } = useLanguage();
+  const showKeyboardLayoutHint = lang === 'ar' || lang === 'ur';
+  const narrativeInputProps = { lang, dir: direction };
 
   // Panel labels depend on current language — defined inside component
   const PANEL_LABELS: Record<PanelId, string> = {
@@ -86,8 +101,16 @@ export default function ResultCasePage() {
     diagnosis: '',
     comment: '',
     gross: '',
+    grossPayload: '',
+    grossTemplateKey: '',
     synopticData: '',
+    synopticPayload: '',
     reportTemplateId: '' as number | '',
+    reportTemplateKey: '',
+  });
+  const [templateValues, setTemplateValues] = useState<{ gross: TemplateFormValues; synoptic: TemplateFormValues }>({
+    gross: {},
+    synoptic: {},
   });
   const [clinicalHistory, setClinicalHistory] = useState('');
   const [signOutDialogOpen, setSignOutDialogOpen] = useState(false);
@@ -123,9 +146,15 @@ export default function ResultCasePage() {
     enabled: Boolean(orderId),
   });
 
-  const { data: templates } = useQuery<object[]>({
-    queryKey: ['report-templates'],
-    queryFn: lookupApi.reportTemplates,
+  const { data: reportingTemplates = [] } = useQuery<TemplateCatalogEntry[]>({
+    queryKey: ['template-catalog', 'reporting', lang],
+    queryFn: () => lookupApi.templateCatalog({ kind: 'reporting', language: lang }),
+  });
+
+  const { data: reportingTemplateDefinition, isLoading: reportingTemplateLoading } = useQuery<TemplateDefinition>({
+    queryKey: ['template-definition', form.reportTemplateKey, lang],
+    queryFn: () => lookupApi.templateDefinition(form.reportTemplateKey, lang),
+    enabled: Boolean(form.reportTemplateKey),
   });
 
   // â”€â”€ Derived state â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -138,21 +167,86 @@ export default function ResultCasePage() {
   const latestFinal = finalReports.at(-1);
   const isSignedOut = Boolean(latestFinal && editableDrafts.length === 0);
   const canSignOut = Boolean(form.diagnosis.trim() && form.gross.trim());
+  const latestFinalGrossPayload = parseStructuredTemplatePayload(latestFinal?.grossPayload);
+  const activeGrossTemplateKey = isSignedOut
+    ? (latestFinalGrossPayload?.templateKey ?? '')
+    : form.grossTemplateKey;
+
+  const { data: grossTemplateDefinition } = useQuery<TemplateDefinition>({
+    queryKey: ['template-definition', activeGrossTemplateKey, lang],
+    queryFn: () => lookupApi.templateDefinition(activeGrossTemplateKey, lang),
+    enabled: Boolean(activeGrossTemplateKey),
+  });
 
   // â”€â”€ Effects â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
   React.useEffect(() => {
     if (latestDraft && !form.diagnosis && !form.gross) {
+      const parsedSynopticPayload = parseStructuredTemplatePayload(latestDraft.synopticPayload);
+      const parsedGrossPayload = parseStructuredTemplatePayload(latestDraft.grossPayload);
+
+      setTemplateValues({
+        synoptic: parsedSynopticPayload?.values ?? {},
+        gross: parsedGrossPayload?.values ?? {},
+      });
+
       setForm({
         diagnosis: latestDraft.diagnosis ?? '',
         comment: latestDraft.comment ?? '',
         gross: latestDraft.gross ?? '',
+        grossPayload: latestDraft.grossPayload ?? '',
+        grossTemplateKey: parsedGrossPayload?.templateKey ?? '',
         synopticData: latestDraft.synopticData ?? '',
+        synopticPayload: latestDraft.synopticPayload ?? '',
         reportTemplateId: latestDraft.reportTemplate?.reportTemplateId ?? '',
+        reportTemplateKey: parsedSynopticPayload?.templateKey ?? '',
       });
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [latestDraft]);
+
+  React.useEffect(() => {
+    if (!form.reportTemplateKey || !reportingTemplateDefinition) {
+      return;
+    }
+
+    const normalizedTemplate = normalizeTemplateDefinition(reportingTemplateDefinition as RawTemplateDefinition);
+    const effectiveValues = resolveTemplateFormValues(normalizedTemplate, templateValues.synoptic);
+    const nextSynopticData = renderStructuredTemplateText(normalizedTemplate, effectiveValues);
+    const nextSynopticPayload = serializeStructuredTemplatePayload(normalizedTemplate, lang, effectiveValues);
+
+    setForm((current) => (
+      current.synopticData === nextSynopticData && current.synopticPayload === nextSynopticPayload
+        ? current
+        : {
+            ...current,
+            reportTemplateId: '',
+            synopticData: nextSynopticData,
+            synopticPayload: nextSynopticPayload,
+          }
+    ));
+  }, [form.reportTemplateKey, lang, reportingTemplateDefinition, templateValues.synoptic]);
+
+  React.useEffect(() => {
+    if (isSignedOut || !form.grossTemplateKey || !grossTemplateDefinition) {
+      return;
+    }
+
+    const normalizedTemplate = normalizeTemplateDefinition(grossTemplateDefinition as RawTemplateDefinition);
+    const effectiveValues = resolveTemplateFormValues(normalizedTemplate, templateValues.gross);
+    const nextGross = renderStructuredTemplateText(normalizedTemplate, effectiveValues);
+    const nextGrossPayload = serializeStructuredTemplatePayload(normalizedTemplate, lang, effectiveValues);
+
+    setForm((current) => (
+      current.gross === nextGross && current.grossPayload === nextGrossPayload
+        ? current
+        : {
+            ...current,
+            gross: nextGross,
+            grossPayload: nextGrossPayload,
+          }
+    ));
+  }, [form.grossTemplateKey, grossTemplateDefinition, isSignedOut, lang, templateValues.gross]);
 
   React.useEffect(() => {
     const o = orderData?.data as { clinicalHistory?: string | null } | undefined;
@@ -177,7 +271,9 @@ export default function ResultCasePage() {
         diagnosis: form.diagnosis || undefined,
         comment: form.comment || undefined,
         gross: form.gross || undefined,
+        grossPayload: form.grossPayload || undefined,
         synopticData: form.synopticData || undefined,
+        synopticPayload: form.synopticPayload || undefined,
         reportTemplateId: form.reportTemplateId || undefined,
         pathologistEmployeeId: user?.employeeId ? Number(user.employeeId) : undefined,
       }),
@@ -198,8 +294,10 @@ export default function ResultCasePage() {
         diagnosis: form.diagnosis,
         comment: form.comment || undefined,
         gross: form.gross,
+        grossPayload: form.grossPayload || undefined,
         reportTemplateId: form.reportTemplateId || undefined,
         synopticData: form.synopticData || undefined,
+        synopticPayload: form.synopticPayload || undefined,
         pathologistEmployeeId: Number(pathologistId),
       };
       let reportId: number;
@@ -229,8 +327,10 @@ export default function ResultCasePage() {
         diagnosis: form.diagnosis,
         comment: form.comment || undefined,
         gross: form.gross,
+        grossPayload: form.grossPayload || undefined,
         reportTemplateId: form.reportTemplateId || undefined,
         synopticData: form.synopticData || undefined,
+        synopticPayload: form.synopticPayload || undefined,
         pathologistEmployeeId: Number(pathologistId),
       };
       // Create draft first if none exists, then sign it out
@@ -320,11 +420,49 @@ export default function ResultCasePage() {
 
   // â”€â”€ Template handler â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-  const handleTemplateSelect = (templateId: number) => {
-    const tpl = (templates as Array<{ reportTemplateId: number; templateText?: string }> ?? []).find(
-      (t) => t.reportTemplateId === templateId
-    );
-    setForm({ ...form, reportTemplateId: templateId, synopticData: tpl?.templateText ?? '' });
+  const handleStructuredTemplateSelect = (kind: 'synoptic' | 'gross', templateKey: string) => {
+    setTemplateValues((current) => ({
+      ...current,
+      [kind]: {},
+    }));
+
+    setForm((current) => (
+      kind === 'synoptic'
+        ? {
+            ...current,
+            reportTemplateId: '',
+            reportTemplateKey: templateKey,
+            synopticPayload: '',
+          }
+        : {
+            ...current,
+            grossTemplateKey: templateKey,
+            grossPayload: '',
+          }
+    ));
+    setIsDirty(true);
+  };
+
+  const handleTemplateValueChange = (kind: 'synoptic' | 'gross', values: TemplateFormValues) => {
+    setTemplateValues((current) => ({
+      ...current,
+      [kind]: values,
+    }));
+    setIsDirty(true);
+  };
+
+  const renderLocalizedTemplateText = (
+    definition: TemplateDefinition | undefined,
+    values: TemplateFormValues,
+    fallback?: string,
+  ) => {
+    if (!definition) {
+      return fallback ?? '';
+    }
+
+    const normalizedTemplate = normalizeTemplateDefinition(definition as RawTemplateDefinition);
+    const effectiveValues = resolveTemplateFormValues(normalizedTemplate, values);
+    return renderStructuredTemplateText(normalizedTemplate, effectiveValues) || fallback || '';
   };
 
   // â”€â”€ Panel content renderer â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -334,7 +472,7 @@ export default function ResultCasePage() {
       const text =
         id === 'diagnosis' ? latestFinal?.diagnosis :
         id === 'comment' ? latestFinal?.comment :
-        id === 'gross' ? latestFinal?.gross :
+        id === 'gross' ? renderLocalizedTemplateText(grossTemplateDefinition, latestFinalGrossPayload?.values ?? {}, latestFinal?.gross) :
         id === 'synoptic' ? latestFinal?.synopticData :
         clinicalHistory;
       return (
@@ -354,7 +492,7 @@ export default function ResultCasePage() {
             required
             value={form.diagnosis}
             onChange={(e) => { setForm({ ...form, diagnosis: e.target.value }); setIsDirty(true); }}
-            inputProps={{ 'data-testid': 'diagnosis-input' }}
+            inputProps={{ ...narrativeInputProps, 'data-testid': 'diagnosis-input' }}
             sx={{ '& .MuiInputBase-root': { resize: 'vertical', overflow: 'auto' } }}
           />
         );
@@ -367,37 +505,40 @@ export default function ResultCasePage() {
             fullWidth
             value={form.comment}
             onChange={(e) => { setForm({ ...form, comment: e.target.value }); setIsDirty(true); }}
+            inputProps={narrativeInputProps}
             sx={{ '& .MuiInputBase-root': { resize: 'vertical', overflow: 'auto' } }}
           />
         );
       case 'synoptic':
         return (
-          <Stack spacing={1.5}>
-            <FormControl size="small" fullWidth>
-              <InputLabel>{t('rc_capTemplate')}</InputLabel>
-              <Select
-                label={t('rc_capTemplate')}
-                value={form.reportTemplateId}
-                onChange={(e) => handleTemplateSelect(e.target.value as number)}
-              >
-                <MenuItem value="">{t('rc_none')}</MenuItem>
-                {(templates as Array<{ reportTemplateId: number; templateName: string }> ?? []).map((t) => (
-                  <MenuItem key={t.reportTemplateId} value={t.reportTemplateId}>{t.templateName}</MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-            <TextField
-              label={t('rc_microscopicDescription')}
-              multiline
-              minRows={8}
-              fullWidth
-              value={form.synopticData}
-              onChange={(e) => { setForm({ ...form, synopticData: e.target.value }); setIsDirty(true); }}
-              placeholder={t('rc_capTemplatePlaceholder')}
-              inputProps={{ 'data-testid': 'synoptic-input', style: { fontFamily: 'monospace', fontSize: 13 } }}
-              sx={{ '& .MuiInputBase-root': { resize: 'vertical', overflow: 'auto' } }}
-            />
-          </Stack>
+          <StructuredTemplateEditor
+            templateLabel={t('rc_reportingTemplate')}
+            outputLabel={t('rc_microscopicDescription')}
+            placeholder={t('rc_capTemplatePlaceholder')}
+            templates={reportingTemplates}
+            selectedTemplateKey={form.reportTemplateKey}
+            onTemplateKeyChange={(templateKey) => handleStructuredTemplateSelect('synoptic', templateKey)}
+            definition={reportingTemplateDefinition as RawTemplateDefinition | undefined}
+            values={templateValues.synoptic}
+            onValuesChange={(values) => handleTemplateValueChange('synoptic', values)}
+            rawText={form.synopticData}
+            onRawTextChange={(text) => {
+              setForm({
+                ...form,
+                reportTemplateId: '',
+                reportTemplateKey: '',
+                synopticPayload: '',
+                synopticData: text,
+              });
+              setTemplateValues((current) => ({ ...current, synoptic: {} }));
+              setIsDirty(true);
+            }}
+            loading={reportingTemplateLoading}
+            selectTestId="reporting-template-select"
+            outputTestId="synoptic-input"
+            loadingText={t('rc_templateLoading')}
+            unavailableText={t('rc_templateUnavailable')}
+          />
         );
       case 'gross':
         return (
@@ -406,10 +547,9 @@ export default function ResultCasePage() {
             multiline
             minRows={8}
             fullWidth
-            required
             value={form.gross}
-            onChange={(e) => { setForm({ ...form, gross: e.target.value }); setIsDirty(true); }}
-            inputProps={{ 'data-testid': 'gross-input' }}
+            InputProps={{ readOnly: true }}
+            inputProps={{ ...narrativeInputProps, 'data-testid': 'gross-input' }}
             sx={{ '& .MuiInputBase-root': { resize: 'vertical', overflow: 'auto' } }}
           />
         );
@@ -423,7 +563,7 @@ export default function ResultCasePage() {
               fullWidth
               value={clinicalHistory}
               onChange={(e) => { setClinicalHistory(e.target.value); setIsDirty(true); }}
-              inputProps={{ 'data-testid': 'clinical-history-input' }}
+              inputProps={{ ...narrativeInputProps, 'data-testid': 'clinical-history-input' }}
               sx={{ '& .MuiInputBase-root': { resize: 'vertical', overflow: 'auto' } }}
             />
             <Box display="flex" justifyContent="flex-end">
@@ -464,6 +604,15 @@ export default function ResultCasePage() {
 
   if (!order) return <Alert severity="error">{t('errorGeneric')}</Alert>;
 
+  const localizeBodySiteName = (name: string) => {
+    const organLabel = tOrgan(name);
+    if (organLabel !== name) {
+      return organLabel;
+    }
+
+    return tSite(name);
+  };
+
   return (
     <Box>
       {/* Breadcrumb */}
@@ -485,7 +634,7 @@ export default function ResultCasePage() {
               {order.isReactivated && <Chip label={t('rq_reactivated')} color="warning" size="small" />}
               {isSignedOut && <Chip label={`${t('rc_signedOut')} v${latestFinal!.versionNumber}`} color="success" size="small" />}
               {latestDraft && <Chip label={`${t('rc_draft')} v${latestDraft.versionNumber}`} size="small" />}
-              {order.caseType && <Chip label={order.caseType === 'Surgical Pathology' ? t('oe_surgicalPathology') : order.caseType === 'Cytology' ? t('oe_cytology') : order.caseType} variant="outlined" size="small" />}
+              {order.caseType && <Chip label={tCaseType(order.caseType)} variant="outlined" size="small" />}
             </Box>
             <Typography variant="body1" fontWeight={600}>
               {order.patient.lastName}, {order.patient.firstName}
@@ -495,7 +644,7 @@ export default function ResultCasePage() {
               <Typography variant="body2" color="text.secondary">
                 {t('rc_dob')}: {new Date(order.patient.dateOfBirth).toLocaleDateString()}
               </Typography>
-              <Typography variant="body2" color="text.secondary">{t('rc_sex')}: {order.patient.sex}</Typography>
+              <Typography variant="body2" color="text.secondary">{t('rc_sex')}: {tSex(order.patient.sex)}</Typography>
               <Typography variant="body2" color="text.secondary">
                 {t('oe_clinician')}: {order.doctor.lastName}, {order.doctor.firstName}
               </Typography>
@@ -523,6 +672,15 @@ export default function ResultCasePage() {
         <>
           {/* Action bar */}
           <Box display="flex" alignItems="center" justifyContent="flex-end" gap={1} mb={2}>
+            <Button
+              variant="outlined"
+              size="small"
+              startIcon={<Science />}
+              onClick={() => guardedNavigate(`/processing/${orderId}`)}
+              data-testid="open-processing-btn"
+            >
+              {t('rc_openProcessing')}
+            </Button>
             {isSignedOut ? (
               <>
                 <Button
@@ -590,6 +748,12 @@ export default function ResultCasePage() {
             )}
           </Box>
 
+          {showKeyboardLayoutHint && (
+            <Alert severity="info" sx={{ mb: 2 }}>
+              {t('input_keyboardLayoutHint')}
+            </Alert>
+          )}
+
           {isSignedOut && (
             <Alert severity="info" sx={{ mb: 2 }}>
               {t('rc_signedOutAlert')}
@@ -600,7 +764,7 @@ export default function ResultCasePage() {
           <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2 }}>
             {panelOrder.map((id, index) => {
               const isLastOdd = index === panelOrder.length - 1 && panelOrder.length % 2 !== 0;
-              const isRequired = id === 'diagnosis' || id === 'gross';
+              const isRequired = id === 'diagnosis';
               return (
                 <Paper
                   key={id}
@@ -658,7 +822,7 @@ export default function ResultCasePage() {
             <Accordion key={spec.specimenId} defaultExpanded>
               <AccordionSummary expandIcon={<ExpandMore />}>
                 <Typography fontWeight={600}>{t('oe_specimen')} {spec.specimenCode}</Typography>
-                {spec.bodySite && <Chip label={spec.bodySite.bodySiteName} size="small" sx={{ ml: 1 }} />}
+                {spec.bodySite && <Chip label={localizeBodySiteName(spec.bodySite.bodySiteName)} size="small" sx={{ ml: 1 }} />}
               </AccordionSummary>
               <AccordionDetails>
                 {spec.blocks.map((block) => (
@@ -686,7 +850,7 @@ export default function ResultCasePage() {
                 <TableCell>{t('rq_status')}</TableCell>
                 <TableCell>{t('rc_signedOut')}</TableCell>
                 <TableCell>{t('rc_pathologist')}</TableCell>
-                <TableCell>PDF</TableCell>
+                <TableCell>{t('rc_reportPdf')}</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -694,7 +858,7 @@ export default function ResultCasePage() {
                 <TableRow key={Number(report.reportId)}>
                   <TableCell>
                     {report.versionNumber}
-                    {report.reactivationType ? ` (${report.reactivationType === 'addend' ? 'Addend' : 'Revision'})` : ''}
+                    {report.reactivationType ? ` (${report.reactivationType === 'addend' ? t('rc_addend') : t('rc_revision')})` : ''}
                   </TableCell>
                   <TableCell>
                     {report.isFinal
@@ -717,7 +881,7 @@ export default function ResultCasePage() {
                         size="small"
                         startIcon={<PictureAsPdf />}
                       >
-                        PDF
+                        {t('rc_reportPdf')}
                       </Button>
                     )}
                   </TableCell>

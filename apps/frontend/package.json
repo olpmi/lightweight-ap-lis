@@ -16,6 +16,9 @@
   "dependencies": {
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
+    "@fontsource/noto-naskh-arabic": "^5.2.11",
+    "@fontsource/noto-nastaliq-urdu": "^5.2.8",
+    "@fontsource/roboto": "^5.2.10",
     "@hookform/resolvers": "^3.3.4",
     "@lis/shared": "workspace:*",
     "@mui/icons-material": "^5.15.15",

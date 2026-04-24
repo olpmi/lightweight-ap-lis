@@ -9,11 +9,17 @@
       "import": "./dist/index.js",
       "require": "./dist/index.js",
       "types": "./dist/index.d.ts"
+    },
+    "./templates/server": {
+      "import": "./dist/templates/server.js",
+      "require": "./dist/templates/server.js",
+      "types": "./dist/templates/server.d.ts"
     }
   },
   "scripts": {
-    "build": "tsc",
-    "typecheck": "tsc --noEmit"
+    "build": "tsc && node ./scripts/copy-templates.mjs",
+    "typecheck": "tsc --noEmit",
+    "audit:templates": "node ./scripts/audit-templates.mjs"
   },
   "devDependencies": {
     "typescript": "*"

@@ -1,4 +1,7 @@
 import { z } from 'zod';
+import { APP_LANGUAGE_CODES } from '../templates/index.js';
+
+const appLanguageSchema = z.enum(APP_LANGUAGE_CODES);
 
 export const createEmployeeSchema = z.object({
   lastName: z.string().min(1, 'Last name is required').max(100),
@@ -9,11 +12,11 @@ export const createEmployeeSchema = z.object({
     .max(100)
     .regex(/^[a-zA-Z0-9._-]+$/, 'Username may only contain letters, numbers, dots, hyphens, underscores'),
   employeeRoleId: z.number().int().positive('Employee role is required'),
-  defaultLanguage: z.enum(['en', 'sw']).default('en').optional(),
+  defaultLanguage: appLanguageSchema.default('en').optional(),
 });
 
 export const updateEmployeeLanguageSchema = z.object({
-  language: z.enum(['en', 'sw']),
+  language: appLanguageSchema,
 });
 
 export const loginSchema = z.union([
@@ -67,7 +70,9 @@ export const createDraftReportSchema = z.object({
   comment: z.string().optional(),
   reportTemplateId: z.number().int().positive().optional(),
   gross: z.string().optional(),
+  grossPayload: z.string().optional(),
   synopticData: z.string().optional(),
+  synopticPayload: z.string().optional(),
   pathologistEmployeeId: z.number().int().positive().optional(),
 });
 
@@ -76,7 +81,9 @@ export const signOutReportSchema = z.object({
   comment: z.string().optional(),
   reportTemplateId: z.number().int().positive().optional(),
   gross: z.string().min(1, 'Gross description is required for sign-out'),
+  grossPayload: z.string().optional(),
   synopticData: z.string().optional(),
+  synopticPayload: z.string().optional(),
   pathologistEmployeeId: z.number().int().positive('Pathologist is required for sign-out'),
 });
 
