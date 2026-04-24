@@ -15,11 +15,30 @@ export const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    fontFamily: 'var(--app-font-family)',
     h5: { fontWeight: 600 },
     h6: { fontWeight: 600 },
   },
   components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        ':root': {
+          '--app-font-family': '"Roboto", "Helvetica", "Arial", sans-serif',
+        },
+        'html[lang="ar"]': {
+          '--app-font-family': '"Noto Naskh Arabic", "Roboto", "Helvetica", "Arial", sans-serif',
+        },
+        'html[lang="ur"]': {
+          '--app-font-family': '"Noto Nastaliq Urdu", "Noto Naskh Arabic", "Roboto", "Helvetica", "Arial", sans-serif',
+        },
+        'body': {
+          fontFamily: 'var(--app-font-family)',
+        },
+        'button, input, textarea, select': {
+          font: 'inherit',
+        },
+      },
+    },
     MuiTableHead: {
       styleOverrides: {
         root: {

@@ -1,5 +1,7 @@
 // Domain types for the lightweight AP LIS
 
+import type { AppLanguageCode } from '../templates/index.js';
+
 export interface Doctor {
   doctorId: number;
   lastName: string;
@@ -25,6 +27,7 @@ export interface Employee {
   firstName: string;
   userName: string;
   employeeRoleId: number;
+  defaultLanguage?: AppLanguageCode;
   employeeRole?: EmployeeRole;
 }
 
@@ -95,6 +98,9 @@ export interface Report {
   comment?: string | null;
   reportTemplateId?: number | null;
   gross?: string | null;
+  grossPayload?: string | null;
+  synopticData?: string | null;
+  synopticPayload?: string | null;
   pathologistEmployeeId?: number | null;
   createdAt: string;
   signedOutDatetime?: string | null;
@@ -157,6 +163,7 @@ export interface CreateEmployeeDto {
   firstName: string;
   userName: string;
   employeeRoleId: number;
+  defaultLanguage?: AppLanguageCode;
 }
 
 export interface CreateDraftReportDto {
@@ -164,6 +171,9 @@ export interface CreateDraftReportDto {
   comment?: string;
   reportTemplateId?: number;
   gross?: string;
+  grossPayload?: string;
+  synopticData?: string;
+  synopticPayload?: string;
   pathologistEmployeeId?: number;
 }
 
@@ -172,6 +182,9 @@ export interface SignOutReportDto {
   comment?: string;
   reportTemplateId?: number;
   gross?: string;
+  grossPayload?: string;
+  synopticData?: string;
+  synopticPayload?: string;
   pathologistEmployeeId: number;
 }
 

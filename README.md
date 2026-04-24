@@ -42,22 +42,58 @@ A lightweight **Anatomic Pathology Laboratory Information System** prototype imp
 
 ## Quick start — Docker Compose
 
+Choose one of these container workflows:
+
+1. `docker-compose.yml` for a production-style local stack with the built frontend served by nginx.
+2. `docker-compose.yml` + `docker-compose.dev.yml` for a live-reload frontend mounted from the workspace.
+
+Bring one stack down before starting the other so they do not compete for the same container names and ports.
+
+### Path 1. Base Compose stack (`docker-compose.yml`)
+
 ```bash
 # Copy and review environment variables
 cp .env.example .env
 
 # Start all services (PostgreSQL, backend, frontend)
-docker-compose up --build
+docker compose -f docker-compose.yml up --build
 ```
 
 The frontend will be available at **http://localhost:5173**  
 The backend API at **http://localhost:3001**
 
-Docker Compose will automatically:
+This stack will automatically:
 1. Start PostgreSQL
 2. Run Prisma migrations
 3. Seed the database with ~300 synthetic cases
-4. Start the backend and frontend
+4. Start the backend and serve the built frontend with nginx
+
+To stop it:
+
+```bash
+docker compose -f docker-compose.yml down
+```
+
+### Path 2. Dev override stack (`docker-compose.yml` + `docker-compose.dev.yml`)
+
+```bash
+# Copy and review environment variables
+cp .env.example .env
+
+# Start PostgreSQL, backend, and the Vite dev server frontend
+docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build
+```
+
+The backend remains available at **http://localhost:3001**.  
+The frontend runs from the Vite dev server on **http://localhost:5173** by default, or `http://localhost:${FRONTEND_DEV_PORT}` if you set `FRONTEND_DEV_PORT`.
+
+This path keeps the frontend mounted from the local workspace for hot reload and uses the override file to replace the nginx container with the dev server.
+
+To stop it:
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.dev.yml down
+```
 
 ## Quick start — Local development
 

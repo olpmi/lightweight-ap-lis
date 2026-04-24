@@ -1,0 +1,189 @@
+{
+  "template_id": "malignant_breast_resection_post_neoadjuvant_v1",
+  "lang": "ar",
+  "ui": { "direction": "rtl" },
+  "title": "استئصال ورم خبيث في الثدي (بعد العلاج الكيميائي النيوأدجوفانت)",
+
+  "clinical_case_summary": {
+    "label": "ملخص الحالة السريرية (قبل العلاج النيوأدجوفانت)",
+    "fields": {
+      "tumor_characteristics": { "label": "خصائص الورم" },
+      "site": { "label": "الموضع" },
+      "focality": { "label": "البؤرية" },
+      "dimensions": { "label": "الأبعاد (مم)" },
+      "baseline_biomarker": { "label": "المؤشر الحيوي الأساسي للورم" },
+      "neoadjuvant_regimen": { "label": "نظام العلاج الكيميائي النيوأدجوفانت" },
+      "cycles_completed": { "label": "الدورات المكتملة" }
+    }
+  },
+
+  "specimen": {
+    "label": "العينة الجراحية",
+    "fields": {
+      "intraoperative_consult": {
+        "label": "تم إجراء استشارة أثناء الجراحة",
+        "options": ["نعم", "لا"],
+        "reason": "السبب"
+      },
+      "weight": { "label": "وزن العينة (غ)" },
+      "laterality": {
+        "label": "الجهة",
+        "options": ["يسار", "يمين", "غير محدد"]
+      },
+      "type": {
+        "label": "نوع العينة",
+        "options": [
+          "استئصال ثدي جذري معدل",
+          "استئصال ثدي بسيط",
+          "استئصال ثدي محافظ على الجلد",
+          "استئصال ثدي محافظ على الحلمة",
+          "استئصال الكتلة (استئصال موضعي واسع)",
+          "استئصال ربعي (استئصال قطعي)",
+          "جراحة حفظ الثدي الترميمية الأورامية"
+        ]
+      }
+    }
+  },
+
+  "lymph_nodes": {
+    "label": "العقد اللمفاوية",
+    "fields": {
+      "present": { "label": "وجود عقد لمفاوية" },
+      "sentinel": {
+        "label": "العقد اللمفاوية الحارسة",
+        "fields": {
+          "site": { "label": "الموضع" },
+          "radioactive_count": { "label": "العدّ الإشعاعي" },
+          "dye_uptake": { "label": "التقاط الصبغة" },
+          "number": { "label": "العدد" },
+          "dimensions": { "label": "أبعاد كل عقدة" }
+        }
+      },
+      "non_sentinel": {
+        "label": "العقد اللمفاوية غير الحارسة",
+        "fields": {
+          "total_number": { "label": "العدد الإجمالي للعقد" },
+          "size_range": { "label": "مدى الحجم" }
+        }
+      },
+      "pre_treatment_abnormal": {
+        "label": "العقد غير الطبيعية قبل العلاج",
+        "options": ["غير معروف", "غير موجودة", "موجودة"],
+        "if_present_number": "العدد إذا كانت موجودة"
+      }
+    }
+  },
+
+  "breast_measurements": {
+    "label": "أبعاد الثدي",
+    "fields": {
+      "medial_lateral": { "label": "الطول الأنسي الوحشي" },
+      "superior_inferior": { "label": "الطول العلوي السفلي" },
+      "anterior_posterior": { "label": "الطول الأمامي الخلفي" }
+    }
+  },
+
+  "skin": {
+    "label": "الجلد",
+    "fields": {
+      "present": { "label": "وجود الجلد" },
+      "dimensions": { "label": "أبعاد الجلد" },
+      "abnormalities": {
+        "label": "شذوذات الجلد",
+        "options": [
+          "تقرح",
+          "ندبة جراحية سابقة",
+          "حمامى",
+          ">30% إصابة",
+          "عقيدات جلدية ساتلة",
+          "أخرى"
+        ]
+      }
+    }
+  },
+
+  "nipple": {
+    "label": "الحلمة",
+    "fields": {
+      "present": { "label": "وجود الحلمة" },
+      "description": {
+        "label": "وصف الحلمة",
+        "options": ["طبيعي", "غير طبيعي"]
+      },
+      "abnormal_features": {
+        "label": "السمات غير الطبيعية",
+        "options": [
+          "داء باجيت",
+          "قشرة متقشرة",
+          "منكمشة",
+          "مثبتة إلى الورم",
+          "أخرى"
+        ]
+      }
+    }
+  },
+
+  "tumor_bed": {
+    "label": "سرير الورم",
+    "fields": {
+      "gross_dimensions": { "label": "الأبعاد العيانية (مم)" },
+      "imaging_dimensions": { "label": "الأبعاد بالتصوير (مم)" },
+      "description": { "label": "وصف سرير الورم" }
+    }
+  },
+
+  "tumor": {
+    "label": "الورم",
+    "fields": {
+      "macroscopic_present": { "label": "ورم مرئي عيانياً" },
+      "site": {
+        "label": "موضع الورم",
+        "options": [
+          "الربع العلوي الخارجي",
+          "الربع العلوي الداخلي",
+          "الربع السفلي الخارجي",
+          "الربع السفلي الداخلي",
+          "مركزي",
+          "الحلمة",
+          "غير محدد"
+        ]
+      },
+      "focality": {
+        "label": "البؤرية",
+        "options": ["أحادي البؤرة", "متعدد البؤر"]
+      },
+      "size_post_treatment": { "label": "حجم الورم بعد العلاج النيوأدجوفانت (مم)" },
+      "skin_involvement": { "label": "مثبت إلى الجلد" },
+      "chest_wall_involvement": { "label": "مثبت إلى جدار الصدر" }
+    }
+  },
+
+  "margins": {
+    "label": "الحواف",
+    "fields": {
+      "medial": { "label": "الهامش الأنسي" },
+      "lateral": { "label": "الهامش الوحشي" },
+      "superior": { "label": "الهامش العلوي" },
+      "inferior": { "label": "الهامش السفلي" },
+      "posterior": { "label": "الهامش الخلفي" },
+      "anterior": { "label": "الهامش الأمامي" },
+      "skin": { "label": "الجلد المغطي" }
+    }
+  },
+
+  "muscle": {
+    "label": "العضلات الهيكلية",
+    "options": ["موجود", "غير موجود"]
+  },
+
+  "block_key": {
+    "label": "مفتاح توزيع الكتل",
+    "fields": {
+      "nipple": { "label": "الحلمة" },
+      "tumor": { "label": "الورم" },
+      "surrounding_breast": { "label": "نسيج الثدي المحيط" },
+      "margins": { "label": "الحواف" },
+      "lymph_nodes": { "label": "العقد اللمفاوية" }
+    }
+  }
+}

@@ -72,7 +72,7 @@ export default function ResultQueuePage() {
           <Table size="small" data-testid="result-queue-table">
             <TableHead>
               <TableRow>
-                <TableCell>Case ID</TableCell>
+                <TableCell>{t('pq_caseId')}</TableCell>
                 <TableCell>{t('pq_patient')}</TableCell>
                 <TableCell>{t('pq_clinician')}</TableCell>
                 <TableCell>{t('pq_registered')}</TableCell>

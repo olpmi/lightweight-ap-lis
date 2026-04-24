@@ -31,7 +31,7 @@ import {
 } from '@mui/icons-material';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
-import { useLanguage } from '../../hooks/useLanguage';
+import { type Lang, useLanguage } from '../../hooks/useLanguage';
 import { useNavigationGuard } from '../../hooks/useNavigationGuard';
 import { employeeApi } from '../../api';
 
@@ -42,17 +42,17 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const navigate = useNavigate();
   const location = useLocation();
   const { user, logout } = useAuth();
-  const { lang, setLang, t } = useLanguage();
+  const { lang, setLang, t, languageOptions, tRole } = useLanguage();
   const { guardedNavigate } = useNavigationGuard();
 
   // Apply the employee's saved language preference on login / session restore
   useEffect(() => {
-    if (user?.defaultLanguage === 'en' || user?.defaultLanguage === 'sw') {
+    if (user?.defaultLanguage) {
       setLang(user.defaultLanguage);
     }
-  }, [user?.employeeId]);
+  }, [setLang, user?.defaultLanguage]);
 
-  const handleSetLang = (l: 'en' | 'sw') => {
+  const handleSetLang = (l: Lang) => {
     setLang(l);
     if (user) {
       employeeApi.updateLanguage(user.employeeId, l).catch(() => {/* non-fatal */});
@@ -84,42 +84,66 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
           <Typography variant="h6" noWrap sx={{ flexGrow: 1 }}>
             {t('appName')}
           </Typography>
-          {/* Language switcher */}
           <Divider orientation="vertical" flexItem sx={{ mx: 1.5, borderColor: 'rgba(255,255,255,0.25)' }} />
-          <Tooltip title="Language / Lugha" arrow>
-            <Box display="flex" alignItems="center" gap={0.75}>
-              <Translate sx={{ fontSize: 20, opacity: 0.9, color: 'inherit' }} />
-              <ToggleButtonGroup
-                value={lang}
-                exclusive
-                onChange={(_, v) => v && handleSetLang(v)}
-                size="small"
-                sx={{
-                  '& .MuiToggleButton-root': {
-                    color: 'rgba(255,255,255,0.7)',
-                    borderColor: 'rgba(255,255,255,0.4)',
-                    fontSize: 12,
-                    fontWeight: 600,
-                    py: 0.4,
-                    px: 1.2,
-                    lineHeight: 1.4,
-                  },
-                  '& .Mui-selected': {
-                    bgcolor: 'rgba(255,255,255,0.25) !important',
-                    color: '#fff !important',
-                    borderBottom: '2px solid #fff',
-                  },
-                }}
-              >
-                <ToggleButton value="en">English</ToggleButton>
-                <ToggleButton value="sw">Kiswahili</ToggleButton>
-              </ToggleButtonGroup>
-            </Box>
-          </Tooltip>
+          <Box
+            display="flex"
+            alignItems="center"
+            gap={0.75}
+            sx={{
+              maxWidth: { xs: 360, lg: 'none' },
+              overflowX: 'auto',
+              scrollbarWidth: 'none',
+              '&::-webkit-scrollbar': { display: 'none' },
+            }}
+          >
+            <Translate sx={{ fontSize: 20, opacity: 0.9, color: 'inherit', flexShrink: 0 }} />
+            <Typography
+              variant="body2"
+              sx={{
+                fontWeight: 600,
+                color: 'rgba(255,255,255,0.92)',
+                whiteSpace: 'nowrap',
+                flexShrink: 0,
+              }}
+            >
+              Language / Lugha
+            </Typography>
+            <ToggleButtonGroup
+              value={lang}
+              exclusive
+              onChange={(_, v) => v && handleSetLang(v)}
+              size="small"
+              sx={{
+                flexWrap: 'nowrap',
+                '& .MuiToggleButton-root': {
+                  color: 'rgba(255,255,255,0.78)',
+                  borderColor: 'rgba(255,255,255,0.35)',
+                  fontSize: 12,
+                  fontWeight: 600,
+                  py: 0.4,
+                  px: 1.05,
+                  lineHeight: 1.3,
+                  textTransform: 'none',
+                  whiteSpace: 'nowrap',
+                },
+                '& .Mui-selected': {
+                  bgcolor: 'rgba(255,255,255,0.22) !important',
+                  color: '#fff !important',
+                  borderBottom: '2px solid #fff',
+                },
+              }}
+            >
+              {languageOptions.map((option) => (
+                <ToggleButton key={option.code} value={option.code}>
+                  {option.nativeLabel}
+                </ToggleButton>
+              ))}
+            </ToggleButtonGroup>
+          </Box>
           <Divider orientation="vertical" flexItem sx={{ mx: 1.5, borderColor: 'rgba(255,255,255,0.25)' }} />
           {user && (
             <Box display="flex" alignItems="center" gap={1}>
-              <Tooltip title={`${user.userName} — ${user.role}`}>
+              <Tooltip title={`${user.userName} — ${tRole(user.role)}`}>
                 <Avatar sx={{ width: 32, height: 32, bgcolor: 'secondary.main', fontSize: 14 }}>
                   {user.userName?.charAt(0).toUpperCase()}
                 </Avatar>
@@ -159,33 +183,6 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
             </ListItemButton>
           ))}
         </List>
-        <Divider />
-        <Box sx={{ p: 1.5 }}>
-          <Box display="flex" alignItems="center" gap={0.5} sx={{ mb: 0.75, px: 0.5 }}>
-            <Translate sx={{ fontSize: 16, color: 'text.secondary' }} />
-            <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600, letterSpacing: 0.3 }}>
-              Language / Lugha
-            </Typography>
-          </Box>
-          <ToggleButtonGroup
-            value={lang}
-            exclusive
-            onChange={(_, v) => v && handleSetLang(v)}
-            size="small"
-            fullWidth
-            sx={{
-              '& .MuiToggleButton-root': {
-                fontSize: 12,
-                py: 0.5,
-                textTransform: 'none',
-                fontWeight: 500,
-              },
-            }}
-          >
-            <ToggleButton value="en">English</ToggleButton>
-            <ToggleButton value="sw">Kiswahili</ToggleButton>
-          </ToggleButtonGroup>
-        </Box>
       </Drawer>
 
       {/* Main content */}

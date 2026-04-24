@@ -30,7 +30,7 @@ export default function ProcessingQueuePage() {
   const [page, setPage] = useState(1);
   const [showAll, setShowAll] = useState(false);
   const [search, setSearch] = useState('');
-  const { t } = useLanguage();
+  const { t, tCaseType } = useLanguage();
   const PAGE_SIZE = 20;
 
   const { data, isLoading, isError } = useQuery<{
@@ -97,12 +97,12 @@ export default function ProcessingQueuePage() {
           <Table size="small" data-testid="processing-queue-table">
             <TableHead>
               <TableRow>
-                <TableCell>Case ID</TableCell>
-                <TableCell>Patient</TableCell>
-                <TableCell>Clinician</TableCell>
-                <TableCell>Registered</TableCell>
-                <TableCell>Type</TableCell>
-                <TableCell>Specimens</TableCell>
+                <TableCell>{t('pq_caseId')}</TableCell>
+                <TableCell>{t('pq_patient')}</TableCell>
+                <TableCell>{t('pq_clinician')}</TableCell>
+                <TableCell>{t('pq_registered')}</TableCell>
+                <TableCell>{t('pq_type')}</TableCell>
+                <TableCell>{t('pq_specimens')}</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -130,7 +130,7 @@ export default function ProcessingQueuePage() {
                   </TableCell>
                   <TableCell>{new Date(order.registeredDate).toLocaleDateString()}</TableCell>
                   <TableCell>
-                    {order.caseType && <Chip label={order.caseType} size="small" />}
+                    {order.caseType && <Chip label={tCaseType(order.caseType)} size="small" />}
                   </TableCell>
                   <TableCell>{order.specimens.length}</TableCell>
                 </TableRow>

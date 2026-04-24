@@ -107,7 +107,7 @@ export default function QueryPage() {
             <Table size="small" data-testid="query-results-table">
               <TableHead>
                 <TableRow>
-                  <TableCell>Case ID</TableCell>
+                  <TableCell>{t('q_caseId')}</TableCell>
                   <TableCell>{t('pq_patient')}</TableCell>
                   <TableCell>{t('q_patientId')}</TableCell>
                   <TableCell>{t('pq_clinician')}</TableCell>

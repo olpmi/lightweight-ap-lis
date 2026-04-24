@@ -1,8 +1,9 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { authApi } from '../api';
+import type { AppLanguageCode } from '@lis/shared';
 
 interface AuthContextValue {
-  user: { employeeId: number; userName: string; role: string; defaultLanguage: string } | null;
+  user: { employeeId: number; userName: string; role: string; defaultLanguage: AppLanguageCode } | null;
   loading: boolean;
   login: (payload: object) => Promise<void>;
   logout: () => Promise<void>;

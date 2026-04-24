@@ -17,7 +17,7 @@ import { useLanguage } from '../hooks/useLanguage';
 export default function DashboardPage() {
   const navigate = useNavigate();
   const { user } = useAuth();
-  const { t } = useLanguage();
+  const { t, tRole } = useLanguage();
 
   const SECTIONS = [
     { titleKey: 'dash_orderEntry_title' as const, descKey: 'dash_orderEntry_desc' as const, icon: <Assignment fontSize="large" color="primary" />, path: '/order-entry' },
@@ -41,7 +41,7 @@ export default function DashboardPage() {
         </Typography>
         {user && (
           <Typography variant="body2" sx={{ mt: 1.5, opacity: 0.85 }}>
-            {t('dash_loggedInAs')} <strong>{user.userName}</strong> &middot; {user.role}
+            {t('dash_loggedInAs')} <strong>{user.userName}</strong> &middot; {tRole(user.role)}
           </Typography>
         )}
       </Paper>

@@ -166,7 +166,9 @@ model Report {
   comment               String?   @db.Text
   reportTemplateId      Int?      @map("report_template_id")
   gross                 String?   @db.Text
+  grossPayload          String?   @map("gross_payload") @db.Text
   synopticData          String?   @map("synoptic_data") @db.Text
+  synopticPayload       String?   @map("synoptic_payload") @db.Text
   pathologistEmployeeId BigInt?   @map("pathologist_employee_id")
   createdAt             DateTime  @default(now()) @map("created_at")
   signedOutDatetime     DateTime? @map("signed_out_datetime")

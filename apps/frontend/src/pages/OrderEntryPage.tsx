@@ -40,7 +40,7 @@ interface SpecimenRow {
 }
 
 export default function OrderEntryPage() {
-  const { t, tSite, tOrgan } = useLanguage();
+  const { t, tSite, tOrgan, tSpecimenType } = useLanguage();
   const [patientMode, setPatientMode] = useState<'existing' | 'new'>('existing');
   const [doctorMode, setDoctorMode] = useState<'existing' | 'new'>('existing');
   const [patientSearch, setPatientSearch] = useState('');
@@ -120,7 +120,7 @@ export default function OrderEntryPage() {
     onError: (err: unknown) => {
       setError(
         (err as { response?: { data?: { error?: { message?: string } } } })?.response?.data?.error
-          ?.message ?? 'Failed to create order'
+          ?.message ?? t('errorGeneric')
       );
     },
   });
@@ -395,7 +395,7 @@ export default function OrderEntryPage() {
                             onChange={(e) => updateSpecimen(spec.id, 'specimenTypeId', e.target.value as number)}
                           >
                             {(specimenTypes as Array<{ specimenTypeId: number; specimenTypeName: string }> ?? []).map((t) => (
-                              <MenuItem key={t.specimenTypeId} value={t.specimenTypeId}>{t.specimenTypeName}</MenuItem>
+                              <MenuItem key={t.specimenTypeId} value={t.specimenTypeId}>{tSpecimenType(t.specimenTypeName)}</MenuItem>
                             ))}
                           </Select>
                         </FormControl>
@@ -439,7 +439,7 @@ export default function OrderEntryPage() {
         open={successOpen}
         autoHideDuration={6000}
         onClose={() => setSuccessOpen(false)}
-        message={`Case ${createdOrder?.orderId} created successfully`}
+        message={createdOrder ? `${t('oe_caseCreated')} ${formatOrderIdDisplay(createdOrder.orderId)}` : ''}
       />
 
       {/* Navigation guard dialog handled by NavigationGuardProvider */}
