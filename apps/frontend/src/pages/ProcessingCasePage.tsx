@@ -334,67 +334,30 @@ export default function ProcessingCasePage() {
       )}
 
       <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1.3fr' }, gap: 2, mb: 3 }}>
-        <Paper sx={{ p: 2 }}>
-          {showKeyboardLayoutHint && (
-            <Alert severity="info" sx={{ mb: 2 }}>
-              {t('input_keyboardLayoutHint')}
-            </Alert>
-          )}
-          <Typography variant="subtitle2" fontWeight={700} mb={1}>{t('pc_clinicalHistory')}</Typography>
-          <TextField
-            multiline
-            minRows={4}
-            fullWidth
-            size="small"
-            value={clinicalHistory}
-            onChange={(e) => { setClinicalHistory(e.target.value); setIsSaved(false); setIsDirty(true); }}
-            inputProps={narrativeInputProps}
-          />
-        </Paper>
-        <Paper sx={{ p: 2 }}>
-          <Typography variant="subtitle2" fontWeight={700} mb={1}>{t('pc_grossDescription')}</Typography>
-          <StructuredTemplateEditor
-            templateLabel={t('rc_grossTemplate')}
-            outputLabel={t('pc_grossDescription')}
-            templates={grossTemplates}
-            selectedTemplateKey={grossTemplateKey}
-            onTemplateKeyChange={(templateKey) => {
-              setGrossTemplateKey(templateKey);
-              setGrossTemplateValues({});
-              setGrossPayload('');
-              setIsSaved(false);
-              setIsDirty(true);
-            }}
-            definition={grossTemplateDefinition as RawTemplateDefinition | undefined}
-            values={grossTemplateValues}
-            onValuesChange={(values) => {
-              setGrossTemplateValues(values);
-              setIsSaved(false);
-              setIsDirty(true);
-            }}
-            rawText={grossDescription}
-            onRawTextChange={(text) => {
-              setGrossDescription(text);
-              setGrossTemplateKey('');
-              setGrossTemplateValues({});
-              setGrossPayload('');
-              setIsSaved(false);
-              setIsDirty(true);
-            }}
-            loading={grossTemplateLoading}
-            selectTestId="processing-gross-template-select"
-            outputTestId="processing-gross-input"
-            loadingText={t('rc_templateLoading')}
-            unavailableText={t('rc_templateUnavailable')}
-          />
-        </Paper>
-      </Box>
+        <Box>
+          <Paper sx={{ p: 2, mb: 2 }}>
+            {showKeyboardLayoutHint && (
+              <Alert severity="info" sx={{ mb: 2 }}>
+                {t('input_keyboardLayoutHint')}
+              </Alert>
+            )}
+            <Typography variant="subtitle2" fontWeight={700} mb={1}>{t('pc_clinicalHistory')}</Typography>
+            <TextField
+              multiline
+              minRows={4}
+              fullWidth
+              size="small"
+              value={clinicalHistory}
+              onChange={(e) => { setClinicalHistory(e.target.value); setIsSaved(false); setIsDirty(true); }}
+              inputProps={narrativeInputProps}
+            />
+          </Paper>
 
-      <Typography variant="h6" mb={1}>{t('pc_materials')}</Typography>
-      {specimens.length === 0 && (
-        <Alert severity="info">{t('pc_noSpecimens')}</Alert>
-      )}
-      {specimens.map((spec) => (
+          <Typography variant="h6" mb={1}>{t('pc_materials')}</Typography>
+          {specimens.length === 0 && (
+            <Alert severity="info">{t('pc_noSpecimens')}</Alert>
+          )}
+          {specimens.map((spec) => (
         <Accordion key={spec.specimenId} defaultExpanded>
           <AccordionSummary expandIcon={<ExpandMore />}>
             <Box display="flex" alignItems="center" gap={1.5}>
@@ -576,7 +539,47 @@ export default function ProcessingCasePage() {
             )}
           </AccordionDetails>
         </Accordion>
-      ))}      
+          ))}
+        </Box>
+
+        <Paper sx={{ p: 2 }}>
+          <Typography variant="subtitle2" fontWeight={700} mb={1}>{t('pc_grossDescription')}</Typography>
+          <StructuredTemplateEditor
+            templateLabel={t('rc_grossTemplate')}
+            outputLabel={t('pc_grossDescription')}
+            templates={grossTemplates}
+            selectedTemplateKey={grossTemplateKey}
+            onTemplateKeyChange={(templateKey) => {
+              setGrossTemplateKey(templateKey);
+              setGrossTemplateValues({});
+              setGrossPayload('');
+              setIsSaved(false);
+              setIsDirty(true);
+            }}
+            definition={grossTemplateDefinition as RawTemplateDefinition | undefined}
+            values={grossTemplateValues}
+            onValuesChange={(values) => {
+              setGrossTemplateValues(values);
+              setIsSaved(false);
+              setIsDirty(true);
+            }}
+            rawText={grossDescription}
+            onRawTextChange={(text) => {
+              setGrossDescription(text);
+              setGrossTemplateKey('');
+              setGrossTemplateValues({});
+              setGrossPayload('');
+              setIsSaved(false);
+              setIsDirty(true);
+            }}
+            loading={grossTemplateLoading}
+            selectTestId="processing-gross-template-select"
+            outputTestId="processing-gross-input"
+            loadingText={t('rc_templateLoading')}
+            unavailableText={t('rc_templateUnavailable')}
+          />
+        </Paper>
+      </Box>
 
       {/* Navigation guard dialog handled by NavigationGuardProvider */}
     </Box>

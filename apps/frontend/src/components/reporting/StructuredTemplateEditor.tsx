@@ -1,5 +1,8 @@
 import React from 'react';
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   Alert,
   Box,
   CircularProgress,
@@ -11,6 +14,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
+import { ExpandMore } from '@mui/icons-material';
 import type { SelectChangeEvent } from '@mui/material/Select';
 import type { TemplateCatalogEntry } from '@lis/shared';
 import { useLanguage } from '../../hooks/useLanguage';
@@ -227,14 +231,18 @@ export default function StructuredTemplateEditor({
       {selectedTemplateKey && normalizedDefinition && (
         <>
           {normalizedDefinition.sections.map((section) => (
-            <Box key={section.id}>
-              <Typography variant="subtitle2" fontWeight={700} mb={1}>
-                {section.title}
-              </Typography>
-              <Stack spacing={1.5}>
-                {section.fields.map((field) => renderField(field))}
-              </Stack>
-            </Box>
+            <Accordion key={section.id} defaultExpanded disableGutters>
+              <AccordionSummary expandIcon={<ExpandMore />} sx={{ minHeight: 36, '& .MuiAccordionSummary-content': { my: 0.5 } }}>
+                <Typography variant="subtitle2" fontWeight={700}>
+                  {section.title}
+                </Typography>
+              </AccordionSummary>
+              <AccordionDetails sx={{ pt: 1 }}>
+                <Stack spacing={1.5}>
+                  {section.fields.map((field) => renderField(field))}
+                </Stack>
+              </AccordionDetails>
+            </Accordion>
           ))}
 
           <TextField
