@@ -1,11 +1,358 @@
 {
-  "template_id": "ovary_fallopian_tube_primary_peritoneum_v1",
-  "lang": "ur",
-  "title": "اووری یا فاللوپین ٹیوب یا پرائمری پیریٹونیم",
-  "tumor": { "label": "ٹیومر" },
-  "regional_lymph_nodes": { "label": "علاقائی لمف نوڈز" },
-  "distant_metastasis": { "label": "بعید میٹاسٹاسس" },
-  "ptnm_classification": { "label": "pTNM درجہ بندی" },
-  "figo_stage": { "label": "FIGO مرحلہ" },
-  "additional_findings": { "label": "اضافی مشاہدات" }
+  "protocol_title": "رپورٹ ٹیمپلیٹ: اووری یا فیلوپین ٹیوب یا بنیادی پیریٹونیم",
+  "protocol_posting_date": "پروٹوکول جاری ہونے کی تاریخ: جون 2024",
+  "standards": "معیارات: AJCC-UICC 8، FIGO Cancer Report 2021",
+  "common": {
+    "not_applicable": "لاگو نہیں",
+    "not_identified": "شناخت نہیں ہوا",
+    "present": "موجود",
+    "absent": "غیر موجود",
+    "cannot_be_determined": "متعین نہیں کیا جا سکتا",
+    "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+    "other_specify": "دیگر (وضاحت کریں)",
+    "exact_number": "درست تعداد",
+    "exact_number_specify": "درست تعداد (درج کریں)",
+    "at_least": "کم از کم",
+    "at_least_specify": "کم از کم (درج کریں)",
+    "exact_size": "درست سائز",
+    "greater_than": "سے زیادہ",
+    "less_than": "سے کم",
+    "specify": "درج کریں",
+    "select_all_that_apply": "جو بھی لاگو ہو منتخب کریں",
+    "required_only_if_applicable": "صرف قابل اطلاق ہونے پر ضروری",
+    "right": "دائیں",
+    "left": "بائیں",
+    "bilateral": "دونوں طرف",
+    "not_submitted_unknown": "جمع نہیں کیا گیا / نامعلوم",
+    "results_pending": "نتائج زیر التواء",
+    "none_identified": "کچھ شناخت نہیں ہوا"
+  },
+  "tumor": {
+    "title": "رسولی",
+    "tumor_site": {
+      "label": "رسولی کا مقام",
+      "instruction": "براہِ کرم صرف بنیادی رسولی کے اصل مقام کو منتخب کریں۔ ایک جیسی ہسٹولوجی والی دو طرفہ اووری رسولیوں کے لیے \"دونوں اووریز\" منتخب کریں۔",
+      "options": {
+        "right_ovary": "دائیں اووری",
+        "left_ovary": "بائیں اووری",
+        "bilateral_ovaries": "دونوں اووریز",
+        "ovary_laterality_unknown": "اووری، سمت متعین نہیں کی جا سکتی (وضاحت کریں)",
+        "right_fallopian_tube": "دائیں فیلوپین ٹیوب",
+        "left_fallopian_tube": "بائیں فیلوپین ٹیوب",
+        "bilateral_fallopian_tubes": "دونوں فیلوپین ٹیوبیں",
+        "fallopian_tube_laterality_unknown": "فیلوپین ٹیوب، سمت متعین نہیں کی جا سکتی (وضاحت کریں)",
+        "right_tubo_ovarian": "دائیں ٹیوبو-اووریئن",
+        "left_tubo_ovarian": "بائیں ٹیوبو-اووریئن",
+        "bilateral_tubo_ovarian": "دونوں ٹیوبو-اووریئن",
+        "tubo_ovarian_laterality_unknown": "ٹیوبو-اووریئن، سمت متعین نہیں کی جا سکتی (وضاحت کریں)",
+        "primary_peritoneum": "بنیادی پیریٹونیم",
+        "other": "دیگر (وضاحت کریں)"
+      }
+    },
+    "tumor_size": {
+      "label": "رسولی کا سائز",
+      "instruction": "دو طرفہ رسولیوں کے لیے سب سے بڑی بارڈر لائن یا خبیث رسولی کا زیادہ سے زیادہ بُعد درج کریں۔ بارڈر لائن رسولی سے پیدا ہونے والے کارسینوما میں صرف کارسینوما جزو کا سائز درج کریں۔",
+      "greatest_dimension_cm": "سب سے بڑا بُعد سینٹی میٹر (cm) میں",
+      "additional_dimension_cm": "اضافی ابعاد سینٹی میٹر (cm) میں",
+      "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
+    },
+    "histologic_type": {
+      "label": "ہسٹولوجیکل قسم",
+      "instruction": "جو بھی لاگو ہو منتخب کریں",
+      "options": {
+        "serous_borderline_tumor": "سیروس بارڈر لائن ٹیومر",
+        "serous_borderline_micropapillary_cribriform": "سیروس بارڈر لائن ٹیومر، مائیکروپیپیلری / کریبری فارم قسم",
+        "serous_borderline_with_microinvasion": "سیروس بارڈر لائن ٹیومر مع مائیکرو انویژن",
+        "microinvasive_low_grade_serous_carcinoma": "مائیکرو انویسیو کم درجے کا سیروس کارسینوما",
+        "low_grade_serous_carcinoma": "کم درجے کا سیروس کارسینوما",
+        "high_grade_serous_carcinoma": "اعلیٰ درجے کا سیروس کارسینوما",
+        "mucinous_borderline_tumor": "میوسینس بارڈر لائن ٹیومر",
+        "mucinous_borderline_with_intraepithelial_carcinoma": "میوسینس بارڈر لائن ٹیومر مع انٹراایپی تھیلیئل کارسینوما",
+        "mucinous_borderline_with_microinvasion": "میوسینس بارڈر لائن ٹیومر مع مائیکرو انویژن",
+        "microinvasive_mucinous_adenocarcinoma": "مائیکرو انویسیو میوسینس ایڈینوکارسینوما",
+        "mucinous_adenocarcinoma": "میوسینس ایڈینوکارسینوما",
+        "endometrioid_borderline_tumor": "اینڈومیٹریوئڈ بارڈر لائن ٹیومر",
+        "endometrioid_carcinoma": "اینڈومیٹریوئڈ کارسینوما",
+        "endometrioid_carcinoma_seromucinous": "اینڈومیٹریوئڈ کارسینوما، سیرو میوسینس قسم",
+        "seromucinous_borderline_tumor": "سیرو میوسینس بارڈر لائن ٹیومر",
+        "clear_cell_borderline_tumor": "کلئیر سیل بارڈر لائن ٹیومر",
+        "clear_cell_carcinoma": "کلئیر سیل کارسینوما",
+        "borderline_brenner_tumor": "بارڈر لائن برینر ٹیومر",
+        "malignant_brenner_tumor": "خبیث برینر ٹیومر",
+        "mesonephric_like_adenocarcinoma": "میسونیفریک نما ایڈینوکارسینوما",
+        "small_cell_carcinoma_hypercalcemic": "سمال سیل کارسینوما، ہائپر کیلسی میک قسم",
+        "dedifferentiated_carcinoma": "ڈی ڈیفرنشی ایٹڈ کارسینوما",
+        "undifferentiated_carcinoma_nos": "غیر متمايز کارسینوما، NOS",
+        "carcinosarcoma": "کارسینوسارکوما",
+        "carcinoma_subtype_unknown": "کارسینوما، ذیلی قسم متعین نہیں کی جا سکتی",
+        "mixed_epithelial_borderline": "مخلوط ایپی تھیلیئل بارڈر لائن ٹیومر (اقسام اور فیصد درج کریں)",
+        "mixed_carcinoma": "مخلوط کارسینوما (اقسام اور فیصد درج کریں)",
+        "endometrioid_stromal_sarcoma_low_grade": "کم درجے کا اینڈومیٹریوئڈ اسٹرومل سارکوما",
+        "endometrioid_stromal_sarcoma_high_grade": "اعلیٰ درجے کا اینڈومیٹریوئڈ اسٹرومل سارکوما",
+        "adenosarcoma": "ایڈینوسارکوما",
+        "leiomyosarcoma": "لیومیوسارکوما",
+        "fibrosarcoma": "فائبروسارکوما",
+        "granulosa_cell_tumor_adult": "گرانولوسا سیل ٹیومر، بالغ قسم",
+        "granulosa_cell_tumor_juvenile": "گرانولوسا سیل ٹیومر، نابالغ قسم",
+        "steroid_cell_tumor_nos": "اسٹیرائیڈ سیل ٹیومر، NOS",
+        "steroid_cell_tumor_malignant": "خبیث اسٹیرائیڈ سیل ٹیومر",
+        "sertoli_leydig_cell_tumor": "سرٹولی-لیڈگ سیل ٹیومر",
+        "other_sex_cord_stromal": "دیگر سیکس کورڈ-اسٹرومل ٹیومر (قسم درج کریں)",
+        "immature_teratoma": "نامکمل ٹیریٹوما",
+        "teratoma_with_malignant_transformation": "ٹیریٹوما مع خبیث تبدیلی (قسم درج کریں)",
+        "malignant_struma_ovarii": "خبیث اسٹرومہ اوواری آئی (قسم درج کریں)",
+        "dysgerminoma": "ڈسجرمینوما",
+        "yolk_sac_tumor": "یولک سیک ٹیومر",
+        "embryonal_carcinoma": "ایمبریونل کارسینوما",
+        "gonadoblastoma": "گوناڈوبلاسٹوما",
+        "choriocarcinoma_non_gestational": "کوریوکارسینوما، غیر حملی قسم",
+        "mixed_malignant_germ_cell_tumor": "مخلوط خبیث جرم سیل ٹیومر (اقسام اور فیصد درج کریں)",
+        "primary_peritoneal_tumors": "بنیادی پیریٹونیل ٹیومرز",
+        "gastrointestinal_stromal_tumor": "معدی آنتی اسٹرومل ٹیومر",
+        "solitary_fibrous_tumor_malignant": "تنہا فائبروس ٹیومر، خبیث",
+        "desmoplastic_small_round_cell_tumor": "ڈیس موپلاسٹک اسمال راؤنڈ سیل ٹیومر",
+        "other_histologic_type": "دیگر غیر درج شدہ ہسٹولوجیکل قسم (وضاحت کریں)"
+      },
+      "comment": "ہسٹولوجیکل قسم پر تبصرہ"
+    },
+    "histologic_grade": {
+      "label": "ہسٹولوجیکل گریڈ",
+      "instruction": "اینڈومیٹریوئڈ اور میوسینس کارسینوما، نامکمل ٹیریٹوما، اور سرٹولی-لیڈگ سیل ٹیومرز کے لیے ضروری۔ مخلوط ٹیومرز میں سب سے زیادہ گریڈ والی رسولی درج کریں اور دیگر اجزاء پر تبصرہ کریں۔",
+      "not_applicable": "لاگو نہیں",
+      "who_grading_system": {
+        "label": "WHO گریڈنگ سسٹم",
+        "gb_borderline": "GB، بارڈر لائن ٹیومر",
+        "g1_well_differentiated": "G1، اچھی طرح متمايز",
+        "g2_moderately_differentiated": "G2، درمیانی طور پر متمايز",
+        "g3_poorly_differentiated": "G3، کم متمايز",
+        "gx_cannot_be_assessed": "GX، اندازہ نہیں لگایا جا سکتا"
+      },
+      "figo_grading_system": {
+        "label": "FIGO گریڈنگ سسٹم",
+        "grade_1": "FIGO Grade 1 (غیر اسکویمس ٹھوس بڑھوتری 5% یا کم)",
+        "grade_2": "FIGO Grade 2 (غیر اسکویمس ٹھوس بڑھوتری 6% سے 50%)",
+        "grade_3": "FIGO Grade 3 (غیر اسکویمس ٹھوس بڑھوتری 50% سے زیادہ)"
+      },
+      "silverberg_grading_system": {
+        "label": "Silverberg گریڈنگ سسٹم",
+        "grade_1": "Silverberg Grade 1 (اسکور 3-5)",
+        "grade_2": "Silverberg Grade 2 (اسکور 6-7)",
+        "grade_3": "Silverberg Grade 3 (اسکور 8-9)"
+      },
+      "growth_pattern_grading": {
+        "label": "گروتھ پیٹرن پر مبنی گریڈنگ",
+        "low_grade": "کم گریڈ، گروتھ پیٹرن پر مبنی (confluent / expansile بڑھوتری، یا infiltrative بڑھوتری 10% یا کم)",
+        "high_grade": "اعلیٰ گریڈ، گروتھ پیٹرن پر مبنی (رسولی میں infiltrative بڑھوتری 10% سے زیادہ)",
+        "other": "دیگر گروتھ پیٹرن پر مبنی گریڈنگ (وضاحت کریں)"
+      },
+      "two_tier_grading": "دو سطحی گریڈنگ سسٹم",
+      "three_tier_grading": "تین سطحی گریڈنگ سسٹم",
+      "low_grade": "کم گریڈ",
+      "high_grade": "اعلیٰ گریڈ",
+      "grade_1_low": "Grade 1 (کم گریڈ)",
+      "grade_2_high": "Grade 2 (اعلیٰ گریڈ)",
+      "grade_3_high": "Grade 3 (اعلیٰ گریڈ)"
+    },
+    "surface_involvement": {
+      "ovarian_surface_involvement": "اووری کی سطح کی شمولیت",
+      "fallopian_tube_surface_involvement": "فیلوپین ٹیوب کی سطح کی شمولیت",
+      "present_right": "موجود، دائیں",
+      "present_left": "موجود، بائیں",
+      "present_right_and_left": "موجود، دائیں اور بائیں"
+    },
+    "implants": {
+      "label": "امپلانٹس",
+      "instruction": "صرف اعلیٰ مرحلے کے سیروس / سیرو میوسینس بارڈر لائن ٹیومرز کے لیے ضروری۔",
+      "not_sampled": "نمونہ نہیں لیا گیا",
+      "present_specify_sites": "موجود (مقامات درج کریں)",
+      "indeterminate": "غیر متعین"
+    },
+    "other_tissue_organ_involvement": {
+      "label": "دیگر ٹشو / اعضاء کی شمولیت",
+      "instruction": "جو عضو منتخب نہیں کیا گیا وہ یا تو شامل نہیں ہے یا جمع نہیں کیا گیا۔",
+      "options": {
+        "right_ovary": "دائیں اووری",
+        "left_ovary": "بائیں اووری",
+        "ovary_side_not_specified": "اووری (سمت درج نہیں)",
+        "right_fallopian_tube": "دائیں فیلوپین ٹیوب",
+        "left_fallopian_tube": "بائیں فیلوپین ٹیوب",
+        "fallopian_tube_side_not_specified": "فیلوپین ٹیوب (سمت درج نہیں)",
+        "uterine_corpus": "رحم کا جسم",
+        "uterine_cervix": "عنقِ رحم",
+        "pelvic_peritoneum": "پیلوک پیریٹونیم",
+        "abdominal_peritoneum": "ایبڈومینل پیریٹونیم",
+        "omentum": "اومینٹم",
+        "other_organs_tissue": "دیگر اعضاء / ٹشو (وضاحت کریں)"
+      }
+    },
+    "largest_extrapelvic_peritoneal_focus": {
+      "label": "سب سے بڑا ایکسٹرا پیلوک پیریٹونیل فوکس",
+      "microscopic": "مائیکروسکوپک",
+      "macroscopic_2cm_or_less": "میکروسکوپک، 2 cm یا کم (اگر قابل اطلاق ہو تو مقام درج کریں)",
+      "macroscopic_greater_than_2cm": "میکروسکوپک، 2 cm سے زیادہ (اگر قابل اطلاق ہو تو مقام درج کریں)"
+    },
+    "peritoneal_ascitic_fluid": {
+      "label": "پیریٹونیل / ایسائٹک سیال کی شمولیت",
+      "negative_for_malignant_cells": "خبیث خلیات کے لیے منفی",
+      "atypical_explain": "غیر معمولی (وضاحت کریں)",
+      "neoplastic_cells_present": "نیئوپلاسٹک خلیات موجود (کم درجے کا سیروس نیوپلازم؛ متعلقہ جراحی نمونہ دیکھیں)",
+      "suspicious_explain": "مشکوک (وضاحت کریں)",
+      "malignant_cells_present": "خبیث خلیات موجود"
+    },
+    "chemotherapy_response_score": {
+      "label": "کیموتھراپی رسپانس اسکور (CRS)",
+      "instruction": "صرف اعلیٰ درجے کے سیروس کارسینوما کے لیے ضروری۔ علاج کا اثر اومینٹم میں باقی رسولی کے جائزے پر مبنی ہے۔",
+      "no_known_presurgical_therapy": "کوئی معلوم پری سرجیکل تھراپی نہیں",
+      "crs1": "CRS1 (کوئی واضح ردعمل نہیں یا کم سے کم ردعمل)",
+      "crs2": "CRS2 (درمیانی ردعمل)",
+      "crs3": "CRS3 (واضح ردعمل، باقی کینسر نہیں یا بہت کم)"
+    },
+    "comment": "رسولی پر تبصرہ"
+  },
+  "regional_lymph_nodes": {
+    "title": "علاقائی لمف نوڈز",
+    "status": {
+      "label": "علاقائی لمف نوڈز کی حالت",
+      "not_applicable_no_nodes": "لاگو نہیں (کوئی علاقائی لمف نوڈ جمع نہیں کیے گئے یا نہیں ملے)",
+      "regional_nodes_present": "علاقائی لمف نوڈز موجود ہیں",
+      "all_negative": "تمام علاقائی لمف نوڈز ٹیومر خلیات کے لیے منفی ہیں",
+      "tumor_present": "علاقائی لمف نوڈز میں رسولی موجود ہے"
+    },
+    "metastasis_counts": {
+      "nodes_gt_10mm": "10 mm سے بڑے میٹاسٹاسس والے لمف نوڈز کی تعداد",
+      "nodes_10mm_or_less": "10 mm یا کم میٹاسٹاسس والے لمف نوڈز کی تعداد (ITCs کے علاوہ)",
+      "nodes_with_itcs": "isolated tumor cells (ITCs) والے لمف نوڈز کی تعداد (0.2 mm یا کم)"
+    },
+    "nodal_sites_with_tumor": {
+      "label": "رسولی والے نوڈل مقامات",
+      "right_pelvic": "دائیں پیلوک",
+      "left_pelvic": "بائیں پیلوک",
+      "pelvic_nos": "پیلوک، NOS",
+      "right_para_aortic": "دائیں پیرا-آورٹک",
+      "left_para_aortic": "بائیں پیرا-آورٹک",
+      "para_aortic_nos": "پیرا-آورٹک، NOS"
+    },
+    "largest_nodal_deposit": {
+      "size": "سب سے بڑے نوڈل میٹاسٹیٹک ڈپازٹ کا سائز",
+      "location": "سب سے بڑے نوڈل میٹاسٹیٹک ڈپازٹ کا مقام"
+    },
+    "lymph_nodes_examined": {
+      "label": "معائنہ شدہ لمف نوڈز کی تعداد",
+      "nodal_sites_examined": "معائنہ شدہ نوڈل مقامات"
+    },
+    "comment": "علاقائی لمف نوڈز پر تبصرہ"
+  },
+  "distant_metastasis": {
+    "title": "دور دراز میٹاسٹاسس",
+    "distant_sites_involved": "دور دراز شامل مقامات، اگر قابل اطلاق ہو",
+    "note": "اس میں ریٹروپیریٹونیل، پیلوک، پیرا-آورٹک یا کسی بھی علاقائی لمف نوڈز کے میٹاسٹاسس شامل نہیں۔",
+    "options": {
+      "pleural_effusion_positive_cytology": "مثبت سائٹولوجی کے ساتھ پلورل ایفیوژن",
+      "liver_parenchyma": "جگر کا پیرینکائما",
+      "splenic_parenchyma": "تلی کا پیرینکائما",
+      "extra_abdominal_organs": "پیٹ سے باہر کے اعضاء",
+      "inguinal_or_extra_abdominal_nodes": "انگوئینل لمف نوڈز اور پیٹ کی گہا سے باہر کے لمف نوڈز (جیسے سپراکلیویکیولر یا ایکسیلری)",
+      "transmural_involvement_intestine": "آنت کی ٹرانس میورل شمولیت",
+      "other": "دیگر (وضاحت کریں)"
+    }
+  },
+  "ptnm_classification": {
+    "title": "pTNM درجہ بندی (AJCC 8واں ایڈیشن)",
+    "intro": "pT، pN اور جہاں قابل اطلاق ہو pM زمروں کی رپورٹنگ اس معلومات پر مبنی ہے جو رپورٹ جاری کرتے وقت پیتھالوجسٹ کو دستیاب ہو۔ تمام متعلقہ معلومات کو مدنظر رکھتے ہوئے حتمی پیتھالوجیکل اسٹیج مقرر کرنا معالج کی ذمہ داری ہے۔",
+    "modified_classification": {
+      "label": "ترمیم شدہ درجہ بندی",
+      "y": "y (نیوایڈجوونٹ تھراپی کے بعد)",
+      "r": "r (دوبارہ نمودار ہونا)"
+    },
+    "pt_category": {
+      "label": "pT زمرہ",
+      "pt_not_assigned": "pT مقرر نہیں کیا گیا (دستیاب پیتھالوجیکل معلومات کی بنیاد پر تعین ممکن نہیں)",
+      "pt0": "pT0: بنیادی رسولی کا کوئی ثبوت نہیں",
+      "pt1": "pT1: رسولی ایک یا دونوں اووریز یا ایک یا دونوں فیلوپین ٹیوبز تک محدود",
+      "pt1a": "pT1a: رسولی ایک اووری یا ایک فیلوپین ٹیوب تک محدود؛ سطح پر رسولی نہیں؛ ایسائٹس یا پیریٹونیل واشنگز میں خبیث خلیات نہیں",
+      "pt1b": "pT1b: رسولی دونوں اووریز یا فیلوپین ٹیوبز تک محدود؛ سطح پر رسولی نہیں؛ ایسائٹس یا پیریٹونیل واشنگز میں خبیث خلیات نہیں",
+      "pt1c": "pT1c: رسولی ایک یا دونوں اووریز یا فیلوپین ٹیوبز تک محدود، درج ذیل میں سے کسی کے ساتھ",
+      "pt1c1": "pT1c1: جراحی کے دوران پھیلاؤ",
+      "pt1c2": "pT1c2: سرجری سے پہلے کیپسول کا پھٹنا یا اووری/ٹیوب کی سطح پر رسولی",
+      "pt1c3": "pT1c3: ایسائٹس یا پیریٹونیل واشنگز میں خبیث خلیات",
+      "pt1_subcategory_unknown": "pT1 (ذیلی زمرہ متعین نہیں کیا جا سکتا)",
+      "pt2": "pT2: رسولی ایک یا دونوں اووریز یا فیلوپین ٹیوبز کو شامل کرتی ہے، پیلوک برم کے نیچے پیلوک توسیع کے ساتھ، یا بنیادی پیریٹونیل کینسر",
+      "pt2a": "pT2a: رحم اور / یا فیلوپین ٹیوبز اور / یا اووریز پر توسیع اور / یا امپلانٹس",
+      "pt2b": "pT2b: دیگر پیلوک ٹشوز پر توسیع اور / یا امپلانٹس",
+      "pt2_subcategory_unknown": "pT2 (ذیلی زمرہ متعین نہیں کیا جا سکتا)",
+      "pt3": "pT3: رسولی ایک یا دونوں اووریز یا فیلوپین ٹیوبز، یا بنیادی پیریٹونیل کینسر، کے ساتھ پیلوک سے باہر مائیکروسکوپی طور پر تصدیق شدہ پیریٹونیل میٹاسٹاسس اور / یا ریٹروپیریٹونیل لمف نوڈز میں میٹاسٹاسس",
+      "pt3a": "pT3a: مائیکروسکوپک ایکسٹرا پیلوک پیریٹونیل شمولیت، ریٹروپیریٹونیل مثبت لمف نوڈز کے ساتھ یا بغیر",
+      "pt3b": "pT3b: پیلوک سے باہر میکروسکوپک پیریٹونیل میٹاسٹاسس، سب سے بڑے بُعد میں 2 cm یا کم، ریٹروپیریٹونیل لمف نوڈ میٹاسٹاسس کے ساتھ یا بغیر",
+      "pt3c": "pT3c: پیلوک سے باہر میکروسکوپک پیریٹونیل میٹاسٹاسس، سب سے بڑے بُعد میں 2 cm سے زیادہ، ریٹروپیریٹونیل لمف نوڈ میٹاسٹاسس کے ساتھ یا بغیر",
+      "pt3_subcategory_unknown": "pT3 (ذیلی زمرہ متعین نہیں کیا جا سکتا)"
+    },
+    "t_suffix": {
+      "label": "T لاحقہ",
+      "multiple_primary": "(m) ایک عضو میں متعدد ہم وقت بنیادی رسولیاں"
+    },
+    "pn_category": {
+      "label": "pN زمرہ",
+      "pn_not_assigned_no_nodes": "pN مقرر نہیں کیا گیا (کوئی لمف نوڈ جمع نہیں کیے گئے یا نہیں ملے)",
+      "pn_not_assigned_unknown": "pN مقرر نہیں کیا گیا (دستیاب پیتھالوجیکل معلومات کی بنیاد پر تعین ممکن نہیں)",
+      "pn0": "pN0: کوئی علاقائی لمف نوڈ میٹاسٹاسس نہیں",
+      "pn0_i_plus": "pN0(i+): علاقائی لمف نوڈز میں isolated tumor cells، 0.2 mm سے زیادہ نہیں",
+      "pn1": "pN1: صرف مثبت ریٹروپیریٹونیل لمف نوڈز (پیلوک اور / یا پیرا-آورٹک)، ہسٹولوجی سے تصدیق شدہ",
+      "pn1a": "pN1a: سب سے بڑے بُعد میں 10 mm تک، بشمول 10 mm، میٹاسٹاسس",
+      "pn1b": "pN1b: سب سے بڑے بُعد میں 10 mm سے زیادہ میٹاسٹاسس",
+      "pn1_subcategory_unknown": "pN1 (ذیلی زمرہ متعین نہیں کیا جا سکتا)"
+    },
+    "n_suffix": {
+      "label": "N لاحقہ",
+      "sn": "(sn) میٹاسٹاسس صرف سینٹینل لمف نوڈ بایوپسی سے شناخت ہوا",
+      "f": "(f) میٹاسٹاسس صرف FNA یا کور بایوپسی سے شناخت ہوا"
+    },
+    "pm_category": {
+      "label": "pM زمرہ",
+      "not_applicable": "لاگو نہیں - جمع شدہ نمونوں سے pM متعین نہیں کیا جا سکتا",
+      "pm1": "pM1: دور دراز میٹاسٹاسس، جس میں مثبت سائٹولوجی والا پلورل ایفیوژن؛ جگر یا تلی کا پیرینکائمل میٹاسٹاسس؛ پیٹ سے باہر کے اعضاء میں میٹاسٹاسس؛ اور آنت کی ٹرانس میورل شمولیت شامل ہیں",
+      "pm1a": "pM1a: مثبت سائٹولوجی کے ساتھ پلورل ایفیوژن",
+      "pm1b": "pM1b: جگر یا تلی کے پیرینکائمل میٹاسٹاسس؛ پیٹ سے باہر کے اعضاء میں میٹاسٹاسس؛ آنت کی ٹرانس میورل شمولیت",
+      "pm1_subcategory_unknown": "pM1 (ذیلی زمرہ متعین نہیں کیا جا سکتا)"
+    }
+  },
+  "figo_stage": {
+    "title": "FIGO مرحلہ",
+    "label": "FIGO مرحلہ (FIGO Cancer Report 2021)",
+    "note": "پیمائش لمف نوڈ کے اندر رسولی کے سائز کو ظاہر کرتی ہے، لمف نوڈ کے سائز کو نہیں۔",
+    "stage_i": "I: رسولی اووریز یا فیلوپین ٹیوبز تک محدود",
+    "stage_ia": "IA: رسولی ایک اووری یا ایک فیلوپین ٹیوب تک محدود؛ سطح پر رسولی نہیں؛ ایسائٹس یا پیریٹونیل واشنگز میں خبیث خلیات نہیں",
+    "stage_ib": "IB: رسولی دونوں اووریز یا فیلوپین ٹیوبز تک محدود؛ سطح پر رسولی نہیں؛ ایسائٹس یا پیریٹونیل واشنگز میں خبیث خلیات نہیں",
+    "stage_ic": "IC: رسولی ایک یا دونوں اووریز یا فیلوپین ٹیوبز تک محدود، درج ذیل میں سے کسی کے ساتھ",
+    "stage_ic1": "IC1: جراحی کے دوران پھیلاؤ",
+    "stage_ic2": "IC2: سرجری سے پہلے کیپسول کا پھٹنا یا اووری/ٹیوب کی سطح پر رسولی",
+    "stage_ic3": "IC3: ایسائٹس یا پیریٹونیل واشنگز میں خبیث خلیات",
+    "stage_ic_nos": "IC: رسولی ایک یا دونوں اووریز یا فیلوپین ٹیوبز تک محدود، مزید وضاحت کے بغیر",
+    "stage_ii": "II: رسولی ایک یا دونوں اووریز یا فیلوپین ٹیوبز کو شامل کرتی ہے، پیلوک توسیع یا پیریٹونیل کینسر کے ساتھ",
+    "stage_iia": "IIA: رحم اور / یا فیلوپین ٹیوبز اور / یا اووریز پر توسیع اور / یا امپلانٹس",
+    "stage_iib": "IIB: دیگر پیلوک انٹراپیریٹونیل ٹشوز تک توسیع",
+    "stage_iii": "III: رسولی ایک یا دونوں اووریز یا فیلوپین ٹیوبز، یا پیریٹونیل کینسر، جس کے ساتھ پیلوک سے باہر سائٹولوجی یا ہسٹولوجی سے تصدیق شدہ پھیلاؤ اور / یا ریٹروپیریٹونیل لمف نوڈز میں میٹاسٹاسس",
+    "stage_iiia1": "IIIA1: صرف ریٹروپیریٹونیل لمف نوڈز مثبت",
+    "stage_iiia1_i": "IIIA1(i): سب سے بڑے بُعد میں 10 mm تک میٹاسٹاسس",
+    "stage_iiia1_ii": "IIIA1(ii): سب سے بڑے بُعد میں 10 mm سے زیادہ میٹاسٹاسس",
+    "stage_iiia2": "IIIA2: مائیکروسکوپک ایکسٹرا پیلوک پیریٹونیل شمولیت، ریٹروپیریٹونیل مثبت لمف نوڈز کے ساتھ یا بغیر",
+    "stage_iiib": "IIIB: پیلوک سے باہر میکروسکوپک پیریٹونیل میٹاسٹاسس، سب سے بڑے بُعد میں 2 cm تک، ریٹروپیریٹونیل لمف نوڈ میٹاسٹاسس کے ساتھ یا بغیر",
+    "stage_iiic": "IIIC: پیلوک سے باہر میکروسکوپک پیریٹونیل میٹاسٹاسس، سب سے بڑے بُعد میں 2 cm سے زیادہ، ریٹروپیریٹونیل لمف نوڈ میٹاسٹاسس کے ساتھ یا بغیر",
+    "stage_iv": "IV: دور دراز میٹاسٹاسس، پیریٹونیل میٹاسٹاسس کے علاوہ",
+    "stage_iva": "IVA: مثبت سائٹولوجی کے ساتھ پلورل ایفیوژن",
+    "stage_ivb": "IVB: پیرینکائمل میٹاسٹاسس اور پیٹ سے باہر کے اعضاء میں میٹاسٹاسس"
+  },
+  "additional_findings": {
+    "title": "اضافی نتائج",
+    "label": "اضافی نتائج",
+    "none_identified": "کچھ شناخت نہیں ہوا",
+    "stic": "سیروس ٹیوبل انٹراایپی تھیلیئل کارسینوما (STIC)",
+    "left": "بائیں",
+    "right": "دائیں",
+    "bilateral": "دونوں طرف",
+    "endometriosis": "اینڈومیٹریوسس",
+    "within_tumor": "رسولی کے اندر",
+    "outside_tumor": "رسولی کے باہر",
+    "endosalpingiosis": "اینڈوسیلپنجیوسس",
+    "other": "دیگر (وضاحت کریں)"
+  }
 }

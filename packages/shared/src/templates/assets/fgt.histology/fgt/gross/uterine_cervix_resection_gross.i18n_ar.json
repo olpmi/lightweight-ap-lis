@@ -1,14 +1,125 @@
 {
-  "template_id": "uterine_cervix_resection_gross_v1",
-  "lang": "ar",
-  "ui": { "direction": "rtl" },
-  "title": "استئصال عنق الرحم (قالب الفحص العياني)",
-  "specimen": { "label": "العينة" },
-  "tumor": { "label": "الورم" },
-  "margins": { "label": "الهوامش" },
-  "parametrial_involvement": { "label": "امتداد البراميتريوم" },
-  "vaginal_cuff_involvement": { "label": "امتداد الكفة المهبلية" },
-  "lymph_nodes": { "label": "العقد اللمفاوية" },
-  "block_allocation_key": { "label": "مفتاح توزيع البلوكات" },
-  "grossing": { "label": "الفحص العياني" }
+  "template": {
+    "key": "gross_uterine_cervix_resection",
+    "title": "نموذج الفحص العياني: استئصال عنق الرحم"
+  },
+  "common": {
+    "right": "أيمن",
+    "left": "أيسر",
+    "bilateral": "ثنائي الجانب",
+    "present": "موجود",
+    "absent": "غير موجود",
+    "other_specify": "أخرى (يرجى التحديد)",
+    "not_specified": "غير محدد",
+    "cannot_be_determined_explain": "لا يمكن تحديده (يرجى التوضيح)",
+    "total_number": "العدد الإجمالي",
+    "size_range": "مدى الحجم",
+    "date": "التاريخ"
+  },
+  "sections": {
+    "specimen": "العينة",
+    "tumor": "الورم",
+    "block_allocation_key": "مفتاح توزيع الكتل"
+  },
+  "specimen": {
+    "procedure": "الإجراء (اختر كل ما ينطبق)",
+    "procedure_options": {
+      "trachelectomy": "استئصال عنق الرحم",
+      "total_hysterectomy_bso": "استئصال الرحم الكلي مع استئصال البوقين والمبيضين ثنائي الجانب",
+      "radical_hysterectomy": "استئصال الرحم الجذري",
+      "simple_hysterectomy": "استئصال الرحم البسيط",
+      "pelvic_exenteration": "استئصال أحشاء الحوض (حدد الأعضاء المشمولة)",
+      "bilateral_salpingo_oophorectomy": "استئصال البوقين والمبيضين ثنائي الجانب",
+      "right_salpingo_oophorectomy": "استئصال البوق والمبيض الأيمن",
+      "left_salpingo_oophorectomy": "استئصال البوق والمبيض الأيسر",
+      "salpingo_oophorectomy_unspecified": "استئصال البوق والمبيض، الجانب غير محدد",
+      "right_oophorectomy": "استئصال المبيض الأيمن",
+      "left_oophorectomy": "استئصال المبيض الأيسر",
+      "oophorectomy_unspecified": "استئصال المبيض، الجانب غير محدد",
+      "bilateral_salpingectomy": "استئصال البوقين ثنائي الجانب",
+      "right_salpingectomy": "استئصال البوق الأيمن",
+      "left_salpingectomy": "استئصال البوق الأيسر",
+      "salpingectomy_unspecified": "استئصال البوق، الجانب غير محدد",
+      "vaginal_cuff_resection": "استئصال قبة المهبل",
+      "omentectomy": "استئصال الثرب",
+      "other": "أخرى (يرجى التحديد)"
+    },
+    "hysterectomy_type": "نوع استئصال الرحم",
+    "hysterectomy_type_options": {
+      "abdominal": "بطني",
+      "vaginal": "مهبلي",
+      "vaginal_lap_assisted": "مهبلي بمساعدة تنظير البطن",
+      "laparoscopic": "بالمنظار",
+      "robotic_assisted": "بالمنظار بمساعدة الروبوت",
+      "other": "أخرى (يرجى التحديد)",
+      "not_specified": "غير محدد"
+    }
+  },
+  "tumor": {
+    "tumor_site": "موقع الورم (اختر كل ما ينطبق)",
+    "tumor_site_options": {
+      "left_superior_anterior_12_3": "الربع الأيسر العلوي (الأمامي) (من الساعة 12 إلى 3)",
+      "left_inferior_posterior_3_6": "الربع الأيسر السفلي (الخلفي) (من الساعة 3 إلى 6)",
+      "right_inferior_posterior_6_9": "الربع الأيمن السفلي (الخلفي) (من الساعة 6 إلى 9)",
+      "right_superior_anterior_9_12": "الربع الأيمن العلوي (الأمامي) (من الساعة 9 إلى 12)",
+      "other": "أخرى (يرجى التحديد)",
+      "not_specified": "غير محدد"
+    },
+    "tumor_size": {
+      "title": "حجم الورم",
+      "greatest_dimension_cm": "أكبر بُعد بالسنتيمتر (سم)",
+      "additional_dimension_cm": "أبعاد إضافية بالسنتيمتر (سم)",
+      "cannot_be_determined": "لا يمكن تحديده (يرجى التوضيح)",
+      "note": "وفقًا لدليل تصنيف AJCC، يُسجل حجم الورم بالسنتيمتر. جميع الأبعاد مهمة؛ راجع تعريف سرطان الخلايا الحرشفية سطحي الغزو تحت T1a1 / IA1."
+    },
+    "depth_of_invasion": {
+      "title": "عمق الغزو",
+      "stromal_depth_cm": "عمق الغزو اللحمي (سم)",
+      "horizontal_extent_cm": "الامتداد الأفقي (سم)"
+    },
+    "distance_to_margins": {
+      "title": "المسافة إلى الهوامش",
+      "ectocervical_margin_cm": "هامش خارج عنق الرحم",
+      "endocervical_margin_cm": "هامش داخل عنق الرحم",
+      "parametrial_margin_cm": "هامش النسيج المجاور للرحم"
+    },
+    "parametrial_involvement": {
+      "title": "إصابة النسيج المجاور للرحم",
+      "absent": "غير موجود",
+      "present_select": "موجود (اختر كل ما ينطبق)",
+      "right": "أيمن",
+      "left": "أيسر",
+      "bilateral": "ثنائي الجانب"
+    },
+    "vaginal_cuff_involvement": {
+      "title": "إصابة قبة المهبل",
+      "absent": "غير موجود",
+      "present": "موجود"
+    },
+    "lymph_nodes": {
+      "title": "العقد اللمفاوية",
+      "present_absent": "موجودة / غير موجودة",
+      "total_number_of_nodes": "العدد الإجمالي للعقد",
+      "size_range": "مدى الحجم"
+    }
+  },
+  "blocks": {
+    "tumor": "الورم",
+    "endocervical_margin": "هامش داخل عنق الرحم",
+    "ectocervical_margin": "هامش خارج عنق الرحم",
+    "right_parametrium": "النسيج المجاور للرحم الأيمن",
+    "left_parametrium": "النسيج المجاور للرحم الأيسر",
+    "vaginal_cuff_margin": "هامش قبة المهبل",
+    "endometrium": "بطانة الرحم",
+    "myometrium": "عضل الرحم",
+    "right_ovary": "المبيض الأيمن",
+    "left_ovary": "المبيض الأيسر",
+    "right_fallopian_tube": "البوق الأيمن",
+    "left_fallopian_tube": "البوق الأيسر",
+    "lymph_nodes": "العقد اللمفاوية"
+  },
+  "signoff": {
+    "grossed_by": "تم الفحص العياني بواسطة",
+    "date": "التاريخ"
+  }
 }

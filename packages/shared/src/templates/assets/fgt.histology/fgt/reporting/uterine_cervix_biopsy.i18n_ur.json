@@ -1,7 +1,69 @@
 {
-  "template_id": "uterine_cervix_biopsy_v1",
-  "lang": "ur",
-  "title": "یوٹرائن سروکس، بایوپسی",
-  "tumor": { "label": "ٹیومر" },
-  "additional_findings": { "label": "اضافی مشاہدات" }
+  "uterine_cervix_biopsy": {
+    "metadata": {
+      "title": "رپورٹنگ ٹیمپلیٹ: رحم کا عنق، بایوپسی",
+      "protocol_posting_date": "پروٹوکول کی اشاعت کی تاریخ: مارچ 2023"
+    },
+    "histologic_type": {
+      "label": "ہسٹولوجیکل قسم",
+      "options": {
+        "squamous_cell_carcinoma_hpv_associated": "اسکوامس سیل کارسینوما، HPV سے وابستہ",
+        "squamous_cell_carcinoma_hpv_independent": "اسکوامس سیل کارسینوما، HPV سے غیر وابستہ",
+        "squamous_cell_carcinoma_nos": "اسکوامس سیل کارسینوما، NOS (جب p16 یا HPV ٹیسٹنگ دستیاب نہ ہو تو قابل قبول)",
+        "adenocarcinoma_nos": "ایڈینوکارسینوما، NOS",
+        "adenocarcinoma_hpv_associated": "ایڈینوکارسینوما، HPV سے وابستہ",
+        "adenocarcinoma_hpv_independent_nos": "ایڈینوکارسینوما، HPV سے غیر وابستہ، NOS",
+        "adenocarcinoma_hpv_independent_gastric_type": "ایڈینوکارسینوما، HPV سے غیر وابستہ، گیسٹرک قسم",
+        "adenocarcinoma_hpv_independent_clear_cell_type": "ایڈینوکارسینوما، HPV سے غیر وابستہ، کلیئر سیل قسم",
+        "adenocarcinoma_hpv_independent_mesonephric_type": "ایڈینوکارسینوما، HPV سے غیر وابستہ، میزونفریک قسم",
+        "endometrioid_adenocarcinoma_nos": "اینڈومیٹریوئڈ ایڈینوکارسینوما، NOS",
+        "carcinosarcoma": "کارسینوسارکوما",
+        "adenosquamous_carcinoma": "ایڈینو اسکوامس کارسینوما",
+        "adenoid_basal_carcinoma": "ایڈینائیڈ بیسل کارسینوما",
+        "mucoepidermoid_carcinoma": "میوکواپیڈرموئڈ کارسینوما",
+        "carcinoma_unclassifiable": "کارسینوما، ناقابل درجہ بندی (غیر متفرق کارسینوما)",
+        "neuroendocrine_tumor_nos": "نیورواینڈوکرائن ٹیومر، NOS",
+        "neuroendocrine_tumor_grade_1": "نیورواینڈوکرائن ٹیومر، گریڈ 1",
+        "neuroendocrine_tumor_grade_2": "نیورواینڈوکرائن ٹیومر، گریڈ 2",
+        "small_cell_neuroendocrine_carcinoma_high_grade": "چھوٹے خلیوں کا نیورواینڈوکرائن کارسینوما، ہائی گریڈ",
+        "large_cell_neuroendocrine_carcinoma_high_grade": "بڑے خلیوں کا نیورواینڈوکرائن کارسینوما، ہائی گریڈ",
+        "neuroendocrine_carcinoma_nos": "نیورواینڈوکرائن کارسینوما، NOS",
+        "mixed_neuroendocrine_non_neuroendocrine_carcinoma": "مخلوط نیورواینڈوکرائن اور غیر نیورواینڈوکرائن کارسینوما",
+        "other_histologic_type_not_listed": "دیگر ہسٹولوجیکل قسم جو درج نہیں ہے (وضاحت کریں): _________________",
+        "carcinoma_type_cannot_be_determined": "کارسینوما، قسم کا تعین نہیں کیا جا سکتا: _________________"
+      },
+      "comment": "ہسٹولوجیکل قسم پر تبصرہ: _________________"
+    },
+    "histologic_grade": {
+      "label": "ہسٹولوجیکل گریڈ",
+      "options": {
+        "g1_well_differentiated": "G1، اچھی طرح متفرق",
+        "g2_moderately_differentiated": "G2، درمیانی حد تک متفرق",
+        "g3_poorly_differentiated": "G3، کم متفرق",
+        "gx_cannot_be_assessed": "GX، تشخیص نہیں کی جا سکتی: _________________",
+        "not_applicable": "لاگو نہیں: _________________"
+      }
+    },
+    "lymphatic_or_vascular_invasion": {
+      "label": "لمفیٹک اور / یا عروقی دراندازی",
+      "options": {
+        "not_identified": "شناخت نہیں ہوئی",
+        "present": "موجود",
+        "equivocal": "غیر واضح (وضاحت کریں): _________________",
+        "cannot_be_determined": "تعین نہیں کیا جا سکتا: _________________"
+      }
+    },
+    "additional_findings": {
+      "label": "اضافی نتائج",
+      "field_label": "اضافی نتائج (تمام متعلقہ اختیارات منتخب کریں)",
+      "options": {
+        "none_identified": "کوئی شناخت نہیں ہوئی",
+        "low_grade_squamous_intraepithelial_lesion_cin_1": "کم گریڈ اسکوامس انٹراایپی تھیلیل ضائعہ (CIN 1)",
+        "high_grade_squamous_intraepithelial_lesion_cin_2_or_3": "ہائی گریڈ اسکوامس انٹراایپی تھیلیل ضائعہ (CIN 2 یا 3)",
+        "endocervical_adenocarcinoma_in_situ": "اینڈوسروائیکل ایڈینوکارسینوما اِن سِٹو",
+        "inflammation": "سوزش",
+        "other": "دیگر (وضاحت کریں): _________________"
+      }
+    }
+  }
 }

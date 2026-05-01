@@ -1,7 +1,69 @@
 {
-  "template_id": "uterine_cervix_biopsy_v1",
-  "lang": "fr",
-  "title": "Col utérin, biopsie",
-  "tumor": { "label": "Tumeur" },
-  "additional_findings": { "label": "Constatations supplémentaires" }
+  "uterine_cervix_biopsy": {
+    "metadata": {
+      "title": "MODÈLE DE COMPTE RENDU : COL UTÉRIN, BIOPSIE",
+      "protocol_posting_date": "Date de publication du protocole : mars 2023"
+    },
+    "histologic_type": {
+      "label": "Type histologique",
+      "options": {
+        "squamous_cell_carcinoma_hpv_associated": "Carcinome épidermoïde associé au HPV",
+        "squamous_cell_carcinoma_hpv_independent": "Carcinome épidermoïde indépendant du HPV",
+        "squamous_cell_carcinoma_nos": "Carcinome épidermoïde, SAI (acceptable lorsque le test p16 ou HPV n’est pas disponible)",
+        "adenocarcinoma_nos": "Adénocarcinome, SAI",
+        "adenocarcinoma_hpv_associated": "Adénocarcinome associé au HPV",
+        "adenocarcinoma_hpv_independent_nos": "Adénocarcinome indépendant du HPV, SAI",
+        "adenocarcinoma_hpv_independent_gastric_type": "Adénocarcinome indépendant du HPV, de type gastrique",
+        "adenocarcinoma_hpv_independent_clear_cell_type": "Adénocarcinome indépendant du HPV, de type à cellules claires",
+        "adenocarcinoma_hpv_independent_mesonephric_type": "Adénocarcinome indépendant du HPV, de type mésonéphrique",
+        "endometrioid_adenocarcinoma_nos": "Adénocarcinome endométrioïde, SAI",
+        "carcinosarcoma": "Carcinosarcome",
+        "adenosquamous_carcinoma": "Carcinome adénosquameux",
+        "adenoid_basal_carcinoma": "Carcinome adénoïde basal",
+        "mucoepidermoid_carcinoma": "Carcinome mucoépidermoïde",
+        "carcinoma_unclassifiable": "Carcinome inclassable (carcinome indifférencié)",
+        "neuroendocrine_tumor_nos": "Tumeur neuroendocrine, SAI",
+        "neuroendocrine_tumor_grade_1": "Tumeur neuroendocrine, grade 1",
+        "neuroendocrine_tumor_grade_2": "Tumeur neuroendocrine, grade 2",
+        "small_cell_neuroendocrine_carcinoma_high_grade": "Carcinome neuroendocrine à petites cellules, haut grade",
+        "large_cell_neuroendocrine_carcinoma_high_grade": "Carcinome neuroendocrine à grandes cellules, haut grade",
+        "neuroendocrine_carcinoma_nos": "Carcinome neuroendocrine, SAI",
+        "mixed_neuroendocrine_non_neuroendocrine_carcinoma": "Carcinome mixte neuroendocrine et non neuroendocrine",
+        "other_histologic_type_not_listed": "Autre type histologique non listé (préciser) : _________________",
+        "carcinoma_type_cannot_be_determined": "Carcinome, type ne pouvant être déterminé : _________________"
+      },
+      "comment": "Commentaire sur le type histologique : _________________"
+    },
+    "histologic_grade": {
+      "label": "Grade histologique",
+      "options": {
+        "g1_well_differentiated": "G1, bien différencié",
+        "g2_moderately_differentiated": "G2, modérément différencié",
+        "g3_poorly_differentiated": "G3, peu différencié",
+        "gx_cannot_be_assessed": "GX, ne peut être évalué : _________________",
+        "not_applicable": "Sans objet : _________________"
+      }
+    },
+    "lymphatic_or_vascular_invasion": {
+      "label": "Invasion lymphatique et / ou vasculaire",
+      "options": {
+        "not_identified": "Non identifiée",
+        "present": "Présente",
+        "equivocal": "Équivoque (expliquer) : _________________",
+        "cannot_be_determined": "Ne peut être déterminée : _________________"
+      }
+    },
+    "additional_findings": {
+      "label": "CONSTATATIONS SUPPLÉMENTAIRES",
+      "field_label": "Constatations supplémentaires (sélectionner tout ce qui s’applique)",
+      "options": {
+        "none_identified": "Aucune identifiée",
+        "low_grade_squamous_intraepithelial_lesion_cin_1": "Lésion intraépithéliale épidermoïde de bas grade (CIN 1)",
+        "high_grade_squamous_intraepithelial_lesion_cin_2_or_3": "Lésion intraépithéliale épidermoïde de haut grade (CIN 2 ou 3)",
+        "endocervical_adenocarcinoma_in_situ": "Adénocarcinome endocervical in situ",
+        "inflammation": "Inflammation",
+        "other": "Autre (préciser) : _________________"
+      }
+    }
+  }
 }

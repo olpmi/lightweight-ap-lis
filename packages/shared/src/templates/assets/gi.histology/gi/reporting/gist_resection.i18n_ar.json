@@ -1,14 +1,345 @@
 {
-  "template_id": "gist_resection_v1",
-  "lang": "ar",
-  "ui": { "direction": "rtl" },
-  "title": "ورم سدى معدي معوي (GIST): الاستئصال",
-  "clinical": { "label": "سريري" },
-  "specimen": { "label": "العينة" },
-  "tumor": { "label": "الورم" },
-  "margins": { "label": "الهوامش" },
-  "regional_lymph_nodes": { "label": "العقد اللمفاوية الإقليمية" },
-  "distant_metastasis": { "label": "النقائل البعيدة" },
-  "ptnm": { "label": "تصنيف pTNM" },
-  "additional_findings": { "label": "النتائج الإضافية" }
+  "meta": {
+    "template": "نموذج التقرير: ورم السدى المعدي المعوي (GIST): استئصال",
+    "standards": "المعيار/المعايير: AJCC-UICC الإصدار الثامن"
+  },
+  "sections": {
+    "clinical": {
+      "title": "سريري",
+      "fields": {
+        "preresection_treatment": {
+          "label": "العلاج قبل الاستئصال (اختر كل ما ينطبق)",
+          "options": {
+            "no_known_preresection_therapy": "لا يوجد علاج معروف قبل الاستئصال",
+            "previous_biopsy_or_surgery_specify": "خزعة أو جراحة سابقة (حدد)",
+            "systemic_therapy_performed_specify_type": "تم إجراء علاج جهازي (حدد النوع)",
+            "therapy_performed_type_not_specified": "تم إجراء علاج، النوع غير محدد",
+            "not_specified": "غير محدد"
+          }
+        }
+      }
+    },
+    "specimen": {
+      "title": "العينة",
+      "fields": {
+        "procedure": {
+          "label": "الإجراء",
+          "options": {
+            "local_excision": "استئصال موضعي",
+            "resection_specify_type": "استئصال (حدد النوع، مثل استئصال معدة جزئي)",
+            "metastasectomy": "استئصال نقائل",
+            "other_specify": "أخرى (حدد)",
+            "not_specified": "غير محدد"
+          }
+        }
+      }
+    },
+    "tumor": {
+      "title": "الورم",
+      "fields": {
+        "tumor_focality": {
+          "label": "بؤرية الورم",
+          "options": {
+            "unifocal": "أحادي البؤرة",
+            "multifocal": "متعدد البؤر"
+          }
+        },
+        "number_of_tumors": {
+          "label": "عدد الأورام",
+          "options": {
+            "specify_number": "حدد العدد",
+            "other_specify": "أخرى (حدد)",
+            "cannot_be_determined": "لا يمكن تحديده"
+          }
+        },
+        "sizes_of_tumors": {
+          "label": "أحجام الأورام",
+          "options": {
+            "cannot_be_determined": "لا يمكن تحديده"
+          }
+        },
+        "multiple_primary_sites": {
+          "label": "مواقع أولية متعددة (مثل المعدة والأمعاء الدقيقة)",
+          "note": "يرجى إكمال قائمة تحقق منفصلة لكل موقع أولي",
+          "options": {
+            "not_applicable_no_additional_primary_sites": "لا ينطبق (لا توجد مواقع أولية إضافية)",
+            "present": "موجود"
+          }
+        },
+        "tumor_site": {
+          "label": "موقع الورم",
+          "options": {
+            "esophagus_specify_location": "المريء (حدد الموقع)",
+            "gastroesophageal_junction": "الوصلة المعدية المريئية",
+            "stomach_specify_location": "المعدة (حدد الموقع)",
+            "small_intestine": "الأمعاء الدقيقة",
+            "duodenum": "الاثنا عشر",
+            "jejunum": "الصائم",
+            "ileum_excluding_ileocecal_valve": "اللفائفي (باستثناء الصمام اللفائفي الأعوري)",
+            "meckel_diverticulum_site_of_neoplasm": "رتج ميكل (موقع الورم)",
+            "small_intestine_nos": "الأمعاء الدقيقة، غير محدد خلاف ذلك",
+            "appendix": "الزائدة الدودية",
+            "ileocecal_valve": "الصمام اللفائفي الأعوري",
+            "large_intestine": "الأمعاء الغليظة",
+            "cecum": "الأعور",
+            "ascending_colon": "القولون الصاعد",
+            "hepatic_flexure_colon": "الثنية الكبدية للقولون",
+            "transverse_colon": "القولون المستعرض",
+            "splenic_flexure_colon": "الثنية الطحالية للقولون",
+            "descending_colon": "القولون النازل",
+            "sigmoid_colon": "القولون السيني",
+            "rectosigmoid_junction": "الوصلة المستقيمية السينية",
+            "rectum": "المستقيم",
+            "large_intestine_nos": "الأمعاء الغليظة، غير محدد خلاف ذلك",
+            "retroperitoneum": "خلف الصفاق",
+            "peritoneum_abdomen_specify_site": "الصفاق / البطن (حدد الموقع)",
+            "other_specify": "أخرى (حدد)",
+            "cannot_be_determined": "لا يمكن تحديده",
+            "not_specified": "غير محدد"
+          }
+        },
+        "histologic_type": {
+          "label": "النوع النسيجي",
+          "options": {
+            "gist_spindle_cell_type": "ورم السدى المعدي المعوي، نوع الخلايا المغزلية",
+            "gist_epithelioid_type": "ورم السدى المعدي المعوي، نوع الخلايا الظهارية",
+            "gist_mixed": "ورم السدى المعدي المعوي، مختلط",
+            "gist_other_specify": "ورم السدى المعدي المعوي، آخر (حدد)"
+          }
+        },
+        "histologic_type_comment": {
+          "label": "تعليق على النوع النسيجي"
+        },
+        "tumor_size": {
+          "label": "حجم الورم (استنادًا إلى التقدير السريري/الشعاعي)",
+          "options": {
+            "greatest_dimension_cm": "أكبر بُعد بالسنتيمتر (cm)",
+            "additional_dimension_cm": "بُعد إضافي بالسنتيمتر (cm)",
+            "cannot_be_determined_explain": "لا يمكن تحديده (اشرح)"
+          }
+        },
+        "mitotic_rate": {
+          "label": "معدل الانقسامات",
+          "options": {
+            "specify_mitotic_rate_per_5mm2": "حدد معدل الانقسامات لكل 5 مم²",
+            "other_specify": "أخرى (حدد)",
+            "cannot_be_determined_explain": "لا يمكن تحديده (اشرح)"
+          }
+        },
+        "histologic_grade": {
+          "label": "الدرجة النسيجية",
+          "options": {
+            "g1_low_grade": "G1، درجة منخفضة (معدل الانقسامات أقل من أو يساوي 5 لكل 5 مم²)",
+            "g2_high_grade": "G2، درجة عالية (معدل الانقسامات أكبر من 5 لكل 5 مم²)",
+            "other_specify": "أخرى (حدد)",
+            "gx_cannot_be_assessed": "GX، لا يمكن تقييمه"
+          }
+        },
+        "necrosis": {
+          "label": "النخر",
+          "options": {
+            "not_identified": "غير محدد",
+            "present": "موجود"
+          }
+        },
+        "extent_of_necrosis": {
+          "label": "مدى النخر",
+          "options": {
+            "specify_percentage": "حدد النسبة المئوية",
+            "other_specify": "أخرى (حدد)",
+            "cannot_be_determined": "لا يمكن تحديده",
+            "cannot_be_determined_duplicate": "لا يمكن تحديده"
+          }
+        },
+        "treatment_effect": {
+          "label": "تأثير العلاج",
+          "options": {
+            "no_known_presurgical_therapy": "لا يوجد علاج معروف قبل الجراحة",
+            "not_identified": "غير محدد",
+            "present": "موجود"
+          }
+        },
+        "percentage_viable_tumor": {
+          "label": "نسبة الورم القابل للحياة",
+          "options": {
+            "specify_percentage": "حدد النسبة المئوية",
+            "other_specify": "أخرى (حدد)",
+            "cannot_be_determined": "لا يمكن تحديده",
+            "cannot_be_determined_duplicate": "لا يمكن تحديده"
+          }
+        },
+        "risk_assessment": {
+          "label": "تقييم الخطورة",
+          "options": {
+            "none": "لا يوجد",
+            "very_low_risk": "خطورة منخفضة جدًا",
+            "low_risk": "خطورة منخفضة",
+            "moderate_risk": "خطورة متوسطة",
+            "high_risk": "خطورة عالية",
+            "overtly_malignant_metastatic": "خبيث بوضوح / نقائلي",
+            "cannot_be_determined": "لا يمكن تحديده"
+          }
+        },
+        "tumor_comment": {
+          "label": "تعليق على الورم"
+        }
+      }
+    },
+    "margins": {
+      "title": "الهوامش",
+      "fields": {
+        "margin_status": {
+          "label": "حالة الهوامش",
+          "options": {
+            "all_margins_negative_for_gist": "جميع الهوامش سالبة لـ GIST"
+          }
+        },
+        "closest_margins_to_gist": {
+          "label": "أقرب هامش/هوامش إلى GIST (اختر كل ما ينطبق)",
+          "options": {
+            "proximal": "قريب",
+            "distal": "بعيد",
+            "omental_radial": "ثربي (شعاعي)",
+            "mucosal": "مخاطي",
+            "deep": "عميق",
+            "other_specify": "أخرى (حدد)",
+            "cannot_be_determined": "لا يمكن تحديده"
+          }
+        },
+        "distance_to_closest_margin": {
+          "label": "المسافة من GIST إلى أقرب هامش",
+          "options": {
+            "exact_distance_cm": "المسافة الدقيقة بالسنتيمتر",
+            "greater_than_1_cm": "أكبر من 1 سم",
+            "exact_distance_mm": "المسافة الدقيقة بالمليمتر",
+            "greater_than_10_mm": "أكبر من 10 مم",
+            "other_specify": "أخرى (حدد)",
+            "cannot_be_determined": "لا يمكن تحديده"
+          }
+        },
+        "gist_present_at_margin": {
+          "label": "GIST موجود عند الهامش"
+        },
+        "margins_involved_by_gist": {
+          "label": "الهامش/الهوامش المصابة بـ GIST (اختر كل ما ينطبق)",
+          "options": {
+            "proximal": "قريب",
+            "distal": "بعيد",
+            "omental_radial": "ثربي (شعاعي)",
+            "mucosal": "مخاطي",
+            "deep": "عميق",
+            "other_specify": "أخرى (حدد)",
+            "cannot_be_determined": "لا يمكن تحديده",
+            "other_specify_additional": "أخرى (حدد)",
+            "cannot_be_determined_explain": "لا يمكن تحديده (اشرح)",
+            "not_applicable": "لا ينطبق"
+          }
+        }
+      }
+    },
+    "regional_lymph_nodes": {
+      "title": "العقد اللمفاوية الإقليمية",
+      "fields": {
+        "regional_lymph_node_status": {
+          "label": "حالة العقد اللمفاوية الإقليمية",
+          "options": {
+            "not_applicable_no_regional_nodes_submitted_or_found": "لا ينطبق (لم تُقدّم أو تُعثر على عقد لمفاوية إقليمية)",
+            "regional_lymph_nodes_present": "العقد اللمفاوية الإقليمية موجودة",
+            "all_regional_nodes_negative_for_tumor": "جميع العقد اللمفاوية الإقليمية سالبة للورم",
+            "tumor_present_in_regional_nodes": "الورم موجود في عقدة/عقد لمفاوية إقليمية"
+          }
+        },
+        "number_nodes_with_tumor": {
+          "label": "عدد العقد اللمفاوية التي تحتوي على ورم",
+          "options": {
+            "exact_number_specify": "العدد الدقيق (حدد)",
+            "at_least_specify": "على الأقل (حدد)",
+            "other_specify": "أخرى (حدد)",
+            "cannot_be_determined_explain": "لا يمكن تحديده (اشرح)",
+            "other_specify_additional": "أخرى (حدد)"
+          }
+        },
+        "number_nodes_examined": {
+          "label": "عدد العقد اللمفاوية المفحوصة",
+          "options": {
+            "exact_number_specify": "العدد الدقيق (حدد)",
+            "at_least_specify": "على الأقل (حدد)",
+            "other_specify": "أخرى (حدد)",
+            "cannot_be_determined_explain": "لا يمكن تحديده (اشرح)"
+          }
+        }
+      }
+    },
+    "distant_metastasis": {
+      "title": "النقائل البعيدة",
+      "fields": {
+        "distant_sites_involved": {
+          "label": "الموقع/المواقع البعيدة المصابة، إن وجدت (اختر كل ما ينطبق)",
+          "options": {
+            "not_applicable": "لا ينطبق",
+            "liver": "الكبد",
+            "other_specify": "أخرى (حدد)",
+            "cannot_be_determined": "لا يمكن تحديده"
+          }
+        }
+      }
+    },
+    "ptnm": {
+      "title": "تصنيف pTNM (AJCC الإصدار الثامن)",
+      "description": "يعتمد الإبلاغ عن فئات pT وpN و(عند الاقتضاء) pM على المعلومات المتاحة لاختصاصي علم الأمراض وقت إصدار التقرير. وفقًا لـ AJCC (الفصل 1، الإصدار الثامن)، تقع مسؤولية تحديد المرحلة المرضية النهائية على الطبيب المعالج بناءً على جميع المعلومات ذات الصلة، بما في ذلك هذا التقرير المرضي على سبيل المثال لا الحصر.",
+      "fields": {
+        "modified_classification": {
+          "label": "التصنيف المعدّل (مطلوب فقط عند الاقتضاء) (اختر كل ما ينطبق)",
+          "options": {
+            "not_applicable": "لا ينطبق",
+            "y_post_neoadjuvant_therapy": "y (بعد العلاج المساعد الجديد)",
+            "r_recurrence": "r (نكس)"
+          }
+        },
+        "pt_category": {
+          "label": "فئة pT",
+          "options": {
+            "pt_not_assigned_cannot_be_determined": "لم يتم تعيين pT (لا يمكن تحديده بناءً على المعلومات المرضية المتاحة)",
+            "pt0_no_evidence_primary_tumor": "pT0: لا يوجد دليل على ورم أولي",
+            "pt1_tumor_2cm_or_less": "pT1: الورم 2 سم أو أقل",
+            "pt2_tumor_gt2cm_le5cm": "pT2: الورم أكبر من 2 سم ولكن لا يزيد عن 5 سم",
+            "pt3_tumor_gt5cm_le10cm": "pT3: الورم أكبر من 5 سم ولكن لا يزيد عن 10 سم",
+            "pt4_tumor_gt10cm": "pT4: الورم أكبر من 10 سم في أكبر بُعد"
+          }
+        },
+        "t_suffix": {
+          "label": "لاحقة T (مطلوبة فقط عند الاقتضاء)",
+          "options": {
+            "not_applicable": "لا ينطبق",
+            "m_multiple_primary_synchronous_tumors": "(m) أورام أولية متزامنة متعددة في عضو واحد"
+          }
+        },
+        "pn_category": {
+          "label": "فئة pN",
+          "note": "عند عدم وجود عقد لمفاوية (كما يحدث غالبًا في استئصال GIST)، لا تُعيّن الفئة المرضية “N” (لا يُستخدم pNX في GIST) ولا ينبغي الإبلاغ عنها.",
+          "options": {
+            "pn_not_assigned_no_nodes": "لم يتم تعيين pN (لم تُقدّم أو تُعثر على عقد)",
+            "pn_not_assigned_cannot_be_determined": "لم يتم تعيين pN (لا يمكن تحديده بناءً على المعلومات المرضية المتاحة)",
+            "pn0_no_regional_lymph_node_metastasis": "pN0: لا توجد نقائل في العقد اللمفاوية الإقليمية",
+            "pn1_regional_lymph_node_metastasis": "pN1: نقائل في العقد اللمفاوية الإقليمية"
+          }
+        },
+        "pm_category": {
+          "label": "فئة pM (مطلوبة فقط إذا تأكدت مرضيًا)",
+          "options": {
+            "not_applicable_pm_cannot_be_determined": "لا ينطبق - لا يمكن تحديد pM من العينة/العينات المقدمة",
+            "pm1_distant_metastasis": "pM1: نقائل بعيدة"
+          }
+        }
+      }
+    },
+    "additional_findings": {
+      "title": "نتائج إضافية",
+      "fields": {
+        "additional_findings": {
+          "label": "نتائج إضافية (حدد)"
+        }
+      }
+    }
+  }
 }

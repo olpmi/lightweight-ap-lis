@@ -1,13 +1,125 @@
 {
-  "template_id": "uterine_cervix_resection_gross_v1",
-  "lang": "fr",
-  "title": "Résection du col utérin (examen macroscopique)",
-  "specimen": { "label": "Pièce" },
-  "tumor": { "label": "Tumeur" },
-  "margins": { "label": "Marges" },
-  "parametrial_involvement": { "label": "Atteinte paramétriale" },
-  "vaginal_cuff_involvement": { "label": "Atteinte du manchon vaginal" },
-  "lymph_nodes": { "label": "Ganglions lymphatiques" },
-  "block_allocation_key": { "label": "Clé d’attribution des blocs" },
-  "grossing": { "label": "Macroscopie" }
+  "template": {
+    "key": "gross_uterine_cervix_resection",
+    "title": "MODÈLE MACROSCOPIQUE : RÉSECTION DU COL UTÉRIN"
+  },
+  "common": {
+    "right": "Droit",
+    "left": "Gauche",
+    "bilateral": "Bilatéral",
+    "present": "Présent",
+    "absent": "Absent",
+    "other_specify": "Autre (préciser)",
+    "not_specified": "Non précisé",
+    "cannot_be_determined_explain": "Ne peut pas être déterminé (expliquer)",
+    "total_number": "Nombre total",
+    "size_range": "Plage de tailles",
+    "date": "Date"
+  },
+  "sections": {
+    "specimen": "SPÉCIMEN",
+    "tumor": "TUMEUR",
+    "block_allocation_key": "Clé d’attribution des blocs"
+  },
+  "specimen": {
+    "procedure": "Procédure (sélectionner toutes les réponses applicables)",
+    "procedure_options": {
+      "trachelectomy": "Trachélectomie",
+      "total_hysterectomy_bso": "Hystérectomie totale avec salpingo-ovariectomie bilatérale",
+      "radical_hysterectomy": "Hystérectomie radicale",
+      "simple_hysterectomy": "Hystérectomie simple",
+      "pelvic_exenteration": "Exentération pelvienne (préciser les organes inclus)",
+      "bilateral_salpingo_oophorectomy": "Salpingo-ovariectomie bilatérale",
+      "right_salpingo_oophorectomy": "Salpingo-ovariectomie droite",
+      "left_salpingo_oophorectomy": "Salpingo-ovariectomie gauche",
+      "salpingo_oophorectomy_unspecified": "Salpingo-ovariectomie, côté non précisé",
+      "right_oophorectomy": "Ovariectomie droite",
+      "left_oophorectomy": "Ovariectomie gauche",
+      "oophorectomy_unspecified": "Ovariectomie, côté non précisé",
+      "bilateral_salpingectomy": "Salpingectomie bilatérale",
+      "right_salpingectomy": "Salpingectomie droite",
+      "left_salpingectomy": "Salpingectomie gauche",
+      "salpingectomy_unspecified": "Salpingectomie, côté non précisé",
+      "vaginal_cuff_resection": "Résection du manchon vaginal",
+      "omentectomy": "Omentectomie",
+      "other": "Autre (préciser)"
+    },
+    "hysterectomy_type": "Type d’hystérectomie",
+    "hysterectomy_type_options": {
+      "abdominal": "Abdominale",
+      "vaginal": "Vaginale",
+      "vaginal_lap_assisted": "Vaginale assistée par laparoscopie",
+      "laparoscopic": "Laparoscopique",
+      "robotic_assisted": "Laparoscopique assistée par robot",
+      "other": "Autre (préciser)",
+      "not_specified": "Non précisé"
+    }
+  },
+  "tumor": {
+    "tumor_site": "Site de la tumeur (sélectionner toutes les réponses applicables)",
+    "tumor_site_options": {
+      "left_superior_anterior_12_3": "Quadrant supérieur gauche (antérieur) (12 à 3 heures)",
+      "left_inferior_posterior_3_6": "Quadrant inférieur gauche (postérieur) (3 à 6 heures)",
+      "right_inferior_posterior_6_9": "Quadrant inférieur droit (postérieur) (6 à 9 heures)",
+      "right_superior_anterior_9_12": "Quadrant supérieur droit (antérieur) (9 à 12 heures)",
+      "other": "Autre (préciser)",
+      "not_specified": "Non précisé"
+    },
+    "tumor_size": {
+      "title": "Taille de la tumeur",
+      "greatest_dimension_cm": "Plus grande dimension en centimètres (cm)",
+      "additional_dimension_cm": "Dimension supplémentaire en centimètres (cm)",
+      "cannot_be_determined": "Ne peut pas être déterminé (expliquer)",
+      "note": "Selon le manuel de stadification AJCC, la taille de la tumeur est rapportée en centimètres. Toutes les dimensions sont importantes ; voir la définition du carcinome épidermoïde superficiellement invasif sous T1a1 / IA1."
+    },
+    "depth_of_invasion": {
+      "title": "Profondeur d’invasion",
+      "stromal_depth_cm": "Profondeur de l’invasion stromale (cm)",
+      "horizontal_extent_cm": "Étendue horizontale (cm)"
+    },
+    "distance_to_margins": {
+      "title": "Distance aux marges",
+      "ectocervical_margin_cm": "Marge ectocervicale",
+      "endocervical_margin_cm": "Marge endocervicale",
+      "parametrial_margin_cm": "Marge paramétriale"
+    },
+    "parametrial_involvement": {
+      "title": "Atteinte paramétriale",
+      "absent": "Absente",
+      "present_select": "Présente (sélectionner toutes les réponses applicables)",
+      "right": "Droite",
+      "left": "Gauche",
+      "bilateral": "Bilatérale"
+    },
+    "vaginal_cuff_involvement": {
+      "title": "Atteinte du manchon vaginal",
+      "absent": "Absente",
+      "present": "Présente"
+    },
+    "lymph_nodes": {
+      "title": "Ganglions lymphatiques",
+      "present_absent": "Présents / Absents",
+      "total_number_of_nodes": "Nombre total de ganglions",
+      "size_range": "Plage de tailles"
+    }
+  },
+  "blocks": {
+    "tumor": "Tumeur",
+    "endocervical_margin": "Marge endocervicale",
+    "ectocervical_margin": "Marge ectocervicale",
+    "right_parametrium": "Paramètre droit",
+    "left_parametrium": "Paramètre gauche",
+    "vaginal_cuff_margin": "Marge du manchon vaginal",
+    "endometrium": "Endomètre",
+    "myometrium": "Myomètre",
+    "right_ovary": "Ovaire droit",
+    "left_ovary": "Ovaire gauche",
+    "right_fallopian_tube": "Trompe de Fallope droite",
+    "left_fallopian_tube": "Trompe de Fallope gauche",
+    "lymph_nodes": "Ganglions lymphatiques"
+  },
+  "signoff": {
+    "grossed_by": "Examiné macroscopiquement par",
+    "date": "Date"
+  }
 }

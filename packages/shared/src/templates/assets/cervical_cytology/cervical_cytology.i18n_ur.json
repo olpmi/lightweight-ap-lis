@@ -1,71 +1,115 @@
 {
-  "templateName": "سروائیکل سائٹولوجی (پیپ اسمئیر) رپورٹنگ ٹیمپلیٹ (بیتھیسڈا سسٹم)",
+  "templateId": "cervical_cytology_pap_smear_bethesda",
+  "version": "1.0",
+  "language": "ur",
+  "title": "سروائیکل سائٹولوجی (پاپ اسمئیر) رپورٹنگ ٹیمپلیٹ (بیتھیسڈا سسٹم)",
+  "common": {
+    "yes": "ہاں",
+    "no": "نہیں",
+    "positive": "مثبت",
+    "negative": "منفی",
+    "pending": "زیر التوا"
+  },
   "sections": {
-    "specimen": "نمونہ",
-    "specimen_adequacy": "نمونے کی کفایت",
-    "interpretation_result": "تشریح / نتیجہ",
-    "ancillary_testing": "اضافی ٹیسٹنگ (اگر کی گئی ہو)",
-    "comment_recommendation": "تبصرہ / سفارش"
-  },
-  "fields": {
-    "cervical_cytology_type": "سروائیکل سائٹولوجی (مناسب انتخاب کریں)",
-    "source": "ماخذ",
-    "hpv_test_available": "HPV ٹیسٹ جمع / دستیاب",
-    "adequacy": "نمونے کی کفایت",
-    "satisfactory_limited_by": "تجزیے کے لیے مناسب، مگر محدود بسبب",
-    "unsatisfactory_reason": "وجہ",
-    "nilm": "انٹراایپی تھیلیل لیژن یا میلگنینسی کے لیے منفی (NILM)",
-    "no_lesion_or_malignancy": "کوئی انٹراایپی تھیلیل لیژن یا میلگنینسی نہیں ملی",
-    "non_neoplastic_findings": "غیر نیوپلاسٹک نتائج (اگر موجود ہوں تو مناسب انتخاب کریں)",
-    "organisms_identified": "شناخت شدہ جراثیم / جاندار",
-    "organisms_other": "دیگر جاندار",
-    "epithelial_cell_abnormalities": "ایپی تھیلیل خلیاتی بے قاعدگیاں",
-    "squamous_cell": "اسکوامس خلیات",
-    "glandular_cell": "گلینڈولر خلیات",
-    "high_risk_hpv": "ہائی رسک HPV",
-    "genotyping": "جینو ٹائپنگ (اگر دستیاب ہو)",
-    "comment": "تبصرہ"
-  },
-  "options": {
-    "Conventional smear": "روایتی اسمئیر",
-    "Liquid-based cytology": "مائع پر مبنی سائٹولوجی",
-    "Cervix": "سروکس",
-    "Ectocervix": "ایکٹو سروکس",
-    "Endocervix": "اینڈو سروکس",
-    "Vaginal cuff": "ویجائنل کف",
-    "Other": "دیگر",
-    "Yes": "ہاں",
-    "No": "نہیں",
-    "Satisfactory for evaluation": "تجزیے کے لیے مناسب",
-    "Satisfactory but limited by": "تجزیے کے لیے مناسب، مگر محدود بسبب",
-    "Unsatisfactory for evaluation": "تجزیے کے لیے غیر مناسب",
-    "Obscuring blood": "خون کی وجہ سے رکاوٹ",
-    "Inflammation": "سوزش",
-    "Low squamous cellularity": "اسکوامس خلیات کی کمی",
-    "Poor fixation": "ناقص فکسیشن",
-    "Scant cellularity": "بہت کم خلیات",
-    "Poor preservation": "ناقص تحفظ",
-    "Negative for Intraepithelial Lesion or Malignancy (NILM)": "انٹراایپی تھیلیل لیژن یا میلگنینسی کے لیے منفی (NILM)",
-    "Reactive cellular changes associated with inflammation": "سوزش سے متعلق ری ایکٹو خلیاتی تبدیلیاں",
-    "Reactive cellular changes associated with radiation / IUD / atrophy": "ریڈی ایشن / آئی یو ڈی / ایٹروفی سے متعلق ری ایکٹو خلیاتی تبدیلیاں",
-    "Trichomonas vaginalis": "ٹرائیکوموناس ویجائنالس",
-    "Fungal organisms morphologically consistent with Candida spp.": "فنگل جاندار جن کی ساخت Candida spp. سے مطابقت رکھتی ہے",
-    "Shift in flora suggestive of bacterial vaginosis": "فلورا میں ایسی تبدیلی جو بیکٹیریل ویجینوسس کی طرف اشارہ کرے",
-    "Bacteria morphologically consistent with Actinomyces spp.": "بیکٹیریا جن کی ساخت Actinomyces spp. سے مطابقت رکھتی ہے",
-    "Herpes simplex virus changes": "ہرپس سمپلیکس وائرس سے متعلق تبدیلیاں",
-    "ASC-US (Atypical squamous cells of undetermined significance)": "ASC-US (غیر متعین اہمیت والے غیر معمولی اسکوامس خلیات)",
-    "ASC-H (Atypical squamous cells, cannot exclude HSIL)": "ASC-H (غیر معمولی اسکوامس خلیات، HSIL کو خارج نہیں کیا جا سکتا)",
-    "LSIL (Low-grade squamous intraepithelial lesion)": "LSIL (کم درجے کی اسکوامس انٹراایپی تھیلیل لیژن)",
-    "HSIL (High-grade squamous intraepithelial lesion)": "HSIL (اعلیٰ درجے کی اسکوامس انٹراایپی تھیلیل لیژن)",
-    "Squamous cell carcinoma": "اسکوامس سیل کارسینوما",
-    "Atypical glandular cells (AGC)": "غیر معمولی گلینڈولر خلیات (AGC)",
-    "Endocervical adenocarcinoma in situ (AIS)": "اینڈو سروائیکل ایڈینوکارسینوما اِن سیٹو (AIS)",
-    "Adenocarcinoma": "ایڈینوکارسینوما",
-    "Positive": "مثبت",
-    "Negative": "منفی",
-    "Pending": "زیر التواء"
-  },
-  "defaults": {
-    "comment": "HPV اسٹیٹس اور موجودہ اسکریننگ گائیڈ لائنز کے ساتھ مطابقت دیکھی جائے۔ کولپوسکوپی / دوبارہ سائٹولوجی / روٹین اسکریننگ حسبِ ضرورتِ کلینیکل کی جائے۔"
+    "specimen": {
+      "title": "نمونہ",
+      "fields": {
+        "specimen_type": {
+          "label": "سروائیکل سائٹولوجی (مناسب انتخاب کریں)",
+          "options": {
+            "conventional_smear": "روایتی اسمئیر",
+            "liquid_based_cytology": "لیکویڈ بیسڈ سائٹولوجی"
+          }
+        },
+        "source": {
+          "label": "ماخذ",
+          "options": {
+            "cervix": "سروکس",
+            "ectocervix": "ایکٹو سروکس",
+            "endocervix": "اینڈو سروکس",
+            "vaginal_cuff": "ویجائنل کف",
+            "other": "دیگر"
+          }
+        },
+        "hpv_test_submitted_available": {
+          "label": "HPV ٹیسٹ جمع / دستیاب",
+          "options": {
+            "yes": "ہاں",
+            "no": "نہیں"
+          }
+        }
+      }
+    },
+    "specimen_adequacy": {
+      "title": "نمونے کی موزونیت",
+      "fields": {
+        "adequacy_status": {
+          "label": "نمونے کی موزونیت",
+          "options": {
+            "satisfactory_for_evaluation": "جائزے کے لیے موزوں",
+            "unsatisfactory_scant_cellularity": "جائزے کے لیے غیر موزوں - خلیات کی قلیل مقدار",
+            "unsatisfactory_obscuring_blood_inflammation": "جائزے کے لیے غیر موزوں - خون کا پردہ / سوزش",
+            "unsatisfactory_poor_preservation": "جائزے کے لیے غیر موزوں - ناقص تحفظ",
+            "unsatisfactory_other": "جائزے کے لیے غیر موزوں - دیگر"
+          }
+        },
+        "satisfactory_but_limited_by": {
+          "label": "موزوں مگر محدود بسبب",
+          "options": {
+            "obscuring_blood": "نظر کو ڈھانپنے والا خون",
+            "inflammation": "سوزش",
+            "low_squamous_cellularity": "سکوا مس خلیات کی کم مقدار",
+            "poor_fixation": "ناقص فکسیشن"
+          }
+        }
+      }
+    },
+    "interpretation_result": {
+      "title": "تشریح / نتیجہ (مناسب انتخاب کریں)",
+      "fields": {
+        "interpretation_result": {
+          "label": "تشریح / نتیجہ",
+          "options": {
+            "nilm_within_normal_limits": "انٹراایپی تھیلیل لیژن یا بدخیمی کے لیے منفی: معمول کی حدود میں",
+            "nilm_reactive_inflammation": "انٹراایپی تھیلیل لیژن یا بدخیمی کے لیے منفی، سوزش سے وابستہ ردعملی خلیاتی تبدیلیوں کے ساتھ",
+            "nilm_reactive_radiation_iud_atrophy": "انٹراایپی تھیلیل لیژن یا بدخیمی کے لیے منفی، شعاع ریزی / IUD / ایٹروفی سے وابستہ ردعملی خلیاتی تبدیلیوں کے ساتھ",
+            "organism_trichomonas_vaginalis": "انٹراایپی تھیلیل لیژن یا بدخیمی کے لیے منفی، شناخت شدہ جاندار: ٹرائیکوموناس ویجائنالس",
+            "organism_candida_spp": "انٹراایپی تھیلیل لیژن یا بدخیمی کے لیے منفی، شناخت شدہ جاندار: فنگل جاندار جو ظاہری طور پر Candida spp. سے مطابقت رکھتے ہیں",
+            "organism_bacterial_vaginosis": "انٹراایپی تھیلیل لیژن یا بدخیمی کے لیے منفی، شناخت شدہ جاندار: فلورا میں تبدیلی جو بیکٹیریل ویجائنوسس کی طرف اشارہ کرتی ہے",
+            "organism_actinomyces_spp": "انٹراایپی تھیلیل لیژن یا بدخیمی کے لیے منفی، شناخت شدہ جاندار: بیکٹیریا جو ظاہری طور پر Actinomyces spp. سے مطابقت رکھتے ہیں",
+            "organism_herpes_simplex_virus": "انٹراایپی تھیلیل لیژن یا بدخیمی کے لیے منفی، شناخت شدہ جاندار: ہرپس سمپلیکس وائرس سے متعلق تبدیلیاں",
+            "asc_us": "ASC-US (غیر متعین اہمیت والے غیر معمولی سکوا مس خلیات)",
+            "asc_h": "ASC-H (غیر معمولی سکوا مس خلیات، HSIL کو خارج نہیں کیا جا سکتا)",
+            "lsil": "LSIL (کم درجے کی سکوا مس انٹراایپی تھیلیل لیژن)",
+            "hsil": "HSIL (اعلی درجے کی سکوا مس انٹراایپی تھیلیل لیژن)",
+            "squamous_cell_carcinoma": "سکوا مس سیل کارسنوما",
+            "agc": "غیر معمولی غدودی خلیات (AGC)",
+            "ais": "اینڈوسروائیکل ایڈینوکارسنوما اِن سِٹو (AIS)",
+            "adenocarcinoma": "ایڈینوکارسنوما"
+          }
+        }
+      }
+    },
+    "ancillary_testing": {
+      "title": "ضمنی ٹیسٹنگ (اگر کی گئی ہو)",
+      "fields": {
+        "high_risk_hpv": {
+          "label": "اعلی خطرے والا HPV",
+          "options": {
+            "positive": "مثبت",
+            "negative": "منفی",
+            "pending": "زیر التوا"
+          }
+        }
+      }
+    },
+    "comment_recommendation": {
+      "title": "تبصرہ / سفارش",
+      "fields": {
+        "comment_recommendation": {
+          "label": "تبصرہ / سفارش"
+        }
+      }
+    }
   }
 }

@@ -1,13 +1,617 @@
 {
-  "template_id": "endometrium_resection_v1",
-  "lang": "ur",
-  "title": "اینڈومیٹریم",
-  "specimen": { "label": "نمونہ" },
-  "tumor": { "label": "ٹیومر" },
-  "margins": { "label": "حاشیے" },
-  "regional_lymph_nodes": { "label": "علاقائی لمف نوڈز" },
-  "distant_metastasis": { "label": "بعید میٹاسٹاسس" },
-  "ptnm_classification": { "label": "pTNM درجہ بندی" },
-  "figo_stage": { "label": "FIGO مرحلہ" },
-  "additional_findings": { "label": "اضافی مشاہدات" }
+  "template": {
+    "id": "endometrium",
+    "title": "رپورٹ ٹیمپلیٹ_اینڈومیٹریئم",
+    "protocol_posting_date": "پروٹوکول کی اشاعت کی تاریخ: دسمبر 2024",
+    "standards": "معیارات: AJCC 8، FIGO 2009 اسٹیجنگ (2018 سالانہ رپورٹ)، FIGO 2023 اسٹیجنگ"
+  },
+  "common": {
+    "not_applicable": "لاگو نہیں",
+    "not_identified": "شناخت نہیں ہوا",
+    "present": "موجود",
+    "cannot_be_determined": "متعین نہیں کیا جا سکتا: _________________",
+    "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا (وضاحت کریں): _________________",
+    "cannot_be_assessed_explain": "تشخیص نہیں کیا جا سکتا (وضاحت کریں): _________________",
+    "other_specify": "دیگر (وضاحت کریں): _________________",
+    "exact_number": "درست تعداد: _________________",
+    "at_least": "کم از کم: _________________",
+    "exact_size_mm": "درست سائز: _________________ mm",
+    "less_than": "کم از: _________________",
+    "greater_than": "زیادہ از: _________________",
+    "specify_exact_size_mm": "درست سائز درج کریں: _________________ mm",
+    "specify_percentage": "فیصد درج کریں: _________________ %",
+    "select_all": "تمام متعلقہ اختیارات منتخب کریں"
+  },
+  "specimen": {
+    "label": "نمونہ",
+    "procedure": {
+      "label": "طریقہ کار (تمام متعلقہ اختیارات منتخب کریں)",
+      "note": "لمف نوڈ سیمپلنگ کے بارے میں معلومات کے لیے براہِ کرم علاقائی لمف نوڈ سیکشن دیکھیں۔",
+      "options": {
+        "total_hysterectomy": "مکمل ہسٹریکٹومی",
+        "supracervical_hysterectomy": "سوپراسرویکل ہسٹریکٹومی",
+        "radical_hysterectomy": "ریڈیکل ہسٹریکٹومی",
+        "hysterectomy": "ہسٹریکٹومی",
+        "bilateral_salpingo_oophorectomy": "دو طرفہ سالپنگو اووفوریکٹومی",
+        "right_salpingo_oophorectomy": "دائیں سالپنگو اووفوریکٹومی",
+        "left_salpingo_oophorectomy": "بائیں سالپنگو اووفوریکٹومی",
+        "salpingo_oophorectomy_side_not_specified": "سالپنگو اووفوریکٹومی، جانب متعین نہیں",
+        "right_oophorectomy": "دائیں اووفوریکٹومی",
+        "left_oophorectomy": "بائیں اووفوریکٹومی",
+        "oophorectomy_side_not_specified": "اووفوریکٹومی، جانب متعین نہیں",
+        "bilateral_salpingectomy": "دو طرفہ سالپنجیکٹومی",
+        "right_salpingectomy": "دائیں سالپنجیکٹومی",
+        "left_salpingectomy": "بائیں سالپنجیکٹومی",
+        "salpingectomy_side_not_specified": "سالپنجیکٹومی، جانب متعین نہیں",
+        "vaginal_cuff_resection": "ویجائنل کف ریزیکشن",
+        "omentectomy": "اومنٹیکٹومی",
+        "peritoneal_biopsies": "پیریٹونیل بایوپسی",
+        "peritoneal_pelvic_washing": "پیریٹونیل / پیلوک واشنگ",
+        "other_specify": "دیگر (وضاحت کریں): _________________"
+      }
+    },
+    "integrity": {
+      "label": "نمونے کی سالمیت",
+      "options": {
+        "intact": "سالم",
+        "opened": "کھولا گیا",
+        "morcellated": "ٹکڑوں میں تقسیم",
+        "other_specify": "دیگر (وضاحت کریں): _________________"
+      }
+    }
+  },
+  "tumor": {
+    "label": "ٹیومر",
+    "size": {
+      "label": "ٹیومر کا سائز",
+      "options": {
+        "greatest_gross_dimension_cm": "سب سے بڑی گروس جہت (اگر ماس موجود ہو) سینٹی میٹر (cm) میں: _________________ cm",
+        "additional_dimension_cm": "اضافی جہت سینٹی میٹر (cm) میں: ____ x ____ cm",
+        "greatest_microscopic_dimension_cm": "سب سے بڑی مائیکروسکوپک جہت (اگر ماس موجود نہ ہو) سینٹی میٹر (cm) میں: _________________ cm",
+        "additional_microscopic_dimension_cm": "اضافی مائیکروسکوپک جہت سینٹی میٹر (cm) میں: ____ x ____ cm",
+        "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا (وضاحت کریں): _________________"
+      }
+    },
+    "histologic_type": {
+      "label": "ہسٹولوجیکل قسم",
+      "options": {
+        "endometrioid_carcinoma": "اینڈومیٹریوئڈ کارسینوما",
+        "serous_carcinoma": "سیروس کارسینوما",
+        "clear_cell_carcinoma": "کلئیر سیل کارسینوما",
+        "dedifferentiated_carcinoma": "ڈی ڈیفرینشی ایٹڈ کارسینوما",
+        "undifferentiated_carcinoma": "ان ڈیفرینشی ایٹڈ کارسینوما",
+        "carcinosarcoma": "کارسینوسارکوما",
+        "mesonephric_like_adenocarcinoma": "میسونیفرک نما ایڈینوکارسینوما",
+        "squamous_cell_carcinoma": "اسکوامس سیل کارسینوما",
+        "gastric_gastrointestinal_type_carcinoma": "گیسٹرک (معدی/آنتی) قسم کا کارسینوما",
+        "mixed_carcinoma_specify_types_percentages": "مخلوط کارسینوما (اقسام اور فیصد درج کریں): _________________",
+        "small_cell_neuroendocrine_carcinoma": "سمال سیل نیورواینڈوکرائن کارسینوما",
+        "large_cell_neuroendocrine_carcinoma": "لارج سیل نیورواینڈوکرائن کارسینوما",
+        "other_histologic_type_not_listed_specify": "دیگر غیر درج شدہ ہسٹولوجیکل قسم (وضاحت کریں): _________________"
+      }
+    },
+    "histologic_grade": {
+      "label": "ہسٹولوجیکل گریڈ",
+      "note": "International Federation of Gynecology and Obstetrics (FIGO) کا گریڈنگ سسٹم صرف endometrioid carcinomas پر لاگو ہوتا ہے۔ دیگر تمام subtypes کو high-grade سمجھا جاتا ہے۔",
+      "options": {
+        "figo_grade_1_endometrioid": "FIGO گریڈ 1 (اینڈومیٹریوئڈ کارسینوما)",
+        "figo_grade_2_endometrioid": "FIGO گریڈ 2 (اینڈومیٹریوئڈ کارسینوما)",
+        "figo_grade_3_endometrioid": "FIGO گریڈ 3 (اینڈومیٹریوئڈ کارسینوما)",
+        "high_grade_non_endometrioid": "ہائی گریڈ (غیر اینڈومیٹریوئڈ کارسینوما)",
+        "other_specify": "دیگر (وضاحت کریں): _________________",
+        "cannot_be_assessed_explain": "تشخیص نہیں کیا جا سکتا (وضاحت کریں): _________________"
+      }
+    },
+    "myometrial_invasion": {
+      "label": "مایومیٹریئل حملہ (صرف اگر لاگو ہو)",
+      "options": {
+        "not_applicable": "لاگو نہیں",
+        "not_identified": "شناخت نہیں ہوا",
+        "present_inner_half_less_than_50": "موجود، اندرونی نصف (50٪ سے کم)",
+        "specify_percentage_inner": "فیصد درج کریں: _________________ %",
+        "comment_inner": "مایومیٹریئل حملے پر تبصرہ: _________________",
+        "present_outer_half_50_or_more": "موجود، بیرونی نصف (50٪ یا زیادہ)",
+        "specify_percentage_outer": "فیصد درج کریں: _________________ %",
+        "comment_outer": "مایومیٹریئل حملے پر تبصرہ: _________________",
+        "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا (وضاحت کریں): _________________"
+      }
+    },
+    "adenomyosis": {
+      "label": "ایڈینومایوسس",
+      "options": {
+        "not_identified": "شناخت نہیں ہوا",
+        "present_uninvolved_by_carcinoma": "موجود، کارسینوما سے غیر متاثر",
+        "present_involved_by_carcinoma": "موجود، کارسینوما سے متاثر",
+        "cannot_be_determined": "متعین نہیں کیا جا سکتا: _________________"
+      }
+    },
+    "uterine_serosal_involvement": {
+      "label": "یوٹرائن سیروسا کی شمولیت",
+      "options": {
+        "not_identified": "شناخت نہیں ہوا",
+        "present": "موجود",
+        "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا (وضاحت کریں): _________________"
+      }
+    },
+    "lower_uterine_segment_involvement": {
+      "label": "نچلے یوٹرائن حصے کی شمولیت",
+      "options": {
+        "not_identified": "شناخت نہیں ہوا",
+        "present_non_myoinvasive": "موجود، مایوانویسیو نہیں",
+        "present_myoinvasive": "موجود، مایوانویسیو",
+        "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا (وضاحت کریں): _________________"
+      }
+    },
+    "cervical_involvement": {
+      "label": "سروکس کی شمولیت",
+      "options": {
+        "cannot_be_assessed_supracervical_hysterectomy": "تشخیص نہیں کیا جا سکتا (سوپراسرویکل ہسٹریکٹومی)",
+        "not_identified": "شناخت نہیں ہوا",
+        "cervical_stromal_invasion": "سروائیکل اسٹروما میں حملہ",
+        "percentage_of_cervical_wall_involved": "سروائیکل دیوار کی شمولیت کا فیصد",
+        "specify_percentage": "فیصد درج کریں: _________________ %",
+        "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا (وضاحت کریں): _________________",
+        "endocervical_glandular_involvement_only": "صرف اینڈوسروائیکل غدودی شمولیت",
+        "cannot_be_determined_explain_2": "cannot be determined explain 2"
+      }
+    },
+    "other_tissue_organ_involvement": {
+      "label": "دیگر بافت/اعضا کی شمولیت (تمام متعلقہ اختیارات منتخب کریں)",
+      "note": "جو عضو منتخب نہیں کیا گیا وہ یا تو متاثر نہیں ہے یا جمع نہیں کیا گیا۔",
+      "options": {
+        "not_applicable_no_other_tissues_organs_submitted": "لاگو نہیں (کوئی دیگر بافت/اعضا جمع نہیں کیے گئے)",
+        "not_identified_other_tissues_organs_submitted_uninvolved": "شناخت نہیں ہوا (دیگر بافت/اعضا جمع کیے گئے مگر متاثر نہیں)",
+        "right_ovary": "دائیں بیضہ دانی",
+        "left_ovary": "بائیں بیضہ دانی",
+        "ovary_side_not_specified": "بیضہ دانی (جانب متعین نہیں)",
+        "right_fallopian_tube": "دائیں فیلوپین ٹیوب",
+        "left_fallopian_tube": "بائیں فیلوپین ٹیوب",
+        "fallopian_tube_side_not_specified": "فیلوپین ٹیوب (جانب متعین نہیں)",
+        "vagina": "اندام نہانی",
+        "right_parametrium": "دائیں پیرامیٹریئم",
+        "left_parametrium": "بائیں پیرامیٹریئم",
+        "parametrium_side_not_specified": "پیرامیٹریئم (جانب متعین نہیں)",
+        "pelvic_wall": "پیلوک دیوار",
+        "bladder_wall_without_mucosal_involvement": "مثانے کی دیوار، میوکوسا کی شمولیت کے بغیر",
+        "bladder_wall_with_mucosal_involvement": "مثانے کی دیوار، میوکوسا کی شمولیت کے ساتھ",
+        "bowel_wall_without_mucosal_involvement": "آنت کی دیوار، میوکوسا کی شمولیت کے بغیر",
+        "bowel_wall_with_mucosal_involvement": "آنت کی دیوار، میوکوسا کی شمولیت کے ساتھ",
+        "other_organs_tissue_specify": "دیگر اعضا / بافت (وضاحت کریں): _________________",
+        "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا (وضاحت کریں): _________________"
+      }
+    },
+    "peritoneal_pelvic_washings_ascitic_fluid": {
+      "label": "پیریٹونیل / پیلوک واشنگ / ایسائٹک فلوئڈ",
+      "options": {
+        "not_submitted": "جمع نہیں کیا گیا",
+        "negative_for_malignant_cells": "مہلک خلیات کے لیے منفی",
+        "malignant_cells_present": "مہلک خلیات موجود",
+        "atypical_explain": "ایٹپیکل (وضاحت کریں): _________________",
+        "suspicious_for_malignancy_explain": "بدخیمی کے لیے مشتبہ (وضاحت کریں): _________________",
+        "results_pending": "نتائج زیر التوا"
+      }
+    },
+    "lymphatic_vascular_invasion": {
+      "label": "لمفیٹک اور/یا عروقی حملہ",
+      "note": "لمفیٹک اور/یا عروقی حملہ (LVI)، FIGO کی اصطلاح lymphovascular space invasion (LVSI) کے برابر ہے۔ LVI foci کی زیادہ سے زیادہ تعداد اس ایک سلائیڈ پر رپورٹ کریں جس میں foci کی تعداد سب سے زیادہ ہو۔",
+      "options": {
+        "not_identified": "شناخت نہیں ہوا",
+        "present": "موجود",
+        "less_than_or_equal_to_4_foci": "4 یا اس سے کم فوکی",
+        "specify_number_of_foci": "فوکی کی تعداد درج کریں: _________________",
+        "greater_than_or_equal_to_5_foci": "5 یا اس سے زیادہ فوکی",
+        "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا (وضاحت کریں): _________________"
+      }
+    },
+    "comment": "ٹیومر پر تبصرہ: _________________"
+  },
+  "margins": {
+    "label": "حاشیے",
+    "status": {
+      "label": "حاشیوں کی حالت (صرف اس صورت میں لازم ہے اگر cervix اور/یا parametrium/paracervix کارسینوما سے متاثر ہو)",
+      "options": {
+        "not_applicable": "لاگو نہیں",
+        "all_margins_negative_for_carcinoma": "تمام حاشیے کارسینوما کے لیے منفی ہیں"
+      }
+    },
+    "closest_margins_to_carcinoma": {
+      "label": "کارسینوما کے قریب ترین حاشیے (تمام متعلقہ اختیارات منتخب کریں)",
+      "options": {
+        "ectocervical": "ایکٹوسروائیکل (ممکن ہو تو مقام درج کریں): _________________",
+        "vaginal_cuff": "ویجائنل کف (ممکن ہو تو مقام درج کریں): _________________",
+        "parametrial": "پیرامیٹریئل (ممکن ہو تو مقام درج کریں): _________________",
+        "paracervical": "پیراسروائیکل (ممکن ہو تو مقام درج کریں): _________________",
+        "other_specify": "دیگر (وضاحت کریں): _________________",
+        "cannot_be_determined": "متعین نہیں کیا جا سکتا: _________________"
+      }
+    },
+    "distance_to_closest_margin": {
+      "label": "کارسینوما سے قریب ترین حاشیے تک فاصلہ",
+      "note": "ملی میٹر (mm) میں درج کریں",
+      "options": {
+        "exact_distance_mm": "درست فاصلہ: _________________ mm",
+        "at_least": "کم از کم: _________________",
+        "less_than": "کم از: _________________",
+        "less_than_1_mm": "1 mm سے کم",
+        "cannot_be_determined": "متعین نہیں کیا جا سکتا: _________________"
+      }
+    },
+    "positive_margin": {
+      "option": "کارسینوما حاشیے پر موجود ہے"
+    },
+    "involved_by_carcinoma": {
+      "label": "کارسینوما سے متاثرہ حاشیے (تمام متعلقہ اختیارات منتخب کریں)",
+      "options": {
+        "ectocervical": "ایکٹوسروائیکل (ممکن ہو تو مقام درج کریں): _________________",
+        "vaginal_cuff": "ویجائنل کف (ممکن ہو تو مقام درج کریں): _________________",
+        "parametrial": "پیرامیٹریئل (ممکن ہو تو مقام درج کریں): _________________",
+        "paracervical": "پیراسروائیکل (ممکن ہو تو مقام درج کریں): _________________",
+        "other_specify": "دیگر (وضاحت کریں): _________________",
+        "cannot_be_determined": "متعین نہیں کیا جا سکتا: _________________",
+        "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا (وضاحت کریں): _________________"
+      }
+    },
+    "comment": "حاشیوں پر تبصرہ: _________________"
+  },
+  "regional_lymph_nodes": {
+    "label": "علاقائی لمف نوڈز",
+    "status": {
+      "label": "حالت",
+      "note": "pelvic اور para-aortic نامزد نوڈز علاقائی نوڈز سمجھے جاتے ہیں۔ کوئی بھی دیگر متاثرہ نوڈ metastasis (pM1) کے طور پر رپورٹ کیا جائے۔",
+      "options": {
+        "not_applicable_no_nodes_submitted_or_found": "not applicable no nodes submitted or found",
+        "regional_lymph_nodes_present": "علاقائی لمف نوڈز موجود ہیں",
+        "all_regional_nodes_negative_for_tumor_cells": "تمام علاقائی نوڈز ٹیومر خلیات کے لیے منفی ہیں",
+        "tumor_present_in_pelvic_nodes": "ٹیومر پیلوک لمف نوڈز میں موجود ہے"
+      }
+    },
+    "pelvic": {
+      "label": "پیلوک لمف نوڈز",
+      "macrometastasis_total": {
+        "label": "میکرومیٹاسٹیسس والے نوڈز کی کل تعداد",
+        "options": {
+          "exact_number": "درست تعداد: _________________",
+          "at_least": "کم از کم: _________________",
+          "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا (وضاحت کریں): _________________"
+        }
+      },
+      "macrometastasis_sentinel": {
+        "label": "میکرومیٹاسٹیسس والے sentinel نوڈز کی تعداد",
+        "options": {
+          "exact_number": "درست تعداد: _________________",
+          "at_least": "کم از کم: _________________",
+          "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا (وضاحت کریں): _________________"
+        }
+      },
+      "micrometastasis_total": {
+        "label": "مائیکرومیٹاسٹیسس والے نوڈز کی کل تعداد",
+        "options": {
+          "exact_number": "درست تعداد: _________________",
+          "at_least": "کم از کم: _________________",
+          "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا (وضاحت کریں): _________________"
+        }
+      },
+      "micrometastasis_sentinel": {
+        "label": "مائیکرومیٹاسٹیسس والے sentinel نوڈز کی تعداد",
+        "options": {
+          "exact_number": "درست تعداد: _________________",
+          "at_least": "کم از کم: _________________",
+          "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا (وضاحت کریں): _________________"
+        }
+      },
+      "isolated_tumor_cells_total": {
+        "label": "الگ تھلگ ٹیومر خلیات والے نوڈز کی کل تعداد",
+        "note": "isolated tumor cells والے نوڈز کی تعداد صرف اس وقت رپورٹ کی جانی چاہیے جب دوسرے نوڈز میں macrometastasis یا micrometastasis موجود نہ ہو۔",
+        "options": {
+          "not_applicable": "لاگو نہیں",
+          "exact_number": "درست تعداد: _________________",
+          "at_least": "کم از کم: _________________",
+          "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا (وضاحت کریں): _________________"
+        }
+      },
+      "isolated_tumor_cells_sentinel": {
+        "label": "الگ تھلگ ٹیومر خلیات والے sentinel نوڈز کی تعداد",
+        "options": {
+          "exact_number": "درست تعداد: _________________",
+          "at_least": "کم از کم: _________________",
+          "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا (وضاحت کریں): _________________"
+        }
+      },
+      "laterality_with_tumor": {
+        "label": "ٹیومر والے نوڈز کی جانب (تمام متعلقہ اختیارات منتخب کریں)",
+        "options": {
+          "right_sentinel": "دائیں sentinel: _________________",
+          "right_non_sentinel": "دائیں غیر sentinel: _________________",
+          "left_sentinel": "بائیں sentinel: _________________",
+          "left_non_sentinel": "بائیں غیر sentinel: _________________",
+          "cannot_be_determined": "متعین نہیں کیا جا سکتا: _________________"
+        }
+      },
+      "largest_nodal_metastatic_deposit_size": {
+        "label": "سب سے بڑے نوڈل میٹاسٹیٹک ڈپازٹ کا سائز",
+        "note": "ملی میٹر (mm) میں درج کریں",
+        "options": {
+          "specify_exact_size_mm": "درست سائز درج کریں: _________________ mm",
+          "less_than": "کم از: _________________",
+          "greater_than": "زیادہ از: _________________",
+          "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا (وضاحت کریں): _________________"
+        }
+      }
+    },
+    "para_aortic": {
+      "label": "پیرا آؤرٹک لمف نوڈز",
+      "macrometastasis_total": {
+        "label": "میکرومیٹاسٹیسس والے نوڈز کی کل تعداد",
+        "options": {
+          "exact_number": "درست تعداد: _________________",
+          "at_least": "کم از کم: _________________",
+          "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا (وضاحت کریں): _________________"
+        }
+      },
+      "macrometastasis_sentinel": {
+        "label": "میکرومیٹاسٹیسس والے sentinel نوڈز کی تعداد",
+        "options": {
+          "exact_number": "درست تعداد: _________________",
+          "at_least": "کم از کم: _________________",
+          "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا (وضاحت کریں): _________________"
+        }
+      },
+      "micrometastasis_total": {
+        "label": "مائیکرومیٹاسٹیسس والے نوڈز کی کل تعداد",
+        "options": {
+          "exact_number": "درست تعداد: _________________",
+          "at_least": "کم از کم: _________________",
+          "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا (وضاحت کریں): _________________"
+        }
+      },
+      "micrometastasis_sentinel": {
+        "label": "مائیکرومیٹاسٹیسس والے sentinel نوڈز کی تعداد",
+        "options": {
+          "exact_number": "درست تعداد: _________________",
+          "at_least": "کم از کم: _________________",
+          "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا (وضاحت کریں): _________________"
+        }
+      },
+      "isolated_tumor_cells_total": {
+        "label": "الگ تھلگ ٹیومر خلیات والے نوڈز کی کل تعداد",
+        "note": "isolated tumor cells والے نوڈز کی تعداد صرف اس وقت رپورٹ کی جانی چاہیے جب دوسرے نوڈز میں macrometastasis یا micrometastasis موجود نہ ہو۔",
+        "options": {
+          "not_applicable": "لاگو نہیں",
+          "exact_number": "درست تعداد: _________________",
+          "at_least": "کم از کم: _________________",
+          "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا (وضاحت کریں): _________________"
+        }
+      },
+      "isolated_tumor_cells_sentinel": {
+        "label": "الگ تھلگ ٹیومر خلیات والے sentinel نوڈز کی تعداد",
+        "options": {
+          "exact_number": "درست تعداد: _________________",
+          "at_least": "کم از کم: _________________",
+          "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا (وضاحت کریں): _________________"
+        }
+      },
+      "laterality_with_tumor": {
+        "label": "ٹیومر والے نوڈز کی جانب (تمام متعلقہ اختیارات منتخب کریں)",
+        "options": {
+          "right_sentinel": "دائیں sentinel: _________________",
+          "right_non_sentinel": "دائیں غیر sentinel: _________________",
+          "left_sentinel": "بائیں sentinel: _________________",
+          "left_non_sentinel": "بائیں غیر sentinel: _________________",
+          "cannot_be_determined": "متعین نہیں کیا جا سکتا: _________________"
+        }
+      },
+      "largest_nodal_metastatic_deposit_size": {
+        "label": "سب سے بڑے نوڈل میٹاسٹیٹک ڈپازٹ کا سائز",
+        "note": "ملی میٹر (mm) میں درج کریں",
+        "options": {
+          "specify_exact_size_mm": "درست سائز درج کریں: _________________ mm",
+          "less_than": "کم از: _________________",
+          "greater_than": "زیادہ از: _________________",
+          "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا (وضاحت کریں): _________________"
+        }
+      },
+      "tumor_present": {
+        "option": "ٹیومر موجود ہے"
+      },
+      "additional_options": {
+        "other_specify": "دیگر (وضاحت کریں): _________________",
+        "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا (وضاحت کریں): _________________"
+      }
+    },
+    "examined": {
+      "label": "معائنہ کیے گئے لمف نوڈز",
+      "pelvic_total": {
+        "label": "معائنہ کیے گئے پیلوک نوڈز کی کل تعداد (sentinel اور غیر sentinel)",
+        "options": {
+          "exact_number": "درست تعداد: _________________",
+          "at_least": "کم از کم: _________________",
+          "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا (وضاحت کریں): _________________"
+        }
+      },
+      "pelvic_sentinel": {
+        "label": "معائنہ کیے گئے پیلوک sentinel نوڈز کی تعداد (صرف اگر لاگو ہو)",
+        "options": {
+          "not_applicable": "لاگو نہیں",
+          "exact_number": "درست تعداد: _________________",
+          "at_least": "کم از کم: _________________",
+          "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا (وضاحت کریں): _________________"
+        }
+      },
+      "para_aortic_total": {
+        "label": "معائنہ کیے گئے پیرا آؤرٹک نوڈز کی کل تعداد (sentinel اور غیر sentinel)",
+        "options": {
+          "exact_number": "درست تعداد: _________________",
+          "at_least": "کم از کم: _________________",
+          "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا (وضاحت کریں): _________________"
+        }
+      },
+      "para_aortic_sentinel": {
+        "label": "معائنہ کیے گئے پیرا آؤرٹک sentinel نوڈز کی تعداد (صرف اگر لاگو ہو)",
+        "options": {
+          "not_applicable": "لاگو نہیں",
+          "exact_number": "درست تعداد: _________________",
+          "at_least": "کم از کم: _________________",
+          "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا (وضاحت کریں): _________________"
+        }
+      }
+    },
+    "comment": "علاقائی لمف نوڈز پر تبصرہ: _________________"
+  },
+  "distant_metastasis": {
+    "label": "دور دراز میٹاسٹیسس",
+    "sites_involved": {
+      "label": "دور دراز متاثرہ مقامات، اگر لاگو ہوں (تمام متعلقہ اختیارات منتخب کریں)",
+      "note": "یہ pelvic یا para-aortic lymph nodes، vagina، uterine serosa یا adnexa میں metastasis کو شامل نہیں کرتا۔",
+      "options": {
+        "not_applicable": "لاگو نہیں",
+        "omentum": "اومنٹم: _________________",
+        "extrapelvic_peritoneum": "پیلوِس سے باہر پیریٹونیم: _________________",
+        "inguinal_lymph_nodes": "انگوئنل لمف نوڈز: _________________",
+        "lung": "پھیپھڑا: _________________",
+        "liver": "جگر: _________________",
+        "bone": "ہڈی: _________________",
+        "other_specify": "دیگر (وضاحت کریں): _________________",
+        "cannot_be_determined": "متعین نہیں کیا جا سکتا: _________________"
+      }
+    }
+  },
+  "ptnm": {
+    "label": "pTNM درجہ بندی (AJCC آٹھواں ایڈیشن)",
+    "note": "pT، pN، اور جہاں لاگو ہو pM categories کی رپورٹنگ اس معلومات پر مبنی ہے جو رپورٹ جاری کرتے وقت pathologist کو دستیاب ہو۔ AJCC کے مطابق، تمام متعلقہ معلومات کی بنیاد پر final pathologic stage قائم کرنا treating physician کی ذمہ داری ہے۔",
+    "modified_classification": {
+      "label": "ترمیم شدہ درجہ بندی (صرف اگر لاگو ہو) (تمام متعلقہ اختیارات منتخب کریں)",
+      "options": {
+        "not_applicable": "لاگو نہیں",
+        "y_post_neoadjuvant_therapy": "y (neoadjuvant علاج کے بعد)",
+        "r_recurrence": "r (دوبارہ بیماری)"
+      }
+    },
+    "pt_category": {
+      "label": "pT زمرہ",
+      "options": {
+        "pt_not_assigned_cannot_be_determined": "pT تفویض نہیں کیا گیا (دستیاب پیتھالوجیکل معلومات کی بنیاد پر متعین نہیں کیا جا سکتا)",
+        "pt0_no_evidence_primary_tumor": "pT0: بنیادی ٹیومر کا کوئی ثبوت نہیں",
+        "pt1_group": "pT1: ٹیومر جسمِ رحم (uterine corpus) تک محدود ہے، بشمول اینڈوسرویکل غدودی شمولیت",
+        "pt1a": "pT1a: ٹیومر اینڈومیٹریئم تک محدود ہے یا مایومیٹریئم کے نصف سے کم میں سرایت کرتا ہے",
+        "pt1b": "pT1b: ٹیومر مایومیٹریئم کے نصف یا اس سے زیادہ حصے میں سرایت کرتا ہے",
+        "pt1_subcategory_cannot_be_determined": "pT1 (ذیلی زمرہ متعین نہیں کیا جا سکتا)",
+        "pt2": "pT2: ٹیومر سروکس کے اسٹرومل کنیکٹو ٹشو میں سرایت کرتا ہے لیکن رحم سے باہر نہیں پھیلتا۔ اینڈوسرویکل غدودی شمولیت شامل نہیں ہے",
+        "pt3_group": "pT3: ٹیومر سیروسا، ایڈنیکسا، اندام نہانی یا پیرا میٹریئم کو متاثر کرتا ہے",
+        "pt3a": "pT3a: ٹیومر سیروسا اور/یا ایڈنیکسا کو متاثر کرتا ہے (براہ راست پھیلاؤ یا میٹاسٹیسس)",
+        "pt3b": "pT3b: اندام نہانی کی شمولیت (براہ راست پھیلاؤ یا میٹاسٹیسس) یا پیرا میٹریئل شمولیت",
+        "pt3_subcategory_cannot_be_determined": "pT3 (ذیلی زمرہ متعین نہیں کیا جا سکتا)",
+        "pt4_note": "ٹیومر کو مثانے یا آنت کی میوکوسل سطح تک پہنچنا ضروری ہے",
+        "pt4": "pT4: ٹیومر مثانے کی میوکوسا اور/یا آنت کی میوکوسا میں سرایت کرتا ہے (صرف بُلس ایڈیما T4 کی درجہ بندی کے لیے کافی نہیں)"
+      }
+    },
+    "t_suffix": {
+      "label": "T لاحقہ (صرف اگر لاگو ہو)",
+      "options": {
+        "not_applicable": "لاگو نہیں",
+        "m_multiple_primary_synchronous_tumors": "(m) ایک عضو میں متعدد synchronous primary tumors"
+      }
+    },
+    "pn_category": {
+      "label": "pN زمرہ",
+      "options": {
+        "pn_not_assigned_no_nodes": "pN تفویض نہیں کیا گیا (کوئی لمف نوڈ جمع یا شناخت نہیں ہوا)",
+        "pn_not_assigned_cannot_be_determined": "pN تفویض نہیں کیا گیا (دستیاب پیتھالوجیکل معلومات کی بنیاد پر متعین نہیں کیا جا سکتا)",
+        "pn0_no_regional_metastasis": "pN0: علاقائی لمف نوڈز میں کوئی میٹاسٹیسس موجود نہیں",
+        "pn0_i_plus": "pN0(i+): علاقائی لمف نوڈز میں الگ تھلگ ٹیومر خلیات، جو 0.2 ملی میٹر سے زیادہ نہیں",
+        "pn1_group": "pN1: پیلوک لمف نوڈز میں علاقائی نوڈل میٹاسٹیسس",
+        "pn1mi": "pN1mi: پیلوک لمف نوڈز میں مائیکرو میٹاسٹیسس (>0.2 ملی میٹر لیکن ≤2.0 ملی میٹر)",
+        "pn1a": "pN1a: پیلوک لمف نوڈز میں میٹاسٹیسس (>2.0 ملی میٹر)",
+        "pn1_subcategory_cannot_be_determined": "pN1 (ذیلی زمرہ متعین نہیں کیا جا سکتا)",
+        "pn2_group": "pN2: پیرا-آورٹک لمف نوڈز میں میٹاسٹیسس، چاہے پیلوک نوڈز مثبت ہوں یا نہ ہوں",
+        "pn2mi": "pN2mi: پیرا-آورٹک لمف نوڈز میں مائیکرو میٹاسٹیسس (>0.2 ملی میٹر لیکن ≤2.0 ملی میٹر)، چاہے پیلوک نوڈز مثبت ہوں یا نہ ہوں",
+        "pn2a": "pN2a: پیرا-آورٹک لمف نوڈز میں میٹاسٹیسس (>2.0 ملی میٹر)، چاہے پیلوک نوڈز مثبت ہوں یا نہ ہوں",
+        "pn2_subcategory_cannot_be_determined": "pN2 (ذیلی زمرہ متعین نہیں کیا جا سکتا)"
+      },
+      "itc_note": "الگ تھلگ ٹیومر خلیات (ITCs) وہ خلیات ہیں جن کا سائز 0.2 ملی میٹر یا اس سے کم ہو، یا ایسے خلیاتی مجموعے ہوں جن میں 200 یا اس سے کم خلیات شامل ہوں۔",
+      "pn1_pn2_note": "2.0 ملی میٹر سے بڑا حتیٰ کہ ایک واحد میٹاسٹیسس بھی pN1a یا pN2a کی درجہ بندی کے لیے کافی ہے۔"
+    },
+    "n_suffix": {
+      "label": "لاحقہ N (صرف اگر لاگو ہو)",
+      "options": {
+        "not_applicable": "لاگو نہیں",
+        "sn_sentinel_node_procedure": "(sn) سینٹینل لمف نوڈ کا طریقۂ کار",
+        "f_fna_or_core_biopsy": "(f) فائن نیڈل ایسپیریشن (FNA) یا کور بایوپسی"
+      }
+    },
+    "pm_category": {
+      "label": "pM زمرہ (صرف اس صورت میں جب پیتھالوجی سے تصدیق ہو)",
+      "note": "پیلوک سیروزل ساختوں کی شمولیت کو pT3a کے طور پر درجہ بند کیا جاتا ہے، جبکہ اومنٹم اور پیٹ کے پیریٹونیم کی شمولیت کو pM1 بیماری تصور کیا جاتا ہے۔",
+      "options": {
+        "not_applicable_pm_cannot_be_determined": "لاگو نہیں — جمع کیے گئے نمونوں کی بنیاد پر pM متعین نہیں کیا جا سکتا",
+        "pm1_distant_metastasis": "pM1: دور دراز میٹاسٹیسس (بشمول انگوئنل لمف نوڈز، اندرِ پیریٹونیل بیماری، پھیپھڑے، جگر یا ہڈی میں میٹاسٹیسس؛ جبکہ پیلوک یا پیرا-آورٹک لمف نوڈز، اندام نہانی، رحم کی سیروسا یا ایڈنیکسا میں میٹاسٹیسس شامل نہیں)"
+      }
+    }
+  },
+  "figo_stage": {
+    "label": "FIGO اسٹیج",
+    "figo_2009_2018": {
+      "label": "FIGO اسٹیج (FIGO 2009 اسٹیجنگ / FIGO کینسر رپورٹ 2018)",
+      "options": {
+        "i": "I: بیماری جسمِ رحم تک محدود ہے",
+        "ia": "IA: بیماری اینڈومیٹریئم تک محدود ہے یا مایومیٹریئم کے نصف سے کم میں سرایت کرتی ہے",
+        "ib": "IB: بیماری مایومیٹریئم کے نصف یا اس سے زیادہ میں سرایت کرتی ہے",
+        "ii": "II: بیماری سروکس کے اسٹرومل ٹشو میں سرایت کرتی ہے لیکن رحم سے باہر نہیں پھیلتی",
+        "iii": "III: ٹیومر کا مقامی اور/یا علاقائی پھیلاؤ",
+        "iiia": "IIIA: رحم کی سیروسا، ایڈنیکسا یا دونوں کی شمولیت",
+        "iiib": "IIIB: اندام نہانی اور/یا پیرا میٹریئم / پیلوک پیریٹونیم کی شمولیت",
+        "iiic": "IIIC: پیلوک یا پیرا-آورٹک لمف نوڈز میں میٹاسٹیسس",
+        "iiic1": "IIIC1: پیلوک لمف نوڈز میں میٹاسٹیسس",
+        "iiic2": "IIIC2: پیرا-آورٹک لمف نوڈز میں میٹاسٹیسس، چاہے پیلوک نوڈز مثبت ہوں یا نہ ہوں",
+        "iv": "IV: مثانے یا آنت کی میوکوسا تک پھیلاؤ اور/یا دور دراز میٹاسٹیسس",
+        "iva": "IVA: مثانے کی میوکوسا اور/یا آنت کی میوکوسا میں سرایت",
+        "ivb_note": "پیلوک سیروزل ساختوں کی شمولیت کو اسٹیج IIIA میں شامل کیا جاتا ہے، جبکہ اومنٹم اور پیٹ کے پیریٹونیم کی شمولیت کو اسٹیج IVB بیماری تصور کیا جاتا ہے۔",
+        "ivb": "IVB: دور دراز میٹاسٹیسس یا پیلوِس سے باہر پیٹ کے پیریٹونیم میں میٹاسٹیسس"
+      }
+    },
+    "figo_2023": {
+      "label": "FIGO اسٹیج (Endometrium Cancer کی 2023 اسٹیجنگ)",
+      "options": {
+        "i": "I: بیماری جسمِ رحم تک محدود ہے",
+        "ia": "IA: بیماری اینڈومیٹریئم تک محدود ہے یا مایومیٹریئم کے نصف سے کم میں سرایت کرتی ہے",
+        "ia1": "IA1: غیر جارحانہ ہسٹولوجیکل اقسام جو اینڈومیٹریئل پولِپ تک محدود ہوں یا صرف اینڈومیٹریئم تک محدود ہوں",
+        "ia2": "IA2: غیر جارحانہ ہسٹولوجیکل اقسام جن میں مایومیٹریئم کے نصف سے کم شمولیت ہو، LVSI موجود نہ ہو یا صرف فوکل LVSI ہو",
+        "ia3": "IA3: کم گریڈ اینڈومیٹریوئڈ کارسینوما جو رحم اور اووری تک محدود ہوں",
+        "iam_polemut": "IAm (POLEmut): POLE میوٹیشن والا اینڈومیٹریئل کارسینوما، جو جسمِ رحم تک محدود ہو یا سروکس تک پھیلاؤ کے ساتھ ہو، LVSI یا ہسٹولوجیکل قسم سے قطع نظر",
+        "ib": "IB: بیماری مایومیٹریئم کے نصف یا اس سے زیادہ میں سرایت کرتی ہے",
+        "ic": "IC: جارحانہ ہسٹولوجیکل اقسام جو پولِپ یا اینڈومیٹریئم تک محدود ہوں",
+        "ii": "II: بیماری سروکس کے اسٹرومل ٹشو میں سرایت کرتی ہے لیکن رحم سے باہر نہیں پھیلتی",
+        "iia": "IIA: غیر جارحانہ ہسٹولوجیکل اقسام میں سرویکل اسٹرومل سرایت",
+        "iib": "IIB: غیر جارحانہ ہسٹولوجیکل اقسام میں نمایاں LVSI",
+        "iic": "IIC: جارحانہ ہسٹولوجیکل اقسام جن میں مایومیٹریئل شمولیت موجود ہو",
+        "iicm_p53abn": "IICm (p53abn): p53 غیر معمولی اینڈومیٹریئل کارسینوما، جو جسمِ رحم تک محدود ہو، کسی بھی درجے کی مایومیٹریئل سرایت کے ساتھ، چاہے سرویکل سرایت موجود ہو یا نہ ہو، LVSI یا ہسٹولوجیکل قسم سے قطع نظر",
+        "iii": "III: ٹیومر کا مقامی اور/یا علاقائی پھیلاؤ",
+        "iiia": "IIIA: رحم کی سیروسا، ایڈنیکسا یا دونوں کی شمولیت",
+        "iiia1": "IIIA1: اووری یا فیلوپیئن ٹیوب تک پھیلاؤ (جب IA3 کے معیار پورے نہ ہوں)",
+        "iiia2": "IIIA2: رحم کی سب سیروسا کی شمولیت یا سیروسا کے ذریعے پھیلاؤ",
+        "iiib": "IIIB: اندام نہانی اور/یا پیرا میٹریئم / پیلوک پیریٹونیم کی شمولیت",
+        "iiib1": "IIIB1: اندام نہانی اور/یا پیرا میٹریئم تک میٹاسٹیسس یا براہ راست پھیلاؤ",
+        "iiib2": "IIIB2: پیلوک پیریٹونیم میں میٹاسٹیسس",
+        "iiic": "IIIC: پیلوک یا پیرا-آورٹک لمف نوڈز میں میٹاسٹیسس",
+        "iiic1": "IIIC1: پیلوک لمف نوڈز میں میٹاسٹیسس",
+        "iiic1i": "IIIC1i: مائیکرو میٹاسٹیسس (پیلوک لمف نوڈز میں)",
+        "iiic1ii": "IIIC1ii: میکرو میٹاسٹیسس (پیلوک لمف نوڈز میں)",
+        "iiic2": "IIIC2: پیرا-آورٹک لمف نوڈز میں میٹاسٹیسس، چاہے پیلوک نوڈز مثبت ہوں یا نہ ہوں",
+        "iiic2i": "IIIC2i: پیرا-آورٹک لمف نوڈز میں رینل وریدوں تک مائیکرو میٹاسٹیسس، چاہے پیلوک نوڈز مثبت ہوں یا نہ ہوں",
+        "iiic2ii": "IIIC2ii: پیرا-آورٹک لمف نوڈز میں رینل وریدوں تک میکرو میٹاسٹیسس، چاہے پیلوک نوڈز مثبت ہوں یا نہ ہوں",
+        "iv": "IV: مثانے یا آنت کی میوکوسا تک پھیلاؤ اور/یا دور دراز میٹاسٹیسس",
+        "iva": "IVA: مثانے کی میوکوسا اور/یا آنت کی میوکوسا میں سرایت",
+        "ivb": "IVB: پیلوِس سے باہر پیٹ کے پیریٹونیم میں میٹاسٹیسس یا دور دراز میٹاسٹیسس",
+        "ivc": "IVC: دور دراز میٹاسٹیسس، بشمول رینل وریدوں سے اوپر اضافی یا اندرونی پیٹ کے لمف نوڈز، پھیپھڑوں، جگر، دماغ یا ہڈی میں میٹاسٹیسس"
+      }
+    }
+  },
+  "additional_findings": {
+    "label": "اضافی مشاہدات",
+    "options": {
+      "label": "اضافی مشاہدات (تمام متعلقہ اختیارات منتخب کریں)",
+      "none_identified": "کوئی شناخت نہیں ہوا",
+      "atypical_hyperplasia_ein": "ایٹپیکل ہائپرپلازیا / اینڈومیٹریوئڈ انٹراایپی تھیلیل نیوپلاسیا (EIN)",
+      "other_specify": "دیگر (وضاحت کریں): _________________"
+    }
+  }
 }

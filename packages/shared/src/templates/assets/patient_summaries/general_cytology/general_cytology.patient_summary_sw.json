@@ -1,0 +1,66 @@
+{
+  "templateId": "general_cytology",
+  "summaryType": "rule_based_patient_facing_summary",
+  "version": "1.0",
+  "language": "sw",
+  "system": "Kiolezo cha Jumla cha Kuripoti Saitolojia",
+  "triggerField": "diagnostic_category",
+  "summaries": {
+    "general_non_diagnostic_unsatisfactory": {
+      "professionalLabel": "Isiyotosha kwa uchunguzi / Isiyoridhisha",
+      "patientTitle": "Sampuli haikutosha kutoa majibu ya uhakika",
+      "plainLanguageSummary": "Sampuli ya saitolojia haikuwa na seli za kutosha zinazofaa, au ubora wa sampuli ulikuwa na upungufu, hivyo utambuzi wa uhakika haukuweza kufanywa.",
+      "whatThisMeans": "Hii haimaanishi kuwa saratani imepatikana. Inamaanisha kuwa sampuli haikutosha kutoa jibu la kuaminika.",
+      "possibleNextSteps": "Daktari wako anaweza kupendekeza kurudia sampuli, biopsy, kupitia vipimo vya picha, au vipimo vingine kulingana na eneo la sampuli na kiwango cha wasiwasi wa kliniki.",
+      "safetyNote": "Muhtasari huu ni kwa ajili ya kuelewa matokeo kwa ujumla tu. Tafadhali jadili ripoti kamili na daktari wako, ambaye ataifasiri pamoja na dalili zako, uchunguzi wa kliniki, vipimo vya picha, na matokeo ya awali inapohusika."
+    },
+    "general_negative_for_malignancy_benign": {
+      "professionalLabel": "Hasi kwa saratani / Isiyo ya saratani",
+      "patientTitle": "Hakuna seli za saratani zilizoonekana",
+      "plainLanguageSummary": "Sampuli haikuonyesha seli za saratani na inaonekana kuwa isiyo ya saratani katika nyenzo zilizochunguzwa.",
+      "whatThisMeans": "Kwa ujumla, haya ni matokeo ya kutuliza wasiwasi, lakini yanapaswa kufasiriwa pamoja na dalili zako, uchunguzi wa kliniki, vipimo vya picha, na matokeo ya awali.",
+      "possibleNextSteps": "Daktari wako anaweza kupendekeza ufuatiliaji wa kawaida, matibabu ya hali isiyo ya saratani, au vipimo zaidi kama bado kuna wasiwasi wa kliniki.",
+      "safetyNote": "Muhtasari huu ni kwa ajili ya kuelewa matokeo kwa ujumla tu. Tafadhali jadili ripoti kamili na daktari wako, ambaye ataifasiri pamoja na dalili zako, uchunguzi wa kliniki, vipimo vya picha, na matokeo ya awali inapohusika."
+    },
+    "general_atypical_cells_present": {
+      "professionalLabel": "Seli zisizo za kawaida zimeonekana",
+      "patientTitle": "Baadhi ya seli zisizo za kawaida zimeonekana",
+      "plainLanguageSummary": "Sampuli inaonyesha baadhi ya seli zinazoonekana tofauti, lakini matokeo hayatoshi kutambua saratani.",
+      "whatThisMeans": "Haya ni matokeo yasiyo ya uhakika. Seli zinaweza kuwa za mwitikio au zisizo za saratani, lakini tathmini zaidi inaweza kuhitajika.",
+      "possibleNextSteps": "Daktari wako anaweza kupendekeza kurudia sampuli, biopsy, kulinganisha na vipimo vya picha, au vipimo vingine kulingana na eneo la sampuli na wasiwasi wa kliniki.",
+      "safetyNote": "Muhtasari huu ni kwa ajili ya kuelewa matokeo kwa ujumla tu. Tafadhali jadili ripoti kamili na daktari wako, ambaye ataifasiri pamoja na dalili zako, uchunguzi wa kliniki, vipimo vya picha, na matokeo ya awali inapohusika."
+    },
+    "general_suspicious_for_malignancy": {
+      "professionalLabel": "Inayoshukiwa kuwa saratani",
+      "patientTitle": "Seli zinazotia shaka zimeonekana",
+      "plainLanguageSummary": "Sampuli inaonyesha seli zinazoshukiwa kuwa saratani, lakini huenda hazitoshi kutoa utambuzi wa mwisho.",
+      "whatThisMeans": "Kuna wasiwasi mkubwa, na mara nyingi tathmini zaidi huhitajika.",
+      "possibleNextSteps": "Daktari wako anaweza kupendekeza biopsy, kurudia sampuli, vipimo vya picha, au rufaa kwa mtaalamu.",
+      "safetyNote": "Muhtasari huu ni kwa ajili ya kuelewa matokeo kwa ujumla tu. Tafadhali jadili ripoti kamili na daktari wako, ambaye ataifasiri pamoja na dalili zako, uchunguzi wa kliniki, vipimo vya picha, na matokeo ya awali inapohusika."
+    },
+    "general_positive_for_malignancy": {
+      "professionalLabel": "Chanya kwa saratani",
+      "patientTitle": "Seli za saratani zimeonekana",
+      "plainLanguageSummary": "Sampuli inaonyesha seli za saratani.",
+      "whatThisMeans": "Matokeo haya kwa kawaida huhitaji tathmini zaidi ya kliniki na kupanga matibabu.",
+      "possibleNextSteps": "Daktari wako atayafasiri matokeo haya pamoja na hali yako ya kliniki na anaweza kupanga biopsy, vipimo vya picha, rufaa kwa mtaalamu, au vipimo vingine.",
+      "safetyNote": "Muhtasari huu ni kwa ajili ya kuelewa matokeo kwa ujumla tu. Tafadhali jadili ripoti kamili na daktari wako, ambaye ataifasiri pamoja na dalili zako, uchunguzi wa kliniki, vipimo vya picha, na matokeo ya awali inapohusika."
+    },
+    "general_neoplasm_benign_low_grade_malignant": {
+      "professionalLabel": "Neoplasm ipo: isiyo ya saratani / ya kiwango cha chini / ya saratani",
+      "patientTitle": "Kuna ukuaji au uvimbe wa seli",
+      "plainLanguageSummary": "Sampuli inaonyesha neoplasm, yaani ukuaji usio wa kawaida wa seli. Ripoti inapaswa kueleza kama inaonekana kuwa isiyo ya saratani, ya kiwango cha chini, au ya saratani inapowezekana.",
+      "whatThisMeans": "Maana yake hutegemea aina ya neoplasm, eneo la mwili, na kama imeelezwa kuwa isiyo ya saratani, ya kiwango cha chini, inayotia shaka, au ya saratani.",
+      "possibleNextSteps": "Daktari wako anaweza kupendekeza vipimo vya picha, biopsy, upasuaji, au tathmini zaidi ya mtaalamu kulingana na utambuzi.",
+      "safetyNote": "Muhtasari huu ni kwa ajili ya kuelewa matokeo kwa ujumla tu. Tafadhali jadili ripoti kamili na daktari wako, ambaye ataifasiri pamoja na dalili zako, uchunguzi wa kliniki, vipimo vya picha, na matokeo ya awali inapohusika."
+    },
+    "general_other": {
+      "professionalLabel": "Nyingine",
+      "patientTitle": "Matokeo mengine ya saitolojia",
+      "plainLanguageSummary": "Ripoti inaeleza matokeo ambayo hayaingii vizuri katika makategoria ya kawaida ya uchunguzi.",
+      "whatThisMeans": "Umuhimu wake hutegemea maneno halisi ya utambuzi wa mwisho na hali yako ya kliniki.",
+      "possibleNextSteps": "Daktari wako ataeleza matokeo na kuamua kama ufuatiliaji, kurudia sampuli, biopsy, au matibabu yanahitajika.",
+      "safetyNote": "Muhtasari huu ni kwa ajili ya kuelewa matokeo kwa ujumla tu. Tafadhali jadili ripoti kamili na daktari wako, ambaye ataifasiri pamoja na dalili zako, uchunguzi wa kliniki, vipimo vya picha, na matokeo ya awali inapohusika."
+    }
+  }
+}
