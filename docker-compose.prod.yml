@@ -1,0 +1,79 @@
+# Production stack — standalone (do NOT layer on docker-compose.yml).
+# Usage:
+#   cp .env.production.example .env.production
+#   # fill in DATABASE_URL, INSTANCE_CONNECTION_NAME, SESSION_SECRET, etc.
+#   mkdir -p secrets && cp /path/to/gcp-sa.json secrets/gcp-sa.json
+#   docker compose --env-file .env.production -f docker-compose.prod.yml up -d --build
+#
+# `--env-file .env.production` is required so that ${INSTANCE_CONNECTION_NAME}
+# below is interpolated into the cloudsql-proxy command. Service `env_file:`
+# directives separately load the same file into the container environments.
+#
+# Differs from docker-compose.yml only in the database wiring:
+#   - no local `postgres` service
+#   - a `cloudsql-proxy` sidecar fronts a Google Cloud SQL instance
+#   - backend runs `prisma migrate deploy` (not `db push`) and skips seeding
+
+services:
+  # ─── Cloud SQL Auth Proxy ────────────────────────────────────────────────
+  cloudsql-proxy:
+    image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2
+    container_name: lis-cloudsql-proxy
+    restart: unless-stopped
+    env_file:
+      - .env.production
+    command:
+      - --address=0.0.0.0
+      - --port=5432
+      - --credentials-file=/secrets/gcp-sa.json
+      - ${INSTANCE_CONNECTION_NAME}
+    volumes:
+      - ./secrets:/secrets:ro
+    healthcheck:
+      # The proxy image is distroless and has no shell; use the proxy binary's
+      # built-in health probe instead. (Add `--health-check` to `command` if
+      # you want a richer probe; for now we rely on TCP via depends_on.)
+      test: ['CMD', '/cloud-sql-proxy', '--version']
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  # ─── Backend ─────────────────────────────────────────────────────────────
+  backend:
+    build:
+      context: .
+      dockerfile: docker/backend.Dockerfile
+    container_name: lis-backend
+    restart: unless-stopped
+    depends_on:
+      cloudsql-proxy:
+        condition: service_started
+    env_file:
+      - .env.production
+    ports:
+      - '3001:3001'
+    volumes:
+      - generated_files:/app/apps/backend/storage
+    command: >
+      sh -c "
+        npx prisma migrate deploy --schema=prisma/schema.prisma &&
+        node apps/backend/dist/server.js
+      "
+
+  # ─── Frontend ────────────────────────────────────────────────────────────
+  # The bundle uses a relative `/api` baseURL and is served by nginx, which
+  # proxies to the backend over the compose network — no build-time API URL
+  # is required here.
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/frontend.Dockerfile
+    container_name: lis-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - '5173:80'
+
+volumes:
+  generated_files:
