@@ -1,71 +1,115 @@
 {
-  "templateName": "قالب تقرير علم الخلايا العنقية (مسحة باب) (نظام بيثيسدا)",
+  "templateId": "cervical_cytology_pap_smear_bethesda",
+  "version": "1.0",
+  "language": "ar",
+  "title": "قالب تقرير علم الخلايا لعنق الرحم (مسحة باب) (نظام بيثيسدا)",
+  "common": {
+    "yes": "نعم",
+    "no": "لا",
+    "positive": "إيجابي",
+    "negative": "سلبي",
+    "pending": "قيد الانتظار"
+  },
   "sections": {
-    "specimen": "العينة",
-    "specimen_adequacy": "كفاية العينة",
-    "interpretation_result": "التفسير / النتيجة",
-    "ancillary_testing": "الفحوصات المساندة (إن أُجريت)",
-    "comment_recommendation": "التعليق / التوصية"
-  },
-  "fields": {
-    "cervical_cytology_type": "علم الخلايا العنقية (اختر المناسب)",
-    "source": "المصدر",
-    "hpv_test_available": "تم إرسال / توفر اختبار فيروس الورم الحليمي البشري",
-    "adequacy": "كفاية العينة",
-    "satisfactory_limited_by": "مرضية ولكن محدودة بسبب",
-    "unsatisfactory_reason": "السبب",
-    "nilm": "سلبي لآفة داخل الظهارة أو الخباثة (NILM)",
-    "no_lesion_or_malignancy": "لا توجد آفة داخل الظهارة أو خباثة",
-    "non_neoplastic_findings": "نتائج غير ورمية (إن وجدت، اختر المناسب)",
-    "organisms_identified": "الكائنات المحددة",
-    "organisms_other": "كائنات أخرى",
-    "epithelial_cell_abnormalities": "شذوذ الخلايا الظهارية",
-    "squamous_cell": "الخلايا الحرشفية",
-    "glandular_cell": "الخلايا الغدية",
-    "high_risk_hpv": "فيروس الورم الحليمي البشري عالي الخطورة",
-    "genotyping": "التنميط الجيني (إن توفر)",
-    "comment": "التعليق"
-  },
-  "options": {
-    "Conventional smear": "مسحة تقليدية",
-    "Liquid-based cytology": "علم الخلايا المعتمد على السائل",
-    "Cervix": "عنق الرحم",
-    "Ectocervix": "الجزء الخارجي من عنق الرحم",
-    "Endocervix": "الجزء الداخلي من عنق الرحم",
-    "Vaginal cuff": "قبة المهبل",
-    "Other": "أخرى",
-    "Yes": "نعم",
-    "No": "لا",
-    "Satisfactory for evaluation": "مرضية للتقييم",
-    "Satisfactory but limited by": "مرضية ولكن محدودة بسبب",
-    "Unsatisfactory for evaluation": "غير مرضية للتقييم",
-    "Obscuring blood": "دم يحجب الرؤية",
-    "Inflammation": "التهاب",
-    "Low squamous cellularity": "قلة الخلايا الحرشفية",
-    "Poor fixation": "تثبيت رديء",
-    "Scant cellularity": "قلة الخلوية",
-    "Poor preservation": "حفظ رديء",
-    "Negative for Intraepithelial Lesion or Malignancy (NILM)": "سلبي لآفة داخل الظهارة أو الخباثة (NILM)",
-    "Reactive cellular changes associated with inflammation": "تغيرات خلوية تفاعلية مرتبطة بالالتهاب",
-    "Reactive cellular changes associated with radiation / IUD / atrophy": "تغيرات خلوية تفاعلية مرتبطة بالإشعاع / اللولب / الضمور",
-    "Trichomonas vaginalis": "المشعرة المهبلية",
-    "Fungal organisms morphologically consistent with Candida spp.": "كائنات فطرية متوافقة شكليًا مع المبيضات",
-    "Shift in flora suggestive of bacterial vaginosis": "تبدل في الفلورا يوحي بالتهاب المهبل البكتيري",
-    "Bacteria morphologically consistent with Actinomyces spp.": "بكتيريا متوافقة شكليًا مع الأكتينوميسيس",
-    "Herpes simplex virus changes": "تغيرات فيروس الهربس البسيط",
-    "ASC-US (Atypical squamous cells of undetermined significance)": "ASC-US (خلايا حرشفية غير نمطية ذات دلالة غير محددة)",
-    "ASC-H (Atypical squamous cells, cannot exclude HSIL)": "ASC-H (خلايا حرشفية غير نمطية، لا يمكن استبعاد HSIL)",
-    "LSIL (Low-grade squamous intraepithelial lesion)": "LSIL (آفة حرشفية داخل الظهارة منخفضة الدرجة)",
-    "HSIL (High-grade squamous intraepithelial lesion)": "HSIL (آفة حرشفية داخل الظهارة عالية الدرجة)",
-    "Squamous cell carcinoma": "سرطان الخلايا الحرشفية",
-    "Atypical glandular cells (AGC)": "خلايا غدية غير نمطية (AGC)",
-    "Endocervical adenocarcinoma in situ (AIS)": "سرطان غدي داخل الظهارة في باطن عنق الرحم (AIS)",
-    "Adenocarcinoma": "سرطان غدي",
-    "Positive": "إيجابي",
-    "Negative": "سلبي",
-    "Pending": "قيد الانتظار"
-  },
-  "defaults": {
-    "comment": "تُربط النتيجة بحالة فيروس الورم الحليمي البشري وإرشادات التحري الحالية. يُنصح بتنظير عنق الرحم / إعادة الفحص الخلوي / التحري الروتيني حسب الاستطباب السريري."
+    "specimen": {
+      "title": "العينة",
+      "fields": {
+        "specimen_type": {
+          "label": "علم خلايا عنق الرحم (اختر المناسب)",
+          "options": {
+            "conventional_smear": "مسحة تقليدية",
+            "liquid_based_cytology": "علم الخلايا المعتمد على السائل"
+          }
+        },
+        "source": {
+          "label": "المصدر",
+          "options": {
+            "cervix": "عنق الرحم",
+            "ectocervix": "الجزء الخارجي من عنق الرحم",
+            "endocervix": "القناة العنقية",
+            "vaginal_cuff": "قبو المهبل",
+            "other": "أخرى"
+          }
+        },
+        "hpv_test_submitted_available": {
+          "label": "فحص فيروس الورم الحليمي البشري مُرسل / متاح",
+          "options": {
+            "yes": "نعم",
+            "no": "لا"
+          }
+        }
+      }
+    },
+    "specimen_adequacy": {
+      "title": "ملاءمة العينة",
+      "fields": {
+        "adequacy_status": {
+          "label": "ملاءمة العينة",
+          "options": {
+            "satisfactory_for_evaluation": "ملائمة للتقييم",
+            "unsatisfactory_scant_cellularity": "غير ملائمة للتقييم - قلة الخلوية",
+            "unsatisfactory_obscuring_blood_inflammation": "غير ملائمة للتقييم - دم حاجب / التهاب",
+            "unsatisfactory_poor_preservation": "غير ملائمة للتقييم - حفظ رديء",
+            "unsatisfactory_other": "غير ملائمة للتقييم - سبب آخر"
+          }
+        },
+        "satisfactory_but_limited_by": {
+          "label": "ملائمة ولكن يحدها",
+          "options": {
+            "obscuring_blood": "دم يحجب الرؤية",
+            "inflammation": "التهاب",
+            "low_squamous_cellularity": "قلة الخلايا الحرشفية",
+            "poor_fixation": "تثبيت رديء"
+          }
+        }
+      }
+    },
+    "interpretation_result": {
+      "title": "التفسير / النتيجة (اختر المناسب)",
+      "fields": {
+        "interpretation_result": {
+          "label": "التفسير / النتيجة",
+          "options": {
+            "nilm_within_normal_limits": "سلبي لآفة داخل الظهارة أو خباثة: ضمن الحدود الطبيعية",
+            "nilm_reactive_inflammation": "سلبي لآفة داخل الظهارة أو خباثة، مع تغيرات خلوية تفاعلية مرتبطة بالالتهاب",
+            "nilm_reactive_radiation_iud_atrophy": "سلبي لآفة داخل الظهارة أو خباثة، مع تغيرات خلوية تفاعلية مرتبطة بالإشعاع / اللولب / الضمور",
+            "organism_trichomonas_vaginalis": "سلبي لآفة داخل الظهارة أو خباثة، مع كائنات محددة: المشعرة المهبلية",
+            "organism_candida_spp": "سلبي لآفة داخل الظهارة أو خباثة، مع كائنات محددة: كائنات فطرية تتوافق شكلياً مع أنواع المبيضات",
+            "organism_bacterial_vaginosis": "سلبي لآفة داخل الظهارة أو خباثة، مع كائنات محددة: تبدل في الفلورا يوحي بالتهاب المهبل الجرثومي",
+            "organism_actinomyces_spp": "سلبي لآفة داخل الظهارة أو خباثة، مع كائنات محددة: بكتيريا تتوافق شكلياً مع أنواع الأكتينوميسيس",
+            "organism_herpes_simplex_virus": "سلبي لآفة داخل الظهارة أو خباثة، مع كائنات محددة: تغيرات فيروس الهربس البسيط",
+            "asc_us": "ASC-US (خلايا حرشفية غير نمطية ذات أهمية غير محددة)",
+            "asc_h": "ASC-H (خلايا حرشفية غير نمطية، لا يمكن استبعاد HSIL)",
+            "lsil": "LSIL (آفة حرشفية داخل الظهارة منخفضة الدرجة)",
+            "hsil": "HSIL (آفة حرشفية داخل الظهارة عالية الدرجة)",
+            "squamous_cell_carcinoma": "سرطان الخلايا الحرشفية",
+            "agc": "خلايا غدية غير نمطية (AGC)",
+            "ais": "سرطان غدي باطن عنق الرحم موضعي (AIS)",
+            "adenocarcinoma": "سرطان غدي"
+          }
+        }
+      }
+    },
+    "ancillary_testing": {
+      "title": "الفحوصات المساندة (إن أُجريت)",
+      "fields": {
+        "high_risk_hpv": {
+          "label": "فيروس الورم الحليمي البشري عالي الخطورة",
+          "options": {
+            "positive": "إيجابي",
+            "negative": "سلبي",
+            "pending": "قيد الانتظار"
+          }
+        }
+      }
+    },
+    "comment_recommendation": {
+      "title": "تعليق / توصية",
+      "fields": {
+        "comment_recommendation": {
+          "label": "تعليق / توصية"
+        }
+      }
+    }
   }
 }

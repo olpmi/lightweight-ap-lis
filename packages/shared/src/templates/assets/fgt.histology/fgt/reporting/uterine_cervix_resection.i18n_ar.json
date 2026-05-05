@@ -1,12 +1,372 @@
 {
-  "template_id": "uterine_cervix_resection_v1",
-  "lang": "ar",
-  "ui": { "direction": "rtl" },
-  "title": "استئصال عنق الرحم",
-  "tumor": { "label": "الورم" },
-  "margins": { "label": "الهوامش" },
-  "regional_lymph_nodes": { "label": "العقد اللمفاوية الإقليمية" },
-  "distant_metastasis": { "label": "النقائل البعيدة" },
-  "pathologic_stage": { "label": "التصنيف المرضي" },
-  "additional_findings": { "label": "النتائج الإضافية" }
+  "protocol_title": "نموذج تقرير: استئصال عنق الرحم",
+  "protocol": {
+    "posting_date": "مارس 2023",
+    "standards": "تقرير FIGO للسرطان 2018، AJCC-UICC الإصدار 9"
+  },
+  "common": {
+    "not_applicable": "غير منطبق",
+    "not_identified": "غير موجود",
+    "present": "موجود",
+    "absent": "غير موجود",
+    "cannot_be_determined": "لا يمكن تحديده",
+    "cannot_be_determined_explain": "لا يمكن تحديده (اشرح)",
+    "other_specify": "أخرى (حدد)",
+    "not_submitted_or_found": "لم يُرسل أو لم يُعثر عليه",
+    "exact_number": "العدد الدقيق",
+    "at_least": "على الأقل",
+    "less_than": "أقل من",
+    "greater_than": "أكبر من",
+    "exact_size": "الحجم الدقيق",
+    "exact_distance": "المسافة الدقيقة",
+    "specify_mm": "حدد بالملليمتر (mm)",
+    "select_all_that_apply": "اختر كل ما ينطبق",
+    "required_only_if_applicable": "مطلوب فقط إذا كان منطبقاً",
+    "required_only_if_present": "مطلوب فقط إذا كان موجوداً",
+    "explain": "اشرح",
+    "right": "يمين",
+    "left": "يسار",
+    "sentinel": "حارسة",
+    "non_sentinel": "غير حارسة",
+    "comment": "تعليق"
+  },
+  "histology": {
+    "histologic_type": "النوع النسيجي",
+    "histologic_type_options": {
+      "squamous_hpv_associated": "سرطان الخلايا الحرشفية، مرتبط بـ HPV",
+      "squamous_hpv_independent": "سرطان الخلايا الحرشفية، غير مرتبط بـ HPV",
+      "squamous_nos": "سرطان الخلايا الحرشفية، NOS (مقبول عندما لا يتوفر اختبار p16 أو HPV)",
+      "adenocarcinoma_nos": "سرطان غدي، NOS",
+      "adenocarcinoma_hpv_associated": "سرطان غدي مرتبط بـ HPV",
+      "adenocarcinoma_hpv_independent_nos": "سرطان غدي غير مرتبط بـ HPV، NOS",
+      "adenocarcinoma_gastric_type": "سرطان غدي غير مرتبط بـ HPV، من النمط المعدي",
+      "adenocarcinoma_clear_cell_type": "سرطان غدي غير مرتبط بـ HPV، من نمط الخلايا الصافية",
+      "adenocarcinoma_mesonephric_type": "سرطان غدي غير مرتبط بـ HPV، من النمط الميزونفري",
+      "endometrioid_adenocarcinoma_nos": "سرطان غدي بطاني رحمي، NOS",
+      "carcinosarcoma": "سرطان ساركومي",
+      "adenosquamous_carcinoma": "سرطان غدي حرشفي",
+      "adenoid_basal_carcinoma": "سرطان قاعدي غداني",
+      "mucoepidermoid_carcinoma": "سرطان مخاطي بشروي",
+      "unclassifiable_carcinoma": "سرطان غير قابل للتصنيف (سرطان غير متمايز)",
+      "neuroendocrine_tumor_nos": "ورم عصبي صماوي، NOS",
+      "neuroendocrine_tumor_grade_1": "ورم عصبي صماوي، الدرجة 1",
+      "neuroendocrine_tumor_grade_2": "ورم عصبي صماوي، الدرجة 2",
+      "small_cell_neuroendocrine_high_grade": "سرطان عصبي صماوي صغير الخلايا، عالي الدرجة",
+      "large_cell_neuroendocrine_high_grade": "سرطان عصبي صماوي كبير الخلايا، عالي الدرجة",
+      "neuroendocrine_carcinoma_nos": "سرطان عصبي صماوي، NOS",
+      "mixed_neuroendocrine_non_neuroendocrine": "سرطان مختلط عصبي صماوي وغير عصبي صماوي",
+      "other_histologic_type": "نوع نسيجي آخر غير مدرج (حدد)",
+      "type_cannot_be_determined": "سرطان، لا يمكن تحديد نوعه"
+    },
+    "histologic_grade": "الدرجة النسيجية",
+    "grade_options": {
+      "g1": "G1، متمايز جيداً",
+      "g2": "G2، متمايز بدرجة متوسطة",
+      "g3": "G3، ضعيف التمايز",
+      "gx": "GX، لا يمكن تقييمه",
+      "not_applicable": "غير منطبق"
+    }
+  },
+  "stromal_invasion": {
+    "title": "غزو السدى",
+    "depth": "عمق غزو السدى",
+    "depth_options": {
+      "specify_mm": "حدد بالملليمتر (mm)",
+      "not_more_than_3mm": "لا يزيد عن 3 مم",
+      "greater_than_3_not_more_than_5mm": "أكبر من 3 مم ولكن لا يزيد عن 5 مم",
+      "greater_than_5mm": "أكبر من 5 مم",
+      "cannot_be_determined_explain": "لا يمكن تحديده (اشرح)"
+    },
+    "extent_of_depth": "مدى عمق غزو السدى",
+    "extent_options": {
+      "superficial_one_third": "الثلث السطحي",
+      "middle_one_third": "الثلث الأوسط",
+      "deep_one_third": "الثلث العميق",
+      "cannot_be_determined": "لا يمكن تحديده"
+    },
+    "horizontal_extent": "الامتداد الأفقي لغزو السدى",
+    "horizontal_extent_options": {
+      "not_applicable_larger_tumors": "غير منطبق (في الأورام الأكبر التي يمكن قياسها عيانياً)",
+      "specify_mm": "حدد بالملليمتر (mm)",
+      "estimated_less_equal_7mm": "يُقدّر بأنه 7 مم أو أقل",
+      "estimated_greater_than_7mm": "يُقدّر بأنه أكبر من 7 مم",
+      "number_of_blocks_involved": "عدد القوالب المصابة",
+      "cannot_be_determined_explain": "لا يمكن تحديده (اشرح)"
+    },
+    "silva_system": "نظام Silva للغزو",
+    "silva_note": "ينطبق نظام Silva فقط على السرطانات الغدية الغازية داخل عنق الرحم المرتبطة بـ HPV",
+    "silva_options": {
+      "not_applicable": "غير منطبق",
+      "pattern_a": "النمط A",
+      "pattern_b": "النمط B",
+      "pattern_c": "النمط C"
+    }
+  },
+  "tumor_extent": {
+    "other_tissue_organ_involvement": "إصابة أنسجة/أعضاء أخرى",
+    "note_any_organ_not_selected": "أي عضو غير مختار إما غير مصاب أو لم يُرسل للفحص",
+    "options": {
+      "not_applicable": "غير منطبق",
+      "not_identified": "غير موجود",
+      "parametrium": "الباراميتريوم",
+      "vagina_upper_two_thirds": "المهبل، الثلثان العلويان",
+      "vagina_lower_one_third": "المهبل، الثلث السفلي",
+      "vagina_location_not_specified": "المهبل (الموقع غير محدد)",
+      "pelvic_wall": "جدار الحوض",
+      "bladder_wall": "جدار المثانة",
+      "bladder_mucosa": "مخاطية المثانة",
+      "rectal_wall": "جدار المستقيم",
+      "bowel_mucosa": "مخاطية الأمعاء",
+      "other_organs_tissue": "أعضاء/أنسجة أخرى (حدد)",
+      "cannot_be_determined_explain": "لا يمكن تحديده (اشرح)"
+    },
+    "mucosal_surface_note": "يجب أن يشمل الورم السطح المخاطي"
+  },
+  "lymphovascular_invasion": {
+    "title": "الغزو اللمفي و/أو الوعائي",
+    "options": {
+      "not_identified": "غير موجود",
+      "present": "موجود",
+      "equivocal_explain": "ملتبس (اشرح)",
+      "cannot_be_determined": "لا يمكن تحديده"
+    }
+  },
+  "margins": {
+    "title": "الهوامش",
+    "invasive_carcinoma_status": "حالة الهوامش بالنسبة للسرطان الغازي",
+    "invasive_options": {
+      "all_negative": "جميع الهوامش سالبة للسرطان الغازي",
+      "invasive_present_at_margin": "السرطان الغازي موجود عند الهامش",
+      "not_applicable": "غير منطبق"
+    },
+    "closest_margins_to_invasive": "أقرب هامش/هوامش إلى السرطان الغازي",
+    "margin_sites": {
+      "ectocervical": "خارج عنق الرحم (حدد الموقع إن أمكن)",
+      "radial_circumferential": "شعاعي/محيطي (حدد الموقع إن أمكن)",
+      "endocervical_lower_uterine_segment": "داخل عنق الرحم/الجزء السفلي من الرحم (حدد الموقع إن أمكن)",
+      "vaginal_cuff": "قبة المهبل",
+      "other_specify": "أخرى (حدد)",
+      "cannot_be_determined": "لا يمكن تحديده",
+      "cannot_be_determined_explain": "لا يمكن تحديده (اشرح)"
+    },
+    "distance_to_closest_margin": "المسافة من السرطان الغازي إلى أقرب هامش",
+    "distance_options": {
+      "exact_distance_mm": "المسافة الدقيقة: مم",
+      "greater_than": "أكبر من",
+      "at_least": "على الأقل",
+      "less_than": "أقل من",
+      "less_than_1mm": "أقل من 1 مم",
+      "other_specify": "أخرى (حدد)",
+      "cannot_be_determined": "لا يمكن تحديده"
+    },
+    "margins_involved_by_invasive": "الهامش/الهوامش المصابة بالسرطان الغازي",
+    "hsil_ais_status": "حالة الهوامش بالنسبة إلى HSIL أو AIS",
+    "hsil_ais_note": "لا يلزم الإبلاغ عن HSIL (CIN 2-3 أو VAIN 2-3) و/أو AIS إذا كان الهامش مصاباً بسرطان غازي",
+    "hsil_ais_options": {
+      "all_negative": "جميع الهوامش سالبة لـ HSIL و/أو AIS",
+      "hsil_present_at_margin": "HSIL موجودة عند الهامش",
+      "ais_present_at_margin": "AIS موجود عند الهامش",
+      "not_applicable": "غير منطبق"
+    },
+    "margins_involved_by_hsil": "الهامش/الهوامش المصابة بـ HSIL",
+    "margins_involved_by_ais": "الهامش/الهوامش المصابة بـ AIS",
+    "margin_comment": "تعليق على الهوامش"
+  },
+  "regional_lymph_nodes": {
+    "title": "العقد اللمفية الإقليمية",
+    "status": "حالة العقد اللمفية الإقليمية",
+    "status_note": "تُعد العقد اللمفية الحوضية والباراأبهريّة عقداً لمفية إقليمية. أما أي عقد أخرى مصابة فيجب تصنيفها كنقائل بعيدة (pM1) والإبلاغ عنها في قسم النقائل البعيدة. يُعد وجود خلايا ورمية معزولة لا تتجاوز 0.2 مم في العقد اللمفية الإقليمية N0 (i+).",
+    "status_options": {
+      "not_applicable_no_nodes": "غير منطبق (لم تُرسل أو تُوجد عقد لمفية إقليمية)",
+      "nodes_present": "توجد عقد لمفية إقليمية",
+      "all_negative": "جميع العقد اللمفية الإقليمية سالبة للخلايا الورمية",
+      "tumor_present_pelvic_nodes": "يوجد ورم في العقد اللمفية الحوضية",
+      "tumor_present_para_aortic_nodes": "يوجد ورم في العقد اللمفية الباراأبهريّة",
+      "other_specify": "أخرى (حدد)",
+      "cannot_be_determined_explain": "لا يمكن تحديده (اشرح)"
+    },
+    "metastasis_size_note": "النقائل الكبيرة: أكبر من 2 مم؛ النقائل الدقيقة: أكبر من 0.2 مم حتى 2 مم؛ الخلايا الورمية المعزولة (ITC): 0.2 مم أو أقل، أو خلايا منفردة/عناقيد خلوية لا تتجاوز 200 خلية في مقطع واحد من العقدة اللمفية.",
+    "pelvic_nodes": {
+      "title": "العقد اللمفية الحوضية",
+      "total_macrometastasis": "إجمالي عدد العقد الحوضية ذات النقائل الكبيرة (أكبر من 2 مم) (حارسة وغير حارسة)",
+      "sentinel_macrometastasis": "عدد العقد الحوضية الحارسة ذات النقائل الكبيرة",
+      "total_micrometastasis": "إجمالي عدد العقد الحوضية ذات النقائل الدقيقة (أكبر من 0.2 مم حتى 2 مم و/أو أكثر من 200 خلية) (حارسة وغير حارسة)",
+      "sentinel_micrometastasis": "عدد العقد الحوضية الحارسة ذات النقائل الدقيقة",
+      "total_itc": "إجمالي عدد العقد الحوضية ذات الخلايا الورمية المعزولة (0.2 مم أو أقل ولا تزيد عن 200 خلية)",
+      "sentinel_itc": "عدد العقد الحوضية الحارسة ذات ITCs",
+      "laterality_with_tumor": "جهة العقد الحوضية المصابة بالورم",
+      "largest_metastatic_deposit_size": "حجم أكبر بؤرة نقيلية في عقدة حوضية"
+    },
+    "para_aortic_nodes": {
+      "title": "العقد اللمفية الباراأبهريّة",
+      "total_macrometastasis": "إجمالي عدد العقد الباراأبهريّة ذات النقائل الكبيرة (أكبر من 2 مم) (حارسة وغير حارسة)",
+      "sentinel_macrometastasis": "عدد العقد الباراأبهريّة الحارسة ذات النقائل الكبيرة",
+      "total_micrometastasis": "إجمالي عدد العقد الباراأبهريّة ذات النقائل الدقيقة (أكبر من 0.2 مم حتى 2 مم و/أو أكثر من 200 خلية) (حارسة وغير حارسة)",
+      "sentinel_micrometastasis": "عدد العقد الباراأبهريّة الحارسة ذات النقائل الدقيقة",
+      "total_itc": "إجمالي عدد العقد الباراأبهريّة ذات الخلايا الورمية المعزولة (0.2 مم أو أقل ولا تزيد عن 200 خلية)",
+      "sentinel_itc": "عدد العقد الباراأبهريّة الحارسة ذات ITCs",
+      "laterality_with_tumor": "جهة العقد الباراأبهريّة المصابة بالورم",
+      "largest_metastatic_deposit_size": "حجم أكبر بؤرة نقيلية في عقدة باراأبهريّة"
+    },
+    "count_options": {
+      "not_applicable": "غير منطبق",
+      "exact_number": "العدد الدقيق",
+      "at_least": "على الأقل",
+      "other_specify": "أخرى (حدد)",
+      "cannot_be_determined_explain": "لا يمكن تحديده (اشرح)"
+    },
+    "laterality_options": {
+      "not_applicable": "غير منطبق",
+      "right_sentinel": "حارسة يمنى",
+      "right_non_sentinel": "غير حارسة يمنى",
+      "left_sentinel": "حارسة يسرى",
+      "left_non_sentinel": "غير حارسة يسرى",
+      "cannot_be_determined": "لا يمكن تحديده"
+    },
+    "size_options": {
+      "exact_size_mm": "الحجم الدقيق: مم",
+      "less_than": "أقل من",
+      "greater_than": "أكبر من",
+      "other_specify": "أخرى (حدد)",
+      "cannot_be_determined_explain": "لا يمكن تحديده (اشرح)"
+    },
+    "examined": {
+      "title": "العقد اللمفية المفحوصة",
+      "total_pelvic_examined": "إجمالي عدد العقد الحوضية المفحوصة (حارسة وغير حارسة)",
+      "pelvic_sentinel_examined": "عدد العقد الحوضية الحارسة المفحوصة",
+      "total_para_aortic_examined": "إجمالي عدد العقد الباراأبهريّة المفحوصة (حارسة وغير حارسة)",
+      "para_aortic_sentinel_examined": "عدد العقد الباراأبهريّة الحارسة المفحوصة"
+    },
+    "regional_lymph_node_comment": "تعليق على العقد اللمفية الإقليمية"
+  },
+  "distant_metastasis": {
+    "title": "النقائل البعيدة",
+    "sites_involved": "الموقع/المواقع البعيدة المصابة، إن وجدت",
+    "note": "لا يشمل ذلك النقائل إلى العقد اللمفية الحوضية أو الباراأبهريّة، أو المهبل",
+    "options": {
+      "not_applicable": "غير منطبق",
+      "uterine_serosa": "مصلية الرحم",
+      "adnexa": "الملحقات الرحمية",
+      "inguinal_lymph_nodes": "العقد اللمفية الأربية",
+      "omentum": "الثرب",
+      "extrapelvic_peritoneum": "البريتون خارج الحوض",
+      "lung": "الرئة",
+      "liver": "الكبد",
+      "bone": "العظم",
+      "other_specify": "أخرى (حدد)",
+      "cannot_be_determined": "لا يمكن تحديده"
+    }
+  },
+  "ptnm_classification": {
+    "title": "تصنيف pTNM (AJCC الإصدار 9)",
+    "general_note": "يعتمد الإبلاغ عن فئات pT وpN وpM، عند الاقتضاء، على المعلومات المتاحة لاختصاصي علم الأمراض عند إصدار التقرير. تقع مسؤولية تحديد المرحلة المرضية النهائية على الطبيب المعالج باستخدام جميع المعلومات ذات الصلة.",
+    "modified_classification": "التصنيف المعدل",
+    "modified_options": {
+      "not_applicable": "غير منطبق",
+      "y_post_neoadjuvant": "y (بعد العلاج المساعد الجديد)",
+      "r_recurrence": "r (النكس)"
+    },
+    "pt_category": "فئة pT",
+    "pt_options": {
+      "pt_not_assigned": "لم تُسند فئة pT (لا يمكن تحديدها بناءً على المعلومات المرضية المتاحة)",
+      "pt0": "pT0: لا يوجد دليل على ورم أولي",
+      "pt1": "pT1: السرطان محصور تماماً في عنق الرحم (يُتجاهل الامتداد إلى جسم الرحم)",
+      "pt1a": "pT1a: سرطان غازي لا يمكن تشخيصه إلا مجهرياً، بعمق غزو أقصى 5 مم أو أقل",
+      "pt1a1": "pT1a1: غزو سدوي مقاس 3 مم أو أقل عمقاً",
+      "pt1a2": "pT1a2: غزو سدوي مقاس أكبر من 3 مم و5 مم أو أقل عمقاً",
+      "pt1a_subcategory_unknown": "pT1a (لا يمكن تحديد الفئة الفرعية)",
+      "pt1b": "pT1b: سرطان غازي بعمق غزو مقاس أكبر من 5 مم؛ الآفة محدودة بعنق الرحم ويُقاس الحجم بأكبر قطر للورم",
+      "pt1b1": "pT1b1: سرطان غازي بعمق غزو سدوي أكبر من 5 مم وبأكبر بعد 2 سم أو أقل",
+      "pt1b2": "pT1b2: سرطان غازي أكبر من 2 سم و4 سم أو أقل في أكبر بعد",
+      "pt1b3": "pT1b3: سرطان غازي أكبر من 4 سم في أكبر بعد",
+      "pt1b_subcategory_unknown": "pT1b (لا يمكن تحديد الفئة الفرعية)",
+      "pt1_subcategory_unknown": "pT1 (لا يمكن تحديد الفئة الفرعية)",
+      "pt2": "pT2: السرطان يغزو خارج الرحم، لكنه لم يمتد إلى الثلث السفلي من المهبل أو إلى جدار الحوض",
+      "pt2a": "pT2a: الإصابة محدودة بالثلثين العلويين من المهبل دون غزو الباراميتريوم",
+      "pt2a1": "pT2a1: سرطان غازي 4 سم أو أقل في أكبر بعد",
+      "pt2a2": "pT2a2: سرطان غازي أكبر من 4 سم في أكبر بعد",
+      "pt2a_subcategory_unknown": "pT2a (لا يمكن تحديد الفئة الفرعية)",
+      "pt2b": "pT2b: مع غزو الباراميتريوم ولكن دون الوصول إلى جدار الحوض",
+      "pt2_subcategory_unknown": "pT2 (لا يمكن تحديد الفئة الفرعية)",
+      "pt3": "pT3: السرطان يصيب الثلث السفلي من المهبل و/أو يمتد إلى جدار الحوض و/أو يسبب موه الكلية أو كلية غير وظيفية",
+      "pt3a": "pT3a: السرطان يصيب الثلث السفلي من المهبل دون امتداد إلى جدار الحوض",
+      "pt3b": "pT3b: امتداد إلى جدار الحوض و/أو موه الكلية أو كلية غير وظيفية (ما لم يُعرف أنه بسبب آخر)",
+      "pt3_subcategory_unknown": "pT3 (لا يمكن تحديد الفئة الفرعية)",
+      "pt4": "pT4: السرطان أصاب مخاطية المثانة أو المستقيم المثبتة بالخزعة، أو انتشر إلى أعضاء مجاورة"
+    },
+    "t_suffix": "لاحقة T",
+    "t_suffix_options": {
+      "not_applicable": "غير منطبق",
+      "m_multiple_primary": "(m) أورام أولية متعددة متزامنة في عنق الرحم"
+    },
+    "pn_category": "فئة pN",
+    "pn_options": {
+      "pn_not_assigned_no_nodes": "لم تُسند فئة pN (لم تُرسل أو تُوجد عقد)",
+      "pn_not_assigned_unknown": "لم تُسند فئة pN (لا يمكن تحديدها بناءً على المعلومات المرضية المتاحة)",
+      "pn0": "pN0: لا توجد نقائل في العقد اللمفية الإقليمية",
+      "pn0_i_plus": "pN0(i+): خلايا ورمية معزولة في العقد اللمفية الإقليمية، 0.2 مم أو أقل، أو خلايا منفردة/عناقيد لا تتجاوز 200 خلية في مقطع واحد من العقدة اللمفية",
+      "pn1": "pN1: نقائل في العقد اللمفية الإقليمية إلى العقد الحوضية فقط",
+      "pn1mi": "pN1mi: نقائل عقدية إقليمية (أكبر من 0.2 مم ولكن 2.0 مم أو أقل) إلى العقد الحوضية",
+      "pn1a": "pN1a: نقائل عقدية إقليمية (قطرها أكبر من 2.0 مم) إلى العقد الحوضية",
+      "pn1_subcategory_unknown": "pN1 (لا يمكن تحديد الفئة الفرعية)",
+      "pn2": "pN2: نقائل عقدية إقليمية إلى العقد الباراأبهريّة، مع أو دون عقد حوضية موجبة",
+      "pn2mi": "pN2mi: نقائل إلى العقد الباراأبهريّة (أكبر من 0.2 مم ولكن 2.0 مم أو أقل)، مع أو دون عقد حوضية موجبة",
+      "pn2a": "pN2a: نقائل إلى العقد الباراأبهريّة (قطرها أكبر من 2.0 مم)، مع أو دون عقد حوضية موجبة",
+      "pn2_subcategory_unknown": "pN2 (لا يمكن تحديد الفئة الفرعية)"
+    },
+    "n_suffix": "لاحقة N",
+    "n_suffix_options": {
+      "not_applicable": "غير منطبق",
+      "sn_metastasis_sentinel_only": "(sn) تم التعرف على النقائل فقط بواسطة خزعة العقدة الحارسة",
+      "sn_i_negative": "(sn)(i-)",
+      "sn_i_positive": "(sn)(i+)",
+      "f_fna_core": "(f) تم التعرف على النقائل فقط بواسطة FNA أو خزعة إبرية أساسية"
+    },
+    "pm_category": "فئة pM",
+    "pm_options": {
+      "not_applicable": "غير منطبق - لا يمكن تحديد pM من العينة/العينات المقدمة",
+      "pm1": "pM1: نقائل بعيدة (تشمل النقائل إلى العقد الأربية، المرض داخل البريتون، الرئة، الكبد، أو العظم؛ وتستثني النقائل إلى العقد الحوضية أو الباراأبهريّة أو المهبل)"
+    },
+    "pm_note": "تُعد إصابة مصلية الرحم والملحقات الرحمية مرضاً من فئة M1"
+  },
+  "figo_stage": {
+    "title": "مرحلة FIGO",
+    "stage_label": "مرحلة FIGO (تقرير FIGO للسرطان 2018)",
+    "note": "يتضمن هذا القسم التصحيح الخاص بتحديث تصنيف FIGO لسرطان عنق الرحم",
+    "options": {
+      "i": "I: السرطان محصور تماماً في عنق الرحم (يُتجاهل الامتداد إلى جسم الرحم)",
+      "ia": "IA: سرطان غازي يُكتشف مجهرياً فقط؛ الغزو محدود بغزو سدوي مقاس بعمق أقصى 5.0 مم",
+      "ia1": "IA1: غزو سدوي مقاس 3.0 مم أو أقل عمقاً",
+      "ia2": "IA2: غزو سدوي مقاس أكبر من 3.0 مم ولا يزيد عن 5.0 مم",
+      "ib": "IB: سرطان غازي بغزو سدوي مقاس أكبر من 5.0 مم ومحدود بالرحم",
+      "ib1": "IB1: سرطان غازي بغزو سدوي أكبر من 5.0 مم وبأكبر بعد 2 سم أو أقل",
+      "ib2": "IB2: سرطان غازي أكبر من 2 سم ولكن 4 سم أو أقل في أكبر بعد",
+      "ib3": "IB3: سرطان غازي أكبر من 4 سم في أكبر بعد",
+      "ii": "II: السرطان يمتد خارج الرحم لكنه لم يصل إلى الجدار الجانبي للحوض أو إلى الثلث السفلي من المهبل",
+      "iia": "IIA: السرطان يصيب الثلثين العلويين من المهبل دون غزو الباراميتريوم",
+      "iia1": "IIA1: سرطان غازي 4 سم أو أقل في أكبر بعد",
+      "iia2": "IIA2: سرطان غازي أكبر من 4 سم في أكبر بعد",
+      "iib": "IIB: إصابة الباراميتريوم دون إصابة الجدار الجانبي للحوض",
+      "iii": "III: السرطان يصيب الثلث السفلي من المهبل و/أو يمتد إلى الجدار الجانبي للحوض و/أو يسبب موه الكلية أو كلية غير وظيفية و/أو يصيب العقد الحوضية و/أو الباراأبهريّة",
+      "iiia": "IIIA: إصابة الثلث السفلي من المهبل دون امتداد إلى الجدار الجانبي للحوض",
+      "iiib": "IIIB: امتداد إلى الجدار الجانبي للحوض و/أو تسبب موه الكلية/كلية غير وظيفية (ما لم يُعرف أنه بسبب آخر)",
+      "iiic": "IIIC: إصابة العقد الحوضية و/أو الباراأبهريّة (بما في ذلك النقائل الدقيقة)، بغض النظر عن حجم الورم وامتداده",
+      "iiic1": "IIIC1: نقائل في العقد اللمفية الحوضية فقط",
+      "iiic2": "IIIC2: نقائل في العقد اللمفية الباراأبهريّة",
+      "iv": "IV: السرطان يمتد خارج الحوض الحقيقي أو يصيب مخاطية المثانة و/أو المستقيم المثبتة بالخزعة، أو ينتشر إلى أعضاء بعيدة",
+      "iva": "IVA: انتشار إلى أعضاء مجاورة، أي غزو الورم لمخاطية المثانة و/أو المستقيم المثبت بالخزعة و/أو الامتداد خارج الحوض الحقيقي",
+      "ivb": "IVB: انتشار إلى أعضاء بعيدة"
+    }
+  },
+  "additional_findings": {
+    "title": "نتائج إضافية",
+    "options": {
+      "none_identified": "لا توجد نتائج محددة",
+      "lsil_cin1": "آفة حرشفية داخل الظهارة منخفضة الدرجة (CIN 1)",
+      "hsil_cin2_3": "آفة حرشفية داخل الظهارة عالية الدرجة (CIN 2 أو 3)",
+      "endocervical_adenocarcinoma_in_situ": "سرطان غدي موضعي داخل عنق الرحم",
+      "inflammation": "التهاب",
+      "other_specify": "أخرى (حدد)"
+    }
+  }
 }

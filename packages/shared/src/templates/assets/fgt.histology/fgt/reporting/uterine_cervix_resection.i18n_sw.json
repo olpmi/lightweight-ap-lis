@@ -1,11 +1,372 @@
 {
-  "template_id": "uterine_cervix_resection_v1",
-  "lang": "sw",
-  "title": "Resection ya seviksi ya uterasi",
-  "tumor": { "label": "Uvimbe" },
-  "margins": { "label": "Mipaka" },
-  "regional_lymph_nodes": { "label": "Nodi za limfu za eneo" },
-  "distant_metastasis": { "label": "Metastasis ya mbali" },
-  "pathologic_stage": { "label": "Uainishaji wa patholojia" },
-  "additional_findings": { "label": "Matokeo ya ziada" }
+  "protocol_title": "KIELELEZO CHA RIPOTI: UTOAJI WA SEVIKSI YA UZAZI",
+  "protocol": {
+    "posting_date": "Machi 2023",
+    "standards": "Ripoti ya Saratani ya FIGO 2018, AJCC-UICC 9"
+  },
+  "common": {
+    "not_applicable": "Haitumiki",
+    "not_identified": "Haijatambuliwa",
+    "present": "Ipo",
+    "absent": "Haipo",
+    "cannot_be_determined": "Haiwezi kubainishwa",
+    "cannot_be_determined_explain": "Haiwezi kubainishwa (eleza)",
+    "other_specify": "Nyingine (eleza)",
+    "not_submitted_or_found": "Haikuwasilishwa au haikupatikana",
+    "exact_number": "Idadi halisi",
+    "at_least": "Angalau",
+    "less_than": "Chini ya",
+    "greater_than": "Zaidi ya",
+    "exact_size": "Ukubwa halisi",
+    "exact_distance": "Umbali halisi",
+    "specify_mm": "Bainisha kwa milimita (mm)",
+    "select_all_that_apply": "Chagua yote yanayofaa",
+    "required_only_if_applicable": "Inahitajika tu ikiwa inafaa",
+    "required_only_if_present": "Inahitajika tu ikiwa ipo",
+    "explain": "Eleza",
+    "right": "Kulia",
+    "left": "Kushoto",
+    "sentinel": "Sentineli",
+    "non_sentinel": "Isiyo sentineli",
+    "comment": "Maoni"
+  },
+  "histology": {
+    "histologic_type": "Aina ya histolojia",
+    "histologic_type_options": {
+      "squamous_hpv_associated": "Karsinoma ya seli skwamosi, inayohusiana na HPV",
+      "squamous_hpv_independent": "Karsinoma ya seli skwamosi, isiyohusiana na HPV",
+      "squamous_nos": "Karsinoma ya seli skwamosi, NOS (inakubalika ikiwa uchunguzi wa p16 au HPV haupatikani)",
+      "adenocarcinoma_nos": "Adenokarsinoma, NOS",
+      "adenocarcinoma_hpv_associated": "Adenokarsinoma inayohusiana na HPV",
+      "adenocarcinoma_hpv_independent_nos": "Adenokarsinoma isiyohusiana na HPV, NOS",
+      "adenocarcinoma_gastric_type": "Adenokarsinoma isiyohusiana na HPV, aina ya tumbo",
+      "adenocarcinoma_clear_cell_type": "Adenokarsinoma isiyohusiana na HPV, aina ya clear cell",
+      "adenocarcinoma_mesonephric_type": "Adenokarsinoma isiyohusiana na HPV, aina ya mesonephric",
+      "endometrioid_adenocarcinoma_nos": "Adenokarsinoma ya endometrioid, NOS",
+      "carcinosarcoma": "Karsinosarkoma",
+      "adenosquamous_carcinoma": "Karsinoma adenoskwamosi",
+      "adenoid_basal_carcinoma": "Karsinoma adenoid basal",
+      "mucoepidermoid_carcinoma": "Karsinoma mucoepidermoid",
+      "unclassifiable_carcinoma": "Karsinoma isiyoweza kuainishwa (karsinoma isiyotofautishwa)",
+      "neuroendocrine_tumor_nos": "Uvimbe wa neuroendocrine, NOS",
+      "neuroendocrine_tumor_grade_1": "Uvimbe wa neuroendocrine, daraja la 1",
+      "neuroendocrine_tumor_grade_2": "Uvimbe wa neuroendocrine, daraja la 2",
+      "small_cell_neuroendocrine_high_grade": "Karsinoma ya neuroendocrine ya seli ndogo, daraja la juu",
+      "large_cell_neuroendocrine_high_grade": "Karsinoma ya neuroendocrine ya seli kubwa, daraja la juu",
+      "neuroendocrine_carcinoma_nos": "Karsinoma ya neuroendocrine, NOS",
+      "mixed_neuroendocrine_non_neuroendocrine": "Karsinoma mchanganyiko ya neuroendocrine na isiyo ya neuroendocrine",
+      "other_histologic_type": "Aina nyingine ya histolojia ambayo haijaorodheshwa (eleza)",
+      "type_cannot_be_determined": "Karsinoma, aina haiwezi kubainishwa"
+    },
+    "histologic_grade": "Daraja la histolojia",
+    "grade_options": {
+      "g1": "G1, imetofautishwa vizuri",
+      "g2": "G2, imetofautishwa kwa kiwango cha wastani",
+      "g3": "G3, imetofautishwa vibaya",
+      "gx": "GX, haiwezi kutathminiwa",
+      "not_applicable": "Haitumiki"
+    }
+  },
+  "stromal_invasion": {
+    "title": "Uvamiaji wa stroma",
+    "depth": "Kina cha uvamiaji wa stroma",
+    "depth_options": {
+      "specify_mm": "Bainisha kwa milimita (mm)",
+      "not_more_than_3mm": "Si zaidi ya mm 3",
+      "greater_than_3_not_more_than_5mm": "Zaidi ya mm 3 lakini si zaidi ya mm 5",
+      "greater_than_5mm": "Zaidi ya mm 5",
+      "cannot_be_determined_explain": "Haiwezi kubainishwa (eleza)"
+    },
+    "extent_of_depth": "Kiwango cha kina cha uvamiaji wa stroma",
+    "extent_options": {
+      "superficial_one_third": "Theluthi ya juu/ya juu juu",
+      "middle_one_third": "Theluthi ya kati",
+      "deep_one_third": "Theluthi ya ndani",
+      "cannot_be_determined": "Haiwezi kubainishwa"
+    },
+    "horizontal_extent": "Kiwango cha mlalo cha uvamiaji wa stroma",
+    "horizontal_extent_options": {
+      "not_applicable_larger_tumors": "Haitumiki (kwa uvimbe mkubwa unaoweza kupimwa kwa macho)",
+      "specify_mm": "Bainisha kwa milimita (mm)",
+      "estimated_less_equal_7mm": "Inakadiriwa kuwa mm 7 au chini",
+      "estimated_greater_than_7mm": "Inakadiriwa kuwa zaidi ya mm 7",
+      "number_of_blocks_involved": "Idadi ya vitalu vilivyohusika",
+      "cannot_be_determined_explain": "Haiwezi kubainishwa (eleza)"
+    },
+    "silva_system": "Mfumo wa Silva kwa uvamiaji",
+    "silva_note": "Mfumo wa Silva hutumika tu kwa adenokarsinoma vamizi ya endoserviksi inayohusiana na HPV",
+    "silva_options": {
+      "not_applicable": "Haitumiki",
+      "pattern_a": "Muundo A",
+      "pattern_b": "Muundo B",
+      "pattern_c": "Muundo C"
+    }
+  },
+  "tumor_extent": {
+    "other_tissue_organ_involvement": "Uhusikaji wa tishu/viungo vingine",
+    "note_any_organ_not_selected": "Kiungo chochote ambacho hakijachaguliwa ama hakijahusika au hakikuwasilishwa",
+    "options": {
+      "not_applicable": "Haitumiki",
+      "not_identified": "Haijatambuliwa",
+      "parametrium": "Parametriamu",
+      "vagina_upper_two_thirds": "Uke, theluthi mbili za juu",
+      "vagina_lower_one_third": "Uke, theluthi moja ya chini",
+      "vagina_location_not_specified": "Uke (eneo halijabainishwa)",
+      "pelvic_wall": "Ukuta wa nyonga",
+      "bladder_wall": "Ukuta wa kibofu cha mkojo",
+      "bladder_mucosa": "Mukosa ya kibofu cha mkojo",
+      "rectal_wall": "Ukuta wa rektamu",
+      "bowel_mucosa": "Mukosa ya utumbo",
+      "other_organs_tissue": "Viungo/tishu nyingine (eleza)",
+      "cannot_be_determined_explain": "Haiwezi kubainishwa (eleza)"
+    },
+    "mucosal_surface_note": "Uvimbe unapaswa kuhusisha uso wa mukosa"
+  },
+  "lymphovascular_invasion": {
+    "title": "Uvamiaji wa limfu na/au mishipa ya damu",
+    "options": {
+      "not_identified": "Haijatambuliwa",
+      "present": "Ipo",
+      "equivocal_explain": "Haiko wazi (eleza)",
+      "cannot_be_determined": "Haiwezi kubainishwa"
+    }
+  },
+  "margins": {
+    "title": "Kingo",
+    "invasive_carcinoma_status": "Hali ya kingo kwa karsinoma vamizi",
+    "invasive_options": {
+      "all_negative": "Kingo zote hazina karsinoma vamizi",
+      "invasive_present_at_margin": "Karsinoma vamizi ipo kwenye kingo",
+      "not_applicable": "Haitumiki"
+    },
+    "closest_margins_to_invasive": "Kingo iliyo karibu zaidi na karsinoma vamizi",
+    "margin_sites": {
+      "ectocervical": "Ektoservikali (eleza eneo, ikiwezekana)",
+      "radial_circumferential": "Radiali/mviringo (eleza eneo, ikiwezekana)",
+      "endocervical_lower_uterine_segment": "Endoservikali/sehemu ya chini ya uterasi (eleza eneo, ikiwezekana)",
+      "vaginal_cuff": "Kisiki cha uke",
+      "other_specify": "Nyingine (eleza)",
+      "cannot_be_determined": "Haiwezi kubainishwa",
+      "cannot_be_determined_explain": "Haiwezi kubainishwa (eleza)"
+    },
+    "distance_to_closest_margin": "Umbali kutoka karsinoma vamizi hadi kingo iliyo karibu zaidi",
+    "distance_options": {
+      "exact_distance_mm": "Umbali halisi: mm",
+      "greater_than": "Zaidi ya",
+      "at_least": "Angalau",
+      "less_than": "Chini ya",
+      "less_than_1mm": "Chini ya mm 1",
+      "other_specify": "Nyingine (eleza)",
+      "cannot_be_determined": "Haiwezi kubainishwa"
+    },
+    "margins_involved_by_invasive": "Kingo zilizohusika na karsinoma vamizi",
+    "hsil_ais_status": "Hali ya kingo kwa HSIL au AIS",
+    "hsil_ais_note": "Kuripoti HSIL (CIN 2-3 au VAIN 2-3) na/au AIS hakuhitajiki ikiwa kingo imehusishwa na karsinoma vamizi",
+    "hsil_ais_options": {
+      "all_negative": "Kingo zote hazina HSIL na/au AIS",
+      "hsil_present_at_margin": "HSIL ipo kwenye kingo",
+      "ais_present_at_margin": "AIS ipo kwenye kingo",
+      "not_applicable": "Haitumiki"
+    },
+    "margins_involved_by_hsil": "Kingo zilizohusika na HSIL",
+    "margins_involved_by_ais": "Kingo zilizohusika na AIS",
+    "margin_comment": "Maoni kuhusu kingo"
+  },
+  "regional_lymph_nodes": {
+    "title": "Nodi za limfu za kikanda",
+    "status": "Hali ya nodi za limfu za kikanda",
+    "status_note": "Nodi za limfu zilizoteuliwa kama za nyonga na para-aortic huchukuliwa kuwa nodi za limfu za kikanda. Nodi nyingine zozote zenye uvimbe zinapaswa kuainishwa kama metastasi (pM1) na kuripotiwa sehemu ya metastasi ya mbali. Uwepo wa seli za uvimbe zilizotengwa zisizozidi mm 0.2 kwenye nodi za limfu za kikanda huchukuliwa kama N0 (i+).",
+    "status_options": {
+      "not_applicable_no_nodes": "Haitumiki (hakuna nodi za limfu za kikanda zilizowasilishwa au kupatikana)",
+      "nodes_present": "Nodi za limfu za kikanda zipo",
+      "all_negative": "Nodi zote za limfu za kikanda hazina seli za uvimbe",
+      "tumor_present_pelvic_nodes": "Uvimbe upo kwenye nodi za limfu za nyonga",
+      "tumor_present_para_aortic_nodes": "Uvimbe upo kwenye nodi za limfu za para-aortic",
+      "other_specify": "Nyingine (eleza)",
+      "cannot_be_determined_explain": "Haiwezi kubainishwa (eleza)"
+    },
+    "metastasis_size_note": "Makrometastasi: zaidi ya mm 2; mikrometastasi: zaidi ya mm 0.2 hadi mm 2; seli za uvimbe zilizotengwa (ITC): mm 0.2 au chini, au seli moja/visiwa vya seli visivyozidi seli 200 katika sehemu moja ya nodi ya limfu.",
+    "pelvic_nodes": {
+      "title": "Nodi za limfu za nyonga",
+      "total_macrometastasis": "Jumla ya nodi za nyonga zenye makrometastasi (zaidi ya mm 2) (sentineli na zisizo sentineli)",
+      "sentinel_macrometastasis": "Idadi ya nodi za nyonga za sentineli zenye makrometastasi",
+      "total_micrometastasis": "Jumla ya nodi za nyonga zenye mikrometastasi (zaidi ya mm 0.2 hadi mm 2 na/au zaidi ya seli 200) (sentineli na zisizo sentineli)",
+      "sentinel_micrometastasis": "Idadi ya nodi za nyonga za sentineli zenye mikrometastasi",
+      "total_itc": "Jumla ya nodi za nyonga zenye seli za uvimbe zilizotengwa (mm 0.2 au chini na si zaidi ya seli 200)",
+      "sentinel_itc": "Idadi ya nodi za nyonga za sentineli zenye ITCs",
+      "laterality_with_tumor": "Upande wa nodi za nyonga zenye uvimbe",
+      "largest_metastatic_deposit_size": "Ukubwa wa depositi kubwa zaidi ya metastasi katika nodi ya nyonga"
+    },
+    "para_aortic_nodes": {
+      "title": "Nodi za limfu za para-aortic",
+      "total_macrometastasis": "Jumla ya nodi za para-aortic zenye makrometastasi (zaidi ya mm 2) (sentineli na zisizo sentineli)",
+      "sentinel_macrometastasis": "Idadi ya nodi za para-aortic za sentineli zenye makrometastasi",
+      "total_micrometastasis": "Jumla ya nodi za para-aortic zenye mikrometastasi (zaidi ya mm 0.2 hadi mm 2 na/au zaidi ya seli 200) (sentineli na zisizo sentineli)",
+      "sentinel_micrometastasis": "Idadi ya nodi za para-aortic za sentineli zenye mikrometastasi",
+      "total_itc": "Jumla ya nodi za para-aortic zenye seli za uvimbe zilizotengwa (mm 0.2 au chini na si zaidi ya seli 200)",
+      "sentinel_itc": "Idadi ya nodi za para-aortic za sentineli zenye ITCs",
+      "laterality_with_tumor": "Upande wa nodi za para-aortic zenye uvimbe",
+      "largest_metastatic_deposit_size": "Ukubwa wa depositi kubwa zaidi ya metastasi katika nodi ya para-aortic"
+    },
+    "count_options": {
+      "not_applicable": "Haitumiki",
+      "exact_number": "Idadi halisi",
+      "at_least": "Angalau",
+      "other_specify": "Nyingine (eleza)",
+      "cannot_be_determined_explain": "Haiwezi kubainishwa (eleza)"
+    },
+    "laterality_options": {
+      "not_applicable": "Haitumiki",
+      "right_sentinel": "Sentineli ya kulia",
+      "right_non_sentinel": "Isiyo sentineli ya kulia",
+      "left_sentinel": "Sentineli ya kushoto",
+      "left_non_sentinel": "Isiyo sentineli ya kushoto",
+      "cannot_be_determined": "Haiwezi kubainishwa"
+    },
+    "size_options": {
+      "exact_size_mm": "Ukubwa halisi: mm",
+      "less_than": "Chini ya",
+      "greater_than": "Zaidi ya",
+      "other_specify": "Nyingine (eleza)",
+      "cannot_be_determined_explain": "Haiwezi kubainishwa (eleza)"
+    },
+    "examined": {
+      "title": "Nodi za limfu zilizochunguzwa",
+      "total_pelvic_examined": "Jumla ya nodi za nyonga zilizochunguzwa (sentineli na zisizo sentineli)",
+      "pelvic_sentinel_examined": "Idadi ya nodi za nyonga za sentineli zilizochunguzwa",
+      "total_para_aortic_examined": "Jumla ya nodi za para-aortic zilizochunguzwa (sentineli na zisizo sentineli)",
+      "para_aortic_sentinel_examined": "Idadi ya nodi za para-aortic za sentineli zilizochunguzwa"
+    },
+    "regional_lymph_node_comment": "Maoni kuhusu nodi za limfu za kikanda"
+  },
+  "distant_metastasis": {
+    "title": "Metastasi ya mbali",
+    "sites_involved": "Maeneo ya mbali yaliyohusika, ikiwa yapo",
+    "note": "Hii haijumuishi metastasi kwenye nodi za limfu za nyonga au para-aortic, au uke",
+    "options": {
+      "not_applicable": "Haitumiki",
+      "uterine_serosa": "Serosa ya uterasi",
+      "adnexa": "Adneksa",
+      "inguinal_lymph_nodes": "Nodi za limfu za inguinal",
+      "omentum": "Omentamu",
+      "extrapelvic_peritoneum": "Peritoneamu nje ya nyonga",
+      "lung": "Mapafu",
+      "liver": "Ini",
+      "bone": "Mfupa",
+      "other_specify": "Nyingine (eleza)",
+      "cannot_be_determined": "Haiwezi kubainishwa"
+    }
+  },
+  "ptnm_classification": {
+    "title": "Uainishaji wa pTNM (AJCC toleo la 9)",
+    "general_note": "Kuripoti makundi ya pT, pN, na inapofaa pM kunategemea taarifa zinazopatikana kwa mwanapatholojia wakati ripoti inatolewa. Ni jukumu la daktari anayesimamia matibabu kuweka hatua ya mwisho ya patholojia kwa kutumia taarifa zote muhimu.",
+    "modified_classification": "Uainishaji uliorekebishwa",
+    "modified_options": {
+      "not_applicable": "Haitumiki",
+      "y_post_neoadjuvant": "y (baada ya tiba ya neoadjuvant)",
+      "r_recurrence": "r (kurudi kwa ugonjwa)"
+    },
+    "pt_category": "Kundi la pT",
+    "pt_options": {
+      "pt_not_assigned": "pT haijapewa (haiwezi kubainishwa kutokana na taarifa za patholojia zilizopo)",
+      "pt0": "pT0: Hakuna ushahidi wa uvimbe msingi",
+      "pt1": "pT1: Karsinoma imefungwa kabisa ndani ya seviks (kuenea hadi korpasi ya uterasi kupuuzwe)",
+      "pt1a": "pT1a: Karsinoma vamizi inayoweza kutambuliwa kwa hadubini pekee, yenye kina cha juu cha uvamiaji cha mm 5 au chini",
+      "pt1a1": "pT1a1: Uvamiaji wa stroma uliopimwa ni mm 3 au chini kwa kina",
+      "pt1a2": "pT1a2: Uvamiaji wa stroma uliopimwa ni zaidi ya mm 3 na mm 5 au chini kwa kina",
+      "pt1a_subcategory_unknown": "pT1a (kikundi kidogo hakiwezi kubainishwa)",
+      "pt1b": "pT1b: Karsinoma vamizi yenye uvamiaji wa ndani zaidi uliopimwa zaidi ya mm 5; kidonda kimezuiliwa kwenye seviks ya uterasi na ukubwa hupimwa kwa kipenyo kikubwa zaidi cha uvimbe",
+      "pt1b1": "pT1b1: Karsinoma vamizi yenye kina cha uvamiaji wa stroma zaidi ya mm 5 na kipimo kikubwa zaidi cha cm 2 au chini",
+      "pt1b2": "pT1b2: Karsinoma vamizi zaidi ya cm 2 na cm 4 au chini kwa kipimo kikubwa zaidi",
+      "pt1b3": "pT1b3: Karsinoma vamizi zaidi ya cm 4 kwa kipimo kikubwa zaidi",
+      "pt1b_subcategory_unknown": "pT1b (kikundi kidogo hakiwezi kubainishwa)",
+      "pt1_subcategory_unknown": "pT1 (kikundi kidogo hakiwezi kubainishwa)",
+      "pt2": "pT2: Karsinoma imevamia zaidi ya uterasi, lakini haijafika theluthi ya chini ya uke au ukuta wa nyonga",
+      "pt2a": "pT2a: Uhusikaji umewekewa mipaka kwenye theluthi mbili za juu za uke bila uvamiaji wa parametriamu",
+      "pt2a1": "pT2a1: Karsinoma vamizi yenye kipimo kikubwa zaidi cha cm 4 au chini",
+      "pt2a2": "pT2a2: Karsinoma vamizi yenye kipimo kikubwa zaidi zaidi ya cm 4",
+      "pt2a_subcategory_unknown": "pT2a (kikundi kidogo hakiwezi kubainishwa)",
+      "pt2b": "pT2b: Kuna uvamiaji wa parametriamu lakini haujafika ukuta wa nyonga",
+      "pt2_subcategory_unknown": "pT2 (kikundi kidogo hakiwezi kubainishwa)",
+      "pt3": "pT3: Karsinoma inahusisha theluthi ya chini ya uke na/au inaenea hadi ukuta wa nyonga na/au husababisha hidronefrosisi au figo isiyofanya kazi",
+      "pt3a": "pT3a: Karsinoma inahusisha theluthi ya chini ya uke bila kuenea hadi ukuta wa nyonga",
+      "pt3b": "pT3b: Kuenea hadi ukuta wa nyonga na/au hidronefrosisi au figo isiyofanya kazi (isipokuwa inajulikana kusababishwa na sababu nyingine)",
+      "pt3_subcategory_unknown": "pT3 (kikundi kidogo hakiwezi kubainishwa)",
+      "pt4": "pT4: Karsinoma imehusisha mukosa ya kibofu cha mkojo au rektamu iliyothibitishwa kwa biopsi, au imeenea hadi viungo vya karibu"
+    },
+    "t_suffix": "Kiambishi cha T",
+    "t_suffix_options": {
+      "not_applicable": "Haitumiki",
+      "m_multiple_primary": "(m) uvimbe msingi mwingi unaotokea kwa wakati mmoja kwenye seviks"
+    },
+    "pn_category": "Kundi la pN",
+    "pn_options": {
+      "pn_not_assigned_no_nodes": "pN haijapewa (hakuna nodi zilizowasilishwa au kupatikana)",
+      "pn_not_assigned_unknown": "pN haijapewa (haiwezi kubainishwa kutokana na taarifa za patholojia zilizopo)",
+      "pn0": "pN0: Hakuna metastasi kwenye nodi za limfu za kikanda",
+      "pn0_i_plus": "pN0(i+): Seli za uvimbe zilizotengwa kwenye nodi za limfu za kikanda, mm 0.2 au chini, au seli moja/visiwa vya seli visivyozidi seli 200 katika sehemu moja ya nodi ya limfu",
+      "pn1": "pN1: Metastasi ya nodi za limfu za kikanda kwenye nodi za nyonga pekee",
+      "pn1mi": "pN1mi: Metastasi ya nodi za kikanda (zaidi ya mm 0.2 lakini mm 2.0 au chini) kwenye nodi za nyonga",
+      "pn1a": "pN1a: Metastasi ya nodi za kikanda (kipenyo zaidi ya mm 2.0) kwenye nodi za nyonga",
+      "pn1_subcategory_unknown": "pN1 (kikundi kidogo hakiwezi kubainishwa)",
+      "pn2": "pN2: Metastasi ya nodi za limfu za kikanda kwenye nodi za para-aortic, pamoja au bila nodi za nyonga zilizo chanya",
+      "pn2mi": "pN2mi: Metastasi kwenye nodi za para-aortic (zaidi ya mm 0.2 lakini mm 2.0 au chini), pamoja au bila nodi za nyonga zilizo chanya",
+      "pn2a": "pN2a: Metastasi kwenye nodi za para-aortic (kipenyo zaidi ya mm 2.0), pamoja au bila nodi za nyonga zilizo chanya",
+      "pn2_subcategory_unknown": "pN2 (kikundi kidogo hakiwezi kubainishwa)"
+    },
+    "n_suffix": "Kiambishi cha N",
+    "n_suffix_options": {
+      "not_applicable": "Haitumiki",
+      "sn_metastasis_sentinel_only": "(sn) metastasi imetambuliwa tu kwa biopsi ya nodi ya sentineli",
+      "sn_i_negative": "(sn)(i-)",
+      "sn_i_positive": "(sn)(i+)",
+      "f_fna_core": "(f) metastasi imetambuliwa tu kwa FNA au biopsi ya core"
+    },
+    "pm_category": "Kundi la pM",
+    "pm_options": {
+      "not_applicable": "Haitumiki - pM haiwezi kubainishwa kutokana na sampuli zilizowasilishwa",
+      "pm1": "pM1: Metastasi ya mbali (inajumuisha metastasi kwenye nodi za inguinal, ugonjwa ndani ya peritoneamu, mapafu, ini, au mfupa; haijumuishi metastasi kwenye nodi za nyonga au para-aortic, au uke)"
+    },
+    "pm_note": "Uhusikaji wa serosa ya uterasi na adneksa huchukuliwa kama ugonjwa wa M1"
+  },
+  "figo_stage": {
+    "title": "Hatua ya FIGO",
+    "stage_label": "Hatua ya FIGO (Ripoti ya Saratani ya FIGO 2018)",
+    "note": "Sehemu hii inajumuisha marekebisho ya hatua za FIGO zilizorekebishwa kwa karsinoma ya seviks ya uterasi",
+    "options": {
+      "i": "I: Karsinoma imefungwa kabisa ndani ya seviks (kuenea hadi korpasi ya uterasi kupuuzwe)",
+      "ia": "IA: Saratani vamizi hutambuliwa kwa hadubini pekee; uvamiaji umewekewa mipaka kwenye uvamiaji wa stroma uliopimwa na kina cha juu cha mm 5.0",
+      "ia1": "IA1: Uvamiaji wa stroma uliopimwa ni mm 3.0 au chini kwa kina",
+      "ia2": "IA2: Uvamiaji wa stroma uliopimwa ni zaidi ya mm 3.0 na si zaidi ya mm 5.0",
+      "ib": "IB: Karsinoma vamizi yenye uvamiaji wa stroma uliopimwa zaidi ya mm 5.0 na imezuiliwa kwenye uterasi",
+      "ib1": "IB1: Karsinoma vamizi yenye uvamiaji wa stroma zaidi ya mm 5.0 na kipimo kikubwa zaidi cha cm 2 au chini",
+      "ib2": "IB2: Karsinoma vamizi zaidi ya cm 2 lakini cm 4 au chini kwa kipimo kikubwa zaidi",
+      "ib3": "IB3: Karsinoma vamizi zaidi ya cm 4 kwa kipimo kikubwa zaidi",
+      "ii": "II: Karsinoma imeenea zaidi ya uterasi lakini haijafika ukuta wa upande wa nyonga au theluthi ya chini ya uke",
+      "iia": "IIA: Karsinoma inahusisha theluthi mbili za juu za uke bila uvamiaji wa parametriamu",
+      "iia1": "IIA1: Karsinoma vamizi yenye kipimo kikubwa zaidi cha cm 4 au chini",
+      "iia2": "IIA2: Karsinoma vamizi yenye kipimo kikubwa zaidi zaidi ya cm 4",
+      "iib": "IIB: Uhusikaji wa parametriamu lakini bila kuhusisha ukuta wa upande wa nyonga",
+      "iii": "III: Karsinoma inahusisha theluthi ya chini ya uke na/au inaenea hadi ukuta wa upande wa nyonga na/au husababisha hidronefrosisi au figo isiyofanya kazi na/au inahusisha nodi za nyonga na/au para-aortic",
+      "iiia": "IIIA: Uhusikaji wa theluthi ya chini ya uke bila kuenea hadi ukuta wa upande wa nyonga",
+      "iiib": "IIIB: Kuenea hadi ukuta wa upande wa nyonga, na/au kusababisha hidronefrosisi/figo isiyofanya kazi (isipokuwa inajulikana kusababishwa na sababu nyingine)",
+      "iiic": "IIIC: Uhusikaji wa nodi za nyonga na/au para-aortic (ikiwemo mikrometastasi), bila kujali ukubwa na ueneaji wa uvimbe",
+      "iiic1": "IIIC1: Metastasi kwenye nodi za nyonga pekee",
+      "iiic2": "IIIC2: Metastasi kwenye nodi za para-aortic",
+      "iv": "IV: Karsinoma imeenea zaidi ya nyonga halisi au inahusisha mukosa ya kibofu cha mkojo na/au rektamu iliyothibitishwa kwa biopsi, au imeenea hadi viungo vya mbali",
+      "iva": "IVA: Kuenea hadi viungo vya karibu, yaani uvimbe kuvamia mukosa ya kibofu cha mkojo na/au rektamu iliyothibitishwa kwa biopsi na/au kuenea zaidi ya nyonga halisi",
+      "ivb": "IVB: Kuenea hadi viungo vya mbali"
+    }
+  },
+  "additional_findings": {
+    "title": "Matokeo ya ziada",
+    "options": {
+      "none_identified": "Hakuna yaliyotambuliwa",
+      "lsil_cin1": "Lesheni ya skwamosi ya ndani ya epitheliamu ya daraja la chini (CIN 1)",
+      "hsil_cin2_3": "Lesheni ya skwamosi ya ndani ya epitheliamu ya daraja la juu (CIN 2 au 3)",
+      "endocervical_adenocarcinoma_in_situ": "Adenokarsinoma in situ ya endoserviksi",
+      "inflammation": "Uvimbe wa uchochezi",
+      "other_specify": "Nyingine (eleza)"
+    }
+  }
 }

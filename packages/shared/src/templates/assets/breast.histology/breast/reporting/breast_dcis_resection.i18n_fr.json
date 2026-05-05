@@ -1,27 +1,312 @@
 {
-  "template_id": "breast_dcis_resection_v1",
-  "lang": "fr",
-  "title": "CCIS du sein, résection",
-
-  "case_summary": {
-    "label": "Résumé du cas (CCIS du sein : résection)"
-  },
-  "specimen": {
-    "label": "Pièce"
-  },
-  "tumor": {
-    "label": "Tumeur"
-  },
-  "margins": {
-    "label": "Marges"
-  },
-  "regional_lymph_nodes": {
-    "label": "Ganglions lymphatiques régionaux"
-  },
-  "distant_metastasis": {
-    "label": "Métastase à distance"
-  },
-  "pathologic_stage": {
-    "label": "Classification du stade pathologique (pTNM, AJCC 8e édition)"
+  "breast_dcis_resection": {
+    "template": {
+      "title": "MODÈLE DE COMPTE RENDU – CCIS DU SEIN, RÉSECTION",
+      "protocol_posting_date": "Date de publication du protocole : juin 2021",
+      "instruction": "Sélectionner une seule réponse sauf indication contraire.",
+      "case_summary": "RÉSUMÉ DU CAS : (CCIS DU SEIN : Résection)",
+      "standards": "Norme(s) : AJCC-UICC 8"
+    },
+    "sections": {
+      "specimen": "SPÉCIMEN",
+      "tumor": "TUMEUR",
+      "margins": "MARGES",
+      "regional_lymph_nodes": "GANGLIONS LYMPHATIQUES RÉGIONAUX",
+      "distant_metastasis": "MÉTASTASES À DISTANCE",
+      "pathologic_stage": "CLASSIFICATION DU STADE PATHOLOGIQUE (pTNM, AJCC 8e édition)"
+    },
+    "specimen": {
+      "procedure": {
+        "label": "Procédure",
+        "options": {
+          "excision_less_than_total_mastectomy": "Excision (moins qu’une mastectomie totale)",
+          "total_mastectomy": "Mastectomie totale (y compris avec conservation du mamelon et de la peau)",
+          "other_specify": "Autre (préciser) : _________________",
+          "not_specified": "Non précisé"
+        }
+      },
+      "laterality": {
+        "label": "Latéralité du spécimen",
+        "options": {
+          "right": "Droit",
+          "left": "Gauche",
+          "not_specified": "Non précisé"
+        }
+      }
+    },
+    "tumor": {
+      "site": {
+        "label": "Site tumoral (sélectionner tout ce qui s’applique)",
+        "options": {
+          "upper_outer_quadrant": "Quadrant supéro-externe",
+          "lower_outer_quadrant": "Quadrant inféro-externe",
+          "upper_inner_quadrant": "Quadrant supéro-interne",
+          "lower_inner_quadrant": "Quadrant inféro-interne",
+          "central": "Central",
+          "nipple": "Mamelon",
+          "not_specified": "Non précisé"
+        }
+      },
+      "histologic_type": {
+        "label": "Type histologique",
+        "options": {
+          "dcis": "Carcinome canalaire in situ",
+          "paget_disease": "Maladie de Paget",
+          "encapsulated_papillary_without_invasive_carcinoma": "Carcinome papillaire encapsulé sans carcinome invasif",
+          "solid_papillary_without_invasive_carcinoma": "Carcinome papillaire solide sans carcinome invasif"
+        }
+      },
+      "dcis_size": {
+        "label": "Taille (étendue) du CCIS",
+        "note": "La taille (étendue) du CCIS (plus grande dimension selon l’évaluation macroscopique et microscopique) est une estimation du volume de tissu mammaire occupé par le CCIS.",
+        "fields": {
+          "estimated_at_least_mm": "La taille estimée (étendue) du CCIS est d’au moins, en millimètres (mm) : _________________ mm",
+          "additional_dimension_mm": "Dimension supplémentaire en millimètres (mm) : ____ x ____ mm",
+          "cannot_be_determined": "Ne peut être déterminé : _________________",
+          "number_of_blocks_with_dcis": "Nombre de blocs avec CCIS : _________________",
+          "number_of_blocks_examined": "Nombre de blocs examinés : _________________"
+        }
+      },
+      "architectural_patterns": {
+        "label": "Architectures",
+        "options": {
+          "comedo": "Comédo",
+          "paget_disease_nipple_skin": "Maladie de Paget (CCIS impliquant la peau du mamelon)",
+          "cribriform": "Cribriforme",
+          "micropapillary": "Micropapillaire",
+          "papillary": "Papillaire",
+          "solid": "Solide",
+          "other_specify": "Autre (préciser) : _________________"
+        }
+      },
+      "nuclear_grade": {
+        "label": "Grade nucléaire",
+        "options": {
+          "grade_i_low": "Grade I (bas)",
+          "grade_ii_intermediate": "Grade II (intermédiaire)",
+          "grade_iii_high": "Grade III (haut)"
+        }
+      },
+      "necrosis": {
+        "label": "Nécrose",
+        "options": {
+          "not_identified": "Non identifié",
+          "present_focal": "Présente, focale (petits foyers ou nécrose unicellulaire)",
+          "present_central": "Présente, centrale (nécrose « comédo » expansive)"
+        }
+      },
+      "microcalcifications": {
+        "label": "Microcalcifications",
+        "options": {
+          "not_identified": "Non identifié",
+          "present_in_dcis": "Présentes dans le CCIS",
+          "present_in_nonneoplastic_tissue": "Présentes dans le tissu non néoplasique",
+          "other_specify": "Autre (préciser) : _________________"
+        }
+      }
+    },
+    "margins": {
+      "status": {
+        "label": "Statut des marges",
+        "note": "Pour les spécimens dont la marge est indemne (pas d’encre sur le carcinome), la ou les marges les plus proches doivent être précisées si la distance entre le CCIS et la marge est inférieure à 2 mm.",
+        "options": {
+          "all_margins_negative_for_dcis": "Toutes les marges sont négatives pour le CCIS",
+          "dcis_present_at_margin": "CCIS présent à la marge",
+          "not_applicable_no_dcis": "Sans objet (pas de CCIS dans le spécimen)"
+        }
+      },
+      "distance_to_closest_margin": {
+        "label": "Distance du CCIS à la marge la plus proche",
+        "instruction": "Préciser en millimètres (mm)",
+        "options": {
+          "exact_distance": "Distance exacte : _________________ mm",
+          "less_than": "Moins de : _________________ mm",
+          "greater_than": "Plus de : _________________ mm",
+          "other_specify": "Autre (préciser) : _________________",
+          "cannot_be_determined_explain": "Ne peut être déterminé (expliquer) : _________________"
+        }
+      },
+      "closest_margins": {
+        "label": "Marge(s) la/les plus proche(s) du CCIS (requis seulement si < 2 mm) (sélectionner tout ce qui s’applique)",
+        "options": {
+          "not_applicable": "Sans objet",
+          "anterior": "Antérieure",
+          "posterior": "Postérieure",
+          "superior": "Supérieure",
+          "inferior": "Inférieure",
+          "medial": "Médiale",
+          "lateral": "Latérale",
+          "other_specify": "Autre (préciser) : _________________",
+          "cannot_be_determined_explain": "Ne peut être déterminé (expliquer) : _________________"
+        }
+      },
+      "involved_margins": {
+        "note": "Le statut de la marge est indiqué comme « positif » s’il y a de l’encre sur le CCIS (c.-à-d. distance de 0 mm). L’étendue peut être précisée comme unifocale, multifocale ou extensive.",
+        "label": "Marge(s) atteinte(s) par le CCIS (sélectionner tout ce qui s’applique)",
+        "options": {
+          "anterior_extent": "Antérieure (préciser l’étendue, si possible) : _________________",
+          "posterior_extent": "Postérieure (préciser l’étendue, si possible) : _________________",
+          "superior_extent": "Supérieure (préciser l’étendue, si possible) : _________________",
+          "inferior_extent": "Inférieure (préciser l’étendue, si possible) : _________________",
+          "medial_extent": "Médiale (préciser l’étendue, si possible) : _________________",
+          "lateral_extent": "Latérale (préciser l’étendue, si possible) : _________________",
+          "other_margins_extent": "Autre (préciser la/les marge(s) et, si possible, l’étendue) : _________________",
+          "cannot_be_determined_explain": "Ne peut être déterminé (expliquer) : _________________",
+          "other_specify": "Autre (préciser) : _________________"
+        }
+      }
+    },
+    "regional_lymph_nodes": {
+      "status": {
+        "label": "Statut des ganglions lymphatiques régionaux",
+        "options": {
+          "not_applicable_no_nodes": "Sans objet (aucun ganglion régional soumis ou trouvé)",
+          "nodes_present": "Ganglions lymphatiques régionaux présents",
+          "all_nodes_negative": "Tous les ganglions régionaux sont négatifs pour la tumeur",
+          "tumor_present": "Tumeur présente dans un/des ganglion(s) régional(aux)"
+        }
+      },
+      "macrometastases": {
+        "label": "Nombre de ganglions avec macrométastases (supérieures à 2 mm)",
+        "options": {
+          "exact_number": "Nombre exact (préciser) : _________________",
+          "at_least": "Au moins (préciser) : _________________",
+          "other_specify": "Autre (préciser) : _________________",
+          "cannot_be_determined_explain": "Ne peut être déterminé (expliquer) : _________________"
+        }
+      },
+      "micrometastases": {
+        "label": "Nombre de ganglions avec micrométastases (supérieures à 0,2 mm jusqu’à 2 mm et/ou plus de 200 cellules)",
+        "options": {
+          "exact_number": "Nombre exact (préciser) : _________________",
+          "at_least": "Au moins (préciser) : _________________",
+          "other_specify": "Autre (préciser) : _________________",
+          "cannot_be_determined_explain": "Ne peut être déterminé (expliquer) : _________________"
+        }
+      },
+      "isolated_tumor_cells": {
+        "label": "Nombre de ganglions avec cellules tumorales isolées (0,2 mm ou moins OU 200 cellules ou moins)#",
+        "options": {
+          "exact_number": "Nombre exact (préciser) : _________________",
+          "at_least": "Au moins (préciser) : _________________",
+          "other_specify": "Autre (préciser) : _________________",
+          "cannot_be_determined_explain": "Ne peut être déterminé (expliquer) : _________________"
+        },
+        "note": "La déclaration du nombre de ganglions avec cellules tumorales isolées n’est requise qu’en l’absence de macrométastase ou de micrométastase dans d’autres ganglions."
+      },
+      "largest_nodal_deposit": {
+        "label": "Taille du plus grand dépôt métastatique ganglionnaire",
+        "instruction": "Préciser en millimètres (mm)",
+        "options": {
+          "exact_size": "Taille exacte : _________________ mm",
+          "less_than": "Moins de : _________________ mm",
+          "greater_than": "Plus de : _________________ mm",
+          "other_specify": "Autre (préciser) : _________________",
+          "cannot_be_determined_explain": "Ne peut être déterminé (expliquer) : _________________"
+        }
+      },
+      "extranodal_extension": {
+        "label": "Extension extranodale",
+        "options": {
+          "not_identified": "Non identifié",
+          "present_2mm_or_less": "Présente, 2 mm ou moins",
+          "present_greater_than_2mm": "Présente, supérieure à 2 mm",
+          "present": "Présent",
+          "cannot_be_determined": "Ne peut être déterminée",
+          "other_specify": "Autre (préciser) : _________________",
+          "cannot_be_determined_explain": "Ne peut être déterminé (expliquer) : _________________"
+        }
+      },
+      "total_nodes_examined": {
+        "label": "Nombre total de ganglions examinés (sentinelles et non sentinelles)",
+        "options": {
+          "exact_number": "Nombre exact (préciser) : _________________",
+          "at_least": "Au moins (préciser) : _________________",
+          "other_specify": "Autre (préciser) : _________________",
+          "cannot_be_determined_explain": "Ne peut être déterminé (expliquer) : _________________"
+        }
+      },
+      "sentinel_nodes_examined": {
+        "label": "Nombre de ganglions sentinelles examinés (le cas échéant)",
+        "options": {
+          "exact_number": "Nombre exact (préciser) : _________________",
+          "at_least": "Au moins (préciser) : _________________",
+          "other_specify": "Autre (préciser) : _________________",
+          "cannot_be_determined_explain": "Ne peut être déterminé (expliquer) : _________________"
+        }
+      },
+      "comment": "Commentaire sur les ganglions lymphatiques régionaux : _________________"
+    },
+    "distant_metastasis": {
+      "sites": {
+        "label": "Site(s) distant(s) atteint(s), le cas échéant (sélectionner tout ce qui s’applique)",
+        "options": {
+          "not_applicable": "Sans objet",
+          "non_regional_lymph_nodes": "Ganglion(s) non régional(aux) (préciser si possible) : _________________",
+          "lung": "Poumon : _________________",
+          "liver": "Foie : _________________",
+          "bone": "Os : _________________",
+          "brain": "Cerveau : _________________",
+          "other_specify": "Autre (préciser) : _________________",
+          "cannot_be_determined": "Ne peut être déterminé : _________________"
+        }
+      }
+    },
+    "pathologic_stage": {
+      "note": "La déclaration des catégories pT, pN et, le cas échéant, pM repose sur les informations disponibles pour le pathologiste au moment de l’émission du compte rendu. Selon l’AJCC, il incombe au médecin responsable d’établir le stade pathologique final.",
+      "tnm_descriptors": {
+        "label": "Descripteurs TNM",
+        "options": {
+          "not_applicable": "Sans objet",
+          "r_recurrent": "r (récidive)"
+        }
+      },
+      "pt_category": {
+        "label": "Catégorie pT",
+        "options": {
+          "ptis_dcis": "pTis (CCIS) : carcinome canalaire in situ",
+          "ptis_paget": "pTis (Paget) : maladie de Paget du mamelon NON associée à un carcinome invasif et/ou à un CCIS dans le parenchyme mammaire sous-jacent#"
+        }
+      },
+      "regional_nodes_modifier": {
+        "label": "Modificateur des ganglions régionaux (sélectionner tout ce qui s’applique)",
+        "note": "Le modificateur (sn) est ajouté à la catégorie N lorsqu’une biopsie du ganglion sentinelle est réalisée et que moins de six ganglions sont retirés. Le modificateur (f) indique la confirmation d’une métastase par cytoponction ou biopsie au trocart sans autre résection ganglionnaire.",
+        "options": {
+          "not_applicable": "Sans objet",
+          "sn": "(sn) : ganglion(s) sentinelle(s) évalué(s). Si 6 ganglions ou plus sont retirés, ce modificateur ne doit pas être utilisé.",
+          "f": "(f) : métastase ganglionnaire confirmée par cytoponction ou biopsie au trocart."
+        }
+      },
+      "pn_category": {
+        "label": "Catégorie pN",
+        "instruction": "Choisir une catégorie si des ganglions sont reçus avec le spécimen ; l’IHC et/ou les études moléculaires ne sont pas requises.",
+        "itc_note": "Les ITC sont de petits amas cellulaires ne dépassant pas 0,2 mm, des cellules tumorales uniques, ou un amas de moins de 200 cellules. Les ganglions contenant uniquement des ITC sont exclus du nombre de ganglions positifs mais inclus dans le nombre total évalué.",
+        "options": {
+          "pn_not_assigned_no_nodes": "pN non attribué (aucun ganglion soumis ou trouvé)",
+          "pn_not_assigned_cannot_determine": "pN non attribué (ne peut être déterminé sur la base des informations pathologiques disponibles)",
+          "pn0": "pN0 : aucune métastase ganglionnaire régionale ou ITC seules#",
+          "pn0_i_plus": "pN0 (i+) : ITC seules dans un/des ganglion(s) régional(aux)",
+          "pn0_mol_plus": "pN0 (mol+) : résultats moléculaires positifs par RT-PCR ; aucune ITC détectée",
+          "pn1mi": "pN1mi : micrométastases (environ 200 cellules, >0,2 mm, aucune >2,0 mm)",
+          "pn1a": "pN1a : métastases dans 1 à 3 ganglions axillaires, au moins une >2,0 mm##",
+          "pn1b": "pN1b : métastases dans les ganglions sentinelles mammaires internes ipsilatéraux, hors ITC",
+          "pn1c": "pN1c : combinaison de pN1a et pN1b",
+          "pn2a": "pN2a : métastases dans 4 à 9 ganglions axillaires, au moins un dépôt >2,0 mm##",
+          "pn2b": "pN2b : métastases dans les ganglions mammaires internes détectés cliniquement, avec ganglions axillaires pathologiquement négatifs",
+          "pn3a": "pN3a : métastases dans 10 ganglions axillaires ou plus ; ou ganglions infraclaviculaires",
+          "pn3b": "pN3b : pN1a ou pN2a en présence de cN2b ; ou pN2a en présence de pN1b",
+          "pn3c": "pN3c : métastases dans les ganglions supraclaviculaires ipsilatéraux"
+        }
+      },
+      "pm_category": {
+        "label": "Catégorie pM (requise seulement si confirmée pathologiquement)",
+        "note": "La présence de métastases à distance dans un cas de CCIS serait très inhabituelle. Un échantillonnage ou des antécédents supplémentaires sont conseillés.",
+        "options": {
+          "not_applicable_pm_cannot_be_determined": "Sans objet - pM ne peut être déterminé à partir du/des spécimen(s) soumis",
+          "pm1": "pM1 : métastases histologiquement prouvées supérieures à 0,2 mm",
+          "previous_case_number": "Préciser le numéro de cas (si provenant d’une procédure antérieure) : _________________"
+        }
+      }
+    }
   }
 }

@@ -1,35 +1,71 @@
 {
-  "templateId": "cervical_cytology_bethesda",
-  "templateName": "CERVICAL CYTOLOGY (PAP SMEAR) REPORTING TEMPLATE (BETHESDA SYSTEM)",
+  "templateId": "cervical_cytology_pap_smear_bethesda",
+  "version": "1.0",
   "language": "en",
+  "category": "cytology",
+  "system": "Bethesda System",
+  "title": "CERVICAL CYTOLOGY (PAP SMEAR) REPORTING TEMPLATE (BETHESDA SYSTEM)",
   "sections": [
     {
       "id": "specimen",
       "title": "Specimen",
       "fields": [
         {
-          "id": "cervical_cytology_type",
+          "id": "specimen_type",
+          "type": "select",
           "label": "Cervical cytology (select appropriate)",
-          "type": "select",
-          "options": ["Conventional smear", "Liquid-based cytology"]
-        },
-        {
-          "id": "source",
-          "label": "Source",
-          "type": "select",
           "options": [
-            "Cervix",
-            "Ectocervix",
-            "Endocervix",
-            "Vaginal cuff",
-            "Other"
+            {
+              "code": "conventional_smear",
+              "label": "Conventional smear"
+            },
+            {
+              "code": "liquid_based_cytology",
+              "label": "Liquid-based cytology"
+            }
           ]
         },
         {
-          "id": "hpv_test_available",
-          "label": "HPV test submitted / available",
+          "id": "source",
           "type": "select",
-          "options": ["Yes", "No"]
+          "label": "Source",
+          "options": [
+            {
+              "code": "cervix",
+              "label": "Cervix"
+            },
+            {
+              "code": "ectocervix",
+              "label": "Ectocervix"
+            },
+            {
+              "code": "endocervix",
+              "label": "Endocervix"
+            },
+            {
+              "code": "vaginal_cuff",
+              "label": "Vaginal cuff"
+            },
+            {
+              "code": "other",
+              "label": "Other"
+            }
+          ]
+        },
+        {
+          "id": "hpv_test_submitted_available",
+          "type": "select",
+          "label": "HPV test submitted / available",
+          "options": [
+            {
+              "code": "yes",
+              "label": "Yes"
+            },
+            {
+              "code": "no",
+              "label": "No"
+            }
+          ]
         }
       ]
     },
@@ -38,110 +74,129 @@
       "title": "Specimen Adequacy",
       "fields": [
         {
-          "id": "adequacy",
-          "label": "Specimen adequacy",
+          "id": "adequacy_status",
           "type": "select",
+          "label": "Specimen adequacy",
           "options": [
-            "Satisfactory for evaluation",
-            "Satisfactory but limited by",
-            "Unsatisfactory for evaluation"
+            {
+              "code": "satisfactory_for_evaluation",
+              "label": "Satisfactory for evaluation"
+            },
+            {
+              "code": "unsatisfactory_scant_cellularity",
+              "label": "Unsatisfactory for evaluation - scant cellularity"
+            },
+            {
+              "code": "unsatisfactory_obscuring_blood_inflammation",
+              "label": "Unsatisfactory for evaluation - obscuring blood / inflammation"
+            },
+            {
+              "code": "unsatisfactory_poor_preservation",
+              "label": "Unsatisfactory for evaluation - poor preservation"
+            },
+            {
+              "code": "unsatisfactory_other",
+              "label": "Unsatisfactory for evaluation - other"
+            }
           ]
         },
         {
-          "id": "satisfactory_limited_by",
+          "id": "satisfactory_but_limited_by",
+          "type": "multiselect",
           "label": "Satisfactory but limited by",
-          "type": "multiselect",
           "options": [
-            "Obscuring blood",
-            "Inflammation",
-            "Low squamous cellularity",
-            "Poor fixation",
-            "Other"
-          ]
-        },
-        {
-          "id": "unsatisfactory_reason",
-          "label": "Reason",
-          "type": "multiselect",
-          "options": [
-            "Scant cellularity",
-            "Obscuring blood",
-            "Inflammation",
-            "Poor preservation",
-            "Other"
+            {
+              "code": "obscuring_blood",
+              "label": "Obscuring blood"
+            },
+            {
+              "code": "inflammation",
+              "label": "Inflammation"
+            },
+            {
+              "code": "low_squamous_cellularity",
+              "label": "Low squamous cellularity"
+            },
+            {
+              "code": "poor_fixation",
+              "label": "Poor fixation"
+            }
           ]
         }
       ]
     },
     {
       "id": "interpretation_result",
-      "title": "Interpretation / Result",
+      "title": "Interpretation / Result (select appropriate)",
       "fields": [
         {
-          "id": "nilm",
-          "label": "Negative for Intraepithelial Lesion or Malignancy (NILM)",
-          "type": "group",
-          "fields": [
+          "id": "interpretation_result",
+          "type": "select",
+          "label": "Interpretation / Result",
+          "options": [
             {
-              "id": "no_lesion_or_malignancy",
-              "label": "No intraepithelial lesion or malignancy identified",
-              "type": "boolean"
+              "code": "nilm_within_normal_limits",
+              "label": "Negative for intraepithelial lesion or malignancy: Within normal limits"
             },
             {
-              "id": "non_neoplastic_findings",
-              "label": "Non-neoplastic Findings (if present, select appropriate)",
-              "type": "multiselect",
-              "options": [
-                "Reactive cellular changes associated with inflammation",
-                "Reactive cellular changes associated with radiation / IUD / atrophy"
-              ]
+              "code": "nilm_reactive_inflammation",
+              "label": "Negative for intraepithelial lesion or malignancy, with reactive cellular changes associated with inflammation"
             },
             {
-              "id": "organisms_identified",
-              "label": "Organisms identified",
-              "type": "multiselect",
-              "options": [
-                "Trichomonas vaginalis",
-                "Fungal organisms morphologically consistent with Candida spp.",
-                "Shift in flora suggestive of bacterial vaginosis",
-                "Bacteria morphologically consistent with Actinomyces spp.",
-                "Herpes simplex virus changes",
-                "Other"
-              ]
+              "code": "nilm_reactive_radiation_iud_atrophy",
+              "label": "Negative for intraepithelial lesion or malignancy, with reactive cellular changes associated with radiation / IUD / atrophy"
             },
             {
-              "id": "organisms_other",
-              "label": "Other organisms",
-              "type": "text"
-            }
-          ]
-        },
-        {
-          "id": "epithelial_cell_abnormalities",
-          "label": "Epithelial Cell Abnormalities",
-          "type": "group",
-          "fields": [
-            {
-              "id": "squamous_cell",
-              "label": "Squamous Cell",
-              "type": "multiselect",
-              "options": [
-                "ASC-US (Atypical squamous cells of undetermined significance)",
-                "ASC-H (Atypical squamous cells, cannot exclude HSIL)",
-                "LSIL (Low-grade squamous intraepithelial lesion)",
-                "HSIL (High-grade squamous intraepithelial lesion)",
-                "Squamous cell carcinoma"
-              ]
+              "code": "organism_trichomonas_vaginalis",
+              "label": "Negative for intraepithelial lesion or malignancy, with organisms identified: Trichomonas vaginalis"
             },
             {
-              "id": "glandular_cell",
-              "label": "Glandular Cell",
-              "type": "multiselect",
-              "options": [
-                "Atypical glandular cells (AGC)",
-                "Endocervical adenocarcinoma in situ (AIS)",
-                "Adenocarcinoma"
-              ]
+              "code": "organism_candida_spp",
+              "label": "Negative for intraepithelial lesion or malignancy, with organisms identified: Fungal organisms morphologically consistent with Candida spp."
+            },
+            {
+              "code": "organism_bacterial_vaginosis",
+              "label": "Negative for intraepithelial lesion or malignancy, with organisms identified: Shift in flora suggestive of bacterial vaginosis"
+            },
+            {
+              "code": "organism_actinomyces_spp",
+              "label": "Negative for intraepithelial lesion or malignancy, with organisms identified: Bacteria morphologically consistent with Actinomyces spp."
+            },
+            {
+              "code": "organism_herpes_simplex_virus",
+              "label": "Negative for intraepithelial lesion or malignancy, with organisms identified: Herpes simplex virus changes"
+            },
+            {
+              "code": "asc_us",
+              "label": "ASC-US (Atypical squamous cells of undetermined significance)"
+            },
+            {
+              "code": "asc_h",
+              "label": "ASC-H (Atypical squamous cells, cannot exclude HSIL)"
+            },
+            {
+              "code": "lsil",
+              "label": "LSIL (Low-grade squamous intraepithelial lesion)"
+            },
+            {
+              "code": "hsil",
+              "label": "HSIL (High-grade squamous intraepithelial lesion)"
+            },
+            {
+              "code": "squamous_cell_carcinoma",
+              "label": "Squamous cell carcinoma"
+            },
+            {
+              "code": "agc",
+              "label": "Atypical glandular cells (AGC)"
+            },
+            {
+              "code": "ais",
+              "label": "Endocervical adenocarcinoma in situ (AIS)"
+            },
+            {
+              "code": "adenocarcinoma",
+              "label": "Adenocarcinoma"
             }
           ]
         }
@@ -153,14 +208,22 @@
       "fields": [
         {
           "id": "high_risk_hpv",
-          "label": "High-risk HPV",
           "type": "select",
-          "options": ["Positive", "Negative", "Pending"]
-        },
-        {
-          "id": "genotyping",
-          "label": "Genotyping (if available)",
-          "type": "text"
+          "label": "High-risk HPV",
+          "options": [
+            {
+              "code": "positive",
+              "label": "Positive"
+            },
+            {
+              "code": "negative",
+              "label": "Negative"
+            },
+            {
+              "code": "pending",
+              "label": "Pending"
+            }
+          ]
         }
       ]
     },
@@ -169,10 +232,9 @@
       "title": "Comment / Recommendation",
       "fields": [
         {
-          "id": "comment",
-          "label": "Comment",
+          "id": "comment_recommendation",
           "type": "textarea",
-          "default": "Correlate with HPV status and current screening guidelines. Colposcopy / repeat cytology / routine screening as clinically indicated."
+          "label": "Comment / Recommendation"
         }
       ]
     }

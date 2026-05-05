@@ -1,13 +1,125 @@
 {
-  "template_id": "uterine_cervix_resection_gross_v1",
-  "lang": "ur",
-  "title": "یوٹرائن سروکس ریسیکشن (گراس ٹیمپلیٹ)",
-  "specimen": { "label": "نمونہ" },
-  "tumor": { "label": "ٹیومر" },
-  "margins": { "label": "حاشیے" },
-  "parametrial_involvement": { "label": "پیرا میٹریئل شمولیت" },
-  "vaginal_cuff_involvement": { "label": "ویجائنل کف شمولیت" },
-  "lymph_nodes": { "label": "لمف نوڈز" },
-  "block_allocation_key": { "label": "بلاک الاٹمنٹ کلید" },
-  "grossing": { "label": "گروسنگ" }
+  "template": {
+    "key": "gross_uterine_cervix_resection",
+    "title": "گراس ٹیمپلیٹ: یوٹرائن سروکس ریسیکشن"
+  },
+  "common": {
+    "right": "دائیں",
+    "left": "بائیں",
+    "bilateral": "دونوں طرف",
+    "present": "موجود",
+    "absent": "غیر موجود",
+    "other_specify": "دیگر (وضاحت کریں)",
+    "not_specified": "متعین نہیں",
+    "cannot_be_determined_explain": "تعین نہیں کیا جا سکتا (وضاحت کریں)",
+    "total_number": "کل تعداد",
+    "size_range": "سائز کی حد",
+    "date": "تاریخ"
+  },
+  "sections": {
+    "specimen": "نمونہ",
+    "tumor": "رسولی",
+    "block_allocation_key": "بلاک الاٹمنٹ کلید"
+  },
+  "specimen": {
+    "procedure": "طریقۂ کار (جو لاگو ہوں منتخب کریں)",
+    "procedure_options": {
+      "trachelectomy": "ٹریکلیکٹومی / سروکس کا اخراج",
+      "total_hysterectomy_bso": "کل ہسٹرکٹومی مع دونوں فیلوپین ٹیوبز اور بیضہ دانیوں کا اخراج",
+      "radical_hysterectomy": "ریڈیکل ہسٹرکٹومی",
+      "simple_hysterectomy": "سادہ ہسٹرکٹومی",
+      "pelvic_exenteration": "پیلوک ایکزینٹریشن (شامل اعضاء کی وضاحت کریں)",
+      "bilateral_salpingo_oophorectomy": "دونوں طرف سالپنگو-اوفوریکٹومی",
+      "right_salpingo_oophorectomy": "دائیں سالپنگو-اوفوریکٹومی",
+      "left_salpingo_oophorectomy": "بائیں سالپنگو-اوفوریکٹومی",
+      "salpingo_oophorectomy_unspecified": "سالپنگو-اوفوریکٹومی، طرف متعین نہیں",
+      "right_oophorectomy": "دائیں بیضہ دانی کا اخراج",
+      "left_oophorectomy": "بائیں بیضہ دانی کا اخراج",
+      "oophorectomy_unspecified": "بیضہ دانی کا اخراج، طرف متعین نہیں",
+      "bilateral_salpingectomy": "دونوں فیلوپین ٹیوبز کا اخراج",
+      "right_salpingectomy": "دائیں فیلوپین ٹیوب کا اخراج",
+      "left_salpingectomy": "بائیں فیلوپین ٹیوب کا اخراج",
+      "salpingectomy_unspecified": "فیلوپین ٹیوب کا اخراج، طرف متعین نہیں",
+      "vaginal_cuff_resection": "ویجائنل کف ریسیکشن",
+      "omentectomy": "اومینٹیکٹومی",
+      "other": "دیگر (وضاحت کریں)"
+    },
+    "hysterectomy_type": "ہسٹرکٹومی کی قسم",
+    "hysterectomy_type_options": {
+      "abdominal": "پیٹ کے راستے",
+      "vaginal": "اندام نہانی کے راستے",
+      "vaginal_lap_assisted": "اندام نہانی، لیپروسکوپی کی مدد سے",
+      "laparoscopic": "لیپروسکوپک",
+      "robotic_assisted": "لیپروسکوپک، روبوٹ کی مدد سے",
+      "other": "دیگر (وضاحت کریں)",
+      "not_specified": "متعین نہیں"
+    }
+  },
+  "tumor": {
+    "tumor_site": "رسولی کا مقام (جو لاگو ہوں منتخب کریں)",
+    "tumor_site_options": {
+      "left_superior_anterior_12_3": "بائیں اوپری (اگلا) ربع (12 سے 3 بجے)",
+      "left_inferior_posterior_3_6": "بائیں نچلا (پچھلا) ربع (3 سے 6 بجے)",
+      "right_inferior_posterior_6_9": "دائیں نچلا (پچھلا) ربع (6 سے 9 بجے)",
+      "right_superior_anterior_9_12": "دائیں اوپری (اگلا) ربع (9 سے 12 بجے)",
+      "other": "دیگر (وضاحت کریں)",
+      "not_specified": "متعین نہیں"
+    },
+    "tumor_size": {
+      "title": "رسولی کا سائز",
+      "greatest_dimension_cm": "سب سے بڑا بُعد سینٹی میٹر (cm) میں",
+      "additional_dimension_cm": "اضافی ابعاد سینٹی میٹر (cm) میں",
+      "cannot_be_determined": "تعین نہیں کیا جا سکتا (وضاحت کریں)",
+      "note": "AJCC اسٹیجنگ مینوئل کے مطابق، رسولی کا سائز سینٹی میٹر میں رپورٹ کیا جاتا ہے۔ تمام ابعاد اہم ہیں؛ T1a1 / IA1 کے تحت سطحی طور پر حملہ آور اسکوا موس سیل کارسینوما کی تعریف دیکھیں۔"
+    },
+    "depth_of_invasion": {
+      "title": "حملہ / انویژن کی گہرائی",
+      "stromal_depth_cm": "اسٹروما میں انویژن کی گہرائی (cm)",
+      "horizontal_extent_cm": "افقی پھیلاؤ (cm)"
+    },
+    "distance_to_margins": {
+      "title": "مارجنز تک فاصلہ",
+      "ectocervical_margin_cm": "ایکٹوسرویکل مارجن",
+      "endocervical_margin_cm": "اینڈوسرویکل مارجن",
+      "parametrial_margin_cm": "پیرامیٹریل مارجن"
+    },
+    "parametrial_involvement": {
+      "title": "پیرامیٹریل شمولیت",
+      "absent": "غیر موجود",
+      "present_select": "موجود (جو لاگو ہوں منتخب کریں)",
+      "right": "دائیں",
+      "left": "بائیں",
+      "bilateral": "دونوں طرف"
+    },
+    "vaginal_cuff_involvement": {
+      "title": "ویجائنل کف شمولیت",
+      "absent": "غیر موجود",
+      "present": "موجود"
+    },
+    "lymph_nodes": {
+      "title": "لمف نوڈز",
+      "present_absent": "موجود / غیر موجود",
+      "total_number_of_nodes": "نوڈز کی کل تعداد",
+      "size_range": "سائز کی حد"
+    }
+  },
+  "blocks": {
+    "tumor": "رسولی",
+    "endocervical_margin": "اینڈوسرویکل مارجن",
+    "ectocervical_margin": "ایکٹوسرویکل مارجن",
+    "right_parametrium": "دائیں پیرامیٹریئم",
+    "left_parametrium": "بائیں پیرامیٹریئم",
+    "vaginal_cuff_margin": "ویجائنل کف مارجن",
+    "endometrium": "اینڈومیٹریئم",
+    "myometrium": "مایومیٹریئم",
+    "right_ovary": "دائیں بیضہ دانی",
+    "left_ovary": "بائیں بیضہ دانی",
+    "right_fallopian_tube": "دائیں فیلوپین ٹیوب",
+    "left_fallopian_tube": "بائیں فیلوپین ٹیوب",
+    "lymph_nodes": "لمف نوڈز"
+  },
+  "signoff": {
+    "grossed_by": "گراس کیا گیا بذریعہ",
+    "date": "تاریخ"
+  }
 }
