@@ -42,9 +42,20 @@ A lightweight **Anatomic Pathology Laboratory Information System** prototype imp
 
 ## Quick start — Docker Compose
 
+This repo ships **two Compose stacks**:
+
+| Stack | File(s) | Database | Use for |
+|---|---|---|---------|
+| **Development** (default) | `docker-compose.yml` (optionally `+ docker-compose.dev.yml` for Vite HMR) | Containerized PostgreSQL | Local development, demos, CI |
+| **Production** | `docker-compose.prod.yml` (standalone) | Google Cloud SQL via Cloud SQL Auth Proxy sidecar | Real deployments |
+
+The two stacks share the same backend/frontend images and code. **The only difference is the database wiring** — dev runs Postgres in a container; prod connects to a managed Cloud SQL instance through an Auth Proxy sidecar. Bring one stack down before starting another so they do not compete for container names and ports.
+
+### Dev path 1. Base Compose stack (`docker-compose.yml`)
+
 ```bash
 # Copy and review environment variables
-cp .env.example .env
+cp .env.development.example .env
 
 # Start all services (PostgreSQL, backend, frontend)
 docker-compose up --build
@@ -55,9 +66,70 @@ The backend API at **http://localhost:3001**
 
 Docker Compose will automatically:
 1. Start PostgreSQL
-2. Run Prisma migrations
+2. Run Prisma migrations (`prisma migrate deploy`)
 3. Seed the database with ~300 synthetic cases
-4. Start the backend and frontend
+4. Start the backend and serve the built frontend with nginx
+
+To stop it:
+
+```bash
+docker compose -f docker-compose.yml down
+```
+
+### Dev path 2. Dev override stack (`docker-compose.yml` + `docker-compose.dev.yml`)
+
+```bash
+# Copy and review environment variables
+cp .env.development.example .env
+
+# Start PostgreSQL, backend, and the Vite dev server frontend
+docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build
+```
+
+The backend remains available at **http://localhost:3001**.  
+The frontend runs from the Vite dev server on **http://localhost:5173** by default, or `http://localhost:${FRONTEND_DEV_PORT}` if you set `FRONTEND_DEV_PORT`.
+
+This path keeps the frontend mounted from the local workspace for hot reload and uses the override file to replace the nginx container with the dev server.
+
+To stop it:
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.dev.yml down
+```
+
+### Production stack (`docker-compose.prod.yml`)
+
+The prod stack replaces the local `postgres` service with a `cloudsql-proxy` sidecar that fronts your Cloud SQL instance using IAM authentication. Backend startup runs `prisma migrate deploy` only — **no `db push`, no seeding**.
+
+Prerequisites on the host:
+
+1. A Cloud SQL for PostgreSQL instance you can reach (note its `<project>:<region>:<instance>` connection name).
+2. A GCP service account with the `roles/cloudsql.client` role and a JSON key downloaded.
+3. Docker + Docker Compose v2.
+
+Setup:
+
+```bash
+# 1. Configure environment
+cp .env.production.example .env.production
+# Edit .env.production — set DATABASE_URL, INSTANCE_CONNECTION_NAME,
+# SESSION_SECRET, CORS_ORIGIN.
+
+# 2. Place the service-account key (the path is gitignored)
+mkdir -p secrets
+cp /path/to/your-gcp-sa.json secrets/gcp-sa.json
+
+# 3. Build and start
+docker compose --env-file .env.production -f docker-compose.prod.yml up -d --build
+```
+
+To stop it:
+
+```bash
+docker compose --env-file .env.production -f docker-compose.prod.yml down
+```
+
+> **Security:** never commit `.env.production` or anything in `secrets/` — both are listed in `.gitignore`.
 
 ## Quick start — Local development
 
@@ -70,7 +142,7 @@ pnpm install
 ### 2. Set up environment variables
 
 ```bash
-cp .env.example .env
+cp .env.development.example .env
 # Edit .env — set DATABASE_URL and SESSION_SECRET
 ```
 

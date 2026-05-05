@@ -3,9 +3,14 @@ dist/
 build/
 .env
 .env.local
+.env.development
+.env.production
 *.log
 coverage/
 .nyc_output/
+
+# Secrets (e.g., GCP service-account key for Cloud SQL Auth Proxy)
+secrets/
 
 # Storage directories (generated files)
 apps/backend/storage/
