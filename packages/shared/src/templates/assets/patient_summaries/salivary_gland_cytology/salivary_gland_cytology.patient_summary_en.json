@@ -8,6 +8,9 @@
   "summaries": {
     "milan_i_non_diagnostic": {
       "professionalLabel": "Milan Category I: Non-diagnostic",
+      "match": {
+        "milan_category": "I. Non-diagnostic"
+      },
       "patientTitle": "The sample was not enough for a clear diagnosis",
       "plainLanguageSummary": "The salivary gland sample did not contain enough useful material for a clear diagnosis.",
       "whatThisMeans": "This does not mean cancer was found. It means the sample was not adequate enough to provide a reliable answer.",
@@ -16,6 +19,9 @@
     },
     "milan_ii_non_neoplastic": {
       "professionalLabel": "Milan Category II: Non-neoplastic",
+      "match": {
+        "milan_category": "II. Non-neoplastic"
+      },
       "patientTitle": "No tumor identified",
       "plainLanguageSummary": "The sample shows non-tumor changes, such as inflammatory or benign reactive changes.",
       "whatThisMeans": "This result does not show a salivary gland tumor in the sample examined.",
@@ -24,6 +30,9 @@
     },
     "milan_iii_aus": {
       "professionalLabel": "Milan Category III: Atypia of Undetermined Significance (AUS)",
+      "match": {
+        "milan_category": "III. Atypia of Undetermined Significance (AUS)"
+      },
       "patientTitle": "Some mildly unusual cells seen",
       "plainLanguageSummary": "The sample shows some cells that look unusual, but the findings are not enough to classify the lesion clearly.",
       "whatThisMeans": "This is an indeterminate result. It may be due to benign changes, but further assessment may be needed.",
@@ -32,6 +41,9 @@
     },
     "milan_iva_benign_neoplasm": {
       "professionalLabel": "Milan Category IVa: Benign Neoplasm",
+      "match": {
+        "milan_category": "IVa. Benign Neoplasm"
+      },
       "patientTitle": "Benign salivary gland tumor",
       "plainLanguageSummary": "The sample is most consistent with a benign, non-cancerous salivary gland tumor.",
       "whatThisMeans": "Benign tumors are not cancer, but some may continue to grow or require removal depending on type, size, and symptoms.",
@@ -40,6 +52,9 @@
     },
     "milan_ivb_sump": {
       "professionalLabel": "Milan Category IVb: Salivary Gland Neoplasm of Uncertain Malignant Potential (SUMP)",
+      "match": {
+        "milan_category": "IVb. Salivary Gland Neoplasm of Uncertain Malignant Potential (SUMP)"
+      },
       "patientTitle": "Salivary gland tumor with uncertain behavior",
       "plainLanguageSummary": "The sample shows a salivary gland tumor, but cytology alone cannot confidently determine whether it is benign or malignant.",
       "whatThisMeans": "Further evaluation is usually needed to understand the exact nature of the tumor.",
@@ -48,6 +63,9 @@
     },
     "milan_v_suspicious_for_malignancy": {
       "professionalLabel": "Milan Category V: Suspicious for Malignancy",
+      "match": {
+        "milan_category": "V. Suspicious for Malignancy"
+      },
       "patientTitle": "Suspicious salivary gland result",
       "plainLanguageSummary": "The sample shows changes that are suspicious for cancer, but may not be sufficient for a definite diagnosis.",
       "whatThisMeans": "There is significant concern, and further evaluation is usually needed.",
@@ -56,6 +74,9 @@
     },
     "milan_vi_malignant": {
       "professionalLabel": "Milan Category VI: Malignant",
+      "match": {
+        "milan_category": "VI. Malignant"
+      },
       "patientTitle": "Cancer cells identified in the salivary gland sample",
       "plainLanguageSummary": "The sample shows malignant cells, meaning cancer cells were identified.",
       "whatThisMeans": "This result usually requires specialist assessment and treatment planning.",

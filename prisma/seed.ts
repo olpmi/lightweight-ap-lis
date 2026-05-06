@@ -226,6 +226,99 @@ const REPORT_TEMPLATES = [
   },
 ];
 
+type StructuredSeedValue = string | string[];
+
+interface StructuredSeedReport {
+  templateKey: string;
+  templateId: string;
+  title: string;
+  diagnosis: string;
+  synopticData: string;
+  values: Record<string, StructuredSeedValue>;
+}
+
+const CYTOLOGY_STRUCTURED_REPORTS: StructuredSeedReport[] = [
+  {
+    templateKey: 'general_cytology/general_cytology',
+    templateId: 'general_cytology',
+    title: 'GENERAL CYTOLOGY REPORTING TEMPLATE',
+    diagnosis: 'Positive for malignancy',
+    synopticData: 'DIAGNOSTIC CATEGORY\nDiagnostic Category: Positive for malignancy',
+    values: {
+      'diagnostic_category.diagnostic_category': 'Positive for malignancy',
+    },
+  },
+  {
+    templateKey: 'fluid_cytology/fluid_cytology',
+    templateId: 'fluid_cytology_international_serous_fluid',
+    title: 'FLUID CYTOLOGY REPORTING TEMPLATE',
+    diagnosis: 'Negative for malignancy',
+    synopticData: 'DIAGNOSTIC CATEGORY\nDiagnostic Category: II. Negative for Malignancy (NFM)',
+    values: {
+      'diagnostic_category.diagnostic_category': 'II. Negative for Malignancy (NFM)',
+    },
+  },
+  {
+    templateKey: 'breast_cytology/breast_cytology',
+    templateId: 'breast_cytology_yokohama',
+    title: 'BREAST CYTOLOGY REPORTING TEMPLATE',
+    diagnosis: 'Benign breast cytology',
+    synopticData: 'DIAGNOSTIC CATEGORY (YOKOHAMA)\nDiagnostic Category (Yokohama): II: Benign',
+    values: {
+      'diagnostic_category.yokohama_category': 'II: Benign',
+    },
+  },
+  {
+    templateKey: 'salivary_gland_cytology/salivary_gland_cytology',
+    templateId: 'salivary_gland_cytology_milan',
+    title: 'SALIVARY GLAND CYTOLOGY REPORTING TEMPLATE',
+    diagnosis: 'Suspicious for malignancy',
+    synopticData: 'MILAN CATEGORY\nMilan Category: V. Suspicious for Malignancy',
+    values: {
+      'milan_category.milan_category': 'V. Suspicious for Malignancy',
+    },
+  },
+  {
+    templateKey: 'thyroid_cytology/thyroid_cytology',
+    templateId: 'thyroid_cytology_bethesda_3rd_edition',
+    title: 'THYROID CYTOLOGY REPORTING TEMPLATE',
+    diagnosis: 'Benign thyroid cytology',
+    synopticData: 'BETHESDA CATEGORY\nBethesda Category: II. Benign',
+    values: {
+      'bethesda_category.bethesda_category': 'II. Benign',
+    },
+  },
+  {
+    templateKey: 'cervical_cytology/cervical_cytology',
+    templateId: 'cervical_cytology_pap_smear_bethesda',
+    title: 'CERVICAL CYTOLOGY (PAP SMEAR) REPORTING TEMPLATE',
+    diagnosis: 'Low-grade squamous intraepithelial lesion',
+    synopticData: [
+      'SPECIMEN ADEQUACY',
+      'Specimen adequacy: Satisfactory for evaluation',
+      '',
+      'INTERPRETATION / RESULT (SELECT APPROPRIATE)',
+      'Interpretation / Result: LSIL (Low-grade squamous intraepithelial lesion)',
+    ].join('\n'),
+    values: {
+      'specimen_adequacy.adequacy_status': 'satisfactory_for_evaluation',
+      'interpretation_result.interpretation_result': 'lsil',
+    },
+  },
+];
+
+function buildStructuredSeedPayload(template: StructuredSeedReport): string {
+  return JSON.stringify({
+    version: 1,
+    templateKey: template.templateKey,
+    templateId: template.templateId,
+    title: template.title,
+    kind: 'reporting',
+    language: 'en',
+    values: template.values,
+  });
+}
+
 const EMPLOYEE_ROLES = ['Pathologist', 'Technologist'];
 
 const EMPLOYEES = [
@@ -476,6 +569,7 @@ async function main() {
 
     const patientId = pick(patientIds);
     const doctorId = pick(doctorIds);
+    const caseType = pick(['Surgical Pathology', 'Cytology', 'Surgical Pathology']);
 
     // Create the order
     await prisma.order.create({
@@ -483,7 +577,7 @@ async function main() {
         orderId,
         patientId,
         doctorId,
-        caseType: pick(['Surgical Pathology', 'Cytology', 'Surgical Pathology']),
+        caseType,
         clinicalHistory: pick([
           'Rule out malignancy',
           'Suspicious lesion on imaging',
@@ -566,14 +660,17 @@ async function main() {
     // Create a signed-out report
     const pathologist = pick(pathologists);
     const signedOutDate = subtractDays(registeredDate, -randInt(3, 14));
+    const structuredReport = caseType === 'Cytology' ? pick(CYTOLOGY_STRUCTURED_REPORTS) : null;
     const report = await prisma.report.create({
       data: {
         orderId,
         versionNumber: 1,
-        diagnosis: pick(DIAGNOSES),
+        diagnosis: structuredReport?.diagnosis ?? pick(DIAGNOSES),
         comment: pick(COMMENTS),
         gross: pick(GROSS_DESCRIPTIONS),
-        reportTemplateId: pick(templateIds),
+        reportTemplateId: structuredReport ? undefined : pick(templateIds),
+        synopticData: structuredReport?.synopticData,
+        synopticPayload: structuredReport ? buildStructuredSeedPayload(structuredReport) : undefined,
         pathologistEmployeeId: pathologist.employeeId,
         createdAt: signedOutDate,
         signedOutDatetime: signedOutDate,
@@ -605,6 +702,8 @@ async function main() {
           diagnosis: report.diagnosis ?? undefined,
           comment: report.comment ?? undefined,
           gross: report.gross ?? undefined,
+          synopticData: report.synopticData ?? undefined,
+          synopticPayload: report.synopticPayload ?? undefined,
           reportTemplateId: report.reportTemplateId ?? undefined,
           pathologistEmployeeId: pathologist.employeeId,
           createdAt: new Date(),

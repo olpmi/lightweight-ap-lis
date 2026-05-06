@@ -72,6 +72,69 @@ describe('templateForms', () => {
     expect(payload?.values).toEqual(values);
   });
 
+  it('preserves coded option values for flat templates with section-scoped overlays', () => {
+    const definition: RawTemplateDefinition = {
+      templateKey: 'cervical-reporting-sw',
+      templateId: 'cervical_reporting',
+      family: 'cervical_cytology',
+      title: 'Cervical Reporting',
+      kind: 'reporting',
+      language: 'sw',
+      schemaStyle: 'flat',
+      availableLanguages: ['en', 'sw'],
+      core: {
+        sections: [
+          {
+            id: 'interpretation_result',
+            title: 'Interpretation / Result',
+            fields: [
+              {
+                id: 'interpretation_result',
+                label: 'Interpretation / Result',
+                type: 'select',
+                options: [
+                  { code: 'nilm_within_normal_limits', label: 'Within normal limits' },
+                  { code: 'asc_us', label: 'ASC-US' },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      translation: {
+        sections: {
+          interpretation_result: {
+            title: 'Ufafanuzi / Matokeo',
+            fields: {
+              interpretation_result: {
+                label: 'Ufafanuzi / Matokeo',
+                options: {
+                  nilm_within_normal_limits: 'Ndani ya mipaka ya kawaida',
+                  asc_us: 'ASC-US',
+                },
+              },
+            },
+          },
+        },
+      },
+    };
+
+    const normalized = normalizeTemplateDefinition(definition);
+    const values = resolveTemplateFormValues(normalized, {
+      'interpretation_result.interpretation_result': 'nilm_within_normal_limits',
+    });
+
+    expect(renderStructuredTemplateText(normalized, values)).toBe([
+      'UFAFANUZI / MATOKEO',
+      'Ufafanuzi / Matokeo: Ndani ya mipaka ya kawaida',
+    ].join('\n'));
+
+    const payload = parseStructuredTemplatePayload(serializeStructuredTemplatePayload(normalized, 'sw', values));
+    expect(payload?.values).toEqual({
+      'interpretation_result.interpretation_result': 'nilm_within_normal_limits',
+    });
+  });
+
   it('normalizes and renders nested templates with groups', () => {
     const definition: RawTemplateDefinition = {
       templateKey: 'colon-gross-en',

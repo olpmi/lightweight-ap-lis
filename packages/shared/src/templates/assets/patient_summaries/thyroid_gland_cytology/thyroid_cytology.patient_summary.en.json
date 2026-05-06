@@ -8,6 +8,9 @@
   "summaries": {
     "bethesda_i_non_diagnostic_unsatisfactory": {
       "professionalLabel": "Bethesda Category I: Non-diagnostic / Unsatisfactory",
+      "match": {
+        "bethesda_category": "I. Non-diagnostic / Unsatisfactory"
+      },
       "patientTitle": "The sample was not enough for a clear diagnosis",
       "plainLanguageSummary": "The thyroid sample did not contain enough useful cells, or the sample quality was limited, so a clear diagnosis could not be made.",
       "whatThisMeans": "This does not mean cancer was found. It means the sample was not adequate enough to give a reliable answer.",
@@ -16,6 +19,9 @@
     },
     "bethesda_ii_benign": {
       "professionalLabel": "Bethesda Category II: Benign",
+      "match": {
+        "bethesda_category": "II. Benign"
+      },
       "patientTitle": "Benign thyroid result",
       "plainLanguageSummary": "The thyroid sample shows benign, non-cancerous cells.",
       "whatThisMeans": "This is generally a reassuring result. It does not show features of thyroid cancer in the sample examined.",
@@ -24,6 +30,9 @@
     },
     "bethesda_iii_aus": {
       "professionalLabel": "Bethesda Category III: Atypia of Undetermined Significance (AUS)",
+      "match": {
+        "bethesda_category": "III. Atypia of Undetermined Significance (AUS)"
+      },
       "patientTitle": "Mildly atypical thyroid cells",
       "plainLanguageSummary": "The thyroid sample shows some cells that look mildly unusual, but the findings are not enough to diagnose cancer or a definite tumor.",
       "whatThisMeans": "This is an indeterminate result. Many cases are not cancer, but further assessment may be needed.",
@@ -32,6 +41,9 @@
     },
     "bethesda_iv_follicular_neoplasm_suspicious_for_follicular_neoplasm": {
       "professionalLabel": "Bethesda Category IV: Follicular Neoplasm / Suspicious for Follicular Neoplasm",
+      "match": {
+        "bethesda_category": "IV. Follicular Neoplasm / Suspicious for Follicular Neoplasm"
+      },
       "patientTitle": "Possible follicular thyroid tumor",
       "plainLanguageSummary": "The thyroid sample shows a pattern that may represent a follicular thyroid tumor.",
       "whatThisMeans": "Cytology alone often cannot reliably tell whether this type of thyroid tumor is benign or malignant because that may require examination of the whole nodule capsule and blood vessels.",
@@ -40,6 +52,9 @@
     },
     "bethesda_v_suspicious_for_malignancy": {
       "professionalLabel": "Bethesda Category V: Suspicious for Malignancy",
+      "match": {
+        "bethesda_category": "V. Suspicious for Malignancy"
+      },
       "patientTitle": "Suspicious thyroid result",
       "plainLanguageSummary": "The thyroid sample shows changes that are suspicious for cancer, but the findings may not be complete enough for a definite diagnosis.",
       "whatThisMeans": "There is significant concern, and further evaluation is usually needed.",
@@ -48,6 +63,9 @@
     },
     "bethesda_vi_malignant": {
       "professionalLabel": "Bethesda Category VI: Malignant",
+      "match": {
+        "bethesda_category": "VI. Malignant"
+      },
       "patientTitle": "Cancer cells identified in the thyroid sample",
       "plainLanguageSummary": "The thyroid sample shows malignant cells, meaning cancer cells were identified.",
       "whatThisMeans": "This result usually requires specialist management. The exact treatment depends on the type of thyroid cancer and your overall clinical findings.",

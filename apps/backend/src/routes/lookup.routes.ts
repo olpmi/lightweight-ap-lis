@@ -5,6 +5,7 @@ import { requireAuth } from '../middleware/auth.middleware.js';
 import { validateBody } from '../middleware/validate.middleware.js';
 import { APP_LANGUAGE_CODES, createDraftReportSchema, reactivateOrderSchema, type AppLanguageCode } from '@lis/shared';
 import { getTemplateDefinition, listTemplateCatalog } from '@lis/shared/templates/server';
+import { getPatientSummaryDefinition } from '@lis/shared/patient-summaries/server';
 import { AppError } from '../middleware/error.middleware.js';
 
 const router = Router();
@@ -81,6 +82,31 @@ router.get('/template-definition', async (req: Request, res: Response, next: Nex
     const language = resolveLanguage(req);
     const data = getTemplateDefinition(templateKey, language);
     res.json({ data });
+  } catch (err) {
+    next(err);
+  }
+});
+
+// GET /api/lookups/patient-summary-definition?templateId=...&language=sw
+router.get('/patient-summary-definition', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const templateId = typeof req.query.templateId === 'string' ? req.query.templateId : '';
+    if (!templateId) {
+      throw new AppError(400, 'BAD_REQUEST', 'templateId query parameter is required');
+    }
+
+    const language = resolveLanguage(req);
+
+    try {
+      const data = getPatientSummaryDefinition(templateId, language);
+      res.json({ data });
+    } catch (error) {
+      if (error instanceof Error && error.message.startsWith('Patient summary not found')) {
+        throw new AppError(404, 'NOT_FOUND', error.message);
+      }
+
+      throw error;
+    }
   } catch (err) {
     next(err);
   }

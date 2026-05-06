@@ -2,13 +2,23 @@ import { Router, Request, Response, NextFunction } from 'express';
 import { ReportService } from '../services/report.service.js';
 import { requireAuth } from '../middleware/auth.middleware.js';
 import { validateBody } from '../middleware/validate.middleware.js';
-import { createDraftReportSchema, signOutReportSchema, reactivateOrderSchema } from '@lis/shared';
+import { APP_LANGUAGE_CODES, createDraftReportSchema, signOutReportSchema, reactivateOrderSchema, type AppLanguageCode } from '@lis/shared';
 import { prisma } from '../lib/prisma.js';
 import fs from 'fs';
 import { AppError } from '../middleware/error.middleware.js';
 
 const router = Router();
 const service = new ReportService();
+
+function resolveLanguage(req: Request): AppLanguageCode {
+  const requested = typeof req.query.language === 'string'
+    ? req.query.language
+    : req.session.employeeDefaultLanguage;
+
+  return APP_LANGUAGE_CODES.includes(requested as AppLanguageCode)
+    ? (requested as AppLanguageCode)
+    : 'en';
+}
 
 // GET /api/orders/:orderId/reports  (mounted on /api/orders in app.ts via re-use)
 // We mount this on /api/reports instead and handle all variants here
@@ -18,7 +28,13 @@ router.get('/:reportId/pdf', requireAuth, async (req: Request, res: Response, ne
   try {
     const report = await prisma.report.findUnique({
       where: { reportId: BigInt(req.params.reportId) },
-      include: { reportFiles: { orderBy: { createdAt: 'desc' }, take: 1 } },
+      include: {
+        reportFiles: {
+          where: { fileType: { in: ['report_pdf', 'prelim_pdf', 'amended_pdf'] } },
+          orderBy: { createdAt: 'desc' },
+          take: 1,
+        },
+      },
     });
     if (!report) throw new AppError(404, 'NOT_FOUND', `Report ${req.params.reportId} not found`);
 
@@ -30,6 +46,20 @@ router.get('/:reportId/pdf', requireAuth, async (req: Request, res: Response, ne
     res.setHeader('Content-Type', 'application/pdf');
     res.setHeader('Content-Disposition', `inline; filename="${file.fileName ?? 'report.pdf'}"`);
     fs.createReadStream(file.storagePath).pipe(res);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// GET /api/reports/:reportId/patient-summary.pdf?language=sw
+router.get('/:reportId/patient-summary.pdf', requireAuth, async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const language = resolveLanguage(req);
+    const { fileName, pdfBytes } = await service.renderPatientSummaryPdf(parseInt(req.params.reportId, 10), language);
+
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', `inline; filename="${fileName}"`);
+    res.send(Buffer.from(pdfBytes));
   } catch (err) {
     next(err);
   }
