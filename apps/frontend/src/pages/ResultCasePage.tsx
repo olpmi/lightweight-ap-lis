@@ -36,6 +36,9 @@ import { useNavigationGuard } from '../hooks/useNavigationGuard';
 import {
   formatOrderIdDisplay,
   formatMaterialIdDisplay,
+  resolvePatientSummary,
+  type PatientSummaryDefinition,
+  type PatientSummaryLanguageCode,
   type TemplateCatalogEntry,
   type TemplateDefinition,
 } from '@lis/shared';
@@ -75,6 +78,7 @@ interface Report {
 }
 
 type PanelId = 'diagnosis' | 'comment' | 'synoptic' | 'gross' | 'clinicalHistory';
+type ResultTabId = 'result-entry' | 'materials' | 'report-history' | 'patient-summary';
 
 const DEFAULT_PANEL_ORDER: PanelId[] = ['diagnosis', 'comment', 'synoptic', 'gross', 'clinicalHistory'];
 
@@ -96,7 +100,7 @@ export default function ResultCasePage() {
     clinicalHistory: t('pc_clinicalHistory'),
   };
 
-  const [tab, setTab] = useState(0);
+  const [tab, setTab] = useState<ResultTabId>('result-entry');
   const [form, setForm] = useState({
     diagnosis: '',
     comment: '',
@@ -120,6 +124,7 @@ export default function ResultCasePage() {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const [isDirty, setIsDirty] = useState(false);
+  const [patientSummaryLanguage, setPatientSummaryLanguage] = useState<PatientSummaryLanguageCode>(lang === 'sw' ? 'sw' : 'en');
 
   // Panel drag-to-reorder state
   const [panelOrder, setPanelOrder] = useState<PanelId[]>([...DEFAULT_PANEL_ORDER]);
@@ -168,9 +173,38 @@ export default function ResultCasePage() {
   const isSignedOut = Boolean(latestFinal && editableDrafts.length === 0);
   const canSignOut = Boolean(form.diagnosis.trim() && form.gross.trim());
   const latestFinalGrossPayload = parseStructuredTemplatePayload(latestFinal?.grossPayload);
+  const activeSynopticPayload = parseStructuredTemplatePayload(
+    isSignedOut ? latestFinal?.synopticPayload : form.synopticPayload,
+  );
+  const activePatientSummaryTemplateId = activeSynopticPayload?.templateId ?? '';
   const activeGrossTemplateKey = isSignedOut
     ? (latestFinalGrossPayload?.templateKey ?? '')
     : form.grossTemplateKey;
+
+  const { data: patientSummaryDefinition } = useQuery<PatientSummaryDefinition>({
+    queryKey: ['patient-summary-definition', activePatientSummaryTemplateId, patientSummaryLanguage],
+    queryFn: () => lookupApi.patientSummaryDefinition(activePatientSummaryTemplateId, patientSummaryLanguage),
+    enabled: Boolean(activePatientSummaryTemplateId),
+    placeholderData: (previousData) => previousData,
+    retry: false,
+  });
+
+  const resolvedPatientSummary = resolvePatientSummary(
+    patientSummaryDefinition,
+    activeSynopticPayload?.values ?? {},
+  );
+  const hasPatientSummary = Boolean(resolvedPatientSummary);
+  const patientSummaryReportId = Number(
+    (isSignedOut ? latestFinal?.reportId : latestDraft?.reportId) ?? 0,
+  );
+  const patientSummaryNeedsDraftSave = Boolean(
+    !isSignedOut
+    && resolvedPatientSummary
+    && (patientSummaryReportId === 0 || latestDraft?.synopticPayload !== form.synopticPayload),
+  );
+  const canOpenPatientSummaryPdf = Boolean(
+    resolvedPatientSummary && (isSignedOut ? patientSummaryReportId > 0 : orderId),
+  );
 
   const { data: grossTemplateDefinition } = useQuery<TemplateDefinition>({
     queryKey: ['template-definition', activeGrossTemplateKey, lang],
@@ -249,9 +283,19 @@ export default function ResultCasePage() {
   }, [form.grossTemplateKey, grossTemplateDefinition, isSignedOut, lang, templateValues.gross]);
 
   React.useEffect(() => {
+    setPatientSummaryLanguage(lang === 'sw' ? 'sw' : 'en');
+  }, [lang]);
+
+  React.useEffect(() => {
     const o = orderData?.data as { clinicalHistory?: string | null } | undefined;
     if (o !== undefined) setClinicalHistory(o.clinicalHistory ?? '');
   }, [orderData]);
+
+  React.useEffect(() => {
+    if (tab === 'patient-summary' && !hasPatientSummary) {
+      setTab('result-entry');
+    }
+  }, [hasPatientSummary, tab]);
 
   // â”€â”€ Mutations â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
@@ -285,6 +329,38 @@ export default function ResultCasePage() {
     onError: (err: unknown) =>
       setError((err as { response?: { data?: { error?: { message?: string } } } })?.response?.data?.error?.message ?? t('errorGeneric')),
   });
+
+  const handleOpenPatientSummaryPdf = async () => {
+    if (!resolvedPatientSummary) {
+      return;
+    }
+
+    setError(null);
+
+    try {
+      let reportId = patientSummaryReportId;
+
+      if (patientSummaryNeedsDraftSave) {
+        const savedDraft = await saveDraftMutation.mutateAsync();
+        reportId = Number((savedDraft as Report).reportId);
+      }
+
+      if (reportId <= 0) {
+        throw new Error('Save the draft before opening the patient summary PDF.');
+      }
+
+      window.open(
+        reportApi.patientSummaryPdfUrl(reportId, patientSummaryLanguage),
+        '_blank',
+        'noopener,noreferrer',
+      );
+    } catch (err) {
+      setError(
+        (err as { response?: { data?: { error?: { message?: string } } } })?.response?.data?.error?.message
+          ?? (err instanceof Error ? err.message : t('errorGeneric')),
+      );
+    }
+  };
 
   const signPrelimMutation = useMutation({
     mutationFn: async () => {
@@ -661,14 +737,15 @@ export default function ResultCasePage() {
       {success && <Alert severity="success" sx={{ mb: 2 }} onClose={() => setSuccess(null)}>{success}</Alert>}
 
       {/* Tabs */}
-      <Tabs value={tab} onChange={(_, v) => setTab(v)} sx={{ mb: 2 }}>
-        <Tab label={t('rc_resultEntry')} />
-        <Tab label={t('pc_materials')} />
-        <Tab label={t('rc_reportHistory')} />
+      <Tabs value={tab} onChange={(_, v: ResultTabId) => setTab(v)} sx={{ mb: 2 }}>
+        <Tab value="result-entry" label={t('rc_resultEntry')} />
+        <Tab value="materials" label={t('pc_materials')} />
+        <Tab value="report-history" label={t('rc_reportHistory')} />
+        {hasPatientSummary && <Tab value="patient-summary" label="Patient Summary" />}
       </Tabs>
 
       {/* â”€â”€ Result Entry tab â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
-      {tab === 0 && (
+      {tab === 'result-entry' && (
         <>
           {/* Action bar */}
           <Box display="flex" alignItems="center" justifyContent="flex-end" gap={1} mb={2}>
@@ -809,7 +886,7 @@ export default function ResultCasePage() {
       )}
 
       {/* â”€â”€ Materials tab â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
-      {tab === 1 && (
+      {tab === 'materials' && (
         <Paper sx={{ p: 2 }}>
           <Typography variant="subtitle1" fontWeight={700} mb={2}>{t('pc_materials')}</Typography>
           {(((materialsData as { data?: { specimens: unknown[] } })?.data?.specimens ?? []) as Array<{
@@ -840,7 +917,7 @@ export default function ResultCasePage() {
       )}
 
       {/* â”€â”€ Report History tab â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
-      {tab === 2 && (
+      {tab === 'report-history' && (
         <Paper sx={{ p: 2 }}>
           <Typography variant="subtitle1" fontWeight={700} mb={2}>{t('rc_reportHistory')}</Typography>
           <Table size="small">
@@ -889,6 +966,64 @@ export default function ResultCasePage() {
               ))}
             </TableBody>
           </Table>
+        </Paper>
+      )}
+
+      {tab === 'patient-summary' && resolvedPatientSummary && (
+        <Paper variant="outlined" sx={{ p: 2 }}>
+          <Box display="flex" justifyContent="space-between" alignItems="flex-start" gap={2} flexWrap="wrap" mb={1.5}>
+            <Box>
+              <Typography variant="subtitle2" color="text.secondary">
+                Patient Summary
+              </Typography>
+              <Typography variant="h6" fontWeight={700}>
+                {resolvedPatientSummary.patientTitle}
+              </Typography>
+            </Box>
+            <Stack direction="row" spacing={1} flexWrap="wrap">
+              <Button
+                size="small"
+                variant={patientSummaryLanguage === 'en' ? 'contained' : 'outlined'}
+                onClick={() => setPatientSummaryLanguage('en')}
+              >
+                EN
+              </Button>
+              <Button
+                size="small"
+                variant={patientSummaryLanguage === 'sw' ? 'contained' : 'outlined'}
+                onClick={() => setPatientSummaryLanguage('sw')}
+              >
+                SW
+              </Button>
+              <Button
+                size="small"
+                variant="outlined"
+                startIcon={<PictureAsPdf />}
+                onClick={() => {
+                  void handleOpenPatientSummaryPdf();
+                }}
+                disabled={!canOpenPatientSummaryPdf || saveDraftMutation.isPending}
+              >
+                Open PDF
+              </Button>
+            </Stack>
+          </Box>
+
+          <Stack spacing={1.5}>
+            <Box>
+              <Typography variant="overline" color="text.secondary">Summary</Typography>
+              <Typography variant="body2">{resolvedPatientSummary.plainLanguageSummary}</Typography>
+            </Box>
+            <Box>
+              <Typography variant="overline" color="text.secondary">What This Means</Typography>
+              <Typography variant="body2">{resolvedPatientSummary.whatThisMeans}</Typography>
+            </Box>
+            <Box>
+              <Typography variant="overline" color="text.secondary">Possible Next Steps</Typography>
+              <Typography variant="body2">{resolvedPatientSummary.possibleNextSteps}</Typography>
+            </Box>
+            <Alert severity="info">{resolvedPatientSummary.safetyNote}</Alert>
+          </Stack>
         </Paper>
       )}
 

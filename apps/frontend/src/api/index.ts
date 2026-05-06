@@ -3,6 +3,7 @@ import type {
   AppLanguageCode,
   Employee,
   EmployeeRole,
+  PatientSummaryDefinition,
   TemplateCatalogEntry,
   TemplateDefinition,
   TemplateKind,
@@ -41,6 +42,13 @@ export const lookupApi = {
     if (language) query.set('language', language);
     return apiClient
       .get<{ data: TemplateDefinition }>(`/lookups/template-definition?${query.toString()}`)
+      .then((r) => r.data.data);
+  },
+  patientSummaryDefinition: (templateId: string, language?: AppLanguageCode) => {
+    const query = new URLSearchParams({ templateId });
+    if (language) query.set('language', language);
+    return apiClient
+      .get<{ data: PatientSummaryDefinition }>(`/lookups/patient-summary-definition?${query.toString()}`)
       .then((r) => r.data.data);
   },
   employeeRoles: (): Promise<EmployeeRole[]> =>
@@ -142,4 +150,6 @@ export const reportApi = {
       .then((r) => r.data.data),
 
   pdfUrl: (reportId: number) => `/api/reports/${reportId}/pdf`,
+  patientSummaryPdfUrl: (reportId: number, language: AppLanguageCode) =>
+    `/api/reports/${reportId}/patient-summary.pdf?language=${encodeURIComponent(language)}`,
 };

@@ -146,6 +146,40 @@ function humanize(value: string): string {
     .replace(/^./, (letter) => letter.toUpperCase());
 }
 
+function normalizeOptionEntries(
+  optionsValue: unknown,
+  translatedOptionsValue: unknown,
+  language: AppLanguageCode,
+): NormalizedTemplateOption[] {
+  const translatedOptionsRecord = asRecord(translatedOptionsValue) ?? {};
+  const translatedOptionsList = asArray(translatedOptionsValue);
+
+  return asArray(optionsValue).flatMap((entry, index) => {
+    if (typeof entry === 'string') {
+      const translatedLabel = asString(translatedOptionsRecord[entry], asString(translatedOptionsList[index], entry));
+      return [{ value: entry, label: translatedLabel || entry }];
+    }
+
+    const optionRecord = asRecord(entry);
+    if (!optionRecord) {
+      return [];
+    }
+
+    const value = asString(optionRecord.code, asString(optionRecord.value));
+    if (!value) {
+      return [];
+    }
+
+    const defaultLabel = asString(optionRecord.label, humanize(value));
+    const translatedLabel = asString(
+      translatedOptionsRecord[value],
+      asString(translatedOptionsList[index], defaultLabel),
+    );
+
+    return [{ value, label: translatedLabel || defaultLabel }];
+  });
+}
+
 function normalizeInputType(value: unknown): TemplateInputType {
   const normalized = asString(value, 'text').toLowerCase();
   if (normalized === 'textarea' || normalized === 'number' || normalized === 'select' || normalized === 'boolean') {
@@ -233,6 +267,7 @@ function createSupplementalFields(
 function normalizeFlatField(
   fieldRecord: RawTemplateRecord,
   sectionId: string,
+  translationFieldRecord: RawTemplateRecord,
   translatedFields: RawTemplateRecord,
   translatedOptions: RawTemplateRecord,
   translatedDefaults: RawTemplateRecord,
@@ -243,25 +278,26 @@ function normalizeFlatField(
   const path = `${sectionId}.${fieldId}`;
   const options = inputType === 'boolean'
     ? createBooleanOptions(language)
-    : asArray(fieldRecord.options)
-        .map((entry) => asString(entry))
-        .filter(Boolean)
-        .map((value) => ({
-          value,
-          label: asString(translatedOptions[value], value),
-        }));
+    : normalizeOptionEntries(fieldRecord.options, translationFieldRecord.options ?? translatedOptions, language);
 
   return [
     {
       path,
       fieldId,
-      label: asString(translatedFields[fieldId], asString(fieldRecord.label, humanize(fieldId))),
+      label: asString(
+        translationFieldRecord.label,
+        asString(translatedFields[fieldId], asString(fieldRecord.label, humanize(fieldId))),
+      ),
       kind: 'field',
       inputType,
       options,
-      defaultValue: deriveDefaultValue(fieldRecord, inputType, translatedDefaults[fieldId]),
+      defaultValue: deriveDefaultValue(
+        fieldRecord,
+        inputType,
+        translationFieldRecord.default ?? translationFieldRecord.value ?? translatedDefaults[fieldId],
+      ),
     },
-    ...createSupplementalFields(fieldRecord, path),
+    ...createSupplementalFields(fieldRecord, path, translationFieldRecord),
   ];
 }
 
@@ -275,12 +311,33 @@ function normalizeFlatTemplate(definition: RawTemplateDefinition): NormalizedTem
   const sections = asArray(core.sections).map((section, sectionIndex) => {
     const sectionRecord = asRecord(section) ?? {};
     const sectionId = asString(sectionRecord.id, `section_${sectionIndex + 1}`);
+    const sectionTranslationValue = translatedSections[sectionId];
+    const sectionTranslationRecord = asRecord(sectionTranslationValue) ?? {};
+    const sectionFieldTranslations = asRecord(sectionTranslationRecord.fields) ?? {};
     const fields = asArray(sectionRecord.fields)
-      .flatMap((field) => normalizeFlatField(asRecord(field) ?? {}, sectionId, translatedFields, translatedOptions, translatedDefaults, definition.language));
+      .flatMap((field) => {
+        const fieldRecord = asRecord(field) ?? {};
+        const fieldId = asString(fieldRecord.id, 'field');
+
+        return normalizeFlatField(
+          fieldRecord,
+          sectionId,
+          asRecord(sectionFieldTranslations[fieldId]) ?? {},
+          translatedFields,
+          translatedOptions,
+          translatedDefaults,
+          definition.language,
+        );
+      });
 
     return {
       id: sectionId,
-      title: asString(translatedSections[sectionId], asString(sectionRecord.title, humanize(sectionId))),
+      title: typeof sectionTranslationValue === 'string'
+        ? sectionTranslationValue
+        : asString(
+            sectionTranslationRecord.title,
+            asString(sectionTranslationRecord.label, asString(sectionRecord.title, humanize(sectionId))),
+          ),
       fields,
     } satisfies NormalizedTemplateSection;
   });
@@ -331,14 +388,9 @@ function normalizeNestedField(
   }
 
   const inputType = normalizeInputType(fieldRecord.type);
-  const coreOptions = asArray(fieldRecord.options).map((entry) => asString(entry)).filter(Boolean);
-  const translatedOptions = asArray(translationFieldRecord.options).map((entry) => asString(entry));
   const options = inputType === 'boolean'
     ? createBooleanOptions(language)
-    : coreOptions.map((value, optionIndex) => ({
-        value,
-        label: translatedOptions[optionIndex] || value,
-      }));
+    : normalizeOptionEntries(fieldRecord.options, translationFieldRecord.options, language);
 
   return [
     {

@@ -1,14 +1,84 @@
 import { prisma } from '../lib/prisma.js';
 import { AppError } from '../middleware/error.middleware.js';
-import { CreateDraftReportInput, SignOutReportInput, ReactivateOrderInput } from '@lis/shared';
+import {
+  type AppLanguageCode,
+  type CreateDraftReportInput,
+  type PatientSummaryValues,
+  type ReactivateOrderInput,
+  type ResolvedPatientSummary,
+  type SignOutReportInput,
+  resolvePatientSummary,
+} from '@lis/shared';
+import { getPatientSummaryDefinition } from '@lis/shared/patient-summaries/server';
 import { PdfService } from './pdf.service.js';
 
 const pdfService = new PdfService();
+
+type RawRecord = Record<string, unknown>;
+
+interface ParsedStructuredTemplatePayload {
+  templateId: string;
+  values: PatientSummaryValues;
+}
+
+function asRecord(value: unknown): RawRecord | null {
+  return value != null && typeof value === 'object' && !Array.isArray(value)
+    ? (value as RawRecord)
+    : null;
+}
+
+function parsePatientSummaryValues(value: unknown): PatientSummaryValues {
+  const rawValues = asRecord(value) ?? {};
+  const parsedValues: PatientSummaryValues = {};
+
+  for (const [fieldId, entry] of Object.entries(rawValues)) {
+    if (typeof entry === 'string') {
+      parsedValues[fieldId] = entry;
+      continue;
+    }
+
+    if (Array.isArray(entry)) {
+      parsedValues[fieldId] = entry.filter((item): item is string => typeof item === 'string');
+    }
+  }
+
+  return parsedValues;
+}
+
+function parseStructuredTemplatePayload(rawPayload: string | null | undefined): ParsedStructuredTemplatePayload | null {
+  if (!rawPayload) {
+    return null;
+  }
+
+  try {
+    const parsed = JSON.parse(rawPayload) as Partial<{ templateId: unknown; values: unknown }>;
+    if (typeof parsed.templateId !== 'string' || parsed.templateId.length === 0) {
+      return null;
+    }
+
+    return {
+      templateId: parsed.templateId,
+      values: parsePatientSummaryValues(parsed.values),
+    } satisfies ParsedStructuredTemplatePayload;
+  } catch {
+    return null;
+  }
+}
 
 const REPORT_INCLUDE = {
   pathologist: { include: { employeeRole: true } },
   reportTemplate: true,
   reportFiles: true,
+} as const;
+
+const REPORT_PATIENT_SUMMARY_INCLUDE = {
+  ...REPORT_INCLUDE,
+  order: {
+    include: {
+      patient: true,
+      doctor: true,
+    },
+  },
 } as const;
 
 export class ReportService {
@@ -255,6 +325,55 @@ export class ReportService {
     });
 
     return newDraft;
+  }
+
+  async getResolvedPatientSummary(reportId: number, language: AppLanguageCode) {
+    const report = await prisma.report.findUnique({
+      where: { reportId: BigInt(reportId) },
+      include: REPORT_PATIENT_SUMMARY_INCLUDE,
+    });
+
+    if (!report) {
+      throw new AppError(404, 'NOT_FOUND', `Report ${reportId} not found`);
+    }
+
+    const structuredPayload = parseStructuredTemplatePayload(report.synopticPayload);
+    if (!structuredPayload) {
+      throw new AppError(422, 'UNPROCESSABLE_ENTITY', 'Report does not have a structured reporting payload for patient summary generation');
+    }
+
+    let definition;
+    try {
+      definition = getPatientSummaryDefinition(structuredPayload.templateId, language);
+    } catch (error) {
+      if (error instanceof Error && error.message.startsWith('Patient summary not found')) {
+        throw new AppError(404, 'NOT_FOUND', error.message);
+      }
+
+      throw error;
+    }
+
+    const summary = resolvePatientSummary(definition, structuredPayload.values);
+    if (!summary) {
+      throw new AppError(422, 'UNPROCESSABLE_ENTITY', 'No patient summary rule matched the structured report values');
+    }
+
+    return {
+      report,
+      summary,
+    };
+  }
+
+  async renderPatientSummaryPdf(reportId: number, language: AppLanguageCode): Promise<{ fileName: string; pdfBytes: Uint8Array }> {
+    const { report, summary } = await this.getResolvedPatientSummary(reportId, language);
+
+    return pdfService.renderPatientSummaryPdf({
+      reportId: report.reportId,
+      orderId: report.orderId,
+      signedOutDatetime: report.signedOutDatetime,
+      patient: report.order.patient,
+      summary,
+    });
   }
 
   async findById(reportId: number): Promise<object> {

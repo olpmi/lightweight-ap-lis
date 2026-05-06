@@ -10,6 +10,11 @@
       "require": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
+    "./patient-summaries/server": {
+      "import": "./dist/patientSummaries/server.js",
+      "require": "./dist/patientSummaries/server.js",
+      "types": "./dist/patientSummaries/server.d.ts"
+    },
     "./templates/server": {
       "import": "./dist/templates/server.js",
       "require": "./dist/templates/server.js",

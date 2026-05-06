@@ -2,7 +2,7 @@
 import fs from 'fs';
 import path from 'path';
 import { GENERATED_PDFS_DIR } from '../utils/storageDirs.js';
-import { formatOrderIdDisplay, formatMaterialIdDisplay } from '@lis/shared';
+import { formatOrderIdDisplay, formatMaterialIdDisplay, type ResolvedPatientSummary } from '@lis/shared';
 
 interface OrderForPdf {
   orderId: string;
@@ -40,6 +40,14 @@ interface ReportForPdf {
   reactivationReason?: string | null;
   pathologist?: { firstName: string; lastName: string } | null;
   order: OrderForPdf;
+}
+
+interface PatientSummaryPdfInput {
+  reportId: bigint;
+  orderId: string;
+  signedOutDatetime?: Date | null;
+  patient: OrderForPdf['patient'];
+  summary: ResolvedPatientSummary;
 }
 
 const MARGIN = 50;
@@ -271,6 +279,51 @@ export class PdfService {
     return { fileName, storagePath };
   }
 
+  async renderPatientSummaryPdf(input: PatientSummaryPdfInput): Promise<{ fileName: string; pdfBytes: Uint8Array }> {
+    const pdfDoc = await PDFDocument.create();
+    const page = pdfDoc.addPage([PAGE_WIDTH, PAGE_HEIGHT]);
+    const boldFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
+    const regularFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
+
+    let y = PAGE_HEIGHT - MARGIN;
+
+    page.drawText('PATHOLOGY PATIENT SUMMARY', { x: MARGIN, y, font: boldFont, size: 14, color: rgb(0.1, 0.1, 0.5) });
+    y -= 20;
+    page.drawText(`Case: ${formatOrderIdDisplay(input.orderId)}`, { x: MARGIN, y, font: boldFont, size: 18, color: rgb(0, 0, 0) });
+    y -= 28;
+    page.drawLine({ start: { x: MARGIN, y }, end: { x: PAGE_WIDTH - MARGIN, y }, thickness: 1.5 });
+    y -= 16;
+
+    y = this.drawSection(page, 'PATIENT', y, boldFont);
+    y = this.drawField(page, 'Name', `${input.patient.lastName}, ${input.patient.firstName}`, y, boldFont, regularFont);
+    y = this.drawField(page, 'Patient ID', input.patient.patientId, y, boldFont, regularFont);
+    y = this.drawField(page, 'DOB', input.patient.dateOfBirth.toISOString().split('T')[0], y, boldFont, regularFont);
+    if (input.signedOutDatetime) {
+      y = this.drawField(page, 'Report date', input.signedOutDatetime.toISOString().split('T')[0], y, boldFont, regularFont);
+    }
+    y -= 12;
+
+    y = this.drawSection(page, input.summary.patientTitle.toUpperCase(), y, boldFont);
+    y = this.drawParagraph(page, input.summary.plainLanguageSummary, y, regularFont);
+    y -= 8;
+
+    y = this.drawSection(page, 'WHAT THIS MEANS', y, boldFont);
+    y = this.drawParagraph(page, input.summary.whatThisMeans, y, regularFont);
+    y -= 8;
+
+    y = this.drawSection(page, 'POSSIBLE NEXT STEPS', y, boldFont);
+    y = this.drawParagraph(page, input.summary.possibleNextSteps, y, regularFont);
+    y -= 8;
+
+    y = this.drawSection(page, 'IMPORTANT NOTE', y, boldFont);
+    this.drawParagraph(page, input.summary.safetyNote, y, regularFont);
+
+    const fileName = `${formatOrderIdDisplay(input.orderId)}-patient-summary-${input.summary.language}.pdf`;
+    const pdfBytes = await pdfDoc.save();
+
+    return { fileName, pdfBytes };
+  }
+
   // ----- Helpers -----
 
   private drawSection(page: ReturnType<PDFDocument['addPage']>, title: string, y: number, boldFont: Awaited<ReturnType<PDFDocument['embedFont']>>): number {
@@ -292,6 +345,67 @@ export class PdfService {
       y -= 14;
     }
     return y;
+  }
+
+  private drawParagraph(
+    page: ReturnType<PDFDocument['addPage']>,
+    text: string,
+    y: number,
+    font: Awaited<ReturnType<PDFDocument['embedFont']>>,
+    fontSize = 11,
+  ): number {
+    const lines = this.wrapText(text, font, fontSize, CONTENT_WIDTH - 10);
+    for (const line of lines) {
+      if (y < 80) {
+        break;
+      }
+
+      page.drawText(line, { x: MARGIN + 10, y, font, size: fontSize });
+      y -= 14;
+    }
+
+    return y;
+  }
+
+  private wrapText(
+    text: string,
+    font: Awaited<ReturnType<PDFDocument['embedFont']>>,
+    fontSize: number,
+    maxWidth: number,
+  ): string[] {
+    const paragraphs = text.split('\n').map((paragraph) => paragraph.trim()).filter(Boolean);
+    const lines: string[] = [];
+
+    for (const paragraph of paragraphs) {
+      const words = paragraph.split(/\s+/);
+      let currentLine = '';
+
+      for (const word of words) {
+        const nextLine = currentLine ? `${currentLine} ${word}` : word;
+        if (font.widthOfTextAtSize(nextLine, fontSize) <= maxWidth) {
+          currentLine = nextLine;
+          continue;
+        }
+
+        if (currentLine) {
+          lines.push(currentLine);
+        }
+
+        currentLine = word;
+      }
+
+      if (currentLine) {
+        lines.push(currentLine);
+      }
+
+      lines.push('');
+    }
+
+    if (lines.at(-1) === '') {
+      lines.pop();
+    }
+
+    return lines;
   }
 
   private drawBlankSection(page: ReturnType<PDFDocument['addPage']>, title: string, y: number, boldFont: Awaited<ReturnType<PDFDocument['embedFont']>>, height: number): number {

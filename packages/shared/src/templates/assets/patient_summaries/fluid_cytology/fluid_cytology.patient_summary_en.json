@@ -1,5 +1,5 @@
 {
-  "templateId": "fluid_cytology_international_system_serous_fluid",
+  "templateId": "fluid_cytology_international_serous_fluid",
   "summaryType": "rule_based_patient_facing_summary",
   "version": "1.0",
   "language": "en",
@@ -8,6 +8,9 @@
   "summaries": {
     "isrsfc_i_non_diagnostic": {
       "professionalLabel": "Category I: Non-diagnostic (ND)",
+      "match": {
+        "diagnostic_category": "I. Non-diagnostic (ND)"
+      },
       "patientTitle": "The fluid sample was not enough for a clear diagnosis",
       "plainLanguageSummary": "The fluid sample did not contain enough useful cells, or the sample quality was limited, so a clear diagnosis could not be made.",
       "whatThisMeans": "This does not mean cancer was found. It means the sample was not adequate enough to provide a reliable answer.",
@@ -16,6 +19,9 @@
     },
     "isrsfc_ii_negative_for_malignancy": {
       "professionalLabel": "Category II: Negative for Malignancy (NFM)",
+      "match": {
+        "diagnostic_category": "II. Negative for Malignancy (NFM)"
+      },
       "patientTitle": "No cancer cells seen in the fluid sample",
       "plainLanguageSummary": "The fluid sample did not show cancer cells.",
       "whatThisMeans": "This is reassuring, but the cause of the fluid collection still needs to be interpreted together with your clinical findings.",
@@ -24,6 +30,9 @@
     },
     "isrsfc_iii_aus": {
       "professionalLabel": "Category III: Atypia of Undetermined Significance (AUS)",
+      "match": {
+        "diagnostic_category": "III. Atypia of Undetermined Significance (AUS)"
+      },
       "patientTitle": "Some unusual cells seen",
       "plainLanguageSummary": "The fluid sample shows some cells that look unusual, but the findings are not enough to diagnose cancer.",
       "whatThisMeans": "This is an indeterminate result. Further assessment may be needed, especially if there is clinical or imaging concern.",
@@ -32,6 +41,9 @@
     },
     "isrsfc_iv_suspicious_for_malignancy": {
       "professionalLabel": "Category IV: Suspicious for Malignancy (SFM)",
+      "match": {
+        "diagnostic_category": "IV. Suspicious for Malignancy (SFM)"
+      },
       "patientTitle": "Suspicious cells seen in the fluid sample",
       "plainLanguageSummary": "The fluid sample shows cells that are suspicious for cancer, but the findings may not be complete enough for a definite diagnosis.",
       "whatThisMeans": "There is significant concern, and further evaluation is usually needed.",
@@ -40,6 +52,9 @@
     },
     "isrsfc_v_malignant": {
       "professionalLabel": "Category V: Malignant (MAL)",
+      "match": {
+        "diagnostic_category": "V. Malignant (MAL)"
+      },
       "patientTitle": "Cancer cells identified in the fluid sample",
       "plainLanguageSummary": "The fluid sample shows malignant cells, meaning cancer cells were identified.",
       "whatThisMeans": "This result may indicate that cancer is present in or involving the body cavity from which the fluid was taken.",

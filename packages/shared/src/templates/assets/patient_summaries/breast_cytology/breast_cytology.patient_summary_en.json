@@ -8,6 +8,9 @@
   "summaries": {
     "yokohama_i_insufficient_inadequate": {
       "professionalLabel": "Category I: Insufficient / Inadequate",
+      "match": {
+        "yokohama_category": "I: Insufficient / Inadequate"
+      },
       "patientTitle": "The breast sample was not enough for a clear diagnosis",
       "plainLanguageSummary": "The breast sample did not contain enough useful cells, or the sample quality was limited, so a clear diagnosis could not be made.",
       "whatThisMeans": "This does not mean cancer was found. It means the sample was not adequate enough to provide a reliable answer.",
@@ -16,6 +19,9 @@
     },
     "yokohama_ii_benign": {
       "professionalLabel": "Category II: Benign",
+      "match": {
+        "yokohama_category": "II: Benign"
+      },
       "patientTitle": "Benign breast result",
       "plainLanguageSummary": "The breast sample shows benign, non-cancerous cells.",
       "whatThisMeans": "This is generally reassuring, but breast results are usually interpreted together with clinical examination and imaging.",
@@ -24,6 +30,9 @@
     },
     "yokohama_iii_atypical": {
       "professionalLabel": "Category III: Atypical",
+      "match": {
+        "yokohama_category": "III: Atypical"
+      },
       "patientTitle": "Some atypical breast cells seen",
       "plainLanguageSummary": "The breast sample shows some cells that look unusual, but the findings are not enough to diagnose cancer.",
       "whatThisMeans": "This is an indeterminate result. It may require further assessment to exclude a more significant lesion.",
@@ -32,6 +41,9 @@
     },
     "yokohama_iv_suspicious_for_malignancy": {
       "professionalLabel": "Category IV: Suspicious for Malignancy",
+      "match": {
+        "yokohama_category": "IV: Suspicious for Malignancy"
+      },
       "patientTitle": "Suspicious breast result",
       "plainLanguageSummary": "The breast sample shows changes that are suspicious for cancer, but may not be sufficient for a definite diagnosis.",
       "whatThisMeans": "There is significant concern, and further evaluation is usually needed.",
@@ -40,6 +52,9 @@
     },
     "yokohama_v_malignant": {
       "professionalLabel": "Category V: Malignant",
+      "match": {
+        "yokohama_category": "V: Malignant"
+      },
       "patientTitle": "Cancer cells identified in the breast sample",
       "plainLanguageSummary": "The breast sample shows malignant cells, meaning cancer cells were identified.",
       "whatThisMeans": "This result usually requires specialist breast cancer assessment and treatment planning.",
