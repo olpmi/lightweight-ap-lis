@@ -1,5 +1,5 @@
 {
-  "templateId": "fluid_cytology_international_system_serous_fluid",
+  "templateId": "fluid_cytology_international_serous_fluid",
   "summaryType": "rule_based_patient_facing_summary",
   "version": "1.0",
   "language": "sw",
