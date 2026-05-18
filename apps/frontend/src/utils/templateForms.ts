@@ -10,7 +10,7 @@ type RawTemplateRecord = Record<string, unknown>;
 export type TemplateFormValue = string | string[];
 export type TemplateFormValues = Record<string, TemplateFormValue>;
 
-type TemplateInputType = 'text' | 'textarea' | 'number' | 'select' | 'multi_select' | 'boolean';
+type TemplateInputType = 'text' | 'textarea' | 'number' | 'date' | 'select' | 'multi_select' | 'boolean';
 
 interface NormalizedTemplateOption {
   value: string;
@@ -187,6 +187,9 @@ function normalizeInputType(value: unknown): TemplateInputType {
   }
   if (normalized === 'multiselect' || normalized === 'multi_select') {
     return 'multi_select';
+  }
+  if (normalized === 'date') {
+    return 'date';
   }
   return 'text';
 }

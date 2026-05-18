@@ -156,7 +156,12 @@
 
   "muscle": {
     "label": "کنکال عضلہ",
-    "options": ["موجود", "غیر موجود"]
+    "fields": {
+      "presence": {
+        "label": "کنکال عضلہ",
+        "options": ["موجود", "غیر موجود"]
+      }
+    }
   },
 
   "block_key": {
@@ -167,6 +172,14 @@
       "surrounding_breast": { "label": "اردگرد بریسٹ ٹشو" },
       "margins": { "label": "حاشیے" },
       "lymph_nodes": { "label": "لمفی نوڈز" }
+    }
+  },
+
+  "grossing": {
+    "label": "گراسنگ",
+    "fields": {
+      "grossed_by": { "label": "گراس کیا گیا بذریعہ" },
+      "date":       { "label": "تاریخ" }
     }
   }
 }

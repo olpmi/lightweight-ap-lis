@@ -570,7 +570,11 @@ export default function ProcessingCasePage() {
             selectedTemplateKey={grossTemplateKey}
             onTemplateKeyChange={(templateKey) => {
               setGrossTemplateKey(templateKey);
-              setGrossTemplateValues({});
+              setGrossTemplateValues({
+                'grossing.grossed_by': user?.userName ?? '',
+                'grossing.grossed_by_initials': user?.userName ?? '',
+                'grossing.date': new Date().toISOString().slice(0, 10),
+              });
               setGrossPayload('');
               setIsSaved(false);
               setIsDirty(true);

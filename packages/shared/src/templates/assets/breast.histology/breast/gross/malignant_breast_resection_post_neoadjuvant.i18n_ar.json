@@ -173,7 +173,12 @@
 
   "muscle": {
     "label": "العضلات الهيكلية",
-    "options": ["موجود", "غير موجود"]
+    "fields": {
+      "presence": {
+        "label": "العضلات الهيكلية",
+        "options": ["موجود", "غير موجود"]
+      }
+    }
   },
 
   "block_key": {
@@ -184,6 +189,14 @@
       "surrounding_breast": { "label": "نسيج الثدي المحيط" },
       "margins": { "label": "الحواف" },
       "lymph_nodes": { "label": "العقد اللمفاوية" }
+    }
+  },
+
+  "grossing": {
+    "label": "الفحص العياني",
+    "fields": {
+      "grossed_by": { "label": "أُجري الفحص العياني بواسطة" },
+      "date":       { "label": "التاريخ" }
     }
   }
 }

@@ -172,7 +172,12 @@
 
   "muscle": {
     "label": "Muscle squelettique",
-    "options": ["Présent", "Absent"]
+    "fields": {
+      "presence": {
+        "label": "Muscle squelettique",
+        "options": ["Présent", "Absent"]
+      }
+    }
   },
 
   "block_key": {
@@ -183,6 +188,14 @@
       "surrounding_breast": { "label": "Tissu mammaire adjacent" },
       "margins": { "label": "Marges" },
       "lymph_nodes": { "label": "Ganglions lymphatiques" }
+    }
+  },
+
+  "grossing": {
+    "label": "Macroscopie",
+    "fields": {
+      "grossed_by": { "label": "Macroscopie réalisée par" },
+      "date":       { "label": "Date" }
     }
   }
 }

@@ -271,8 +271,14 @@
 
   "muscle": {
     "label": "Skeletal Muscle",
-    "type": "select",
-    "options": ["Present", "Absent"]
+    "fields": {
+      "presence": {
+        "label": "Skeletal Muscle",
+        "type": "select",
+        "options": ["Present", "Absent"],
+        "value": ""
+      }
+    }
   },
 
   "block_key": {
@@ -286,6 +292,11 @@
     }
   },
 
-  "grossed_by": "",
-  "date": ""
+  "grossing": {
+    "label": "Grossing",
+    "fields": {
+      "grossed_by": { "label": "Grossed by", "type": "text", "value": "" },
+      "date":       { "label": "Date",        "type": "date", "value": "" }
+    }
+  }
 }

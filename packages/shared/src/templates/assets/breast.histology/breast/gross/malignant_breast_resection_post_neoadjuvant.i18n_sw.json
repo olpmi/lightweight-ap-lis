@@ -172,7 +172,12 @@
 
   "muscle": {
     "label": "Misuli ya mifupa",
-    "options": ["Ipo", "Haipo"]
+    "fields": {
+      "presence": {
+        "label": "Misuli ya mifupa",
+        "options": ["Ipo", "Haipo"]
+      }
+    }
   },
 
   "block_key": {
@@ -183,6 +188,14 @@
       "surrounding_breast": { "label": "Tishu za titi zinazozunguka" },
       "margins": { "label": "Mipaka" },
       "lymph_nodes": { "label": "Nodi za limfu" }
+    }
+  },
+
+  "grossing": {
+    "label": "Uchunguzi wa makroskopia",
+    "fields": {
+      "grossed_by": { "label": "Imefanyiwa uchunguzi wa makroskopia na" },
+      "date":       { "label": "Tarehe" }
     }
   }
 }

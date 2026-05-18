@@ -151,7 +151,7 @@ export default function StructuredTemplateEditor({
       <TextField
         key={field.path}
         label={field.label}
-        type={field.inputType === 'number' ? 'number' : 'text'}
+        type={field.inputType === 'number' ? 'number' : field.inputType === 'date' ? 'date' : 'text'}
         multiline={field.inputType === 'textarea'}
         minRows={field.inputType === 'textarea' ? 3 : undefined}
         fullWidth
@@ -159,6 +159,7 @@ export default function StructuredTemplateEditor({
         value={typeof currentValue === 'string' ? currentValue : ''}
         onChange={(event) => updateFieldValue(field.path, event.target.value)}
         inputProps={textInputProps}
+        InputLabelProps={field.inputType === 'date' ? { shrink: true } : undefined}
       />
     );
   };
