@@ -1,56 +1,127 @@
 {
-  "template.title": "نموذج الفحص العياني: استئصال ورم المعدة",
-  "sections.specimen": "العينة",
-  "specimen.type_of_resection": "نوع الاستئصال (اختر واحدًا)",
-  "specimen.resection_options.esophago_gastrectomy": "استئصال المريء والمعدة",
-  "specimen.resection_options.total_gastrectomy": "استئصال المعدة الكامل",
-  "specimen.resection_options.subtotal_gastrectomy_proximal": "استئصال جزئي للمعدة، قريب",
-  "specimen.resection_options.subtotal_gastrectomy_distal": "استئصال جزئي للمعدة، بعيد",
-  "specimen.resection_options.other_specify": "أخرى (يُحدد)",
-  "specimen.dimensions": "أبعاد العينة (طول كل مكوّن تشريحي)",
-  "specimen.dimensions_options.stomach_greater_curvature": "المعدة، الانحناء الكبير",
-  "specimen.dimensions_options.stomach_lesser_curvature": "المعدة، الانحناء الصغير",
-  "specimen.dimensions_options.esophagus": "المريء",
-  "specimen.dimensions_options.duodenum": "الاثنا عشر",
-  "sections.tumor": "الورم",
-  "tumor.macroscopic_site": "الموقع العياني للورم (اختر كل ما ينطبق)",
-  "tumor.site_options.cardia": "الفؤاد",
-  "tumor.site_options.fundus": "القاع",
-  "tumor.site_options.body": "الجسم",
-  "tumor.site_options.antrum": "الغار",
-  "tumor.site_options.pylorus": "البواب",
-  "tumor.site_options.lesser_curvature": "الانحناء الصغير",
-  "tumor.site_options.greater_curvature": "الانحناء الكبير",
-  "tumor.site_options.anterior_wall": "الجدار الأمامي",
-  "tumor.site_options.posterior_wall": "الجدار الخلفي",
-  "tumor.morphologic_classification": "التصنيف الشكلي",
-  "tumor.morphology_options.type_0_i_protruded": "النوع 0-I (بارز)",
-  "tumor.morphology_options.type_0_iia_elevated": "النوع 0-IIa (مرتفع)",
-  "tumor.morphology_options.type_0_iib_flat": "النوع 0-IIb (مسطح)",
-  "tumor.morphology_options.type_0_iic_depressed": "النوع 0-IIc (منخفض)",
-  "tumor.morphology_options.type_0_iii_excavated": "النوع 0-III (محفور)",
-  "tumor.morphology_options.type_i_polypoid": "النوع I (سليلي)",
-  "tumor.morphology_options.type_ii_fungating": "النوع II (فطري النمو)",
-  "tumor.morphology_options.type_iii_ulcerated": "النوع III (متقرح)",
-  "tumor.morphology_options.type_iv_infiltrative": "النوع IV (ارتشاحي)",
-  "tumor.dimensions": "أبعاد الورم",
-  "tumor.distance_to_margins": "مسافة الورم إلى الهوامش",
-  "tumor.margins.proximal_margin": "الهامش القريب",
-  "tumor.margins.distal_margin": "الهامش البعيد",
-  "tumor.margins.lesser_curvature_margin": "هامش الانحناء الصغير",
-  "tumor.margins.greater_curvature_margin": "هامش الانحناء الكبير",
-  "sections.lymph_nodes": "العقد اللمفية",
-  "lymph_nodes.number_identified": "العدد المحدد",
-  "lymph_nodes.size_range": "مدى الحجم",
-  "sections.block_identification_key": "مفتاح تعريف الكتل",
-  "blocks.tumor_representative_sections": "الورم (مقاطع تمثيلية)",
-  "blocks.margins": "الهوامش",
-  "blocks.proximal_margin": "الهامش القريب",
-  "blocks.distal_margin": "الهامش البعيد",
-  "blocks.circumferential_nonperitonealized_margin": "الهامش المحيطي / غير المغطى بالبريتون",
-  "blocks.non_neoplastic_stomach": "معدة غير ورمية",
-  "blocks.lymph_nodes": "العقد اللمفية",
-  "signoff.grossed_by": "أُجري الفحص العياني بواسطة",
-  "signoff.date": "التاريخ",
-  "units.mm": "mm"
+  "title": "استئصال ورم المعدة (قالب الفحص العياني)",
+  "specimen": {
+    "label": "العينة",
+    "fields": {
+      "type_of_resection": {
+        "label": "نوع الاستئصال (اختر واحدًا)",
+        "options": [
+          "استئصال المريء والمعدة",
+          "استئصال المعدة الكامل",
+          "استئصال جزئي للمعدة، قريب",
+          "استئصال جزئي للمعدة، بعيد",
+          "أخرى (يُحدد)"
+        ],
+        "other_specify": "أخرى (يُحدد)"
+      },
+      "stomach_greater_curvature_mm": {
+        "label": "المعدة، الانحناء الكبير"
+      },
+      "stomach_lesser_curvature_mm": {
+        "label": "المعدة، الانحناء الصغير"
+      },
+      "esophagus_mm": {
+        "label": "المريء"
+      },
+      "duodenum_mm": {
+        "label": "الاثنا عشر"
+      }
+    }
+  },
+  "tumor": {
+    "label": "الورم",
+    "fields": {
+      "macroscopic_tumor_site": {
+        "label": "الموقع العياني للورم (اختر كل ما ينطبق)",
+        "options": [
+          "الفؤاد",
+          "القاع",
+          "الجسم",
+          "الغار",
+          "البواب",
+          "الانحناء الصغير",
+          "الانحناء الكبير",
+          "الجدار الأمامي",
+          "الجدار الخلفي"
+        ]
+      },
+      "morphologic_classification": {
+        "label": "التصنيف الشكلي",
+        "options": [
+          "النوع 0-I (بارز)",
+          "النوع 0-IIa (مرتفع)",
+          "النوع 0-IIb (مسطح)",
+          "النوع 0-IIc (منخفض)",
+          "النوع 0-III (محفور)",
+          "النوع I (سليلي)",
+          "النوع II (فطري النمو)",
+          "النوع III (متقرح)",
+          "النوع IV (ارتشاحي)"
+        ]
+      },
+      "tumor_dimensions_mm": {
+        "label": "أبعاد الورم"
+      },
+      "distance_to_proximal_margin_mm": {
+        "label": "الهامش القريب"
+      },
+      "distance_to_distal_margin_mm": {
+        "label": "الهامش البعيد"
+      },
+      "distance_to_lesser_curvature_margin_mm": {
+        "label": "هامش الانحناء الصغير"
+      },
+      "distance_to_greater_curvature_margin_mm": {
+        "label": "هامش الانحناء الكبير"
+      }
+    }
+  },
+  "lymph_nodes": {
+    "label": "العقد اللمفية",
+    "fields": {
+      "number_identified": {
+        "label": "العدد المحدد"
+      },
+      "size_range_min_mm": {
+        "label": "أدنى مدى الحجم (مم)"
+      },
+      "size_range_max_mm": {
+        "label": "أقصى مدى الحجم (مم)"
+      }
+    }
+  },
+  "block_identification_key": {
+    "label": "مفتاح تعريف الكتل",
+    "fields": {
+      "tumor_representative_sections": {
+        "label": "الورم (مقاطع تمثيلية)"
+      },
+      "proximal_margin": {
+        "label": "الهامش القريب"
+      },
+      "distal_margin": {
+        "label": "الهامش البعيد"
+      },
+      "circumferential_non_peritonealised_margin": {
+        "label": "الهامش المحيطي / غير المغطى بالبريتون"
+      },
+      "non_neoplastic_stomach": {
+        "label": "معدة غير ورمية"
+      },
+      "lymph_nodes": {
+        "label": "العقد اللمفية"
+      }
+    }
+  },
+  "grossing": {
+    "label": "الفحص العياني",
+    "fields": {
+      "grossed_by": {
+        "label": "أُجري الفحص العياني بواسطة"
+      },
+      "date": {
+        "label": "التاريخ"
+      }
+    }
+  }
 }

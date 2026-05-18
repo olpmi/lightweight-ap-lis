@@ -403,7 +403,7 @@ function normalizeNestedField(
       kind: 'field',
       inputType,
       options,
-      defaultValue: deriveDefaultValue(fieldRecord, inputType),
+      defaultValue: deriveDefaultValue(fieldRecord, inputType, translationFieldRecord.default ?? translationFieldRecord.value),
     },
     ...childFields,
     ...createSupplementalFields(fieldRecord, path, translationFieldRecord),

@@ -1,79 +1,238 @@
 {
-  "template.title": "KIOLEZO CHA UCHUNGUZI WA MACHO: OVARI, MIRIJA YA FALLOPIAN AU PERITONEUM YA ASILI",
-  "section.specimen": "SAMPULI",
-  "section.block_allocation_key": "Ufunguo wa ugawaji wa vitalu",
-  "field.procedure": "Utaratibu (chagua yote yanayohusika)",
-  "note.lymph_node_sampling": "Kwa taarifa kuhusu uchukuaji wa sampuli za tezi za limfu, tafadhali rejea sehemu ya tezi za limfu za eneo husika.",
-  "procedure.total_hysterectomy_bso": "Kuondoa uterasi yote pamoja na mirija ya fallopian na ovari zote mbili",
-  "procedure.radical_hysterectomy": "Kuondoa uterasi kwa upana",
-  "procedure.simple_hysterectomy": "Kuondoa uterasi kwa kawaida",
-  "procedure.supracervical_hysterectomy": "Kuondoa uterasi huku shingo ya kizazi ikiachwa",
-  "procedure.bilateral_salpingo_oophorectomy": "Kuondoa mirija ya fallopian na ovari zote mbili",
-  "procedure.right_salpingo_oophorectomy": "Kuondoa mrija wa fallopian na ovari ya kulia",
-  "procedure.left_salpingo_oophorectomy": "Kuondoa mrija wa fallopian na ovari ya kushoto",
-  "procedure.salpingo_oophorectomy_side_not_specified": "Kuondoa mrija wa fallopian na ovari, upande haujabainishwa",
-  "procedure.right_oophorectomy": "Kuondoa ovari ya kulia",
-  "procedure.left_oophorectomy": "Kuondoa ovari ya kushoto",
-  "procedure.oophorectomy_side_not_specified": "Kuondoa ovari, upande haujabainishwa",
-  "procedure.bilateral_salpingectomy": "Kuondoa mirija yote miwili ya fallopian",
-  "procedure.right_salpingectomy": "Kuondoa mrija wa fallopian wa kulia",
-  "procedure.left_salpingectomy": "Kuondoa mrija wa fallopian wa kushoto",
-  "procedure.salpingectomy_side_not_specified": "Kuondoa mrija wa fallopian, upande haujabainishwa",
-  "procedure.omentectomy": "Kuondoa omentamu",
-  "procedure.peritoneal_biopsies": "Biopsi za peritoneum",
-  "procedure.peritoneal_tumor_debulking": "Kupunguza mzigo wa uvimbe wa peritoneum",
-  "procedure.peritoneal_washing": "Uoshaji wa peritoneum",
-  "procedure.pelvic_washing": "Uoshaji wa nyonga",
-  "procedure.ascitic_fluid": "Majimaji ya ascites",
-  "procedure.pleurocentesis_pleural_fluid": "Pleurocentesis (majimaji ya pleura)",
-  "common.other_specify": "Nyingine (taja)",
-  "field.hysterectomy_type": "Aina ya hysterectomy",
-  "hysterectomy_type.abdominal": "Kupitia tumbo",
-  "hysterectomy_type.vaginal": "Kupitia uke",
-  "hysterectomy_type.vaginal_laparoscopic_assisted": "Kupitia uke, kwa msaada wa laparoskopia",
-  "hysterectomy_type.laparoscopic": "Kwa laparoskopia",
-  "hysterectomy_type.laparoscopic_robotic_assisted": "Kwa laparoskopia, kwa msaada wa roboti",
-  "common.not_specified": "Haijabainishwa",
-  "field.specimen_integrity": "Uadilifu wa sampuli (chagua yote yanayohusika)",
-  "note.specimen_integrity": "Kwa uvimbe wa msingi wa ovari, ikiwa ovari yenye uvimbe wa msingi imeondolewa ikiwa nzima ndani ya mfuko wa laparoskopia na kupasuliwa ndani ya mfuko na daktari wa upasuaji bila kumwagika kwenye kaviti ya peritoneum, uadilifu wa sampuli uandikwe kama “capsule intact” pamoja na maelezo kwenye ripoti. Kwa uvimbe wa msingi wa peritoneum kwa wanawake waliowahi kufanyiwa salpingo-oophorectomy, chagua “haitumiki”.",
-  "common.not_applicable": "Haitumiki",
-  "specimen.right_ovary": "Ovari ya kulia",
-  "field.right_ovary_integrity": "Uadilifu wa ovari ya kulia",
-  "integrity.capsule_intact": "Kapsuli haijapasuka",
-  "integrity.capsule_ruptured": "Kapsuli imepasuka",
-  "field.time_of_rupture": "Wakati wa kupasuka",
-  "rupture_time.preoperative": "Kabla ya upasuaji",
-  "rupture_time.intraoperative": "Wakati wa upasuaji",
-  "rupture_time.unknown": "Haijulikani",
-  "integrity.fragmented": "Imevunjikavunjika",
-  "specimen.left_ovary": "Ovari ya kushoto",
-  "field.left_ovary_integrity": "Uadilifu wa ovari ya kushoto",
-  "specimen.ovary_laterality_not_specified": "Ovari, upande haujabainishwa",
-  "field.ovary_integrity": "Uadilifu wa ovari",
-  "specimen.right_fallopian_tube": "Mrija wa fallopian wa kulia",
-  "field.right_fallopian_tube_integrity": "Uadilifu wa mrija wa fallopian wa kulia",
-  "integrity.serosa_intact": "Serosa haijapasuka",
-  "integrity.serosa_ruptured": "Serosa imepasuka",
-  "specimen.left_fallopian_tube": "Mrija wa fallopian wa kushoto",
-  "field.left_fallopian_tube_integrity": "Uadilifu wa mrija wa fallopian wa kushoto",
-  "specimen.fallopian_tube_laterality_not_specified": "Mrija wa fallopian, upande haujabainishwa",
-  "field.fallopian_tube_integrity": "Uadilifu wa mrija wa fallopian",
-  "field.uterus_integrity": "Uadilifu wa uterasi",
-  "integrity.intact": "Nzima",
-  "integrity.opened": "Imefunguliwa",
-  "integrity.morcellated": "Imegawanywa vipandevipande",
-  "block.tumor_representative_sections": "Uvimbe (sehemu wakilishi – maeneo imara, ya kisti, na papillari)",
-  "block.tumor_capsule_interface": "Kiunganishi kati ya uvimbe na kapsuli",
-  "block.capsule_non_tumor_areas": "Kapsuli (maeneo yasiyo na uvimbe)",
-  "block.fallopian_tube_fimbrial_end": "Mrija wa fallopian (mwisho wa fimbria)",
-  "block.fallopian_tube_cross_sections": "Mrija wa fallopian (sehemu za kukatiza)",
-  "block.contralateral_ovary_if_present": "Ovari ya upande mwingine (ikiwa ipo)",
-  "block.endometrium": "Endometriamu",
-  "block.myometrium": "Myometriamu",
-  "block.cervix": "Shingo ya kizazi",
-  "block.omentum": "Omentamu",
-  "block.lymph_nodes": "Tezi za limfu",
-  "signoff.grossed_by": "Imefanyiwa grossing na",
-  "signoff.date": "Tarehe",
-  "template.key": "gross_ovary_fallopian_tube_primary_peritoneum"
+  "title": "Ovari au Mrija wa Fallopian au Peritoneum ya Msingi (Kiolezo cha Gross)",
+  "specimen": {
+    "label": "Sampuli",
+    "fields": {
+      "procedure": {
+        "label": "Utaratibu (chagua yote yanayohusika)",
+        "options": [
+          "Kuondoa uterasi yote pamoja na mirija ya fallopian na ovari zote mbili",
+          "Kuondoa uterasi kwa upana",
+          "Kuondoa uterasi kwa kawaida",
+          "Kuondoa uterasi huku shingo ya kizazi ikiachwa",
+          "Kuondoa mirija ya fallopian na ovari zote mbili",
+          "Kuondoa mrija wa fallopian na ovari ya kulia",
+          "Kuondoa mrija wa fallopian na ovari ya kushoto",
+          "Kuondoa mrija wa fallopian na ovari, upande haujabainishwa",
+          "Kuondoa ovari ya kulia",
+          "Kuondoa ovari ya kushoto",
+          "Kuondoa ovari, upande haujabainishwa",
+          "Kuondoa mirija yote miwili ya fallopian",
+          "Kuondoa mrija wa fallopian wa kulia",
+          "Kuondoa mrija wa fallopian wa kushoto",
+          "Kuondoa mrija wa fallopian, upande haujabainishwa",
+          "Kuondoa omentamu",
+          "Biopsi za peritoneum",
+          "Kupunguza mzigo wa uvimbe wa peritoneum",
+          "Uoshaji wa peritoneum",
+          "Uoshaji wa nyonga",
+          "Majimaji ya ascites",
+          "Pleurocentesis (majimaji ya pleura)",
+          "Nyingine (taja)"
+        ],
+        "other_specify": "Nyingine (taja)"
+      },
+      "hysterectomy_type": {
+        "label": "Aina ya hysterectomy",
+        "options": [
+          "Kupitia tumbo",
+          "Kupitia uke",
+          "Kupitia uke, kwa msaada wa laparoskopia",
+          "Kwa laparoskopia",
+          "Kwa laparoskopia, kwa msaada wa roboti",
+          "Nyingine (taja)",
+          "Haijabainishwa"
+        ],
+        "other_specify": "Nyingine (taja)"
+      },
+      "specimen_integrity_note": {
+        "label": "Kumbuka kuhusu uadilifu wa sampuli"
+      },
+      "specimen_integrity_applicability": {
+        "label": "Uhusu wa uadilifu wa sampuli",
+        "options": [
+          "Haitumiki"
+        ]
+      }
+    }
+  },
+  "ovarian_integrity": {
+    "label": "Uadilifu wa ovari",
+    "fields": {
+      "right_ovary_present": {
+        "label": "Ovari ya kulia"
+      },
+      "right_ovary_integrity": {
+        "label": "Ovari ya kulia – Kapsuli haijapasuka",
+        "options": [
+          "Kapsuli haijapasuka",
+          "Kapsuli imepasuka",
+          "Imevunjikavunjika",
+          "Nyingine (taja)"
+        ],
+        "other_specify": "Nyingine (taja)"
+      },
+      "right_ovary_time_of_rupture": {
+        "label": "Wakati wa kupasuka",
+        "options": [
+          "Wakati wa kupasuka",
+          "Kabla ya upasuaji",
+          "Wakati wa upasuaji",
+          "Haijulikani"
+        ]
+      },
+      "left_ovary_present": {
+        "label": "Ovari ya kushoto"
+      },
+      "left_ovary_integrity": {
+        "label": "Ovari ya kushoto – Kapsuli haijapasuka",
+        "options": [
+          "Kapsuli haijapasuka",
+          "Kapsuli imepasuka",
+          "Imevunjikavunjika",
+          "Nyingine (taja)"
+        ],
+        "other_specify": "Nyingine (taja)"
+      },
+      "left_ovary_time_of_rupture": {
+        "label": "Wakati wa kupasuka",
+        "options": [
+          "Wakati wa kupasuka",
+          "Kabla ya upasuaji",
+          "Wakati wa upasuaji",
+          "Haijulikani"
+        ]
+      },
+      "ovary_laterality_not_specified_present": {
+        "label": "Ovari, upande haujabainishwa"
+      },
+      "ovary_laterality_not_specified_integrity": {
+        "label": "Ovari, upande haujabainishwa – Kapsuli haijapasuka",
+        "options": [
+          "Kapsuli haijapasuka",
+          "Kapsuli imepasuka",
+          "Imevunjikavunjika",
+          "Nyingine (taja)"
+        ],
+        "other_specify": "Nyingine (taja)"
+      },
+      "ovary_laterality_not_specified_time_of_rupture": {
+        "label": "Wakati wa kupasuka",
+        "options": [
+          "Wakati wa kupasuka",
+          "Kabla ya upasuaji",
+          "Wakati wa upasuaji",
+          "Haijulikani"
+        ]
+      }
+    }
+  },
+  "fallopian_tube_integrity": {
+    "label": "Uadilifu wa mrija wa fallopian",
+    "fields": {
+      "right_fallopian_tube_present": {
+        "label": "Mrija wa fallopian wa kulia"
+      },
+      "right_fallopian_tube_integrity": {
+        "label": "Mrija wa fallopian wa kulia – Serosa haijapasuka",
+        "options": [
+          "Serosa haijapasuka",
+          "Serosa imepasuka",
+          "Imevunjikavunjika",
+          "Nyingine (taja)"
+        ],
+        "other_specify": "Nyingine (taja)"
+      },
+      "left_fallopian_tube_present": {
+        "label": "Mrija wa fallopian wa kushoto"
+      },
+      "left_fallopian_tube_integrity": {
+        "label": "Mrija wa fallopian wa kushoto – Serosa haijapasuka",
+        "options": [
+          "Serosa haijapasuka",
+          "Serosa imepasuka",
+          "Imevunjikavunjika",
+          "Nyingine (taja)"
+        ],
+        "other_specify": "Nyingine (taja)"
+      },
+      "fallopian_tube_laterality_not_specified_present": {
+        "label": "Mrija wa fallopian, upande haujabainishwa"
+      },
+      "fallopian_tube_laterality_not_specified_integrity": {
+        "label": "Mrija wa fallopian, upande haujabainishwa – Serosa haijapasuka",
+        "options": [
+          "Serosa haijapasuka",
+          "Serosa imepasuka",
+          "Imevunjikavunjika",
+          "Nyingine (taja)"
+        ],
+        "other_specify": "Nyingine (taja)"
+      }
+    }
+  },
+  "uterus_integrity": {
+    "label": "Uadilifu wa uterasi",
+    "fields": {
+      "status": {
+        "label": "Uadilifu wa uterasi",
+        "options": [
+          "Nzima",
+          "Imefunguliwa",
+          "Imegawanywa vipandevipande",
+          "Nyingine (taja)"
+        ],
+        "other_specify": "Nyingine (taja)"
+      }
+    }
+  },
+  "block_allocation_key": {
+    "label": "Ufunguo wa ugawaji wa vitalu",
+    "fields": {
+      "tumor_representative_sections": {
+        "label": "Uvimbe (sehemu wakilishi – maeneo imara, ya kisti, na papillari)"
+      },
+      "tumor_capsule_interface": {
+        "label": "Kiunganishi kati ya uvimbe na kapsuli"
+      },
+      "capsule_non_tumor_areas": {
+        "label": "Kapsuli (maeneo yasiyo na uvimbe)"
+      },
+      "fallopian_tube_fimbrial_end": {
+        "label": "Mrija wa fallopian (mwisho wa fimbria)"
+      },
+      "fallopian_tube_cross_sections": {
+        "label": "Mrija wa fallopian (sehemu za kukatiza)"
+      },
+      "contralateral_ovary_if_present": {
+        "label": "Ovari ya upande mwingine (ikiwa ipo)"
+      },
+      "endometrium": {
+        "label": "Endometriamu"
+      },
+      "myometrium": {
+        "label": "Myometriamu"
+      },
+      "cervix": {
+        "label": "Shingo ya kizazi"
+      },
+      "omentum": {
+        "label": "Omentamu"
+      },
+      "lymph_nodes": {
+        "label": "Tezi za limfu"
+      }
+    }
+  },
+  "grossing": {
+    "label": "Uchunguzi wa makroskopia",
+    "fields": {
+      "grossed_by": {
+        "label": "Imefanyiwa grossing na"
+      },
+      "date": {
+        "label": "Tarehe"
+      }
+    }
+  }
 }

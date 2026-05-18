@@ -1,79 +1,238 @@
 {
-  "template.title": "گراس ٹیمپلیٹ: اووری، فیلوپیئن ٹیوب یا پرائمری پیریٹونیم",
-  "section.specimen": "نمونہ",
-  "section.block_allocation_key": "بلاک مختص کرنے کی کلید",
-  "field.procedure": "طریقہ کار (جو لاگو ہوں سب منتخب کریں)",
-  "note.lymph_node_sampling": "لمف نوڈ سیمپلنگ کے بارے میں معلومات کے لیے براہِ کرم ریجنل لمف نوڈ سیکشن دیکھیں۔",
-  "procedure.total_hysterectomy_bso": "کل ہسٹریکٹومی اور دونوں طرف سالپنگو-اوفوریکٹومی",
-  "procedure.radical_hysterectomy": "ریڈیکل ہسٹریکٹومی",
-  "procedure.simple_hysterectomy": "سادہ ہسٹریکٹومی",
-  "procedure.supracervical_hysterectomy": "سپرا سروائیکل ہسٹریکٹومی",
-  "procedure.bilateral_salpingo_oophorectomy": "دونوں طرف سالپنگو-اوفوریکٹومی",
-  "procedure.right_salpingo_oophorectomy": "دائیں طرف سالپنگو-اوفوریکٹومی",
-  "procedure.left_salpingo_oophorectomy": "بائیں طرف سالپنگو-اوفوریکٹومی",
-  "procedure.salpingo_oophorectomy_side_not_specified": "سالپنگو-اوفوریکٹومی، طرف متعین نہیں",
-  "procedure.right_oophorectomy": "دائیں اوفوریکٹومی",
-  "procedure.left_oophorectomy": "بائیں اوفوریکٹومی",
-  "procedure.oophorectomy_side_not_specified": "اوفوریکٹومی، طرف متعین نہیں",
-  "procedure.bilateral_salpingectomy": "دونوں طرف سالپنگیکٹومی",
-  "procedure.right_salpingectomy": "دائیں سالپنگیکٹومی",
-  "procedure.left_salpingectomy": "بائیں سالپنگیکٹومی",
-  "procedure.salpingectomy_side_not_specified": "سالپنگیکٹومی، طرف متعین نہیں",
-  "procedure.omentectomy": "اومینٹیکٹومی",
-  "procedure.peritoneal_biopsies": "پیریٹونیل بایوپسیاں",
-  "procedure.peritoneal_tumor_debulking": "پیریٹونیل ٹیومر ڈیبَلکنگ",
-  "procedure.peritoneal_washing": "پیریٹونیل واشنگ",
-  "procedure.pelvic_washing": "پیلوک واشنگ",
-  "procedure.ascitic_fluid": "ایسائٹک فلوئڈ",
-  "procedure.pleurocentesis_pleural_fluid": "پلیوروسینٹیسس (پلیورل فلوئڈ)",
-  "common.other_specify": "دیگر (واضح کریں)",
-  "field.hysterectomy_type": "ہسٹریکٹومی کی قسم",
-  "hysterectomy_type.abdominal": "ایبڈومینل",
-  "hysterectomy_type.vaginal": "ویجائنل",
-  "hysterectomy_type.vaginal_laparoscopic_assisted": "ویجائنل، لیپروسکوپک معاونت کے ساتھ",
-  "hysterectomy_type.laparoscopic": "لیپروسکوپک",
-  "hysterectomy_type.laparoscopic_robotic_assisted": "لیپروسکوپک، روبوٹک معاونت کے ساتھ",
-  "common.not_specified": "متعین نہیں",
-  "field.specimen_integrity": "نمونے کی سالمیت (جو لاگو ہوں سب منتخب کریں)",
-  "note.specimen_integrity": "پرائمری اوورین ٹیومرز میں، اگر ٹیومر والے اووری کو لیپروسکوپی بیگ میں سالم حالت میں نکالا جائے اور سرجن اسے بیگ کے اندر پھاڑ دے، بغیر پیریٹونیل کیویٹی میں مواد پھیلائے، تو نمونے کی سالمیت کو “capsule intact” لکھا جائے اور رپورٹ میں وضاحتی تبصرہ شامل کیا جائے۔ سابقہ سالپنگو-اوفوریکٹومی والی خواتین میں پرائمری پیریٹونیل ٹیومرز کے لیے “لاگو نہیں” منتخب کریں۔",
-  "common.not_applicable": "لاگو نہیں",
-  "specimen.right_ovary": "دائیں اووری",
-  "field.right_ovary_integrity": "دائیں اووری کی سالمیت",
-  "integrity.capsule_intact": "کیپسول سالم",
-  "integrity.capsule_ruptured": "کیپسول پھٹا ہوا",
-  "field.time_of_rupture": "پھٹنے کا وقت",
-  "rupture_time.preoperative": "آپریشن سے پہلے",
-  "rupture_time.intraoperative": "آپریشن کے دوران",
-  "rupture_time.unknown": "نامعلوم",
-  "integrity.fragmented": "ٹکڑوں میں",
-  "specimen.left_ovary": "بائیں اووری",
-  "field.left_ovary_integrity": "بائیں اووری کی سالمیت",
-  "specimen.ovary_laterality_not_specified": "اووری، طرف متعین نہیں",
-  "field.ovary_integrity": "اووری کی سالمیت",
-  "specimen.right_fallopian_tube": "دائیں فیلوپیئن ٹیوب",
-  "field.right_fallopian_tube_integrity": "دائیں فیلوپیئن ٹیوب کی سالمیت",
-  "integrity.serosa_intact": "سیروسا سالم",
-  "integrity.serosa_ruptured": "سیروسا پھٹا ہوا",
-  "specimen.left_fallopian_tube": "بائیں فیلوپیئن ٹیوب",
-  "field.left_fallopian_tube_integrity": "بائیں فیلوپیئن ٹیوب کی سالمیت",
-  "specimen.fallopian_tube_laterality_not_specified": "فیلوپیئن ٹیوب، طرف متعین نہیں",
-  "field.fallopian_tube_integrity": "فیلوپیئن ٹیوب کی سالمیت",
-  "field.uterus_integrity": "بچہ دانی کی سالمیت",
-  "integrity.intact": "سالم",
-  "integrity.opened": "کھولی ہوئی",
-  "integrity.morcellated": "مورسیلیٹڈ",
-  "block.tumor_representative_sections": "ٹیومر (نمائندہ حصے – ٹھوس، سسٹک، پیپلیری علاقے)",
-  "block.tumor_capsule_interface": "ٹیومر-کیپسول انٹرفیس",
-  "block.capsule_non_tumor_areas": "کیپسول (غیر ٹیومر علاقے)",
-  "block.fallopian_tube_fimbrial_end": "فیلوپیئن ٹیوب (فمبریئل اختتام)",
-  "block.fallopian_tube_cross_sections": "فیلوپیئن ٹیوب (کراس سیکشنز)",
-  "block.contralateral_ovary_if_present": "مخالف سمت کا اووری (اگر موجود ہو)",
-  "block.endometrium": "اینڈومیٹریئم",
-  "block.myometrium": "مایومیٹریئم",
-  "block.cervix": "سروکس",
-  "block.omentum": "اومینٹم",
-  "block.lymph_nodes": "لمف نوڈز",
-  "signoff.grossed_by": "گراس کیا گیا بذریعہ",
-  "signoff.date": "تاریخ",
-  "template.key": "gross_ovary_fallopian_tube_primary_peritoneum"
+  "title": "بیضہ دانی یا فیلوپین ٹیوب یا بنیادی پیریٹونیئم (گراس ٹیمپلیٹ)",
+  "specimen": {
+    "label": "نمونہ",
+    "fields": {
+      "procedure": {
+        "label": "طریقہ کار (جو لاگو ہوں سب منتخب کریں)",
+        "options": [
+          "کل ہسٹریکٹومی اور دونوں طرف سالپنگو-اوفوریکٹومی",
+          "ریڈیکل ہسٹریکٹومی",
+          "سادہ ہسٹریکٹومی",
+          "سپرا سروائیکل ہسٹریکٹومی",
+          "دونوں طرف سالپنگو-اوفوریکٹومی",
+          "دائیں طرف سالپنگو-اوفوریکٹومی",
+          "بائیں طرف سالپنگو-اوفوریکٹومی",
+          "سالپنگو-اوفوریکٹومی، طرف متعین نہیں",
+          "دائیں اوفوریکٹومی",
+          "بائیں اوفوریکٹومی",
+          "اوفوریکٹومی، طرف متعین نہیں",
+          "دونوں طرف سالپنگیکٹومی",
+          "دائیں سالپنگیکٹومی",
+          "بائیں سالپنگیکٹومی",
+          "سالپنگیکٹومی، طرف متعین نہیں",
+          "اومینٹیکٹومی",
+          "پیریٹونیل بایوپسیاں",
+          "پیریٹونیل ٹیومر ڈیبَلکنگ",
+          "پیریٹونیل واشنگ",
+          "پیلوک واشنگ",
+          "ایسائٹک فلوئڈ",
+          "پلیوروسینٹیسس (پلیورل فلوئڈ)",
+          "دیگر (واضح کریں)"
+        ],
+        "other_specify": "دیگر (واضح کریں)"
+      },
+      "hysterectomy_type": {
+        "label": "ہسٹریکٹومی کی قسم",
+        "options": [
+          "ایبڈومینل",
+          "ویجائنل",
+          "ویجائنل، لیپروسکوپک معاونت کے ساتھ",
+          "لیپروسکوپک",
+          "لیپروسکوپک، روبوٹک معاونت کے ساتھ",
+          "دیگر (واضح کریں)",
+          "متعین نہیں"
+        ],
+        "other_specify": "دیگر (واضح کریں)"
+      },
+      "specimen_integrity_note": {
+        "label": "نمونے کی سالمیت کا نوٹ"
+      },
+      "specimen_integrity_applicability": {
+        "label": "نمونے کی سالمیت کا اطلاق",
+        "options": [
+          "لاگو نہیں"
+        ]
+      }
+    }
+  },
+  "ovarian_integrity": {
+    "label": "اووری کی سالمیت",
+    "fields": {
+      "right_ovary_present": {
+        "label": "دائیں اووری"
+      },
+      "right_ovary_integrity": {
+        "label": "دائیں اووری – کیپسول سالم",
+        "options": [
+          "کیپسول سالم",
+          "کیپسول پھٹا ہوا",
+          "ٹکڑوں میں",
+          "دیگر (واضح کریں)"
+        ],
+        "other_specify": "دیگر (واضح کریں)"
+      },
+      "right_ovary_time_of_rupture": {
+        "label": "پھٹنے کا وقت",
+        "options": [
+          "پھٹنے کا وقت",
+          "آپریشن سے پہلے",
+          "آپریشن کے دوران",
+          "نامعلوم"
+        ]
+      },
+      "left_ovary_present": {
+        "label": "بائیں اووری"
+      },
+      "left_ovary_integrity": {
+        "label": "بائیں اووری – کیپسول سالم",
+        "options": [
+          "کیپسول سالم",
+          "کیپسول پھٹا ہوا",
+          "ٹکڑوں میں",
+          "دیگر (واضح کریں)"
+        ],
+        "other_specify": "دیگر (واضح کریں)"
+      },
+      "left_ovary_time_of_rupture": {
+        "label": "پھٹنے کا وقت",
+        "options": [
+          "پھٹنے کا وقت",
+          "آپریشن سے پہلے",
+          "آپریشن کے دوران",
+          "نامعلوم"
+        ]
+      },
+      "ovary_laterality_not_specified_present": {
+        "label": "اووری، طرف متعین نہیں"
+      },
+      "ovary_laterality_not_specified_integrity": {
+        "label": "اووری، طرف متعین نہیں – کیپسول سالم",
+        "options": [
+          "کیپسول سالم",
+          "کیپسول پھٹا ہوا",
+          "ٹکڑوں میں",
+          "دیگر (واضح کریں)"
+        ],
+        "other_specify": "دیگر (واضح کریں)"
+      },
+      "ovary_laterality_not_specified_time_of_rupture": {
+        "label": "پھٹنے کا وقت",
+        "options": [
+          "پھٹنے کا وقت",
+          "آپریشن سے پہلے",
+          "آپریشن کے دوران",
+          "نامعلوم"
+        ]
+      }
+    }
+  },
+  "fallopian_tube_integrity": {
+    "label": "فیلوپیئن ٹیوب کی سالمیت",
+    "fields": {
+      "right_fallopian_tube_present": {
+        "label": "دائیں فیلوپیئن ٹیوب"
+      },
+      "right_fallopian_tube_integrity": {
+        "label": "دائیں فیلوپیئن ٹیوب – سیروسا سالم",
+        "options": [
+          "سیروسا سالم",
+          "سیروسا پھٹا ہوا",
+          "ٹکڑوں میں",
+          "دیگر (واضح کریں)"
+        ],
+        "other_specify": "دیگر (واضح کریں)"
+      },
+      "left_fallopian_tube_present": {
+        "label": "بائیں فیلوپیئن ٹیوب"
+      },
+      "left_fallopian_tube_integrity": {
+        "label": "بائیں فیلوپیئن ٹیوب – سیروسا سالم",
+        "options": [
+          "سیروسا سالم",
+          "سیروسا پھٹا ہوا",
+          "ٹکڑوں میں",
+          "دیگر (واضح کریں)"
+        ],
+        "other_specify": "دیگر (واضح کریں)"
+      },
+      "fallopian_tube_laterality_not_specified_present": {
+        "label": "فیلوپیئن ٹیوب، طرف متعین نہیں"
+      },
+      "fallopian_tube_laterality_not_specified_integrity": {
+        "label": "فیلوپیئن ٹیوب، طرف متعین نہیں – سیروسا سالم",
+        "options": [
+          "سیروسا سالم",
+          "سیروسا پھٹا ہوا",
+          "ٹکڑوں میں",
+          "دیگر (واضح کریں)"
+        ],
+        "other_specify": "دیگر (واضح کریں)"
+      }
+    }
+  },
+  "uterus_integrity": {
+    "label": "بچہ دانی کی سالمیت",
+    "fields": {
+      "status": {
+        "label": "بچہ دانی کی سالمیت",
+        "options": [
+          "سالم",
+          "کھولی ہوئی",
+          "مورسیلیٹڈ",
+          "دیگر (واضح کریں)"
+        ],
+        "other_specify": "دیگر (واضح کریں)"
+      }
+    }
+  },
+  "block_allocation_key": {
+    "label": "بلاک مختص کرنے کی کلید",
+    "fields": {
+      "tumor_representative_sections": {
+        "label": "ٹیومر (نمائندہ حصے – ٹھوس، سسٹک، پیپلیری علاقے)"
+      },
+      "tumor_capsule_interface": {
+        "label": "ٹیومر-کیپسول انٹرفیس"
+      },
+      "capsule_non_tumor_areas": {
+        "label": "کیپسول (غیر ٹیومر علاقے)"
+      },
+      "fallopian_tube_fimbrial_end": {
+        "label": "فیلوپیئن ٹیوب (فمبریئل اختتام)"
+      },
+      "fallopian_tube_cross_sections": {
+        "label": "فیلوپیئن ٹیوب (کراس سیکشنز)"
+      },
+      "contralateral_ovary_if_present": {
+        "label": "مخالف سمت کا اووری (اگر موجود ہو)"
+      },
+      "endometrium": {
+        "label": "اینڈومیٹریئم"
+      },
+      "myometrium": {
+        "label": "مایومیٹریئم"
+      },
+      "cervix": {
+        "label": "سروکس"
+      },
+      "omentum": {
+        "label": "اومینٹم"
+      },
+      "lymph_nodes": {
+        "label": "لمف نوڈز"
+      }
+    }
+  },
+  "grossing": {
+    "label": "گراس",
+    "fields": {
+      "grossed_by": {
+        "label": "گراس کیا گیا بذریعہ"
+      },
+      "date": {
+        "label": "تاریخ"
+      }
+    }
+  }
 }
