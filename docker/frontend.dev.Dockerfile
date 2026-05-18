@@ -3,7 +3,7 @@ FROM node:20-alpine
 RUN apk add --no-cache openssl
 
 # Enable pnpm via corepack
-RUN corepack enable && corepack prepare pnpm@latest --activate
+RUN corepack enable && corepack prepare pnpm@9 --activate
 
 WORKDIR /app
 

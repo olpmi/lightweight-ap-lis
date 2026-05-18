@@ -62,6 +62,7 @@ export default function OrderEntryPage() {
   const [createdOrder, setCreatedOrder] = useState<{ orderId: string } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [successOpen, setSuccessOpen] = useState(false);
+  const [resetKey, setResetKey] = useState(0);
 
   // Dirty when the user has entered data but not yet created the case
   const isDirty = !createdOrder && (
@@ -116,6 +117,15 @@ export default function OrderEntryPage() {
       const order = data as { orderId: string };
       setCreatedOrder(order);
       setSuccessOpen(true);
+      setPatientMode('existing');
+      setDoctorMode('existing');
+      setPatientSearch('');
+      setDoctorSearch('');
+      setSelectedPatient(null);
+      setSelectedDoctor(null);
+      setForm({ caseType: 'Surgical Pathology', patientLastName: '', patientFirstName: '', patientDateOfBirth: '', patientSex: '', doctorLastName: '', doctorFirstName: '' });
+      setSpecimens([{ id: '1', site: '', bodySiteId: '', specimenTypeId: '', coldIschemicTime: '' }]);
+      setResetKey((k) => k + 1);
     },
     onError: (err: unknown) => {
       setError(
@@ -242,6 +252,7 @@ export default function OrderEntryPage() {
 
               {patientMode === 'existing' ? (
                 <Autocomplete
+                  key={resetKey}
                   options={patientResults ?? []}
                   getOptionLabel={(o) => {
                     const p = o as { patientId: string; lastName: string; firstName: string };
@@ -286,6 +297,7 @@ export default function OrderEntryPage() {
               </Stack>
               {doctorMode === 'existing' ? (
                 <Autocomplete
+                  key={resetKey}
                   options={doctorResults ?? []}
                   getOptionLabel={(o) => { const d = o as { lastName: string; firstName: string }; return `${d.lastName}, ${d.firstName}`; }}
                   loading={searchingDoctors}
