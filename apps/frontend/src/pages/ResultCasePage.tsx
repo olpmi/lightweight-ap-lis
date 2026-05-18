@@ -26,7 +26,7 @@ import {
   Tabs,
   Tab,
 } from '@mui/material';
-import { ExpandMore, Send, Refresh, PictureAsPdf, DragIndicator, Science } from '@mui/icons-material';
+import { ExpandMore, Send, Refresh, PictureAsPdf, DragIndicator, Science, ExitToApp } from '@mui/icons-material';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useParams, useNavigate } from 'react-router-dom';
 import { orderApi, reportApi, lookupApi } from '../api';
@@ -359,6 +359,15 @@ export default function ResultCasePage() {
         (err as { response?: { data?: { error?: { message?: string } } } })?.response?.data?.error?.message
           ?? (err instanceof Error ? err.message : t('errorGeneric')),
       );
+    }
+  };
+
+  const handleSaveAndExit = async () => {
+    try {
+      await saveDraftMutation.mutateAsync();
+      navigate('/result');
+    } catch {
+      // error shown via setError in mutation onError
     }
   };
 
@@ -780,6 +789,15 @@ export default function ResultCasePage() {
                 >
                   {t('rc_reactivate')}
                 </Button>
+                <Button
+                  variant="outlined"
+                  size="small"
+                  startIcon={<ExitToApp />}
+                  onClick={() => guardedNavigate('/result')}
+                  data-testid="exit-btn"
+                >
+                  {t('rc_exit')}
+                </Button>
               </>
             ) : (
               <>
@@ -791,6 +809,16 @@ export default function ResultCasePage() {
                   data-testid="save-draft-btn"
                 >
                   {saveDraftMutation.isPending ? <CircularProgress size={16} /> : t('rc_saveDraft')}
+                </Button>
+                <Button
+                  onClick={handleSaveAndExit}
+                  disabled={saveDraftMutation.isPending}
+                  variant="outlined"
+                  size="small"
+                  startIcon={saveDraftMutation.isPending ? <CircularProgress size={14} /> : <ExitToApp />}
+                  data-testid="save-exit-btn"
+                >
+                  {t('rc_saveAndExit')}
                 </Button>
                 {latestPrelim?.reportFiles && (latestPrelim.reportFiles as Array<unknown>).length > 0 && (
                   <Button

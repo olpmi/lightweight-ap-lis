@@ -31,7 +31,7 @@ import {
   DialogContent,
   DialogActions,
 } from '@mui/material';
-import { ExpandMore, Add, Science, Download, Delete, Save, Description as DescriptionIcon } from '@mui/icons-material';
+import { ExpandMore, Add, Science, Download, Delete, Save, ExitToApp, Description as DescriptionIcon } from '@mui/icons-material';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useNavigationGuard } from '../hooks/useNavigationGuard';
@@ -218,6 +218,15 @@ export default function ProcessingCasePage() {
     onError: () => setSaveError(t('pc_saveFailed')),
   });
 
+  const handleSaveAndExit = async () => {
+    try {
+      await saveMutation.mutateAsync();
+      navigate('/processing');
+    } catch {
+      // error shown via setSaveError in mutation onError
+    }
+  };
+
   const { setDirty, guardedNavigate } = useNavigationGuard();
   useEffect(() => {
     setDirty(isDirty);
@@ -285,6 +294,16 @@ export default function ProcessingCasePage() {
             data-testid="save-case-btn"
           >
             {t('pc_save')}
+          </Button>
+          <Button
+            variant="outlined"
+            size="small"
+            startIcon={saveMutation.isPending ? <CircularProgress size={14} /> : <ExitToApp />}
+            onClick={handleSaveAndExit}
+            disabled={saveMutation.isPending}
+            data-testid="save-exit-btn"
+          >
+            {t('pc_saveAndExit')}
           </Button>
           <Button
             href={orderApi.referenceStripsPdfUrl(orderId!)}
