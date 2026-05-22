@@ -6,7 +6,6 @@
     "adequacy": "Ubora",
     "milan_category": "Kategoria ya Milan",
     "microscopic_description": "Maelezo ya Kimaikroskopi",
-    "final_interpretation": "Tafsiri ya Mwisho",
     "recommended_management": "Usimamizi Unaopendekezwa",
     "comment": "Maoni"
   },
@@ -18,8 +17,6 @@
     "adequacy_status": "Ubora",
     "milan_category": "Kategoria ya Milan",
     "microscopic_description_text": "Maelezo ya kimaikroskopi (maandishi huru)",
-    "final_interpretation_category": "Kategoria ya Milan",
-    "final_interpretation_text": "Tafsiri ya mwisho",
     "recommended_management_options": "Usimamizi unaopendekezwa",
     "comment_text": "Maoni"
   },

@@ -2,7 +2,6 @@
   "template_id": "breast_invasive_carcinoma_biopsy_v1",
   "lang": "sw",
   "title": "Karsinoma vamizi ya titi, biopsy",
-
   "specimen": {
     "label": "Sampuli",
     "fields": {
@@ -13,15 +12,19 @@
           "Fine needle aspiration",
           "Nyingine",
           "Haijabainishwa"
-        ]
+        ],
+        "other_specify": "Nyingine, taja"
       },
       "laterality": {
         "label": "Upande wa sampuli",
-        "options": ["Kulia", "Kushoto", "Haijabainishwa"]
+        "options": [
+          "Kulia",
+          "Kushoto",
+          "Haijabainishwa"
+        ]
       }
     }
   },
-
   "tumor": {
     "label": "Uvimbe",
     "fields": {
@@ -36,7 +39,8 @@
           "Chuchu",
           "Nafasi ya saa",
           "Haijabainishwa"
-        ]
+        ],
+        "clock_position_specify": "Nafasi ya saa, taja"
       },
       "histologic_type": {
         "label": "Aina ya histolojia",
@@ -61,7 +65,10 @@
           "Karsinoma ya neuroendocrine",
           "Karsinoma vamizi, aina haiwezi kubainishwa",
           "Aina nyingine ya histolojia ambayo haijaorodheshwa"
-        ]
+        ],
+        "features_specify": "Sifa, taja",
+        "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja",
+        "other_specify": "Nyingine, taja"
       },
       "histologic_grade": {
         "label": "Daraja la histolojia (alama ya histolojia ya Nottingham)",
@@ -80,7 +87,8 @@
               "Alama 2 (10% hadi 75% ya eneo la uvimbe linaunda miundo ya tezi / tubular)",
               "Alama 3 (chini ya 10% ya eneo la uvimbe linaunda miundo ya tezi / tubular)",
               "Alama haiwezi kubainishwa"
-            ]
+            ],
+            "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
           },
           "nuclear_pleomorphism": {
             "label": "Pleomofizimu ya nyuklia",
@@ -89,7 +97,8 @@
               "Alama 2 (seli kubwa kuliko kawaida zenye viini vya vesicular vilivyo wazi, nucleoli zinazoonekana, na tofauti ya wastani katika ukubwa na umbo)",
               "Alama 3 (viini vya vesicular, mara nyingi vikiwa na nucleoli zilizo dhahiri, vinaonyesha tofauti kubwa ya ukubwa na umbo, wakati mwingine vikiwa na maumbo makubwa sana na yasiyo ya kawaida)",
               "Alama haiwezi kubainishwa"
-            ]
+            ],
+            "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
           },
           "mitotic_rate": {
             "label": "Kiwango cha mitosi",
@@ -99,7 +108,8 @@
               "Alama 3",
               "Alama haiwezi kubainishwa"
             ],
-            "reference_note": "Tazama Jedwali la 1 katika Itifaki ya CAP."
+            "reference_note": "Tazama Jedwali la 1 katika Itifaki ya CAP.",
+            "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
           },
           "overall_grade": {
             "label": "Daraja la jumla",
@@ -108,7 +118,8 @@
               "Daraja 2 (alama 6 au 7)",
               "Daraja 3 (alama 8 au 9)",
               "Alama haiwezi kubainishwa"
-            ]
+            ],
+            "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
           }
         }
       },
@@ -133,13 +144,15 @@
       }
     }
   },
-
   "dcis": {
     "label": "Ductal carcinoma in situ (DCIS)",
     "fields": {
       "presence": {
         "label": "Uwepo wa DCIS",
-        "options": ["Haijaonekana", "Ipo"]
+        "options": [
+          "Haijaonekana",
+          "Ipo"
+        ]
       },
       "architectural_patterns": {
         "label": "Miundo ya usanifu",
@@ -151,7 +164,8 @@
           "Papillary",
           "Solid",
           "Nyingine"
-        ]
+        ],
+        "other_specify": "Nyingine, taja"
       },
       "nuclear_grade": {
         "label": "Daraja la nyuklia",
@@ -161,7 +175,9 @@
           "Daraja III (juu)",
           "Nyingine",
           "Haiwezi kubainishwa"
-        ]
+        ],
+        "other_specify": "Nyingine, taja",
+        "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
       },
       "necrosis": {
         "label": "Nekrosisi",
@@ -172,21 +188,26 @@
           "Nyingine",
           "Haiwezi kubainishwa",
           "Haiwezi kutengwa"
-        ]
+        ],
+        "other_specify": "Nyingine, taja",
+        "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
       }
     }
   },
-
   "lymphovascular_invasion": {
     "label": "Uvamizi wa limfatiki na / au mishipa ya damu",
     "fields": {
       "status": {
         "label": "Uvamizi wa limfatiki na / au mishipa ya damu",
-        "options": ["Haujaonekana", "Upo", "Haiwezi kubainishwa"]
+        "options": [
+          "Haujaonekana",
+          "Upo",
+          "Haiwezi kubainishwa"
+        ],
+        "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
       }
     }
   },
-
   "microcalcifications": {
     "label": "Mikrokalsifikesheni",
     "fields": {
@@ -198,11 +219,11 @@
           "Zipo katika karsinoma vamizi",
           "Zipo katika tishu isiyo ya neoplasia",
           "Nyingine"
-        ]
+        ],
+        "other_specify": "Nyingine, taja"
       }
     }
   },
-
   "additional_findings": {
     "label": "Matokeo ya ziada",
     "fields": {
@@ -210,5 +231,11 @@
         "label": "Matokeo ya ziada"
       }
     }
+  },
+  "domain": {
+    "fields": {}
+  },
+  "protocol_posting_date": {
+    "fields": {}
   }
 }

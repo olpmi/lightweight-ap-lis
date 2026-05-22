@@ -2,7 +2,6 @@
   "template_id": "prostate_needle_biopsy_v1",
   "lang": "sw",
   "title": "Tezi ya prostate: biopsy ya sindano",
-
   "tumor": {
     "label": "Uvimbe",
     "fields": {
@@ -39,7 +38,6 @@
       }
     }
   },
-
   "positive_specimens": {
     "label": "Sampuli au eneo chanya",
     "item_label": "Sampuli chanya",
@@ -72,9 +70,9 @@
           "Kidonda kingine cha TRUS",
           "Biopsy iliyoongozwa na MRI",
           "Haijabainishwa"
-        ]
+        ],
+        "location_specify": "Mahali, taja"
       },
-
       "histologic_type": {
         "label": "Aina ya histolojia",
         "fields": {
@@ -107,14 +105,15 @@
               "Large cell neuroendocrine carcinoma",
               "Aina nyingine ya histolojia ambayo haijaorodheshwa",
               "Karsinoma, aina haiwezi kubainishwa"
-            ]
+            ],
+            "other_specify": "Nyingine, taja",
+            "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
           },
           "comment": {
             "label": "Maoni kuhusu aina ya histolojia"
           }
         }
       },
-
       "histologic_grade": {
         "label": "Daraja la histolojia",
         "fields": {
@@ -124,7 +123,9 @@
               "Haihusiki",
               "Haiwezi kutathminiwa",
               "Inaweza kutathminiwa"
-            ]
+            ],
+            "not_applicable_specify": "Haihusiki, taja",
+            "cannot_be_assessed_specify": "Haiwezi kutathminiwa, taja"
           },
           "tumor_microfocus": {
             "label": "Microfocus ya uvimbe",
@@ -178,12 +179,11 @@
           }
         }
       },
-
       "intraductal_carcinoma": {
         "label": "Intraductal carcinoma (IDC)",
         "fields": {
           "status": {
-            "label": "IDC",
+            "label": "CIC",
             "options": [
               "Haijaonekana",
               "Ipo"
@@ -195,11 +195,11 @@
               "Ndiyo",
               "Hapana",
               "Haiwezi kubainishwa"
-            ]
+            ],
+            "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
           }
         }
       },
-
       "cribriform_glands": {
         "label": "Tezi za cribriform",
         "fields": {
@@ -211,11 +211,13 @@
               "Zipo",
               "Si dhahiri",
               "Haiwezi kubainishwa"
-            ]
+            ],
+            "present_specify": "Ipo, taja",
+            "equivocal_explain": "Haithibitishwi, eleza",
+            "cannot_be_determined_explain": "Haiwezi kuamuliwa, eleza"
           }
         }
       },
-
       "tumor_quantitation": {
         "label": "Kiasi cha uvimbe",
         "fields": {
@@ -224,14 +226,16 @@
             "options": [
               "Taja idadi",
               "Haiwezi kubainishwa"
-            ]
+            ],
+            "number": "Idadi"
           },
           "number_of_positive_cores": {
             "label": "Idadi ya cores chanya",
             "options": [
               "Taja idadi",
               "Haiwezi kubainishwa"
-            ]
+            ],
+            "number": "Idadi"
           },
           "tumor_measurement_technique": {
             "label": "Mbinu ya kupima uvimbe",
@@ -257,18 +261,19 @@
               "81 - 90%",
               "Zaidi ya 90%",
               "Haiwezi kubainishwa"
-            ]
+            ],
+            "cannot_be_determined_explain": "Haiwezi kuamuliwa, eleza"
           },
           "length_of_prostatic_tissue_involved": {
             "label": "Urefu wa tishu ya prostate iliyoathiriwa na uvimbe",
             "options": [
               "Taja kwa milimita (mm)",
               "Chini ya 1 mm"
-            ]
+            ],
+            "length_mm": "Urefu (mm)"
           }
         }
       },
-
       "periprostatic_fat_invasion": {
         "label": "Uvamizi wa mafuta ya periprostatic",
         "options": [
@@ -276,9 +281,10 @@
           "Upo",
           "Si dhahiri",
           "Haiwezi kubainishwa"
-        ]
+        ],
+        "equivocal_explain": "Haithibitishwi, eleza",
+        "cannot_be_determined_explain": "Haiwezi kuamuliwa, eleza"
       },
-
       "seminal_vesicle_or_ejaculatory_duct_invasion": {
         "label": "Uvamizi wa seminal vesicle / ejaculatory duct",
         "options": [
@@ -286,9 +292,10 @@
           "Upo",
           "Si dhahiri",
           "Haiwezi kubainishwa"
-        ]
+        ],
+        "equivocal_explain": "Haithibitishwi, eleza",
+        "cannot_be_determined_explain": "Haiwezi kuamuliwa, eleza"
       },
-
       "lymphovascular_invasion": {
         "label": "Uvamizi wa limfatiki na / au mishipa ya damu",
         "options": [
@@ -296,9 +303,10 @@
           "Upo",
           "Si dhahiri",
           "Haiwezi kubainishwa"
-        ]
+        ],
+        "equivocal_explain": "Haithibitishwi, eleza",
+        "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
       },
-
       "perineural_invasion": {
         "label": "Uvamizi wa perineural",
         "options": [
@@ -306,7 +314,6 @@
           "Upo"
         ]
       },
-
       "additional_findings": {
         "label": "Matokeo ya ziada",
         "fields": {
@@ -334,13 +341,12 @@
             "label": "Inflammation (taja aina)"
           },
           "other_specify": {
-            "label": "Other (specify)"
+            "label": "Nyingine (taja)"
           }
         }
       }
     }
   },
-
   "comments": {
     "label": "Maoni",
     "fields": {

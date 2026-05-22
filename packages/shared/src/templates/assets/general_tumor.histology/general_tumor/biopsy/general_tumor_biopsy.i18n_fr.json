@@ -2,7 +2,6 @@
   "template_id": "general_tumor_biopsy_v1",
   "lang": "fr",
   "title": "Biopsie tumorale générale",
-
   "clinical": {
     "label": "Clinique",
     "fields": {
@@ -12,11 +11,11 @@
           "Aucun traitement antérieur connu",
           "Traitement antérieur administré",
           "Non précisé"
-        ]
+        ],
+        "prior_treatment_specify": "Traitement antérieur, préciser"
       }
     }
   },
-
   "specimen": {
     "label": "Pièce",
     "fields": {
@@ -25,7 +24,12 @@
       },
       "laterality": {
         "label": "Latéralité du prélèvement",
-        "options": ["Droite", "Gauche", "Non précisé", "Non applicable"]
+        "options": [
+          "Droite",
+          "Gauche",
+          "Non précisé",
+          "Non applicable"
+        ]
       },
       "procedure": {
         "label": "Procédure",
@@ -36,15 +40,19 @@
           "Ponction à l’aiguille fine",
           "Biopsie, sans autre précision",
           "Autre"
-        ]
+        ],
+        "other_specify": "Autre, préciser"
       },
       "adequacy": {
         "label": "Adéquation du prélèvement",
-        "options": ["Adéquat", "Sous-optimal"]
+        "options": [
+          "Adéquat",
+          "Sous-optimal"
+        ],
+        "suboptimal_explain": "Sous-optimal, expliquer"
       }
     }
   },
-
   "tumor": {
     "label": "Tumeur",
     "fields": {
@@ -56,11 +64,21 @@
       },
       "lymphovascular_invasion": {
         "label": "Invasion lymphovasculaire",
-        "options": ["Non identifiée", "Présente", "Ne peut pas être déterminée"]
+        "options": [
+          "Non identifiée",
+          "Présente",
+          "Ne peut pas être déterminée"
+        ],
+        "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
       },
       "perineural_invasion": {
         "label": "Invasion périnerveuse",
-        "options": ["Non identifiée", "Présente", "Ne peut pas être déterminée"]
+        "options": [
+          "Non identifiée",
+          "Présente",
+          "Ne peut pas être déterminée"
+        ],
+        "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
       },
       "additional_pathologic_findings": {
         "label": "Résultats pathologiques supplémentaires"

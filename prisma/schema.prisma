@@ -78,6 +78,7 @@ model ReportTemplate {
   templateName     String  @unique @map("template_name") @db.VarChar(255)
   templateText     String? @map("template_text") @db.Text
   isActive         Boolean @default(true) @map("is_active")
+  type             String  @default("final") @map("type") @db.VarChar(20)
 
   reports Report[]
 
@@ -205,4 +206,47 @@ model ReportFile {
 
   @@index([reportId, fileType, createdAt])
   @@map("report_file")
+}
+
+model CustomTemplate {
+  id          String   @id @default(cuid()) @map("id")
+  templateKey String   @unique @map("template_key") @db.VarChar(500)
+  family      String   @map("family") @db.VarChar(100)
+  kind        String   @map("kind") @db.VarChar(20)
+  schemaStyle String   @map("schema_style") @db.VarChar(20)
+  title       String   @map("title") @db.VarChar(500)
+  coreJson    Json     @map("core_json")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  translations CustomTemplateTranslation[]
+
+  @@map("custom_template")
+}
+
+model CustomTemplateTranslation {
+  id              String   @id @default(cuid()) @map("id")
+  templateKey     String   @map("template_key") @db.VarChar(500)
+  languageCode    String   @map("language_code") @db.VarChar(10)
+  translationJson Json     @map("translation_json")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  template CustomTemplate @relation(fields: [templateKey], references: [templateKey], onDelete: Cascade)
+
+  @@unique([templateKey, languageCode])
+  @@map("custom_template_translation")
+}
+
+/// PDF report layout template (HTML/Handlebars) for a report type
+model ReportLayout {
+  reportLayoutId Int      @id @default(autoincrement()) @map("report_layout_id")
+  reportType     String   @unique @map("report_type") @db.VarChar(20)  // final|preliminary|addendum|revision
+  name           String   @map("name") @db.VarChar(255)
+  htmlTemplate   String   @map("html_template") @db.Text
+  isActive       Boolean  @default(true) @map("is_active")
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  @@map("report_layout")
 }

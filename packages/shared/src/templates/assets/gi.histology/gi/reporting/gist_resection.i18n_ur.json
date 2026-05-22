@@ -1,344 +1,338 @@
 {
-  "meta": {
-    "template": "رپورٹنگ ٹیمپلیٹ: معدی و آنتی اسٹرومل ٹیومر (GIST): ریسیکشن",
-    "standards": "معیار: AJCC-UICC آٹھواں ایڈیشن"
+  "template_id": "gist_resection_v1",
+  "lang": "ur",
+  "title": "رپورٹنگ ٹیمپلیٹ: معدی و آنتی اسٹرومل ٹیومر (GIST): ریسیکشن",
+  "clinical": {
+    "label": "کلینیکل",
+    "fields": {
+      "preresection_treatment": {
+        "label": "ریسیکشن سے پہلے علاج (جو لاگو ہوں سب منتخب کریں)",
+        "options": [
+          "ریسیکشن سے پہلے کوئی معلوم علاج نہیں",
+          "سابقہ بایوپسی یا سرجری (واضح کریں)",
+          "سسٹمک تھراپی کی گئی (قسم واضح کریں)",
+          "علاج کیا گیا، قسم واضح نہیں",
+          "واضح نہیں"
+        ]
+      }
+    }
   },
-  "sections": {
-    "clinical": {
-      "title": "کلینیکل",
-      "fields": {
-        "preresection_treatment": {
-          "label": "ریسیکشن سے پہلے علاج (جو لاگو ہوں سب منتخب کریں)",
-          "options": {
-            "no_known_preresection_therapy": "ریسیکشن سے پہلے کوئی معلوم علاج نہیں",
-            "previous_biopsy_or_surgery_specify": "سابقہ بایوپسی یا سرجری (واضح کریں)",
-            "systemic_therapy_performed_specify_type": "سسٹمک تھراپی کی گئی (قسم واضح کریں)",
-            "therapy_performed_type_not_specified": "علاج کیا گیا، قسم واضح نہیں",
-            "not_specified": "واضح نہیں"
-          }
-        }
+  "specimen": {
+    "label": "نمونہ",
+    "fields": {
+      "procedure": {
+        "label": "طریقۂ کار",
+        "options": [
+          "مقامی اخراج",
+          "ریسیکشن (قسم واضح کریں، مثلاً جزوی گیسٹریکٹومی)",
+          "میٹاسٹاسیکٹومی",
+          "دیگر (واضح کریں)",
+          "واضح نہیں"
+        ]
       }
-    },
-    "specimen": {
-      "title": "نمونہ",
-      "fields": {
-        "procedure": {
-          "label": "طریقۂ کار",
-          "options": {
-            "local_excision": "مقامی اخراج",
-            "resection_specify_type": "ریسیکشن (قسم واضح کریں، مثلاً جزوی گیسٹریکٹومی)",
-            "metastasectomy": "میٹاسٹاسیکٹومی",
-            "other_specify": "دیگر (واضح کریں)",
-            "not_specified": "واضح نہیں"
-          }
-        }
+    }
+  },
+  "tumor": {
+    "label": "ٹیومر",
+    "fields": {
+      "tumor_focality": {
+        "label": "ٹیومر فوکلٹی",
+        "options": [
+          "یونی فوکل",
+          "ملٹی فوکل"
+        ]
+      },
+      "number_of_tumors": {
+        "label": "ٹیومرز کی تعداد",
+        "options": [
+          "تعداد واضح کریں",
+          "دیگر (واضح کریں)",
+          "تعین نہیں کیا جا سکتا"
+        ]
+      },
+      "sizes_of_tumors": {
+        "label": "ٹیومرز کے سائز",
+        "options": [
+          "تعین نہیں کیا جا سکتا"
+        ]
+      },
+      "multiple_primary_sites": {
+        "label": "متعدد بنیادی مقامات (مثلاً معدہ اور چھوٹی آنت)",
+        "options": [
+          "لاگو نہیں (کوئی اضافی بنیادی مقام موجود نہیں)",
+          "موجود ہے"
+        ]
+      },
+      "tumor_site": {
+        "label": "ٹیومر کا مقام",
+        "options": [
+          "غذائی نالی (مقام واضح کریں)",
+          "معدہ-غذائی نالی جنکشن",
+          "معدہ (مقام واضح کریں)",
+          "چھوٹی آنت",
+          "ڈیوڈینم",
+          "جیجنم",
+          "ایلیم (ileocecal valve کے علاوہ)",
+          "میکل ڈائیورٹیکولم (نیوپلازم کا مقام)",
+          "چھوٹی آنت، NOS",
+          "اپینڈکس",
+          "Ileocecal valve",
+          "بڑی آنت",
+          "سیکم",
+          "Ascending colon",
+          "کولون کا hepatic flexure",
+          "Transverse colon",
+          "کولون کا splenic flexure",
+          "Descending colon",
+          "Sigmoid colon",
+          "Rectosigmoid junction",
+          "Rectum",
+          "بڑی آنت، NOS",
+          "Retroperitoneum",
+          "Peritoneum / abdomen (مقام واضح کریں)",
+          "دیگر (واضح کریں)",
+          "تعین نہیں کیا جا سکتا",
+          "واضح نہیں"
+        ]
+      },
+      "histologic_type": {
+        "label": "ہسٹولوجک قسم",
+        "options": [
+          "Gastrointestinal stromal tumor، spindle cell type",
+          "Gastrointestinal stromal tumor، epithelioid type",
+          "Gastrointestinal stromal tumor، mixed",
+          "Gastrointestinal stromal tumor، other (واضح کریں)"
+        ]
+      },
+      "histologic_type_comment": {
+        "label": "ہسٹولوجک قسم پر تبصرہ"
+      },
+      "tumor_size": {
+        "label": "ٹیومر کا سائز (کلینکو ریڈیولوجک اندازے کی بنیاد پر)",
+        "options": [
+          "سب سے بڑی جہت سینٹی میٹر (cm) میں",
+          "اضافی جہت سینٹی میٹر (cm) میں",
+          "تعین نہیں کیا جا سکتا (وضاحت کریں)"
+        ]
+      },
+      "mitotic_rate": {
+        "label": "مائٹوٹک ریٹ",
+        "options": [
+          "5 mm² میں مائٹوٹک ریٹ واضح کریں",
+          "دیگر (واضح کریں)",
+          "تعین نہیں کیا جا سکتا (وضاحت کریں)"
+        ]
+      },
+      "histologic_grade": {
+        "label": "ہسٹولوجک گریڈ",
+        "options": [
+          "G1، کم گریڈ (مائٹوٹک ریٹ 5 فی 5 mm² یا اس سے کم)",
+          "G2، ہائی گریڈ (مائٹوٹک ریٹ 5 فی 5 mm² سے زیادہ)",
+          "دیگر (واضح کریں)",
+          "GX، جانچا نہیں جا سکتا"
+        ]
+      },
+      "necrosis": {
+        "label": "نیکروسس",
+        "options": [
+          "شناخت نہیں ہوا",
+          "موجود ہے"
+        ]
+      },
+      "extent_of_necrosis": {
+        "label": "نیکروسس کی مقدار",
+        "options": [
+          "فیصد واضح کریں",
+          "دیگر (واضح کریں)",
+          "تعین نہیں کیا جا سکتا",
+          "تعین نہیں کیا جا سکتا"
+        ]
+      },
+      "treatment_effect": {
+        "label": "علاج کا اثر",
+        "options": [
+          "سرجری سے پہلے کوئی معلوم علاج نہیں",
+          "شناخت نہیں ہوا",
+          "موجود ہے"
+        ]
+      },
+      "percentage_viable_tumor": {
+        "label": "قابلِ حیات ٹیومر کا فیصد",
+        "options": [
+          "فیصد واضح کریں",
+          "دیگر (واضح کریں)",
+          "تعین نہیں کیا جا سکتا",
+          "تعین نہیں کیا جا سکتا"
+        ]
+      },
+      "risk_assessment": {
+        "label": "خطرے کا اندازہ",
+        "options": [
+          "کوئی نہیں",
+          "بہت کم خطرہ",
+          "کم خطرہ",
+          "درمیانہ خطرہ",
+          "زیادہ خطرہ",
+          "واضح طور پر malignant / metastatic",
+          "تعین نہیں کیا جا سکتا"
+        ]
+      },
+      "tumor_comment": {
+        "label": "ٹیومر پر تبصرہ"
       }
-    },
-    "tumor": {
-      "title": "ٹیومر",
-      "fields": {
-        "tumor_focality": {
-          "label": "ٹیومر فوکلٹی",
-          "options": {
-            "unifocal": "یونی فوکل",
-            "multifocal": "ملٹی فوکل"
-          }
-        },
-        "number_of_tumors": {
-          "label": "ٹیومرز کی تعداد",
-          "options": {
-            "specify_number": "تعداد واضح کریں",
-            "other_specify": "دیگر (واضح کریں)",
-            "cannot_be_determined": "تعین نہیں کیا جا سکتا"
-          }
-        },
-        "sizes_of_tumors": {
-          "label": "ٹیومرز کے سائز",
-          "options": {
-            "cannot_be_determined": "تعین نہیں کیا جا سکتا"
-          }
-        },
-        "multiple_primary_sites": {
-          "label": "متعدد بنیادی مقامات (مثلاً معدہ اور چھوٹی آنت)",
-          "note": "براہِ کرم ہر بنیادی مقام کے لیے الگ چیک لسٹ مکمل کریں",
-          "options": {
-            "not_applicable_no_additional_primary_sites": "لاگو نہیں (کوئی اضافی بنیادی مقام موجود نہیں)",
-            "present": "موجود ہے"
-          }
-        },
-        "tumor_site": {
-          "label": "ٹیومر کا مقام",
-          "options": {
-            "esophagus_specify_location": "غذائی نالی (مقام واضح کریں)",
-            "gastroesophageal_junction": "معدہ-غذائی نالی جنکشن",
-            "stomach_specify_location": "معدہ (مقام واضح کریں)",
-            "small_intestine": "چھوٹی آنت",
-            "duodenum": "ڈیوڈینم",
-            "jejunum": "جیجنم",
-            "ileum_excluding_ileocecal_valve": "ایلیم (ileocecal valve کے علاوہ)",
-            "meckel_diverticulum_site_of_neoplasm": "میکل ڈائیورٹیکولم (نیوپلازم کا مقام)",
-            "small_intestine_nos": "چھوٹی آنت، NOS",
-            "appendix": "اپینڈکس",
-            "ileocecal_valve": "Ileocecal valve",
-            "large_intestine": "بڑی آنت",
-            "cecum": "سیکم",
-            "ascending_colon": "Ascending colon",
-            "hepatic_flexure_colon": "کولون کا hepatic flexure",
-            "transverse_colon": "Transverse colon",
-            "splenic_flexure_colon": "کولون کا splenic flexure",
-            "descending_colon": "Descending colon",
-            "sigmoid_colon": "Sigmoid colon",
-            "rectosigmoid_junction": "Rectosigmoid junction",
-            "rectum": "Rectum",
-            "large_intestine_nos": "بڑی آنت، NOS",
-            "retroperitoneum": "Retroperitoneum",
-            "peritoneum_abdomen_specify_site": "Peritoneum / abdomen (مقام واضح کریں)",
-            "other_specify": "دیگر (واضح کریں)",
-            "cannot_be_determined": "تعین نہیں کیا جا سکتا",
-            "not_specified": "واضح نہیں"
-          }
-        },
-        "histologic_type": {
-          "label": "ہسٹولوجک قسم",
-          "options": {
-            "gist_spindle_cell_type": "Gastrointestinal stromal tumor، spindle cell type",
-            "gist_epithelioid_type": "Gastrointestinal stromal tumor، epithelioid type",
-            "gist_mixed": "Gastrointestinal stromal tumor، mixed",
-            "gist_other_specify": "Gastrointestinal stromal tumor، other (واضح کریں)"
-          }
-        },
-        "histologic_type_comment": {
-          "label": "ہسٹولوجک قسم پر تبصرہ"
-        },
-        "tumor_size": {
-          "label": "ٹیومر کا سائز (کلینکو ریڈیولوجک اندازے کی بنیاد پر)",
-          "options": {
-            "greatest_dimension_cm": "سب سے بڑی جہت سینٹی میٹر (cm) میں",
-            "additional_dimension_cm": "اضافی جہت سینٹی میٹر (cm) میں",
-            "cannot_be_determined_explain": "تعین نہیں کیا جا سکتا (وضاحت کریں)"
-          }
-        },
-        "mitotic_rate": {
-          "label": "مائٹوٹک ریٹ",
-          "options": {
-            "specify_mitotic_rate_per_5mm2": "5 mm² میں مائٹوٹک ریٹ واضح کریں",
-            "other_specify": "دیگر (واضح کریں)",
-            "cannot_be_determined_explain": "تعین نہیں کیا جا سکتا (وضاحت کریں)"
-          }
-        },
-        "histologic_grade": {
-          "label": "ہسٹولوجک گریڈ",
-          "options": {
-            "g1_low_grade": "G1، کم گریڈ (مائٹوٹک ریٹ 5 فی 5 mm² یا اس سے کم)",
-            "g2_high_grade": "G2، ہائی گریڈ (مائٹوٹک ریٹ 5 فی 5 mm² سے زیادہ)",
-            "other_specify": "دیگر (واضح کریں)",
-            "gx_cannot_be_assessed": "GX، جانچا نہیں جا سکتا"
-          }
-        },
-        "necrosis": {
-          "label": "نیکروسس",
-          "options": {
-            "not_identified": "شناخت نہیں ہوا",
-            "present": "موجود ہے"
-          }
-        },
-        "extent_of_necrosis": {
-          "label": "نیکروسس کی مقدار",
-          "options": {
-            "specify_percentage": "فیصد واضح کریں",
-            "other_specify": "دیگر (واضح کریں)",
-            "cannot_be_determined": "تعین نہیں کیا جا سکتا",
-            "cannot_be_determined_duplicate": "تعین نہیں کیا جا سکتا"
-          }
-        },
-        "treatment_effect": {
-          "label": "علاج کا اثر",
-          "options": {
-            "no_known_presurgical_therapy": "سرجری سے پہلے کوئی معلوم علاج نہیں",
-            "not_identified": "شناخت نہیں ہوا",
-            "present": "موجود ہے"
-          }
-        },
-        "percentage_viable_tumor": {
-          "label": "قابلِ حیات ٹیومر کا فیصد",
-          "options": {
-            "specify_percentage": "فیصد واضح کریں",
-            "other_specify": "دیگر (واضح کریں)",
-            "cannot_be_determined": "تعین نہیں کیا جا سکتا",
-            "cannot_be_determined_duplicate": "تعین نہیں کیا جا سکتا"
-          }
-        },
-        "risk_assessment": {
-          "label": "خطرے کا اندازہ",
-          "options": {
-            "none": "کوئی نہیں",
-            "very_low_risk": "بہت کم خطرہ",
-            "low_risk": "کم خطرہ",
-            "moderate_risk": "درمیانہ خطرہ",
-            "high_risk": "زیادہ خطرہ",
-            "overtly_malignant_metastatic": "واضح طور پر malignant / metastatic",
-            "cannot_be_determined": "تعین نہیں کیا جا سکتا"
-          }
-        },
-        "tumor_comment": {
-          "label": "ٹیومر پر تبصرہ"
-        }
+    }
+  },
+  "margins": {
+    "label": "مارجنز",
+    "fields": {
+      "margin_status": {
+        "label": "مارجن کی حالت",
+        "options": [
+          "تمام مارجنز GIST کے لیے منفی ہیں"
+        ]
+      },
+      "distance_to_closest_margin": {
+        "label": "GIST سے قریب ترین مارجن تک فاصلہ",
+        "options": [
+          "cm میں عین فاصلہ",
+          "1 cm سے زیادہ",
+          "mm میں عین فاصلہ",
+          "10 mm سے زیادہ",
+          "دیگر (واضح کریں)",
+          "تعین نہیں کیا جا سکتا"
+        ]
+      },
+      "gist_present_at_margin": {
+        "label": "مارجن پر GIST موجود ہے"
+      },
+      "closest_margins": {
+        "label": "GIST کے قریب ترین مارجن/مارجنز (جو لاگو ہوں سب منتخب کریں)",
+        "options": [
+          "Proximal",
+          "Distal",
+          "Omental (radial)",
+          "Mucosal",
+          "Deep",
+          "دیگر (واضح کریں)",
+          "تعین نہیں کیا جا سکتا"
+        ]
+      },
+      "margins_involved": {
+        "label": "GIST سے متاثرہ مارجن/مارجنز (جو لاگو ہوں سب منتخب کریں)",
+        "options": [
+          "Proximal",
+          "Distal",
+          "Omental (radial)",
+          "Mucosal",
+          "Deep",
+          "دیگر (واضح کریں)",
+          "تعین نہیں کیا جا سکتا",
+          "دیگر (واضح کریں)",
+          "تعین نہیں کیا جا سکتا (وضاحت کریں)",
+          "لاگو نہیں"
+        ]
       }
-    },
-    "margins": {
-      "title": "مارجنز",
-      "fields": {
-        "margin_status": {
-          "label": "مارجن کی حالت",
-          "options": {
-            "all_margins_negative_for_gist": "تمام مارجنز GIST کے لیے منفی ہیں"
-          }
-        },
-        "closest_margins_to_gist": {
-          "label": "GIST کے قریب ترین مارجن/مارجنز (جو لاگو ہوں سب منتخب کریں)",
-          "options": {
-            "proximal": "Proximal",
-            "distal": "Distal",
-            "omental_radial": "Omental (radial)",
-            "mucosal": "Mucosal",
-            "deep": "Deep",
-            "other_specify": "دیگر (واضح کریں)",
-            "cannot_be_determined": "تعین نہیں کیا جا سکتا"
-          }
-        },
-        "distance_to_closest_margin": {
-          "label": "GIST سے قریب ترین مارجن تک فاصلہ",
-          "options": {
-            "exact_distance_cm": "cm میں عین فاصلہ",
-            "greater_than_1_cm": "1 cm سے زیادہ",
-            "exact_distance_mm": "mm میں عین فاصلہ",
-            "greater_than_10_mm": "10 mm سے زیادہ",
-            "other_specify": "دیگر (واضح کریں)",
-            "cannot_be_determined": "تعین نہیں کیا جا سکتا"
-          }
-        },
-        "gist_present_at_margin": {
-          "label": "مارجن پر GIST موجود ہے"
-        },
-        "margins_involved_by_gist": {
-          "label": "GIST سے متاثرہ مارجن/مارجنز (جو لاگو ہوں سب منتخب کریں)",
-          "options": {
-            "proximal": "Proximal",
-            "distal": "Distal",
-            "omental_radial": "Omental (radial)",
-            "mucosal": "Mucosal",
-            "deep": "Deep",
-            "other_specify": "دیگر (واضح کریں)",
-            "cannot_be_determined": "تعین نہیں کیا جا سکتا",
-            "other_specify_additional": "دیگر (واضح کریں)",
-            "cannot_be_determined_explain": "تعین نہیں کیا جا سکتا (وضاحت کریں)",
-            "not_applicable": "لاگو نہیں"
-          }
-        }
+    }
+  },
+  "regional_lymph_nodes": {
+    "label": "علاقائی لمف نوڈز",
+    "fields": {
+      "status": {
+        "label": "علاقائی لمف نوڈز کی حالت",
+        "options": [
+          "لاگو نہیں (کوئی علاقائی لمف نوڈ جمع یا دریافت نہیں ہوا)",
+          "علاقائی لمف نوڈز موجود ہیں",
+          "تمام علاقائی لمف نوڈز ٹیومر کے لیے منفی ہیں",
+          "علاقائی لمف نوڈ/نوڈز میں ٹیومر موجود ہے"
+        ]
+      },
+      "number_with_tumor": {
+        "label": "ٹیومر والے لمف نوڈز کی تعداد",
+        "options": [
+          "عین تعداد (واضح کریں)",
+          "کم از کم (واضح کریں)",
+          "دیگر (واضح کریں)",
+          "تعین نہیں کیا جا سکتا (وضاحت کریں)",
+          "دیگر (واضح کریں)"
+        ]
+      },
+      "number_examined": {
+        "label": "جانچے گئے لمف نوڈز کی تعداد",
+        "options": [
+          "عین تعداد (واضح کریں)",
+          "کم از کم (واضح کریں)",
+          "دیگر (واضح کریں)",
+          "تعین نہیں کیا جا سکتا (وضاحت کریں)"
+        ]
       }
-    },
-    "regional_lymph_nodes": {
-      "title": "علاقائی لمف نوڈز",
-      "fields": {
-        "regional_lymph_node_status": {
-          "label": "علاقائی لمف نوڈز کی حالت",
-          "options": {
-            "not_applicable_no_regional_nodes_submitted_or_found": "لاگو نہیں (کوئی علاقائی لمف نوڈ جمع یا دریافت نہیں ہوا)",
-            "regional_lymph_nodes_present": "علاقائی لمف نوڈز موجود ہیں",
-            "all_regional_nodes_negative_for_tumor": "تمام علاقائی لمف نوڈز ٹیومر کے لیے منفی ہیں",
-            "tumor_present_in_regional_nodes": "علاقائی لمف نوڈ/نوڈز میں ٹیومر موجود ہے"
-          }
-        },
-        "number_nodes_with_tumor": {
-          "label": "ٹیومر والے لمف نوڈز کی تعداد",
-          "options": {
-            "exact_number_specify": "عین تعداد (واضح کریں)",
-            "at_least_specify": "کم از کم (واضح کریں)",
-            "other_specify": "دیگر (واضح کریں)",
-            "cannot_be_determined_explain": "تعین نہیں کیا جا سکتا (وضاحت کریں)",
-            "other_specify_additional": "دیگر (واضح کریں)"
-          }
-        },
-        "number_nodes_examined": {
-          "label": "جانچے گئے لمف نوڈز کی تعداد",
-          "options": {
-            "exact_number_specify": "عین تعداد (واضح کریں)",
-            "at_least_specify": "کم از کم (واضح کریں)",
-            "other_specify": "دیگر (واضح کریں)",
-            "cannot_be_determined_explain": "تعین نہیں کیا جا سکتا (وضاحت کریں)"
-          }
-        }
+    }
+  },
+  "distant_metastasis": {
+    "label": "دور دراز میٹاسٹاسس",
+    "fields": {
+      "sites": {
+        "label": "متاثرہ دور دراز مقامات، اگر لاگو ہوں (جو لاگو ہوں سب منتخب کریں)",
+        "options": [
+          "لاگو نہیں",
+          "جگر",
+          "دیگر (واضح کریں)",
+          "تعین نہیں کیا جا سکتا"
+        ]
       }
-    },
-    "distant_metastasis": {
-      "title": "دور دراز میٹاسٹاسس",
-      "fields": {
-        "distant_sites_involved": {
-          "label": "متاثرہ دور دراز مقامات، اگر لاگو ہوں (جو لاگو ہوں سب منتخب کریں)",
-          "options": {
-            "not_applicable": "لاگو نہیں",
-            "liver": "جگر",
-            "other_specify": "دیگر (واضح کریں)",
-            "cannot_be_determined": "تعین نہیں کیا جا سکتا"
-          }
-        }
+    }
+  },
+  "ptnm": {
+    "label": "pTNM درجہ بندی (AJCC آٹھواں ایڈیشن)",
+    "fields": {
+      "modified_classification": {
+        "label": "ترمیم شدہ درجہ بندی (صرف لاگو ہونے پر درکار) (جو لاگو ہوں سب منتخب کریں)",
+        "options": [
+          "لاگو نہیں",
+          "y (neoadjuvant therapy کے بعد)",
+          "r (recurrence)"
+        ]
+      },
+      "pT_category": {
+        "label": "pT زمرہ",
+        "options": [
+          "pT تفویض نہیں کیا گیا (دستیاب pathological معلومات کی بنیاد پر تعین نہیں کیا جا سکتا)",
+          "pT0: بنیادی ٹیومر کا کوئی ثبوت نہیں",
+          "pT1: ٹیومر 2 cm یا اس سے کم",
+          "pT2: ٹیومر 2 cm سے زیادہ لیکن 5 cm سے زیادہ نہیں",
+          "pT3: ٹیومر 5 cm سے زیادہ لیکن 10 cm سے زیادہ نہیں",
+          "pT4: سب سے بڑی جہت میں ٹیومر 10 cm سے زیادہ"
+        ]
+      },
+      "T_suffix": {
+        "label": "T suffix (صرف لاگو ہونے پر درکار)",
+        "options": [
+          "لاگو نہیں",
+          "(m) ایک ہی عضو میں متعدد synchronous بنیادی ٹیومرز"
+        ]
+      },
+      "pN_category": {
+        "label": "pN زمرہ",
+        "options": [
+          "pN تفویض نہیں کیا گیا (کوئی نوڈ جمع یا دریافت نہیں ہوا)",
+          "pN تفویض نہیں کیا گیا (دستیاب pathological معلومات کی بنیاد پر تعین نہیں کیا جا سکتا)",
+          "pN0: علاقائی لمف نوڈ میٹاسٹاسس نہیں",
+          "pN1: علاقائی لمف نوڈ میٹاسٹاسس"
+        ]
+      },
+      "pM_category": {
+        "label": "pM زمرہ (صرف pathological تصدیق ہونے پر درکار)",
+        "options": [
+          "لاگو نہیں - جمع کرائے گئے specimen(s) سے pM کا تعین نہیں کیا جا سکتا",
+          "pM1: دور دراز میٹاسٹاسس"
+        ]
       }
-    },
-    "ptnm": {
-      "title": "pTNM درجہ بندی (AJCC آٹھواں ایڈیشن)",
-      "description": "pT، pN، اور (جہاں لاگو ہو) pM زمروں کی رپورٹنگ اس معلومات پر مبنی ہے جو رپورٹ جاری کرتے وقت پیتھالوجسٹ کو دستیاب ہوتی ہے۔ AJCC (باب 1، آٹھواں ایڈیشن) کے مطابق، حتمی pathologic stage تمام متعلقہ معلومات کی بنیاد پر طے کرنا معالجِ معالج کی ذمہ داری ہے، جس میں یہ پیتھالوجی رپورٹ شامل ہو سکتی ہے مگر اسی تک محدود نہیں۔",
-      "fields": {
-        "modified_classification": {
-          "label": "ترمیم شدہ درجہ بندی (صرف لاگو ہونے پر درکار) (جو لاگو ہوں سب منتخب کریں)",
-          "options": {
-            "not_applicable": "لاگو نہیں",
-            "y_post_neoadjuvant_therapy": "y (neoadjuvant therapy کے بعد)",
-            "r_recurrence": "r (recurrence)"
-          }
-        },
-        "pt_category": {
-          "label": "pT زمرہ",
-          "options": {
-            "pt_not_assigned_cannot_be_determined": "pT تفویض نہیں کیا گیا (دستیاب pathological معلومات کی بنیاد پر تعین نہیں کیا جا سکتا)",
-            "pt0_no_evidence_primary_tumor": "pT0: بنیادی ٹیومر کا کوئی ثبوت نہیں",
-            "pt1_tumor_2cm_or_less": "pT1: ٹیومر 2 cm یا اس سے کم",
-            "pt2_tumor_gt2cm_le5cm": "pT2: ٹیومر 2 cm سے زیادہ لیکن 5 cm سے زیادہ نہیں",
-            "pt3_tumor_gt5cm_le10cm": "pT3: ٹیومر 5 cm سے زیادہ لیکن 10 cm سے زیادہ نہیں",
-            "pt4_tumor_gt10cm": "pT4: سب سے بڑی جہت میں ٹیومر 10 cm سے زیادہ"
-          }
-        },
-        "t_suffix": {
-          "label": "T suffix (صرف لاگو ہونے پر درکار)",
-          "options": {
-            "not_applicable": "لاگو نہیں",
-            "m_multiple_primary_synchronous_tumors": "(m) ایک ہی عضو میں متعدد synchronous بنیادی ٹیومرز"
-          }
-        },
-        "pn_category": {
-          "label": "pN زمرہ",
-          "note": "جب لمف نوڈز موجود نہ ہوں (جیسا کہ GIST کے resection میں اکثر ہوتا ہے)، pathological “N” category تفویض نہیں کی جاتی (GIST کے لیے pNX استعمال نہیں ہوتا) اور اسے رپورٹ نہیں کیا جانا چاہیے۔",
-          "options": {
-            "pn_not_assigned_no_nodes": "pN تفویض نہیں کیا گیا (کوئی نوڈ جمع یا دریافت نہیں ہوا)",
-            "pn_not_assigned_cannot_be_determined": "pN تفویض نہیں کیا گیا (دستیاب pathological معلومات کی بنیاد پر تعین نہیں کیا جا سکتا)",
-            "pn0_no_regional_lymph_node_metastasis": "pN0: علاقائی لمف نوڈ میٹاسٹاسس نہیں",
-            "pn1_regional_lymph_node_metastasis": "pN1: علاقائی لمف نوڈ میٹاسٹاسس"
-          }
-        },
-        "pm_category": {
-          "label": "pM زمرہ (صرف pathological تصدیق ہونے پر درکار)",
-          "options": {
-            "not_applicable_pm_cannot_be_determined": "لاگو نہیں - جمع کرائے گئے specimen(s) سے pM کا تعین نہیں کیا جا سکتا",
-            "pm1_distant_metastasis": "pM1: دور دراز میٹاسٹاسس"
-          }
-        }
-      }
-    },
-    "additional_findings": {
-      "title": "اضافی نتائج",
-      "fields": {
-        "additional_findings": {
-          "label": "اضافی نتائج (واضح کریں)"
-        }
+    }
+  },
+  "additional_findings": {
+    "label": "اضافی نتائج",
+    "fields": {
+      "findings": {
+        "label": "اضافی نتائج (واضح کریں)"
       }
     }
   }

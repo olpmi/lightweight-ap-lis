@@ -2,7 +2,6 @@
   "template_id": "general_tumor_resection_v1",
   "lang": "fr",
   "title": "Résection tumorale générale",
-
   "specimen": {
     "label": "Pièce",
     "fields": {
@@ -11,16 +10,24 @@
       },
       "laterality": {
         "label": "Latéralité de la pièce",
-        "options": ["Droite", "Gauche", "Non précisé", "Non applicable"]
+        "options": [
+          "Droite",
+          "Gauche",
+          "Non précisé",
+          "Non applicable"
+        ]
       },
       "lymph_node_sampling": {
         "label": "Prélèvement ganglionnaire",
-        "options": ["Effectué", "Non effectué", "Inconnu"],
+        "options": [
+          "Effectué",
+          "Non effectué",
+          "Inconnu"
+        ],
         "lymph_nodes_sampled": "Ganglions prélevés"
       }
     }
   },
-
   "tumor": {
     "label": "Tumeur",
     "fields": {
@@ -92,7 +99,12 @@
       },
       "lymphovascular_invasion": {
         "label": "Invasion lymphovasculaire",
-        "options": ["Non identifiée", "Présente", "Ne peut pas être déterminée"]
+        "options": [
+          "Non identifiée",
+          "Présente",
+          "Ne peut pas être déterminée"
+        ],
+        "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
       },
       "treatment_effect": {
         "label": "Effet du traitement",
@@ -119,7 +131,6 @@
       }
     }
   },
-
   "margins": {
     "label": "Marges",
     "fields": {
@@ -199,7 +210,6 @@
       }
     }
   },
-
   "regional_lymph_nodes": {
     "label": "Ganglions lymphatiques régionaux",
     "fields": {
@@ -280,7 +290,6 @@
       }
     }
   },
-
   "additional_findings": {
     "label": "Constatations supplémentaires",
     "fields": {

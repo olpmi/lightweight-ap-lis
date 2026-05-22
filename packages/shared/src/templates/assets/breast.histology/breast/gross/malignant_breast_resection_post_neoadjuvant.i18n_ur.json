@@ -2,32 +2,53 @@
   "template_id": "malignant_breast_resection_post_neoadjuvant_v1",
   "lang": "ur",
   "title": "بدخیم بریسٹ ریسیکشن (نیواڈجوانٹ کیموتھراپی کے بعد)",
-
   "clinical_case_summary": {
     "label": "کلینیکل خلاصہ (نیواڈجوانٹ تھیراپی سے پہلے)",
     "fields": {
-      "tumor_characteristics": { "label": "ٹیومر کی خصوصیات" },
-      "site": { "label": "مقام" },
-      "focality": { "label": "فوکلٹی" },
-      "dimensions": { "label": "ابعاد (ملی میٹر)" },
-      "baseline_biomarker": { "label": "بنیادی ٹیومر بایومارکر" },
-      "neoadjuvant_regimen": { "label": "نیواڈجوانٹ کیموتھراپی ریجمن" },
-      "cycles_completed": { "label": "مکمل شدہ سائیکلز" }
+      "tumor_characteristics": {
+        "label": "ٹیومر کی خصوصیات"
+      },
+      "site": {
+        "label": "مقام"
+      },
+      "focality": {
+        "label": "فوکلٹی"
+      },
+      "dimensions": {
+        "label": "ابعاد (ملی میٹر)"
+      },
+      "baseline_biomarker": {
+        "label": "بنیادی ٹیومر بایومارکر"
+      },
+      "neoadjuvant_regimen": {
+        "label": "نیواڈجوانٹ کیموتھراپی ریجمن"
+      },
+      "cycles_completed": {
+        "label": "مکمل شدہ سائیکلز"
+      }
     }
   },
-
   "specimen": {
     "label": "نمونہ",
     "fields": {
       "intraoperative_consult": {
         "label": "دورانِ جراحی مشاورت کی گئی",
-        "options": ["ہاں", "نہیں"],
+        "options": [
+          "ہاں",
+          "نہیں"
+        ],
         "reason": "وجہ"
       },
-      "weight": { "label": "نمونے کا وزن (گرام)" },
+      "weight": {
+        "label": "نمونے کا وزن (گرام)"
+      },
       "laterality": {
         "label": "سمت",
-        "options": ["بائیں", "دائیں", "غیر متعین"]
+        "options": [
+          "بائیں",
+          "دائیں",
+          "غیر متعین"
+        ]
       },
       "type": {
         "label": "نمونے کی قسم",
@@ -43,50 +64,77 @@
       }
     }
   },
-
   "lymph_nodes": {
     "label": "لمفی نوڈز",
     "fields": {
-      "present": { "label": "لمفی نوڈز موجود ہیں" },
+      "present": {
+        "label": "لمفی نوڈز موجود ہیں"
+      },
       "sentinel": {
         "label": "سینٹینل لمفی نوڈز",
         "fields": {
-          "site": { "label": "مقام" },
-          "radioactive_count": { "label": "ریڈیوایکٹو گنتی" },
-          "dye_uptake": { "label": "رنگ کا جذب" },
-          "number": { "label": "تعداد" },
-          "dimensions": { "label": "ہر نوڈ کی پیمائش" }
+          "site": {
+            "label": "مقام"
+          },
+          "radioactive_count": {
+            "label": "ریڈیوایکٹو گنتی"
+          },
+          "dye_uptake": {
+            "label": "رنگ کا جذب"
+          },
+          "number": {
+            "label": "تعداد"
+          },
+          "dimensions": {
+            "label": "ہر نوڈ کی پیمائش"
+          }
         }
       },
       "non_sentinel": {
         "label": "غیر سینٹینل لمفی نوڈز",
         "fields": {
-          "total_number": { "label": "نوڈز کی کل تعداد" },
-          "size_range": { "label": "سائز کی حد" }
+          "total_number": {
+            "label": "نوڈز کی کل تعداد"
+          },
+          "size_range": {
+            "label": "سائز کی حد"
+          }
         }
       },
       "pre_treatment_abnormal": {
         "label": "علاج سے پہلے غیر معمولی نوڈز",
-        "options": ["نامعلوم", "موجود نہیں", "موجود"],
+        "options": [
+          "نامعلوم",
+          "موجود نہیں",
+          "موجود"
+        ],
         "if_present_number": "اگر موجود ہوں تو تعداد"
       }
     }
   },
-
   "breast_measurements": {
     "label": "چھاتی کی پیمائش",
     "fields": {
-      "medial_lateral": { "label": "میڈیئل تا لیٹرل لمبائی" },
-      "superior_inferior": { "label": "سپیریئر تا انفیریئر لمبائی" },
-      "anterior_posterior": { "label": "اینٹیریئر تا پوسٹیریئر لمبائی" }
+      "medial_lateral": {
+        "label": "میڈیئل تا لیٹرل لمبائی"
+      },
+      "superior_inferior": {
+        "label": "سپیریئر تا انفیریئر لمبائی"
+      },
+      "anterior_posterior": {
+        "label": "اینٹیریئر تا پوسٹیریئر لمبائی"
+      }
     }
   },
-
   "skin": {
     "label": "جلد",
     "fields": {
-      "present": { "label": "جلد موجود ہے" },
-      "dimensions": { "label": "جلد کی پیمائش" },
+      "present": {
+        "label": "جلد موجود ہے"
+      },
+      "dimensions": {
+        "label": "جلد کی پیمائش"
+      },
       "abnormalities": {
         "label": "جلد کی بے قاعدگیاں",
         "options": [
@@ -100,14 +148,18 @@
       }
     }
   },
-
   "nipple": {
     "label": "نپل",
     "fields": {
-      "present": { "label": "نپل موجود ہے" },
+      "present": {
+        "label": "نپل موجود ہے"
+      },
       "description": {
         "label": "نپل کی تفصیل",
-        "options": ["نارمل", "غیر نارمل"]
+        "options": [
+          "نارمل",
+          "غیر نارمل"
+        ]
       },
       "abnormal_features": {
         "label": "غیر معمولی خصوصیات",
@@ -121,20 +173,26 @@
       }
     }
   },
-
   "tumor_bed": {
     "label": "ٹیومر بیڈ",
     "fields": {
-      "gross_dimensions": { "label": "گروس ابعاد (ملی میٹر)" },
-      "imaging_dimensions": { "label": "امیجنگ ابعاد (ملی میٹر)" },
-      "description": { "label": "ٹیومر بیڈ کی تفصیل" }
+      "gross_dimensions": {
+        "label": "گروس ابعاد (ملی میٹر)"
+      },
+      "imaging_dimensions": {
+        "label": "امیجنگ ابعاد (ملی میٹر)"
+      },
+      "description": {
+        "label": "ٹیومر بیڈ کی تفصیل"
+      }
     }
   },
-
   "tumor": {
     "label": "ٹیومر",
     "fields": {
-      "macroscopic_present": { "label": "میکروسکوپک طور پر نظر آنے والا ٹیومر" },
+      "macroscopic_present": {
+        "label": "میکروسکوپک طور پر نظر آنے والا ٹیومر"
+      },
       "site": {
         "label": "ٹیومر کا مقام",
         "options": [
@@ -149,53 +207,92 @@
       },
       "focality": {
         "label": "فوکلٹی",
-        "options": ["یک بؤری", "کثیر بؤری"]
+        "options": [
+          "یک بؤری",
+          "کثیر بؤری"
+        ]
       },
-      "size_post_treatment": { "label": "نیواڈجوانٹ کے بعد ٹیومر کا سائز (ملی میٹر)" },
-      "skin_involvement": { "label": "جلد سے چپکا ہوا" },
-      "chest_wall_involvement": { "label": "چھاتی کی دیوار سے چپکا ہوا" }
+      "size_post_treatment": {
+        "label": "نیواڈجوانٹ کے بعد ٹیومر کا سائز (ملی میٹر)"
+      },
+      "skin_involvement": {
+        "label": "جلد سے چپکا ہوا"
+      },
+      "chest_wall_involvement": {
+        "label": "چھاتی کی دیوار سے چپکا ہوا"
+      }
     }
   },
-
   "margins": {
     "label": "حاشیے",
     "fields": {
-      "medial": { "label": "میڈیئل حاشیہ" },
-      "lateral": { "label": "لیٹرل حاشیہ" },
-      "superior": { "label": "اوپری حاشیہ" },
-      "inferior": { "label": "زیریں حاشیہ" },
-      "posterior": { "label": "پچھلا حاشیہ" },
-      "anterior": { "label": "اگلا حاشیہ" },
-      "skin": { "label": "اوپر کی جلد" }
+      "medial": {
+        "label": "میڈیئل حاشیہ"
+      },
+      "lateral": {
+        "label": "لیٹرل حاشیہ"
+      },
+      "superior": {
+        "label": "اوپری حاشیہ"
+      },
+      "inferior": {
+        "label": "زیریں حاشیہ"
+      },
+      "posterior": {
+        "label": "پچھلا حاشیہ"
+      },
+      "anterior": {
+        "label": "اگلا حاشیہ"
+      },
+      "skin": {
+        "label": "اوپر کی جلد"
+      }
     }
   },
-
   "muscle": {
     "label": "کنکال عضلہ",
     "fields": {
       "presence": {
         "label": "کنکال عضلہ",
-        "options": ["موجود", "غیر موجود"]
+        "options": [
+          "موجود",
+          "غیر موجود"
+        ]
       }
     }
   },
-
   "block_key": {
     "label": "بلاک الاٹمنٹ کلید",
     "fields": {
-      "nipple": { "label": "نپل" },
-      "tumor": { "label": "ٹیومر" },
-      "surrounding_breast": { "label": "اردگرد بریسٹ ٹشو" },
-      "margins": { "label": "حاشیے" },
-      "lymph_nodes": { "label": "لمفی نوڈز" }
+      "nipple": {
+        "label": "نپل"
+      },
+      "tumor": {
+        "label": "ٹیومر"
+      },
+      "surrounding_breast": {
+        "label": "اردگرد بریسٹ ٹشو"
+      },
+      "margins": {
+        "label": "حاشیے"
+      },
+      "lymph_nodes": {
+        "label": "لمفی نوڈز"
+      }
     }
   },
-
   "grossing": {
     "label": "گراسنگ",
     "fields": {
-      "grossed_by": { "label": "گراس کیا گیا بذریعہ" },
-      "date":       { "label": "تاریخ" }
+      "grossed_by": {
+        "label": "گراس کیا گیا بذریعہ"
+      },
+      "date": {
+        "label": "تاریخ"
+      }
     }
+  },
+  "domain": {
+    "fields": {}
   }
 }

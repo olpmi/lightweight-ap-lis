@@ -1,189 +1,233 @@
 {
-  "template.language": "fr",
-  "template.id": "stomach_tumor_resection",
-  "template.title": "MODÈLE DE COMPTE RENDU – TUMEUR DE L’ESTOMAC, RÉSECTION",
-  "template.protocolPostingDate": "Date de publication du protocole : mars 2023",
-  "template.standards": "Norme(s) : AJCC-UICC 8",
-  "section.specimen": "PRÉLÈVEMENT",
-  "section.tumor": "TUMEUR",
-  "section.margins": "MARGES",
-  "section.regionalLymphNodes": "GANGLIONS LYMPHATIQUES RÉGIONAUX",
-  "section.distantMetastasis": "MÉTASTASE À DISTANCE",
-  "section.pTNM": "CLASSIFICATION pTNM (AJCC 8e édition)",
-  "section.additionalFindings": "CONSTATATIONS SUPPLÉMENTAIRES",
-  "common.notApplicable": "Sans objet",
-  "common.notSpecified": "Non précisé",
-  "common.cannotBeDetermined": "Ne peut pas être déterminé",
-  "common.cannotBeDeterminedExplain": "Ne peut pas être déterminé (expliquer)",
-  "common.otherSpecify": "Autre (préciser)",
-  "common.present": "Présent",
-  "common.notIdentified": "Non identifié",
-  "common.noneIdentified": "Aucun identifié",
-  "common.proximal": "Proximal",
-  "common.distal": "Distal",
-  "common.mucosal": "Muqueuse",
-  "common.deep": "Profond",
-  "common.exactNumberSpecify": "Nombre exact (préciser)",
-  "common.atLeastSpecify": "Au moins (préciser)",
-  "specimen.procedure.label": "Procédure",
-  "specimen.procedure.endoscopicResection": "Résection endoscopique",
-  "specimen.procedure.partialGastrectomyProximal": "Gastrectomie partielle, proximale",
-  "specimen.procedure.partialGastrectomyDistal": "Gastrectomie partielle, distale",
-  "specimen.procedure.partialGastrectomyOther": "Gastrectomie partielle, autre (préciser)",
-  "specimen.procedure.totalGastrectomy": "Gastrectomie totale",
-  "tumor.site.label": "Site tumoral (sélectionner tout ce qui s’applique)",
-  "tumor.site.note.egj": "Utiliser la checklist œsophagienne si la tumeur implique la JOG et si le point médian tumoral est à 2 cm ou moins dans l’estomac proximal.",
-  "tumor.site.cardia": "Cardia",
-  "tumor.site.fundus": "Fundus",
-  "tumor.site.anteriorWall": "Paroi antérieure",
-  "tumor.site.posteriorWall": "Paroi postérieure",
-  "tumor.site.body": "Corps",
-  "tumor.site.lesserCurvature": "Petite courbure",
-  "tumor.site.greaterCurvature": "Grande courbure",
-  "tumor.site.antrum": "Antre",
-  "tumor.site.pylorus": "Pylore",
-  "tumor.histologicType.label": "Type histologique",
-  "tumor.histologicType.adenocarcinoma": "Adénocarcinome",
-  "tumor.histologicType.adenocarcinomaClassification.label": "Classification de l’adénocarcinome (selon l’OMS)",
-  "tumor.histologicType.tubularAdenocarcinoma": "Adénocarcinome tubulaire",
-  "tumor.histologicType.poorlyCohesiveCarcinoma": "Carcinome peu cohésif (inclut le carcinome à cellules en bague à chaton et autres variantes)",
-  "tumor.histologicType.mucinousAdenocarcinoma": "Adénocarcinome mucineux (plus de 50 % mucineux)",
-  "tumor.histologicType.papillaryAdenocarcinoma": "Adénocarcinome papillaire",
-  "tumor.histologicType.mixedCarcinoma": "Carcinome mixte (mélange de composants glandulaires distincts et de composants à cellules en bague à chaton/peu cohésifs)",
-  "tumor.laurenClassification.label": "Classification de Lauren de l’adénocarcinome",
-  "tumor.laurenClassification.intestinal": "Type intestinal",
-  "tumor.laurenClassification.diffuse": "Type diffus (inclut le carcinome à cellules en bague à chaton, défini par plus de 50 % de cellules en bague à chaton)",
-  "tumor.laurenClassification.mixed": "Mixte (quantités approximativement égales d’intestinal et de diffus)",
-  "tumor.histologicType.hepatoidAdenocarcinoma": "Adénocarcinome hépatoïde",
-  "tumor.histologicType.carcinomaWithLymphoidStroma": "(Adéno)carcinome avec stroma lymphoïde",
-  "tumor.histologicType.micropapillaryAdenocarcinoma": "Adénocarcinome micropapillaire",
-  "tumor.histologicType.fundicGlandType": "Adénocarcinome de type glande fundique",
-  "tumor.histologicType.squamousCellCarcinoma": "Carcinome épidermoïde",
-  "tumor.histologicType.adenosquamousCarcinoma": "Carcinome adénosquameux",
-  "tumor.histologicType.undifferentiatedAnaplasticCarcinoma": "Carcinome indifférencié (anaplasique)",
-  "tumor.histologicType.gastroblastoma": "Gastroblastome",
-  "tumor.histologicType.largeCellNeuroendocrineCarcinoma": "Carcinome neuroendocrine à grandes cellules",
-  "tumor.histologicType.smallCellNeuroendocrineCarcinoma": "Carcinome neuroendocrine à petites cellules",
-  "tumor.histologicType.neuroendocrineCarcinomaPoorlyDifferentiated": "Carcinome neuroendocrine (peu différencié)",
-  "tumor.histologicType.mixedAdenocarcinomaNeuroendocrineCarcinoma": "Carcinome mixte adénocarcinome-neuroendocrine (à petites ou grandes cellules)",
-  "tumor.histologicType.mixedAdenocarcinomaNeuroendocrineTumor": "Tumeur mixte adénocarcinome-neuroendocrine",
-  "tumor.histologicType.otherNotListed": "Autre type histologique non listé (préciser)",
-  "tumor.histologicType.note.largeSmallCell": "Sélectionner cette option uniquement si grandes cellules ou petites cellules ne peuvent pas être déterminées.",
-  "tumor.histologicGrade.label": "Grade histologique",
-  "tumor.histologicGrade.g1": "G1, bien différencié",
-  "tumor.histologicGrade.g2": "G2, modérément différencié",
-  "tumor.histologicGrade.g3": "G3, peu différencié, indifférencié",
-  "tumor.histologicGrade.gx": "GX, ne peut pas être évalué",
-  "tumor.size.label": "Taille tumorale",
-  "tumor.size.greatestDimensionCm": "Plus grande dimension en centimètres (cm)",
-  "tumor.size.additionalDimensionCm": "Dimension supplémentaire en centimètres (cm)",
-  "tumor.extent.label": "Extension tumorale",
-  "tumor.extent.cis": "Carcinome in situ (tumeur intraépithéliale sans invasion de la lamina propria, dysplasie de haut grade)",
-  "tumor.extent.laminaPropria": "Envahit la lamina propria",
-  "tumor.extent.muscularisMucosae": "Envahit la muscularis mucosae",
-  "tumor.extent.submucosa": "Envahit la sous-muqueuse",
-  "tumor.extent.muscularisPropria": "Envahit la musculeuse propre",
-  "tumor.extent.subserosalConnectiveTissue": "Pénètre le tissu conjonctif sous-séreux sans invasion du péritoine viscéral ni des structures adjacentes",
-  "tumor.extent.serosa": "Envahit la séreuse (péritoine viscéral)",
-  "tumor.extent.directAdjacent": "Envahit directement des structures ou organes adjacents",
-  "tumor.extent.note.intramural": "L’extension intramurale au duodénum ou à l’œsophage n’est pas considérée comme une invasion d’une structure adjacente, mais est classée selon la profondeur maximale d’invasion dans l’un de ces sites.",
-  "tumor.extent.spleen": "Rate",
-  "tumor.extent.transverseColon": "Côlon transverse",
-  "tumor.extent.liver": "Foie",
-  "tumor.extent.diaphragm": "Diaphragme",
-  "tumor.extent.pancreas": "Pancréas",
-  "tumor.extent.abdominalWall": "Paroi abdominale",
-  "tumor.extent.adrenalGland": "Glande surrénale",
-  "tumor.extent.kidney": "Rein",
-  "tumor.extent.smallIntestine": "Intestin grêle",
-  "tumor.extent.retroperitoneum": "Rétropéritoine",
-  "tumor.extent.noPrimaryTumor": "Aucun signe de tumeur primitive",
-  "tumor.treatmentEffect.label": "Effet du traitement",
-  "tumor.treatmentEffect.noKnownPresurgicalTherapy": "Aucun traitement préchirurgical connu",
-  "tumor.treatmentEffect.completeResponse": "Présent, sans cellules cancéreuses viables (réponse complète, score 0)",
-  "tumor.treatmentEffect.nearCompleteResponse": "Présent, avec cellules isolées ou rares petits groupes de cellules cancéreuses (réponse quasi complète, score 1)",
-  "tumor.treatmentEffect.partialResponse": "Présent, avec cancer résiduel montrant une régression tumorale évidente, mais plus que des cellules isolées ou rares petits groupes (réponse partielle, score 2)",
-  "tumor.treatmentEffect.presentNos": "Présent (sans autre précision)",
-  "tumor.treatmentEffect.poorNoResponse": "Absent, avec cancer résiduel étendu et sans régression tumorale évidente (réponse faible ou absente, score 3)",
-  "tumor.lymphaticVascularInvasion.label": "Invasion lymphatique et/ou vasculaire",
-  "tumor.perineuralInvasion.label": "Invasion périnerveuse",
-  "margins.invasive.status.label": "Statut des marges pour le carcinome invasif",
-  "margins.invasive.allNegative": "Toutes les marges sont négatives pour le carcinome invasif",
-  "margins.invasive.closest.label": "Marge(s) la/les plus proche(s) du carcinome invasif (sélectionner tout ce qui s’applique)",
-  "margins.invasive.closest.omentalRadial": "Omentale (radiale)",
-  "margins.invasive.distance.label": "Distance du carcinome invasif à la marge la plus proche",
-  "margins.distance.specifyCm": "Préciser en centimètres (cm)",
-  "margins.distance.exactCm": "Distance exacte en cm",
-  "margins.distance.greaterThan1Cm": "Supérieure à 1 cm",
-  "margins.distance.specifyMm": "Préciser en millimètres (mm)",
-  "margins.distance.exactMm": "Distance exacte en mm",
-  "margins.distance.greaterThan10Mm": "Supérieure à 10 mm",
-  "margins.distance.other": "Autre",
-  "margins.invasive.presentAtMargin": "Carcinome invasif présent à la marge",
-  "margins.invasive.involved.label": "Marge(s) envahie(s) par le carcinome invasif (sélectionner tout ce qui s’applique)",
-  "margins.invasive.involved.greaterOmental": "Grand omentum",
-  "margins.invasive.involved.lesserOmental": "Petit omentum",
-  "margins.dysplasia.status.label": "Statut des marges pour la dysplasie (sélectionner tout ce qui s’applique)",
-  "margins.dysplasia.allNegative": "Toutes les marges sont négatives pour la dysplasie",
-  "margins.dysplasia.cisAtMargin": "Carcinome in situ (dysplasie de haut grade) présent à la marge",
-  "margins.dysplasia.cisInvolved.label": "Marge(s) impliquée(s) par le carcinome in situ (sélectionner tout ce qui s’applique)",
-  "margins.dysplasia.lowGradeAtMargin": "Dysplasie de bas grade présente à la marge",
-  "margins.dysplasia.lowGradeInvolved.label": "Marge(s) impliquée(s) par la dysplasie de bas grade (sélectionner tout ce qui s’applique)",
-  "margins.comment": "Commentaire sur les marges",
-  "nodes.status.label": "Statut des ganglions lymphatiques régionaux",
-  "nodes.status.notApplicableNoneSubmitted": "Sans objet (aucun ganglion régional soumis ou trouvé)",
-  "nodes.status.present": "Ganglions lymphatiques régionaux présents",
-  "nodes.status.allNegative": "Tous les ganglions régionaux sont négatifs pour la tumeur",
-  "nodes.status.tumorPresent": "Tumeur présente dans un ou des ganglions régionaux",
-  "nodes.numberWithTumor.label": "Nombre de ganglions lymphatiques avec tumeur",
-  "nodes.numberExamined.label": "Nombre de ganglions lymphatiques examinés",
-  "nodes.comment": "Commentaire sur les ganglions lymphatiques régionaux",
-  "metastasis.distantSites.label": "Site(s) distant(s) impliqué(s), le cas échéant (sélectionner tout ce qui s’applique)",
-  "metastasis.nonRegionalNodes": "Ganglion(s) lymphatique(s) non régional(aux)",
-  "metastasis.liver": "Foie",
-  "ptnm.note": "Reporting of pT, pN, and (when applicable) pM categories is based on information available to the pathologist at the time the report is issued. As per the AJCC (Chapter 1, 8th Ed.) it is the managing physician’s responsibility to establish the final pathologic stage based upon all pertinent information, including but potentially not limited to this pathology report.",
-  "ptnm.modified.label": "Classification modifiée (requise seulement si applicable) (sélectionner tout ce qui s’applique)",
-  "ptnm.modified.y": "y (après traitement néoadjuvant)",
-  "ptnm.modified.r": "r (récidive)",
-  "ptnm.pT.label": "Catégorie pT",
-  "ptnm.pT.notAssignedCannotDetermine": "pT not assigned (cannot be determined based on available pathological information)",
-  "ptnm.pT.pT0": "pT0: No evidence of primary tumor",
-  "ptnm.pT.pTis": "pTis: Carcinoma in situ: intraepithelial tumor without invasion of the lamina propria, high-grade dysplasia",
-  "ptnm.pT.pT1": "pT1: Tumor invades the lamina propria, muscularis mucosae, or submucosa",
-  "ptnm.pT.pT1a": "pT1a: Tumor invades the lamina propria or muscularis mucosae",
-  "ptnm.pT.pT1b": "pT1b: Tumor invades the submucosa",
-  "ptnm.pT.pT1CannotDetermine": "pT1 (subcategory cannot be determined)",
-  "ptnm.pT.pT2": "pT2: Tumor invades the muscularis propria",
-  "ptnm.pT.note.t3T4": "A tumor may penetrate the muscularis propria with extension into the gastrocolic or gastrohepatic ligaments, or into the greater or lesser omentum, without perforation of the visceral peritoneum covering these structures. In this case, the tumor is classified as T3. If there is perforation of the visceral peritoneum covering the gastric ligaments or the omentum, the tumor should be classified as T4.",
-  "ptnm.pT.note.adjacentStructures": "The adjacent structures of the stomach include the spleen, transverse colon, liver, diaphragm, pancreas, abdominal wall, adrenal gland, kidney, small intestine, and retroperitoneum.",
-  "ptnm.pT.note.intramural": "L’extension intramurale au duodénum ou à l’œsophage n’est pas considérée comme une invasion d’une structure adjacente, mais est classée selon la profondeur maximale d’invasion dans l’un de ces sites.",
-  "ptnm.pT.pT3": "pT3: Tumor penetrates the subserosal connective tissue without invasion of the visceral peritoneum or adjacent structures",
-  "ptnm.pT.pT4": "pT4: Tumor invades the serosa (visceral peritoneum) or adjacent structures",
-  "ptnm.pT.pT4a": "pT4a: Tumor invades the serosa (visceral peritoneum)",
-  "ptnm.pT.pT4b": "pT4b: Tumor invades adjacent structures / organs",
-  "ptnm.pT.pT4CannotDetermine": "pT4 (subcategory cannot be determined)",
-  "ptnm.tSuffix.label": "T Suffix (required only if applicable)",
-  "ptnm.tSuffix.m": "(m) multiple primary synchronous tumors in a single organ",
-  "ptnm.pN.label": "Catégorie pN",
-  "ptnm.pN.note.deposits": "Metastatic tumor deposits in the subserosal fat adjacent to a gastric carcinoma, without evidence of residual lymph node tissue, are considered regional lymph node metastases for purposes of gastric cancer staging.",
-  "ptnm.pN.notAssignedNoNodes": "pN not assigned (no nodes submitted or found)",
-  "ptnm.pN.notAssignedCannotDetermine": "pN not assigned (cannot be determined based on available pathological information)",
-  "ptnm.pN.pN0": "pN0: No regional lymph node metastasis",
-  "ptnm.pN.pN1": "pN1: Metastasis in one or two regional lymph nodes",
-  "ptnm.pN.pN2": "pN2: Metastasis in three to six regional lymph nodes",
-  "ptnm.pN.pN3": "pN3: Metastasis in seven or more regional lymph nodes",
-  "ptnm.pN.pN3a": "pN3a: Metastasis in seven to 15 regional lymph nodes",
-  "ptnm.pN.pN3b": "pN3b: Metastasis in 16 or more regional lymph nodes",
-  "ptnm.pN.pN3CannotDetermine": "pN3 (subcategory cannot be determined)",
-  "ptnm.pM.label": "Catégorie pM (requise seulement si confirmée pathologiquement)",
-  "ptnm.pM.notApplicable": "Sans objet - pM ne peut pas être déterminé à partir du/des prélèvement(s) soumis",
-  "ptnm.pM.pM1": "pM1 : métastase à distance",
-  "additionalFindings.label": "Constatations supplémentaires (sélectionner tout ce qui s’applique)",
-  "additionalFindings.intestinalMetaplasia": "Métaplasie intestinale",
-  "additionalFindings.lowGradeDysplasia": "Dysplasie de bas grade",
-  "additionalFindings.highGradeDysplasia": "Dysplasie de haut grade",
-  "additionalFindings.chronicGastritis": "Gastrite chronique",
-  "additionalFindings.helicobacterPyloriPresent": "Helicobacter pylori présent",
-  "additionalFindings.polyps": "Polype(s) (type[s])",
-  "additionalFindings.autoimmuneAtrophicChronicGastritis": "Gastrite chronique atrophique auto-immune"
+  "template_id": "stomach_tumor_resection_v1",
+  "lang": "fr",
+  "title": "MODÈLE DE COMPTE RENDU – TUMEUR DE L’ESTOMAC, RÉSECTION",
+  "specimen": {
+    "label": "PRÉLÈVEMENT",
+    "fields": {
+      "procedure": {
+        "label": "Procédure",
+        "options": [
+          "Gastrectomie partielle, autre (préciser)",
+          "Résection endoscopique",
+          "Gastrectomie partielle, proximale",
+          "Gastrectomie partielle, distale",
+          "Gastrectomie totale"
+        ]
+      }
+    }
+  },
+  "tumor": {
+    "label": "TUMEUR",
+    "fields": {
+      "tumor_site": {
+        "label": "Site tumoral (sélectionner tout ce qui s’applique)",
+        "options": [
+          "Cardia",
+          "Fundus",
+          "Corps",
+          "Antre",
+          "Pylore",
+          "Paroi antérieure",
+          "Paroi postérieure",
+          "Petite courbure",
+          "Grande courbure"
+        ]
+      },
+      "histologic_type": {
+        "label": "Type histologique",
+        "options": [
+          "Adénocarcinome",
+          "Adénocarcinome tubulaire",
+          "Carcinome peu cohésif (inclut le carcinome à cellules en bague à chaton et autres variantes)",
+          "Adénocarcinome mucineux (plus de 50 % mucineux)",
+          "Adénocarcinome papillaire",
+          "Carcinome mixte (mélange de composants glandulaires distincts et de composants à cellules en bague à chaton/peu cohésifs)",
+          "Adénocarcinome hépatoïde",
+          "(Adéno)carcinome avec stroma lymphoïde",
+          "Adénocarcinome micropapillaire",
+          "Adénocarcinome de type glande fundique",
+          "Carcinome épidermoïde",
+          "Carcinome adénosquameux",
+          "Carcinome indifférencié (anaplasique)",
+          "Gastroblastome",
+          "Carcinome neuroendocrine à grandes cellules",
+          "Carcinome neuroendocrine à petites cellules",
+          "Carcinome neuroendocrine (peu différencié)",
+          "Carcinome mixte adénocarcinome-neuroendocrine (à petites ou grandes cellules)",
+          "Tumeur mixte adénocarcinome-neuroendocrine",
+          "Autre type histologique non listé (préciser)"
+        ]
+      },
+      "lauren_classification": {
+        "label": "Classification de Lauren de l’adénocarcinome",
+        "options": [
+          "Mixte (quantités approximativement égales d’intestinal et de diffus)",
+          "Type intestinal",
+          "Type diffus (inclut le carcinome à cellules en bague à chaton, défini par plus de 50 % de cellules en bague à chaton)"
+        ]
+      },
+      "histologic_grade": {
+        "label": "Grade histologique",
+        "options": [
+          "G1, bien différencié",
+          "G2, modérément différencié",
+          "G3, peu différencié, indifférencié",
+          "GX, ne peut pas être évalué"
+        ]
+      },
+      "tumor_size": {
+        "label": "Taille tumorale"
+      },
+      "tumor_extent": {
+        "label": "Extension tumorale",
+        "options": [
+          "Carcinome in situ (tumeur intraépithéliale sans invasion de la lamina propria, dysplasie de haut grade)",
+          "Envahit la lamina propria",
+          "Envahit la muscularis mucosae",
+          "Envahit la sous-muqueuse",
+          "Envahit la musculeuse propre",
+          "Pénètre le tissu conjonctif sous-séreux sans invasion du péritoine viscéral ni des structures adjacentes",
+          "Envahit la séreuse (péritoine viscéral)",
+          "Envahit directement des structures ou organes adjacents",
+          "Rate",
+          "Côlon transverse",
+          "Foie",
+          "Diaphragme",
+          "Pancréas",
+          "Paroi abdominale",
+          "Glande surrénale",
+          "Rein",
+          "Intestin grêle",
+          "Rétropéritoine",
+          "Aucun signe de tumeur primitive"
+        ]
+      },
+      "treatment_effect": {
+        "label": "Effet du traitement",
+        "options": [
+          "Aucun traitement préchirurgical connu",
+          "Présent, sans cellules cancéreuses viables (réponse complète, score 0)",
+          "Présent, avec cellules isolées ou rares petits groupes de cellules cancéreuses (réponse quasi complète, score 1)",
+          "Présent, avec cancer résiduel montrant une régression tumorale évidente, mais plus que des cellules isolées ou rares petits groupes (réponse partielle, score 2)",
+          "Présent (sans autre précision)",
+          "Absent, avec cancer résiduel étendu et sans régression tumorale évidente (réponse faible ou absente, score 3)"
+        ]
+      },
+      "lymphovascular_invasion": {
+        "label": "Invasion lymphatique et/ou vasculaire"
+      },
+      "perineural_invasion": {
+        "label": "Invasion périnerveuse"
+      },
+      "adjacent_structures": {}
+    }
+  },
+  "margins": {
+    "label": "MARGES",
+    "fields": {
+      "margin_status_invasive": {
+        "label": "Statut des marges pour le carcinome invasif",
+        "options": [
+          "Toutes les marges sont négatives pour le carcinome invasif",
+          "Carcinome invasif présent à la marge"
+        ]
+      },
+      "closest_margins": {
+        "label": "Marge(s) la/les plus proche(s) du carcinome invasif (sélectionner tout ce qui s’applique)",
+        "options": [
+          "Omentale (radiale)",
+          "Toutes les marges sont négatives pour le carcinome invasif",
+          "Carcinome invasif présent à la marge"
+        ]
+      },
+      "distance_to_closest_margin": {
+        "label": "Distance du carcinome invasif à la marge la plus proche"
+      },
+      "margin_status_dysplasia": {
+        "label": "Statut des marges pour la dysplasie (sélectionner tout ce qui s’applique)",
+        "options": [
+          "Toutes les marges sont négatives pour la dysplasie",
+          "Carcinome in situ (dysplasie de haut grade) présent à la marge",
+          "Dysplasie de bas grade présente à la marge"
+        ]
+      },
+      "margin_comment": {
+        "label": "Commentaire sur les marges"
+      }
+    }
+  },
+  "regional_lymph_nodes": {
+    "label": "GANGLIONS LYMPHATIQUES RÉGIONAUX",
+    "fields": {
+      "status": {
+        "label": "Statut des ganglions lymphatiques régionaux",
+        "options": [
+          "Sans objet (aucun ganglion régional soumis ou trouvé)",
+          "Ganglions lymphatiques régionaux présents",
+          "Tous les ganglions régionaux sont négatifs pour la tumeur",
+          "Tumeur présente dans un ou des ganglions régionaux"
+        ]
+      },
+      "number_with_tumor": {
+        "label": "Nombre de ganglions lymphatiques avec tumeur"
+      },
+      "number_examined": {
+        "label": "Nombre de ganglions lymphatiques examinés"
+      },
+      "comment": {
+        "label": "Commentaire sur les ganglions lymphatiques régionaux"
+      }
+    }
+  },
+  "distant_metastasis": {
+    "label": "MÉTASTASE À DISTANCE",
+    "fields": {
+      "sites": {
+        "label": "Site(s) distant(s) impliqué(s), le cas échéant (sélectionner tout ce qui s’applique)",
+        "options": [
+          "Foie",
+          "Ganglion(s) lymphatique(s) non régional(aux)"
+        ]
+      }
+    }
+  },
+  "ptnm": {
+    "label": "CLASSIFICATION pTNM (AJCC 8e édition)",
+    "fields": {
+      "modified_classification": {
+        "label": "Classification modifiée (requise seulement si applicable) (sélectionner tout ce qui s’applique)",
+        "options": [
+          "y (après traitement néoadjuvant)",
+          "r (récidive)"
+        ]
+      },
+      "T_suffix": {
+        "label": "T Suffix (required only if applicable)",
+        "options": [
+          "(m) multiple primary synchronous tumors in a single organ"
+        ]
+      },
+      "pT_category": {},
+      "pN_category": {},
+      "pM_category": {}
+    }
+  },
+  "additional_findings": {
+    "label": "CONSTATATIONS SUPPLÉMENTAIRES",
+    "fields": {
+      "findings": {
+        "label": "Constatations supplémentaires (sélectionner tout ce qui s’applique)",
+        "options": [
+          "Métaplasie intestinale",
+          "Dysplasie de bas grade",
+          "Dysplasie de haut grade",
+          "Gastrite chronique",
+          "Helicobacter pylori présent",
+          "Polype(s) (type[s])",
+          "Gastrite chronique atrophique auto-immune"
+        ]
+      }
+    }
+  }
 }

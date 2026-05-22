@@ -30,7 +30,10 @@ RUN pnpm --filter @lis/backend build
 # Production stage
 FROM node:20-alpine AS runtime
 
-RUN apk add --no-cache openssl
+RUN apk add --no-cache openssl chromium font-noto ttf-freefont
+
+# Tell puppeteer-core where to find the system Chromium
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
 WORKDIR /app
 

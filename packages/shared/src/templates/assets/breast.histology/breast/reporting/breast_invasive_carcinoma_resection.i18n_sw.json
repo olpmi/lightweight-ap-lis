@@ -1,404 +1,624 @@
 {
-  "meta": {
-    "template_id": "breast_invasive_carcinoma_resection",
-    "language": "sw",
-    "language_name": "Kiswahili",
-    "status": "draft_for_clinical_review"
-  },
-  "protocol": {
-    "title": "KIELELEZO CHA RIPOTI - KARSINOMA YA MATITI INAYOVAMIA, UPASUAJI",
-    "posting_date": "Tarehe ya kuchapishwa kwa itifaki",
-    "standard": "Kiwango",
-    "instruction_single_response": "Chagua jibu moja isipokuwa imeelekezwa vinginevyo."
-  },
-  "common": {
-    "not_applicable": "Haitumiki",
-    "not_identified": "Haijatambuliwa",
-    "present": "Ipo",
-    "absent": "Haipo",
-    "cannot_be_determined": "Haiwezi kubainishwa",
-    "cannot_be_assessed": "Haiwezi kutathminiwa",
-    "not_specified": "Haijabainishwa",
-    "other_specify": "Nyingine (eleza)",
-    "specify": "Eleza",
-    "explain": "Eleza",
-    "select_all": "chagua yote yanayofaa",
-    "required_if_applicable": "inahitajika tu inapofaa",
-    "right": "Kulia",
-    "left": "Kushoto",
-    "bilateral": "Pande zote mbili",
-    "focal": "Ya eneo dogo",
-    "extensive": "Imeenea",
-    "unifocal": "Eneo moja",
-    "multifocal": "Maeneo mengi",
-    "exact_number": "Namba kamili",
-    "at_least": "Angalau",
-    "exact_distance": "Umbali kamili",
-    "less_than": "Chini ya",
-    "greater_than": "Zaidi ya",
-    "greater_than_or_equal": "Zaidi ya au sawa na",
-    "mm": "mm",
-    "percent": "%",
-    "yes": "Ndiyo",
-    "no": "Hapana",
-    "comment": "Maoni"
-  },
+  "template_id": "breast_invasive_carcinoma_resection_v1",
+  "lang": "sw",
+  "title": "KIELELEZO CHA RIPOTI - KARSINOMA YA MATITI INAYOVAMIA, UPASUAJI",
   "specimen": {
-    "section": "SAMPULI",
-    "procedure": "Utaratibu",
-    "procedure_options": {
-      "excision": "Utoaji wa uvimbe (chini ya kuondolewa kwa matiti yote)",
-      "total_mastectomy": "Kuondolewa kwa matiti yote (pamoja na aina zinazohifadhi chuchu na ngozi)",
-      "other": "Nyingine (eleza)",
-      "not_specified": "Haijabainishwa"
-    },
-    "laterality": "Upande wa sampuli",
-    "laterality_options": {
-      "right": "Kulia",
-      "left": "Kushoto",
-      "not_specified": "Haijabainishwa"
+    "label": "SAMPULI",
+    "fields": {
+      "procedure": {
+        "label": "Utaratibu",
+        "options": [
+          "Utoaji wa uvimbe (chini ya kuondolewa kwa matiti yote)",
+          "Kuondolewa kwa matiti yote (pamoja na aina zinazohifadhi chuchu na ngozi)",
+          "Nyingine (eleza)",
+          "Haijabainishwa"
+        ],
+        "other_specify": "Eleza nyingine"
+      },
+      "laterality": {
+        "label": "Upande wa sampuli",
+        "options": [
+          "Kulia",
+          "Kushoto",
+          "Haijabainishwa"
+        ]
+      }
     }
   },
   "tumor": {
-    "section": "UVIMBE",
-    "site": "Eneo la uvimbe",
-    "site_options": {
-      "upper_outer_quadrant": "Robo ya juu ya nje",
-      "lower_outer_quadrant": "Robo ya chini ya nje",
-      "upper_inner_quadrant": "Robo ya juu ya ndani",
-      "lower_inner_quadrant": "Robo ya chini ya ndani",
-      "central": "Katikati",
-      "nipple": "Chuchu",
-      "clock_position": "Nafasi ya saa",
-      "not_specified": "Haijabainishwa"
-    },
-    "histologic_type": "Aina ya histolojia",
-    "histologic_type_options": {
-      "no_residual_invasive_carcinoma": "Hakuna karsinoma inayovamia iliyobaki",
-      "invasive_carcinoma_nst": "Karsinoma inayovamia ya aina isiyo maalum (ductal)",
-      "microinvasive_carcinoma": "Karsinoma yenye uvamizi mdogo sana",
-      "invasive_lobular_carcinoma": "Karsinoma ya lobula inayovamia",
-      "mixed_ductal_lobular": "Karsinoma yenye sifa za ductal na lobula",
-      "features_of": "Karsinoma inayovamia yenye sifa za (eleza)",
-      "tubular": "Karsinoma tubulari",
-      "invasive_cribriform": "Karsinoma cribriform inayovamia",
-      "mucinous": "Karsinoma ya mucinous",
-      "invasive_micropapillary": "Karsinoma micropapillary inayovamia",
-      "apocrine": "Adenokarsinoma ya apocrine",
-      "metaplastic": "Karsinoma metaplastic",
-      "encapsulated_papillary_with_invasion": "Karsinoma papillary iliyofungwa yenye uvamizi",
-      "solid_papillary_with_invasion": "Karsinoma papillary thabiti yenye uvamizi",
-      "intraductal_papillary_with_invasion": "Adenokarsinoma papillary ya ndani ya mirija yenye uvamizi",
-      "adenoid_cystic": "Karsinoma adenoid cystic",
-      "neuroendocrine_tumor": "Uvimbe wa neuroendocrine",
-      "neuroendocrine_carcinoma": "Karsinoma ya neuroendocrine",
-      "type_cannot_be_determined": "Karsinoma inayovamia, aina haiwezi kubainishwa",
-      "other": "Aina nyingine ya histolojia haijaorodheshwa (eleza)"
-    },
-    "histologic_type_comment": "Maoni kuhusu aina ya histolojia",
-    "histologic_grade": "Daraja la histolojia (Alama ya Nottingham)",
-    "grade_options": {
-      "not_applicable": "Haitumiki (hakuna karsinoma iliyobaki au kuna uvamizi mdogo tu)",
-      "nottingham_score": "Alama ya Nottingham",
-      "only_microinvasion_not_graded": "Uvamizi mdogo tu upo (haupewi daraja)",
-      "score_cannot_be_determined": "Alama haiwezi kubainishwa"
-    },
-    "glandular_tubular_differentiation": "Tofautisho la tezi/tubuli",
-    "glandular_tubular_options": {
-      "score_1": "Alama 1 (zaidi ya 75% ya eneo la uvimbe linaunda miundo ya tezi/tubuli)",
-      "score_2": "Alama 2 (10 hadi 75% ya eneo la uvimbe linaunda miundo ya tezi/tubuli)",
-      "score_3": "Alama 3 (chini ya 10% ya eneo la uvimbe linaunda miundo ya tezi/tubuli)"
-    },
-    "nuclear_pleomorphism": "Pleomorphism ya nyuklia",
-    "nuclear_options": {
-      "score_1": "Alama 1 (nyuklia ndogo, ongezeko dogo la ukubwa, mipaka ya kawaida, kromatini sare, tofauti ndogo ya ukubwa)",
-      "score_2": "Alama 2 (seli kubwa kuliko kawaida, nyuklia wazi za vesicular, nucleoli zinazoonekana, na utofauti wa wastani wa ukubwa na umbo)",
-      "score_3": "Alama 3 (nyuklia za vesicular, mara nyingi zenye nucleoli dhahiri, tofauti kubwa ya ukubwa na umbo, wakati mwingine maumbo makubwa na yasiyo ya kawaida)"
-    },
-    "mitotic_rate": "Kiwango cha mitosisi",
-    "mitotic_rate_options": {
-      "see_table": "Tazama Jedwali 1 katika dokezo D",
-      "score_1": "Alama 1",
-      "score_2": "Alama 2",
-      "score_3": "Alama 3"
-    },
-    "overall_grade": "Daraja la jumla",
-    "overall_grade_options": {
-      "grade_1": "Daraja 1 (alama 3, 4 au 5)",
-      "grade_2": "Daraja 2 (alama 6 au 7)",
-      "grade_3": "Daraja 3 (alama 8 au 9)",
-      "only_microinvasion_not_graded": "Uvamizi mdogo tu upo (haupewi daraja)",
-      "score_cannot_be_determined": "Alama haiwezi kubainishwa (eleza)"
-    },
-    "tumor_size": "Ukubwa wa uvimbe",
-    "tumor_size_options": {
-      "no_residual": "Hakuna karsinoma inayovamia iliyobaki",
-      "microinvasion_only": "Uvavizi mdogo tu (chini ya au sawa na 1 mm)",
-      "greatest_dimension_largest_focus": "Kipimo kikubwa zaidi cha eneo kubwa zaidi la uvamizi linalozidi 1 mm (eleza kipimo kamili kwa mm)",
-      "additional_dimension": "Kipimo cha ziada kwa mm",
-      "cannot_be_determined": "Ukubwa wa eneo kubwa zaidi la uvamizi hauwezi kubainishwa (eleza)"
-    },
-    "focality": "Idadi/mtawanyiko wa maeneo ya uvimbe",
-    "focality_options": {
-      "single_focus": "Eneo moja la karsinoma inayovamia",
-      "multiple_foci": "Maeneo mengi ya karsinoma inayovamia",
-      "number_of_foci": "Idadi ya maeneo",
-      "sizes_of_individual_foci": "Ukubwa wa kila eneo kwa mm (unaweza kurekodiwa kwenye mstari mmoja kwa kutumia mm na nukta mkato kama vitenganishi)"
-    },
-    "dcis": "Karsinoma ya ductal in situ (DCIS)",
-    "dcis_options": {
-      "not_identified": "Haijatambuliwa",
-      "present": "Ipo",
-      "negative_eic": "Haina sehemu kubwa ya ndani ya mirija (EIC)",
-      "positive_eic": "Ina sehemu kubwa ya ndani ya mirija (EIC)",
-      "only_dcis_after_neoadjuvant": "DCIS pekee ipo baada ya tiba ya awali ya upasuaji"
-    },
-    "dcis_size": "Ukubwa/eneo la DCIS",
-    "dcis_architectural_patterns": "Miundo ya usanifu wa DCIS",
-    "dcis_patterns": {
-      "comedo": "Comedo",
-      "paget": "Ugonjwa wa Paget (DCIS inayohusisha ngozi ya chuchu)",
-      "cribriform": "Cribriform",
-      "micropapillary": "Micropapillary",
-      "papillary": "Papillary",
-      "solid": "Thabiti",
-      "other": "Nyingine (eleza)"
-    },
-    "nuclear_grade": "Daraja la nyuklia",
-    "nuclear_grade_options": {
-      "grade_i": "Daraja I (chini)",
-      "grade_ii": "Daraja II (wastani)",
-      "grade_iii": "Daraja III (juu)"
-    },
-    "necrosis": "Nekrosisi",
-    "necrosis_options": {
-      "not_identified": "Haijatambuliwa",
-      "focal": "Ipo, ya eneo dogo",
-      "central_comedo": "Ipo, ya kati (nekrosisi pana ya comedo)"
-    },
-    "blocks_with_dcis": "Idadi ya bloku zenye DCIS",
-    "blocks_examined": "Idadi ya bloku zilizochunguzwa",
-    "cannot_be_excluded": "Haiwezi kuondolewa uwezekano",
-    "lcis": "Karsinoma ya lobula in situ (LCIS)",
-    "tumor_extent": "Ueneaji wa uvimbe",
-    "tumor_extent_required": "Ueneaji wa uvimbe (unahitajika tu ikiwa ngozi, chuchu, au misuli ya kiunzi ipo na imehusika)",
-    "tumor_extent_options": {
-      "not_applicable": "Haitumiki (ngozi, chuchu, na misuli ya kiunzi hazipo au hazijahusika)",
-      "skin_present_involved": "Ngozi ipo na imehusika",
-      "skeletal_muscle_present_involved": "Misuli ya kiunzi ipo na imehusika"
-    },
-    "skin_invasion": "Uvamizi wa ngozi",
-    "skin_invasion_options": {
-      "dermis_epidermis_no_ulceration": "Karsinoma inaingia moja kwa moja kwenye dermis au epidermis bila vidonda vya ngozi",
-      "dermis_epidermis_with_ulceration": "Karsinoma inaingia moja kwa moja kwenye dermis au epidermis ikiwa na vidonda vya ngozi",
-      "no_direct_invasion": "Karsinoma haiingii moja kwa moja kwenye dermis au epidermis"
-    },
-    "skin_satellite_foci": "Maeneo satelaiti ya ngozi",
-    "skin_satellite_options": {
-      "not_identified": "Hayajatambuliwa",
-      "present": "Maeneo satelaiti ya ngozi ya karsinoma inayovamia yapo",
-      "dcis_nipple_epidermis": "DCIS inahusisha epidermis ya chuchu (ugonjwa wa Paget wa chuchu)"
-    },
-    "skeletal_muscle": "Misuli ya kiunzi",
-    "skeletal_muscle_options": {
-      "invades_skeletal_muscle": "Karsinoma inaingia kwenye misuli ya kiunzi",
-      "invades_chest_wall": "Karsinoma inaingia kwenye misuli ya kiunzi na ukuta wa kifua"
-    },
-    "lymphovascular_invasion": "Uvamizi wa limfatiki na/au mishipa ya damu",
-    "lvi_options": {
-      "not_identified": "Haijatambuliwa",
-      "present": "Ipo",
-      "focal": "Ya eneo dogo (LVI katika bloku moja tu)",
-      "extensive": "Imeenea (LVI katika bloku mbili au zaidi)",
-      "cannot_be_determined": "Haiwezi kubainishwa"
-    },
-    "dermal_lvi": "Uvamizi wa limfatiki na/au mishipa ya damu ya ngozi",
-    "dermal_lvi_options": {
-      "no_skin_present": "Hakuna ngozi",
-      "not_identified": "Haijatambuliwa",
-      "present": "Ipo",
-      "cannot_be_determined": "Haiwezi kubainishwa"
-    },
-    "microcalcifications": "Mikrokalsifikasheni",
-    "microcalcifications_options": {
-      "not_identified": "Haijatambuliwa",
-      "present_in_dcis": "Zipo kwenye DCIS",
-      "present_in_invasive": "Zipo kwenye karsinoma inayovamia",
-      "present_in_non_neoplastic": "Zipo kwenye tishu zisizo za uvimbe",
-      "other": "Nyingine (eleza)"
-    },
-    "treatment_effect_breast": "Athari ya tiba kwenye titi",
-    "treatment_effect_breast_options": {
-      "no_known_presurgical": "Hakuna tiba ya kabla ya upasuaji inayojulikana",
-      "no_definite_response": "Hakuna mwitikio dhahiri kwa tiba ya kabla ya upasuaji kwenye karsinoma inayovamia",
-      "probable_definite_response": "Kuna mwitikio unaowezekana au dhahiri kwa tiba ya kabla ya upasuaji kwenye karsinoma inayovamia",
-      "no_residual_after_presurgical": "Hakuna karsinoma inayovamia iliyobaki kwenye titi baada ya tiba ya kabla ya upasuaji"
-    },
-    "treatment_effect_nodes": "Athari ya tiba kwenye nodi za limfu",
-    "treatment_effect_nodes_options": {
-      "not_applicable": "Haitumiki",
-      "no_definite_response": "Hakuna mwitikio dhahiri kwa tiba ya kabla ya upasuaji kwenye karsinoma ya metastasi",
-      "probable_definite_response": "Kuna mwitikio unaowezekana au dhahiri kwenye karsinoma ya metastasi",
-      "no_metastases_with_scarring": "Hakuna metastasi za nodi za limfu; kuna kovu la nyuzinyuzi au makusanyiko ya histiosaiti, huenda yanahusiana na metastasi za awali zenye mwitikio kamili wa kitabibu",
-      "no_metastases_no_scarring": "Hakuna metastasi za nodi za limfu na hakuna kovu la nyuzinyuzi au makusanyiko ya histiosaiti"
-    },
-    "rcb": "Vigezo vya Residual Cancer Burden (RCB)",
-    "primary_tumor_bed": "Eneo la msingi la kitanda cha uvimbe",
-    "greatest_dimension_tumor_bed": "Kipimo kikubwa zaidi cha eneo la kitanda cha uvimbe kwa mm (lililohusishwa na karsinoma hai iliyobaki)",
-    "second_dimension_tumor_bed": "Kipimo cha pili kikubwa zaidi cha eneo la kitanda cha uvimbe kwa mm",
-    "overall_cancer_cellularity": "Asilimia ya jumla ya seli za saratani",
-    "in_situ_percentage": "Asilimia ya saratani ambayo ni ugonjwa wa in situ",
-    "positive_lymph_nodes": "Idadi ya nodi za limfu chanya",
-    "largest_nodal_metastasis_diameter": "Kipenyo cha metastasi kubwa zaidi ya nodi kwa mm",
-    "rcb_score": "Residual Cancer Burden",
-    "rcb_class": "Daraja la Residual Cancer Burden",
-    "rcb_classes": {
-      "rcb_0": "RCB-0 (pCR)",
-      "rcb_i": "RCB-I",
-      "rcb_ii": "RCB-II",
-      "rcb_iii": "RCB-III"
+    "label": "UVIMBE",
+    "fields": {
+      "tumor_site": {
+        "label": "Eneo la uvimbe",
+        "clock_position_specify": "Eleza nafasi ya saa"
+      },
+      "histologic_type": {
+        "label": "Aina ya histolojia",
+        "options": [
+          "Hakuna karsinoma inayovamia iliyobaki",
+          "Karsinoma inayovamia ya aina isiyo maalum (ductal)",
+          "Karsinoma yenye uvamizi mdogo sana",
+          "Karsinoma ya lobula inayovamia",
+          "Karsinoma yenye sifa za ductal na lobula",
+          "Karsinoma inayovamia yenye sifa za (eleza)",
+          "Karsinoma tubulari",
+          "Karsinoma cribriform inayovamia",
+          "Karsinoma ya mucinous",
+          "Karsinoma micropapillary inayovamia",
+          "Adenokarsinoma ya apocrine",
+          "Karsinoma metaplastic",
+          "Karsinoma papillary iliyofungwa yenye uvamizi",
+          "Karsinoma papillary thabiti yenye uvamizi",
+          "Adenokarsinoma papillary ya ndani ya mirija yenye uvamizi",
+          "Karsinoma adenoid cystic",
+          "Uvimbe wa neuroendocrine",
+          "Karsinoma ya neuroendocrine",
+          "Karsinoma inayovamia, aina haiwezi kubainishwa",
+          "Aina nyingine ya histolojia haijaorodheshwa (eleza)"
+        ],
+        "features_specify": "Eleza sifa",
+        "cannot_be_determined_specify": "Eleza 'haiwezi kubainishwa'",
+        "other_specify": "Eleza nyingine",
+        "comment": "Maoni"
+      },
+      "histologic_grade": {
+        "label": "Daraja la histolojia (Alama ya Nottingham)",
+        "fields": {
+          "applicability": {
+            "label": "Uwezekanavyo",
+            "options": [
+              "Haihusiki (hakuna karsinoma iliyobaki au uvamizi mdogo tu)",
+              "Alama ya Nottingham"
+            ]
+          },
+          "glandular_tubular_differentiation": {
+            "label": "Tofautisho la tezi/tubuli",
+            "options": [
+              "Alama 1 (zaidi ya 75% ya eneo la uvimbe linaunda miundo ya tezi/tubuli)",
+              "Alama 2 (10 hadi 75% ya eneo la uvimbe linaunda miundo ya tezi/tubuli)",
+              "Alama 3 (chini ya 10% ya eneo la uvimbe linaunda miundo ya tezi/tubuli)",
+              "Uvamizi mdogo tu upo (haupewi daraja)",
+              "Alama haiwezi kubainishwa (eleza)"
+            ],
+            "cannot_be_determined_specify": "Eleza 'haiwezi kubainishwa'"
+          },
+          "nuclear_pleomorphism": {
+            "label": "Pleomorphism ya nyuklia",
+            "options": [
+              "Alama 1 (nyuklia ndogo, ongezeko dogo la ukubwa, mipaka ya kawaida, kromatini sare, tofauti ndogo ya ukubwa)",
+              "Alama 2 (seli kubwa kuliko kawaida, nyuklia wazi za vesicular, nucleoli zinazoonekana, na utofauti wa wastani wa ukubwa na umbo)",
+              "Alama 3 (nyuklia za vesicular, mara nyingi zenye nucleoli dhahiri, tofauti kubwa ya ukubwa na umbo, wakati mwingine maumbo makubwa na yasiyo ya kawaida)",
+              "Uvamizi mdogo tu upo (haupewi daraja)",
+              "Alama haiwezi kubainishwa (eleza)"
+            ],
+            "cannot_be_determined_specify": "Eleza 'haiwezi kubainishwa'"
+          },
+          "mitotic_rate": {
+            "label": "Kiwango cha mitosisi",
+            "options": [
+              "Alama 1",
+              "Alama 2",
+              "Alama 3",
+              "Uvamizi mdogo tu upo (haupewi daraja)",
+              "Alama haiwezi kubainishwa (eleza)"
+            ],
+            "reference_note": "Tazama Jedwali 1 katika dokezo D",
+            "cannot_be_determined_specify": "Eleza 'haiwezi kubainishwa'"
+          },
+          "overall_grade": {
+            "label": "Daraja la jumla",
+            "options": [
+              "Daraja 1 (alama 3, 4 au 5)",
+              "Daraja 2 (alama 6 au 7)",
+              "Daraja 3 (alama 8 au 9)",
+              "Uvamizi mdogo tu upo (haupewi daraja)",
+              "Alama haiwezi kubainishwa (eleza)"
+            ],
+            "cannot_be_determined_specify": "Eleza 'haiwezi kubainishwa'"
+          }
+        }
+      },
+      "tumor_size": {
+        "label": "Ukubwa wa uvimbe",
+        "fields": {
+          "size_type": {
+            "options": [
+              "Hakuna karsinoma inayovamia iliyobaki",
+              "Uvamizi mdogo tu (≤ 1 mm)",
+              "Dimensi kubwa zaidi ya eneo kubwa zaidi la uvamizi > 1 mm",
+              "Ukubwa wa eneo kubwa zaidi la uvamizi hauwezi kuamuliwa"
+            ],
+            "label": "Ukubwa wa uvimbe"
+          },
+          "greatest_dimension_mm": {
+            "label": "Dimensi kubwa zaidi (mm)"
+          },
+          "additional_dimensions_mm": {
+            "label": "Dimensi za ziada (mm)"
+          },
+          "cannot_be_determined_explain": {
+            "label": "Ukubwa wa eneo kubwa zaidi la uvamizi hauwezi kuamuliwa (eleza)"
+          }
+        }
+      },
+      "tumor_focality": {
+        "label": "Idadi/mtawanyiko wa maeneo ya uvimbe",
+        "fields": {
+          "status": {
+            "label": "Focaliti ya uvimbe",
+            "options": [
+              "Eneo moja la karsinoma ya uvamizi",
+              "Maeneo mengi ya karsinoma ya uvamizi"
+            ]
+          },
+          "number_of_foci": {
+            "label": "Idadi ya maeneo",
+            "fields": {
+              "count_type": {
+                "label": "Aina ya hesabu",
+                "options": [
+                  "Taja idadi",
+                  "Angalau",
+                  "Haiwezi kuamuliwa"
+                ]
+              },
+              "count_value": {
+                "label": "Idadi ya maeneo"
+              }
+            }
+          },
+          "sizes_of_individual_foci_mm": {
+            "label": "Ukubwa wa maeneo ya mtu binafsi kwa milimita (mm)"
+          },
+          "sizes_cannot_be_determined": {
+            "label": "Ukubwa wa maeneo ya mtu binafsi hauwezi kuamuliwa"
+          }
+        }
+      }
     }
   },
   "margins": {
-    "section": "KINGO",
-    "invasive_margin_status": "Hali ya kingo kwa karsinoma inayovamia",
-    "invasive_margin_status_options": {
-      "not_applicable": "Haitumiki (hakuna karsinoma inayovamia iliyobaki kwenye sampuli)",
-      "all_negative": "Kingo zote hazina karsinoma inayovamia",
-      "positive": "Karsinoma inayovamia ipo kwenye kingo"
-    },
-    "distance_invasive_to_closest_margin": "Umbali kutoka karsinoma inayovamia hadi kingo ya karibu",
-    "closest_margins_invasive": "Kingo zilizo karibu zaidi na karsinoma inayovamia",
-    "margin_names": {
-      "anterior": "Mbele",
-      "posterior": "Nyuma",
-      "superior": "Juu",
-      "inferior": "Chini",
-      "medial": "Katikati",
-      "lateral": "Pembeni",
-      "other": "Nyingine",
-      "cannot_be_determined": "Haiwezi kubainishwa"
-    },
-    "invasive_margins_involved": "Kingo zilizohusishwa na karsinoma inayovamia",
-    "positive_margin_note": "Hali ya kingo huorodheshwa kama chanya ikiwa wino uko kwenye karsinoma inayovamia.",
-    "dcis_margin_status": "Hali ya kingo kwa DCIS",
-    "dcis_margin_status_options": {
-      "not_applicable": "Haitumiki (hakuna DCIS kwenye sampuli)",
-      "all_negative": "Kingo zote hazina DCIS",
-      "positive": "DCIS ipo kwenye kingo"
-    },
-    "distance_dcis_to_closest_margin": "Umbali kutoka DCIS hadi kingo ya karibu",
-    "closest_margins_dcis": "Kingo zilizo karibu zaidi na DCIS",
-    "dcis_margins_involved": "Kingo zilizohusishwa na DCIS"
-  },
-  "regional_lymph_nodes": {
-    "section": "NODI ZA LIMFU ZA KANDA",
-    "status": "Hali ya nodi za limfu za kanda",
-    "status_options": {
-      "not_applicable": "Haitumiki (hakuna nodi za limfu za kanda zilizowasilishwa au kupatikana)",
-      "present": "Nodi za limfu za kanda zipo",
-      "all_negative": "Nodi zote za limfu za kanda hazina uvimbe",
-      "tumor_present": "Uvimbe upo kwenye nodi za limfu za kanda"
-    },
-    "macrometastases": "Idadi ya nodi za limfu zenye makrometastasi (zaidi ya 2 mm)",
-    "micrometastases": "Idadi ya nodi za limfu zenye mikrometastasi (zaidi ya 0.2 mm hadi 2 mm na/au zaidi ya seli 200)",
-    "isolated_tumor_cells": "Idadi ya nodi za limfu zenye seli za uvimbe zilizojitenga (0.2 mm au chini, au seli 200 au chini)",
-    "largest_metastatic_deposit": "Ukubwa wa metastasi kubwa zaidi ya nodi",
-    "extranodal_extension": "Ueneaji nje ya nodi",
-    "extranodal_options": {
-      "not_identified": "Haijatambuliwa",
-      "present_2mm_or_less": "Ipo, 2 mm au chini",
-      "present_greater_than_2mm": "Ipo, zaidi ya 2 mm",
-      "specify_amount": "Eleza kiasi",
-      "present": "Ipo",
-      "cannot_be_determined": "Haiwezi kubainishwa",
-      "other": "Nyingine (eleza)"
-    },
-    "total_nodes_examined": "Jumla ya nodi za limfu zilizochunguzwa (sentinel na zisizo sentinel)",
-    "sentinel_nodes_examined": "Idadi ya nodi sentinel zilizochunguzwa",
-    "comment": "Maoni kuhusu nodi za limfu za kanda"
-  },
-  "distant_metastasis": {
-    "section": "METASTASI ZA MBALI",
-    "sites_involved": "Maeneo ya mbali yaliyohusika, ikiwa yapo",
-    "sites": {
-      "not_applicable": "Haitumiki",
-      "nonregional_lymph_nodes": "Nodi za limfu zisizo za kanda (eleza ikiwezekana)",
-      "lung": "Pafu",
-      "liver": "Ini",
-      "bone": "Mfupa",
-      "brain": "Ubongo",
-      "other": "Nyingine (eleza)",
-      "cannot_be_determined": "Haiwezi kubainishwa"
+    "label": "KINGO",
+    "fields": {
+      "dcis_margin_status": {
+        "label": "Hali ya kingo kwa DCIS",
+        "fields": {
+          "status": {
+            "options": [
+              "Haitumiki (hakuna DCIS kwenye sampuli)",
+              "Kingo zote hazina DCIS",
+              "DCIS ipo kwenye kingo"
+            ]
+          },
+          "distance_to_closest_margin": {
+            "label": "Umbali wa DCIS hadi ukingo wa karibu zaidi"
+          },
+          "closest_margins": {
+            "label": "Ukingo(i) wa karibu zaidi na DCIS",
+            "options": [
+              "Haihusiki",
+              "Anterior",
+              "Posterior",
+              "Superior",
+              "Inferior",
+              "Medial",
+              "Lateral",
+              "Other",
+              "Haiwezi kuamuliwa"
+            ],
+            "other_specify": "Nyingine, taja",
+            "cannot_be_determined_explain": "Haiwezi kuamuliwa, eleza"
+          },
+          "margins_involved": {
+            "label": "Ukingo(i) ulioathiriwa na DCIS",
+            "item_label": "Lebo"
+          }
+        }
+      },
+      "invasive_carcinoma_margin_status": {
+        "fields": {
+          "status": {
+            "label": "Hali ya ukingo kwa karsinoma ya uvamizi",
+            "options": [
+              "Haihusiki (karsinoma iliyobaki haipo katika sampuli)",
+              "Ukingo wote hasi kwa karsinoma ya uvamizi",
+              "Karsinoma ya uvamizi ipo kwenye ukingo"
+            ]
+          },
+          "distance_to_closest_margin": {
+            "label": "Umbali wa karsinoma ya uvamizi hadi ukingo wa karibu zaidi"
+          },
+          "closest_margins": {
+            "label": "Ukingo(i) wa karibu zaidi na karsinoma ya uvamizi",
+            "options": [
+              "Anterior",
+              "Posterior",
+              "Superior",
+              "Inferior",
+              "Medial",
+              "Lateral",
+              "Other",
+              "Haiwezi kuamuliwa"
+            ],
+            "other_specify": "Nyingine, taja",
+            "cannot_be_determined_explain": "Haiwezi kuamuliwa, eleza"
+          },
+          "margins_involved": {
+            "label": "Ukingo(i) ulioathiriwa na karsinoma ya uvamizi",
+            "item_label": "Lebo"
+          }
+        }
+      }
     }
   },
-  "ptnm": {
-    "section": "UAINISHAJI WA pTNM (Toleo la 8 la AJCC)",
-    "note": "Kuripoti kategoria za pT, pN, na inapofaa pM kunategemea taarifa zinazopatikana kwa mwanapatholojia wakati ripoti inatolewa.",
-    "modified_classification": "Uainishaji uliorekebishwa",
-    "modified_options": {
-      "not_applicable": "Haitumiki",
-      "y": "y (baada ya tiba ya neoadjuvant)",
-      "r": "r (kurudia)"
-    },
-    "pt_category": "Kategoria ya pT",
-    "pt_options": {
-      "pt_not_assigned": "pT haijapewa (haiwezi kubainishwa kwa taarifa za patholojia zilizopo)",
-      "pt0": "pT0: Hakuna ushahidi wa uvimbe wa msingi",
-      "ptis_dcis": "pTis (DCIS): Karsinoma ya ductal in situ",
-      "ptis_paget": "pTis (Paget): Ugonjwa wa Paget wa chuchu usiohusishwa na karsinoma inayovamia na/au DCIS kwenye parenkima ya titi",
-      "pt1": "pT1: Uvimbe ≤ 20 mm katika kipimo kikubwa zaidi",
-      "pt1mi": "pT1mi: Uvimbe ≤ 1 mm katika kipimo kikubwa zaidi",
-      "pt1a": "pT1a: Uvimbe >1 mm lakini ≤5 mm",
-      "pt1b": "pT1b: Uvimbe >5 mm lakini ≤10 mm",
-      "pt1c": "pT1c: Uvimbe >10 mm lakini ≤20 mm",
-      "pt1_subcategory_unknown": "pT1 (kikundi kidogo hakiwezi kubainishwa)",
-      "pt2": "pT2: Uvimbe >20 mm lakini ≤50 mm",
-      "pt3": "pT3: Uvimbe >50 mm",
-      "pt4": "pT4: Uvimbe wa ukubwa wowote wenye kuenea moja kwa moja kwenye ukuta wa kifua na/au ngozi",
-      "pt4a": "pT4a: Kuenea kwenye ukuta wa kifua",
-      "pt4b": "pT4b: Vidonda vya ngozi na/au vinundu satelaiti vya upande huo na/au edema ya ngozi",
-      "pt4c": "pT4c: T4a na T4b zote zipo",
-      "pt4d": "pT4d: Karsinoma ya uchochezi",
-      "pt4_subcategory_unknown": "pT4 (kikundi kidogo hakiwezi kubainishwa)"
-    },
-    "t_suffix": "Kiambishi cha T",
-    "t_suffix_options": {
-      "not_applicable": "Haitumiki",
-      "m": "(m) uvimbe msingi mwingi wa wakati mmoja katika kiungo kimoja"
-    },
-    "pn_category": "Kategoria ya pN",
-    "pn_options": {
-      "pn_not_assigned_no_nodes": "pN haijapewa (hakuna nodi zilizowasilishwa au kupatikana)",
-      "pn_not_assigned_unknown": "pN haijapewa (haiwezi kubainishwa kwa taarifa za patholojia zilizopo)",
-      "pn0": "pN0: Hakuna metastasi ya nodi za limfu za kanda au ITCs pekee",
-      "pn0_i_plus": "pN0 (i+): ITCs pekee kwenye nodi za limfu za kanda",
-      "pn0_mol_plus": "pN0 (mol+): Matokeo chanya ya molekuli kwa RT-PCR; hakuna ITCs zilizogunduliwa",
-      "pn1mi": "pN1mi: Mikrometastasi",
-      "pn1a": "pN1a: Metastasi katika nodi 1-3 za aksila",
-      "pn1b": "pN1b: Metastasi katika nodi sentinel za mammary za ndani upande huo, bila ITCs",
-      "pn1c": "pN1c: pN1a na pN1b pamoja",
-      "pn2a": "pN2a: Metastasi katika nodi 4-9 za aksila",
-      "pn2b": "pN2b: Metastasi katika nodi za mammary za ndani zilizogunduliwa kliniki",
-      "pn3a": "pN3a: Metastasi katika nodi 10 au zaidi za aksila au nodi za infraclavicular",
-      "pn3b": "pN3b: pN1a au pN2a pamoja na cN2b, au pN2a pamoja na pN1b",
-      "pn3c": "pN3c: Metastasi katika nodi za supraclavicular upande huo"
-    },
-    "n_suffix": "Kiambishi cha N",
-    "n_suffix_options": {
-      "not_applicable": "Haitumiki",
-      "sn": "(sn): Nodi sentinel zimetathminiwa",
-      "f": "(f): Metastasi ya nodi imethibitishwa kwa FNA au core biopsy"
-    },
-    "pm_category": "Kategoria ya pM",
-    "pm_options": {
-      "not_applicable": "Haitumiki - pM haiwezi kubainishwa kutoka kwenye sampuli zilizowasilishwa",
-      "pm1": "pM1: Metastasi zilizothibitishwa kihistolojia kubwa kuliko 0.2 mm"
-    },
-    "previous_case_number": "Eleza namba ya kesi ikiwa inatoka kwenye utaratibu uliopita"
+  "regional_lymph_nodes": {
+    "label": "NODI ZA LIMFU ZA KANDA",
+    "fields": {
+      "regional_lymph_node_status": {
+        "label": "Hali ya nodi za limfu za kanda"
+      },
+      "number_with_macrometastases": {
+        "label": "Idadi ya nodi za limfu zenye makrometastasi (zaidi ya 2 mm)",
+        "fields": {
+          "count_type": {
+            "label": "Aina ya hesabu",
+            "options": [
+              "Exact number",
+              "Angalau",
+              "Other",
+              "Haiwezi kuamuliwa"
+            ]
+          },
+          "count_value": {
+            "label": "Hesabu"
+          },
+          "other_specify": {
+            "label": "other specify"
+          },
+          "cannot_be_determined_explain": {
+            "label": "cannot be determined explain"
+          }
+        }
+      },
+      "number_with_micrometastases": {
+        "label": "Idadi ya nodi za limfu zenye mikrometastasi (zaidi ya 0.2 mm hadi 2 mm na/au zaidi ya seli 200)",
+        "fields": {
+          "count_type": {
+            "label": "Aina ya hesabu",
+            "options": [
+              "Exact number",
+              "Angalau",
+              "Other",
+              "Haiwezi kuamuliwa"
+            ]
+          },
+          "count_value": {
+            "label": "Hesabu"
+          },
+          "other_specify": {
+            "label": "other specify"
+          },
+          "cannot_be_determined_explain": {
+            "label": "cannot be determined explain"
+          }
+        }
+      },
+      "extranodal_extension": {
+        "label": "Ueneaji nje ya nodi",
+        "options": [
+          "Haijatambuliwa",
+          "Ipo, 2 mm au chini",
+          "Ipo, zaidi ya 2 mm",
+          "Eleza kiasi",
+          "Ipo",
+          "Haiwezi kubainishwa",
+          "Nyingine (eleza)"
+        ],
+        "fields": {
+          "status": {
+            "label": "Hali ya nodi za limfu za kanda",
+            "options": [
+              "Haitumiki (hakuna nodi za limfu za kanda zilizowasilishwa au kupatikana)",
+              "Nodi za limfu za kanda zipo",
+              "Nodi zote za limfu za kanda hazina uvimbe",
+              "Uvimbe upo kwenye nodi za limfu za kanda"
+            ]
+          },
+          "amount": {
+            "label": "Taja kiasi"
+          },
+          "cannot_be_determined_specify": {
+            "label": "cannot be determined specify"
+          },
+          "other_specify": {
+            "label": "other specify"
+          },
+          "cannot_be_determined_explain": {
+            "label": "cannot be determined explain"
+          }
+        },
+        "cannot_be_determined_specify": "Eleza 'haiwezi kubainishwa'",
+        "other_specify": "Eleza nyingine",
+        "cannot_be_determined_explain": "Eleza 'haiwezi kubainishwa'"
+      },
+      "comment": {
+        "label": "Maoni kuhusu nodi za limfu za kanda"
+      },
+      "number_with_isolated_tumor_cells": {
+        "fields": {
+          "count_type": {
+            "label": "Aina ya hesabu",
+            "options": [
+              "Haihusiki",
+              "Exact number",
+              "Angalau",
+              "Other",
+              "Haiwezi kuamuliwa"
+            ]
+          },
+          "count_value": {
+            "label": "Hesabu"
+          },
+          "other_specify": {
+            "label": "other specify"
+          },
+          "cannot_be_determined_explain": {
+            "label": "cannot be determined explain"
+          }
+        }
+      },
+      "size_of_largest_nodal_metastatic_deposit": {
+        "fields": {
+          "size_type": {
+            "label": "Aina ya kipimo",
+            "options": [
+              "Exact size",
+              "Chini ya",
+              "Greater than",
+              "Other",
+              "Haiwezi kuamuliwa"
+            ]
+          },
+          "size_mm": {
+            "label": "Ukubwa (mm)"
+          },
+          "other_specify": {
+            "label": "other specify"
+          },
+          "cannot_be_determined_explain": {
+            "label": "cannot be determined explain"
+          }
+        }
+      },
+      "total_number_examined": {
+        "fields": {
+          "count_type": {
+            "label": "Aina ya hesabu",
+            "options": [
+              "Exact number",
+              "Angalau",
+              "Other",
+              "Haiwezi kuamuliwa"
+            ]
+          },
+          "count_value": {
+            "label": "Hesabu"
+          },
+          "other_specify": {
+            "label": "other specify"
+          },
+          "cannot_be_determined_explain": {
+            "label": "cannot be determined explain"
+          }
+        }
+      },
+      "number_of_sentinel_nodes_examined": {
+        "fields": {
+          "count_type": {
+            "label": "Aina ya hesabu",
+            "options": [
+              "Haihusiki",
+              "Exact number",
+              "Angalau",
+              "Other",
+              "Haiwezi kuamuliwa"
+            ]
+          },
+          "count_value": {
+            "label": "Hesabu"
+          },
+          "other_specify": {
+            "label": "other specify"
+          },
+          "cannot_be_determined_explain": {
+            "label": "cannot be determined explain"
+          }
+        }
+      }
+    }
+  },
+  "distant_metastasis": {
+    "label": "METASTASI ZA MBALI",
+    "fields": {
+      "sites_involved": {
+        "label": "Maeneo ya mbali yaliyohusika, ikiwa yapo",
+        "non_regional_lymph_nodes_specify": "Eleza nodi za limfu zisizo za kanda",
+        "lung_specify": "Eleza mapafu",
+        "liver_specify": "Eleza ini",
+        "bone_specify": "Eleza mfupa",
+        "brain_specify": "Eleza ubongo",
+        "other_specify": "Eleza nyingine",
+        "cannot_be_determined_specify": "Eleza 'haiwezi kubainishwa'"
+      }
+    }
   },
   "additional_findings": {
-    "section": "MATOKEO YA ZIADA",
-    "additional_findings_specify": "Matokeo ya ziada (eleza)"
+    "label": "MATOKEO YA ZIADA",
+    "fields": {
+      "findings": {}
+    }
+  },
+  "dcis_lcis": {
+    "label": "KARSINOMA SITU",
+    "fields": {
+      "dcis": {
+        "fields": {
+          "presence": {
+            "label": "DCIS",
+            "options": [
+              "Haipatikani",
+              "Ipo",
+              "Hasi kwa sehemu kubwa ya ndani ya duct (EIC)",
+              "Chanya kwa sehemu kubwa ya ndani ya duct (EIC)",
+              "DCIS tu ipo baada ya tiba ya kabla ya upasuaji (neoadjuvant)"
+            ]
+          },
+          "size_extent": {
+            "label": "Ukubwa (upeo) wa DCIS"
+          },
+          "architectural_patterns": {
+            "label": "Mifumo ya usanifu",
+            "options": [
+              "Comedo",
+              "Ugonjwa wa Paget (DCIS unaohusisha ngozi ya chuchu)",
+              "Kribriformi",
+              "Micropapillari",
+              "Papillari",
+              "Ngumu",
+              "Other"
+            ],
+            "other_specify": "Nyingine, taja"
+          },
+          "nuclear_grade": {
+            "label": "Daraja la kiini",
+            "options": [
+              "Daraja I (chini)",
+              "Daraja II (kati)",
+              "Daraja III (juu)"
+            ]
+          },
+          "necrosis": {
+            "label": "Necrosis",
+            "options": [
+              "Haipatikani",
+              "Present, focal (small foci or single cell necrosis)",
+              "Present, central (expansive \"comedo\" necrosis)"
+            ]
+          },
+          "number_of_blocks_with_dcis": {
+            "label": "Idadi ya vitalu vyenye DCIS"
+          },
+          "number_of_blocks_examined": {
+            "label": "Idadi ya vitalu vilivyochunguzwa"
+          },
+          "cannot_be_excluded": {
+            "label": "Haiwezi kutengwa"
+          }
+        }
+      },
+      "lcis": {}
+    }
+  },
+  "tumor_extent": {
+    "label": "UKUBWA WA UVIMBE",
+    "fields": {
+      "extent_status": {},
+      "skin_invasion": {},
+      "skin_satellite_foci": {},
+      "skeletal_muscle": {}
+    }
+  },
+  "invasion_and_calcifications": {
+    "label": "UVAMIZI NA KALCIFIKESHENI",
+    "fields": {
+      "lymphovascular_invasion": {
+        "fields": {
+          "status": {
+            "label": "Uvamizi wa lymphatiki na/au mishipa ya damu",
+            "options": [
+              "Haipatikani",
+              "Ipo",
+              "Haiwezi kuamuliwa"
+            ],
+            "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
+          },
+          "extent": {
+            "label": "Upeo wa uvamizi wa lymphovascular",
+            "options": [
+              "Katika eneo moja (ILV katika kitalu kimoja tu)",
+              "Inayoenea (ILV katika vitalu viwili au zaidi)"
+            ]
+          }
+        }
+      },
+      "dermal_lymphovascular_invasion": {
+        "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
+      },
+      "microcalcifications": {
+        "other_specify": "Nyingine, taja"
+      }
+    }
+  },
+  "treatment_effect_and_rcb": {
+    "label": "ATHARI YA MATIBABU NA MZIGO WA SARATANI ILIYOBAKI",
+    "fields": {
+      "treatment_effect_breast": {},
+      "treatment_effect_lymph_nodes": {},
+      "rcb_parameters": {
+        "fields": {
+          "primary_tumor_bed_greatest_dimension_mm": {
+            "label": "Dimensi kubwa zaidi ya eneo la kitanda cha uvimbe wa msingi (mm)"
+          },
+          "primary_tumor_bed_second_dimension_mm": {
+            "label": "Dimensi ya pili kubwa zaidi ya eneo la kitanda cha uvimbe wa msingi (mm)"
+          },
+          "overall_cancer_cellularity_percent": {
+            "label": "Asilimia ya seli za saratani kwa ujumla"
+          },
+          "in_situ_disease_percent": {
+            "label": "Asilimia ya saratani inayowakilisha ugonjwa wa in situ"
+          },
+          "number_of_positive_lymph_nodes": {
+            "label": "Idadi ya nodi za lymph zenye chanya"
+          },
+          "largest_nodal_metastasis_diameter_mm": {
+            "label": "Kipenyo cha metastasis kubwa zaidi ya nodi (mm)"
+          },
+          "residual_cancer_burden": {
+            "label": "Mzigo wa saratani iliyobaki (RCB)"
+          },
+          "residual_cancer_burden_class": {
+            "label": "Darasa la mzigo wa saratani iliyobaki (RCB)",
+            "options": [
+              "RCB-0 (pCR)",
+              "RCB-I",
+              "RCB-II",
+              "RCB-III"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "ptnm_classification": {
+    "label": "UAINISHAJI WA pTNM",
+    "fields": {
+      "modified_classification": {},
+      "pT_category": {},
+      "T_suffix": {},
+      "pN_category": {},
+      "N_suffix": {},
+      "pM_category": {},
+      "previous_case_number": {}
+    }
+  },
+  "domain": {
+    "fields": {}
+  },
+  "protocol_posting_date": {
+    "fields": {}
+  },
+  "standards": {
+    "fields": {}
   }
 }

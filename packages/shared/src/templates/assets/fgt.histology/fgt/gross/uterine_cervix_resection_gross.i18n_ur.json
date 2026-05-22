@@ -26,7 +26,8 @@
           "اومینٹیکٹومی",
           "دیگر (وضاحت کریں)"
         ],
-        "other_specify": "دیگر (واضح کریں)"
+        "other_specify": "دیگر (واضح کریں)",
+        "pelvic_exenteration_specify_included_organs": "pelvic exenteration specify included organs"
       },
       "hysterectomy_type": {
         "label": "ہسٹرکٹومی کی قسم",

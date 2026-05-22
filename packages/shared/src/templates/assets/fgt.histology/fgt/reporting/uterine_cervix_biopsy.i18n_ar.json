@@ -1,68 +1,74 @@
 {
-  "uterine_cervix_biopsy": {
-    "metadata": {
-      "title": "قالب التقرير: عنق الرحم، خزعة",
-      "protocol_posting_date": "تاريخ نشر البروتوكول: مارس 2023"
-    },
-    "histologic_type": {
-      "label": "النوع النسيجي",
-      "options": {
-        "squamous_cell_carcinoma_hpv_associated": "سرطان الخلايا الحرشفية، مرتبط بفيروس HPV",
-        "squamous_cell_carcinoma_hpv_independent": "سرطان الخلايا الحرشفية، غير مرتبط بفيروس HPV",
-        "squamous_cell_carcinoma_nos": "سرطان الخلايا الحرشفية، غير محدد خلاف ذلك (مقبول عندما لا يتوفر اختبار p16 أو HPV)",
-        "adenocarcinoma_nos": "سرطان غدي، غير محدد خلاف ذلك",
-        "adenocarcinoma_hpv_associated": "سرطان غدي، مرتبط بفيروس HPV",
-        "adenocarcinoma_hpv_independent_nos": "سرطان غدي، غير مرتبط بفيروس HPV، غير محدد خلاف ذلك",
-        "adenocarcinoma_hpv_independent_gastric_type": "سرطان غدي، غير مرتبط بفيروس HPV، من النمط المعدي",
-        "adenocarcinoma_hpv_independent_clear_cell_type": "سرطان غدي، غير مرتبط بفيروس HPV، من نوع الخلايا الصافية",
-        "adenocarcinoma_hpv_independent_mesonephric_type": "سرطان غدي، غير مرتبط بفيروس HPV، من النمط الميزونفري",
-        "endometrioid_adenocarcinoma_nos": "سرطان غدي شبيه ببطانة الرحم، غير محدد خلاف ذلك",
-        "carcinosarcoma": "سرطان ساركومي",
-        "adenosquamous_carcinoma": "سرطان غدي حرشفي",
-        "adenoid_basal_carcinoma": "سرطان غدي قاعدي",
-        "mucoepidermoid_carcinoma": "سرطان مخاطي بشروي",
-        "carcinoma_unclassifiable": "سرطان غير قابل للتصنيف (سرطان غير متمايز)",
-        "neuroendocrine_tumor_nos": "ورم عصبي صماوي، غير محدد خلاف ذلك",
-        "neuroendocrine_tumor_grade_1": "ورم عصبي صماوي، الدرجة 1",
-        "neuroendocrine_tumor_grade_2": "ورم عصبي صماوي، الدرجة 2",
-        "small_cell_neuroendocrine_carcinoma_high_grade": "سرطان عصبي صماوي صغير الخلايا، عالي الدرجة",
-        "large_cell_neuroendocrine_carcinoma_high_grade": "سرطان عصبي صماوي كبير الخلايا، عالي الدرجة",
-        "neuroendocrine_carcinoma_nos": "سرطان عصبي صماوي، غير محدد خلاف ذلك",
-        "mixed_neuroendocrine_non_neuroendocrine_carcinoma": "سرطان مختلط عصبي صماوي وغير عصبي صماوي",
-        "other_histologic_type_not_listed": "نوع نسيجي آخر غير مدرج (حدد): _________________",
-        "carcinoma_type_cannot_be_determined": "سرطان، لا يمكن تحديد النوع: _________________"
+  "template_id": "uterine_cervix_biopsy_v1",
+  "lang": "ar",
+  "title": "قالب التقرير: عنق الرحم، خزعة",
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "histologic_type": {
+        "label": "النوع النسيجي",
+        "options": [
+          "سرطان الخلايا الحرشفية، مرتبط بفيروس HPV",
+          "سرطان الخلايا الحرشفية، غير مرتبط بفيروس HPV",
+          "سرطان الخلايا الحرشفية، غير محدد خلاف ذلك (مقبول عندما لا يتوفر اختبار p16 أو HPV)",
+          "سرطان غدي، غير محدد خلاف ذلك",
+          "سرطان غدي، مرتبط بفيروس HPV",
+          "سرطان غدي، غير مرتبط بفيروس HPV، غير محدد خلاف ذلك",
+          "سرطان غدي، غير مرتبط بفيروس HPV، من النمط المعدي",
+          "سرطان غدي، غير مرتبط بفيروس HPV، من نوع الخلايا الصافية",
+          "سرطان غدي، غير مرتبط بفيروس HPV، من النمط الميزونفري",
+          "سرطان غدي شبيه ببطانة الرحم، غير محدد خلاف ذلك",
+          "سرطان ساركومي",
+          "سرطان غدي حرشفي",
+          "سرطان غدي قاعدي",
+          "سرطان مخاطي بشروي",
+          "سرطان غير قابل للتصنيف (سرطان غير متمايز)",
+          "ورم عصبي صماوي، غير محدد خلاف ذلك",
+          "ورم عصبي صماوي، الدرجة 1",
+          "ورم عصبي صماوي، الدرجة 2",
+          "سرطان عصبي صماوي صغير الخلايا، عالي الدرجة",
+          "سرطان عصبي صماوي كبير الخلايا، عالي الدرجة",
+          "سرطان عصبي صماوي، غير محدد خلاف ذلك",
+          "سرطان مختلط عصبي صماوي وغير عصبي صماوي",
+          "نوع نسيجي آخر غير مدرج (حدد): _________________",
+          "سرطان، لا يمكن تحديد النوع: _________________"
+        ],
+        "other_specify": "أخرى، حدد",
+        "cannot_be_determined_specify": "لا يمكن التحديد، حدد",
+        "comment": "ملاحظة"
       },
-      "comment": "تعليق على النوع النسيجي: _________________"
-    },
-    "histologic_grade": {
-      "label": "الدرجة النسيجية",
-      "options": {
-        "g1_well_differentiated": "G1، جيد التمايز",
-        "g2_moderately_differentiated": "G2، متوسط التمايز",
-        "g3_poorly_differentiated": "G3، ضعيف التمايز",
-        "gx_cannot_be_assessed": "GX، لا يمكن تقييمه: _________________",
-        "not_applicable": "لا ينطبق: _________________"
+      "histologic_grade": {
+        "label": "الدرجة النسيجية",
+        "options": [
+          "G1، جيد التمايز",
+          "G2، متوسط التمايز",
+          "G3، ضعيف التمايز",
+          "GX، لا يمكن تقييمه: _________________",
+          "لا ينطبق: _________________"
+        ],
+        "cannot_be_assessed_specify": "لا يمكن التقييم، حدد",
+        "not_applicable_specify": "غير قابل للتطبيق، حدد"
+      },
+      "lymphovascular_invasion": {
+        "equivocal_explain": "غامض، اشرح",
+        "cannot_be_determined_specify": "لا يمكن التحديد، حدد"
       }
-    },
-    "lymphatic_or_vascular_invasion": {
-      "label": "الغزو اللمفاوي و / أو الوعائي",
-      "options": {
-        "not_identified": "غير مُحدد",
-        "present": "موجود",
-        "equivocal": "ملتبس (اشرح): _________________",
-        "cannot_be_determined": "لا يمكن تحديده: _________________"
-      }
-    },
-    "additional_findings": {
-      "label": "نتائج إضافية",
-      "field_label": "نتائج إضافية (اختر كل ما ينطبق)",
-      "options": {
-        "none_identified": "لم تُحدد أي نتائج",
-        "low_grade_squamous_intraepithelial_lesion_cin_1": "آفة حرشفية داخل الظهارة منخفضة الدرجة (CIN 1)",
-        "high_grade_squamous_intraepithelial_lesion_cin_2_or_3": "آفة حرشفية داخل الظهارة عالية الدرجة (CIN 2 أو 3)",
-        "endocervical_adenocarcinoma_in_situ": "سرطان غدي موضعي في باطن عنق الرحم",
-        "inflammation": "التهاب",
-        "other": "أخرى (حدد): _________________"
+    }
+  },
+  "additional_findings": {
+    "label": "نتائج إضافية",
+    "fields": {
+      "findings": {
+        "label": "نتائج إضافية (اختر كل ما ينطبق)",
+        "options": [
+          "لم تُحدد أي نتائج",
+          "آفة حرشفية داخل الظهارة منخفضة الدرجة (CIN 1)",
+          "آفة حرشفية داخل الظهارة عالية الدرجة (CIN 2 أو 3)",
+          "سرطان غدي موضعي في باطن عنق الرحم",
+          "التهاب",
+          "أخرى (حدد): _________________"
+        ],
+        "other_specify": "أخرى، حدد"
       }
     }
   }

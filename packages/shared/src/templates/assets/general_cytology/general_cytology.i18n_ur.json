@@ -7,7 +7,6 @@
     "preparation_methods": "تیاری کے طریقے",
     "microscopic_description": "خردبینی تفصیل",
     "diagnostic_category": "تشخیصی زمرہ",
-    "final_interpretation": "حتمی تشریح",
     "favor_diagnosis": "اگر مثبت / مشتبہ / نیوپلاسٹک ہو تو غالب امکان",
     "ancillary_studies": "اضافی مطالعات (اگر کیے گئے ہوں)",
     "comment_recommendation": "تبصرہ / سفارش"
@@ -17,7 +16,6 @@
     "site": "مقام",
     "laterality": "سمت / جانب (اگر قابل اطلاق ہو)",
     "procedure_guidance": "طریقۂ کار کی رہنمائی",
-    "clinical_history_indication": "کلینیکل ہسٹری / وجہ",
     "adequacy_status": "نمونے کی کفایت",
     "unsatisfactory_reason": "وجہ (اگر غیر مناسب ہو)",
     "preparation_methods_used": "تیاری کے طریقے",
@@ -26,7 +24,6 @@
     "microscopic_description_text": "خردبینی تفصیل (آزاد متن)",
     "diagnostic_category": "تشخیصی زمرہ",
     "diagnostic_category_other": "دیگر",
-    "final_interpretation_text": "حتمی تشریح",
     "favor_diagnosis_options": "اگر مثبت / مشتبہ / نیوپلاسٹک ہو تو غالب امکان",
     "favor_diagnosis_other": "دیگر",
     "cell_block_findings": "سیل بلاک کے نتائج",

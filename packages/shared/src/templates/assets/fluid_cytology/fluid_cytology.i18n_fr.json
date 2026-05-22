@@ -7,7 +7,6 @@
     "adequacy": "Adéquation",
     "diagnostic_category": "Catégorie diagnostique",
     "microscopic_description": "Description microscopique",
-    "final_interpretation": "Interprétation finale",
     "malignant_suspicious_favor": "En cas de malignité / suspicion, en faveur de",
     "ancillary_studies": "Études complémentaires (si réalisées)",
     "comment": "Commentaire"
@@ -22,8 +21,6 @@
     "adequacy_status": "Adéquation",
     "diagnostic_category": "Catégorie diagnostique",
     "microscopic_description_brief": "Description microscopique (brève)",
-    "final_interpretation_category": "Catégorie",
-    "final_interpretation_text": "Interprétation finale",
     "favor_diagnosis": "En cas de malignité / suspicion, en faveur de",
     "favor_other": "Autre",
     "cell_block_immunocytochemistry": "Immunocytochemie sur cell block",

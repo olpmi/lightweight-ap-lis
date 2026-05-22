@@ -9,7 +9,6 @@
     "adequacy": "الكفاية",
     "diagnostic_category": "الفئة التشخيصية",
     "microscopic_description": "الوصف المجهري",
-    "final_interpretation": "التفسير النهائي",
     "malignant_suspicious_favor": "إذا كان خبيثًا / مشتبهًا به، يُرجَّح",
     "ancillary_studies": "الدراسات المساندة (إن أُجريت)",
     "comment": "التعليق"
@@ -24,8 +23,6 @@
     "adequacy_status": "الكفاية",
     "diagnostic_category": "الفئة التشخيصية",
     "microscopic_description_brief": "الوصف المجهري (مختصر)",
-    "final_interpretation_category": "الفئة",
-    "final_interpretation_text": "التفسير النهائي",
     "favor_diagnosis": "إذا كان خبيثًا / مشتبهًا به، يُرجَّح",
     "favor_other": "أخرى",
     "cell_block_immunocytochemistry": "الكيمياء المناعية الخلوية على البلوك الخلوي",

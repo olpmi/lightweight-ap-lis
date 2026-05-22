@@ -1,189 +1,233 @@
 {
-  "template.language": "ur",
-  "template.id": "stomach_tumor_resection",
-  "template.title": "رپورٹنگ ٹیمپلیٹ – معدے کی رسولی، ریسیکشن",
-  "template.protocolPostingDate": "پروٹوکول پوسٹنگ تاریخ: مارچ 2023",
-  "template.standards": "معیار: AJCC-UICC 8",
-  "section.specimen": "نمونہ",
-  "section.tumor": "رسولی",
-  "section.margins": "مارجنز",
-  "section.regionalLymphNodes": "علاقائی لمف نوڈز",
-  "section.distantMetastasis": "دور دراز میٹاسٹاسس",
-  "section.pTNM": "pTNM درجہ بندی (AJCC آٹھواں ایڈیشن)",
-  "section.additionalFindings": "اضافی نتائج",
-  "common.notApplicable": "لاگو نہیں",
-  "common.notSpecified": "بیان نہیں کیا گیا",
-  "common.cannotBeDetermined": "تعین نہیں کیا جا سکتا",
-  "common.cannotBeDeterminedExplain": "تعین نہیں کیا جا سکتا (وضاحت کریں)",
-  "common.otherSpecify": "دیگر (وضاحت کریں)",
-  "common.present": "موجود",
-  "common.notIdentified": "شناخت نہیں ہوا",
-  "common.noneIdentified": "کوئی شناخت نہیں ہوا",
-  "common.proximal": "قریبی",
-  "common.distal": "بعیدی",
-  "common.mucosal": "میوکوزل",
-  "common.deep": "گہرا",
-  "common.exactNumberSpecify": "درست تعداد (بیان کریں)",
-  "common.atLeastSpecify": "کم از کم (بیان کریں)",
-  "specimen.procedure.label": "طریقہ کار",
-  "specimen.procedure.endoscopicResection": "اینڈوسکوپک ریسیکشن",
-  "specimen.procedure.partialGastrectomyProximal": "جزوی گیسٹریکٹومی، قریبی",
-  "specimen.procedure.partialGastrectomyDistal": "جزوی گیسٹریکٹومی، بعیدی",
-  "specimen.procedure.partialGastrectomyOther": "جزوی گیسٹریکٹومی، دیگر (وضاحت کریں)",
-  "specimen.procedure.totalGastrectomy": "مکمل گیسٹریکٹومی",
-  "tumor.site.label": "رسولی کا مقام (تمام متعلقہ منتخب کریں)",
-  "tumor.site.note.egj": "اگر رسولی EGJ میں شامل ہو اور رسولی کا وسط قریبی معدے میں 2 cm یا اس سے کم ہو تو غذائی نالی والی چیک لسٹ استعمال کریں۔",
-  "tumor.site.cardia": "کارڈیا",
-  "tumor.site.fundus": "فنڈس",
-  "tumor.site.anteriorWall": "اگلی دیوار",
-  "tumor.site.posteriorWall": "پچھلی دیوار",
-  "tumor.site.body": "جسم",
-  "tumor.site.lesserCurvature": "چھوٹا خم",
-  "tumor.site.greaterCurvature": "بڑا خم",
-  "tumor.site.antrum": "اینٹرم",
-  "tumor.site.pylorus": "پائلورس",
-  "tumor.histologicType.label": "ہسٹولوجک قسم",
-  "tumor.histologicType.adenocarcinoma": "ایڈینوکارسینوما",
-  "tumor.histologicType.adenocarcinomaClassification.label": "ایڈینوکارسینوما کی درجہ بندی (WHO کے مطابق)",
-  "tumor.histologicType.tubularAdenocarcinoma": "ٹیوبلر ایڈینوکارسینوما",
-  "tumor.histologicType.poorlyCohesiveCarcinoma": "کم چپکاؤ والا کارسینوما (signet-ring cell carcinoma اور دیگر اقسام سمیت)",
-  "tumor.histologicType.mucinousAdenocarcinoma": "میوسینس ایڈینوکارسینوما (50% سے زیادہ میوسینس)",
-  "tumor.histologicType.papillaryAdenocarcinoma": "پیپلری ایڈینوکارسینوما",
-  "tumor.histologicType.mixedCarcinoma": "مخلوط کارسینوما (غدودی tubular/papillary اور signet-ring/کم چپکاؤ والے خلوی اجزاء کا مرکب)",
-  "tumor.laurenClassification.label": "ایڈینوکارسینوما کی Lauren درجہ بندی",
-  "tumor.laurenClassification.intestinal": "آنتی قسم",
-  "tumor.laurenClassification.diffuse": "ڈفیوز قسم (signet-ring carcinoma سمیت، 50% سے زیادہ signet-ring cells)",
-  "tumor.laurenClassification.mixed": "مخلوط (آنتی اور ڈفیوز تقریباً برابر مقدار میں)",
-  "tumor.histologicType.hepatoidAdenocarcinoma": "ہیپاٹائڈ ایڈینوکارسینوما",
-  "tumor.histologicType.carcinomaWithLymphoidStroma": "(ایڈینو)کارسینوما مع لمفوئڈ اسٹروما",
-  "tumor.histologicType.micropapillaryAdenocarcinoma": "مائیکروپیپلری ایڈینوکارسینوما",
-  "tumor.histologicType.fundicGlandType": "فنڈک گلینڈ قسم کا ایڈینوکارسینوما",
-  "tumor.histologicType.squamousCellCarcinoma": "اسکویمس سیل کارسینوما",
-  "tumor.histologicType.adenosquamousCarcinoma": "ایڈینو اسکویمس کارسینوما",
-  "tumor.histologicType.undifferentiatedAnaplasticCarcinoma": "غیر متمايز (اناپلاسٹک) کارسینوما",
-  "tumor.histologicType.gastroblastoma": "گیسٹروبلاسٹوما",
-  "tumor.histologicType.largeCellNeuroendocrineCarcinoma": "بڑے خلیوں کا نیورواینڈوکرائن کارسینوما",
-  "tumor.histologicType.smallCellNeuroendocrineCarcinoma": "چھوٹے خلیوں کا نیورواینڈوکرائن کارسینوما",
-  "tumor.histologicType.neuroendocrineCarcinomaPoorlyDifferentiated": "نیورواینڈوکرائن کارسینوما (کم متمايز)",
-  "tumor.histologicType.mixedAdenocarcinomaNeuroendocrineCarcinoma": "مخلوط ایڈینوکارسینوما-نیورواینڈوکرائن کارسینوما (چھوٹے یا بڑے خلیوں والا)",
-  "tumor.histologicType.mixedAdenocarcinomaNeuroendocrineTumor": "مخلوط ایڈینوکارسینوما-نیورواینڈوکرائن رسولی",
-  "tumor.histologicType.otherNotListed": "دیگر غیر درج ہسٹولوجک قسم (وضاحت کریں)",
-  "tumor.histologicType.note.largeSmallCell": "یہ اختیار صرف اس صورت میں منتخب کریں جب بڑے یا چھوٹے خلیوں کی قسم متعین نہ ہو سکے۔",
-  "tumor.histologicGrade.label": "ہسٹولوجک گریڈ",
-  "tumor.histologicGrade.g1": "G1، اچھی طرح متمايز",
-  "tumor.histologicGrade.g2": "G2، معتدل متمايز",
-  "tumor.histologicGrade.g3": "G3، کم متمايز، غیر متمايز",
-  "tumor.histologicGrade.gx": "GX، اندازہ نہیں لگایا جا سکتا",
-  "tumor.size.label": "رسولی کا سائز",
-  "tumor.size.greatestDimensionCm": "سب سے بڑی جہت سینٹی میٹر (cm) میں",
-  "tumor.size.additionalDimensionCm": "اضافی جہت سینٹی میٹر (cm) میں",
-  "tumor.extent.label": "رسولی کا پھیلاؤ",
-  "tumor.extent.cis": "کارسینوما اِن سِٹو (lamina propria میں حملہ کے بغیر intraepithelial رسولی، high-grade dysplasia)",
-  "tumor.extent.laminaPropria": "lamina propria میں حملہ کرتا ہے",
-  "tumor.extent.muscularisMucosae": "muscularis mucosae میں حملہ کرتا ہے",
-  "tumor.extent.submucosa": "submucosa میں حملہ کرتا ہے",
-  "tumor.extent.muscularisPropria": "muscularis propria میں حملہ کرتا ہے",
-  "tumor.extent.subserosalConnectiveTissue": "visceral peritoneum یا ملحقہ ساختوں میں حملہ کے بغیر subserosal connective tissue میں داخل ہوتا ہے",
-  "tumor.extent.serosa": "serosa (visceral peritoneum) میں حملہ کرتا ہے",
-  "tumor.extent.directAdjacent": "ملحقہ ساختوں یا اعضاء میں براہ راست حملہ کرتا ہے",
-  "tumor.extent.note.intramural": "duodenum یا esophagus تک intramural extension کو ملحقہ ساخت کا حملہ نہیں سمجھا جاتا، بلکہ ان مقامات میں سب سے زیادہ گہرے حملہ کے مطابق درجہ بند کیا جاتا ہے۔",
-  "tumor.extent.spleen": "تلی",
-  "tumor.extent.transverseColon": "عرضی کولون",
-  "tumor.extent.liver": "جگر",
-  "tumor.extent.diaphragm": "ڈایافرام",
-  "tumor.extent.pancreas": "لبلبہ",
-  "tumor.extent.abdominalWall": "پیٹ کی دیوار",
-  "tumor.extent.adrenalGland": "ایڈرینل گلینڈ",
-  "tumor.extent.kidney": "گردہ",
-  "tumor.extent.smallIntestine": "چھوٹی آنت",
-  "tumor.extent.retroperitoneum": "ریٹروپیریٹونیم",
-  "tumor.extent.noPrimaryTumor": "بنیادی رسولی کا کوئی ثبوت نہیں",
-  "tumor.treatmentEffect.label": "علاج کا اثر",
-  "tumor.treatmentEffect.noKnownPresurgicalTherapy": "سرجری سے پہلے کوئی معلوم علاج نہیں",
-  "tumor.treatmentEffect.completeResponse": "موجود، قابلِ حیات سرطان کے خلیات نہیں (مکمل جواب، اسکور 0)",
-  "tumor.treatmentEffect.nearCompleteResponse": "موجود، سرطان کے اکیلے خلیات یا نایاب چھوٹے گروہ (تقریباً مکمل جواب، اسکور 1)",
-  "tumor.treatmentEffect.partialResponse": "موجود، بقایا سرطان میں واضح رجعت، مگر اکیلے خلیات یا نایاب چھوٹے گروہوں سے زیادہ (جزوی جواب، اسکور 2)",
-  "tumor.treatmentEffect.presentNos": "موجود (مزید وضاحت نہیں)",
-  "tumor.treatmentEffect.poorNoResponse": "غائب، وسیع بقایا سرطان اور واضح رجعت نہیں (کمزور یا کوئی جواب نہیں، اسکور 3)",
-  "tumor.lymphaticVascularInvasion.label": "لمفیٹک اور/یا عروقی حملہ",
-  "tumor.perineuralInvasion.label": "پیری نیورل حملہ",
-  "margins.invasive.status.label": "حملہ آور کارسینوما کے لیے مارجن کی حالت",
-  "margins.invasive.allNegative": "تمام مارجنز حملہ آور کارسینوما سے پاک ہیں",
-  "margins.invasive.closest.label": "حملہ آور کارسینوما کے قریب ترین مارجنز (تمام متعلقہ منتخب کریں)",
-  "margins.invasive.closest.omentalRadial": "اومینٹل (ریڈیل)",
-  "margins.invasive.distance.label": "حملہ آور کارسینوما سے قریب ترین مارجن تک فاصلہ",
-  "margins.distance.specifyCm": "سینٹی میٹر (cm) میں بیان کریں",
-  "margins.distance.exactCm": "درست فاصلہ cm میں",
-  "margins.distance.greaterThan1Cm": "1 cm سے زیادہ",
-  "margins.distance.specifyMm": "ملی میٹر (mm) میں بیان کریں",
-  "margins.distance.exactMm": "درست فاصلہ mm میں",
-  "margins.distance.greaterThan10Mm": "10 mm سے زیادہ",
-  "margins.distance.other": "دیگر",
-  "margins.invasive.presentAtMargin": "حملہ آور کارسینوما مارجن پر موجود ہے",
-  "margins.invasive.involved.label": "حملہ آور کارسینوما سے متاثرہ مارجنز (تمام متعلقہ منتخب کریں)",
-  "margins.invasive.involved.greaterOmental": "بڑا اومینٹل",
-  "margins.invasive.involved.lesserOmental": "چھوٹا اومینٹل",
-  "margins.dysplasia.status.label": "ڈسپلیزیا کے لیے مارجن کی حالت (تمام متعلقہ منتخب کریں)",
-  "margins.dysplasia.allNegative": "تمام مارجنز ڈسپلیزیا سے پاک ہیں",
-  "margins.dysplasia.cisAtMargin": "کارسینوما اِن سِٹو (high-grade dysplasia) مارجن پر موجود ہے",
-  "margins.dysplasia.cisInvolved.label": "کارسینوما اِن سِٹو سے متاثرہ مارجنز (تمام متعلقہ منتخب کریں)",
-  "margins.dysplasia.lowGradeAtMargin": "کم درجے کا ڈسپلیزیا مارجن پر موجود ہے",
-  "margins.dysplasia.lowGradeInvolved.label": "کم درجے کے ڈسپلیزیا سے متاثرہ مارجنز (تمام متعلقہ منتخب کریں)",
-  "margins.comment": "مارجن پر تبصرہ",
-  "nodes.status.label": "علاقائی لمف نوڈز کی حالت",
-  "nodes.status.notApplicableNoneSubmitted": "لاگو نہیں (کوئی علاقائی لمف نوڈ پیش یا دریافت نہیں ہوا)",
-  "nodes.status.present": "علاقائی لمف نوڈز موجود ہیں",
-  "nodes.status.allNegative": "تمام علاقائی لمف نوڈز رسولی سے پاک ہیں",
-  "nodes.status.tumorPresent": "رسولی علاقائی لمف نوڈز میں موجود ہے",
-  "nodes.numberWithTumor.label": "رسولی والے لمف نوڈز کی تعداد",
-  "nodes.numberExamined.label": "معائنہ شدہ لمف نوڈز کی تعداد",
-  "nodes.comment": "علاقائی لمف نوڈز پر تبصرہ",
-  "metastasis.distantSites.label": "دور دراز متاثرہ مقامات، اگر لاگو ہو (تمام متعلقہ منتخب کریں)",
-  "metastasis.nonRegionalNodes": "غیر علاقائی لمف نوڈز",
-  "metastasis.liver": "جگر",
-  "ptnm.note": "pT، pN، اور جب لاگو ہو pM کی رپورٹنگ رپورٹ جاری ہونے کے وقت پیتھالوجسٹ کو دستیاب معلومات پر مبنی ہے۔ AJCC کے مطابق، حتمی پیتھولوجک اسٹیج تمام متعلقہ معلومات کی بنیاد پر مقرر کرنا معالجِ معالج کی ذمہ داری ہے، جس میں یہ پیتھالوجی رپورٹ بھی شامل ہو سکتی ہے۔",
-  "ptnm.modified.label": "ترمیم شدہ درجہ بندی (صرف لاگو ہونے پر ضروری) (تمام متعلقہ منتخب کریں)",
-  "ptnm.modified.y": "y (neoadjuvant علاج کے بعد)",
-  "ptnm.modified.r": "r (دوبارہ آنا)",
-  "ptnm.pT.label": "pT زمرہ",
-  "ptnm.pT.notAssignedCannotDetermine": "pT تفویض نہیں کیا گیا (دستیاب پیتھولوجک معلومات کی بنیاد پر تعین نہیں کیا جا سکتا)",
-  "ptnm.pT.pT0": "pT0: بنیادی رسولی کا کوئی ثبوت نہیں",
-  "ptnm.pT.pTis": "pTis: کارسینوما اِن سِٹو: lamina propria کے حملہ کے بغیر intraepithelial رسولی، high-grade dysplasia",
-  "ptnm.pT.pT1": "pT1: رسولی lamina propria، muscularis mucosae یا submucosa میں حملہ کرتی ہے",
-  "ptnm.pT.pT1a": "pT1a: رسولی lamina propria یا muscularis mucosae میں حملہ کرتی ہے",
-  "ptnm.pT.pT1b": "pT1b: رسولی submucosa میں حملہ کرتی ہے",
-  "ptnm.pT.pT1CannotDetermine": "pT1 (ذیلی زمرہ متعین نہیں کیا جا سکتا)",
-  "ptnm.pT.pT2": "pT2: رسولی muscularis propria میں حملہ کرتی ہے",
-  "ptnm.pT.note.t3T4": "رسولی muscularis propria سے گزر کر gastrocolic یا gastrohepatic ligaments، یا بڑے/چھوٹے omentum تک پھیل سکتی ہے، ان ساختوں کو ڈھانپنے والے visceral peritoneum کے سوراخ کے بغیر۔ اس صورت میں رسولی T3 ہے۔ اگر visceral peritoneum میں سوراخ ہو تو رسولی T4 ہے۔",
-  "ptnm.pT.note.adjacentStructures": "معدے کی ملحقہ ساختوں میں تلی، عرضی کولون، جگر، ڈایافرام، لبلبہ، پیٹ کی دیوار، ایڈرینل گلینڈ، گردہ، چھوٹی آنت، اور retroperitoneum شامل ہیں۔",
-  "ptnm.pT.note.intramural": "duodenum یا esophagus تک intramural extension کو ملحقہ ساخت کا حملہ نہیں سمجھا جاتا، بلکہ ان مقامات میں سب سے زیادہ گہرے حملہ کے مطابق درجہ بند کیا جاتا ہے۔",
-  "ptnm.pT.pT3": "pT3: رسولی visceral peritoneum یا ملحقہ ساختوں کے حملہ کے بغیر subserosal connective tissue میں داخل ہوتی ہے",
-  "ptnm.pT.pT4": "pT4: رسولی serosa (visceral peritoneum) یا ملحقہ ساختوں میں حملہ کرتی ہے",
-  "ptnm.pT.pT4a": "pT4a: رسولی serosa (visceral peritoneum) میں حملہ کرتی ہے",
-  "ptnm.pT.pT4b": "pT4b: رسولی ملحقہ ساختوں/اعضاء میں حملہ کرتی ہے",
-  "ptnm.pT.pT4CannotDetermine": "pT4 (ذیلی زمرہ متعین نہیں کیا جا سکتا)",
-  "ptnm.tSuffix.label": "T لاحقہ (صرف لاگو ہونے پر ضروری)",
-  "ptnm.tSuffix.m": "(m) ایک ہی عضو میں متعدد ہم وقت بنیادی رسولیاں",
-  "ptnm.pN.label": "pN زمرہ",
-  "ptnm.pN.note.deposits": "گیسٹرک کارسینوما سے ملحق subserosal fat میں metastatic tumor deposits، جن میں باقی لمف نوڈ ٹشو کا ثبوت نہ ہو، گیسٹرک سرطان staging کے لیے علاقائی لمف نوڈ میٹاسٹاسس سمجھے جاتے ہیں۔",
-  "ptnm.pN.notAssignedNoNodes": "pN تفویض نہیں کیا گیا (کوئی نوڈ پیش یا دریافت نہیں ہوا)",
-  "ptnm.pN.notAssignedCannotDetermine": "pN تفویض نہیں کیا گیا (دستیاب پیتھولوجک معلومات کی بنیاد پر تعین نہیں کیا جا سکتا)",
-  "ptnm.pN.pN0": "pN0: علاقائی لمف نوڈ میٹاسٹاسس نہیں",
-  "ptnm.pN.pN1": "pN1: ایک یا دو علاقائی لمف نوڈز میں میٹاسٹاسس",
-  "ptnm.pN.pN2": "pN2: تین سے چھ علاقائی لمف نوڈز میں میٹاسٹاسس",
-  "ptnm.pN.pN3": "pN3: سات یا زیادہ علاقائی لمف نوڈز میں میٹاسٹاسس",
-  "ptnm.pN.pN3a": "pN3a: سات سے 15 علاقائی لمف نوڈز میں میٹاسٹاسس",
-  "ptnm.pN.pN3b": "pN3b: 16 یا زیادہ علاقائی لمف نوڈز میں میٹاسٹاسس",
-  "ptnm.pN.pN3CannotDetermine": "pN3 (ذیلی زمرہ متعین نہیں کیا جا سکتا)",
-  "ptnm.pM.label": "pM زمرہ (صرف پیتھولوجی سے تصدیق ہونے پر ضروری)",
-  "ptnm.pM.notApplicable": "لاگو نہیں - پیش کردہ نمونوں سے pM کا تعین نہیں کیا جا سکتا",
-  "ptnm.pM.pM1": "pM1: دور دراز میٹاسٹاسس",
-  "additionalFindings.label": "اضافی نتائج (تمام متعلقہ منتخب کریں)",
-  "additionalFindings.intestinalMetaplasia": "آنتی میٹاپلیزیا",
-  "additionalFindings.lowGradeDysplasia": "کم درجے کا ڈسپلیزیا",
-  "additionalFindings.highGradeDysplasia": "اعلیٰ درجے کا ڈسپلیزیا",
-  "additionalFindings.chronicGastritis": "دائمی گیسٹرائٹس",
-  "additionalFindings.helicobacterPyloriPresent": "Helicobacter pylori موجود ہے",
-  "additionalFindings.polyps": "پولپ/پولپس (قسم/اقسام)",
-  "additionalFindings.autoimmuneAtrophicChronicGastritis": "آٹو امیون اٹروفک دائمی گیسٹرائٹس"
+  "template_id": "stomach_tumor_resection_v1",
+  "lang": "ur",
+  "title": "رپورٹنگ ٹیمپلیٹ – معدے کی رسولی، ریسیکشن",
+  "specimen": {
+    "label": "نمونہ",
+    "fields": {
+      "procedure": {
+        "label": "طریقہ کار",
+        "options": [
+          "جزوی گیسٹریکٹومی، دیگر (وضاحت کریں)",
+          "اینڈوسکوپک ریسیکشن",
+          "جزوی گیسٹریکٹومی، قریبی",
+          "جزوی گیسٹریکٹومی، بعیدی",
+          "مکمل گیسٹریکٹومی"
+        ]
+      }
+    }
+  },
+  "tumor": {
+    "label": "رسولی",
+    "fields": {
+      "tumor_site": {
+        "label": "رسولی کا مقام (تمام متعلقہ منتخب کریں)",
+        "options": [
+          "کارڈیا",
+          "فنڈس",
+          "جسم",
+          "اینٹرم",
+          "پائلورس",
+          "اگلی دیوار",
+          "پچھلی دیوار",
+          "چھوٹا خم",
+          "بڑا خم"
+        ]
+      },
+      "histologic_type": {
+        "label": "ہسٹولوجک قسم",
+        "options": [
+          "ایڈینوکارسینوما",
+          "ٹیوبلر ایڈینوکارسینوما",
+          "کم چپکاؤ والا کارسینوما (signet-ring cell carcinoma اور دیگر اقسام سمیت)",
+          "میوسینس ایڈینوکارسینوما (50% سے زیادہ میوسینس)",
+          "پیپلری ایڈینوکارسینوما",
+          "مخلوط کارسینوما (غدودی tubular/papillary اور signet-ring/کم چپکاؤ والے خلوی اجزاء کا مرکب)",
+          "ہیپاٹائڈ ایڈینوکارسینوما",
+          "(ایڈینو)کارسینوما مع لمفوئڈ اسٹروما",
+          "مائیکروپیپلری ایڈینوکارسینوما",
+          "فنڈک گلینڈ قسم کا ایڈینوکارسینوما",
+          "اسکویمس سیل کارسینوما",
+          "ایڈینو اسکویمس کارسینوما",
+          "غیر متمايز (اناپلاسٹک) کارسینوما",
+          "گیسٹروبلاسٹوما",
+          "بڑے خلیوں کا نیورواینڈوکرائن کارسینوما",
+          "چھوٹے خلیوں کا نیورواینڈوکرائن کارسینوما",
+          "نیورواینڈوکرائن کارسینوما (کم متمايز)",
+          "مخلوط ایڈینوکارسینوما-نیورواینڈوکرائن کارسینوما (چھوٹے یا بڑے خلیوں والا)",
+          "مخلوط ایڈینوکارسینوما-نیورواینڈوکرائن رسولی",
+          "دیگر غیر درج ہسٹولوجک قسم (وضاحت کریں)"
+        ]
+      },
+      "lauren_classification": {
+        "label": "ایڈینوکارسینوما کی Lauren درجہ بندی",
+        "options": [
+          "مخلوط (آنتی اور ڈفیوز تقریباً برابر مقدار میں)",
+          "آنتی قسم",
+          "ڈفیوز قسم (signet-ring carcinoma سمیت، 50% سے زیادہ signet-ring cells)"
+        ]
+      },
+      "histologic_grade": {
+        "label": "ہسٹولوجک گریڈ",
+        "options": [
+          "G1، اچھی طرح متمايز",
+          "G2، معتدل متمايز",
+          "G3، کم متمايز، غیر متمايز",
+          "GX، اندازہ نہیں لگایا جا سکتا"
+        ]
+      },
+      "tumor_size": {
+        "label": "رسولی کا سائز"
+      },
+      "tumor_extent": {
+        "label": "رسولی کا پھیلاؤ",
+        "options": [
+          "کارسینوما اِن سِٹو (lamina propria میں حملہ کے بغیر intraepithelial رسولی، high-grade dysplasia)",
+          "lamina propria میں حملہ کرتا ہے",
+          "muscularis mucosae میں حملہ کرتا ہے",
+          "submucosa میں حملہ کرتا ہے",
+          "muscularis propria میں حملہ کرتا ہے",
+          "visceral peritoneum یا ملحقہ ساختوں میں حملہ کے بغیر subserosal connective tissue میں داخل ہوتا ہے",
+          "serosa (visceral peritoneum) میں حملہ کرتا ہے",
+          "ملحقہ ساختوں یا اعضاء میں براہ راست حملہ کرتا ہے",
+          "تلی",
+          "عرضی کولون",
+          "جگر",
+          "ڈایافرام",
+          "لبلبہ",
+          "پیٹ کی دیوار",
+          "ایڈرینل گلینڈ",
+          "گردہ",
+          "چھوٹی آنت",
+          "ریٹروپیریٹونیم",
+          "بنیادی رسولی کا کوئی ثبوت نہیں"
+        ]
+      },
+      "treatment_effect": {
+        "label": "علاج کا اثر",
+        "options": [
+          "سرجری سے پہلے کوئی معلوم علاج نہیں",
+          "موجود، قابلِ حیات سرطان کے خلیات نہیں (مکمل جواب، اسکور 0)",
+          "موجود، سرطان کے اکیلے خلیات یا نایاب چھوٹے گروہ (تقریباً مکمل جواب، اسکور 1)",
+          "موجود، بقایا سرطان میں واضح رجعت، مگر اکیلے خلیات یا نایاب چھوٹے گروہوں سے زیادہ (جزوی جواب، اسکور 2)",
+          "موجود (مزید وضاحت نہیں)",
+          "غائب، وسیع بقایا سرطان اور واضح رجعت نہیں (کمزور یا کوئی جواب نہیں، اسکور 3)"
+        ]
+      },
+      "lymphovascular_invasion": {
+        "label": "لمفیٹک اور/یا عروقی حملہ"
+      },
+      "perineural_invasion": {
+        "label": "پیری نیورل حملہ"
+      },
+      "adjacent_structures": {}
+    }
+  },
+  "margins": {
+    "label": "مارجنز",
+    "fields": {
+      "margin_status_invasive": {
+        "label": "حملہ آور کارسینوما کے لیے مارجن کی حالت",
+        "options": [
+          "تمام مارجنز حملہ آور کارسینوما سے پاک ہیں",
+          "حملہ آور کارسینوما مارجن پر موجود ہے"
+        ]
+      },
+      "closest_margins": {
+        "label": "حملہ آور کارسینوما کے قریب ترین مارجنز (تمام متعلقہ منتخب کریں)",
+        "options": [
+          "اومینٹل (ریڈیل)",
+          "تمام مارجنز حملہ آور کارسینوما سے پاک ہیں",
+          "حملہ آور کارسینوما مارجن پر موجود ہے"
+        ]
+      },
+      "distance_to_closest_margin": {
+        "label": "حملہ آور کارسینوما سے قریب ترین مارجن تک فاصلہ"
+      },
+      "margin_status_dysplasia": {
+        "label": "ڈسپلیزیا کے لیے مارجن کی حالت (تمام متعلقہ منتخب کریں)",
+        "options": [
+          "تمام مارجنز ڈسپلیزیا سے پاک ہیں",
+          "کارسینوما اِن سِٹو (high-grade dysplasia) مارجن پر موجود ہے",
+          "کم درجے کا ڈسپلیزیا مارجن پر موجود ہے"
+        ]
+      },
+      "margin_comment": {
+        "label": "مارجن پر تبصرہ"
+      }
+    }
+  },
+  "regional_lymph_nodes": {
+    "label": "علاقائی لمف نوڈز",
+    "fields": {
+      "status": {
+        "label": "علاقائی لمف نوڈز کی حالت",
+        "options": [
+          "لاگو نہیں (کوئی علاقائی لمف نوڈ پیش یا دریافت نہیں ہوا)",
+          "علاقائی لمف نوڈز موجود ہیں",
+          "تمام علاقائی لمف نوڈز رسولی سے پاک ہیں",
+          "رسولی علاقائی لمف نوڈز میں موجود ہے"
+        ]
+      },
+      "number_with_tumor": {
+        "label": "رسولی والے لمف نوڈز کی تعداد"
+      },
+      "number_examined": {
+        "label": "معائنہ شدہ لمف نوڈز کی تعداد"
+      },
+      "comment": {
+        "label": "علاقائی لمف نوڈز پر تبصرہ"
+      }
+    }
+  },
+  "distant_metastasis": {
+    "label": "دور دراز میٹاسٹاسس",
+    "fields": {
+      "sites": {
+        "label": "دور دراز متاثرہ مقامات، اگر لاگو ہو (تمام متعلقہ منتخب کریں)",
+        "options": [
+          "جگر",
+          "غیر علاقائی لمف نوڈز"
+        ]
+      }
+    }
+  },
+  "ptnm": {
+    "label": "pTNM درجہ بندی (AJCC آٹھواں ایڈیشن)",
+    "fields": {
+      "modified_classification": {
+        "label": "ترمیم شدہ درجہ بندی (صرف لاگو ہونے پر ضروری) (تمام متعلقہ منتخب کریں)",
+        "options": [
+          "y (neoadjuvant علاج کے بعد)",
+          "r (دوبارہ آنا)"
+        ]
+      },
+      "T_suffix": {
+        "label": "T لاحقہ (صرف لاگو ہونے پر ضروری)",
+        "options": [
+          "(m) ایک ہی عضو میں متعدد ہم وقت بنیادی رسولیاں"
+        ]
+      },
+      "pT_category": {},
+      "pN_category": {},
+      "pM_category": {}
+    }
+  },
+  "additional_findings": {
+    "label": "اضافی نتائج",
+    "fields": {
+      "findings": {
+        "label": "اضافی نتائج (تمام متعلقہ منتخب کریں)",
+        "options": [
+          "آنتی میٹاپلیزیا",
+          "کم درجے کا ڈسپلیزیا",
+          "اعلیٰ درجے کا ڈسپلیزیا",
+          "دائمی گیسٹرائٹس",
+          "Helicobacter pylori موجود ہے",
+          "پولپ/پولپس (قسم/اقسام)",
+          "آٹو امیون اٹروفک دائمی گیسٹرائٹس"
+        ]
+      }
+    }
+  }
 }

@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { APP_LANGUAGE_CODES } from '../templates/index.js';
+import { REPORT_TEMPLATE_TYPES } from '../types/index.js';
 
 const appLanguageSchema = z.enum(APP_LANGUAGE_CODES);
 
@@ -92,6 +93,19 @@ export const reactivateOrderSchema = z.object({
   reactivationReason: z.string().min(1, 'Explanation is required').optional(),
 });
 
+export const createReportTemplateSchema = z.object({
+  templateName: z.string().min(1, 'Template name is required').max(255),
+  type: z.enum(REPORT_TEMPLATE_TYPES),
+  templateText: z.string().optional(),
+});
+
+export const updateReportTemplateSchema = z.object({
+  templateName: z.string().min(1).max(255).optional(),
+  type: z.enum(REPORT_TEMPLATE_TYPES).optional(),
+  templateText: z.string().optional(),
+  isActive: z.boolean().optional(),
+});
+
 export const querySchema = z.object({
   orderId: z.string().optional(),
   patientId: z.string().optional(),
@@ -108,4 +122,6 @@ export type CreateSlidesInput = z.infer<typeof createSlidesSchema>;
 export type CreateDraftReportInput = z.infer<typeof createDraftReportSchema>;
 export type SignOutReportInput = z.infer<typeof signOutReportSchema>;
 export type ReactivateOrderInput = z.infer<typeof reactivateOrderSchema>;
+export type CreateReportTemplateInput = z.infer<typeof createReportTemplateSchema>;
+export type UpdateReportTemplateInput = z.infer<typeof updateReportTemplateSchema>;
 export type QueryInput = z.infer<typeof querySchema>;

@@ -9,7 +9,6 @@
     "preparation_methods": "طرق التحضير",
     "microscopic_description": "الوصف المجهري",
     "diagnostic_category": "الفئة التشخيصية",
-    "final_interpretation": "التفسير النهائي",
     "favor_diagnosis": "إذا كانت النتيجة إيجابية / مشتبهًا بها / ورمية، يُرجَّح",
     "ancillary_studies": "الدراسات المساندة (إن أُجريت)",
     "comment_recommendation": "التعليق / التوصية"
@@ -19,7 +18,6 @@
     "site": "الموقع",
     "laterality": "الجهة (إن انطبق)",
     "procedure_guidance": "توجيه الإجراء",
-    "clinical_history_indication": "القصة السريرية / الاستطباب",
     "adequacy_status": "كفاية العينة",
     "unsatisfactory_reason": "السبب (إذا كانت غير مرضية)",
     "preparation_methods_used": "طرق التحضير",
@@ -28,7 +26,6 @@
     "microscopic_description_text": "الوصف المجهري (نص حر)",
     "diagnostic_category": "الفئة التشخيصية",
     "diagnostic_category_other": "أخرى",
-    "final_interpretation_text": "التفسير النهائي",
     "favor_diagnosis_options": "إذا كانت النتيجة إيجابية / مشتبهًا بها / ورمية، يُرجَّح",
     "favor_diagnosis_other": "أخرى",
     "cell_block_findings": "نتائج البلوك الخلوي",

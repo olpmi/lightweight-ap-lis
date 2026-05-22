@@ -2,7 +2,6 @@
   "template_id": "general_tumor_resection_v1",
   "lang": "sw",
   "title": "Resection ya jumla ya uvimbe",
-
   "specimen": {
     "label": "Sampuli",
     "fields": {
@@ -29,7 +28,6 @@
       }
     }
   },
-
   "tumor": {
     "label": "Uvimbe",
     "fields": {
@@ -105,7 +103,8 @@
           "Haujaonekana",
           "Upo",
           "Haiwezi kubainishwa"
-        ]
+        ],
+        "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
       },
       "treatment_effect": {
         "label": "Athari ya matibabu",
@@ -132,7 +131,6 @@
       }
     }
   },
-
   "margins": {
     "label": "Mipaka",
     "fields": {
@@ -212,7 +210,6 @@
       }
     }
   },
-
   "regional_lymph_nodes": {
     "label": "Nodi za limfu za eneo",
     "fields": {
@@ -293,7 +290,6 @@
       }
     }
   },
-
   "additional_findings": {
     "label": "Matokeo ya ziada",
     "fields": {

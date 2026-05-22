@@ -122,6 +122,25 @@
               "label": "Poor fixation"
             }
           ]
+        },
+        {
+          "id": "transformation_zone_component",
+          "type": "select",
+          "label": "Endocervical / transformation zone component",
+          "options": [
+            {
+              "code": "present",
+              "label": "Present"
+            },
+            {
+              "code": "absent",
+              "label": "Absent"
+            },
+            {
+              "code": "not_applicable",
+              "label": "Not applicable"
+            }
+          ]
         }
       ]
     },
@@ -167,6 +186,10 @@
               "label": "Negative for intraepithelial lesion or malignancy, with organisms identified: Herpes simplex virus changes"
             },
             {
+              "code": "nilm_endometrial_cells",
+              "label": "Negative for intraepithelial lesion or malignancy, endometrial cells present (in a woman ≥45 years)"
+            },
+            {
               "code": "asc_us",
               "label": "ASC-US (Atypical squamous cells of undetermined significance)"
             },
@@ -183,12 +206,36 @@
               "label": "HSIL (High-grade squamous intraepithelial lesion)"
             },
             {
+              "code": "hsil_suspicious_for_invasion",
+              "label": "HSIL with features suspicious for invasion"
+            },
+            {
               "code": "squamous_cell_carcinoma",
               "label": "Squamous cell carcinoma"
             },
             {
-              "code": "agc",
-              "label": "Atypical glandular cells (AGC)"
+              "code": "agc_endocervical_nos",
+              "label": "Atypical endocervical cells, NOS"
+            },
+            {
+              "code": "agc_endocervical_favor_neoplastic",
+              "label": "Atypical endocervical cells, favor neoplastic"
+            },
+            {
+              "code": "agc_endometrial_nos",
+              "label": "Atypical endometrial cells, NOS"
+            },
+            {
+              "code": "agc_endometrial_favor_neoplastic",
+              "label": "Atypical endometrial cells, favor neoplastic"
+            },
+            {
+              "code": "agc_nos",
+              "label": "Atypical glandular cells, NOS"
+            },
+            {
+              "code": "agc_favor_neoplastic",
+              "label": "Atypical glandular cells, favor neoplastic"
             },
             {
               "code": "ais",
@@ -197,6 +244,10 @@
             {
               "code": "adenocarcinoma",
               "label": "Adenocarcinoma"
+            },
+            {
+              "code": "other_malignant_neoplasm",
+              "label": "Other malignant neoplasm"
             }
           ]
         }

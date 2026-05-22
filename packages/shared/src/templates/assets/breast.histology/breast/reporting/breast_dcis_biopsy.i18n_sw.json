@@ -3,7 +3,8 @@
   "lang": "sw",
   "title": "DCIS ya titi, biopsy",
   "case_summary": {
-    "label": "Muhtasari wa kesi (DCIS ya titi: biopsy)"
+    "label": "Muhtasari wa kesi (DCIS ya titi: biopsy)",
+    "fields": {}
   },
   "specimen": {
     "label": "Sampuli",
@@ -15,11 +16,16 @@
           "Fine needle aspiration",
           "Nyingine",
           "Haijabainishwa"
-        ]
+        ],
+        "other_specify": "Eleza nyingine"
       },
       "laterality": {
         "label": "Upande wa sampuli",
-        "options": ["Kulia", "Kushoto", "Haijabainishwa"]
+        "options": [
+          "Kulia",
+          "Kushoto",
+          "Haijabainishwa"
+        ]
       }
     }
   },
@@ -37,7 +43,8 @@
           "Chuchu",
           "Nafasi ya saa",
           "Haijabainishwa"
-        ]
+        ],
+        "clock_position_specify": "Eleza nafasi ya saa"
       },
       "histologic_type": {
         "label": "Aina ya histolojia",
@@ -58,7 +65,8 @@
           "Papillary",
           "Solid",
           "Nyingine"
-        ]
+        ],
+        "other_specify": "Eleza mfumo mwingine"
       },
       "nuclear_grade": {
         "label": "Daraja la nyuklia",
@@ -68,7 +76,9 @@
           "Daraja III (juu)",
           "Nyingine",
           "Haiwezi kubainishwa"
-        ]
+        ],
+        "other_specify": "Eleza daraja jingine",
+        "cannot_be_determined_specify": "Eleza 'haiwezi kubainishwa'"
       },
       "necrosis": {
         "label": "Nekrosisi",
@@ -78,7 +88,9 @@
           "Ipo, ya katikati (nekrosisi pana ya \"comedo\")",
           "Nyingine",
           "Haiwezi kubainishwa"
-        ]
+        ],
+        "other_specify": "Eleza kidonda kingine cha necrosis",
+        "cannot_be_determined_specify": "Eleza 'haiwezi kubainishwa'"
       },
       "microcalcifications": {
         "label": "Mikrokalsifikesheni",
@@ -87,7 +99,8 @@
           "Zipo katika DCIS",
           "Zipo katika tishu isiyo ya neoplasia",
           "Nyingine"
-        ]
+        ],
+        "other_specify": "Eleza kalcifikesheni nyingine"
       }
     }
   },
@@ -98,5 +111,11 @@
         "label": "Matokeo ya ziada"
       }
     }
+  },
+  "domain": {
+    "fields": {}
+  },
+  "protocol_posting_date": {
+    "fields": {}
   }
 }

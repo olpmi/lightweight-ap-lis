@@ -26,7 +26,8 @@
           "استئصال الثرب",
           "أخرى (يرجى التحديد)"
         ],
-        "other_specify": "أخرى (يرجى التحديد)"
+        "other_specify": "أخرى (يرجى التحديد)",
+        "pelvic_exenteration_specify_included_organs": "pelvic exenteration specify included organs"
       },
       "hysterectomy_type": {
         "label": "نوع استئصال الرحم",

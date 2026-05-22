@@ -11,7 +11,10 @@
           "id": "breast_side",
           "label": "Breast FNA",
           "type": "select",
-          "options": ["Right", "Left"]
+          "options": [
+            "Right",
+            "Left"
+          ]
         },
         {
           "id": "site",
@@ -41,7 +44,11 @@
           "id": "guidance",
           "label": "Guidance",
           "type": "select",
-          "options": ["Palpation", "Ultrasound-guided", "Other"]
+          "options": [
+            "Palpation",
+            "Ultrasound-guided",
+            "Other"
+          ]
         }
       ]
     },
@@ -98,7 +105,12 @@
           "id": "final_interpretation_category",
           "label": "Final Interpretation Category",
           "type": "select",
-          "options": ["Benign", "Atypical", "Suspicious", "Malignant"]
+          "options": [
+            "Benign",
+            "Atypical",
+            "Suspicious",
+            "Malignant"
+          ]
         },
         {
           "id": "benign_interpretation",
@@ -155,7 +167,10 @@
           "id": "cell_block",
           "label": "Cell block",
           "type": "select",
-          "options": ["Yes", "No"]
+          "options": [
+            "Yes",
+            "No"
+          ]
         },
         {
           "id": "immunocytochemistry",
@@ -194,8 +209,7 @@
         {
           "id": "comment_text",
           "label": "Comment / Recommendation",
-          "type": "textarea",
-          "default": "Correlate with triple assessment (clinical, imaging, pathology). Core biopsy / repeat FNA / excision as clinically indicated."
+          "type": "textarea"
         }
       ]
     }

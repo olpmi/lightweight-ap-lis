@@ -8,7 +8,6 @@
     "adequacy": "الكفاية",
     "milan_category": "فئة ميلانو",
     "microscopic_description": "الوصف المجهري",
-    "final_interpretation": "التفسير النهائي",
     "recommended_management": "التدبير الموصى به",
     "comment": "التعليق"
   },
@@ -20,8 +19,6 @@
     "adequacy_status": "الكفاية",
     "milan_category": "فئة ميلانو",
     "microscopic_description_text": "الوصف المجهري (نص حر)",
-    "final_interpretation_category": "فئة ميلانو",
-    "final_interpretation_text": "التفسير النهائي",
     "recommended_management_options": "التدبير الموصى به",
     "comment_text": "التعليق"
   },

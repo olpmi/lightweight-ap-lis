@@ -1,229 +1,362 @@
 {
-  "template.id": "colorectal_malignant_tumor_resection",
-  "template.language": "sw",
-  "template.title": "KIOLEZO CHA RIPOTI – UVIMBE MBAYA WA KOLOREKTA, UONDOAJI KWA UPASUAJI",
-  "template.protocolPostingDate": "Tarehe ya kuchapishwa kwa itifaki: Septemba 2025",
-  "template.instructions.singleResponse": "Chagua jibu moja isipokuwa imeelezwa vinginevyo.",
-  "template.standards": "Viwango: AJCC 8",
-  "section.specimen": "SAMPULI",
-  "section.tumor": "UVIMBE",
-  "section.margins": "PEMBEZO",
-  "section.regionalLymphNodes": "NODI ZA LIMFU ZA KIKANDA",
-  "section.distantMetastasis": "METASTASI YA MBALI",
-  "section.ptnm": "UAINISHAJI WA pTNM (Toleo la 8 la AJCC)",
-  "section.additionalFindings": "MATOKEO YA ZIADA",
-  "section.comments": "MAONI",
-  "specimen.procedure.label": "Utaratibu",
-  "specimen.procedure.rightHemicolectomy": "Hemikolektomia ya kulia",
-  "specimen.procedure.transverseColectomy": "Kolektomia ya koloni ya kuvuka",
-  "specimen.procedure.leftHemicolectomy": "Hemikolektomia ya kushoto",
-  "specimen.procedure.sigmoidectomy": "Sigmoidektomia",
-  "specimen.procedure.lowAnteriorResection": "Uondoaji wa chini wa mbele",
-  "specimen.procedure.totalAbdominalColectomy": "Kolektomia kamili ya tumbo",
-  "specimen.procedure.abdominoperinealResection": "Uondoaji wa abdominoperineal",
-  "specimen.procedure.otherSpecify": "Nyingine (taja)",
-  "specimen.procedure.notSpecified": "Haijabainishwa",
-  "specimen.mesorectum.label": "Tathmini ya makroskopiki ya mesorektamu (inahitajika tu kwa saratani za rektamu)",
-  "common.notApplicable": "Haihusiki",
-  "common.present": "Ipo",
-  "common.notIdentified": "Haijatambuliwa",
-  "common.cannotBeDetermined": "Haiwezi kubainishwa",
-  "common.cannotBeDeterminedExplain": "Haiwezi kubainishwa (eleza)",
-  "common.otherSpecify": "Nyingine (taja)",
-  "common.exactNumberSpecify": "Idadi kamili (taja)",
-  "common.atLeastSpecify": "Angalau (taja)",
-  "common.specifyNumber": "Taja idadi",
-  "common.noneIdentified": "Hakuna kilichotambuliwa",
-  "common.notSpecified": "Haijabainishwa",
-  "common.complete": "Kamili",
-  "common.nearComplete": "Karibu kamili",
-  "common.incomplete": "Isiyo kamili",
-  "tumor.site.label": "Eneo la uvimbe (chagua yote yanayohusika)",
-  "tumor.site.cecum": "Sekamu",
-  "tumor.site.ileocecalValve": "Valvu ya ileosekali",
-  "tumor.site.ascendingColon": "Koloni inayopanda",
-  "tumor.site.hepaticFlexure": "Mkunjo wa ini",
-  "tumor.site.transverseColon": "Koloni ya kuvuka",
-  "tumor.site.splenicFlexure": "Mkunjo wa wengu",
-  "tumor.site.descendingColon": "Koloni inayoshuka",
-  "tumor.site.sigmoidColon": "Koloni ya sigmoidi",
-  "tumor.site.rectosigmoid": "Rektosigmoidi",
-  "tumor.site.rectum": "Rektamu",
-  "tumor.rectalLocation.label": "Mahali pa uvimbe wa rektamu (inahitajika tu kwa primari za rektamu)",
-  "tumor.rectalLocation.aboveReflection": "Uko wote juu ya mnyumbuko wa mbele wa peritoneamu",
-  "tumor.rectalLocation.belowReflection": "Uko wote chini ya mnyumbuko wa mbele wa peritoneamu",
-  "tumor.rectalLocation.straddlesReflection": "Unavuka mnyumbuko wa mbele wa peritoneamu",
-  "tumor.site.colonNos": "Koloni, NOS",
-  "tumor.histologicType.label": "Aina ya kihistolojia",
-  "tumor.histologicType.adenocarcinoma": "Adenokarsinoma",
-  "tumor.histologicType.mucinousAdenocarcinoma": "Adenokarsinoma ya musini",
-  "tumor.histologicType.poorlyCohesive": "Karsinoma yenye mshikamano hafifu",
-  "tumor.histologicType.signetRing": "Karsinoma ya seli za pete ya muhuri",
-  "tumor.histologicType.medullary": "Karsinoma ya medula",
-  "tumor.histologicType.serrated": "Adenokarsinoma iliyoserrated",
-  "tumor.histologicType.micropapillary": "Adenokarsinoma ya mikropapilari",
-  "tumor.histologicType.adenomaLike": "Adenokarsinoma inayofanana na adenoma",
-  "tumor.histologicType.adenosquamous": "Karsinoma adenoskwamasi",
-  "tumor.histologicType.undifferentiatedNos": "Karsinoma isiyotofautishwa, NOS",
-  "tumor.histologicType.sarcomatoid": "Karsinoma yenye sehemu ya sarkomatoidi",
-  "tumor.histologicType.largeCellNeuroendocrine": "Karsinoma ya neuroendokrini ya seli kubwa",
-  "tumor.histologicType.smallCellNeuroendocrine": "Karsinoma ya neuroendokrini ya seli ndogo",
-  "tumor.histologicType.minen": "Neoplasia mchanganyiko ya neuroendokrini na isiyo ya neuroendokrini (MiNEN) (taja vipengele)",
-  "tumor.histologicType.cannotDetermine": "Karsinoma, aina haiwezi kubainishwa",
-  "tumor.histologicType.comment": "Maoni kuhusu aina ya kihistolojia",
-  "tumor.histologicGrade.label": "Daraja la kihistolojia",
-  "tumor.histologicGrade.g1": "G1, imetofautishwa vizuri",
-  "tumor.histologicGrade.g2": "G2, imetofautishwa kwa wastani",
-  "tumor.histologicGrade.g3": "G3, imetofautishwa vibaya",
-  "tumor.histologicGrade.g4": "G4, haijatofautishwa",
-  "tumor.histologicGrade.gx": "GX, haiwezi kutathminiwa",
-  "tumor.tumorSize.label": "Ukubwa wa uvimbe",
-  "tumor.tumorSize.greatestDimensionCm": "Kipimo kikubwa zaidi kwa sentimita (cm)",
-  "tumor.tumorSize.additionalDimensionCm": "Kipimo cha ziada kwa sentimita (cm)",
-  "tumor.multiplePrimarySites.label": "Maeneo mengi ya msingi (mfano, mkunjo wa ini na koloni ya kuvuka) (inahitajika tu ikiwa inahusika)",
-  "tumor.multiplePrimarySites.notApplicableNoAdditional": "Haihusiki (hakuna maeneo mengine ya msingi yaliyopo)",
-  "tumor.extent.label": "Kiwango cha uvimbe",
-  "tumor.extent.noInvasionHgd": "Hakuna uvamizi (dysplasia ya daraja la juu)",
-  "tumor.extent.laminaPropria": "Huvamia lamina propria / muscularis mucosae (karsinoma ndani ya mukosa)",
-  "tumor.extent.submucosa": "Huvamia submukosa",
-  "tumor.extent.muscularisPropria": "Huvamia muscularis propria",
-  "tumor.extent.pericolicPerirectal": "Hupenya muscularis propria hadi tishu za perikoliki au perirektali",
-  "tumor.extent.visceralPeritoneum": "Huvamia peritoneamu ya visceral (ikijumuisha uvimbe unaoendelea na uso wa serosa kupitia eneo la uchochezi)",
-  "tumor.extent.adjacentStructures": "Huvamia moja kwa moja au kushikamana na miundo jirani (taja)",
-  "tumor.extent.noEvidencePrimaryTumor": "Hakuna ushahidi wa uvimbe wa msingi",
-  "tumor.submucosalInvasion.label": "Uvamizi wa submukosa (unahitajika tu kwa uvimbe wa pT1)",
-  "tumor.submucosalInvasion.notPt1": "Haihusiki (sio uvimbe wa pT1)",
-  "tumor.submucosalInvasion.depth.label": "Kina cha uvamizi wa submukosa",
-  "tumor.submucosalInvasion.depth.lessThan1mm": "Chini ya mm 1",
-  "tumor.submucosalInvasion.depth.1to2mm": "Zaidi ya au sawa na mm 1 na chini ya mm 2",
-  "tumor.submucosalInvasion.depth.greaterThan2mm": "Zaidi ya mm 2",
-  "tumor.submucosalInvasion.depth.exactMm": "Kina kamili kwa milimita (mm)",
-  "tumor.submucosalInvasion.extent.label": "Kiwango cha uvamizi wa submukosa",
-  "tumor.submucosalInvasion.extent.upperThird": "Uvimbe huvamia thuluthi ya juu ya submukosa",
-  "tumor.submucosalInvasion.extent.middleThird": "Uvimbe huvamia thuluthi ya kati ya submukosa",
-  "tumor.submucosalInvasion.extent.lowerThird": "Uvimbe huvamia thuluthi ya chini ya submukosa",
-  "tumor.macroscopicPerforation.label": "Utoboaji wa uvimbe kwa macho",
-  "tumor.lymphovascularInvasion.label": "Uvamizi wa limfu na/au mishipa ya damu",
-  "tumor.lymphovascularInvasion.smallVessel": "Mshipa mdogo",
-  "tumor.lymphovascularInvasion.largeIntramural": "Mshipa mkubwa (vena), ndani ya ukuta",
-  "tumor.lymphovascularInvasion.largeExtramural": "Mshipa mkubwa (vena), nje ya ukuta",
-  "tumor.lymphovascularInvasion.presentNos": "Ipo, NOS",
-  "tumor.perineuralInvasion.label": "Uvamizi wa perineural",
-  "tumor.buddingScore.label": "Alama ya budding ya uvimbe (inahitajika tu inapohusika)",
-  "tumor.buddingScore.low": "Chini (0-4)",
-  "tumor.buddingScore.intermediate": "Wastani (5-9)",
-  "tumor.buddingScore.high": "Juu (10 au zaidi)",
-  "tumor.budsNumber.label": "Idadi ya buds za uvimbe (kwa sehemu ya ‘hotspot’)",
-  "tumor.budsNumber.specifyHotspot": "Taja idadi katika sehemu moja ya ‘hotspot’ (eneo = 0.785 mm2)",
-  "tumor.polypType.label": "Aina ya polyp ambamo karsinoma vamizi ilitokea",
-  "tumor.polypType.tubularAdenoma": "Adenoma ya tubular",
-  "tumor.polypType.villousAdenoma": "Adenoma ya villous",
-  "tumor.polypType.tubulovillousAdenoma": "Adenoma ya tubulovillous",
-  "tumor.polypType.traditionalSerratedAdenoma": "Adenoma ya serrated ya jadi",
-  "tumor.polypType.sessileSerrated": "Adenoma/polyp ya serrated isiyo na shina",
-  "tumor.polypType.hamartomatousPolyp": "Polyp ya hamartoma",
-  "tumor.treatmentEffect.label": "Athari ya matibabu",
-  "tumor.treatmentEffect.noKnownPresurgical": "Hakuna tiba ya kabla ya upasuaji inayojulikana",
-  "tumor.treatmentEffect.completeResponse": "Ipo, bila seli hai za saratani (mwitikio kamili, alama 0)",
-  "tumor.treatmentEffect.nearComplete": "Ipo, na seli moja moja au vikundi vidogo adimu vya seli za saratani (mwitikio karibu kamili, alama 1)",
-  "tumor.treatmentEffect.partial": "Ipo, na saratani iliyobaki ikionyesha urejeaji wa uvimbe, lakini zaidi ya seli moja moja au vikundi vidogo adimu (mwitikio wa sehemu, alama 2)",
-  "tumor.treatmentEffect.presentNos": "Ipo, NOS",
-  "tumor.treatmentEffect.absentPoorResponse": "Haipo, na saratani iliyobaki kwa wingi na hakuna urejeaji dhahiri wa uvimbe (mwitikio duni au hakuna, alama 3)",
-  "tumor.comment": "Maoni kuhusu uvimbe",
-  "margins.invasiveStatus.label": "Hali ya pembezo kwa karsinoma vamizi",
-  "margins.invasiveStatus.allNegative": "Pembezo zote hazina karsinoma vamizi",
-  "margins.closest.label": "Pembezo iliyo karibu zaidi na karsinoma vamizi (chagua yote yanayohusika)",
-  "margins.proximal": "Proksimali",
-  "margins.distal": "Distali",
-  "margins.radialCircumferential": "Radial (ya mzunguko)",
-  "margins.mesenteric": "Mesenteriki",
-  "margins.deep": "Kina",
-  "margins.mucosalSpecify": "Mukosa (taja mahali, ikiwezekana)",
-  "margins.distanceClosest.label": "Umbali kutoka karsinoma vamizi hadi pembezo iliyo karibu zaidi",
-  "margins.distance.specifyCm": "Taja kwa sentimita (cm)",
-  "margins.distance.exactCm": "Umbali kamili kwa cm",
-  "margins.distance.greaterThan1cm": "Zaidi ya cm 1",
-  "margins.distance.specifyMm": "Taja kwa milimita (mm)",
-  "margins.distance.exactMm": "Umbali kamili kwa mm",
-  "margins.distance.greaterThan10mm": "Zaidi ya mm 10",
-  "margins.distance.other": "Nyingine",
-  "margins.distanceRadialRectal.label": "Umbali kutoka karsinoma vamizi hadi pembezo ya radial (ya mzunguko) (inahitajika tu kwa uvimbe wa rektamu)",
-  "margins.distanceDistalRectal.label": "Umbali kutoka karsinoma vamizi hadi pembezo ya distali (inahitajika tu kwa uvimbe wa rektamu)",
-  "margins.notRectalTumor": "Haihusiki (sio uvimbe wa rektamu)",
-  "margins.distanceAlreadyClosest": "Umbali tayari umeripotiwa kama pembezo iliyo karibu zaidi",
-  "margins.invasiveStatus.presentAtMargin": "Karsinoma vamizi ipo kwenye pembezo",
-  "margins.involvedInvasive.label": "Pembezo zilizoathiriwa na karsinoma vamizi (chagua yote yanayohusika)",
-  "margins.nonInvasiveStatus.label": "Hali ya pembezo kwa uvimbe usio vamizi (chagua yote yanayohusika)",
-  "margins.nonInvasiveStatus.allNegative": "Pembezo zote hazina dysplasia ya daraja la juu / karsinoma ndani ya mukosa na dysplasia ya daraja la chini",
-  "margins.nonInvasiveStatus.hgdIntramucosalAtMargin": "Dysplasia ya daraja la juu / karsinoma ndani ya mukosa ipo kwenye pembezo",
-  "margins.involvedHgd.label": "Pembezo zilizoathiriwa na dysplasia ya daraja la juu / karsinoma ndani ya mukosa (chagua yote yanayohusika)",
-  "margins.nonInvasiveStatus.lgdAtMargin": "Dysplasia ya daraja la chini ipo kwenye pembezo",
-  "margins.involvedLgd.label": "Pembezo zilizoathiriwa na dysplasia ya daraja la chini (chagua yote yanayohusika)",
-  "margins.comment": "Maoni kuhusu pembezo",
-  "nodes.status.label": "Hali ya nodi za limfu za kikanda",
-  "nodes.status.noNodes": "Haihusiki (hakuna nodi za limfu za kikanda zilizowasilishwa au kupatikana)",
-  "nodes.status.present": "Nodi za limfu za kikanda zipo",
-  "nodes.status.allNegative": "Nodi zote za limfu za kikanda hazina uvimbe",
-  "nodes.status.tumorPresent": "Uvimbe upo katika nodi za limfu za kikanda",
-  "nodes.numberWithTumor.label": "Idadi ya nodi za limfu zenye uvimbe",
-  "nodes.numberExamined.label": "Idadi ya nodi za limfu zilizochunguzwa",
-  "nodes.tumorDeposits.label": "Depositi za uvimbe",
-  "nodes.tumorDeposits.number.label": "Idadi ya depos iti za uvimbe",
-  "nodes.comment": "Maoni kuhusu nodi za limfu za kikanda",
-  "metastasis.distantSites.label": "Maeneo ya mbali yaliyoathiriwa, ikiwa yanahusika (chagua yote yanayohusika)",
-  "metastasis.nonRegionalNodes": "Nodi za limfu zisizo za kikanda",
-  "metastasis.liver": "Ini",
-  "ptnm.note": "Kuripoti kategoria za pT, pN, na (inapohusika) pM kunategemea taarifa zilizopo kwa mwanapatholojia wakati ripoti inatolewa. Kulingana na AJCC (Sura ya 1, Toleo la 8), ni jukumu la daktari anayesimamia mgonjwa kuweka hatua ya mwisho ya patholojia kwa kutumia taarifa zote muhimu, ikijumuisha lakini si tu ripoti hii ya patholojia.",
-  "ptnm.modifiedClassification.label": "Uainishaji uliorekebishwa (unahitajika tu ikiwa unahusika) (chagua yote yanayohusika)",
-  "ptnm.modifiedClassification.y": "y (baada ya tiba ya neoadjuvant)",
-  "ptnm.modifiedClassification.r": "r (kurudi kwa ugonjwa)",
-  "ptnm.pt.label": "Kategoria ya pT",
-  "ptnm.pt.notAssignedCannotDetermine": "pT haijapewa (haiwezi kubainishwa kwa taarifa za patholojia zilizopo)",
-  "ptnm.pt.pt0": "pT0: Hakuna ushahidi wa uvimbe wa msingi",
-  "ptnm.pt.ptis": "pTis: Karsinoma in situ, karsinoma ndani ya mukosa (ushiriki wa lamina propria bila kuenea kupitia muscularis mucosae)",
-  "ptnm.pt.pt1": "pT1: Uvimbe huvamia submukosa (kupitia muscularis mucosae lakini si ndani ya muscularis propria)",
-  "ptnm.pt.pt2": "pT2: Uvimbe huvamia muscularis propria",
-  "ptnm.pt.pt3": "pT3: Uvimbe hupenya muscularis propria hadi tishu za perikolorek t ali",
-  "ptnm.pt.pt4Intro": "pT4: Uvimbe huvamia peritoneamu ya visceral au huvamia/kushikamana na kiungo au muundo jirani",
-  "ptnm.pt.pt4a": "pT4a: Uvimbe hupenya kupitia peritoneamu ya visceral",
-  "ptnm.pt.pt4b": "pT4b: Uvimbe huvamia moja kwa moja au hushikamana na viungo au miundo jirani",
-  "ptnm.pt.pt4CannotDetermine": "pT4 (kikategoria kidogo hakiwezi kubainishwa)",
-  "ptnm.pt.footnoteDirectInvasion": "Uvamizi wa moja kwa moja katika T4 unajumuisha uvamizi wa viungo vingine au sehemu nyingine za kolorektamu kutokana na kuenea moja kwa moja kupitia serosa, kama inavyothibitishwa kwa uchunguzi wa hadubini; au, kwa saratani za retroperitoneal/subperitoneal, uvamizi wa moja kwa moja wa viungo au miundo mingine kwa kuenea zaidi ya muscularis propria.",
-  "ptnm.pt.footnoteAdherent": "Uvimbe unaoshikamana na viungo au miundo mingine kwa macho huainishwa kama cT4b. Hata hivyo, ikiwa hakuna uvimbe kwenye mshikamano kwa hadubini, uainishaji uwe pT1-4a kulingana na kina cha anatomia cha uvamizi wa ukuta.",
-  "ptnm.tSuffix.label": "Kiambishi cha T (kinahitajika tu ikiwa kinahusika)",
-  "ptnm.tSuffix.m": "(m) uvimbe nyingi za msingi zinazotokea wakati mmoja katika kiungo kimoja",
-  "ptnm.pn.label": "Kategoria ya pN",
-  "ptnm.pn.notAssignedNoNodes": "pN haijapewa (hakuna nodi zilizowasilishwa au kupatikana)",
-  "ptnm.pn.notAssignedCannotDetermine": "pN haijapewa (haiwezi kubainishwa kwa taarifa za patholojia zilizopo)",
-  "ptnm.pn.pn0": "pN0: Hakuna metastasi katika nodi za limfu za kikanda",
-  "ptnm.pn.pn1Intro": "pN1: Nodi moja hadi tatu za kikanda ni chanya, au depos iti zozote za uvimbe zipo na nodi zote zinazotambulika ni hasi",
-  "ptnm.pn.pn1a": "pN1a: Nodi moja ya kikanda ni chanya",
-  "ptnm.pn.pn1b": "pN1b: Nodi mbili au tatu za kikanda ni chanya",
-  "ptnm.pn.pn1c": "pN1c: Hakuna nodi za kikanda zilizo chanya, lakini kuna depos iti za uvimbe katika subserosa, mesentery, au tishu za perikoliki/perirektali/mesorektali zisizo na peritoneamu",
-  "ptnm.pn.pn1CannotDetermine": "pN1 (kikategoria kidogo hakiwezi kubainishwa)",
-  "ptnm.pn.pn2Intro": "pN2: Nodi nne au zaidi za kikanda ni chanya",
-  "ptnm.pn.pn2a": "pN2a: Nodi nne hadi sita za kikanda ni chanya",
-  "ptnm.pn.pn2b": "pN2b: Nodi saba au zaidi za kikanda ni chanya",
-  "ptnm.pn.pn2CannotAssess": "pN2 (kikategoria kidogo hakiwezi kutathminiwa)",
-  "ptnm.pm.label": "Kategoria ya pM (inahitajika tu ikiwa imethibitishwa kipatholojia)",
-  "ptnm.pm.notApplicableCannotDetermine": "Haihusiki - pM haiwezi kubainishwa kutokana na sampuli zilizowasilishwa",
-  "ptnm.pm.pm1Intro": "pM1: Metastasi katika eneo au kiungo kimoja au zaidi cha mbali au metastasi ya peritoneamu imetambuliwa",
-  "ptnm.pm.pm1a": "pM1a: Metastasi katika eneo au kiungo kimoja bila metastasi ya peritoneamu",
-  "ptnm.pm.pm1b": "pM1b: Metastasi katika maeneo au viungo viwili au zaidi bila metastasi ya peritoneamu",
-  "ptnm.pm.pm1c": "pM1c: Metastasi kwenye uso wa peritoneamu pekee au pamoja na metastasi za maeneo/viungo vingine",
-  "ptnm.pm.pm1CannotDetermine": "pM1 (kikategoria kidogo hakiwezi kubainishwa)",
-  "additionalFindings.label": "Matokeo ya ziada (chagua yote yanayohusika)",
-  "additionalFindings.adenomas": "Adenoma",
-  "additionalFindings.ulcerativeColitis": "Kolitis ya vidonda",
-  "additionalFindings.crohnDisease": "Ugonjwa wa Crohn",
-  "additionalFindings.diverticulosis": "Divertikulosis",
-  "additionalFindings.ibdDysplasia": "Dysplasia inayotokana na ugonjwa wa uchochezi wa utumbo",
-  "comments.comment": "Maoni",
-  "ui.placeholder.specify": "Taja...",
-  "ui.placeholder.explain": "Eleza...",
-  "ui.units.cm": "cm",
-  "ui.units.mm": "mm",
-  "ui.units.mm2": "mm2",
-  "ui.selectAllThatApply": "Chagua yote yanayohusika",
-  "ui.requiredOnlyIfApplicable": "Inahitajika tu ikiwa inahusika"
+  "template_id": "colorectal_malignant_tumor_resection_v1",
+  "lang": "sw",
+  "title": "KIOLEZO CHA RIPOTI – UVIMBE MBAYA WA KOLOREKTA, UONDOAJI KWA UPASUAJI",
+  "specimen": {
+    "label": "SAMPULI",
+    "fields": {
+      "procedure": {
+        "label": "Utaratibu",
+        "options": [
+          "Hemikolektomia ya kulia",
+          "Kolektomia ya koloni ya kuvuka",
+          "Hemikolektomia ya kushoto",
+          "Sigmoidektomia",
+          "Uondoaji wa chini wa mbele",
+          "Kolektomia kamili ya tumbo",
+          "Uondoaji wa abdominoperineal",
+          "Nyingine (taja)",
+          "Haijabainishwa"
+        ],
+        "other_specify": "Nyingine, taja"
+      },
+      "macroscopic_mesorectum": {
+        "label": "Tathmini ya makroskopiki ya mesorektamu (inahitajika tu kwa saratani za rektamu)",
+        "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
+      }
+    }
+  },
+  "tumor": {
+    "label": "UVIMBE",
+    "fields": {
+      "tumor_site": {
+        "label": "Eneo la uvimbe (chagua yote yanayohusika)",
+        "options": [
+          "Sekamu",
+          "Rektosigmoidi",
+          "Rektamu",
+          "Valvu ya ileosekali",
+          "Koloni inayopanda",
+          "Mkunjo wa ini",
+          "Koloni ya kuvuka",
+          "Mkunjo wa wengu",
+          "Koloni inayoshuka",
+          "Koloni ya sigmoidi",
+          "Koloni, NOS"
+        ]
+      },
+      "rectal_tumor_location": {
+        "label": "Mahali pa uvimbe wa rektamu (inahitajika tu kwa primari za rektamu)",
+        "options": [
+          "Uko wote juu ya mnyumbuko wa mbele wa peritoneamu",
+          "Uko wote chini ya mnyumbuko wa mbele wa peritoneamu",
+          "Unavuka mnyumbuko wa mbele wa peritoneamu"
+        ]
+      },
+      "histologic_type": {
+        "label": "Aina ya kihistolojia",
+        "options": [
+          "Adenokarsinoma",
+          "Adenokarsinoma ya musini",
+          "Karsinoma yenye mshikamano hafifu",
+          "Karsinoma ya seli za pete ya muhuri",
+          "Karsinoma ya medula",
+          "Adenokarsinoma iliyoserrated",
+          "Adenokarsinoma ya mikropapilari",
+          "Adenokarsinoma inayofanana na adenoma",
+          "Karsinoma adenoskwamasi",
+          "Karsinoma isiyotofautishwa, NOS",
+          "Karsinoma yenye sehemu ya sarkomatoidi",
+          "Karsinoma ya neuroendokrini ya seli kubwa",
+          "Karsinoma ya neuroendokrini ya seli ndogo",
+          "Neoplasia mchanganyiko ya neuroendokrini na isiyo ya neuroendokrini (MiNEN) (taja vipengele)",
+          "Karsinoma, aina haiwezi kubainishwa"
+        ],
+        "specify_components": "Taja vipande",
+        "comment": "Maoni"
+      },
+      "histologic_grade": {
+        "label": "Daraja la kihistolojia",
+        "options": [
+          "G1, imetofautishwa vizuri",
+          "G2, imetofautishwa kwa wastani",
+          "G3, imetofautishwa vibaya",
+          "G4, haijatofautishwa",
+          "GX, haiwezi kutathminiwa"
+        ],
+        "other_specify": "Nyingine, taja",
+        "cannot_be_assessed_specify": "Haiwezi kutathminiwa, taja",
+        "not_applicable_specify": "Haihusiki, taja"
+      },
+      "tumor_size": {
+        "label": "Ukubwa wa uvimbe",
+        "fields": {
+          "greatest_dimension_cm": {
+            "label": "Dimensi kubwa zaidi (cm)"
+          },
+          "additional_dimensions_cm": {
+            "label": "Dimensi za ziada (cm)"
+          },
+          "cannot_be_determined_explain": {
+            "label": "Haiwezi kuamuliwa"
+          }
+        }
+      },
+      "multiple_primary_sites": {
+        "label": "Maeneo mengi ya msingi (mfano, mkunjo wa ini na koloni ya kuvuka) (inahitajika tu ikiwa inahusika)",
+        "options": [
+          "Haihusiki (hakuna maeneo mengine ya msingi yaliyopo)"
+        ],
+        "present_specify": "Ipo, taja"
+      },
+      "tumor_extent": {
+        "label": "Kiwango cha uvimbe",
+        "options": [
+          "Hakuna uvamizi (dysplasia ya daraja la juu)",
+          "Huvamia lamina propria / muscularis mucosae (karsinoma ndani ya mukosa)",
+          "Huvamia submukosa",
+          "Huvamia muscularis propria",
+          "Hupenya muscularis propria hadi tishu za perikoliki au perirektali",
+          "Huvamia peritoneamu ya visceral (ikijumuisha uvimbe unaoendelea na uso wa serosa kupitia eneo la uchochezi)",
+          "Huvamia moja kwa moja au kushikamana na miundo jirani (taja)",
+          "Hakuna ushahidi wa uvimbe wa msingi"
+        ],
+        "adjacent_structure_specify": "Muundo jirani, taja",
+        "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
+      },
+      "submucosal_invasion": {
+        "label": "Uvamizi wa submukosa (unahitajika tu kwa uvimbe wa pT1)",
+        "fields": {
+          "status": {
+            "label": "Uvamizi wa submukosa",
+            "options": [
+              "Haihusiki",
+              "Haipatikani",
+              "Ipo"
+            ]
+          },
+          "depth": {
+            "label": "Kina cha uvamizi wa submukosa",
+            "options": [
+              "Chini ya 1 mm",
+              "Sawa au zaidi ya 1 mm na chini ya 2 mm",
+              "Zaidi ya 2 mm",
+              "Kina halisi kwa milimita",
+              "Haiwezi kuamuliwa"
+            ],
+            "exact_depth_mm": "Kina halisi (mm)",
+            "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
+          },
+          "extent": {
+            "label": "Upeo wa uvamizi wa submukosa",
+            "options": [
+              "Theluthi ya juu",
+              "Theluthi ya kati",
+              "Theluthi ya chini",
+              "Haiwezi kuamuliwa"
+            ]
+          }
+        }
+      },
+      "macroscopic_tumor_perforation": {
+        "label": "Utoboaji wa uvimbe kwa macho"
+      },
+      "lymphovascular_invasion": {
+        "label": "Uvamizi wa limfu na/au mishipa ya damu",
+        "options": [
+          "Mshipa mdogo",
+          "Mshipa mkubwa (vena), ndani ya ukuta",
+          "Mshipa mkubwa (vena), nje ya ukuta",
+          "Ipo, NOS"
+        ]
+      },
+      "perineural_invasion": {
+        "label": "Uvamizi wa perineural"
+      },
+      "tumor_budding_score": {
+        "label": "Alama ya budding ya uvimbe (inahitajika tu inapohusika)",
+        "options": [
+          "Chini (0-4)",
+          "Wastani (5-9)",
+          "Juu (10 au zaidi)"
+        ]
+      },
+      "number_of_tumor_buds": {
+        "label": "Idadi ya buds za uvimbe (kwa sehemu ya ‘hotspot’)"
+      },
+      "polyp_origin": {
+        "label": "Aina ya polyp ambamo karsinoma vamizi ilitokea",
+        "options": [
+          "Adenoma ya tubular",
+          "Adenoma ya villous",
+          "Adenoma ya tubulovillous",
+          "Adenoma ya serrated ya jadi",
+          "Adenoma/polyp ya serrated isiyo na shina",
+          "Polyp ya hamartoma"
+        ],
+        "other_specify": "Nyingine, taja"
+      },
+      "treatment_effect": {
+        "label": "Athari ya matibabu",
+        "options": [
+          "Hakuna tiba ya kabla ya upasuaji inayojulikana",
+          "Ipo, bila seli hai za saratani (mwitikio kamili, alama 0)",
+          "Ipo, na seli moja moja au vikundi vidogo adimu vya seli za saratani (mwitikio karibu kamili, alama 1)",
+          "Ipo, na saratani iliyobaki ikionyesha urejeaji wa uvimbe, lakini zaidi ya seli moja moja au vikundi vidogo adimu (mwitikio wa sehemu, alama 2)",
+          "Ipo, NOS",
+          "Haipo, na saratani iliyobaki kwa wingi na hakuna urejeaji dhahiri wa uvimbe (mwitikio duni au hakuna, alama 3)"
+        ]
+      },
+      "tumor_comment": {
+        "label": "Maoni kuhusu uvimbe"
+      }
+    }
+  },
+  "margins": {
+    "label": "PEMBEZO",
+    "fields": {
+      "margin_status_invasive": {
+        "label": "Hali ya pembezo kwa karsinoma vamizi",
+        "options": [
+          "Pembezo zote hazina karsinoma vamizi",
+          "Karsinoma vamizi ipo kwenye pembezo",
+          "Proksimali",
+          "Distali",
+          "Radial (ya mzunguko)",
+          "Mesenteriki",
+          "Kina",
+          "Mukosa (taja mahali, ikiwezekana)",
+          "Haihusiki (sio uvimbe wa rektamu)",
+          "Umbali tayari umeripotiwa kama pembezo iliyo karibu zaidi"
+        ]
+      },
+      "closest_margin": {
+        "label": "Pembezo iliyo karibu zaidi na karsinoma vamizi (chagua yote yanayohusika)",
+        "options": [
+          "Proksimali",
+          "Distali",
+          "Radial (ya mzunguko)",
+          "Mesenteriki",
+          "Kina",
+          "Mukosa (taja mahali, ikiwezekana)",
+          "Haihusiki (sio uvimbe wa rektamu)",
+          "Umbali tayari umeripotiwa kama pembezo iliyo karibu zaidi"
+        ]
+      },
+      "distance_to_closest_margin": {
+        "label": "Umbali kutoka karsinoma vamizi hadi pembezo iliyo karibu zaidi"
+      },
+      "distance_to_radial_margin_rectum": {
+        "label": "Umbali kutoka karsinoma vamizi hadi pembezo ya radial (ya mzunguko) (inahitajika tu kwa uvimbe wa rektamu)"
+      },
+      "distance_to_distal_margin_rectum": {
+        "label": "Umbali kutoka karsinoma vamizi hadi pembezo ya distali (inahitajika tu kwa uvimbe wa rektamu)"
+      },
+      "non_invasive_margin_status": {
+        "label": "Hali ya pembezo kwa uvimbe usio vamizi (chagua yote yanayohusika)",
+        "options": [
+          "Pembezo zote hazina dysplasia ya daraja la juu / karsinoma ndani ya mukosa na dysplasia ya daraja la chini",
+          "Dysplasia ya daraja la juu / karsinoma ndani ya mukosa ipo kwenye pembezo",
+          "Dysplasia ya daraja la chini ipo kwenye pembezo",
+          "Proksimali",
+          "Distali",
+          "Radial (ya mzunguko)",
+          "Mesenteriki",
+          "Kina",
+          "Mukosa (taja mahali, ikiwezekana)",
+          "Haihusiki (sio uvimbe wa rektamu)",
+          "Umbali tayari umeripotiwa kama pembezo iliyo karibu zaidi"
+        ]
+      },
+      "margin_comment": {
+        "label": "Maoni kuhusu pembezo"
+      }
+    }
+  },
+  "regional_lymph_nodes": {
+    "label": "NODI ZA LIMFU ZA KIKANDA",
+    "fields": {
+      "status": {
+        "label": "Hali ya nodi za limfu za kikanda",
+        "options": [
+          "Haihusiki (hakuna nodi za limfu za kikanda zilizowasilishwa au kupatikana)",
+          "Nodi za limfu za kikanda zipo",
+          "Nodi zote za limfu za kikanda hazina uvimbe",
+          "Uvimbe upo katika nodi za limfu za kikanda"
+        ]
+      },
+      "number_with_tumor": {
+        "label": "Idadi ya nodi za limfu zenye uvimbe"
+      },
+      "number_examined": {
+        "label": "Idadi ya nodi za limfu zilizochunguzwa"
+      },
+      "tumor_deposits": {
+        "label": "Depositi za uvimbe"
+      },
+      "number_of_tumor_deposits": {
+        "label": "Idadi ya depos iti za uvimbe"
+      },
+      "comment": {
+        "label": "Maoni kuhusu nodi za limfu za kikanda"
+      }
+    }
+  },
+  "distant_metastasis": {
+    "label": "METASTASI YA MBALI",
+    "fields": {
+      "sites": {
+        "label": "Maeneo ya mbali yaliyoathiriwa, ikiwa yanahusika (chagua yote yanayohusika)",
+        "options": [
+          "Ini",
+          "Nodi za limfu zisizo za kikanda"
+        ]
+      }
+    }
+  },
+  "ptnm": {
+    "label": "UAINISHAJI WA pTNM (Toleo la 8 la AJCC)",
+    "fields": {
+      "modified_classification": {
+        "label": "Uainishaji uliorekebishwa (unahitajika tu ikiwa unahusika) (chagua yote yanayohusika)",
+        "options": [
+          "y (baada ya tiba ya neoadjuvant)",
+          "r (kurudi kwa ugonjwa)"
+        ]
+      },
+      "T_suffix": {
+        "label": "Kiambishi cha T (kinahitajika tu ikiwa kinahusika)",
+        "options": [
+          "(m) uvimbe nyingi za msingi zinazotokea wakati mmoja katika kiungo kimoja"
+        ]
+      },
+      "pT_category": {},
+      "pN_category": {},
+      "pM_category": {}
+    }
+  },
+  "additional_findings": {
+    "label": "MATOKEO YA ZIADA",
+    "fields": {
+      "findings": {
+        "label": "Matokeo ya ziada (chagua yote yanayohusika)",
+        "options": [
+          "Divertikulosis",
+          "Adenoma",
+          "Kolitis ya vidonda",
+          "Ugonjwa wa Crohn",
+          "Dysplasia inayotokana na ugonjwa wa uchochezi wa utumbo"
+        ],
+        "other_specify": "Nyingine, taja"
+      }
+    }
+  },
+  "comments": {
+    "label": "MAONI",
+    "fields": {
+      "comment": {
+        "label": "Maoni"
+      }
+    }
+  }
 }

@@ -43,11 +43,15 @@ export interface SpecimenType {
   description?: string | null;
 }
 
+export const REPORT_TEMPLATE_TYPES = ['final', 'preliminary', 'addendum', 'revision'] as const;
+export type ReportTemplateType = (typeof REPORT_TEMPLATE_TYPES)[number];
+
 export interface ReportTemplate {
   reportTemplateId: number;
   templateName: string;
   templateText?: string | null;
   isActive: boolean;
+  type: ReportTemplateType;
 }
 
 export type OrderStatus = 'registered' | 'in_progress' | 'signed_out' | 'reactivated';

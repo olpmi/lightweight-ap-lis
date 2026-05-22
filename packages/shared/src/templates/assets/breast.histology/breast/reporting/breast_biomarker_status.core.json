@@ -8,7 +8,20 @@
     "fields": {
       "percentage_nuclear_positivity": {
         "label": "Percentage of cells with nuclear positivity",
-        "type": "number",
+        "type": "select",
+        "options": [
+          "Less than 1%",
+          "1-10%",
+          "11-20%",
+          "21-30%",
+          "31-40%",
+          "41-50%",
+          "51-60%",
+          "61-70%",
+          "71-80%",
+          "81-90%",
+          "91-100%"
+        ],
         "value": ""
       },
       "average_intensity": {
@@ -24,7 +37,20 @@
     "fields": {
       "percentage_nuclear_positivity": {
         "label": "Percentage of cells with nuclear positivity",
-        "type": "number",
+        "type": "select",
+        "options": [
+          "Less than 1%",
+          "1-10%",
+          "11-20%",
+          "21-30%",
+          "31-40%",
+          "41-50%",
+          "51-60%",
+          "61-70%",
+          "71-80%",
+          "81-90%",
+          "91-100%"
+        ],
         "value": ""
       },
       "average_intensity": {
@@ -106,7 +132,20 @@
     "fields": {
       "value": {
         "label": "Ki-67 proliferation index",
-        "type": "number",
+        "type": "select",
+        "options": [
+          "Less than 1%",
+          "1-10%",
+          "11-20%",
+          "21-30%",
+          "31-40%",
+          "41-50%",
+          "51-60%",
+          "61-70%",
+          "71-80%",
+          "81-90%",
+          "91-100%"
+        ],
         "value": ""
       }
     }

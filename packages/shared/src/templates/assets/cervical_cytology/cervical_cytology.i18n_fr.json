@@ -61,6 +61,14 @@
             "low_squamous_cellularity": "Faible cellularité malpighienne",
             "poor_fixation": "Mauvaise fixation"
           }
+        },
+        "transformation_zone_component": {
+          "label": "Composante de la zone de transformation (endocervicale / TZ)",
+          "options": {
+            "present": "Présente",
+            "absent": "Absente",
+            "not_applicable": "Sans objet"
+          }
         }
       }
     },
@@ -83,9 +91,17 @@
             "lsil": "LSIL (Lésion malpighienne intraépithéliale de bas grade)",
             "hsil": "HSIL (Lésion malpighienne intraépithéliale de haut grade)",
             "squamous_cell_carcinoma": "Carcinome épidermoïde",
-            "agc": "Cellules glandulaires atypiques (AGC)",
             "ais": "Adénocarcinome endocervical in situ (AIS)",
-            "adenocarcinoma": "Adénocarcinome"
+            "adenocarcinoma": "Adénocarcinome",
+            "nilm_endometrial_cells": "Négatif pour lésion intraépithéliale ou malignité, cellules endométriales présentes (chez une femme de ≥45 ans)",
+            "hsil_suspicious_for_invasion": "HSIL avec signes suspects d’invasion",
+            "agc_endocervical_nos": "Cellules endocervicales atypiques, SAI",
+            "agc_endocervical_favor_neoplastic": "Cellules endocervicales atypiques, en faveur d’une néoplasie",
+            "agc_endometrial_nos": "Cellules endométriales atypiques, SAI",
+            "agc_endometrial_favor_neoplastic": "Cellules endométriales atypiques, en faveur d’une néoplasie",
+            "agc_nos": "Cellules glandulaires atypiques, SAI",
+            "agc_favor_neoplastic": "Cellules glandulaires atypiques, en faveur d’une néoplasie",
+            "other_malignant_neoplasm": "Autre néoplasme malin"
           }
         }
       }

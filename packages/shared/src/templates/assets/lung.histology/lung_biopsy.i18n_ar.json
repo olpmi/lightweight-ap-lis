@@ -5,7 +5,6 @@
     "direction": "rtl"
   },
   "title": "ورم الرئة، خزعة",
-
   "tumor": {
     "label": "الورم",
     "fields": {
@@ -39,7 +38,13 @@
           "سرطان غير صغير الخلايا، لا يمكن تحديد النوع الفرعي",
           "نوع نسيجي آخر غير مدرج",
           "لا يوجد ورم حي"
-        ]
+        ],
+        "combined_small_cell_non_small_cell_component_specify": "مكوّن مركب من خلايا صغيرة/غير صغيرة، حدد",
+        "combined_large_cell_neuroendocrine_other_component_specify": "مكوّن مركب كبير الخلايا عصبي-صماوي/آخر، حدد",
+        "carcinoma_type_cannot_be_determined_specify": "نوع السرطان لا يمكن تحديده، حدد",
+        "non_small_cell_subtype_cannot_be_determined_specify": "النوع الفرعي غير صغير الخلايا لا يمكن تحديده، حدد",
+        "other_histologic_type_specify": "نوع نسيجي آخر، حدد",
+        "no_viable_tumor_present_explain": "لا يوجد ورم قابل للحياة، اشرح"
       },
       "histologic_patterns": {
         "label": "الأنماط النسيجية (تنطبق على السرطانات الغدية غير المخاطية فقط)",
@@ -55,15 +60,45 @@
         ]
       },
       "histologic_grade": {
-        "label": "الدرجة النسيجية"
+        "label": "الدرجة النسيجية",
+        "other_specify": "أخرى، حدد",
+        "cannot_be_assessed_specify": "لا يمكن التقييم، حدد",
+        "not_applicable_specify": "غير قابل للتطبيق، حدد"
       },
       "lymphovascular_invasion": {
-        "label": "الغزو اللمفي و / أو الوعائي"
+        "label": "الغزو اللمفي و / أو الوعائي",
+        "fields": {
+          "status": {
+            "label": "الغزو اللمفاوي و/أو الوعائي",
+            "options": [
+              "غير محدد",
+              "موجود",
+              "لا يمكن التحديد"
+            ],
+            "cannot_be_determined_specify": "لا يمكن التحديد، حدد"
+          },
+          "subtypes": {
+            "label": "نوع(أنواع) الغزو",
+            "options": [
+              "الغزو اللمفاوي موجود",
+              "الغزو الشرياني موجود",
+              "الغزو الوريدي موجود",
+              "Other"
+            ],
+            "other_specify": "أخرى، حدد"
+          }
+        }
       }
     }
   },
-
   "additional_findings": {
-    "label": "النتائج الإضافية"
+    "label": "النتائج الإضافية",
+    "fields": {
+      "findings": {},
+      "atypical_adenomatous_hyperplasia_specify": {},
+      "granulomatous_inflammation_specify": {},
+      "fibrosis_specify_pattern": {},
+      "other_specify": {}
+    }
   }
 }

@@ -26,7 +26,8 @@
           "Omentektomia",
           "Nyingine (eleza)"
         ],
-        "other_specify": "Nyingine (eleza)"
+        "other_specify": "Nyingine (eleza)",
+        "pelvic_exenteration_specify_included_organs": "pelvic exenteration specify included organs"
       },
       "hysterectomy_type": {
         "label": "Aina ya hysterectomy",

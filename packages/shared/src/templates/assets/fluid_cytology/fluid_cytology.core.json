@@ -106,22 +106,6 @@
       ]
     },
     {
-      "id": "final_interpretation",
-      "title": "Final Interpretation",
-      "fields": [
-        {
-          "id": "final_interpretation_category",
-          "label": "Category",
-          "type": "text"
-        },
-        {
-          "id": "final_interpretation_text",
-          "label": "Final Interpretation",
-          "type": "text"
-        }
-      ]
-    },
-    {
       "id": "malignant_suspicious_favor",
       "title": "If Malignant / Suspicious, Favor",
       "fields": [
@@ -172,8 +156,7 @@
         {
           "id": "comment_text",
           "label": "Comment",
-          "type": "textarea",
-          "default": "Correlate with clinical history, imaging, and prior pathology. Further tissue sampling may be recommended if clinically indicated."
+          "type": "textarea"
         }
       ]
     }
