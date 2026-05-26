@@ -9,6 +9,11 @@ import type {
   TemplateCatalogEntry,
   TemplateDefinition,
   TemplateKind,
+  AncillaryOrderable,
+  AncillaryPanel,
+  AncillaryOrder,
+  AncillaryCategory,
+  AncillaryOrderStatus,
 } from '@lis/shared';
 
 export interface SessionEmployee {
@@ -266,5 +271,103 @@ export const configReportLayoutApi = {
 
   /** Returns the path for the preview endpoint (compatible with apiClient's baseURL). */
   previewUrl: (reportType: string): string => `/config/report-layouts/${reportType}/preview`,
+};
+
+// ---------------------------------------------------------------------------
+// Ancillary Testing API
+// ---------------------------------------------------------------------------
+
+export interface CreateAncillaryOrderPayload {
+  orderId: string;
+  blockId: string;
+  orderableId: number;
+  levelCount?: number;
+  notes?: string;
+}
+
+export interface UpdateAncillaryOrderStatusPayload {
+  status: AncillaryOrderStatus;
+  resultNotes?: string;
+}
+
+export interface CreateAncillaryOrderablePayload {
+  name: string;
+  category: AncillaryCategory;
+  sortOrder?: number;
+}
+
+export interface UpdateAncillaryOrderablePayload {
+  name?: string;
+  category?: AncillaryCategory;
+  sortOrder?: number;
+  isActive?: boolean;
+}
+
+export interface CreateAncillaryPanelPayload {
+  name: string;
+  category: AncillaryCategory;
+  orderableIds: number[];
+  sortOrder?: number;
+}
+
+export interface UpdateAncillaryPanelPayload {
+  name?: string;
+  category?: AncillaryCategory;
+  orderableIds?: number[];
+  sortOrder?: number;
+  isActive?: boolean;
+}
+
+export const ancillaryApi = {
+  // Worklist
+  getQueue: (filters?: { statuses?: AncillaryOrderStatus[]; category?: AncillaryCategory }): Promise<AncillaryOrder[]> => {
+    const qs = new URLSearchParams();
+    if (filters?.statuses?.length) qs.set('statuses', filters.statuses.join(','));
+    if (filters?.category) qs.set('category', filters.category);
+    const suffix = qs.toString() ? `?${qs.toString()}` : '';
+    return apiClient.get<{ data: AncillaryOrder[] }>(`/ancillary/queue${suffix}`).then((r) => r.data.data);
+  },
+
+  // Per-case orders
+  getOrdersByCase: (orderId: string): Promise<AncillaryOrder[]> =>
+    apiClient.get<{ data: AncillaryOrder[] }>(`/ancillary/orders?orderId=${encodeURIComponent(orderId)}`).then((r) => r.data.data),
+
+  // Block-level badge counts for a case
+  getBlockOrderCounts: (orderId: string): Promise<Record<string, number>> =>
+    apiClient.get<{ data: Record<string, number> }>(`/ancillary/orders/block-counts?orderId=${encodeURIComponent(orderId)}`).then((r) => r.data.data),
+
+  // Create (batch)
+  createOrders: (orders: CreateAncillaryOrderPayload[]): Promise<AncillaryOrder[]> =>
+    apiClient.post<{ data: AncillaryOrder[] }>('/ancillary/orders', { orders }).then((r) => r.data.data),
+
+  // Status update
+  updateStatus: (id: number, payload: UpdateAncillaryOrderStatusPayload): Promise<AncillaryOrder> =>
+    apiClient.patch<{ data: AncillaryOrder }>(`/ancillary/orders/${id}/status`, payload).then((r) => r.data.data),
+
+  // Config — orderables
+  getOrderables: (): Promise<AncillaryOrderable[]> =>
+    apiClient.get<{ data: AncillaryOrderable[] }>('/config/ancillary/orderables').then((r) => r.data.data),
+
+  createOrderable: (payload: CreateAncillaryOrderablePayload): Promise<AncillaryOrderable> =>
+    apiClient.post<{ data: AncillaryOrderable }>('/config/ancillary/orderables', payload).then((r) => r.data.data),
+
+  updateOrderable: (id: number, payload: UpdateAncillaryOrderablePayload): Promise<AncillaryOrderable> =>
+    apiClient.put<{ data: AncillaryOrderable }>(`/config/ancillary/orderables/${id}`, payload).then((r) => r.data.data),
+
+  deleteOrderable: (id: number): Promise<void> =>
+    apiClient.delete(`/config/ancillary/orderables/${id}`).then(() => undefined),
+
+  // Config — panels
+  getPanels: (): Promise<AncillaryPanel[]> =>
+    apiClient.get<{ data: AncillaryPanel[] }>('/config/ancillary/panels').then((r) => r.data.data),
+
+  createPanel: (payload: CreateAncillaryPanelPayload): Promise<AncillaryPanel> =>
+    apiClient.post<{ data: AncillaryPanel }>('/config/ancillary/panels', payload).then((r) => r.data.data),
+
+  updatePanel: (id: number, payload: UpdateAncillaryPanelPayload): Promise<AncillaryPanel> =>
+    apiClient.put<{ data: AncillaryPanel }>(`/config/ancillary/panels/${id}`, payload).then((r) => r.data.data),
+
+  deletePanel: (id: number): Promise<void> =>
+    apiClient.delete(`/config/ancillary/panels/${id}`).then(() => undefined),
 };
 

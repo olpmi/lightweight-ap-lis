@@ -716,6 +716,132 @@ async function main() {
   }
 
   console.log(`  ✓ ${ORDER_COUNT} orders with specimens, materials, and reports`);
+
+  // ---------------------------------------------------------------------------
+  // 10. Ancillary orderables and panels (default catalog)
+  // ---------------------------------------------------------------------------
+
+  // Helper to upsert an orderable and return its id
+  async function upsertOrderable(name: string, category: 'HE_LEVELS' | 'IHC' | 'SPECIAL_STAIN' | 'MOLECULAR' | 'SEND_OUT', sortOrder: number): Promise<number> {
+    const record = await prisma.ancillaryOrderable.upsert({
+      where: { name_category: { name, category } },
+      create: { name, category, sortOrder },
+      update: { sortOrder },
+    });
+    return record.id;
+  }
+
+  // H&E Levels
+  const heLevelsId = await upsertOrderable('H&E Levels', 'HE_LEVELS', 0);
+
+  // Special Stains
+  const specialStainNames = [
+    'Periodic Acid Schiff (PAS)',
+    'Grocott (GMS)',
+    'Ziehl-Neelsen (ZN)',
+    'Silver stain',
+    'Reticulin',
+  ];
+  const specialStainIds: Record<string, number> = {};
+  for (let i = 0; i < specialStainNames.length; i++) {
+    specialStainIds[specialStainNames[i]] = await upsertOrderable(specialStainNames[i], 'SPECIAL_STAIN', i);
+  }
+
+  // IHC individual stains
+  const ihcStainNames = [
+    'ER', 'PR', 'HER2', 'Ki67',
+    'CD20', 'CD3',
+    'CD10', 'BCL6', 'MUM1', 'BCL2', 'Cyclin D1', 'CD30', 'CD15', 'Pax5',
+    'CD117', 'DOG1',
+    'MLH1', 'PMS2', 'MSH2', 'MSH6',
+    'Synaptophysin', 'Chromogranin',
+    'p16',
+    'Desmin', 'Myogenin', 'S100', 'CD99',
+  ];
+  const ihcIds: Record<string, number> = {};
+  for (let i = 0; i < ihcStainNames.length; i++) {
+    ihcIds[ihcStainNames[i]] = await upsertOrderable(ihcStainNames[i], 'IHC', i);
+  }
+
+  // Molecular individual tests
+  const molecularTestNames = [
+    '22C3 (PD-L1)', 'SP263 (PD-L1)',
+    'EGFR', 'Gene Fusion Panel',
+    'MSI (Microsatellite Instability)', 'KRAS', 'NRAS', 'BRAF',
+  ];
+  const molecularIds: Record<string, number> = {};
+  for (let i = 0; i < molecularTestNames.length; i++) {
+    molecularIds[molecularTestNames[i]] = await upsertOrderable(molecularTestNames[i], 'MOLECULAR', i);
+  }
+
+  // Send-out tests
+  const sendOutNames = ['Histology Review', 'Histology & IHC Review', 'Molecular Send-out'];
+  for (let i = 0; i < sendOutNames.length; i++) {
+    await upsertOrderable(sendOutNames[i], 'SEND_OUT', i);
+  }
+
+  // IHC Panels
+  const ihcPanels: Array<{ name: string; stains: string[] }> = [
+    { name: 'Breast Panel', stains: ['ER', 'PR', 'HER2', 'Ki67'] },
+    { name: 'Lymphoma Starter Panel', stains: ['CD20', 'CD3', 'Ki67'] },
+    { name: 'Lymphoma Extended Panel', stains: ['CD10', 'BCL6', 'MUM1', 'BCL2', 'Cyclin D1', 'CD30', 'CD15', 'Pax5'] },
+    { name: 'GIST Panel', stains: ['CD117', 'DOG1'] },
+    { name: 'MMR Panel', stains: ['MLH1', 'PMS2', 'MSH2', 'MSH6'] },
+    { name: 'Gastric Panel', stains: ['HER2'] },
+    { name: 'Neuroendocrine Panel', stains: ['Synaptophysin', 'Chromogranin', 'Ki67'] },
+    { name: 'Head & Neck Panel', stains: ['p16'] },
+    { name: 'Soft Tissue Core Panel', stains: ['Desmin', 'Myogenin', 'S100', 'CD99'] },
+  ];
+
+  for (let pi = 0; pi < ihcPanels.length; pi++) {
+    const p = ihcPanels[pi];
+    const panel = await prisma.ancillaryPanel.upsert({
+      where: { name_category: { name: p.name, category: 'IHC' } },
+      create: { name: p.name, category: 'IHC', sortOrder: pi },
+      update: { sortOrder: pi },
+    });
+    for (const stain of p.stains) {
+      const orderableId = ihcIds[stain];
+      if (orderableId) {
+        await prisma.ancillaryPanelItem.upsert({
+          where: { panelId_orderableId: { panelId: panel.id, orderableId } },
+          create: { panelId: panel.id, orderableId },
+          update: {},
+        });
+      }
+    }
+  }
+
+  // Molecular Panels
+  const molecularPanels: Array<{ name: string; tests: string[] }> = [
+    { name: 'PDL1 Panel', tests: ['22C3 (PD-L1)', 'SP263 (PD-L1)'] },
+    { name: 'Lung Panel', tests: ['EGFR', 'Gene Fusion Panel'] },
+    { name: 'Colorectal Panel', tests: ['MSI (Microsatellite Instability)', 'KRAS', 'NRAS', 'BRAF'] },
+  ];
+
+  for (let pi = 0; pi < molecularPanels.length; pi++) {
+    const p = molecularPanels[pi];
+    const panel = await prisma.ancillaryPanel.upsert({
+      where: { name_category: { name: p.name, category: 'MOLECULAR' } },
+      create: { name: p.name, category: 'MOLECULAR', sortOrder: pi },
+      update: { sortOrder: pi },
+    });
+    for (const test of p.tests) {
+      const orderableId = molecularIds[test];
+      if (orderableId) {
+        await prisma.ancillaryPanelItem.upsert({
+          where: { panelId_orderableId: { panelId: panel.id, orderableId } },
+          create: { panelId: panel.id, orderableId },
+          update: {},
+        });
+      }
+    }
+  }
+
+  // Suppress unused variable warning
+  void heLevelsId;
+
+  console.log('  ✓ Ancillary orderables and panels');
   console.log('✅ Seed complete!');
 }
 

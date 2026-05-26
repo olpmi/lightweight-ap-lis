@@ -12,11 +12,16 @@ export default function ConfigLayout({ children }: ConfigLayoutProps) {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const activeTab = location.pathname.startsWith('/config/reports') ? 1 : 0;
+  const activeTab = location.pathname.startsWith('/config/reports')
+    ? 1
+    : location.pathname.startsWith('/config/ancillary')
+      ? 2
+      : 0;
 
   const handleTabChange = (_: React.SyntheticEvent, newValue: number) => {
     if (newValue === 0) navigate('/config/templates');
-    else navigate('/config/reports');
+    else if (newValue === 1) navigate('/config/reports');
+    else navigate('/config/ancillary');
   };
 
   return (
@@ -25,6 +30,7 @@ export default function ConfigLayout({ children }: ConfigLayoutProps) {
         <Tabs value={activeTab} onChange={handleTabChange} sx={{ px: 2 }}>
           <Tab label={t('cfg_tabTemplates')} />
           <Tab label={t('cfg_tabReports')} />
+          <Tab label={t('cfg_tabAncillary')} />
         </Tabs>
       </Box>
       <Box flex={1} minHeight={0} overflow="hidden">

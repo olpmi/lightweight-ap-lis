@@ -231,3 +231,89 @@ export interface OrderMaterials {
     }
   >;
 }
+
+// ---------------------------------------------------------------------------
+// Ancillary Testing
+// ---------------------------------------------------------------------------
+
+import type { AncillaryCategory, AncillaryOrderStatus } from '../constants/index.js';
+
+export interface AncillaryOrderable {
+  id: number;
+  name: string;
+  category: AncillaryCategory;
+  isActive: boolean;
+  sortOrder: number;
+  panelItems?: Array<{ panelId: number }>;
+}
+
+export interface AncillaryPanelItem {
+  panelId: number;
+  orderableId: number;
+  orderable?: AncillaryOrderable;
+}
+
+export interface AncillaryPanel {
+  id: number;
+  name: string;
+  category: AncillaryCategory;
+  isActive: boolean;
+  sortOrder: number;
+  items?: AncillaryPanelItem[];
+}
+
+export interface AncillaryOrder {
+  id: number;
+  orderId: string;
+  blockId: string;
+  orderableId: number;
+  status: AncillaryOrderStatus;
+  levelCount?: number | null;
+  notes?: string | null;
+  resultNotes?: string | null;
+  orderedAt: string;
+  orderedById?: number | null;
+  orderable?: AncillaryOrderable;
+  orderedBy?: Employee;
+}
+
+export interface CreateAncillaryOrderDto {
+  orderId: string;
+  blockId: string;
+  orderableId: number;
+  levelCount?: number;
+  notes?: string;
+}
+
+export interface UpdateAncillaryOrderStatusDto {
+  status: AncillaryOrderStatus;
+  resultNotes?: string;
+}
+
+export interface CreateAncillaryOrderableDto {
+  name: string;
+  category: AncillaryCategory;
+  sortOrder?: number;
+}
+
+export interface UpdateAncillaryOrderableDto {
+  name?: string;
+  category?: AncillaryCategory;
+  sortOrder?: number;
+  isActive?: boolean;
+}
+
+export interface CreateAncillaryPanelDto {
+  name: string;
+  category: AncillaryCategory;
+  orderableIds: number[];
+  sortOrder?: number;
+}
+
+export interface UpdateAncillaryPanelDto {
+  name?: string;
+  category?: AncillaryCategory;
+  orderableIds?: number[];
+  sortOrder?: number;
+  isActive?: boolean;
+}

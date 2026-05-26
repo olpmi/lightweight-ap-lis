@@ -21,6 +21,8 @@ import lookupRoutes from './routes/lookup.routes.js';
 import configRoutes from './routes/config.routes.js';
 import configReportTemplateRoutes from './routes/config.reportTemplate.routes.js';
 import { configReportLayoutRoutes } from './routes/config.reportLayout.routes.js';
+import ancillaryRoutes from './routes/ancillary.routes.js';
+import configAncillaryRoutes from './routes/config.ancillary.routes.js';
 import { ReportService } from './services/report.service.js';
 import { validateBody } from './middleware/validate.middleware.js';
 import { createDraftReportSchema, reactivateOrderSchema } from '@lis/shared';
@@ -98,6 +100,8 @@ export function createApp(): express.Application {
   app.use('/api/config', configRoutes);
   app.use('/api/config/report-templates', configReportTemplateRoutes);
   app.use('/api/config/report-layouts', configReportLayoutRoutes);
+  app.use('/api/config/ancillary', configAncillaryRoutes);
+  app.use('/api/ancillary', ancillaryRoutes);
 
   // Order-scoped report routes
   const reportService = new ReportService();

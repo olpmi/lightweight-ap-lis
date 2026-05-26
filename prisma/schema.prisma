@@ -48,7 +48,8 @@ model Employee {
   employeeRole    EmployeeRole @relation(fields: [employeeRoleId], references: [employeeRoleId])
   defaultLanguage String       @default("en") @map("default_language") @db.VarChar(10)
 
-  reports Report[]
+  reports         Report[]
+  ancillaryOrders AncillaryOrder[]
 
   @@map("employee")
 }
@@ -110,8 +111,9 @@ model Order {
   doctor                Doctor   @relation(fields: [doctorId], references: [doctorId])
   reactivatedFromReport Report?  @relation("OrderReactivation", fields: [reactivatedFromReportId], references: [reportId])
 
-  specimens Specimen[]
-  reports   Report[]   @relation("OrderReports")
+  specimens       Specimen[]
+  reports         Report[]         @relation("OrderReports")
+  ancillaryOrders AncillaryOrder[]
 
   @@map("orders")
 }
@@ -140,8 +142,9 @@ model Block {
   blockNumber     Int       @map("block_number")
   createdDatetime DateTime? @map("created_datetime")
 
-  specimen Specimen @relation(fields: [specimenId], references: [specimenId])
-  slides   Slide[]
+  specimen        Specimen         @relation(fields: [specimenId], references: [specimenId])
+  slides          Slide[]
+  ancillaryOrders AncillaryOrder[]
 
   @@unique([specimenId, blockNumber])
   @@map("block")
@@ -249,4 +252,89 @@ model ReportLayout {
   updatedAt      DateTime @updatedAt @map("updated_at")
 
   @@map("report_layout")
+}
+
+// ---------------------------------------------------------------------------
+// Ancillary Testing
+// ---------------------------------------------------------------------------
+
+enum AncillaryCategory {
+  HE_LEVELS
+  IHC
+  SPECIAL_STAIN
+  MOLECULAR
+  SEND_OUT
+
+  @@map("ancillary_category")
+}
+
+enum AncillaryOrderStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETE
+  CANCELLED
+
+  @@map("ancillary_order_status")
+}
+
+/// Catalog of individual orderable ancillary tests
+model AncillaryOrderable {
+  id        Int                @id @default(autoincrement())
+  name      String             @db.VarChar(200)
+  category  AncillaryCategory
+  isActive  Boolean            @default(true) @map("is_active")
+  sortOrder Int                @default(0) @map("sort_order")
+
+  panelItems AncillaryPanelItem[]
+  orders     AncillaryOrder[]
+
+  @@unique([name, category])
+  @@map("ancillary_orderable")
+}
+
+/// Named panel grouping multiple orderables
+model AncillaryPanel {
+  id        Int                @id @default(autoincrement())
+  name      String             @db.VarChar(200)
+  category  AncillaryCategory
+  isActive  Boolean            @default(true) @map("is_active")
+  sortOrder Int                @default(0) @map("sort_order")
+
+  items AncillaryPanelItem[]
+
+  @@unique([name, category])
+  @@map("ancillary_panel")
+}
+
+/// Join table: panel ↔ orderable
+model AncillaryPanelItem {
+  panelId      Int @map("panel_id")
+  orderableId  Int @map("orderable_id")
+
+  panel      AncillaryPanel     @relation(fields: [panelId], references: [id], onDelete: Cascade)
+  orderable  AncillaryOrderable @relation(fields: [orderableId], references: [id], onDelete: Cascade)
+
+  @@id([panelId, orderableId])
+  @@map("ancillary_panel_item")
+}
+
+/// A single placed ancillary test request, tied to a block on a case
+model AncillaryOrder {
+  id           Int                  @id @default(autoincrement())
+  orderId      String               @map("order_id") @db.Char(11)
+  blockId      String               @map("block_id") @db.VarChar(30)
+  orderableId  Int                  @map("orderable_id")
+  status       AncillaryOrderStatus @default(PENDING)
+  levelCount   Int?                 @map("level_count")
+  notes        String?              @db.Text
+  resultNotes  String?              @map("result_notes") @db.Text
+  orderedAt    DateTime             @default(now()) @map("ordered_at")
+  orderedById  BigInt?              @map("ordered_by_id")
+
+  order      Order              @relation(fields: [orderId], references: [orderId])
+  block      Block              @relation(fields: [blockId], references: [blockId])
+  orderable  AncillaryOrderable @relation(fields: [orderableId], references: [id])
+  orderedBy  Employee?          @relation(fields: [orderedById], references: [employeeId])
+
+  @@map("ancillary_order")
 }
