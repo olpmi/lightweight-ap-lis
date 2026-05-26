@@ -59,8 +59,9 @@ export default function OrderAncillaryDialog({
   const [selectedBlockIds, setSelectedBlockIds] = useState<Set<string>>(new Set());
   const [selectedCategory, setSelectedCategory] = useState<AncillaryCategory>('HE_LEVELS');
   const [levelCount, setLevelCount] = useState(3);
-  const [notes, setNotes] = useState('');
-  const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
+  const [heOrdered, setHeOrdered] = useState(false);
+  const [selectedByCategory, setSelectedByCategory] = useState<Partial<Record<AncillaryCategory, Set<number>>>>({});
+  const [notesByCategory, setNotesByCategory] = useState<Partial<Record<AncillaryCategory, string>>>({});
   const [searchQuery, setSearchQuery] = useState('');
   const [error, setError] = useState<string | null>(null);
 
@@ -71,8 +72,9 @@ export default function OrderAncillaryDialog({
       );
       setSelectedCategory('HE_LEVELS');
       setLevelCount(3);
-      setNotes('');
-      setSelectedIds(new Set());
+      setHeOrdered(false);
+      setSelectedByCategory({});
+      setNotesByCategory({});
       setSearchQuery('');
       setError(null);
     }
@@ -105,6 +107,17 @@ export default function OrderAncillaryDialog({
     return categoryOrderables.filter((o) => o.name.toLowerCase().includes(q));
   }, [categoryOrderables, searchQuery]);
 
+  // Per-category helpers
+  const currentIds = selectedByCategory[selectedCategory] ?? new Set<number>();
+  const currentNotes = notesByCategory[selectedCategory] ?? '';
+
+  const tabCount = (cat: AncillaryCategory) => {
+    if (cat === 'HE_LEVELS') return heOrdered ? 1 : 0;
+    return selectedByCategory[cat]?.size ?? 0;
+  };
+
+  const totalSelected = ANCILLARY_CATEGORIES.reduce((sum, cat) => sum + tabCount(cat), 0);
+
   const toggleBlockId = (id: string) => {
     setSelectedBlockIds((prev) => {
       const next = new Set(prev);
@@ -115,52 +128,62 @@ export default function OrderAncillaryDialog({
   };
 
   const toggleId = (id: number) => {
-    setSelectedIds((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
-      return next;
+    setSelectedByCategory((prev) => {
+      const current = new Set(prev[selectedCategory] ?? []);
+      if (current.has(id)) current.delete(id);
+      else current.add(id);
+      return { ...prev, [selectedCategory]: current };
     });
   };
 
   const addAllFromPanel = (panelOrderableIds: number[]) => {
-    setSelectedIds((prev) => {
-      const next = new Set(prev);
-      panelOrderableIds.forEach((id) => next.add(id));
-      return next;
+    setSelectedByCategory((prev) => {
+      const current = new Set(prev[selectedCategory] ?? []);
+      panelOrderableIds.forEach((id) => current.add(id));
+      return { ...prev, [selectedCategory]: current };
     });
+  };
+
+  const setCurrentNotes = (val: string) => {
+    setNotesByCategory((prev) => ({ ...prev, [selectedCategory]: val }));
   };
 
   const createMutation = useMutation({
     mutationFn: () => {
       if (selectedBlockIds.size === 0) throw new Error('Select at least one block');
+      if (totalSelected === 0) throw new Error('Select at least one test');
 
-      if (selectedCategory === 'HE_LEVELS') {
-        const heLevelsOrderable = categoryOrderables[0];
+      const allItems: Array<{
+        orderId: string; blockId: string; orderableId: number;
+        levelCount?: number; notes?: string;
+      }> = [];
+
+      if (heOrdered) {
+        const heLevelsOrderable = orderables.find((o) => o.category === 'HE_LEVELS' && o.isActive);
         if (!heLevelsOrderable) throw new Error('H&E Levels orderable not found');
-        return ancillaryApi.createOrders(
-          Array.from(selectedBlockIds).map((blockId) => ({
-            orderId,
-            blockId,
+        for (const blockId of selectedBlockIds) {
+          allItems.push({
+            orderId, blockId,
             orderableId: heLevelsOrderable.id,
             levelCount: levelCount || undefined,
-            notes: notes || undefined,
-          })),
-        );
+            notes: notesByCategory['HE_LEVELS'] || undefined,
+          });
+        }
       }
 
-      if (selectedIds.size === 0) throw new Error('Select at least one test');
+      for (const cat of ANCILLARY_CATEGORIES) {
+        if (cat === 'HE_LEVELS') continue;
+        const ids = selectedByCategory[cat];
+        if (!ids || ids.size === 0) continue;
+        const catNotes = notesByCategory[cat] || undefined;
+        for (const blockId of selectedBlockIds) {
+          for (const orderableId of ids) {
+            allItems.push({ orderId, blockId, orderableId, notes: catNotes });
+          }
+        }
+      }
 
-      return ancillaryApi.createOrders(
-        Array.from(selectedBlockIds).flatMap((blockId) =>
-          Array.from(selectedIds).map((orderableId) => ({
-            orderId,
-            blockId,
-            orderableId,
-            notes: notes || undefined,
-          })),
-        ),
-      );
+      return ancillaryApi.createOrders(allItems);
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['ancillary-orders', orderId] });
@@ -248,16 +271,33 @@ export default function OrderAncillaryDialog({
               value={selectedCategory}
               onChange={(_, v: AncillaryCategory) => {
                 setSelectedCategory(v);
-                setSelectedIds(new Set());
-                setNotes('');
                 setSearchQuery('');
               }}
               variant="scrollable"
               scrollButtons="auto"
             >
-              {ANCILLARY_CATEGORIES.map((cat) => (
-                <Tab key={cat} value={cat} label={categoryLabel(cat)} />
-              ))}
+              {ANCILLARY_CATEGORIES.map((cat) => {
+                const count = tabCount(cat);
+                return (
+                  <Tab
+                    key={cat}
+                    value={cat}
+                    label={
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75 }}>
+                        <span>{categoryLabel(cat)}</span>
+                        {count > 0 && (
+                          <Chip
+                            label={count}
+                            size="small"
+                            color="primary"
+                            sx={{ height: 18, minWidth: 18, fontSize: '0.7rem', '& .MuiChip-label': { px: 0.75 } }}
+                          />
+                        )}
+                      </Box>
+                    }
+                  />
+                );
+              })}
             </Tabs>
           </Box>
 
@@ -282,24 +322,37 @@ export default function OrderAncillaryDialog({
           {/* H&E Levels */}
           {selectedCategory === 'HE_LEVELS' && (
             <Stack spacing={1.5}>
-              <TextField
-                label={t('anc_levelCount')}
-                type="number"
-                size="small"
-                value={levelCount}
-                onChange={(e) => setLevelCount(Math.max(1, parseInt(e.target.value, 10) || 1))}
-                inputProps={{ min: 1, max: 20 }}
-                sx={{ width: 160 }}
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={heOrdered}
+                    onChange={(e) => setHeOrdered(e.target.checked)}
+                  />
+                }
+                label={t('anc_heInclude')}
               />
-              <TextField
-                label={t('anc_notes')}
-                size="small"
-                fullWidth
-                multiline
-                minRows={2}
-                value={notes}
-                onChange={(e) => setNotes(e.target.value)}
-              />
+              {heOrdered && (
+                <>
+                  <TextField
+                    label={t('anc_levelCount')}
+                    type="number"
+                    size="small"
+                    value={levelCount}
+                    onChange={(e) => setLevelCount(Math.max(1, parseInt(e.target.value, 10) || 1))}
+                    inputProps={{ min: 1, max: 20 }}
+                    sx={{ width: 160 }}
+                  />
+                  <TextField
+                    label={t('anc_notes')}
+                    size="small"
+                    fullWidth
+                    multiline
+                    minRows={2}
+                    value={currentNotes}
+                    onChange={(e) => setCurrentNotes(e.target.value)}
+                  />
+                </>
+              )}
             </Stack>
           )}
 
@@ -348,7 +401,7 @@ export default function OrderAncillaryDialog({
                                 key={item.orderableId}
                                 label={item.orderable?.name ?? item.orderableId}
                                 size="small"
-                                color={selectedIds.has(item.orderableId) ? 'primary' : 'default'}
+                                color={currentIds.has(item.orderableId) ? 'primary' : 'default'}
                                 onClick={() => toggleId(item.orderableId)}
                                 sx={{ cursor: 'pointer' }}
                               />
@@ -374,7 +427,7 @@ export default function OrderAncillaryDialog({
                         control={
                           <Checkbox
                             size="small"
-                            checked={selectedIds.has(o.id)}
+                            checked={currentIds.has(o.id)}
                             onChange={() => toggleId(o.id)}
                           />
                         }
@@ -397,8 +450,8 @@ export default function OrderAncillaryDialog({
                 fullWidth
                 multiline
                 minRows={2}
-                value={notes}
-                onChange={(e) => setNotes(e.target.value)}
+                value={currentNotes}
+                onChange={(e) => setCurrentNotes(e.target.value)}
               />
             </Stack>
           )}
@@ -416,7 +469,7 @@ export default function OrderAncillaryDialog({
                     key={o.id}
                     control={
                       <Checkbox
-                        checked={selectedIds.has(o.id)}
+                        checked={currentIds.has(o.id)}
                         onChange={() => toggleId(o.id)}
                       />
                     }
@@ -430,11 +483,47 @@ export default function OrderAncillaryDialog({
                 fullWidth
                 multiline
                 minRows={2}
-                value={notes}
-                onChange={(e) => setNotes(e.target.value)}
+                value={currentNotes}
+                onChange={(e) => setCurrentNotes(e.target.value)}
               />
             </Stack>
           )}
+
+          {/* Cross-category summary: tests queued in other tabs */}
+          {(() => {
+            const summaryCats = ANCILLARY_CATEGORIES.filter(
+              (cat) => cat !== selectedCategory && tabCount(cat) > 0,
+            );
+            if (summaryCats.length === 0) return null;
+            return (
+              <Box sx={{ bgcolor: 'action.hover', borderRadius: 1, p: 1.5 }}>
+                <Typography variant="caption" fontWeight={600} color="text.secondary" display="block" mb={1}>
+                  {t('anc_orderSummary')}
+                </Typography>
+                <Stack spacing={0.75}>
+                  {summaryCats.map((cat) => (
+                    <Box key={cat} display="flex" alignItems="flex-start" gap={1}>
+                      <Typography variant="caption" color="text.secondary" sx={{ minWidth: 100, pt: 0.25 }}>
+                        {categoryLabel(cat)}:
+                      </Typography>
+                      <Stack direction="row" flexWrap="wrap" gap={0.5}>
+                        {cat === 'HE_LEVELS' ? (
+                          <Chip label={`×${levelCount} levels`} size="small" color="primary" />
+                        ) : (
+                          Array.from(selectedByCategory[cat] ?? []).map((id) => {
+                            const o = orderables.find((x) => x.id === id);
+                            return (
+                              <Chip key={id} label={o?.name ?? `#${id}`} size="small" color="primary" />
+                            );
+                          })
+                        )}
+                      </Stack>
+                    </Box>
+                  ))}
+                </Stack>
+              </Box>
+            );
+          })()}
         </Stack>
       </Box>
 
@@ -458,7 +547,7 @@ export default function OrderAncillaryDialog({
           disabled={
             createMutation.isPending ||
             selectedBlockIds.size === 0 ||
-            (selectedCategory !== 'HE_LEVELS' && selectedIds.size === 0)
+            totalSelected === 0
           }
         >
           {createMutation.isPending ? (

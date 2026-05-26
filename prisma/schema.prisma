@@ -329,6 +329,9 @@ model AncillaryOrder {
   notes        String?              @db.Text
   resultNotes  String?              @map("result_notes") @db.Text
   orderedAt    DateTime             @default(now()) @map("ordered_at")
+  inProgressAt DateTime?            @map("in_progress_at")
+  completedAt  DateTime?            @map("completed_at")
+  cancelledAt  DateTime?            @map("cancelled_at")
   orderedById  BigInt?              @map("ordered_by_id")
 
   order      Order              @relation(fields: [orderId], references: [orderId])

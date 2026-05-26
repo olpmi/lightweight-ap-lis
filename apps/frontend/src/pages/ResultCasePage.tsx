@@ -1042,7 +1042,13 @@ export default function ResultCasePage() {
                       {t('anc_orderAncillary')}
                     </Button>
                   </Box>
-                  <Table size="small">
+                  <Table size="small" sx={{ tableLayout: 'fixed' }}>
+                    <colgroup>
+                      <col style={{ width: '34%' }} />
+                      <col style={{ width: '20%' }} />
+                      <col style={{ width: '22%' }} />
+                      <col style={{ width: '24%' }} />
+                    </colgroup>
                     <TableHead>
                       <TableRow>
                         <TableCell>Test</TableCell>
@@ -1055,24 +1061,36 @@ export default function ResultCasePage() {
                       {blkOrders.map((o) => (
                         <TableRow key={o.id}>
                           <TableCell>
-                            {o.orderable?.name ?? `#${o.orderableId}`}
-                            {o.levelCount ? ` ×${o.levelCount}` : ''}
+                            <Typography variant="body2">
+                              {o.orderable?.name ?? `#${o.orderableId}`}
+                              {o.levelCount ? ` ×${o.levelCount}` : ''}
+                            </Typography>
+                            {o.notes && (
+                              <Typography variant="caption" color="text.secondary">
+                                {o.notes}
+                              </Typography>
+                            )}
                           </TableCell>
                           <TableCell>
-                            {o.orderable ? t(`anc_cat_${o.orderable.category}` as Parameters<typeof t>[0]) : '—'}
+                            <Chip
+                              label={o.orderable ? t(`anc_cat_${o.orderable.category}` as Parameters<typeof t>[0]) : '—'}
+                              size="small"
+                            />
                           </TableCell>
                           <TableCell>
                             <Chip label={statusLabel(o.status)} color={statusColor(o.status)} size="small" />
+                            <Typography variant="caption" display="block" color="text.secondary" mt={0.25}>
+                              {(() => {
+                                const ts = o.status === 'IN_PROGRESS' ? (o.inProgressAt ?? o.orderedAt)
+                                  : o.status === 'COMPLETE' ? o.completedAt
+                                  : o.status === 'CANCELLED' ? o.cancelledAt
+                                  : o.orderedAt;
+                                return ts ? new Date(ts).toLocaleString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : null;
+                              })()}
+                            </Typography>
                           </TableCell>
                           <TableCell align="right">
                             <Stack direction="row" spacing={0.5} justifyContent="flex-end">
-                              {o.status === 'PENDING' && (
-                                <Button size="small" variant="outlined"
-                                  onClick={() => ancillaryStatusMutation.mutate({ id: o.id, status: 'IN_PROGRESS' })}
-                                  disabled={ancillaryStatusMutation.isPending}>
-                                  {t('anc_markInProgress')}
-                                </Button>
-                              )}
                               {o.status === 'IN_PROGRESS' && (
                                 <Button size="small" variant="contained" color="success"
                                   onClick={() => ancillaryStatusMutation.mutate({ id: o.id, status: 'COMPLETE' })}
@@ -1085,6 +1103,13 @@ export default function ResultCasePage() {
                                   onClick={() => ancillaryStatusMutation.mutate({ id: o.id, status: 'CANCELLED' })}
                                   disabled={ancillaryStatusMutation.isPending}>
                                   {t('anc_cancel')}
+                                </Button>
+                              )}
+                              {(o.status === 'COMPLETE' || o.status === 'CANCELLED') && (
+                                <Button size="small" variant="outlined"
+                                  onClick={() => ancillaryStatusMutation.mutate({ id: o.id, status: 'PENDING' })}
+                                  disabled={ancillaryStatusMutation.isPending}>
+                                  {t('anc_reactivate')}
                                 </Button>
                               )}
                             </Stack>

@@ -320,10 +320,11 @@ export interface UpdateAncillaryPanelPayload {
 
 export const ancillaryApi = {
   // Worklist
-  getQueue: (filters?: { statuses?: AncillaryOrderStatus[]; category?: AncillaryCategory }): Promise<AncillaryOrder[]> => {
+  getQueue: (filters?: { statuses?: AncillaryOrderStatus[]; category?: AncillaryCategory; since?: string }): Promise<AncillaryOrder[]> => {
     const qs = new URLSearchParams();
     if (filters?.statuses?.length) qs.set('statuses', filters.statuses.join(','));
     if (filters?.category) qs.set('category', filters.category);
+    if (filters?.since) qs.set('since', filters.since);
     const suffix = qs.toString() ? `?${qs.toString()}` : '';
     return apiClient.get<{ data: AncillaryOrder[] }>(`/ancillary/queue${suffix}`).then((r) => r.data.data);
   },

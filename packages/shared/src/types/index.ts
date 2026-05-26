@@ -272,6 +272,9 @@ export interface AncillaryOrder {
   notes?: string | null;
   resultNotes?: string | null;
   orderedAt: string;
+  inProgressAt?: string | null;
+  completedAt?: string | null;
+  cancelledAt?: string | null;
   orderedById?: number | null;
   orderable?: AncillaryOrderable;
   orderedBy?: Employee;

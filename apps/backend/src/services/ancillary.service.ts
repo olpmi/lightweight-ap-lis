@@ -68,15 +68,26 @@ export class AncillaryService {
    * Worklist queue — all orders matching optional status/category filters.
    * Returns orders enriched with case metadata (patient name, etc.).
    */
-  async getQueue(filters?: { statuses?: string[]; category?: string }) {
-    const where: Record<string, unknown> = {};
+  async getQueue(filters?: { statuses?: string[]; category?: string; since?: Date }) {
+    const andConditions: Record<string, unknown>[] = [];
 
     if (filters?.statuses?.length) {
-      where.status = { in: filters.statuses };
+      andConditions.push({ status: { in: filters.statuses } });
     }
     if (filters?.category) {
-      where.orderable = { category: filters.category };
+      andConditions.push({ orderable: { category: filters.category } });
     }
+    if (filters?.since) {
+      andConditions.push({
+        OR: [
+          { status: { not: { in: ['COMPLETE', 'CANCELLED'] } } },
+          { completedAt: { gte: filters.since } },
+          { cancelledAt: { gte: filters.since } },
+        ],
+      });
+    }
+
+    const where = andConditions.length > 0 ? { AND: andConditions } : {};
 
     const rows = await prisma.ancillaryOrder.findMany({
       where,
@@ -108,11 +119,17 @@ export class AncillaryService {
    * Update the status (and optional result notes) of a single ancillary order.
    */
   async updateStatus(id: number, data: UpdateAncillaryOrderStatusInput) {
+    const now = new Date();
+    const timestamps: Record<string, Date> = {};
+    if (data.status === 'IN_PROGRESS') timestamps.inProgressAt = now;
+    if (data.status === 'COMPLETE') timestamps.completedAt = now;
+    if (data.status === 'CANCELLED') timestamps.cancelledAt = now;
     return prisma.ancillaryOrder.update({
       where: { id },
       data: {
         status: data.status as 'PENDING' | 'IN_PROGRESS' | 'COMPLETE' | 'CANCELLED',
         resultNotes: data.resultNotes ?? undefined,
+        ...timestamps,
       },
       include: ORDERABLE_INCLUDE,
     });
