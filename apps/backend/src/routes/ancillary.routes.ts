@@ -18,7 +18,11 @@ router.get('/queue', requireAuth, async (req, res, next) => {
       typeof req.query.category === 'string' && req.query.category
         ? req.query.category
         : undefined;
-    const data = await service.getQueue({ statuses, category });
+    const since =
+      typeof req.query.since === 'string' && req.query.since
+        ? new Date(req.query.since)
+        : undefined;
+    const data = await service.getQueue({ statuses, category, since });
     res.json({ data });
   } catch (err) {
     next(err);

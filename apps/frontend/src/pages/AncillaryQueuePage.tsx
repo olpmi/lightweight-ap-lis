@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import {
   Box,
   Typography,
@@ -53,13 +53,26 @@ export default function AncillaryQueuePage() {
   const [categoryFilter, setCategoryFilter] = useState<AncillaryCategory | ''>('');
   const [actionError, setActionError] = useState<string | null>(null);
   const [actionSuccess, setActionSuccess] = useState<string | null>(null);
+  const [since, setSince] = useState<'1d' | '7d' | '30d' | ''>('7d');
+
+  const showRecencyFilter = statusFilter.some((s) => s === 'COMPLETE' || s === 'CANCELLED');
+
+  const sinceDate = useMemo(() => {
+    if (!since || !showRecencyFilter) return undefined;
+    const d = new Date();
+    if (since === '1d') d.setDate(d.getDate() - 1);
+    else if (since === '7d') d.setDate(d.getDate() - 7);
+    else if (since === '30d') d.setDate(d.getDate() - 30);
+    return d.toISOString();
+  }, [since, showRecencyFilter]);
 
   const { data: orders = [], isLoading } = useQuery({
-    queryKey: ['ancillary-queue', statusFilter, categoryFilter],
+    queryKey: ['ancillary-queue', statusFilter, categoryFilter, sinceDate],
     queryFn: () =>
       ancillaryApi.getQueue({
         statuses: statusFilter.length ? statusFilter : undefined,
         category: categoryFilter || undefined,
+        since: sinceDate,
       }),
   });
 
@@ -88,6 +101,22 @@ export default function AncillaryQueuePage() {
 
   const categoryLabel = (cat: AncillaryCategory) => t(`anc_cat_${cat}` as Parameters<typeof t>[0]);
   const statusLabel = (s: AncillaryOrderStatus) => t(`anc_status_${s}` as Parameters<typeof t>[0]);
+
+  const statusTimestamp = (order: AncillaryOrder) => {
+    switch (order.status) {
+      case 'IN_PROGRESS': return order.inProgressAt ?? order.orderedAt;
+      case 'COMPLETE': return order.completedAt;
+      case 'CANCELLED': return order.cancelledAt;
+      default: return order.orderedAt;
+    }
+  };
+
+  const fmtDateTime = (iso: string | null | undefined) => {
+    if (!iso) return null;
+    return new Date(iso).toLocaleString(undefined, {
+      month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit',
+    });
+  };
 
   return (
     <Box>
@@ -139,6 +168,22 @@ export default function AncillaryQueuePage() {
               ))}
             </Select>
           </FormControl>
+
+          {showRecencyFilter && (
+            <FormControl size="small" sx={{ minWidth: 160 }}>
+              <InputLabel>{t('anc_since')}</InputLabel>
+              <Select
+                value={since}
+                label={t('anc_since')}
+                onChange={(e) => setSince(e.target.value as '1d' | '7d' | '30d' | '')}
+              >
+                <MenuItem value="1d">{t('anc_since_1d')}</MenuItem>
+                <MenuItem value="7d">{t('anc_since_7d')}</MenuItem>
+                <MenuItem value="30d">{t('anc_since_30d')}</MenuItem>
+                <MenuItem value="">{t('anc_since_all')}</MenuItem>
+              </Select>
+            </FormControl>
+          )}
         </Stack>
       </Paper>
 
@@ -180,7 +225,14 @@ export default function AncillaryQueuePage() {
                 </Stack>
               </AccordionSummary>
               <AccordionDetails sx={{ p: 0 }}>
-                <Table size="small">
+                <Table size="small" sx={{ tableLayout: 'fixed' }}>
+                  <colgroup>
+                    <col style={{ width: '16%' }} />
+                    <col style={{ width: '27%' }} />
+                    <col style={{ width: '13%' }} />
+                    <col style={{ width: '20%' }} />
+                    <col style={{ width: '24%' }} />
+                  </colgroup>
                   <TableHead>
                     <TableRow>
                       <TableCell>{t('anc_blockLabel')}</TableCell>
@@ -223,6 +275,9 @@ export default function AncillaryQueuePage() {
                             color={STATUS_COLORS[order.status]}
                             size="small"
                           />
+                          <Typography variant="caption" display="block" color="text.secondary" mt={0.25}>
+                            {fmtDateTime(statusTimestamp(order))}
+                          </Typography>
                         </TableCell>
                         <TableCell align="right">
                           <Stack direction="row" spacing={0.5} justifyContent="flex-end">
@@ -262,6 +317,18 @@ export default function AncillaryQueuePage() {
                                 disabled={updateMutation.isPending}
                               >
                                 {t('anc_cancel')}
+                              </Button>
+                            )}
+                            {(order.status === 'COMPLETE' || order.status === 'CANCELLED') && (
+                              <Button
+                                size="small"
+                                variant="outlined"
+                                onClick={() =>
+                                  updateMutation.mutate({ id: order.id, status: 'PENDING' })
+                                }
+                                disabled={updateMutation.isPending}
+                              >
+                                {t('anc_reactivate')}
                               </Button>
                             )}
                           </Stack>
