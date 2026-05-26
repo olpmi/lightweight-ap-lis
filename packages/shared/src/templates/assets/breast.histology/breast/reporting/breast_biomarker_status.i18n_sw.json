@@ -1,33 +1,55 @@
 {
   "template_id": "breast_biomarker_status_v1",
   "lang": "sw",
-
   "title": "Hali ya Biomaka za Saratani ya Titi",
-
   "er_status": {
     "label": "Hali ya Kipokezi cha Estrojeni (ER)",
     "fields": {
       "percentage_nuclear_positivity": {
-        "label": "Asilimia ya seli zenye chanya ya nyuklia"
+        "label": "Asilimia ya seli zenye chanya ya nyuklia",
+        "options": [
+          "Less than 1%",
+          "1-10%",
+          "11-20%",
+          "21-30%",
+          "31-40%",
+          "41-50%",
+          "51-60%",
+          "61-70%",
+          "71-80%",
+          "81-90%",
+          "91-100%"
+        ]
       },
       "average_intensity": {
         "label": "Wastani wa ukali wa uchukuaji rangi"
       }
     }
   },
-
   "pgr_status": {
     "label": "Hali ya Kipokezi cha Progesteroni (PgR)",
     "fields": {
       "percentage_nuclear_positivity": {
-        "label": "Asilimia ya seli zenye chanya ya nyuklia"
+        "label": "Asilimia ya seli zenye chanya ya nyuklia",
+        "options": [
+          "Less than 1%",
+          "1-10%",
+          "11-20%",
+          "21-30%",
+          "31-40%",
+          "41-50%",
+          "51-60%",
+          "61-70%",
+          "71-80%",
+          "81-90%",
+          "91-100%"
+        ]
       },
       "average_intensity": {
         "label": "Wastani wa ukali wa uchukuaji rangi"
       }
     }
   },
-
   "her2_ihc_status": {
     "label": "Hali ya HER2 kwa Immunohistokemia (IHC)",
     "comment": "Saratani za titi zenye alama za HER2 IHC za 0+, 1+, au 2+ (ISH hasi) zinaweza kustahili matibabu yanayolenga viwango visivyo na amplification vya uonyeshaji wa HER2 katika mazingira ya ugonjwa wa metastatic. Kwa sasa, wagonjwa wasio na uchukuaji rangi wa membrani kwa IHC (0) hawastahili au huondolewa. Zingatia kutumia maoni ya hiari yaliyo sanifishwa ya ripoti ya HER2 IHC kueleza umuhimu wa kitabibu wa viwango vya chini vya uchukuaji rangi wa HER2 IHC katika mazingira ya metastatic pamoja na ufafanuzi wa HER2 ya ultralow na low uliotumika katika majaribio ya kitabibu.",
@@ -47,14 +69,16 @@
           "Hakuna uchukuaji rangi wa membrani uliobainika (0 / hakuna uchukuaji rangi wa membrani)",
           "Uchukuaji rangi wa membrani usiokamilika, hafifu au unaoonekana kwa shida, katika chini ya au sawa na 10% ya seli za uvimbe (0+ / wenye uchukuaji rangi wa membrani)",
           "Nyingine"
-        ]
+        ],
+        "other_specify": "Eleza nyingine"
       },
       "score_1_pattern": {
         "label": "Muundo wa alama 1+",
         "options": [
           "Uchukuaji rangi wa membrani usiokamilika, hafifu au unaoonekana kwa shida, katika zaidi ya 10% ya seli za uvimbe",
           "Nyingine"
-        ]
+        ],
+        "other_specify": "Eleza nyingine"
       },
       "score_2_pattern": {
         "label": "Muundo wa alama 2+",
@@ -64,27 +88,40 @@
           "Chini ya au sawa na 10% ya saratani ina uchukuaji rangi wa mviringo, kamili na mkali (3+) (usambazaji tofauti lakini mdogo sana; zingatia matokeo ya sampuli za ziada)",
           "Uchukuaji rangi mwingi wa saitoplazimu upo, ukificha tathmini ya ukali wa uchukuaji rangi wa membrani",
           "Nyingine"
-        ]
+        ],
+        "other_specify": "Eleza nyingine"
       },
       "score_3_pattern": {
         "label": "Muundo wa alama 3+",
         "options": [
           "Uchukuaji rangi wa membrani wa mviringo, kamili, mkali, na katika zaidi ya 10% ya seli za uvimbe",
           "Nyingine"
-        ]
+        ],
+        "other_specify": "Eleza nyingine"
       }
     }
   },
-
   "ki67_status": {
     "label": "Kielezo cha Uzalishaji Ki-67",
     "fields": {
       "value": {
-        "label": "Kielezo cha uzalishaji Ki-67"
+        "label": "Kielezo cha uzalishaji Ki-67",
+        "options": [
+          "Less than 1%",
+          "1-10%",
+          "11-20%",
+          "21-30%",
+          "31-40%",
+          "41-50%",
+          "51-60%",
+          "61-70%",
+          "71-80%",
+          "81-90%",
+          "91-100%"
+        ]
       }
     }
   },
-
   "methods": {
     "label": "Mbinu",
     "fields": {
@@ -110,5 +147,8 @@
         "label": "Kielezo cha Ki-67: Kingamwili ya msingi"
       }
     }
+  },
+  "domain": {
+    "fields": {}
   }
 }

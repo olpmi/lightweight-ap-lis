@@ -2,7 +2,6 @@
   "template_id": "lung_tumor_biopsy_v1",
   "lang": "sw",
   "title": "Uvimbe wa mapafu, biopsy",
-
   "tumor": {
     "label": "Uvimbe",
     "fields": {
@@ -36,7 +35,13 @@
           "Non-small cell carcinoma, subtype cannot be determined",
           "Other histologic type not listed",
           "No viable tumor present"
-        ]
+        ],
+        "combined_small_cell_non_small_cell_component_specify": "Sehemu iliyochanganywa ya seli ndogo/sio ndogo, taja",
+        "combined_large_cell_neuroendocrine_other_component_specify": "Sehemu iliyochanganywa ya seli kubwa za neuroendokrine/nyingine, taja",
+        "carcinoma_type_cannot_be_determined_specify": "Aina ya karsinoma haiwezi kuamuliwa, taja",
+        "non_small_cell_subtype_cannot_be_determined_specify": "Aina ndogo ya sio seli ndogo haiwezi kuamuliwa, taja",
+        "other_histologic_type_specify": "Aina nyingine ya kihistolojia, taja",
+        "no_viable_tumor_present_explain": "Hakuna uvimbe hai uliopo, eleza"
       },
       "histologic_patterns": {
         "label": "Miundo ya histolojia (hutumika kwa adenocarcinoma zisizo za mucinous pekee)",
@@ -52,15 +57,45 @@
         ]
       },
       "histologic_grade": {
-        "label": "Daraja la histolojia"
+        "label": "Daraja la histolojia",
+        "other_specify": "Nyingine, taja",
+        "cannot_be_assessed_specify": "Haiwezi kutathminiwa, taja",
+        "not_applicable_specify": "Haihusiki, taja"
       },
       "lymphovascular_invasion": {
-        "label": "Uvamizi wa limfatiki na / au mishipa ya damu"
+        "label": "Uvamizi wa limfatiki na / au mishipa ya damu",
+        "fields": {
+          "status": {
+            "label": "Uvamizi wa lymphatiki na/au mishipa ya damu",
+            "options": [
+              "Haipatikani",
+              "Ipo",
+              "Haiwezi kuamuliwa"
+            ],
+            "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
+          },
+          "subtypes": {
+            "label": "Aina ndogo za uvamizi",
+            "options": [
+              "Uvamizi wa lymphatiki upo",
+              "Uvamizi wa ateri upo",
+              "Uvamizi wa mishipa ya damu upo",
+              "Other"
+            ],
+            "other_specify": "Nyingine, taja"
+          }
+        }
       }
     }
   },
-
   "additional_findings": {
-    "label": "Matokeo ya ziada"
+    "label": "Matokeo ya ziada",
+    "fields": {
+      "findings": {},
+      "atypical_adenomatous_hyperplasia_specify": {},
+      "granulomatous_inflammation_specify": {},
+      "fibrosis_specify_pattern": {},
+      "other_specify": {}
+    }
   }
 }

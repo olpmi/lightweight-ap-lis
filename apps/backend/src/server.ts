@@ -7,11 +7,15 @@ dotenv.config();
 import { createApp } from './app.js';
 import { logger } from './lib/logger.js';
 import { ensureStorageDirs } from './utils/storageDirs.js';
+import { ConfigReportLayoutService } from './services/config.reportLayout.service.js';
 
 const PORT = parseInt(process.env.PORT ?? '3001', 10);
 
 async function start() {
   ensureStorageDirs();
+
+  // Seed default report layouts for all report types if none exist yet
+  await new ConfigReportLayoutService().seedDefaults();
 
   const app = createApp();
 

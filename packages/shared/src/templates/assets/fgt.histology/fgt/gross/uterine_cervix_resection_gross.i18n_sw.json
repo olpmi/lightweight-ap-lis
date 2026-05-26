@@ -1,125 +1,214 @@
 {
-  "template": {
-    "key": "gross_uterine_cervix_resection",
-    "title": "KIELELEZO CHA UCHUNGUZI WA MAKROSKOPIA: UTOAJI WA MLANGO WA KIZAZI"
-  },
-  "common": {
-    "right": "Kulia",
-    "left": "Kushoto",
-    "bilateral": "Pande zote mbili",
-    "present": "Ipo",
-    "absent": "Haipo",
-    "other_specify": "Nyingine (eleza)",
-    "not_specified": "Haijabainishwa",
-    "cannot_be_determined_explain": "Haiwezi kubainishwa (eleza)",
-    "total_number": "Jumla ya idadi",
-    "size_range": "Kiwango cha ukubwa",
-    "date": "Tarehe"
-  },
-  "sections": {
-    "specimen": "SAMPULI",
-    "tumor": "UVIMBE",
-    "block_allocation_key": "Ufunguo wa ugawaji wa vitalu"
-  },
+  "title": "Upasuaji wa Kizazi (Kiolezo cha Gross)",
   "specimen": {
-    "procedure": "Utaratibu (chagua yote yanayohusika)",
-    "procedure_options": {
-      "trachelectomy": "Trakelektomia",
-      "total_hysterectomy_bso": "Kuondolewa kabisa kwa kizazi pamoja na mirija ya falopio na ovari zote mbili",
-      "radical_hysterectomy": "Kuondolewa kwa kizazi kwa njia ya radical hysterectomy",
-      "simple_hysterectomy": "Kuondolewa kwa kizazi kwa njia rahisi",
-      "pelvic_exenteration": "Kuondolewa kwa viungo vya nyonga (taja viungo vilivyojumuishwa)",
-      "bilateral_salpingo_oophorectomy": "Kuondolewa kwa mirija ya falopio na ovari zote mbili",
-      "right_salpingo_oophorectomy": "Kuondolewa kwa mrija wa falopio na ovari ya kulia",
-      "left_salpingo_oophorectomy": "Kuondolewa kwa mrija wa falopio na ovari ya kushoto",
-      "salpingo_oophorectomy_unspecified": "Kuondolewa kwa mrija wa falopio na ovari, upande haujabainishwa",
-      "right_oophorectomy": "Kuondolewa kwa ovari ya kulia",
-      "left_oophorectomy": "Kuondolewa kwa ovari ya kushoto",
-      "oophorectomy_unspecified": "Kuondolewa kwa ovari, upande haujabainishwa",
-      "bilateral_salpingectomy": "Kuondolewa kwa mirija yote miwili ya falopio",
-      "right_salpingectomy": "Kuondolewa kwa mrija wa falopio wa kulia",
-      "left_salpingectomy": "Kuondolewa kwa mrija wa falopio wa kushoto",
-      "salpingectomy_unspecified": "Kuondolewa kwa mrija wa falopio, upande haujabainishwa",
-      "vaginal_cuff_resection": "Utoaji wa sehemu ya mwisho ya uke",
-      "omentectomy": "Omentektomia",
-      "other": "Nyingine (eleza)"
-    },
-    "hysterectomy_type": "Aina ya hysterectomy",
-    "hysterectomy_type_options": {
-      "abdominal": "Kupitia tumbo",
-      "vaginal": "Kupitia uke",
-      "vaginal_lap_assisted": "Kupitia uke kwa msaada wa laparoskopia",
-      "laparoscopic": "Laparoskopia",
-      "robotic_assisted": "Laparoskopia kwa msaada wa roboti",
-      "other": "Nyingine (eleza)",
-      "not_specified": "Haijabainishwa"
+    "label": "Sampuli",
+    "fields": {
+      "procedure": {
+        "label": "Utaratibu (chagua yote yanayohusika)",
+        "options": [
+          "Trakelektomia",
+          "Kuondolewa kabisa kwa kizazi pamoja na mirija ya falopio na ovari zote mbili",
+          "Kuondolewa kwa kizazi kwa njia ya radical hysterectomy",
+          "Kuondolewa kwa kizazi kwa njia rahisi",
+          "Kuondolewa kwa viungo vya nyonga (taja viungo vilivyojumuishwa)",
+          "Kuondolewa kwa mirija ya falopio na ovari zote mbili",
+          "Kuondolewa kwa mrija wa falopio na ovari ya kulia",
+          "Kuondolewa kwa mrija wa falopio na ovari ya kushoto",
+          "Kuondolewa kwa mrija wa falopio na ovari, upande haujabainishwa",
+          "Kuondolewa kwa ovari ya kulia",
+          "Kuondolewa kwa ovari ya kushoto",
+          "Kuondolewa kwa ovari, upande haujabainishwa",
+          "Kuondolewa kwa mirija yote miwili ya falopio",
+          "Kuondolewa kwa mrija wa falopio wa kulia",
+          "Kuondolewa kwa mrija wa falopio wa kushoto",
+          "Kuondolewa kwa mrija wa falopio, upande haujabainishwa",
+          "Utoaji wa sehemu ya mwisho ya uke",
+          "Omentektomia",
+          "Nyingine (eleza)"
+        ],
+        "other_specify": "Nyingine (eleza)",
+        "pelvic_exenteration_specify_included_organs": "pelvic exenteration specify included organs"
+      },
+      "hysterectomy_type": {
+        "label": "Aina ya hysterectomy",
+        "options": [
+          "Kupitia tumbo",
+          "Kupitia uke",
+          "Kupitia uke, kwa msaada wa laparoskopia",
+          "Kwa laparoskopia",
+          "Kwa laparoskopia, kwa msaada wa roboti",
+          "Nyingine (taja)",
+          "Haijabainishwa"
+        ],
+        "other_specify": "Nyingine (eleza)"
+      }
     }
   },
   "tumor": {
-    "tumor_site": "Eneo la uvimbe (chagua yote yanayohusika)",
-    "tumor_site_options": {
-      "left_superior_anterior_12_3": "Robo ya juu kushoto (mbele) (saa 12 hadi 3)",
-      "left_inferior_posterior_3_6": "Robo ya chini kushoto (nyuma) (saa 3 hadi 6)",
-      "right_inferior_posterior_6_9": "Robo ya chini kulia (nyuma) (saa 6 hadi 9)",
-      "right_superior_anterior_9_12": "Robo ya juu kulia (mbele) (saa 9 hadi 12)",
-      "other": "Nyingine (eleza)",
-      "not_specified": "Haijabainishwa"
-    },
-    "tumor_size": {
-      "title": "Ukubwa wa uvimbe",
-      "greatest_dimension_cm": "Kipimo kikubwa zaidi kwa sentimita (cm)",
-      "additional_dimension_cm": "Kipimo cha ziada kwa sentimita (cm)",
-      "cannot_be_determined": "Haiwezi kubainishwa (eleza)",
-      "note": "Kulingana na Mwongozo wa AJCC wa upangaji hatua, ukubwa wa uvimbe huripotiwa kwa sentimita. Vipimo vyote ni muhimu; tazama ufafanuzi wa saratani ya seli bapa yenye uvamizi wa juu juu chini ya T1a1 / IA1."
-    },
-    "depth_of_invasion": {
-      "title": "Kina cha uvamizi",
-      "stromal_depth_cm": "Kina cha uvamizi kwenye stroma (cm)",
-      "horizontal_extent_cm": "Ueneaji wa mlalo (cm)"
-    },
-    "distance_to_margins": {
-      "title": "Umbali hadi kingo",
-      "ectocervical_margin_cm": "Kingo ya ectocervix",
-      "endocervical_margin_cm": "Kingo ya endocervix",
-      "parametrial_margin_cm": "Kingo ya parametrium"
-    },
-    "parametrial_involvement": {
-      "title": "Ushiriki wa parametrium",
-      "absent": "Haipo",
-      "present_select": "Ipo (chagua yote yanayohusika)",
-      "right": "Kulia",
-      "left": "Kushoto",
-      "bilateral": "Pande zote mbili"
-    },
-    "vaginal_cuff_involvement": {
-      "title": "Ushiriki wa sehemu ya mwisho ya uke",
-      "absent": "Haipo",
-      "present": "Ipo"
-    },
-    "lymph_nodes": {
-      "title": "Tezi za limfu",
-      "present_absent": "Zipo / Hazipo",
-      "total_number_of_nodes": "Jumla ya idadi ya tezi",
-      "size_range": "Kiwango cha ukubwa"
+    "label": "Uvimbe",
+    "fields": {
+      "tumor_site": {
+        "label": "Eneo la uvimbe (chagua yote yanayohusika)",
+        "options": [
+          "Robo ya juu kushoto (mbele) (saa 12 hadi 3)",
+          "Robo ya chini kushoto (nyuma) (saa 3 hadi 6)",
+          "Robo ya chini kulia (nyuma) (saa 6 hadi 9)",
+          "Robo ya juu kulia (mbele) (saa 9 hadi 12)",
+          "Nyingine (eleza)",
+          "Haijabainishwa"
+        ],
+        "other_specify": "Nyingine (eleza)"
+      },
+      "tumor_size": {
+        "label": "Ukubwa wa uvimbe",
+        "fields": {
+          "size_type": {
+            "label": "Aina ya ukubwa wa uvimbe",
+            "options": [
+              "Kipimo kikubwa zaidi kwa sentimita (cm)",
+              "Haiwezi kubainishwa"
+            ]
+          },
+          "greatest_dimension_cm": {
+            "label": "Kipimo kikubwa zaidi (cm)"
+          },
+          "additional_dimensions_cm": {
+            "label": "Vipimo vya ziada (cm)"
+          },
+          "cannot_be_determined_explain": {
+            "label": "Haiwezi kubainishwa (eleza)"
+          },
+          "note": {
+            "label": "Kumbuka kuhusu ukubwa wa uvimbe",
+            "value": "Kulingana na Mwongozo wa Utaratibu wa AJCC, ukubwa wa uvimbe unaripotiwa kwa sentimita. Vipimo vyote ni muhimu; angalia ufafanuzi wa carcinoma ya seli za squamous inayovamia uso kwa kina kidogo chini ya T1a1 / IA1."
+          }
+        }
+      },
+      "depth_of_invasion_cm": {
+        "label": "Kina cha uvamizi kwenye stroma (cm)"
+      },
+      "horizontal_extent_cm": {
+        "label": "Ueneaji wa mlalo (cm)"
+      }
     }
   },
-  "blocks": {
-    "tumor": "Uvimbe",
-    "endocervical_margin": "Kingo ya endocervix",
-    "ectocervical_margin": "Kingo ya ectocervix",
-    "right_parametrium": "Parametrium ya kulia",
-    "left_parametrium": "Parametrium ya kushoto",
-    "vaginal_cuff_margin": "Kingo ya sehemu ya mwisho ya uke",
-    "endometrium": "Endometrium",
-    "myometrium": "Myometrium",
-    "right_ovary": "Ovari ya kulia",
-    "left_ovary": "Ovari ya kushoto",
-    "right_fallopian_tube": "Mrija wa falopio wa kulia",
-    "left_fallopian_tube": "Mrija wa falopio wa kushoto",
-    "lymph_nodes": "Tezi za limfu"
+  "margins": {
+    "label": "Kingo",
+    "fields": {
+      "ectocervical_margin_cm": {
+        "label": "Kingo ya ectocervix"
+      },
+      "endocervical_margin_cm": {
+        "label": "Kingo ya endocervix"
+      },
+      "parametrial_margin_cm": {
+        "label": "Kingo ya parametrium"
+      }
+    }
   },
-  "signoff": {
-    "grossed_by": "Imefanyiwa uchunguzi wa makroskopia na",
-    "date": "Tarehe"
+  "parametrial_involvement": {
+    "label": "Ushiriki wa parametrium",
+    "fields": {
+      "status": {
+        "label": "Ushiriki wa parametrium",
+        "options": [
+          "Haipo",
+          "Ipo"
+        ]
+      },
+      "laterality": {
+        "label": "Upande",
+        "options": [
+          "Kulia",
+          "Kushoto",
+          "Pande zote mbili"
+        ]
+      }
+    }
+  },
+  "vaginal_cuff_involvement": {
+    "label": "Ushiriki wa sehemu ya mwisho ya uke",
+    "fields": {
+      "status": {
+        "label": "Ushiriki wa sehemu ya mwisho ya uke",
+        "options": [
+          "Haipo",
+          "Ipo"
+        ]
+      }
+    }
+  },
+  "lymph_nodes": {
+    "label": "Tezi za limfu",
+    "fields": {
+      "status": {
+        "label": "Tezi za limfu",
+        "options": [
+          "Zipo",
+          "Hazipo"
+        ]
+      },
+      "total_number_of_nodes": {
+        "label": "Jumla ya idadi ya tezi"
+      },
+      "size_range": {
+        "label": "Kiwango cha ukubwa"
+      }
+    }
+  },
+  "block_allocation_key": {
+    "label": "Ufunguo wa ugawaji wa vitalu",
+    "fields": {
+      "tumor": {
+        "label": "Uvimbe"
+      },
+      "endocervical_margin": {
+        "label": "Kingo ya endocervix"
+      },
+      "ectocervical_margin": {
+        "label": "Kingo ya ectocervix"
+      },
+      "right_parametrium": {
+        "label": "Parametrium ya kulia"
+      },
+      "left_parametrium": {
+        "label": "Parametrium ya kushoto"
+      },
+      "vaginal_cuff_margin": {
+        "label": "Kingo ya sehemu ya mwisho ya uke"
+      },
+      "endometrium": {
+        "label": "Endometrium"
+      },
+      "myometrium": {
+        "label": "Myometrium"
+      },
+      "right_ovary": {
+        "label": "Ovari ya kulia"
+      },
+      "left_ovary": {
+        "label": "Ovari ya kushoto"
+      },
+      "right_fallopian_tube": {
+        "label": "Mrija wa falopio wa kulia"
+      },
+      "left_fallopian_tube": {
+        "label": "Mrija wa falopio wa kushoto"
+      },
+      "lymph_nodes": {
+        "label": "Tezi za limfu"
+      }
+    }
+  },
+  "grossing": {
+    "label": "Uchunguzi wa makroskopia",
+    "fields": {
+      "grossed_by": {
+        "label": "Imefanyiwa uchunguzi wa makroskopia na"
+      },
+      "date": {
+        "label": "Tarehe"
+      }
+    }
   }
 }

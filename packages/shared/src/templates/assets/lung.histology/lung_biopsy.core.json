@@ -62,14 +62,7 @@
           "Complex glands (cribriform and fused glands)",
           "Other"
         ],
-        "value": [],
-        "acinar_specify": "",
-        "papillary_specify": "",
-        "lepidic_specify": "",
-        "solid_specify": "",
-        "micropapillary_specify": "",
-        "complex_glands_specify": "",
-        "other_specify": ""
+        "value": []
       },
 
       "histologic_grade": {

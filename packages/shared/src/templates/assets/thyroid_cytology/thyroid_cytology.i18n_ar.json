@@ -8,7 +8,6 @@
     "adequacy": "الكفاية",
     "bethesda_category": "فئة بيثيسدا",
     "microscopic_description": "الوصف المجهري",
-    "final_interpretation": "التفسير النهائي",
     "recommended_management": "التدبير الموصى به",
     "comment": "التعليق"
   },
@@ -19,8 +18,6 @@
     "adequacy_status": "الكفاية",
     "bethesda_category": "فئة بيثيسدا",
     "microscopic_description_text": "الوصف المجهري (نص حر)",
-    "final_interpretation_category": "فئة بيثيسدا",
-    "final_interpretation_text": "التفسير النهائي",
     "recommended_management_options": "التدبير الموصى به (اختر المناسب)",
     "comment_text": "التعليق"
   },

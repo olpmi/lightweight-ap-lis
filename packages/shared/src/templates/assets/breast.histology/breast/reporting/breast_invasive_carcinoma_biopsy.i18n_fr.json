@@ -2,7 +2,6 @@
   "template_id": "breast_invasive_carcinoma_biopsy_v1",
   "lang": "fr",
   "title": "Carcinome mammaire invasif, biopsie",
-
   "specimen": {
     "label": "Pièce",
     "fields": {
@@ -13,15 +12,19 @@
           "Ponction à l’aiguille fine",
           "Autre",
           "Non précisé"
-        ]
+        ],
+        "other_specify": "Autre, préciser"
       },
       "laterality": {
         "label": "Latéralité de la pièce",
-        "options": ["Droite", "Gauche", "Non précisé"]
+        "options": [
+          "Droite",
+          "Gauche",
+          "Non précisé"
+        ]
       }
     }
   },
-
   "tumor": {
     "label": "Tumeur",
     "fields": {
@@ -36,7 +39,8 @@
           "Mamelon",
           "Position horaire",
           "Non précisé"
-        ]
+        ],
+        "clock_position_specify": "Position horaire, préciser"
       },
       "histologic_type": {
         "label": "Type histologique",
@@ -61,7 +65,10 @@
           "Carcinome neuroendocrine",
           "Carcinome invasif, type indéterminable",
           "Autre type histologique non listé"
-        ]
+        ],
+        "features_specify": "Caractéristiques, préciser",
+        "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser",
+        "other_specify": "Autre, préciser"
       },
       "histologic_grade": {
         "label": "Grade histologique (score histologique de Nottingham)",
@@ -80,7 +87,8 @@
               "Score 2 (10 % à 75 % de la tumeur formant des structures glandulaires / tubulaires)",
               "Score 3 (moins de 10 % de la tumeur formant des structures glandulaires / tubulaires)",
               "Le score ne peut pas être déterminé"
-            ]
+            ],
+            "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
           },
           "nuclear_pleomorphism": {
             "label": "Pléomorphisme nucléaire",
@@ -89,7 +97,8 @@
               "Score 2 (cellules plus grandes que la normale avec noyaux vésiculeux ouverts, nucléoles visibles, et variabilité modérée de la taille et de la forme)",
               "Score 3 (noyaux vésiculeux, souvent avec nucléoles proéminents, montrant une variation marquée de la taille et de la forme, parfois avec des formes très grandes et bizarres)",
               "Le score ne peut pas être déterminé"
-            ]
+            ],
+            "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
           },
           "mitotic_rate": {
             "label": "Taux mitotique",
@@ -99,7 +108,8 @@
               "Score 3",
               "Le score ne peut pas être déterminé"
             ],
-            "reference_note": "Voir le tableau 1 du protocole CAP."
+            "reference_note": "Voir le tableau 1 du protocole CAP.",
+            "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
           },
           "overall_grade": {
             "label": "Grade global",
@@ -108,7 +118,8 @@
               "Grade 2 (scores de 6 ou 7)",
               "Grade 3 (scores de 8 ou 9)",
               "Le score ne peut pas être déterminé"
-            ]
+            ],
+            "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
           }
         }
       },
@@ -133,13 +144,15 @@
       }
     }
   },
-
   "dcis": {
     "label": "Carcinome canalaire in situ (CCIS)",
     "fields": {
       "presence": {
         "label": "Présence de CCIS",
-        "options": ["Non identifié", "Présent"]
+        "options": [
+          "Non identifié",
+          "Présent"
+        ]
       },
       "architectural_patterns": {
         "label": "Patterns architecturaux",
@@ -151,7 +164,8 @@
           "Papillaire",
           "Solide",
           "Autre"
-        ]
+        ],
+        "other_specify": "Autre, préciser"
       },
       "nuclear_grade": {
         "label": "Grade nucléaire",
@@ -161,7 +175,9 @@
           "Grade III (élevé)",
           "Autre",
           "Ne peut pas être déterminé"
-        ]
+        ],
+        "other_specify": "Autre, préciser",
+        "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
       },
       "necrosis": {
         "label": "Nécrose",
@@ -172,21 +188,26 @@
           "Autre",
           "Ne peut pas être déterminée",
           "Ne peut pas être exclue"
-        ]
+        ],
+        "other_specify": "Autre, préciser",
+        "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
       }
     }
   },
-
   "lymphovascular_invasion": {
     "label": "Invasion lymphatique et / ou vasculaire",
     "fields": {
       "status": {
         "label": "Invasion lymphatique et / ou vasculaire",
-        "options": ["Non identifiée", "Présente", "Ne peut pas être déterminée"]
+        "options": [
+          "Non identifiée",
+          "Présente",
+          "Ne peut pas être déterminée"
+        ],
+        "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
       }
     }
   },
-
   "microcalcifications": {
     "label": "Microcalcifications",
     "fields": {
@@ -198,11 +219,11 @@
           "Présentes dans le carcinome invasif",
           "Présentes dans le tissu non néoplasique",
           "Autre"
-        ]
+        ],
+        "other_specify": "Autre, préciser"
       }
     }
   },
-
   "additional_findings": {
     "label": "Constatations supplémentaires",
     "fields": {
@@ -210,5 +231,11 @@
         "label": "Constatations supplémentaires"
       }
     }
+  },
+  "domain": {
+    "fields": {}
+  },
+  "protocol_posting_date": {
+    "fields": {}
   }
 }

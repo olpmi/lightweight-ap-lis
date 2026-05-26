@@ -2,7 +2,6 @@
   "template_id": "prostate_needle_biopsy_v1",
   "lang": "ur",
   "title": "پروسٹیٹ گلینڈ: نیڈل بایوپسی",
-
   "tumor": {
     "label": "ٹیومر",
     "fields": {
@@ -39,7 +38,6 @@
       }
     }
   },
-
   "positive_specimens": {
     "label": "مثبت نمونہ یا زون",
     "item_label": "مثبت نمونہ",
@@ -72,9 +70,9 @@
           "دیگر TRUS lesion",
           "MRI-guided biopsy",
           "واضح نہیں"
-        ]
+        ],
+        "location_specify": "مقام، وضاحت کریں"
       },
-
       "histologic_type": {
         "label": "ہسٹولوجک قسم",
         "fields": {
@@ -107,14 +105,15 @@
               "لارج سیل نیورواینڈوکرائن کارسینوما",
               "فہرست میں شامل نہ ہونے والی دیگر ہسٹولوجک قسم",
               "کارسینوما، قسم متعین نہیں کی جا سکتی"
-            ]
+            ],
+            "other_specify": "دیگر، وضاحت کریں",
+            "cannot_be_determined_specify": "متعین نہیں کیا جا سکتا، وضاحت کریں"
           },
           "comment": {
             "label": "ہسٹولوجک قسم پر تبصرہ"
           }
         }
       },
-
       "histologic_grade": {
         "label": "ہسٹولوجک گریڈ",
         "fields": {
@@ -124,7 +123,9 @@
               "قابل اطلاق نہیں",
               "جانچا نہیں جا سکتا",
               "جانچا جا سکتا ہے"
-            ]
+            ],
+            "not_applicable_specify": "قابل اطلاق نہیں، وضاحت کریں",
+            "cannot_be_assessed_specify": "تشخیص نہیں ہو سکتی، وضاحت کریں"
           },
           "tumor_microfocus": {
             "label": "ٹیومر مائیکروفوکس",
@@ -178,7 +179,6 @@
           }
         }
       },
-
       "intraductal_carcinoma": {
         "label": "اِنٹراڈکٹل کارسینوما (IDC)",
         "fields": {
@@ -195,11 +195,11 @@
               "ہاں",
               "نہیں",
               "متعین نہیں کیا جا سکتا"
-            ]
+            ],
+            "cannot_be_determined_specify": "متعین نہیں کیا جا سکتا، وضاحت کریں"
           }
         }
       },
-
       "cribriform_glands": {
         "label": "کریبریفارم گلینڈز",
         "fields": {
@@ -211,11 +211,13 @@
               "موجود",
               "غیر واضح",
               "متعین نہیں کیا جا سکتا"
-            ]
+            ],
+            "present_specify": "موجود، وضاحت کریں",
+            "equivocal_explain": "مبہم، وضاحت کریں",
+            "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا، وضاحت کریں"
           }
         }
       },
-
       "tumor_quantitation": {
         "label": "ٹیومر کی مقدار",
         "fields": {
@@ -224,14 +226,16 @@
             "options": [
               "تعداد درج کریں",
               "متعین نہیں کیا جا سکتا"
-            ]
+            ],
+            "number": "تعداد"
           },
           "number_of_positive_cores": {
             "label": "مثبت کورز کی تعداد",
             "options": [
               "تعداد درج کریں",
               "متعین نہیں کیا جا سکتا"
-            ]
+            ],
+            "number": "تعداد"
           },
           "tumor_measurement_technique": {
             "label": "ٹیومر پیمائش کی تکنیک",
@@ -257,18 +261,19 @@
               "81 - 90%",
               "90% سے زیادہ",
               "متعین نہیں کیا جا سکتا"
-            ]
+            ],
+            "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا، وضاحت کریں"
           },
           "length_of_prostatic_tissue_involved": {
             "label": "ٹیومر سے متاثرہ پروسٹیٹک ٹشو کی لمبائی",
             "options": [
               "ملی میٹر (mm) میں درج کریں",
               "1 ملی میٹر سے کم"
-            ]
+            ],
+            "length_mm": "لمبائی (ملی میٹر)"
           }
         }
       },
-
       "periprostatic_fat_invasion": {
         "label": "پیری پروسٹیٹک چربی میں اِنویژن",
         "options": [
@@ -276,9 +281,10 @@
           "موجود",
           "غیر واضح",
           "متعین نہیں کیا جا سکتا"
-        ]
+        ],
+        "equivocal_explain": "مبہم، وضاحت کریں",
+        "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا، وضاحت کریں"
       },
-
       "seminal_vesicle_or_ejaculatory_duct_invasion": {
         "label": "سیمنل ویسیکل / ایجیکیولیٹری ڈکٹ اِنویژن",
         "options": [
@@ -286,9 +292,10 @@
           "موجود",
           "غیر واضح",
           "متعین نہیں کیا جا سکتا"
-        ]
+        ],
+        "equivocal_explain": "مبہم، وضاحت کریں",
+        "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا، وضاحت کریں"
       },
-
       "lymphovascular_invasion": {
         "label": "لیمفیٹک اور / یا ویسکیولر اِنویژن",
         "options": [
@@ -296,9 +303,10 @@
           "موجود",
           "غیر واضح",
           "متعین نہیں کیا جا سکتا"
-        ]
+        ],
+        "equivocal_explain": "مبہم، وضاحت کریں",
+        "cannot_be_determined_specify": "متعین نہیں کیا جا سکتا، وضاحت کریں"
       },
-
       "perineural_invasion": {
         "label": "پیری نیورل اِنویژن",
         "options": [
@@ -306,7 +314,6 @@
           "موجود"
         ]
       },
-
       "additional_findings": {
         "label": "اضافی مشاہدات",
         "fields": {
@@ -334,13 +341,12 @@
             "label": "Inflammation (قسم درج کریں)"
           },
           "other_specify": {
-            "label": "Other (specify)"
+            "label": "دیگر (وضاحت کریں)"
           }
         }
       }
     }
   },
-
   "comments": {
     "label": "تبصرے",
     "fields": {

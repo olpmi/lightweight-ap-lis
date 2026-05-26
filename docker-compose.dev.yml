@@ -7,8 +7,12 @@
 
 services:
   backend:
+    volumes:
+      # Bind-mount template source so dev file writes persist on the host
+      - ./packages/shared/src/templates/assets:/templates-source
     environment:
       CORS_ORIGIN: http://localhost:${FRONTEND_DEV_PORT:-5173}
+      TEMPLATE_SOURCE_DIR: /templates-source
 
   frontend:
     build:

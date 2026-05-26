@@ -7,7 +7,6 @@
     "preparation_methods": "Méthodes de préparation",
     "microscopic_description": "Description microscopique",
     "diagnostic_category": "Catégorie diagnostique",
-    "final_interpretation": "Interprétation finale",
     "favor_diagnosis": "Si positif / suspect / néoplasique, en faveur de",
     "ancillary_studies": "Études complémentaires (si réalisées)",
     "comment_recommendation": "Commentaire / Recommandation"
@@ -17,7 +16,6 @@
     "site": "Site",
     "laterality": "Latéralité (si applicable)",
     "procedure_guidance": "Guidage de la procédure",
-    "clinical_history_indication": "Histoire clinique / indication",
     "adequacy_status": "Adéquation de l’échantillon",
     "unsatisfactory_reason": "Raison (si non satisfaisant)",
     "preparation_methods_used": "Méthodes de préparation",
@@ -26,7 +24,6 @@
     "microscopic_description_text": "Description microscopique (texte libre)",
     "diagnostic_category": "Catégorie diagnostique",
     "diagnostic_category_other": "Autre",
-    "final_interpretation_text": "Interprétation finale",
     "favor_diagnosis_options": "Si positif / suspect / néoplasique, en faveur de",
     "favor_diagnosis_other": "Autre",
     "cell_block_findings": "Résultats du cell block",

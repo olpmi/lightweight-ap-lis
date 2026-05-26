@@ -1,358 +1,233 @@
 {
-  "protocol_title": "نموذج تقرير: المبيض أو قناة فالوب أو الصفاق الأولي",
-  "protocol_posting_date": "تاريخ نشر البروتوكول: يونيو 2024",
-  "standards": "المعايير: AJCC-UICC 8، تقرير FIGO للسرطان 2021",
-  "common": {
-    "not_applicable": "غير منطبق",
-    "not_identified": "غير محدد/غير موجود",
-    "present": "موجود",
-    "absent": "غير موجود",
-    "cannot_be_determined": "لا يمكن تحديده",
-    "cannot_be_determined_explain": "لا يمكن تحديده (اشرح)",
-    "other_specify": "أخرى (حدد)",
-    "exact_number": "العدد الدقيق",
-    "exact_number_specify": "العدد الدقيق (حدد)",
-    "at_least": "على الأقل",
-    "at_least_specify": "على الأقل (حدد)",
-    "exact_size": "الحجم الدقيق",
-    "greater_than": "أكبر من",
-    "less_than": "أقل من",
-    "specify": "حدد",
-    "select_all_that_apply": "اختر كل ما ينطبق",
-    "required_only_if_applicable": "مطلوب فقط إذا كان منطبقًا",
-    "right": "أيمن",
-    "left": "أيسر",
-    "bilateral": "ثنائي الجانب",
-    "not_submitted_unknown": "غير مقدم / غير معروف",
-    "results_pending": "النتائج قيد الانتظار",
-    "none_identified": "لم يُحدد أي شيء"
-  },
-  "tumor": {
-    "title": "الورم",
-    "tumor_site": {
-      "label": "موقع الورم",
-      "instruction": "يرجى اختيار موقع منشأ الورم الأولي فقط. في أورام المبيض الثنائية ذات النمط النسيجي المتطابق، اختر «كلا المبيضين».",
-      "options": {
-        "right_ovary": "المبيض الأيمن",
-        "left_ovary": "المبيض الأيسر",
-        "bilateral_ovaries": "كلا المبيضين",
-        "ovary_laterality_unknown": "المبيض، لا يمكن تحديد الجانب (اشرح)",
-        "right_fallopian_tube": "قناة فالوب اليمنى",
-        "left_fallopian_tube": "قناة فالوب اليسرى",
-        "bilateral_fallopian_tubes": "قناتا فالوب كلتاهما",
-        "fallopian_tube_laterality_unknown": "قناة فالوب، لا يمكن تحديد الجانب (اشرح)",
-        "right_tubo_ovarian": "أنبوبي-مبيضي أيمن",
-        "left_tubo_ovarian": "أنبوبي-مبيضي أيسر",
-        "bilateral_tubo_ovarian": "أنبوبي-مبيضي ثنائي الجانب",
-        "tubo_ovarian_laterality_unknown": "أنبوبي-مبيضي، لا يمكن تحديد الجانب (اشرح)",
-        "primary_peritoneum": "الصفاق الأولي",
-        "other": "أخرى (حدد)"
-      }
-    },
-    "tumor_size": {
-      "label": "حجم الورم",
-      "instruction": "في الأورام الثنائية، يرجى تسجيل أكبر بُعد للورم الأكبر، سواء كان حدّياً فقط أو خبيثاً. في السرطانات الناشئة ضمن ورم حدّي، سجّل حجم المكوّن السرطاني فقط.",
-      "greatest_dimension_cm": "أكبر بُعد بالسنتيمتر (سم)",
-      "additional_dimension_cm": "أبعاد إضافية بالسنتيمتر (سم)",
-      "cannot_be_determined_explain": "لا يمكن تحديده (اشرح)"
-    },
-    "histologic_type": {
-      "label": "النوع النسيجي",
-      "instruction": "اختر كل ما ينطبق",
-      "options": {
-        "serous_borderline_tumor": "ورم مصلي حدّي",
-        "serous_borderline_micropapillary_cribriform": "ورم مصلي حدّي، نمط حليمي دقيق / غربالي",
-        "serous_borderline_with_microinvasion": "ورم مصلي حدّي مع غزو مجهري",
-        "microinvasive_low_grade_serous_carcinoma": "سرطان مصلي منخفض الدرجة ذو غزو مجهري",
-        "low_grade_serous_carcinoma": "سرطان مصلي منخفض الدرجة",
-        "high_grade_serous_carcinoma": "سرطان مصلي عالي الدرجة",
-        "mucinous_borderline_tumor": "ورم مخاطي حدّي",
-        "mucinous_borderline_with_intraepithelial_carcinoma": "ورم مخاطي حدّي مع سرطان داخل الظهارة",
-        "mucinous_borderline_with_microinvasion": "ورم مخاطي حدّي مع غزو مجهري",
-        "microinvasive_mucinous_adenocarcinoma": "سرطان غدي مخاطي ذو غزو مجهري",
-        "mucinous_adenocarcinoma": "سرطان غدي مخاطي",
-        "endometrioid_borderline_tumor": "ورم بطاني رحمي حدّي",
-        "endometrioid_carcinoma": "سرطان بطاني رحمي",
-        "endometrioid_carcinoma_seromucinous": "سرطان بطاني رحمي، نوع مصلي مخاطي",
-        "seromucinous_borderline_tumor": "ورم مصلي مخاطي حدّي",
-        "clear_cell_borderline_tumor": "ورم خلايا صافية حدّي",
-        "clear_cell_carcinoma": "سرطان الخلايا الصافية",
-        "borderline_brenner_tumor": "ورم برينر حدّي",
-        "malignant_brenner_tumor": "ورم برينر خبيث",
-        "mesonephric_like_adenocarcinoma": "سرطان غدي شبيه بالميزونفريك",
-        "small_cell_carcinoma_hypercalcemic": "سرطان الخلايا الصغيرة، النوع المصحوب بفرط كالسيوم الدم",
-        "dedifferentiated_carcinoma": "سرطان منزوع التمايز",
-        "undifferentiated_carcinoma_nos": "سرطان غير متمايز، غير محدد خلاف ذلك",
-        "carcinosarcoma": "كارسينوساركوما",
-        "carcinoma_subtype_unknown": "سرطان، لا يمكن تحديد النمط الفرعي",
-        "mixed_epithelial_borderline": "ورم ظهاري مختلط حدّي (حدد الأنواع والنسب)",
-        "mixed_carcinoma": "سرطان مختلط (حدد الأنواع والنسب)",
-        "endometrioid_stromal_sarcoma_low_grade": "ساركوما السدى البطاني الرحمي، منخفضة الدرجة",
-        "endometrioid_stromal_sarcoma_high_grade": "ساركوما السدى البطاني الرحمي، عالية الدرجة",
-        "adenosarcoma": "ساركوما غدية",
-        "leiomyosarcoma": "ساركوما عضلية ملساء",
-        "fibrosarcoma": "ساركوما ليفية",
-        "granulosa_cell_tumor_adult": "ورم خلايا حبيبية، نوع البالغين",
-        "granulosa_cell_tumor_juvenile": "ورم خلايا حبيبية، نوع اليافعين",
-        "steroid_cell_tumor_nos": "ورم خلايا ستيرويدية، غير محدد خلاف ذلك",
-        "steroid_cell_tumor_malignant": "ورم خلايا ستيرويدية خبيث",
-        "sertoli_leydig_cell_tumor": "ورم خلايا سيرتولي-لايديغ",
-        "other_sex_cord_stromal": "ورم آخر من أورام الحبال الجنسية والسدى (حدد النوع)",
-        "immature_teratoma": "ورم مسخي غير ناضج",
-        "teratoma_with_malignant_transformation": "ورم مسخي مع تحول خبيث (حدد النوع)",
-        "malignant_struma_ovarii": "سترومة مبيضية خبيثة (حدد النوع)",
-        "dysgerminoma": "ديسجيرمينوما",
-        "yolk_sac_tumor": "ورم كيس المح",
-        "embryonal_carcinoma": "سرطان جنيني",
-        "gonadoblastoma": "غونادوبلاستوما",
-        "choriocarcinoma_non_gestational": "سرطان مشيمي، نوع غير حملي",
-        "mixed_malignant_germ_cell_tumor": "ورم خلايا جرثومية خبيث مختلط (حدد الأنواع والنسب)",
-        "primary_peritoneal_tumors": "أورام الصفاق الأولية",
-        "gastrointestinal_stromal_tumor": "ورم سدى الجهاز الهضمي",
-        "solitary_fibrous_tumor_malignant": "ورم ليفي منفرد خبيث",
-        "desmoplastic_small_round_cell_tumor": "ورم خلايا صغيرة مستديرة مزيل للتنسج",
-        "other_histologic_type": "نوع نسيجي آخر غير مدرج (حدد)"
-      },
-      "comment": "تعليق على النوع النسيجي"
-    },
-    "histologic_grade": {
-      "label": "الدرجة النسيجية",
-      "instruction": "مطلوب للسرطانات البطانية الرحمية والمخاطية، والأورام المسخية غير الناضجة، وأورام خلايا سيرتولي-لايديغ. في الأورام المختلطة، سجّل الورم الأعلى درجة وعلّق على بقية المكوّنات.",
-      "not_applicable": "غير منطبق",
-      "who_grading_system": {
-        "label": "نظام تصنيف منظمة الصحة العالمية (WHO)",
-        "gb_borderline": "GB، ورم حدّي",
-        "g1_well_differentiated": "G1، جيد التمايز",
-        "g2_moderately_differentiated": "G2، متوسط التمايز",
-        "g3_poorly_differentiated": "G3، ضعيف التمايز",
-        "gx_cannot_be_assessed": "GX، لا يمكن تقييمه"
-      },
-      "figo_grading_system": {
-        "label": "نظام تصنيف FIGO",
-        "grade_1": "درجة FIGO 1 (نمو صلب غير حرشفي 5% أو أقل)",
-        "grade_2": "درجة FIGO 2 (نمو صلب غير حرشفي من 6% إلى 50%)",
-        "grade_3": "درجة FIGO 3 (نمو صلب غير حرشفي أكثر من 50%)"
-      },
-      "silverberg_grading_system": {
-        "label": "نظام تصنيف Silverberg",
-        "grade_1": "درجة Silverberg 1 (مجموع 3-5)",
-        "grade_2": "درجة Silverberg 2 (مجموع 6-7)",
-        "grade_3": "درجة Silverberg 3 (مجموع 8-9)"
-      },
-      "growth_pattern_grading": {
-        "label": "التصنيف المعتمد على نمط النمو",
-        "low_grade": "منخفض الدرجة حسب نمط النمو (نمو متقارب / تمددي، أو نمو ارتشاحي 10% أو أقل)",
-        "high_grade": "عالي الدرجة حسب نمط النمو (نمو ارتشاحي في أكثر من 10% من الورم)",
-        "other": "تصنيف آخر معتمد على نمط النمو (حدد)"
-      },
-      "two_tier_grading": "نظام تصنيف من درجتين",
-      "three_tier_grading": "نظام تصنيف من ثلاث درجات",
-      "low_grade": "منخفض الدرجة",
-      "high_grade": "عالي الدرجة",
-      "grade_1_low": "درجة 1 (منخفضة الدرجة)",
-      "grade_2_high": "درجة 2 (عالية الدرجة)",
-      "grade_3_high": "درجة 3 (عالية الدرجة)"
-    },
-    "surface_involvement": {
-      "ovarian_surface_involvement": "إصابة سطح المبيض",
-      "fallopian_tube_surface_involvement": "إصابة سطح قناة فالوب",
-      "present_right": "موجود، أيمن",
-      "present_left": "موجود، أيسر",
-      "present_right_and_left": "موجود، أيمن وأيسر"
-    },
-    "implants": {
-      "label": "الزرعات",
-      "instruction": "مطلوب فقط للأورام الحدّية المصلية / المصلية المخاطية ذات المرحلة المتقدمة.",
-      "not_sampled": "لم تؤخذ عينة",
-      "present_specify_sites": "موجودة (حدد المواقع)",
-      "indeterminate": "غير محددة"
-    },
-    "other_tissue_organ_involvement": {
-      "label": "إصابة أنسجة / أعضاء أخرى",
-      "instruction": "أي عضو غير مختار إما غير مصاب أو لم يُقدّم للفحص.",
-      "options": {
-        "right_ovary": "المبيض الأيمن",
-        "left_ovary": "المبيض الأيسر",
-        "ovary_side_not_specified": "المبيض (الجانب غير محدد)",
-        "right_fallopian_tube": "قناة فالوب اليمنى",
-        "left_fallopian_tube": "قناة فالوب اليسرى",
-        "fallopian_tube_side_not_specified": "قناة فالوب (الجانب غير محدد)",
-        "uterine_corpus": "جسم الرحم",
-        "uterine_cervix": "عنق الرحم",
-        "pelvic_peritoneum": "الصفاق الحوضي",
-        "abdominal_peritoneum": "الصفاق البطني",
-        "omentum": "الثرب",
-        "other_organs_tissue": "أعضاء / أنسجة أخرى (حدد)"
-      }
-    },
-    "largest_extrapelvic_peritoneal_focus": {
-      "label": "أكبر بؤرة صفاقية خارج الحوض",
-      "microscopic": "مجهرية",
-      "macroscopic_2cm_or_less": "عيانية، 2 سم أو أقل (حدد الموقع إذا كان منطبقًا)",
-      "macroscopic_greater_than_2cm": "عيانية، أكبر من 2 سم (حدد الموقع إذا كان منطبقًا)"
-    },
-    "peritoneal_ascitic_fluid": {
-      "label": "إصابة السائل الصفاقي / الاستسقائي",
-      "negative_for_malignant_cells": "سلبي للخلايا الخبيثة",
-      "atypical_explain": "خلايا غير نمطية (اشرح)",
-      "neoplastic_cells_present": "خلايا ورمية موجودة (ورم مصلي منخفض الدرجة، راجع العينة الجراحية المقابلة)",
-      "suspicious_explain": "مشتبه به (اشرح)",
-      "malignant_cells_present": "خلايا خبيثة موجودة"
-    },
-    "chemotherapy_response_score": {
-      "label": "درجة الاستجابة للعلاج الكيميائي (CRS)",
-      "instruction": "مطلوب فقط للسرطانات المصلية عالية الدرجة. يُقيّم تأثير العلاج بناءً على الورم المتبقي في الثرب.",
-      "no_known_presurgical_therapy": "لا يوجد علاج معروف قبل الجراحة",
-      "crs1": "CRS1 (لا توجد استجابة مؤكدة أو استجابة طفيفة)",
-      "crs2": "CRS2 (استجابة متوسطة)",
-      "crs3": "CRS3 (استجابة واضحة مع عدم وجود سرطان متبقٍ أو وجود مقدار ضئيل منه)"
-    },
-    "comment": "تعليق على الورم"
-  },
-  "regional_lymph_nodes": {
-    "title": "العقد اللمفاوية الإقليمية",
-    "status": {
-      "label": "حالة العقد اللمفاوية الإقليمية",
-      "not_applicable_no_nodes": "غير منطبق (لم تُقدّم أو تُعثر على عقد لمفاوية إقليمية)",
-      "regional_nodes_present": "العقد اللمفاوية الإقليمية موجودة",
-      "all_negative": "جميع العقد اللمفاوية الإقليمية سلبية للخلايا الورمية",
-      "tumor_present": "الورم موجود في عقد لمفاوية إقليمية"
-    },
-    "metastasis_counts": {
-      "nodes_gt_10mm": "عدد العقد التي تحتوي على نقيلة أكبر من 10 مم",
-      "nodes_10mm_or_less": "عدد العقد التي تحتوي على نقيلة 10 مم أو أقل (باستثناء ITCs)",
-      "nodes_with_itcs": "عدد العقد التي تحتوي على خلايا ورمية معزولة (ITCs) (0.2 مم أو أقل)"
-    },
-    "nodal_sites_with_tumor": {
-      "label": "مواقع العقد التي تحتوي على ورم",
-      "right_pelvic": "حوضي أيمن",
-      "left_pelvic": "حوضي أيسر",
-      "pelvic_nos": "حوضي، غير محدد خلاف ذلك",
-      "right_para_aortic": "حول الأبهر أيمن",
-      "left_para_aortic": "حول الأبهر أيسر",
-      "para_aortic_nos": "حول الأبهر، غير محدد خلاف ذلك"
-    },
-    "largest_nodal_deposit": {
-      "size": "حجم أكبر بؤرة نقيلية عقدية",
-      "location": "موقع أكبر بؤرة نقيلية عقدية"
-    },
-    "lymph_nodes_examined": {
-      "label": "عدد العقد اللمفاوية المفحوصة",
-      "nodal_sites_examined": "مواقع العقد المفحوصة"
-    },
-    "comment": "تعليق على العقد اللمفاوية الإقليمية"
-  },
+  "template_id": "ovary_fallopian_tube_primary_peritoneum_v1",
+  "lang": "ar",
+  "title": "نموذج تقرير: المبيض أو قناة فالوب أو الصفاق الأولي",
   "distant_metastasis": {
-    "title": "النقائل البعيدة",
-    "distant_sites_involved": "المواقع البعيدة المصابة، إذا كان ذلك منطبقًا",
-    "note": "هذا يستثني النقائل إلى العقد خلف الصفاق أو الحوضية أو حول الأبهر أو أي عقد إقليمية.",
-    "options": {
-      "pleural_effusion_positive_cytology": "انصباب جنبي مع سيتولوجيا إيجابية",
-      "liver_parenchyma": "نسيج الكبد",
-      "splenic_parenchyma": "نسيج الطحال",
-      "extra_abdominal_organs": "أعضاء خارج البطن",
-      "inguinal_or_extra_abdominal_nodes": "العقد الأربية والعقد خارج التجويف البطني (مثل فوق الترقوة أو الإبطية)",
-      "transmural_involvement_intestine": "إصابة عابرة لكامل جدار الأمعاء",
-      "other": "أخرى (حدد)"
-    }
-  },
-  "ptnm_classification": {
-    "title": "تصنيف pTNM (AJCC الإصدار الثامن)",
-    "intro": "يعتمد الإبلاغ عن فئات pT وpN، وعند الاقتضاء pM، على المعلومات المتاحة لاختصاصي علم الأمراض وقت إصدار التقرير. تقع مسؤولية تحديد المرحلة المرضية النهائية على الطبيب المعالج بناءً على جميع المعلومات ذات الصلة.",
-    "modified_classification": {
-      "label": "تصنيف معدّل",
-      "y": "y (بعد علاج نيواَدجوفانت)",
-      "r": "r (نكس)"
-    },
-    "pt_category": {
-      "label": "فئة pT",
-      "pt_not_assigned": "pT غير محدد (لا يمكن تحديده بناءً على المعلومات المرضية المتاحة)",
-      "pt0": "pT0: لا يوجد دليل على ورم أولي",
-      "pt1": "pT1: الورم محدود في مبيض واحد أو كليهما أو في قناة/قناتي فالوب",
-      "pt1a": "pT1a: الورم محدود في مبيض واحد (الكبسولة سليمة) أو قناة فالوب؛ لا يوجد ورم على سطح المبيض أو قناة فالوب؛ ولا توجد خلايا خبيثة في الاستسقاء أو غسالات الصفاق",
-      "pt1b": "pT1b: الورم محدود في كلا المبيضين (الكبسولات سليمة) أو قناتي فالوب؛ لا يوجد ورم على السطح؛ ولا توجد خلايا خبيثة في الاستسقاء أو غسالات الصفاق",
-      "pt1c": "pT1c: الورم محدود في مبيض واحد أو كليهما أو في قناة/قناتي فالوب، مع أحد ما يلي",
-      "pt1c1": "pT1c1: انسكاب جراحي",
-      "pt1c2": "pT1c2: تمزق الكبسولة قبل الجراحة أو وجود ورم على سطح المبيض أو قناة فالوب",
-      "pt1c3": "pT1c3: خلايا خبيثة في الاستسقاء أو غسالات الصفاق",
-      "pt1_subcategory_unknown": "pT1 (لا يمكن تحديد الفئة الفرعية)",
-      "pt2": "pT2: الورم يصيب مبيضًا واحدًا أو كليهما أو قناة/قناتي فالوب مع امتداد حوضي أسفل حافة الحوض أو سرطان صفاقي أولي",
-      "pt2a": "pT2a: امتداد و / أو زرعات على الرحم و / أو قناتي فالوب و / أو المبيضين",
-      "pt2b": "pT2b: امتداد إلى و / أو زرعات على أنسجة حوضية أخرى",
-      "pt2_subcategory_unknown": "pT2 (لا يمكن تحديد الفئة الفرعية)",
-      "pt3": "pT3: الورم يصيب مبيضًا واحدًا أو كليهما أو قناة/قناتي فالوب، أو سرطان صفاقي أولي، مع نقيلة صفاقية مؤكدة مجهريًا خارج الحوض و / أو نقيلة إلى العقد خلف الصفاق",
-      "pt3a": "pT3a: إصابة صفاقية مجهرية خارج الحوض، مع أو بدون عقد خلف صفاقية إيجابية",
-      "pt3b": "pT3b: نقيلة صفاقية عيانية خارج الحوض حجمها 2 سم أو أقل في أكبر بُعد، مع أو بدون نقيلة إلى العقد خلف الصفاق",
-      "pt3c": "pT3c: نقيلة صفاقية عيانية خارج الحوض أكبر من 2 سم في أكبر بُعد، مع أو بدون نقيلة إلى العقد خلف الصفاق",
-      "pt3_subcategory_unknown": "pT3 (لا يمكن تحديد الفئة الفرعية)"
-    },
-    "t_suffix": {
-      "label": "لاحقة T",
-      "multiple_primary": "(m) أورام أولية متزامنة متعددة في عضو واحد"
-    },
-    "pn_category": {
-      "label": "فئة pN",
-      "pn_not_assigned_no_nodes": "pN غير محدد (لم تُقدّم أو تُعثر على عقد)",
-      "pn_not_assigned_unknown": "pN غير محدد (لا يمكن تحديده بناءً على المعلومات المرضية المتاحة)",
-      "pn0": "pN0: لا توجد نقائل في العقد اللمفاوية الإقليمية",
-      "pn0_i_plus": "pN0(i+): خلايا ورمية معزولة في العقد الإقليمية لا تتجاوز 0.2 مم",
-      "pn1": "pN1: عقد خلف صفاقية إيجابية فقط (حوضية و / أو حول الأبهر)، مؤكدة نسيجيًا",
-      "pn1a": "pN1a: نقيلة حتى 10 مم شاملة في أكبر بُعد",
-      "pn1b": "pN1b: نقيلة أكبر من 10 مم في أكبر بُعد",
-      "pn1_subcategory_unknown": "pN1 (لا يمكن تحديد الفئة الفرعية)"
-    },
-    "n_suffix": {
-      "label": "لاحقة N",
-      "sn": "(sn) تم تحديد النقيلة فقط بواسطة خزعة العقدة الحارسة",
-      "f": "(f) تم تحديد النقيلة فقط بواسطة FNA أو خزعة إبرية أسطوانية"
-    },
-    "pm_category": {
-      "label": "فئة pM",
-      "not_applicable": "غير منطبق - لا يمكن تحديد pM من العينة/العينات المقدمة",
-      "pm1": "pM1: نقائل بعيدة، بما في ذلك انصباب جنبي مع سيتولوجيا إيجابية؛ نقائل في نسيج الكبد أو الطحال؛ نقائل إلى أعضاء خارج البطن؛ وإصابة عابرة لجدار الأمعاء",
-      "pm1a": "pM1a: انصباب جنبي مع سيتولوجيا إيجابية",
-      "pm1b": "pM1b: نقائل في نسيج الكبد أو الطحال؛ نقائل إلى أعضاء خارج البطن؛ إصابة عابرة لجدار الأمعاء",
-      "pm1_subcategory_unknown": "pM1 (لا يمكن تحديد الفئة الفرعية)"
+    "fields": {
+      "distant_sites_involved": {
+        "label": "المواقع البعيدة المصابة، إذا كان ذلك منطبقًا",
+        "pleural_effusion_specify": "انصباب جنبي، حدد",
+        "liver_parenchyma_specify": "حمة الكبد، حدد",
+        "splenic_parenchyma_specify": "حمة الطحال، حدد",
+        "extra_abdominal_organs_specify": "أعضاء خارج البطن، حدد",
+        "inguinal_lymph_nodes_specify": "الغدد الليمفاوية الإربية، حدد",
+        "transmural_involvement_specify": "الإصابة عبر الجدار، حدد",
+        "other_specify": "أخرى، حدد",
+        "cannot_be_determined_specify": "لا يمكن التحديد، حدد"
+      }
     }
   },
   "figo_stage": {
-    "title": "مرحلة FIGO",
     "label": "مرحلة FIGO (تقرير FIGO للسرطان 2021)",
-    "note": "تشير القياسات إلى حجم الورم داخل العقدة اللمفاوية وليس إلى حجم العقدة نفسها.",
-    "stage_i": "I: الورم محدود في المبيضين أو قناتي فالوب",
-    "stage_ia": "IA: الورم محدود في مبيض واحد أو قناة فالوب؛ لا يوجد ورم على السطح؛ ولا توجد خلايا خبيثة في الاستسقاء أو غسالات الصفاق",
-    "stage_ib": "IB: الورم محدود في كلا المبيضين أو قناتي فالوب؛ لا يوجد ورم على السطح؛ ولا توجد خلايا خبيثة في الاستسقاء أو غسالات الصفاق",
-    "stage_ic": "IC: الورم محدود في مبيض واحد أو كليهما أو قناة/قناتي فالوب، مع أحد ما يلي",
-    "stage_ic1": "IC1: انسكاب جراحي",
-    "stage_ic2": "IC2: تمزق الكبسولة قبل الجراحة أو وجود ورم على سطح المبيض أو قناة فالوب",
-    "stage_ic3": "IC3: خلايا خبيثة في الاستسقاء أو غسالات الصفاق",
-    "stage_ic_nos": "IC: الورم محدود في مبيض واحد أو كليهما أو قناة/قناتي فالوب، غير محدد خلاف ذلك",
-    "stage_ii": "II: الورم يصيب مبيضًا واحدًا أو كليهما أو قناة/قناتي فالوب مع امتداد حوضي أو سرطان صفاقي",
-    "stage_iia": "IIA: امتداد و / أو زرعات على الرحم و / أو قناتي فالوب و / أو المبيضين",
-    "stage_iib": "IIB: امتداد إلى أنسجة حوضية داخل الصفاق أخرى",
-    "stage_iii": "III: الورم يصيب مبيضًا واحدًا أو كليهما أو قناة/قناتي فالوب، أو سرطان صفاقي، مع انتشار مؤكد سيتولوجيًا أو نسيجيًا خارج الحوض و / أو نقيلة إلى العقد خلف الصفاق",
-    "stage_iiia1": "IIIA1: عقد خلف صفاقية إيجابية فقط",
-    "stage_iiia1_i": "IIIA1(i): نقيلة حتى 10 مم في أكبر بُعد",
-    "stage_iiia1_ii": "IIIA1(ii): نقيلة أكبر من 10 مم في أكبر بُعد",
-    "stage_iiia2": "IIIA2: إصابة صفاقية مجهرية خارج الحوض، مع أو بدون عقد خلف صفاقية إيجابية",
-    "stage_iiib": "IIIB: نقائل صفاقية عيانية خارج الحوض حتى 2 سم في أكبر بُعد، مع أو بدون نقائل إلى العقد خلف الصفاق",
-    "stage_iiic": "IIIC: نقيلة صفاقية عيانية خارج الحوض أكبر من 2 سم في أكبر بُعد، مع أو بدون نقائل إلى العقد خلف الصفاق",
-    "stage_iv": "IV: نقائل بعيدة باستثناء النقائل الصفاقية",
-    "stage_iva": "IVA: انصباب جنبي مع سيتولوجيا إيجابية",
-    "stage_ivb": "IVB: نقائل برنشيمية ونقائل إلى أعضاء خارج البطن"
+    "fields": {
+      "figo_stage_2021": {}
+    }
   },
   "additional_findings": {
-    "title": "نتائج إضافية",
     "label": "نتائج إضافية",
-    "none_identified": "لم يُحدد أي شيء",
-    "stic": "سرطان مصلي أنبوبي داخل الظهارة (STIC)",
-    "left": "أيسر",
-    "right": "أيمن",
-    "bilateral": "ثنائي الجانب",
-    "endometriosis": "بطانة الرحم الهاجرة",
-    "within_tumor": "داخل الورم",
-    "outside_tumor": "خارج الورم",
-    "endosalpingiosis": "اندوسالبنجيوزس",
-    "other": "أخرى (حدد)"
+    "fields": {
+      "findings": {
+        "other_specify": "أخرى، حدد"
+      }
+    }
+  },
+  "tumor": {
+    "fields": {
+      "tumor_site": {
+        "right_ovary_specify": "المبيض الأيمن، حدد",
+        "left_ovary_specify": "المبيض الأيسر، حدد",
+        "bilateral_ovaries_specify": "كلا المبيضين، حدد",
+        "ovary_laterality_cannot_be_determined_explain": "جانبية المبيض لا يمكن تحديدها، اشرح",
+        "right_fallopian_tube_specify": "قناة فالوب اليمنى، حدد",
+        "left_fallopian_tube_specify": "قناة فالوب اليسرى، حدد",
+        "bilateral_fallopian_tubes_specify": "كلتا قناتي فالوب، حدد",
+        "fallopian_tube_laterality_cannot_be_determined_explain": "جانبية قناة فالوب لا يمكن تحديدها، اشرح",
+        "right_tubo_ovarian_specify": "المجمع البوقي المبيضي الأيمن، حدد",
+        "left_tubo_ovarian_specify": "المجمع البوقي المبيضي الأيسر، حدد",
+        "bilateral_tubo_ovarian_specify": "المجمع البوقي المبيضي الثنائي، حدد",
+        "tubo_ovarian_laterality_cannot_be_determined_explain": "جانبية البوقي المبيضي لا يمكن تحديدها، اشرح",
+        "primary_peritoneum_specify": "الصفاق الأولي، حدد",
+        "other_specify": "أخرى، حدد"
+      },
+      "tumor_size": {
+        "fields": {
+          "size_type": {
+            "label": "حجم الورم",
+            "options": [
+              "Greatest dimension in centimeters (cm)",
+              "لا يمكن التحديد"
+            ]
+          },
+          "greatest_dimension_cm": {
+            "label": "أكبر بُعد (سم)"
+          },
+          "additional_dimensions_cm": {
+            "label": "أبعاد إضافية (سم)"
+          },
+          "cannot_be_determined_explain": {
+            "label": "لا يمكن التحديد (اشرح)"
+          }
+        }
+      },
+      "histologic_type": {
+        "mixed_epithelial_borderline_tumor_specify": "ورم حدودي ظهاري مختلط، حدد",
+        "mixed_carcinoma_specify": "سرطان مختلط، حدد",
+        "other_sex_cord_stromal_tumor_specify": "ورم سدوي من الحبال الجنسية آخر، حدد",
+        "teratoma_with_malignant_transformation_specify": "ورم مسخي مع تحول خبيث، حدد",
+        "malignant_struma_ovarii_specify": "داء المبيض الخبيث، حدد",
+        "mixed_malignant_germ_cell_tumor_specify": "ورم خبيث مختلط من الخلايا الجرثومية، حدد",
+        "other_histologic_type_specify": "نوع نسيجي آخر، حدد",
+        "comment": "ملاحظة"
+      },
+      "histologic_grade": {
+        "fields": {
+          "grade_system": {
+            "label": "نظام التدريج",
+            "options": [
+              "غير قابل للتطبيق",
+              "WHO Grading System",
+              "FIGO Grading System",
+              "Silverberg Grading System",
+              "Growth Pattern-based Grading",
+              "2-Tier Grading System",
+              "3-Tier Grading System"
+            ]
+          },
+          "grade_value": {
+            "label": "قيمة الدرجة",
+            "options": [
+              "GB، ورم حدودي",
+              "G1، متمايز جيداً",
+              "G2، متمايز باعتدال",
+              "G3، ضعيف التمايز",
+              "GX، لا يمكن التقييم",
+              "الدرجة FIGO 1",
+              "الدرجة FIGO 2",
+              "الدرجة FIGO 3",
+              "الدرجة Silverberg 1",
+              "الدرجة Silverberg 2",
+              "الدرجة Silverberg 3",
+              "درجة منخفضة مبنية على نمط النمو",
+              "درجة عالية مبنية على نمط النمو",
+              "تدريج آخر مبني على نمط النمو",
+              "درجة منخفضة",
+              "درجة عالية",
+              "الدرجة 1 (منخفضة)",
+              "الدرجة 2 (عالية)",
+              "الدرجة 3 (عالية)"
+            ]
+          },
+          "other_growth_pattern_based_grading_specify": {
+            "label": "تدريج آخر مبني على نمط النمو (حدد)"
+          },
+          "gx_cannot_be_assessed_specify": {
+            "label": "GX، لا يمكن التقييم"
+          }
+        }
+      },
+      "ovarian_surface_involvement": {
+        "cannot_be_determined_explain": "لا يمكن التحديد، اشرح"
+      },
+      "fallopian_tube_surface_involvement": {
+        "cannot_be_determined_explain": "لا يمكن التحديد، اشرح"
+      },
+      "implants": {
+        "present_specify_sites": "موجود، حدد المواقع"
+      },
+      "other_tissue_organ_involvement": {
+        "other_organs_tissue_specify": "أعضاء/أنسجة أخرى، حدد",
+        "cannot_be_determined_explain": "لا يمكن التحديد، اشرح"
+      },
+      "largest_extrapelvic_peritoneal_focus": {
+        "macroscopic_2cm_or_less_specify_site": "ماكروسكوبي ≤ 2 سم، حدد الموقع",
+        "macroscopic_greater_than_2cm_specify_site": "ماكروسكوبي > 2 سم، حدد الموقع",
+        "cannot_be_determined_explain": "لا يمكن التحديد، اشرح"
+      },
+      "peritoneal_ascitic_fluid_involvement": {
+        "atypical_explain": "غير نمطي، اشرح",
+        "other_specify": "أخرى، حدد",
+        "suspicious_explain": "مشبوه، اشرح",
+        "cannot_be_determined_explain": "لا يمكن التحديد، اشرح"
+      },
+      "chemotherapy_response_score": {
+        "cannot_be_determined_specify": "لا يمكن التحديد، حدد"
+      },
+      "tumor_comment": {}
+    }
+  },
+  "regional_lymph_nodes": {
+    "fields": {
+      "regional_lymph_node_status": {},
+      "nodes_with_metastasis_gt_10mm": {},
+      "nodes_with_metastasis_10mm_or_less": {},
+      "nodes_with_itcs": {},
+      "nodal_sites_with_tumor": {
+        "right_pelvic_specify": "الحوضي الأيمن، حدد",
+        "left_pelvic_specify": "الحوضي الأيسر، حدد",
+        "pelvic_nos_specify": "الحوضي غير محدد، حدد",
+        "right_para_aortic_specify": "حول الأبهر الأيمن، حدد",
+        "left_para_aortic_specify": "حول الأبهر الأيسر، حدد",
+        "para_aortic_nos_specify": "حول الأبهر غير محدد، حدد",
+        "other_specify": "أخرى، حدد",
+        "cannot_be_determined_specify": "لا يمكن التحديد، حدد"
+      },
+      "size_of_largest_nodal_metastatic_deposit": {
+        "fields": {
+          "size_type": {
+            "label": "نوع القياس",
+            "options": [
+              "Exact size",
+              "على الأقل",
+              "Greater than",
+              "أقل من",
+              "Other",
+              "لا يمكن التحديد"
+            ]
+          },
+          "size_mm": {
+            "label": "الحجم (ملم)"
+          },
+          "other_specify": {
+            "label": "أخرى (حدد)"
+          },
+          "cannot_be_determined_explain": {
+            "label": "لا يمكن التحديد (اشرح)"
+          }
+        }
+      },
+      "location_of_largest_nodal_metastatic_deposit": {
+        "right_pelvic_specify": "الحوضي الأيمن، حدد",
+        "left_pelvic_specify": "الحوضي الأيسر، حدد",
+        "pelvic_nos_specify": "الحوضي غير محدد، حدد",
+        "right_para_aortic_specify": "حول الأبهر الأيمن، حدد",
+        "left_para_aortic_specify": "حول الأبهر الأيسر، حدد",
+        "para_aortic_nos_specify": "حول الأبهر غير محدد، حدد",
+        "other_specify": "أخرى، حدد",
+        "cannot_be_determined_specify": "لا يمكن التحديد، حدد",
+        "cannot_be_determined_explain": "لا يمكن التحديد، اشرح"
+      },
+      "number_of_lymph_nodes_examined": {},
+      "nodal_sites_examined": {
+        "right_pelvic_specify": "الحوضي الأيمن، حدد",
+        "left_pelvic_specify": "الحوضي الأيسر، حدد",
+        "pelvic_nos_specify": "الحوضي غير محدد، حدد",
+        "right_para_aortic_specify": "حول الأبهر الأيمن، حدد",
+        "left_para_aortic_specify": "حول الأبهر الأيسر، حدد",
+        "para_aortic_nos_specify": "حول الأبهر غير محدد، حدد",
+        "other_specify": "أخرى، حدد",
+        "cannot_be_determined_specify": "لا يمكن التحديد، حدد"
+      },
+      "regional_lymph_node_comment": {}
+    }
+  },
+  "ptnm_classification": {
+    "fields": {
+      "modified_classification": {},
+      "pT_category": {},
+      "T_suffix": {},
+      "pN_category": {},
+      "N_suffix": {},
+      "pM_category": {}
+    }
   }
 }

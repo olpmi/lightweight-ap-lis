@@ -61,6 +61,14 @@
             "low_squamous_cellularity": "قلة الخلايا الحرشفية",
             "poor_fixation": "تثبيت رديء"
           }
+        },
+        "transformation_zone_component": {
+          "label": "مكوّن منطقة التحوّل (عنق الرحم الداخلي / TZ)",
+          "options": {
+            "present": "موجود",
+            "absent": "غائب",
+            "not_applicable": "غير مطبّق"
+          }
         }
       }
     },
@@ -83,9 +91,17 @@
             "lsil": "LSIL (آفة حرشفية داخل الظهارة منخفضة الدرجة)",
             "hsil": "HSIL (آفة حرشفية داخل الظهارة عالية الدرجة)",
             "squamous_cell_carcinoma": "سرطان الخلايا الحرشفية",
-            "agc": "خلايا غدية غير نمطية (AGC)",
             "ais": "سرطان غدي باطن عنق الرحم موضعي (AIS)",
-            "adenocarcinoma": "سرطان غدي"
+            "adenocarcinoma": "سرطان غدي",
+            "nilm_endometrial_cells": "سلبي للآفة الظهارية الداخلية أو الخباثة، مع وجود خلايا بطانة الرحم (في امرأة بعمر ≥٤٥ سنة)",
+            "hsil_suspicious_for_invasion": "HSIL مع سمات مشبوهة للغزو",
+            "agc_endocervical_nos": "خلايا عنق الرحم الداخلي غير نمطية، NOS",
+            "agc_endocervical_favor_neoplastic": "خلايا عنق الرحم الداخلي غير نمطية، تميل إلى الورم",
+            "agc_endometrial_nos": "خلايا بطانة الرحم غير نمطية، NOS",
+            "agc_endometrial_favor_neoplastic": "خلايا بطانة الرحم غير نمطية، تميل إلى الورم",
+            "agc_nos": "خلايا غدية غير نمطية، NOS",
+            "agc_favor_neoplastic": "خلايا غدية غير نمطية، تميل إلى الورم",
+            "other_malignant_neoplasm": "ورم خبيث آخر"
           }
         }
       }

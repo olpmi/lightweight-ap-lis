@@ -6,7 +6,6 @@
     "adequacy": "کفایت",
     "milan_category": "میلان زمرہ",
     "microscopic_description": "خردبینی تفصیل",
-    "final_interpretation": "حتمی تشریح",
     "recommended_management": "تجویز کردہ انتظام",
     "comment": "تبصرہ"
   },
@@ -18,8 +17,6 @@
     "adequacy_status": "کفایت",
     "milan_category": "میلان زمرہ",
     "microscopic_description_text": "خردبینی تفصیل (آزاد متن)",
-    "final_interpretation_category": "میلان زمرہ",
-    "final_interpretation_text": "حتمی تشریح",
     "recommended_management_options": "تجویز کردہ انتظام",
     "comment_text": "تبصرہ"
   },

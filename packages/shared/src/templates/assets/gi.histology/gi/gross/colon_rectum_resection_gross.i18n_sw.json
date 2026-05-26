@@ -1,54 +1,169 @@
 {
-  "template_title": "KIELELEZO CHA UCHUNGUZI WA MACHO - UTOAJI WA KOLONI NA REKTAMU KWA UVIMBE",
-  "procedure_type": "Aina ya upasuaji/utaratibu (kama ilivyoelezwa na daktari) :",
-  "specimen_length_mm": "Urefu wa sampuli (mm) :",
-  "anatomical_components_included_with_size": "Sehemu za anatomia zilizojumuishwa (pamoja na ukubwa) :",
-  "tumor_perforation": "Kutoboka kwa uvimbe",
-  "absent": "Hakupo",
-  "present": "Kupo",
-  "tumor_dimensions_mm": "Vipimo vya uvimbe (mm) : _____ × _____ × _____",
-  "tumor_site": "Eneo la uvimbe :",
-  "caecum": "Sekamu",
-  "ascending_colon": "Koloni inayopanda",
-  "hepatic_flexure": "Mpindo wa hepatiki",
-  "transverse_colon": "Koloni ya kuvuka",
-  "splenic_flexure": "Mpindo wa spleniki",
-  "descending_colon": "Koloni inayoshuka",
-  "sigmoid_colon": "Koloni ya sigmoid",
-  "rectosigmoid_colon": "Koloni ya rekto-sigmoid",
-  "rectum": "Rektamu",
-  "tumor_invades_peritoneal_surface": "Uvimbe umevamia uso wa peritoneamu :",
-  "yes": "Ndiyo",
-  "no": "Hapana",
-  "tumor_forms_discrete_serosal_nodules": "Uvimbe unatengeneza vinundu tofauti kwenye serosa :",
-  "distance_of_tumor_to_margins_mm": "Umbali wa uvimbe hadi kwenye mipaka (mm) :",
-  "proximal": "Upande wa karibu/proksimali : __________",
-  "distal": "Upande wa mbali/distali : __________",
-  "non_peritonealised_circumferential_margin": "Mpaka wa mzunguko usiofunikwa na peritoneamu : __________",
-  "for_rectal_tumors_only": "Kwa uvimbe wa rektamu pekee",
-  "intactness_of_mesorectum": "Ukamilifu wa mesorektamu :",
-  "incomplete_grade_1": "Haujakamilika (Daraja 1)",
-  "near_complete_grade_2": "Karibu kamili (Daraja 2)",
-  "complete_grade_3": "Kamili (Daraja 3)",
-  "tumor_relationship_to_anterior_peritoneal_reflection": "Uhusiano wa uvimbe na mkunjo wa mbele wa peritoneamu :",
-  "entirely_above": "Wote uko juu yake",
-  "astride": "Uko juu na chini yake",
-  "entirely_below": "Wote uko chini yake",
-  "if_abdominoperineal_ap_resection": "Ikiwa ni upasuaji wa abdomino-perineal (AP) :",
-  "distance_from_dentate_line_mm": "Umbali kutoka mstari wa dentate (mm) :",
-  "polyps": "Polipu",
-  "if_present_record_number_size_range_and_gross_appearance": "Ikiwa zipo (andika idadi, kiwango cha ukubwa, na mwonekano wa macho) :",
-  "lymph_nodes": "Nodi za limfu",
-  "number_identified": "Idadi iliyotambuliwa :",
-  "size_range_mm": "Kiwango cha ukubwa (mm) :",
-  "other_relevant_macroscopic_findings": "Matokeo mengine muhimu ya uchunguzi wa macho :",
-  "block_identification_key": "Ufunguo wa utambulisho wa vitalu",
-  "tumor": "Uvimbe :",
-  "proximal_margin": "Mpaka wa proksimali :",
-  "distal_margin": "Mpaka wa distali :",
-  "circumferential_margin": "Mpaka wa mzunguko :",
-  "non_neoplastic_colon": "Koloni isiyo na neoplasia :",
-  "additional_sections": "Sehemu za ziada :",
-  "grossed_by": "Imefanyiwa uchunguzi wa macho na :",
-  "date": "Tarehe :"
+  "title": "Upasuaji wa Koloni na Rektamu (Kiolezo cha Gross)",
+  "specimen": {
+    "label": "Sampuli",
+    "fields": {
+      "procedure_type": {
+        "label": "Aina ya upasuaji/utaratibu (kama ilivyoelezwa na daktari)"
+      },
+      "specimen_length_mm": {
+        "label": "Urefu wa sampuli (mm)"
+      },
+      "anatomical_components_included": {
+        "label": "Sehemu za anatomia zilizojumuishwa (pamoja na ukubwa)"
+      }
+    }
+  },
+  "tumor": {
+    "label": "Uvimbe",
+    "fields": {
+      "tumor_perforation": {
+        "label": "Kutoboka kwa uvimbe",
+        "options": [
+          "Hakupo",
+          "Kupo"
+        ]
+      },
+      "tumor_dimensions_mm": {
+        "label": "Vipimo vya uvimbe (mm)"
+      },
+      "tumor_site": {
+        "label": "Eneo la uvimbe",
+        "options": [
+          "Sekamu",
+          "Koloni inayopanda",
+          "Mpindo wa hepatiki",
+          "Koloni ya kuvuka",
+          "Mpindo wa spleniki",
+          "Koloni inayoshuka",
+          "Koloni ya sigmoid",
+          "Koloni ya rekto-sigmoid",
+          "Rektamu"
+        ]
+      },
+      "invades_peritoneal_surface": {
+        "label": "Uvimbe umevamia uso wa peritoneamu",
+        "options": [
+          "Ndiyo",
+          "Hapana"
+        ]
+      },
+      "forms_discrete_serosal_nodules": {
+        "label": "Uvimbe unatengeneza vinundu tofauti kwenye serosa",
+        "options": [
+          "Ndiyo",
+          "Hapana"
+        ]
+      }
+    }
+  },
+  "margins": {
+    "label": "Mipaka",
+    "fields": {
+      "distance_to_proximal_margin_mm": {
+        "label": "Umbali hadi mpaka wa proksimali (mm)"
+      },
+      "distance_to_distal_margin_mm": {
+        "label": "Umbali hadi mpaka wa distali (mm)"
+      },
+      "distance_to_circumferential_margin_mm": {
+        "label": "Umbali hadi mpaka wa mzunguko usiofunikwa na peritoneum (mm)"
+      }
+    }
+  },
+  "rectal_tumor_only": {
+    "label": "Kwa uvimbe wa rektamu pekee",
+    "fields": {
+      "mesorectum_intactness": {
+        "label": "Ukamilifu wa mesorektamu",
+        "options": [
+          "Haujakamilika (Daraja 1)",
+          "Karibu kamili (Daraja 2)",
+          "Kamili (Daraja 3)"
+        ]
+      },
+      "relationship_to_anterior_peritoneal_reflection": {
+        "label": "Uhusiano wa uvimbe na mkunjo wa mbele wa peritoneamu",
+        "options": [
+          "Wote uko juu yake",
+          "Uko juu na chini yake",
+          "Wote uko chini yake"
+        ]
+      },
+      "distance_from_dentate_line_mm": {
+        "label": "Umbali kutoka mstari wa dentate (mm)"
+      }
+    }
+  },
+  "polyps": {
+    "label": "Polipu",
+    "fields": {
+      "status": {
+        "label": "Polipu",
+        "options": [
+          "Hakupo",
+          "Kupo"
+        ]
+      },
+      "if_present_details": {
+        "label": "Ikiwa zipo (andika idadi, kiwango cha ukubwa, na mwonekano wa macho)"
+      }
+    }
+  },
+  "lymph_nodes": {
+    "label": "Nodi za limfu",
+    "fields": {
+      "number_identified": {
+        "label": "Idadi iliyotambuliwa"
+      },
+      "size_range_mm": {
+        "label": "Kiwango cha ukubwa (mm)"
+      }
+    }
+  },
+  "other_findings": {
+    "label": "Matokeo mengine muhimu ya uchunguzi wa macho",
+    "fields": {
+      "findings": {
+        "label": "Matokeo mengine muhimu ya uchunguzi wa macho"
+      }
+    }
+  },
+  "block_identification_key": {
+    "label": "Ufunguo wa utambulisho wa vitalu",
+    "fields": {
+      "tumor": {
+        "label": "Uvimbe"
+      },
+      "proximal_margin": {
+        "label": "Mpaka wa proksimali"
+      },
+      "distal_margin": {
+        "label": "Mpaka wa distali"
+      },
+      "circumferential_margin": {
+        "label": "Mpaka wa mzunguko"
+      },
+      "non_neoplastic_colon": {
+        "label": "Koloni isiyo na neoplasia"
+      },
+      "lymph_nodes": {
+        "label": "Nodi za limfu"
+      },
+      "additional_sections": {
+        "label": "Sehemu za ziada"
+      }
+    }
+  },
+  "grossing": {
+    "label": "Uchunguzi wa macho",
+    "fields": {
+      "grossed_by_initials": {
+        "label": "Imefanyiwa uchunguzi wa macho na"
+      },
+      "date": {
+        "label": "Tarehe"
+      }
+    }
+  }
 }

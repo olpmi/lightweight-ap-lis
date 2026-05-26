@@ -1,79 +1,238 @@
 {
-  "template.title": "MODÈLE MACROSCOPIQUE : OVAIRE, TROMPE DE FALLOPE OU PÉRITOINE PRIMAIRE",
-  "section.specimen": "SPÉCIMEN",
-  "section.block_allocation_key": "Clé d’attribution des blocs",
-  "field.procedure": "Procédure (sélectionner toutes les réponses applicables)",
-  "note.lymph_node_sampling": "Pour les informations concernant le prélèvement des ganglions lymphatiques, veuillez vous référer à la section des ganglions lymphatiques régionaux.",
-  "procedure.total_hysterectomy_bso": "Hystérectomie totale avec salpingo-ovariectomie bilatérale",
-  "procedure.radical_hysterectomy": "Hystérectomie radicale",
-  "procedure.simple_hysterectomy": "Hystérectomie simple",
-  "procedure.supracervical_hysterectomy": "Hystérectomie supracervicale",
-  "procedure.bilateral_salpingo_oophorectomy": "Salpingo-ovariectomie bilatérale",
-  "procedure.right_salpingo_oophorectomy": "Salpingo-ovariectomie droite",
-  "procedure.left_salpingo_oophorectomy": "Salpingo-ovariectomie gauche",
-  "procedure.salpingo_oophorectomy_side_not_specified": "Salpingo-ovariectomie, côté non précisé",
-  "procedure.right_oophorectomy": "Ovariectomie droite",
-  "procedure.left_oophorectomy": "Ovariectomie gauche",
-  "procedure.oophorectomy_side_not_specified": "Ovariectomie, côté non précisé",
-  "procedure.bilateral_salpingectomy": "Salpingectomie bilatérale",
-  "procedure.right_salpingectomy": "Salpingectomie droite",
-  "procedure.left_salpingectomy": "Salpingectomie gauche",
-  "procedure.salpingectomy_side_not_specified": "Salpingectomie, côté non précisé",
-  "procedure.omentectomy": "Omentectomie",
-  "procedure.peritoneal_biopsies": "Biopsies péritonéales",
-  "procedure.peritoneal_tumor_debulking": "Réduction tumorale péritonéale",
-  "procedure.peritoneal_washing": "Lavage péritonéal",
-  "procedure.pelvic_washing": "Lavage pelvien",
-  "procedure.ascitic_fluid": "Liquide d’ascite",
-  "procedure.pleurocentesis_pleural_fluid": "Pleurocentèse (liquide pleural)",
-  "common.other_specify": "Autre (préciser)",
-  "field.hysterectomy_type": "Type d’hystérectomie",
-  "hysterectomy_type.abdominal": "Abdominale",
-  "hysterectomy_type.vaginal": "Vaginale",
-  "hysterectomy_type.vaginal_laparoscopic_assisted": "Vaginale assistée par laparoscopie",
-  "hysterectomy_type.laparoscopic": "Laparoscopique",
-  "hysterectomy_type.laparoscopic_robotic_assisted": "Laparoscopique assistée par robot",
-  "common.not_specified": "Non précisé",
-  "field.specimen_integrity": "Intégrité du spécimen (sélectionner toutes les réponses applicables)",
-  "note.specimen_integrity": "Pour les tumeurs ovariennes primaires, si l’ovaire contenant la tumeur primaire est retiré intact dans un sac de laparoscopie puis rompu dans le sac par le chirurgien sans déversement dans la cavité péritonéale, l’intégrité du spécimen doit être indiquée comme « capsule intacte » avec un commentaire explicatif dans le compte rendu. Pour les tumeurs péritonéales primaires chez les femmes ayant déjà eu une salpingo-ovariectomie, sélectionner « non applicable ».",
-  "common.not_applicable": "Non applicable",
-  "specimen.right_ovary": "Ovaire droit",
-  "field.right_ovary_integrity": "Intégrité de l’ovaire droit",
-  "integrity.capsule_intact": "Capsule intacte",
-  "integrity.capsule_ruptured": "Capsule rompue",
-  "field.time_of_rupture": "Moment de la rupture",
-  "rupture_time.preoperative": "Préopératoire",
-  "rupture_time.intraoperative": "Intraopératoire",
-  "rupture_time.unknown": "Inconnu",
-  "integrity.fragmented": "Fragmenté",
-  "specimen.left_ovary": "Ovaire gauche",
-  "field.left_ovary_integrity": "Intégrité de l’ovaire gauche",
-  "specimen.ovary_laterality_not_specified": "Ovaire, latéralité non précisée",
-  "field.ovary_integrity": "Intégrité de l’ovaire",
-  "specimen.right_fallopian_tube": "Trompe de Fallope droite",
-  "field.right_fallopian_tube_integrity": "Intégrité de la trompe de Fallope droite",
-  "integrity.serosa_intact": "Séreuse intacte",
-  "integrity.serosa_ruptured": "Séreuse rompue",
-  "specimen.left_fallopian_tube": "Trompe de Fallope gauche",
-  "field.left_fallopian_tube_integrity": "Intégrité de la trompe de Fallope gauche",
-  "specimen.fallopian_tube_laterality_not_specified": "Trompe de Fallope, latéralité non précisée",
-  "field.fallopian_tube_integrity": "Intégrité de la trompe de Fallope",
-  "field.uterus_integrity": "Intégrité de l’utérus",
-  "integrity.intact": "Intact",
-  "integrity.opened": "Ouvert",
-  "integrity.morcellated": "Morcelé",
-  "block.tumor_representative_sections": "Tumeur (sections représentatives – zones solides, kystiques, papillaires)",
-  "block.tumor_capsule_interface": "Interface tumeur-capsule",
-  "block.capsule_non_tumor_areas": "Capsule (zones non tumorales)",
-  "block.fallopian_tube_fimbrial_end": "Trompe de Fallope (extrémité fimbriale)",
-  "block.fallopian_tube_cross_sections": "Trompe de Fallope (coupes transversales)",
-  "block.contralateral_ovary_if_present": "Ovaire controlatéral (si présent)",
-  "block.endometrium": "Endomètre",
-  "block.myometrium": "Myomètre",
-  "block.cervix": "Col de l’utérus",
-  "block.omentum": "Épiploon",
-  "block.lymph_nodes": "Ganglions lymphatiques",
-  "signoff.grossed_by": "Macroscopie réalisée par",
-  "signoff.date": "Date",
-  "template.key": "gross_ovary_fallopian_tube_primary_peritoneum"
+  "title": "Ovaire, trompe de Fallope ou péritoine primaire (Modèle macroscopique)",
+  "specimen": {
+    "label": "Spécimen",
+    "fields": {
+      "procedure": {
+        "label": "Procédure (sélectionner toutes les réponses applicables)",
+        "options": [
+          "Hystérectomie totale avec salpingo-ovariectomie bilatérale",
+          "Hystérectomie radicale",
+          "Hystérectomie simple",
+          "Hystérectomie supracervicale",
+          "Salpingo-ovariectomie bilatérale",
+          "Salpingo-ovariectomie droite",
+          "Salpingo-ovariectomie gauche",
+          "Salpingo-ovariectomie, côté non précisé",
+          "Ovariectomie droite",
+          "Ovariectomie gauche",
+          "Ovariectomie, côté non précisé",
+          "Salpingectomie bilatérale",
+          "Salpingectomie droite",
+          "Salpingectomie gauche",
+          "Salpingectomie, côté non précisé",
+          "Omentectomie",
+          "Biopsies péritonéales",
+          "Réduction tumorale péritonéale",
+          "Lavage péritonéal",
+          "Lavage pelvien",
+          "Liquide d'ascite",
+          "Pleurocentèse (liquide pleural)",
+          "Autre (préciser)"
+        ],
+        "other_specify": "Autre (préciser)"
+      },
+      "hysterectomy_type": {
+        "label": "Type d'hystérectomie",
+        "options": [
+          "Abdominale",
+          "Vaginale",
+          "Vaginale assistée par laparoscopie",
+          "Laparoscopique",
+          "Laparoscopique assistée par robot",
+          "Autre (préciser)",
+          "Non précisé"
+        ],
+        "other_specify": "Autre (préciser)"
+      },
+      "specimen_integrity_note": {
+        "label": "Note d'intégrité du spécimen"
+      },
+      "specimen_integrity_applicability": {
+        "label": "Applicabilité de l'intégrité du spécimen",
+        "options": [
+          "Non applicable"
+        ]
+      }
+    }
+  },
+  "ovarian_integrity": {
+    "label": "Intégrité de l'ovaire",
+    "fields": {
+      "right_ovary_present": {
+        "label": "Ovaire droit"
+      },
+      "right_ovary_integrity": {
+        "label": "Ovaire droit – Capsule intacte",
+        "options": [
+          "Capsule intacte",
+          "Capsule rompue",
+          "Fragmenté",
+          "Autre (préciser)"
+        ],
+        "other_specify": "Autre (préciser)"
+      },
+      "right_ovary_time_of_rupture": {
+        "label": "Moment de la rupture",
+        "options": [
+          "Moment de la rupture",
+          "Préopératoire",
+          "Intraopératoire",
+          "Inconnu"
+        ]
+      },
+      "left_ovary_present": {
+        "label": "Ovaire gauche"
+      },
+      "left_ovary_integrity": {
+        "label": "Ovaire gauche – Capsule intacte",
+        "options": [
+          "Capsule intacte",
+          "Capsule rompue",
+          "Fragmenté",
+          "Autre (préciser)"
+        ],
+        "other_specify": "Autre (préciser)"
+      },
+      "left_ovary_time_of_rupture": {
+        "label": "Moment de la rupture",
+        "options": [
+          "Moment de la rupture",
+          "Préopératoire",
+          "Intraopératoire",
+          "Inconnu"
+        ]
+      },
+      "ovary_laterality_not_specified_present": {
+        "label": "Ovaire, latéralité non précisée"
+      },
+      "ovary_laterality_not_specified_integrity": {
+        "label": "Ovaire, latéralité non précisée – Capsule intacte",
+        "options": [
+          "Capsule intacte",
+          "Capsule rompue",
+          "Fragmenté",
+          "Autre (préciser)"
+        ],
+        "other_specify": "Autre (préciser)"
+      },
+      "ovary_laterality_not_specified_time_of_rupture": {
+        "label": "Moment de la rupture",
+        "options": [
+          "Moment de la rupture",
+          "Préopératoire",
+          "Intraopératoire",
+          "Inconnu"
+        ]
+      }
+    }
+  },
+  "fallopian_tube_integrity": {
+    "label": "Intégrité de la trompe de Fallope",
+    "fields": {
+      "right_fallopian_tube_present": {
+        "label": "Trompe de Fallope droite"
+      },
+      "right_fallopian_tube_integrity": {
+        "label": "Trompe de Fallope droite – Séreuse intacte",
+        "options": [
+          "Séreuse intacte",
+          "Séreuse rompue",
+          "Fragmenté",
+          "Autre (préciser)"
+        ],
+        "other_specify": "Autre (préciser)"
+      },
+      "left_fallopian_tube_present": {
+        "label": "Trompe de Fallope gauche"
+      },
+      "left_fallopian_tube_integrity": {
+        "label": "Trompe de Fallope gauche – Séreuse intacte",
+        "options": [
+          "Séreuse intacte",
+          "Séreuse rompue",
+          "Fragmenté",
+          "Autre (préciser)"
+        ],
+        "other_specify": "Autre (préciser)"
+      },
+      "fallopian_tube_laterality_not_specified_present": {
+        "label": "Trompe de Fallope, latéralité non précisée"
+      },
+      "fallopian_tube_laterality_not_specified_integrity": {
+        "label": "Trompe de Fallope, latéralité non précisée – Séreuse intacte",
+        "options": [
+          "Séreuse intacte",
+          "Séreuse rompue",
+          "Fragmenté",
+          "Autre (préciser)"
+        ],
+        "other_specify": "Autre (préciser)"
+      }
+    }
+  },
+  "uterus_integrity": {
+    "label": "Intégrité de l'utérus",
+    "fields": {
+      "status": {
+        "label": "Intégrité de l'utérus",
+        "options": [
+          "Intact",
+          "Ouvert",
+          "Morcelé",
+          "Autre (préciser)"
+        ],
+        "other_specify": "Autre (préciser)"
+      }
+    }
+  },
+  "block_allocation_key": {
+    "label": "Clé d'attribution des blocs",
+    "fields": {
+      "tumor_representative_sections": {
+        "label": "Tumeur (sections représentatives – zones solides, kystiques, papillaires)"
+      },
+      "tumor_capsule_interface": {
+        "label": "Interface tumeur-capsule"
+      },
+      "capsule_non_tumor_areas": {
+        "label": "Capsule (zones non tumorales)"
+      },
+      "fallopian_tube_fimbrial_end": {
+        "label": "Trompe de Fallope (extrémité fimbriale)"
+      },
+      "fallopian_tube_cross_sections": {
+        "label": "Trompe de Fallope (coupes transversales)"
+      },
+      "contralateral_ovary_if_present": {
+        "label": "Ovaire controlatéral (si présent)"
+      },
+      "endometrium": {
+        "label": "Endomètre"
+      },
+      "myometrium": {
+        "label": "Myomètre"
+      },
+      "cervix": {
+        "label": "Col de l'utérus"
+      },
+      "omentum": {
+        "label": "Épiploon"
+      },
+      "lymph_nodes": {
+        "label": "Ganglions lymphatiques"
+      }
+    }
+  },
+  "grossing": {
+    "label": "Macroscopie",
+    "fields": {
+      "grossed_by": {
+        "label": "Macroscopie réalisée par"
+      },
+      "date": {
+        "label": "Date"
+      }
+    }
+  }
 }

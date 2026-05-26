@@ -1,189 +1,233 @@
 {
-  "template.language": "sw",
-  "template.id": "stomach_tumor_resection",
-  "template.title": "KIELELEZO CHA RIPOTI – UVIMBE WA TUMBO, UONDOAJI",
-  "template.protocolPostingDate": "Tarehe ya kuchapishwa kwa itifaki: Machi 2023",
-  "template.standards": "Kiwango/Viwango: AJCC-UICC 8",
-  "section.specimen": "SAMPULI",
-  "section.tumor": "UVIMBE",
-  "section.margins": "MIPAKA YA UPASUAJI",
-  "section.regionalLymphNodes": "NODI ZA LIMFU ZA KANDA",
-  "section.distantMetastasis": "METASTASISI YA MBALI",
-  "section.pTNM": "UAINISHAJI WA pTNM (Toleo la 8 la AJCC)",
-  "section.additionalFindings": "MATOKEO YA ZIADA",
-  "common.notApplicable": "Haitumiki",
-  "common.notSpecified": "Haijabainishwa",
-  "common.cannotBeDetermined": "Haiwezi kubainishwa",
-  "common.cannotBeDeterminedExplain": "Haiwezi kubainishwa (eleza)",
-  "common.otherSpecify": "Nyingine (bainisha)",
-  "common.present": "Ipo",
-  "common.notIdentified": "Haijatambuliwa",
-  "common.noneIdentified": "Hakuna kilichotambuliwa",
-  "common.proximal": "Proksimali",
-  "common.distal": "Distali",
-  "common.mucosal": "Mukosa",
-  "common.deep": "Wa kina",
-  "common.exactNumberSpecify": "Idadi kamili (bainisha)",
-  "common.atLeastSpecify": "Angalau (bainisha)",
-  "specimen.procedure.label": "Utaratibu",
-  "specimen.procedure.endoscopicResection": "Uondoaji kwa endoskopi",
-  "specimen.procedure.partialGastrectomyProximal": "Gastrectomy ya sehemu, proksimali",
-  "specimen.procedure.partialGastrectomyDistal": "Gastrectomy ya sehemu, distali",
-  "specimen.procedure.partialGastrectomyOther": "Gastrectomy ya sehemu, nyingine (bainisha)",
-  "specimen.procedure.totalGastrectomy": "Gastrectomy kamili",
-  "tumor.site.label": "Eneo la uvimbe (chagua yote yanayohusika)",
-  "tumor.site.note.egj": "Tumia checklist ya umio ikiwa uvimbe unahusisha makutano ya umio na tumbo (EGJ) na kitovu cha uvimbe kiko sentimita 2 au chini ndani ya sehemu ya juu ya tumbo.",
-  "tumor.site.cardia": "Cardia",
-  "tumor.site.fundus": "Fundus",
-  "tumor.site.anteriorWall": "Ukuta wa mbele",
-  "tumor.site.posteriorWall": "Ukuta wa nyuma",
-  "tumor.site.body": "Mwili wa tumbo",
-  "tumor.site.lesserCurvature": "Curvature ndogo",
-  "tumor.site.greaterCurvature": "Curvature kubwa",
-  "tumor.site.antrum": "Antrum",
-  "tumor.site.pylorus": "Pylorus",
-  "tumor.histologicType.label": "Aina ya kihistolojia",
-  "tumor.histologicType.adenocarcinoma": "Adenokasinoma",
-  "tumor.histologicType.adenocarcinomaClassification.label": "Uainishaji wa adenokasinoma (kulingana na WHO)",
-  "tumor.histologicType.tubularAdenocarcinoma": "Adenokasinoma ya tubular",
-  "tumor.histologicType.poorlyCohesiveCarcinoma": "Kasinoma isiyoshikamana vizuri (inajumuisha kasinoma ya seli za signet-ring na lahaja nyingine)",
-  "tumor.histologicType.mucinousAdenocarcinoma": "Adenokasinoma ya mucinous (zaidi ya 50% mucinous)",
-  "tumor.histologicType.papillaryAdenocarcinoma": "Adenokasinoma ya papillary",
-  "tumor.histologicType.mixedCarcinoma": "Kasinoma mchanganyiko (mchanganyiko wa vipengele tofauti vya tezi [tubular/papillary] na vipengele vya seli za signet-ring/isiyoshikamana vizuri)",
-  "tumor.laurenClassification.label": "Uainishaji wa Lauren wa adenokasinoma",
-  "tumor.laurenClassification.intestinal": "Aina ya intestinal",
-  "tumor.laurenClassification.diffuse": "Aina ya diffuse (inajumuisha kasinoma ya seli za signet-ring, inayofafanuliwa kuwa zaidi ya 50% seli za signet-ring)",
-  "tumor.laurenClassification.mixed": "Mchanganyiko (takribani kiasi sawa cha intestinal na diffuse)",
-  "tumor.histologicType.hepatoidAdenocarcinoma": "Adenokasinoma ya hepatoid",
-  "tumor.histologicType.carcinomaWithLymphoidStroma": "(Adeno)kasinoma yenye stroma ya lymphoid",
-  "tumor.histologicType.micropapillaryAdenocarcinoma": "Adenokasinoma ya micropapillary",
-  "tumor.histologicType.fundicGlandType": "Adenokasinoma ya aina ya tezi za fundus",
-  "tumor.histologicType.squamousCellCarcinoma": "Kasinoma ya seli za squamous",
-  "tumor.histologicType.adenosquamousCarcinoma": "Kasinoma ya adenosquamous",
-  "tumor.histologicType.undifferentiatedAnaplasticCarcinoma": "Kasinoma isiyojipambanua (anaplastic)",
-  "tumor.histologicType.gastroblastoma": "Gastroblastoma",
-  "tumor.histologicType.largeCellNeuroendocrineCarcinoma": "Kasinoma ya neuroendocrine ya seli kubwa",
-  "tumor.histologicType.smallCellNeuroendocrineCarcinoma": "Kasinoma ya neuroendocrine ya seli ndogo",
-  "tumor.histologicType.neuroendocrineCarcinomaPoorlyDifferentiated": "Kasinoma ya neuroendocrine (isiyojipambanua vizuri)",
-  "tumor.histologicType.mixedAdenocarcinomaNeuroendocrineCarcinoma": "Kasinoma mchanganyiko ya adenokasinoma-neuroendocrine (kasinoma ya neuroendocrine ya seli ndogo au seli kubwa)",
-  "tumor.histologicType.mixedAdenocarcinomaNeuroendocrineTumor": "Uvimbe mchanganyiko wa adenokasinoma-neuroendocrine",
-  "tumor.histologicType.otherNotListed": "Aina nyingine ya kihistolojia isiyoorodheshwa (bainisha)",
-  "tumor.histologicType.note.largeSmallCell": "Chagua chaguo hili tu ikiwa haiwezi kubainishwa kama ni seli kubwa au seli ndogo.",
-  "tumor.histologicGrade.label": "Daraja la kihistolojia",
-  "tumor.histologicGrade.g1": "G1, imejipambanua vizuri",
-  "tumor.histologicGrade.g2": "G2, imejipambanua kwa wastani",
-  "tumor.histologicGrade.g3": "G3, imejipambanua vibaya, haijajipambanua",
-  "tumor.histologicGrade.gx": "GX, haiwezi kutathminiwa",
-  "tumor.size.label": "Ukubwa wa uvimbe",
-  "tumor.size.greatestDimensionCm": "Kipimo kikubwa zaidi kwa sentimita (cm)",
-  "tumor.size.additionalDimensionCm": "Kipimo cha ziada kwa sentimita (cm)",
-  "tumor.extent.label": "Ueneaji wa uvimbe",
-  "tumor.extent.cis": "Carcinoma in situ (uvimbe wa ndani ya epithelium bila uvamizi wa lamina propria, dysplasia ya daraja la juu)",
-  "tumor.extent.laminaPropria": "Unavamia lamina propria",
-  "tumor.extent.muscularisMucosae": "Unavamia muscularis mucosae",
-  "tumor.extent.submucosa": "Unavamia submucosa",
-  "tumor.extent.muscularisPropria": "Unavamia muscularis propria",
-  "tumor.extent.subserosalConnectiveTissue": "Unapenya tishu unganishi ya subserosa bila uvamizi wa peritoneum ya visceral au miundo jirani",
-  "tumor.extent.serosa": "Unavamia serosa (peritoneum ya visceral)",
-  "tumor.extent.directAdjacent": "Unavamia moja kwa moja muundo/miundo au kiungo/viungo jirani",
-  "tumor.extent.note.intramural": "Ueneaji wa ndani ya ukuta kwenda duodenum au umio hauchukuliwi kama uvamizi wa muundo jirani, bali huainishwa kulingana na kina kikubwa zaidi cha uvamizi katika mojawapo ya maeneo haya.",
-  "tumor.extent.spleen": "Wengu",
-  "tumor.extent.transverseColon": "Koloni transverse",
-  "tumor.extent.liver": "Ini",
-  "tumor.extent.diaphragm": "Diaphragm",
-  "tumor.extent.pancreas": "Kongosho",
-  "tumor.extent.abdominalWall": "Ukuta wa tumbo",
-  "tumor.extent.adrenalGland": "Tezi ya adrenal",
-  "tumor.extent.kidney": "Figo",
-  "tumor.extent.smallIntestine": "Utumbo mdogo",
-  "tumor.extent.retroperitoneum": "Retroperitoneum",
-  "tumor.extent.noPrimaryTumor": "Hakuna ushahidi wa uvimbe wa msingi",
-  "tumor.treatmentEffect.label": "Athari ya matibabu",
-  "tumor.treatmentEffect.noKnownPresurgicalTherapy": "Hakuna tiba ya kabla ya upasuaji inayojulikana",
-  "tumor.treatmentEffect.completeResponse": "Ipo, bila seli hai za saratani (mwitikio kamili, alama 0)",
-  "tumor.treatmentEffect.nearCompleteResponse": "Ipo, ikiwa na seli moja moja au vikundi vidogo adimu vya seli za saratani (mwitikio karibu kamili, alama 1)",
-  "tumor.treatmentEffect.partialResponse": "Ipo, ikiwa na saratani iliyobaki inayoonyesha kupungua kwa uvimbe, lakini zaidi ya seli moja moja au vikundi vidogo adimu (mwitikio wa sehemu, alama 2)",
-  "tumor.treatmentEffect.presentNos": "Ipo (haijabainishwa zaidi)",
-  "tumor.treatmentEffect.poorNoResponse": "Haipo, ikiwa na saratani iliyobaki kwa kiasi kikubwa na bila ushahidi wa kupungua kwa uvimbe (mwitikio hafifu au hakuna mwitikio, alama 3)",
-  "tumor.lymphaticVascularInvasion.label": "Uvamizi wa mishipa ya limfu na/au damu",
-  "tumor.perineuralInvasion.label": "Uvamizi wa perineural",
-  "margins.invasive.status.label": "Hali ya mipaka kwa kasinoma vamizi",
-  "margins.invasive.allNegative": "Mipaka yote haina kasinoma vamizi",
-  "margins.invasive.closest.label": "Mpaka/mipaka iliyo karibu zaidi na kasinoma vamizi (chagua yote yanayohusika)",
-  "margins.invasive.closest.omentalRadial": "Omental (radial)",
-  "margins.invasive.distance.label": "Umbali kutoka kasinoma vamizi hadi mpaka ulio karibu zaidi",
-  "margins.distance.specifyCm": "Bainisha kwa sentimita (cm)",
-  "margins.distance.exactCm": "Umbali kamili kwa cm",
-  "margins.distance.greaterThan1Cm": "Zaidi ya 1 cm",
-  "margins.distance.specifyMm": "Bainisha kwa milimita (mm)",
-  "margins.distance.exactMm": "Umbali kamili kwa mm",
-  "margins.distance.greaterThan10Mm": "Zaidi ya 10 mm",
-  "margins.distance.other": "Nyingine",
-  "margins.invasive.presentAtMargin": "Kasinoma vamizi ipo kwenye mpaka",
-  "margins.invasive.involved.label": "Mpaka/mipaka iliyohusishwa na kasinoma vamizi (chagua yote yanayohusika)",
-  "margins.invasive.involved.greaterOmental": "Omentum kubwa",
-  "margins.invasive.involved.lesserOmental": "Omentum ndogo",
-  "margins.dysplasia.status.label": "Hali ya mipaka kwa dysplasia (chagua yote yanayohusika)",
-  "margins.dysplasia.allNegative": "Mipaka yote haina dysplasia",
-  "margins.dysplasia.cisAtMargin": "Carcinoma in situ (dysplasia ya daraja la juu) ipo kwenye mpaka",
-  "margins.dysplasia.cisInvolved.label": "Mpaka/mipaka iliyohusishwa na carcinoma in situ (chagua yote yanayohusika)",
-  "margins.dysplasia.lowGradeAtMargin": "Dysplasia ya daraja la chini ipo kwenye mpaka",
-  "margins.dysplasia.lowGradeInvolved.label": "Mpaka/mipaka iliyohusishwa na dysplasia ya daraja la chini (chagua yote yanayohusika)",
-  "margins.comment": "Maoni kuhusu mipaka",
-  "nodes.status.label": "Hali ya nodi za limfu za kanda",
-  "nodes.status.notApplicableNoneSubmitted": "Haitumiki (hakuna nodi za limfu za kanda zilizowasilishwa au kupatikana)",
-  "nodes.status.present": "Nodi za limfu za kanda zipo",
-  "nodes.status.allNegative": "Nodi zote za kanda hazina uvimbe",
-  "nodes.status.tumorPresent": "Uvimbe upo katika nodi moja au zaidi za limfu za kanda",
-  "nodes.numberWithTumor.label": "Idadi ya nodi za limfu zenye uvimbe",
-  "nodes.numberExamined.label": "Idadi ya nodi za limfu zilizochunguzwa",
-  "nodes.comment": "Maoni kuhusu nodi za limfu za kanda",
-  "metastasis.distantSites.label": "Eneo/maeneo ya mbali yaliyohusishwa, ikiwa inatumika (chagua yote yanayohusika)",
-  "metastasis.nonRegionalNodes": "Nodi za limfu zisizo za kanda",
-  "metastasis.liver": "Ini",
-  "ptnm.note": "Utoaji wa taarifa za kategoria za pT, pN, na (inapohusika) pM unategemea taarifa zinazopatikana kwa mwanapatholojia wakati ripoti inatolewa. Kulingana na AJCC (Sura ya 1, Toleo la 8), ni wajibu wa daktari anayesimamia mgonjwa kuweka hatua ya mwisho ya patholojia kwa kuzingatia taarifa zote muhimu, ikijumuisha lakini siyo tu ripoti hii ya patholojia.",
-  "ptnm.modified.label": "Uainishaji uliorekebishwa (unahitajika tu ikiwa unatumika) (chagua yote yanayohusika)",
-  "ptnm.modified.y": "y (baada ya tiba ya neoadjuvant)",
-  "ptnm.modified.r": "r (kurudi kwa ugonjwa)",
-  "ptnm.pT.label": "Kategoria ya pT",
-  "ptnm.pT.notAssignedCannotDetermine": "pT haijapewa (haiwezi kubainishwa kulingana na taarifa za patholojia zilizopo)",
-  "ptnm.pT.pT0": "pT0: Hakuna ushahidi wa uvimbe wa msingi",
-  "ptnm.pT.pTis": "pTis: Carcinoma in situ: uvimbe wa ndani ya epithelium bila uvamizi wa lamina propria, dysplasia ya daraja la juu",
-  "ptnm.pT.pT1": "pT1: Uvimbe unavamia lamina propria, muscularis mucosae, au submucosa",
-  "ptnm.pT.pT1a": "pT1a: Uvimbe unavamia lamina propria au muscularis mucosae",
-  "ptnm.pT.pT1b": "pT1b: Uvimbe unavamia submucosa",
-  "ptnm.pT.pT1CannotDetermine": "pT1 (kategoria ndogo haiwezi kubainishwa)",
-  "ptnm.pT.pT2": "pT2: Uvimbe unavamia muscularis propria",
-  "ptnm.pT.note.t3T4": "Uvimbe unaweza kupenya muscularis propria na kuenea kwenye ligamenti za gastrocolic au gastrohepatic, au kwenye omentum kubwa au ndogo, bila kutoboa peritoneum ya visceral inayofunika miundo hii. Katika hali hii, uvimbe huainishwa kama T3. Ikiwa kuna kutoboka kwa peritoneum ya visceral inayofunika ligamenti za tumbo au omentum, uvimbe unapaswa kuainishwa kama T4.",
-  "ptnm.pT.note.adjacentStructures": "Miundo jirani ya tumbo inajumuisha wengu, koloni transverse, ini, diaphragm, kongosho, ukuta wa tumbo, tezi ya adrenal, figo, utumbo mdogo, na retroperitoneum.",
-  "ptnm.pT.note.intramural": "Ueneaji wa ndani ya ukuta kwenda duodenum au umio hauchukuliwi kama uvamizi wa muundo jirani, bali huainishwa kulingana na kina kikubwa zaidi cha uvamizi katika mojawapo ya maeneo haya.",
-  "ptnm.pT.pT3": "pT3: Uvimbe hupenya tishu unganishi ya subserosa bila uvamizi wa peritoneum ya visceral au miundo jirani",
-  "ptnm.pT.pT4": "pT4: Uvimbe unavamia serosa (peritoneum ya visceral) au miundo jirani",
-  "ptnm.pT.pT4a": "pT4a: Uvimbe unavamia serosa (peritoneum ya visceral)",
-  "ptnm.pT.pT4b": "pT4b: Uvimbe unavamia miundo/viungo jirani",
-  "ptnm.pT.pT4CannotDetermine": "pT4 (kategoria ndogo haiwezi kubainishwa)",
-  "ptnm.tSuffix.label": "Kiambishi cha T (kinahitajika tu ikiwa kinatumika)",
-  "ptnm.tSuffix.m": "(m) vivimbe vingi vya msingi vinavyotokea kwa wakati mmoja katika kiungo kimoja",
-  "ptnm.pN.label": "Kategoria ya pN",
-  "ptnm.pN.note.deposits": "Vijitundu vya uvimbe wa metastasis katika mafuta ya subserosa yaliyo karibu na kasinoma ya tumbo, bila ushahidi wa tishu ya nodi ya limfu iliyobaki, huchukuliwa kama metastasis ya nodi za limfu za kanda kwa madhumuni ya staging ya saratani ya tumbo.",
-  "ptnm.pN.notAssignedNoNodes": "pN haijapewa (hakuna nodi zilizowasilishwa au kupatikana)",
-  "ptnm.pN.notAssignedCannotDetermine": "pN haijapewa (haiwezi kubainishwa kulingana na taarifa za patholojia zilizopo)",
-  "ptnm.pN.pN0": "pN0: Hakuna metastasis katika nodi za limfu za kanda",
-  "ptnm.pN.pN1": "pN1: Metastasis katika nodi moja au mbili za limfu za kanda",
-  "ptnm.pN.pN2": "pN2: Metastasis katika nodi tatu hadi sita za limfu za kanda",
-  "ptnm.pN.pN3": "pN3: Metastasis katika nodi saba au zaidi za limfu za kanda",
-  "ptnm.pN.pN3a": "pN3a: Metastasis katika nodi saba hadi 15 za limfu za kanda",
-  "ptnm.pN.pN3b": "pN3b: Metastasis katika nodi 16 au zaidi za limfu za kanda",
-  "ptnm.pN.pN3CannotDetermine": "pN3 (kategoria ndogo haiwezi kubainishwa)",
-  "ptnm.pM.label": "Kategoria ya pM (inahitajika tu ikiwa imethibitishwa kipatholojia)",
-  "ptnm.pM.notApplicable": "Haitumiki - pM haiwezi kubainishwa kutokana na sampuli zilizowasilishwa",
-  "ptnm.pM.pM1": "pM1: Metastasis ya mbali",
-  "additionalFindings.label": "Matokeo ya ziada (chagua yote yanayohusika)",
-  "additionalFindings.intestinalMetaplasia": "Metaplasia ya intestinal",
-  "additionalFindings.lowGradeDysplasia": "Dysplasia ya daraja la chini",
-  "additionalFindings.highGradeDysplasia": "Dysplasia ya daraja la juu",
-  "additionalFindings.chronicGastritis": "Gastritis sugu",
-  "additionalFindings.helicobacterPyloriPresent": "Helicobacter pylori ipo",
-  "additionalFindings.polyps": "Polyp(s) (aina)",
-  "additionalFindings.autoimmuneAtrophicChronicGastritis": "Gastritis sugu atrophic ya autoimmune"
+  "template_id": "stomach_tumor_resection_v1",
+  "lang": "sw",
+  "title": "KIELELEZO CHA RIPOTI – UVIMBE WA TUMBO, UONDOAJI",
+  "specimen": {
+    "label": "SAMPULI",
+    "fields": {
+      "procedure": {
+        "label": "Utaratibu",
+        "options": [
+          "Gastrectomy ya sehemu, nyingine (bainisha)",
+          "Uondoaji kwa endoskopi",
+          "Gastrectomy ya sehemu, proksimali",
+          "Gastrectomy ya sehemu, distali",
+          "Gastrectomy kamili"
+        ]
+      }
+    }
+  },
+  "tumor": {
+    "label": "UVIMBE",
+    "fields": {
+      "tumor_site": {
+        "label": "Eneo la uvimbe (chagua yote yanayohusika)",
+        "options": [
+          "Cardia",
+          "Fundus",
+          "Mwili wa tumbo",
+          "Antrum",
+          "Pylorus",
+          "Ukuta wa mbele",
+          "Ukuta wa nyuma",
+          "Curvature ndogo",
+          "Curvature kubwa"
+        ]
+      },
+      "histologic_type": {
+        "label": "Aina ya kihistolojia",
+        "options": [
+          "Adenokasinoma",
+          "Adenokasinoma ya tubular",
+          "Kasinoma isiyoshikamana vizuri (inajumuisha kasinoma ya seli za signet-ring na lahaja nyingine)",
+          "Adenokasinoma ya mucinous (zaidi ya 50% mucinous)",
+          "Adenokasinoma ya papillary",
+          "Kasinoma mchanganyiko (mchanganyiko wa vipengele tofauti vya tezi [tubular/papillary] na vipengele vya seli za signet-ring/isiyoshikamana vizuri)",
+          "Adenokasinoma ya hepatoid",
+          "(Adeno)kasinoma yenye stroma ya lymphoid",
+          "Adenokasinoma ya micropapillary",
+          "Adenokasinoma ya aina ya tezi za fundus",
+          "Kasinoma ya seli za squamous",
+          "Kasinoma ya adenosquamous",
+          "Kasinoma isiyojipambanua (anaplastic)",
+          "Gastroblastoma",
+          "Kasinoma ya neuroendocrine ya seli kubwa",
+          "Kasinoma ya neuroendocrine ya seli ndogo",
+          "Kasinoma ya neuroendocrine (isiyojipambanua vizuri)",
+          "Kasinoma mchanganyiko ya adenokasinoma-neuroendocrine (kasinoma ya neuroendocrine ya seli ndogo au seli kubwa)",
+          "Uvimbe mchanganyiko wa adenokasinoma-neuroendocrine",
+          "Aina nyingine ya kihistolojia isiyoorodheshwa (bainisha)"
+        ]
+      },
+      "lauren_classification": {
+        "label": "Uainishaji wa Lauren wa adenokasinoma",
+        "options": [
+          "Mchanganyiko (takribani kiasi sawa cha intestinal na diffuse)",
+          "Aina ya intestinal",
+          "Aina ya diffuse (inajumuisha kasinoma ya seli za signet-ring, inayofafanuliwa kuwa zaidi ya 50% seli za signet-ring)"
+        ]
+      },
+      "histologic_grade": {
+        "label": "Daraja la kihistolojia",
+        "options": [
+          "G1, imejipambanua vizuri",
+          "G2, imejipambanua kwa wastani",
+          "G3, imejipambanua vibaya, haijajipambanua",
+          "GX, haiwezi kutathminiwa"
+        ]
+      },
+      "tumor_size": {
+        "label": "Ukubwa wa uvimbe"
+      },
+      "tumor_extent": {
+        "label": "Ueneaji wa uvimbe",
+        "options": [
+          "Carcinoma in situ (uvimbe wa ndani ya epithelium bila uvamizi wa lamina propria, dysplasia ya daraja la juu)",
+          "Unavamia lamina propria",
+          "Unavamia muscularis mucosae",
+          "Unavamia submucosa",
+          "Unavamia muscularis propria",
+          "Unapenya tishu unganishi ya subserosa bila uvamizi wa peritoneum ya visceral au miundo jirani",
+          "Unavamia serosa (peritoneum ya visceral)",
+          "Unavamia moja kwa moja muundo/miundo au kiungo/viungo jirani",
+          "Wengu",
+          "Koloni transverse",
+          "Ini",
+          "Diaphragm",
+          "Kongosho",
+          "Ukuta wa tumbo",
+          "Tezi ya adrenal",
+          "Figo",
+          "Utumbo mdogo",
+          "Retroperitoneum",
+          "Hakuna ushahidi wa uvimbe wa msingi"
+        ]
+      },
+      "treatment_effect": {
+        "label": "Athari ya matibabu",
+        "options": [
+          "Hakuna tiba ya kabla ya upasuaji inayojulikana",
+          "Ipo, bila seli hai za saratani (mwitikio kamili, alama 0)",
+          "Ipo, ikiwa na seli moja moja au vikundi vidogo adimu vya seli za saratani (mwitikio karibu kamili, alama 1)",
+          "Ipo, ikiwa na saratani iliyobaki inayoonyesha kupungua kwa uvimbe, lakini zaidi ya seli moja moja au vikundi vidogo adimu (mwitikio wa sehemu, alama 2)",
+          "Ipo (haijabainishwa zaidi)",
+          "Haipo, ikiwa na saratani iliyobaki kwa kiasi kikubwa na bila ushahidi wa kupungua kwa uvimbe (mwitikio hafifu au hakuna mwitikio, alama 3)"
+        ]
+      },
+      "lymphovascular_invasion": {
+        "label": "Uvamizi wa mishipa ya limfu na/au damu"
+      },
+      "perineural_invasion": {
+        "label": "Uvamizi wa perineural"
+      },
+      "adjacent_structures": {}
+    }
+  },
+  "margins": {
+    "label": "MIPAKA YA UPASUAJI",
+    "fields": {
+      "margin_status_invasive": {
+        "label": "Hali ya mipaka kwa kasinoma vamizi",
+        "options": [
+          "Mipaka yote haina kasinoma vamizi",
+          "Kasinoma vamizi ipo kwenye mpaka"
+        ]
+      },
+      "closest_margins": {
+        "label": "Mpaka/mipaka iliyo karibu zaidi na kasinoma vamizi (chagua yote yanayohusika)",
+        "options": [
+          "Omental (radial)",
+          "Mipaka yote haina kasinoma vamizi",
+          "Kasinoma vamizi ipo kwenye mpaka"
+        ]
+      },
+      "distance_to_closest_margin": {
+        "label": "Umbali kutoka kasinoma vamizi hadi mpaka ulio karibu zaidi"
+      },
+      "margin_status_dysplasia": {
+        "label": "Hali ya mipaka kwa dysplasia (chagua yote yanayohusika)",
+        "options": [
+          "Mipaka yote haina dysplasia",
+          "Carcinoma in situ (dysplasia ya daraja la juu) ipo kwenye mpaka",
+          "Dysplasia ya daraja la chini ipo kwenye mpaka"
+        ]
+      },
+      "margin_comment": {
+        "label": "Maoni kuhusu mipaka"
+      }
+    }
+  },
+  "regional_lymph_nodes": {
+    "label": "NODI ZA LIMFU ZA KANDA",
+    "fields": {
+      "status": {
+        "label": "Hali ya nodi za limfu za kanda",
+        "options": [
+          "Haitumiki (hakuna nodi za limfu za kanda zilizowasilishwa au kupatikana)",
+          "Nodi za limfu za kanda zipo",
+          "Nodi zote za kanda hazina uvimbe",
+          "Uvimbe upo katika nodi moja au zaidi za limfu za kanda"
+        ]
+      },
+      "number_with_tumor": {
+        "label": "Idadi ya nodi za limfu zenye uvimbe"
+      },
+      "number_examined": {
+        "label": "Idadi ya nodi za limfu zilizochunguzwa"
+      },
+      "comment": {
+        "label": "Maoni kuhusu nodi za limfu za kanda"
+      }
+    }
+  },
+  "distant_metastasis": {
+    "label": "METASTASISI YA MBALI",
+    "fields": {
+      "sites": {
+        "label": "Eneo/maeneo ya mbali yaliyohusishwa, ikiwa inatumika (chagua yote yanayohusika)",
+        "options": [
+          "Ini",
+          "Nodi za limfu zisizo za kanda"
+        ]
+      }
+    }
+  },
+  "ptnm": {
+    "label": "UAINISHAJI WA pTNM (Toleo la 8 la AJCC)",
+    "fields": {
+      "modified_classification": {
+        "label": "Uainishaji uliorekebishwa (unahitajika tu ikiwa unatumika) (chagua yote yanayohusika)",
+        "options": [
+          "y (baada ya tiba ya neoadjuvant)",
+          "r (kurudi kwa ugonjwa)"
+        ]
+      },
+      "T_suffix": {
+        "label": "Kiambishi cha T (kinahitajika tu ikiwa kinatumika)",
+        "options": [
+          "(m) vivimbe vingi vya msingi vinavyotokea kwa wakati mmoja katika kiungo kimoja"
+        ]
+      },
+      "pT_category": {},
+      "pN_category": {},
+      "pM_category": {}
+    }
+  },
+  "additional_findings": {
+    "label": "MATOKEO YA ZIADA",
+    "fields": {
+      "findings": {
+        "label": "Matokeo ya ziada (chagua yote yanayohusika)",
+        "options": [
+          "Metaplasia ya intestinal",
+          "Dysplasia ya daraja la chini",
+          "Dysplasia ya daraja la juu",
+          "Gastritis sugu",
+          "Helicobacter pylori ipo",
+          "Polyp(s) (aina)",
+          "Gastritis sugu atrophic ya autoimmune"
+        ]
+      }
+    }
+  }
 }

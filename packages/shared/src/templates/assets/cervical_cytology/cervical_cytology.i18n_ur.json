@@ -61,6 +61,14 @@
             "low_squamous_cellularity": "سکوا مس خلیات کی کم مقدار",
             "poor_fixation": "ناقص فکسیشن"
           }
+        },
+        "transformation_zone_component": {
+          "label": "تبدیلی علاقے کا جزو (اینڈو سرویکل / TZ)",
+          "options": {
+            "present": "موجود",
+            "absent": "غیر موجود",
+            "not_applicable": "قابل اطلاق نہیں"
+          }
         }
       }
     },
@@ -83,9 +91,17 @@
             "lsil": "LSIL (کم درجے کی سکوا مس انٹراایپی تھیلیل لیژن)",
             "hsil": "HSIL (اعلی درجے کی سکوا مس انٹراایپی تھیلیل لیژن)",
             "squamous_cell_carcinoma": "سکوا مس سیل کارسنوما",
-            "agc": "غیر معمولی غدودی خلیات (AGC)",
             "ais": "اینڈوسروائیکل ایڈینوکارسنوما اِن سِٹو (AIS)",
-            "adenocarcinoma": "ایڈینوکارسنوما"
+            "adenocarcinoma": "ایڈینوکارسنوما",
+            "nilm_endometrial_cells": "اندرونی ظہاری زخم یا خباثت کے لیے منفی، اینڈومیٹریال خلیات موجود ہیں (۴۵ سال یا زیادہ عمر کی خاتون میں)",
+            "hsil_suspicious_for_invasion": "HSIL جس میں حملہ آوری کے مشتبہ خصوصیات ہوں",
+            "agc_endocervical_nos": "غیر معمولی اینڈو سرویکل خلیات، NOS",
+            "agc_endocervical_favor_neoplastic": "غیر معمولی اینڈو سرویکل خلیات، نوپلازم کے حق میں",
+            "agc_endometrial_nos": "غیر معمولی اینڈومیٹریال خلیات، NOS",
+            "agc_endometrial_favor_neoplastic": "غیر معمولی اینڈومیٹریال خلیات، نوپلازم کے حق میں",
+            "agc_nos": "غیر معمولی غدودی خلیات، NOS",
+            "agc_favor_neoplastic": "غیر معمولی غدودی خلیات، نوپلازم کے حق میں",
+            "other_malignant_neoplasm": "دیگر خبیث ورم"
           }
         }
       }

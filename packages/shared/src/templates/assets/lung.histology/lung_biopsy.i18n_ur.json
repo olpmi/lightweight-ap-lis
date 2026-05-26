@@ -2,7 +2,6 @@
   "template_id": "lung_tumor_biopsy_v1",
   "lang": "ur",
   "title": "لنگ ٹیومر، بایوپسی",
-
   "tumor": {
     "label": "ٹیومر",
     "fields": {
@@ -36,7 +35,13 @@
           "نان-سمال سیل کارسینوما، سب ٹائپ متعین نہیں کی جا سکتی",
           "فہرست میں شامل نہ ہونے والی دیگر ہسٹولوجک قسم",
           "کوئی قابلِ حیات ٹیومر موجود نہیں"
-        ]
+        ],
+        "combined_small_cell_non_small_cell_component_specify": "مشترکہ چھوٹے/غیر چھوٹے خلیات جزو، وضاحت کریں",
+        "combined_large_cell_neuroendocrine_other_component_specify": "مشترکہ بڑے خلیہ نیورواینڈوکرائن/دیگر جزو، وضاحت کریں",
+        "carcinoma_type_cannot_be_determined_specify": "کارسینوما قسم متعین نہیں، وضاحت کریں",
+        "non_small_cell_subtype_cannot_be_determined_specify": "غیر چھوٹے خلیہ ذیلی قسم متعین نہیں، وضاحت کریں",
+        "other_histologic_type_specify": "دیگر ہسٹولوجک قسم، وضاحت کریں",
+        "no_viable_tumor_present_explain": "کوئی قابل حیات رسولی موجود نہیں، وضاحت کریں"
       },
       "histologic_patterns": {
         "label": "ہسٹولوجک پیٹرن (صرف نان-میوسینس ایڈینوکارسینوما پر قابل اطلاق)",
@@ -52,15 +57,45 @@
         ]
       },
       "histologic_grade": {
-        "label": "ہسٹولوجک گریڈ"
+        "label": "ہسٹولوجک گریڈ",
+        "other_specify": "دیگر، وضاحت کریں",
+        "cannot_be_assessed_specify": "تشخیص نہیں ہو سکتی، وضاحت کریں",
+        "not_applicable_specify": "قابل اطلاق نہیں، وضاحت کریں"
       },
       "lymphovascular_invasion": {
-        "label": "لیمفیٹک اور / یا ویسکیولر اِنویژن"
+        "label": "لیمفیٹک اور / یا ویسکیولر اِنویژن",
+        "fields": {
+          "status": {
+            "label": "لمفاتی اور/یا عروقی حملہ",
+            "options": [
+              "نشاندہی نہیں",
+              "موجود",
+              "متعین نہیں کیا جا سکتا"
+            ],
+            "cannot_be_determined_specify": "متعین نہیں کیا جا سکتا، وضاحت کریں"
+          },
+          "subtypes": {
+            "label": "حملے کی ذیلی قسم(یں)",
+            "options": [
+              "لمفاتی حملہ موجود",
+              "شریانی حملہ موجود",
+              "وریدی حملہ موجود",
+              "Other"
+            ],
+            "other_specify": "دیگر، وضاحت کریں"
+          }
+        }
       }
     }
   },
-
   "additional_findings": {
-    "label": "اضافی مشاہدات"
+    "label": "اضافی مشاہدات",
+    "fields": {
+      "findings": {},
+      "atypical_adenomatous_hyperplasia_specify": {},
+      "granulomatous_inflammation_specify": {},
+      "fibrosis_specify_pattern": {},
+      "other_specify": {}
+    }
   }
 }

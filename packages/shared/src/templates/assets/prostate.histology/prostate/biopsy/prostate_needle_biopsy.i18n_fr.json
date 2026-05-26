@@ -2,7 +2,6 @@
   "template_id": "prostate_needle_biopsy_v1",
   "lang": "fr",
   "title": "Prostate : biopsie à l’aiguille",
-
   "tumor": {
     "label": "Tumeur",
     "fields": {
@@ -39,7 +38,6 @@
       }
     }
   },
-
   "positive_specimens": {
     "label": "Prélèvement ou zone positive",
     "item_label": "Prélèvement positif",
@@ -72,9 +70,9 @@
           "Autre lésion échoguidée transrectale (TRUS)",
           "Biopsie guidée par IRM",
           "Non précisé"
-        ]
+        ],
+        "location_specify": "Localisation, préciser"
       },
-
       "histologic_type": {
         "label": "Type histologique",
         "fields": {
@@ -107,14 +105,15 @@
               "Carcinome neuroendocrine à grandes cellules",
               "Autre type histologique non listé",
               "Carcinome, type indéterminable"
-            ]
+            ],
+            "other_specify": "Autre, préciser",
+            "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
           },
           "comment": {
             "label": "Commentaire sur le type histologique"
           }
         }
       },
-
       "histologic_grade": {
         "label": "Grade histologique",
         "fields": {
@@ -124,7 +123,9 @@
               "Non applicable",
               "Ne peut pas être évalué",
               "Évaluable"
-            ]
+            ],
+            "not_applicable_specify": "Non applicable, préciser",
+            "cannot_be_assessed_specify": "Ne peut pas être évalué, préciser"
           },
           "tumor_microfocus": {
             "label": "Microfoyer tumoral",
@@ -178,12 +179,11 @@
           }
         }
       },
-
       "intraductal_carcinoma": {
         "label": "Carcinome intracanalaire (IDC)",
         "fields": {
           "status": {
-            "label": "IDC",
+            "label": "CIC",
             "options": [
               "Non identifié",
               "Présent"
@@ -195,11 +195,11 @@
               "Oui",
               "Non",
               "Ne peut pas être déterminé"
-            ]
+            ],
+            "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
           }
         }
       },
-
       "cribriform_glands": {
         "label": "Glandes cribriformes",
         "fields": {
@@ -211,11 +211,13 @@
               "Présentes",
               "Équivoques",
               "Ne peut pas être déterminé"
-            ]
+            ],
+            "present_specify": "Présent, préciser",
+            "equivocal_explain": "Équivoque, expliquer",
+            "cannot_be_determined_explain": "Ne peut pas être déterminé, expliquer"
           }
         }
       },
-
       "tumor_quantitation": {
         "label": "Quantification tumorale",
         "fields": {
@@ -224,14 +226,16 @@
             "options": [
               "Préciser le nombre",
               "Ne peut pas être déterminé"
-            ]
+            ],
+            "number": "Nombre"
           },
           "number_of_positive_cores": {
             "label": "Nombre de carottes positives",
             "options": [
               "Préciser le nombre",
               "Ne peut pas être déterminé"
-            ]
+            ],
+            "number": "Nombre"
           },
           "tumor_measurement_technique": {
             "label": "Technique de mesure tumorale",
@@ -257,18 +261,19 @@
               "81 - 90 %",
               "Supérieur à 90 %",
               "Ne peut pas être déterminé"
-            ]
+            ],
+            "cannot_be_determined_explain": "Ne peut pas être déterminé, expliquer"
           },
           "length_of_prostatic_tissue_involved": {
             "label": "Longueur du tissu prostatique envahi par la tumeur",
             "options": [
               "Préciser en millimètres (mm)",
               "Inférieure à 1 mm"
-            ]
+            ],
+            "length_mm": "Longueur (mm)"
           }
         }
       },
-
       "periprostatic_fat_invasion": {
         "label": "Invasion de la graisse périprostatique",
         "options": [
@@ -276,9 +281,10 @@
           "Présente",
           "Équivoque",
           "Ne peut pas être déterminée"
-        ]
+        ],
+        "equivocal_explain": "Équivoque, expliquer",
+        "cannot_be_determined_explain": "Ne peut pas être déterminé, expliquer"
       },
-
       "seminal_vesicle_or_ejaculatory_duct_invasion": {
         "label": "Invasion des vésicules séminales / des canaux éjaculateurs",
         "options": [
@@ -286,9 +292,10 @@
           "Présente",
           "Équivoque",
           "Ne peut pas être déterminée"
-        ]
+        ],
+        "equivocal_explain": "Équivoque, expliquer",
+        "cannot_be_determined_explain": "Ne peut pas être déterminé, expliquer"
       },
-
       "lymphovascular_invasion": {
         "label": "Invasion lymphatique et / ou vasculaire",
         "options": [
@@ -296,9 +303,10 @@
           "Présente",
           "Équivoque",
           "Ne peut pas être déterminée"
-        ]
+        ],
+        "equivocal_explain": "Équivoque, expliquer",
+        "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
       },
-
       "perineural_invasion": {
         "label": "Invasion périnerveuse",
         "options": [
@@ -306,7 +314,6 @@
           "Présente"
         ]
       },
-
       "additional_findings": {
         "label": "Constatations supplémentaires",
         "fields": {
@@ -340,7 +347,6 @@
       }
     }
   },
-
   "comments": {
     "label": "Commentaires",
     "fields": {

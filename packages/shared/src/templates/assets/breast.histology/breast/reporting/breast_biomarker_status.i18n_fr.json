@@ -1,33 +1,55 @@
 {
   "template_id": "breast_biomarker_status_v1",
   "lang": "fr",
-
   "title": "Statut des biomarqueurs mammaires",
-
   "er_status": {
     "label": "Statut du récepteur aux œstrogènes (ER)",
     "fields": {
       "percentage_nuclear_positivity": {
-        "label": "Pourcentage de cellules avec positivité nucléaire"
+        "label": "Pourcentage de cellules avec positivité nucléaire",
+        "options": [
+          "Less than 1%",
+          "1-10%",
+          "11-20%",
+          "21-30%",
+          "31-40%",
+          "41-50%",
+          "51-60%",
+          "61-70%",
+          "71-80%",
+          "81-90%",
+          "91-100%"
+        ]
       },
       "average_intensity": {
         "label": "Intensité moyenne du marquage"
       }
     }
   },
-
   "pgr_status": {
     "label": "Statut du récepteur à la progestérone (PgR)",
     "fields": {
       "percentage_nuclear_positivity": {
-        "label": "Pourcentage de cellules avec positivité nucléaire"
+        "label": "Pourcentage de cellules avec positivité nucléaire",
+        "options": [
+          "Less than 1%",
+          "1-10%",
+          "11-20%",
+          "21-30%",
+          "31-40%",
+          "41-50%",
+          "51-60%",
+          "61-70%",
+          "71-80%",
+          "81-90%",
+          "91-100%"
+        ]
       },
       "average_intensity": {
         "label": "Intensité moyenne du marquage"
       }
     }
   },
-
   "her2_ihc_status": {
     "label": "Statut HER2 par immunohistochimie (IHC)",
     "comment": "Les cancers du sein avec des scores HER2 IHC de 0+, 1+ ou 2+ (ISH négatif) peuvent être éligibles à un traitement ciblant des niveaux non amplifiés d’expression de HER2 dans le contexte métastatique. Actuellement, les patientes sans marquage membranaire par IHC (0) sont inéligibles ou exclues. Envisager l’utilisation du commentaire standardisé optionnel du rapport HER2 IHC pour expliquer la pertinence clinique des faibles niveaux de marquage HER2 IHC en situation métastatique ainsi que les définitions de HER2 ultrafaible et faible utilisées dans les essais cliniques.",
@@ -47,14 +69,16 @@
           "Aucun marquage membranaire détecté (0 / absence de marquage membranaire)",
           "Marquage membranaire incomplet, faible ou à peine perceptible, dans moins de ou égal à 10 % des cellules tumorales (0+ / avec marquage membranaire)",
           "Autre"
-        ]
+        ],
+        "other_specify": "Précisez (autre)"
       },
       "score_1_pattern": {
         "label": "Profil du score 1+",
         "options": [
           "Marquage membranaire incomplet, faible ou à peine perceptible, dans plus de 10 % des cellules tumorales",
           "Autre"
-        ]
+        ],
+        "other_specify": "Précisez (autre)"
       },
       "score_2_pattern": {
         "label": "Profil du score 2+",
@@ -64,27 +88,40 @@
           "Moins de ou égal à 10 % du cancer présente un marquage circonférentiel complet et intense (3+) (hétérogène mais très limité en étendue ; envisager les résultats d’échantillons supplémentaires)",
           "Marquage cytoplasmique abondant masquant l’évaluation de l’intensité du marquage membranaire",
           "Autre"
-        ]
+        ],
+        "other_specify": "Précisez (autre)"
       },
       "score_3_pattern": {
         "label": "Profil du score 3+",
         "options": [
           "Marquage membranaire circonférentiel complet, intense, et dans plus de 10 % des cellules tumorales",
           "Autre"
-        ]
+        ],
+        "other_specify": "Précisez (autre)"
       }
     }
   },
-
   "ki67_status": {
     "label": "Indice de prolifération Ki-67",
     "fields": {
       "value": {
-        "label": "Indice de prolifération Ki-67"
+        "label": "Indice de prolifération Ki-67",
+        "options": [
+          "Less than 1%",
+          "1-10%",
+          "11-20%",
+          "21-30%",
+          "31-40%",
+          "41-50%",
+          "51-60%",
+          "61-70%",
+          "71-80%",
+          "81-90%",
+          "91-100%"
+        ]
       }
     }
   },
-
   "methods": {
     "label": "Méthodes",
     "fields": {
@@ -110,5 +147,8 @@
         "label": "Indice Ki-67 : anticorps primaire"
       }
     }
+  },
+  "domain": {
+    "fields": {}
   }
 }

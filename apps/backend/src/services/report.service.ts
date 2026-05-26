@@ -8,13 +8,74 @@ import {
   type ResolvedPatientSummary,
   type SignOutReportInput,
   resolvePatientSummary,
+  formatOrderIdDisplay,
 } from '@lis/shared';
 import { getPatientSummaryDefinition } from '@lis/shared/patient-summaries/server';
 import { PdfService } from './pdf.service.js';
+import { PdfLayoutService, type ReportLayoutData } from './pdf.layout.service.js';
+import { ConfigReportLayoutService } from './config.reportLayout.service.js';
+import fs from 'fs';
+import path from 'path';
+import { GENERATED_PDFS_DIR } from '../utils/storageDirs.js';
 
 const pdfService = new PdfService();
+const pdfLayoutService = new PdfLayoutService();
+const layoutConfigService = new ConfigReportLayoutService();
 
 type RawRecord = Record<string, unknown>;
+
+// ---------------------------------------------------------------------------
+// Helper: convert a Prisma report row (with order/patient/doctor) to
+// the ReportLayoutData expected by PdfLayoutService
+// ---------------------------------------------------------------------------
+function buildLayoutData(report: {
+  orderId: string;
+  versionNumber: number;
+  diagnosis?: string | null;
+  comment?: string | null;
+  gross?: string | null;
+  signedOutDatetime?: Date | null;
+  reactivationType?: string | null;
+  reactivationReason?: string | null;
+  pathologist?: { firstName: string; lastName: string } | null;
+  order: {
+    orderId: string;
+    patient: { patientId: string; firstName: string; lastName: string; dateOfBirth: Date; sex: string };
+    doctor: { firstName: string; lastName: string };
+    clinicalHistory?: string | null;
+  };
+}, reportType: string): ReportLayoutData {
+  return {
+    reportType,
+    caseId: formatOrderIdDisplay(report.order.orderId),
+    version: report.versionNumber,
+    institutionName: process.env.INSTITUTION_NAME ?? 'Anatomic Pathology Laboratory',
+    patient: {
+      patientId: report.order.patient.patientId,
+      firstName: report.order.patient.firstName,
+      lastName: report.order.patient.lastName,
+      dateOfBirth: report.order.patient.dateOfBirth.toISOString().slice(0, 10),
+      sex: report.order.patient.sex,
+    },
+    clinician: {
+      firstName: report.order.doctor.firstName,
+      lastName: report.order.doctor.lastName,
+    },
+    clinicalHistory: report.order.clinicalHistory,
+    gross: report.gross,
+    diagnosis: report.diagnosis,
+    comment: report.comment,
+    reactivationType: report.reactivationType,
+    reactivationReason: report.reactivationReason,
+    signedOutBy: report.pathologist
+      ? `${report.pathologist.lastName}, ${report.pathologist.firstName}`
+      : null,
+    signedOutDate: report.signedOutDatetime
+      ? report.signedOutDatetime.toISOString().slice(0, 10)
+      : null,
+  };
+}
+
 
 interface ParsedStructuredTemplatePayload {
   templateId: string;
@@ -188,17 +249,36 @@ export class ReportService {
       data: { completedDate: now },
     });
 
-    // Generate report PDF
+    // Generate report PDF — use layout template if one is active for 'final', else fall back to pdf-lib
     try {
-      const reportFileRecord = await pdfService.generateReportPdf(signed as Parameters<typeof pdfService.generateReportPdf>[0], 'final');
+      const layout = await layoutConfigService.getLayout('final');
+      let pdfBuffer: Buffer | null = null;
+      let fileName: string;
+      let storagePath: string;
+
+      if (layout?.isActive) {
+        const layoutData = buildLayoutData(
+          signed as Parameters<typeof buildLayoutData>[0],
+          'final'
+        );
+        pdfBuffer = await pdfLayoutService.renderToPdf(layout.htmlTemplate, layoutData);
+        fileName = `report_${reportId}_final.pdf`;
+        storagePath = path.join(GENERATED_PDFS_DIR, fileName);
+        fs.writeFileSync(storagePath, pdfBuffer);
+      } else {
+        const fileRecord = await pdfService.generateReportPdf(signed as Parameters<typeof pdfService.generateReportPdf>[0], 'final');
+        fileName = fileRecord.fileName;
+        storagePath = fileRecord.storagePath;
+      }
+
       await prisma.reportFile.create({
         data: {
           reportId: BigInt(reportId),
           fileType: 'report_pdf',
-          fileName: reportFileRecord.fileName,
-          originalFileName: reportFileRecord.fileName,
+          fileName,
+          originalFileName: fileName,
           mimeType: 'application/pdf',
-          storagePath: reportFileRecord.storagePath,
+          storagePath,
         },
       });
     } catch (err) {
@@ -245,20 +325,38 @@ export class ReportService {
       },
     });
 
-    // Generate preliminary PDF
+    // Generate preliminary PDF — use layout template if one is active for 'preliminary', else fall back to pdf-lib
     try {
-      const reportFileRecord = await pdfService.generateReportPdf(
-        prelim as Parameters<typeof pdfService.generateReportPdf>[0],
-        'preliminary'
-      );
+      const layout = await layoutConfigService.getLayout('preliminary');
+      let fileName: string;
+      let storagePath: string;
+
+      if (layout?.isActive) {
+        const layoutData = buildLayoutData(
+          prelim as Parameters<typeof buildLayoutData>[0],
+          'preliminary'
+        );
+        const pdfBuffer = await pdfLayoutService.renderToPdf(layout.htmlTemplate, layoutData);
+        fileName = `report_${reportId}_prelim.pdf`;
+        storagePath = path.join(GENERATED_PDFS_DIR, fileName);
+        fs.writeFileSync(storagePath, pdfBuffer);
+      } else {
+        const fileRecord = await pdfService.generateReportPdf(
+          prelim as Parameters<typeof pdfService.generateReportPdf>[0],
+          'preliminary'
+        );
+        fileName = fileRecord.fileName;
+        storagePath = fileRecord.storagePath;
+      }
+
       await prisma.reportFile.create({
         data: {
           reportId: BigInt(reportId),
           fileType: 'prelim_pdf',
-          fileName: reportFileRecord.fileName,
-          originalFileName: reportFileRecord.fileName,
+          fileName,
+          originalFileName: fileName,
           mimeType: 'application/pdf',
-          storagePath: reportFileRecord.storagePath,
+          storagePath,
         },
       });
     } catch (err) {

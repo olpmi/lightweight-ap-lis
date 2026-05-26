@@ -17,3 +17,5 @@ COPY packages/shared/package.json ./packages/shared/
 RUN pnpm install --frozen-lockfile
 
 EXPOSE 5173
+
+CMD ["pnpm", "--filter", "@lis/frontend", "dev", "--host"]

@@ -2,7 +2,6 @@
   "template_id": "lung_tumor_biopsy_v1",
   "lang": "fr",
   "title": "Tumeur pulmonaire, biopsie",
-
   "tumor": {
     "label": "Tumeur",
     "fields": {
@@ -36,7 +35,13 @@
           "Carcinome non à petites cellules, sous-type indéterminable",
           "Autre type histologique non listé",
           "Aucune tumeur viable présente"
-        ]
+        ],
+        "combined_small_cell_non_small_cell_component_specify": "Composante combinée à petites cellules / non à petites cellules, préciser",
+        "combined_large_cell_neuroendocrine_other_component_specify": "Composante combinée à grandes cellules neuroendocrine / autre, préciser",
+        "carcinoma_type_cannot_be_determined_specify": "Type de carcinome ne peut être déterminé, préciser",
+        "non_small_cell_subtype_cannot_be_determined_specify": "Sous-type non à petites cellules ne peut être déterminé, préciser",
+        "other_histologic_type_specify": "Autre type histologique, préciser",
+        "no_viable_tumor_present_explain": "Pas de tumeur viable présente, expliquer"
       },
       "histologic_patterns": {
         "label": "Patterns histologiques (applicables aux adénocarcinomes non mucineux uniquement)",
@@ -52,15 +57,45 @@
         ]
       },
       "histologic_grade": {
-        "label": "Grade histologique"
+        "label": "Grade histologique",
+        "other_specify": "Autre, préciser",
+        "cannot_be_assessed_specify": "Ne peut pas être évalué, préciser",
+        "not_applicable_specify": "Non applicable, préciser"
       },
       "lymphovascular_invasion": {
-        "label": "Invasion lymphatique et / ou vasculaire"
+        "label": "Invasion lymphatique et / ou vasculaire",
+        "fields": {
+          "status": {
+            "label": "Invasion lymphatique et/ou vasculaire",
+            "options": [
+              "Non identifié",
+              "Présent",
+              "Ne peut pas être déterminé"
+            ],
+            "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
+          },
+          "subtypes": {
+            "label": "Sous-type(s) d'invasion",
+            "options": [
+              "Invasion lymphatique présente",
+              "Invasion artérielle présente",
+              "Invasion veineuse présente",
+              "Other"
+            ],
+            "other_specify": "Autre, préciser"
+          }
+        }
       }
     }
   },
-
   "additional_findings": {
-    "label": "Constatations supplémentaires"
+    "label": "Constatations supplémentaires",
+    "fields": {
+      "findings": {},
+      "atypical_adenomatous_hyperplasia_specify": {},
+      "granulomatous_inflammation_specify": {},
+      "fibrosis_specify_pattern": {},
+      "other_specify": {}
+    }
   }
 }

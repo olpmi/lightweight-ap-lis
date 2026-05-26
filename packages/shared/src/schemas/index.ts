@@ -1,5 +1,7 @@
 import { z } from 'zod';
 import { APP_LANGUAGE_CODES } from '../templates/index.js';
+import { REPORT_TEMPLATE_TYPES } from '../types/index.js';
+import { ANCILLARY_CATEGORIES, ANCILLARY_ORDER_STATUSES } from '../constants/index.js';
 
 const appLanguageSchema = z.enum(APP_LANGUAGE_CODES);
 
@@ -92,6 +94,19 @@ export const reactivateOrderSchema = z.object({
   reactivationReason: z.string().min(1, 'Explanation is required').optional(),
 });
 
+export const createReportTemplateSchema = z.object({
+  templateName: z.string().min(1, 'Template name is required').max(255),
+  type: z.enum(REPORT_TEMPLATE_TYPES),
+  templateText: z.string().optional(),
+});
+
+export const updateReportTemplateSchema = z.object({
+  templateName: z.string().min(1).max(255).optional(),
+  type: z.enum(REPORT_TEMPLATE_TYPES).optional(),
+  templateText: z.string().optional(),
+  isActive: z.boolean().optional(),
+});
+
 export const querySchema = z.object({
   orderId: z.string().optional(),
   patientId: z.string().optional(),
@@ -108,4 +123,63 @@ export type CreateSlidesInput = z.infer<typeof createSlidesSchema>;
 export type CreateDraftReportInput = z.infer<typeof createDraftReportSchema>;
 export type SignOutReportInput = z.infer<typeof signOutReportSchema>;
 export type ReactivateOrderInput = z.infer<typeof reactivateOrderSchema>;
+export type CreateReportTemplateInput = z.infer<typeof createReportTemplateSchema>;
+export type UpdateReportTemplateInput = z.infer<typeof updateReportTemplateSchema>;
 export type QueryInput = z.infer<typeof querySchema>;
+
+// ---------------------------------------------------------------------------
+// Ancillary Testing Schemas
+// ---------------------------------------------------------------------------
+
+export const createAncillaryOrderSchema = z.object({
+  orderId: z.string().min(1),
+  blockId: z.string().min(1),
+  orderableId: z.number().int().positive(),
+  levelCount: z.number().int().min(1).max(20).optional(),
+  notes: z.string().optional(),
+});
+
+export const updateAncillaryOrderStatusSchema = z.object({
+  status: z.enum(ANCILLARY_ORDER_STATUSES),
+  resultNotes: z.string().optional(),
+});
+
+export const createAncillaryOrderableSchema = z.object({
+  name: z.string().min(1).max(200),
+  category: z.enum(ANCILLARY_CATEGORIES),
+  sortOrder: z.number().int().min(0).optional(),
+});
+
+export const updateAncillaryOrderableSchema = z.object({
+  name: z.string().min(1).max(200).optional(),
+  category: z.enum(ANCILLARY_CATEGORIES).optional(),
+  sortOrder: z.number().int().min(0).optional(),
+  isActive: z.boolean().optional(),
+});
+
+export const createAncillaryPanelSchema = z.object({
+  name: z.string().min(1).max(200),
+  category: z.enum(ANCILLARY_CATEGORIES),
+  orderableIds: z.array(z.number().int().positive()).min(1),
+  sortOrder: z.number().int().min(0).optional(),
+});
+
+export const updateAncillaryPanelSchema = z.object({
+  name: z.string().min(1).max(200).optional(),
+  category: z.enum(ANCILLARY_CATEGORIES).optional(),
+  orderableIds: z.array(z.number().int().positive()).min(1).optional(),
+  sortOrder: z.number().int().min(0).optional(),
+  isActive: z.boolean().optional(),
+});
+
+export const createAncillaryOrdersBatchSchema = z.object({
+  orders: z.array(createAncillaryOrderSchema).min(1),
+});
+
+export type CreateAncillaryOrderInput = z.infer<typeof createAncillaryOrderSchema>;
+export type UpdateAncillaryOrderStatusInput = z.infer<typeof updateAncillaryOrderStatusSchema>;
+export type CreateAncillaryOrderableInput = z.infer<typeof createAncillaryOrderableSchema>;
+export type UpdateAncillaryOrderableInput = z.infer<typeof updateAncillaryOrderableSchema>;
+export type CreateAncillaryPanelInput = z.infer<typeof createAncillaryPanelSchema>;
+export type UpdateAncillaryPanelInput = z.infer<typeof updateAncillaryPanelSchema>;
+export type CreateAncillaryOrdersBatchInput = z.infer<typeof createAncillaryOrdersBatchSchema>;

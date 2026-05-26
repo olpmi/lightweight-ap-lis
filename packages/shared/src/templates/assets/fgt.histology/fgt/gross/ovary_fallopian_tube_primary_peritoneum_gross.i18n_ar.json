@@ -1,79 +1,238 @@
 {
-  "template.title": "نموذج الفحص العياني: المبيض أو قناة فالوب أو الصفاق الأولي",
-  "section.specimen": "العينة",
-  "section.block_allocation_key": "مفتاح توزيع القوالب",
-  "field.procedure": "الإجراء (اختر كل ما ينطبق)",
-  "note.lymph_node_sampling": "للحصول على معلومات حول أخذ عينات العقد اللمفية، يرجى الرجوع إلى قسم العقد اللمفية الإقليمية.",
-  "procedure.total_hysterectomy_bso": "استئصال الرحم الكلي مع استئصال قناتي فالوب والمبيضين ثنائي الجانب",
-  "procedure.radical_hysterectomy": "استئصال الرحم الجذري",
-  "procedure.simple_hysterectomy": "استئصال الرحم البسيط",
-  "procedure.supracervical_hysterectomy": "استئصال الرحم فوق عنق الرحم",
-  "procedure.bilateral_salpingo_oophorectomy": "استئصال قناتي فالوب والمبيضين ثنائي الجانب",
-  "procedure.right_salpingo_oophorectomy": "استئصال قناة فالوب والمبيض الأيمن",
-  "procedure.left_salpingo_oophorectomy": "استئصال قناة فالوب والمبيض الأيسر",
-  "procedure.salpingo_oophorectomy_side_not_specified": "استئصال قناة فالوب والمبيض، الجانب غير محدد",
-  "procedure.right_oophorectomy": "استئصال المبيض الأيمن",
-  "procedure.left_oophorectomy": "استئصال المبيض الأيسر",
-  "procedure.oophorectomy_side_not_specified": "استئصال المبيض، الجانب غير محدد",
-  "procedure.bilateral_salpingectomy": "استئصال قناتي فالوب ثنائي الجانب",
-  "procedure.right_salpingectomy": "استئصال قناة فالوب اليمنى",
-  "procedure.left_salpingectomy": "استئصال قناة فالوب اليسرى",
-  "procedure.salpingectomy_side_not_specified": "استئصال قناة فالوب، الجانب غير محدد",
-  "procedure.omentectomy": "استئصال الثرب",
-  "procedure.peritoneal_biopsies": "خزعات صفاقية",
-  "procedure.peritoneal_tumor_debulking": "استئصال كتلة الورم الصفاقي لتقليل حجمه",
-  "procedure.peritoneal_washing": "غسل صفاقي",
-  "procedure.pelvic_washing": "غسل حوضي",
-  "procedure.ascitic_fluid": "سائل استسقائي",
-  "procedure.pleurocentesis_pleural_fluid": "بزل جنبي (سائل جنبي)",
-  "common.other_specify": "أخرى (يُحدد)",
-  "field.hysterectomy_type": "نوع استئصال الرحم",
-  "hysterectomy_type.abdominal": "بطني",
-  "hysterectomy_type.vaginal": "مهبلي",
-  "hysterectomy_type.vaginal_laparoscopic_assisted": "مهبلي بمساعدة تنظير البطن",
-  "hysterectomy_type.laparoscopic": "بالمنظار",
-  "hysterectomy_type.laparoscopic_robotic_assisted": "بالمنظار بمساعدة الروبوت",
-  "common.not_specified": "غير محدد",
-  "field.specimen_integrity": "سلامة العينة (اختر كل ما ينطبق)",
-  "note.specimen_integrity": "في أورام المبيض الأولية، إذا أُزيل المبيض المحتوي على الورم الأولي سليماً داخل كيس تنظير البطن ثم تمزق داخل الكيس بواسطة الجراح دون انسكاب داخل التجويف الصفاقي، فيجب تسجيل سلامة العينة على أنها «المحفظة سليمة» مع تعليق يوضح ذلك في التقرير. في أورام الصفاق الأولية لدى النساء اللواتي سبق لهن استئصال قناتي فالوب والمبيضين، اختر «غير منطبق».",
-  "common.not_applicable": "غير منطبق",
-  "specimen.right_ovary": "المبيض الأيمن",
-  "field.right_ovary_integrity": "سلامة المبيض الأيمن",
-  "integrity.capsule_intact": "المحفظة سليمة",
-  "integrity.capsule_ruptured": "المحفظة ممزقة",
-  "field.time_of_rupture": "وقت التمزق",
-  "rupture_time.preoperative": "قبل الجراحة",
-  "rupture_time.intraoperative": "أثناء الجراحة",
-  "rupture_time.unknown": "غير معروف",
-  "integrity.fragmented": "مجزأ",
-  "specimen.left_ovary": "المبيض الأيسر",
-  "field.left_ovary_integrity": "سلامة المبيض الأيسر",
-  "specimen.ovary_laterality_not_specified": "المبيض، الجهة غير محددة",
-  "field.ovary_integrity": "سلامة المبيض",
-  "specimen.right_fallopian_tube": "قناة فالوب اليمنى",
-  "field.right_fallopian_tube_integrity": "سلامة قناة فالوب اليمنى",
-  "integrity.serosa_intact": "المصلية سليمة",
-  "integrity.serosa_ruptured": "المصلية ممزقة",
-  "specimen.left_fallopian_tube": "قناة فالوب اليسرى",
-  "field.left_fallopian_tube_integrity": "سلامة قناة فالوب اليسرى",
-  "specimen.fallopian_tube_laterality_not_specified": "قناة فالوب، الجهة غير محددة",
-  "field.fallopian_tube_integrity": "سلامة قناة فالوب",
-  "field.uterus_integrity": "سلامة الرحم",
-  "integrity.intact": "سليم",
-  "integrity.opened": "مفتوح",
-  "integrity.morcellated": "مجزأ بالتقطيع",
-  "block.tumor_representative_sections": "الورم (مقاطع ممثلة – مناطق صلبة وكيسية وحليمية)",
-  "block.tumor_capsule_interface": "واجهة الورم مع المحفظة",
-  "block.capsule_non_tumor_areas": "المحفظة (مناطق غير ورمية)",
-  "block.fallopian_tube_fimbrial_end": "قناة فالوب (النهاية الخملية)",
-  "block.fallopian_tube_cross_sections": "قناة فالوب (مقاطع عرضية)",
-  "block.contralateral_ovary_if_present": "المبيض المقابل (إن وجد)",
-  "block.endometrium": "بطانة الرحم",
-  "block.myometrium": "عضل الرحم",
-  "block.cervix": "عنق الرحم",
-  "block.omentum": "الثرب",
-  "block.lymph_nodes": "العقد اللمفية",
-  "signoff.grossed_by": "تم الفحص العياني بواسطة",
-  "signoff.date": "التاريخ",
-  "template.key": "gross_ovary_fallopian_tube_primary_peritoneum"
+  "title": "المبيض أو قناة فالوب أو الصفاق الأولي (قالب الفحص العياني)",
+  "specimen": {
+    "label": "العينة",
+    "fields": {
+      "procedure": {
+        "label": "الإجراء (اختر كل ما ينطبق)",
+        "options": [
+          "استئصال الرحم الكلي مع استئصال قناتي فالوب والمبيضين ثنائي الجانب",
+          "استئصال الرحم الجذري",
+          "استئصال الرحم البسيط",
+          "استئصال الرحم فوق عنق الرحم",
+          "استئصال قناتي فالوب والمبيضين ثنائي الجانب",
+          "استئصال قناة فالوب والمبيض الأيمن",
+          "استئصال قناة فالوب والمبيض الأيسر",
+          "استئصال قناة فالوب والمبيض، الجانب غير محدد",
+          "استئصال المبيض الأيمن",
+          "استئصال المبيض الأيسر",
+          "استئصال المبيض، الجانب غير محدد",
+          "استئصال قناتي فالوب ثنائي الجانب",
+          "استئصال قناة فالوب اليمنى",
+          "استئصال قناة فالوب اليسرى",
+          "استئصال قناة فالوب، الجانب غير محدد",
+          "استئصال الثرب",
+          "خزعات صفاقية",
+          "استئصال كتلة الورم الصفاقي لتقليل حجمه",
+          "غسل صفاقي",
+          "غسل حوضي",
+          "سائل استسقائي",
+          "بزل جنبي (سائل جنبي)",
+          "أخرى (يُحدد)"
+        ],
+        "other_specify": "أخرى (يُحدد)"
+      },
+      "hysterectomy_type": {
+        "label": "نوع استئصال الرحم",
+        "options": [
+          "بطني",
+          "مهبلي",
+          "مهبلي بمساعدة تنظير البطن",
+          "بالمنظار",
+          "بالمنظار بمساعدة الروبوت",
+          "أخرى (يُحدد)",
+          "غير محدد"
+        ],
+        "other_specify": "أخرى (يُحدد)"
+      },
+      "specimen_integrity_note": {
+        "label": "ملاحظة سلامة العينة"
+      },
+      "specimen_integrity_applicability": {
+        "label": "انطباقية سلامة العينة",
+        "options": [
+          "غير منطبق"
+        ]
+      }
+    }
+  },
+  "ovarian_integrity": {
+    "label": "سلامة المبيض",
+    "fields": {
+      "right_ovary_present": {
+        "label": "المبيض الأيمن"
+      },
+      "right_ovary_integrity": {
+        "label": "المبيض الأيمن – المحفظة سليمة",
+        "options": [
+          "المحفظة سليمة",
+          "المحفظة ممزقة",
+          "مجزأ",
+          "أخرى (يُحدد)"
+        ],
+        "other_specify": "أخرى (يُحدد)"
+      },
+      "right_ovary_time_of_rupture": {
+        "label": "وقت التمزق",
+        "options": [
+          "وقت التمزق",
+          "قبل الجراحة",
+          "أثناء الجراحة",
+          "غير معروف"
+        ]
+      },
+      "left_ovary_present": {
+        "label": "المبيض الأيسر"
+      },
+      "left_ovary_integrity": {
+        "label": "المبيض الأيسر – المحفظة سليمة",
+        "options": [
+          "المحفظة سليمة",
+          "المحفظة ممزقة",
+          "مجزأ",
+          "أخرى (يُحدد)"
+        ],
+        "other_specify": "أخرى (يُحدد)"
+      },
+      "left_ovary_time_of_rupture": {
+        "label": "وقت التمزق",
+        "options": [
+          "وقت التمزق",
+          "قبل الجراحة",
+          "أثناء الجراحة",
+          "غير معروف"
+        ]
+      },
+      "ovary_laterality_not_specified_present": {
+        "label": "المبيض، الجهة غير محددة"
+      },
+      "ovary_laterality_not_specified_integrity": {
+        "label": "المبيض، الجهة غير محددة – المحفظة سليمة",
+        "options": [
+          "المحفظة سليمة",
+          "المحفظة ممزقة",
+          "مجزأ",
+          "أخرى (يُحدد)"
+        ],
+        "other_specify": "أخرى (يُحدد)"
+      },
+      "ovary_laterality_not_specified_time_of_rupture": {
+        "label": "وقت التمزق",
+        "options": [
+          "وقت التمزق",
+          "قبل الجراحة",
+          "أثناء الجراحة",
+          "غير معروف"
+        ]
+      }
+    }
+  },
+  "fallopian_tube_integrity": {
+    "label": "سلامة قناة فالوب",
+    "fields": {
+      "right_fallopian_tube_present": {
+        "label": "قناة فالوب اليمنى"
+      },
+      "right_fallopian_tube_integrity": {
+        "label": "قناة فالوب اليمنى – المصلية سليمة",
+        "options": [
+          "المصلية سليمة",
+          "المصلية ممزقة",
+          "مجزأ",
+          "أخرى (يُحدد)"
+        ],
+        "other_specify": "أخرى (يُحدد)"
+      },
+      "left_fallopian_tube_present": {
+        "label": "قناة فالوب اليسرى"
+      },
+      "left_fallopian_tube_integrity": {
+        "label": "قناة فالوب اليسرى – المصلية سليمة",
+        "options": [
+          "المصلية سليمة",
+          "المصلية ممزقة",
+          "مجزأ",
+          "أخرى (يُحدد)"
+        ],
+        "other_specify": "أخرى (يُحدد)"
+      },
+      "fallopian_tube_laterality_not_specified_present": {
+        "label": "قناة فالوب، الجهة غير محددة"
+      },
+      "fallopian_tube_laterality_not_specified_integrity": {
+        "label": "قناة فالوب، الجهة غير محددة – المصلية سليمة",
+        "options": [
+          "المصلية سليمة",
+          "المصلية ممزقة",
+          "مجزأ",
+          "أخرى (يُحدد)"
+        ],
+        "other_specify": "أخرى (يُحدد)"
+      }
+    }
+  },
+  "uterus_integrity": {
+    "label": "سلامة الرحم",
+    "fields": {
+      "status": {
+        "label": "سلامة الرحم",
+        "options": [
+          "سليم",
+          "مفتوح",
+          "مجزأ بالتقطيع",
+          "أخرى (يُحدد)"
+        ],
+        "other_specify": "أخرى (يُحدد)"
+      }
+    }
+  },
+  "block_allocation_key": {
+    "label": "مفتاح توزيع القوالب",
+    "fields": {
+      "tumor_representative_sections": {
+        "label": "الورم (مقاطع ممثلة – مناطق صلبة وكيسية وحليمية)"
+      },
+      "tumor_capsule_interface": {
+        "label": "واجهة الورم مع المحفظة"
+      },
+      "capsule_non_tumor_areas": {
+        "label": "المحفظة (مناطق غير ورمية)"
+      },
+      "fallopian_tube_fimbrial_end": {
+        "label": "قناة فالوب (النهاية الخملية)"
+      },
+      "fallopian_tube_cross_sections": {
+        "label": "قناة فالوب (مقاطع عرضية)"
+      },
+      "contralateral_ovary_if_present": {
+        "label": "المبيض المقابل (إن وجد)"
+      },
+      "endometrium": {
+        "label": "بطانة الرحم"
+      },
+      "myometrium": {
+        "label": "عضل الرحم"
+      },
+      "cervix": {
+        "label": "عنق الرحم"
+      },
+      "omentum": {
+        "label": "الثرب"
+      },
+      "lymph_nodes": {
+        "label": "العقد اللمفية"
+      }
+    }
+  },
+  "grossing": {
+    "label": "الفحص العياني",
+    "fields": {
+      "grossed_by": {
+        "label": "تم الفحص العياني بواسطة"
+      },
+      "date": {
+        "label": "التاريخ"
+      }
+    }
+  }
 }

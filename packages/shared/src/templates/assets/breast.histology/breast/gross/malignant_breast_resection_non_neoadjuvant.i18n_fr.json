@@ -2,30 +2,47 @@
   "template_id": "malignant_breast_resection_non_neoadjuvant_v1",
   "lang": "fr",
   "title": "Résection mammaire maligne (sans traitement néoadjuvant)",
-
   "clinical_case_summary": {
     "label": "Résumé clinique",
     "fields": {
-      "tumor_characteristics": { "label": "Caractéristiques de la tumeur" },
-      "site": { "label": "Site" },
-      "focality": { "label": "Focalité" },
-      "dimensions": { "label": "Dimensions (mm)" },
-      "baseline_biomarker": { "label": "Biomarqueur tumoral de base" }
+      "tumor_characteristics": {
+        "label": "Caractéristiques de la tumeur"
+      },
+      "site": {
+        "label": "Site"
+      },
+      "focality": {
+        "label": "Focalité"
+      },
+      "dimensions": {
+        "label": "Dimensions (mm)"
+      },
+      "baseline_biomarker": {
+        "label": "Biomarqueur tumoral de base"
+      }
     }
   },
-
   "specimen": {
     "label": "Pièce opératoire",
     "fields": {
       "intraoperative_consult": {
         "label": "Consultation peropératoire réalisée",
-        "options": ["Oui", "Non"],
+        "options": [
+          "Oui",
+          "Non"
+        ],
         "reason": "Raison"
       },
-      "weight": { "label": "Poids de la pièce (g)" },
+      "weight": {
+        "label": "Poids de la pièce (g)"
+      },
       "laterality": {
         "label": "Latéralité",
-        "options": ["Gauche", "Droite", "Non précisée"]
+        "options": [
+          "Gauche",
+          "Droite",
+          "Non précisée"
+        ]
       },
       "type": {
         "label": "Type de pièce",
@@ -41,45 +58,68 @@
       }
     }
   },
-
   "lymph_nodes": {
     "label": "Ganglions lymphatiques",
     "fields": {
-      "present": { "label": "Ganglions lymphatiques présents" },
+      "present": {
+        "label": "Ganglions lymphatiques présents"
+      },
       "sentinel": {
         "label": "Ganglions sentinelles",
         "fields": {
-          "site": { "label": "Site" },
-          "radioactive_count": { "label": "Comptage radioactif" },
-          "dye_uptake": { "label": "Capture du colorant" },
-          "number": { "label": "Nombre" },
-          "dimensions": { "label": "Dimensions de chaque ganglion" }
+          "site": {
+            "label": "Site"
+          },
+          "radioactive_count": {
+            "label": "Comptage radioactif"
+          },
+          "dye_uptake": {
+            "label": "Capture du colorant"
+          },
+          "number": {
+            "label": "Nombre"
+          },
+          "dimensions": {
+            "label": "Dimensions de chaque ganglion"
+          }
         }
       },
       "non_sentinel": {
         "label": "Ganglions non sentinelles",
         "fields": {
-          "total_number": { "label": "Nombre total de ganglions" },
-          "size_range": { "label": "Plage de taille" }
+          "total_number": {
+            "label": "Nombre total de ganglions"
+          },
+          "size_range": {
+            "label": "Plage de taille"
+          }
         }
       }
     }
   },
-
   "breast_measurements": {
     "label": "Dimensions du sein",
     "fields": {
-      "medial_lateral": { "label": "Longueur médio-latérale" },
-      "superior_inferior": { "label": "Longueur supéro-inférieure" },
-      "anterior_posterior": { "label": "Longueur antéro-postérieure" }
+      "medial_lateral": {
+        "label": "Longueur médio-latérale"
+      },
+      "superior_inferior": {
+        "label": "Longueur supéro-inférieure"
+      },
+      "anterior_posterior": {
+        "label": "Longueur antéro-postérieure"
+      }
     }
   },
-
   "skin": {
     "label": "Peau",
     "fields": {
-      "present": { "label": "Peau présente" },
-      "dimensions": { "label": "Dimensions de la peau" },
+      "present": {
+        "label": "Peau présente"
+      },
+      "dimensions": {
+        "label": "Dimensions de la peau"
+      },
       "abnormalities": {
         "label": "Anomalies cutanées",
         "options": [
@@ -93,14 +133,18 @@
       }
     }
   },
-
   "nipple": {
     "label": "Mamelon",
     "fields": {
-      "present": { "label": "Mamelon présent" },
+      "present": {
+        "label": "Mamelon présent"
+      },
       "description": {
         "label": "Description du mamelon",
-        "options": ["Normal", "Anormal"]
+        "options": [
+          "Normal",
+          "Anormal"
+        ]
       },
       "abnormal_features": {
         "label": "Caractéristiques anormales",
@@ -114,11 +158,12 @@
       }
     }
   },
-
   "tumor": {
     "label": "Tumeur",
     "fields": {
-      "macroscopic_present": { "label": "Tumeur visible macroscopiquement" },
+      "macroscopic_present": {
+        "label": "Tumeur visible macroscopiquement"
+      },
       "site": {
         "label": "Site tumoral",
         "options": [
@@ -133,40 +178,92 @@
       },
       "focality": {
         "label": "Focalité",
-        "options": ["Unifocale", "Multifocale"]
+        "options": [
+          "Unifocale",
+          "Multifocale"
+        ]
       },
-      "size": { "label": "Taille de la tumeur (mm)" },
-      "skin_involvement": { "label": "Fixée à la peau" },
-      "chest_wall_involvement": { "label": "Fixée à la paroi thoracique" }
+      "size": {
+        "label": "Taille de la tumeur (mm)"
+      },
+      "skin_involvement": {
+        "label": "Fixée à la peau"
+      },
+      "chest_wall_involvement": {
+        "label": "Fixée à la paroi thoracique"
+      }
     }
   },
-
   "margins": {
     "label": "Marges",
     "fields": {
-      "medial": { "label": "Marge médiale" },
-      "lateral": { "label": "Marge latérale" },
-      "superior": { "label": "Marge supérieure" },
-      "inferior": { "label": "Marge inférieure" },
-      "posterior": { "label": "Marge postérieure" },
-      "anterior": { "label": "Marge antérieure" },
-      "skin": { "label": "Peau sus-jacente" }
+      "medial": {
+        "label": "Marge médiale"
+      },
+      "lateral": {
+        "label": "Marge latérale"
+      },
+      "superior": {
+        "label": "Marge supérieure"
+      },
+      "inferior": {
+        "label": "Marge inférieure"
+      },
+      "posterior": {
+        "label": "Marge postérieure"
+      },
+      "anterior": {
+        "label": "Marge antérieure"
+      },
+      "skin": {
+        "label": "Peau sus-jacente"
+      }
     }
   },
-
   "muscle": {
     "label": "Muscle squelettique",
-    "options": ["Présent", "Absent"]
+    "fields": {
+      "presence": {
+        "label": "Muscle squelettique",
+        "options": [
+          "Présent",
+          "Absent"
+        ]
+      }
+    }
   },
-
   "block_key": {
     "label": "Clé d'attribution des blocs",
     "fields": {
-      "nipple": { "label": "Mamelon" },
-      "tumor": { "label": "Tumeur" },
-      "surrounding_breast": { "label": "Tissu mammaire adjacent" },
-      "margins": { "label": "Marges" },
-      "lymph_nodes": { "label": "Ganglions lymphatiques" }
+      "nipple": {
+        "label": "Mamelon"
+      },
+      "tumor": {
+        "label": "Tumeur"
+      },
+      "surrounding_breast": {
+        "label": "Tissu mammaire adjacent"
+      },
+      "margins": {
+        "label": "Marges"
+      },
+      "lymph_nodes": {
+        "label": "Ganglions lymphatiques"
+      }
     }
+  },
+  "grossing": {
+    "label": "Macroscopie",
+    "fields": {
+      "grossed_by": {
+        "label": "Macroscopie réalisée par"
+      },
+      "date": {
+        "label": "Date"
+      }
+    }
+  },
+  "domain": {
+    "fields": {}
   }
 }

@@ -11,6 +11,13 @@ export default defineConfig({
   },
   server: {
     port: 5173,
+    host: true,
+    watch: {
+      // Polling is required for HMR to work on Windows Docker bind mounts
+      // (inotify events don't propagate through WSL2/bind-mount layer)
+      usePolling: true,
+      interval: 300,
+    },
     proxy: {
       '/api': {
         target: process.env.VITE_API_BASE_URL ?? 'http://localhost:3001',

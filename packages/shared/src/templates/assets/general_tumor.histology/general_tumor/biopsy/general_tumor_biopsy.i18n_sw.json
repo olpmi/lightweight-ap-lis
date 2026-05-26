@@ -2,7 +2,6 @@
   "template_id": "general_tumor_biopsy_v1",
   "lang": "sw",
   "title": "Biopsy ya jumla ya uvimbe",
-
   "clinical": {
     "label": "Kliniki",
     "fields": {
@@ -12,11 +11,11 @@
           "Hakuna matibabu ya awali yanayojulikana",
           "Matibabu ya awali yalitolewa",
           "Haijabainishwa"
-        ]
+        ],
+        "prior_treatment_specify": "Matibabu ya awali, taja"
       }
     }
   },
-
   "specimen": {
     "label": "Sampuli",
     "fields": {
@@ -25,7 +24,12 @@
       },
       "laterality": {
         "label": "Upande wa sampuli",
-        "options": ["Kulia", "Kushoto", "Haijabainishwa", "Haihusiki"]
+        "options": [
+          "Kulia",
+          "Kushoto",
+          "Haijabainishwa",
+          "Haihusiki"
+        ]
       },
       "procedure": {
         "label": "Utaratibu",
@@ -36,15 +40,19 @@
           "Fine needle aspiration",
           "Biopsy, isiyoainishwa vinginevyo",
           "Nyingine"
-        ]
+        ],
+        "other_specify": "Nyingine, taja"
       },
       "adequacy": {
         "label": "Ubora wa sampuli",
-        "options": ["Inatosha", "Si bora vya kutosha"]
+        "options": [
+          "Inatosha",
+          "Si bora vya kutosha"
+        ],
+        "suboptimal_explain": "Chini ya kiwango bora, eleza"
       }
     }
   },
-
   "tumor": {
     "label": "Uvimbe",
     "fields": {
@@ -56,11 +64,21 @@
       },
       "lymphovascular_invasion": {
         "label": "Uvamizi wa limfovaskula",
-        "options": ["Haujaonekana", "Upo", "Haiwezi kubainishwa"]
+        "options": [
+          "Haujaonekana",
+          "Upo",
+          "Haiwezi kubainishwa"
+        ],
+        "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
       },
       "perineural_invasion": {
         "label": "Uvamizi wa perineural",
-        "options": ["Haujaonekana", "Upo", "Haiwezi kubainishwa"]
+        "options": [
+          "Haujaonekana",
+          "Upo",
+          "Haiwezi kubainishwa"
+        ],
+        "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
       },
       "additional_pathologic_findings": {
         "label": "Matokeo ya ziada ya patholojia"

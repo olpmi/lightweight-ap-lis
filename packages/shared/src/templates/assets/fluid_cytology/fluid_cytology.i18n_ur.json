@@ -7,7 +7,6 @@
     "adequacy": "کفایت",
     "diagnostic_category": "تشخیصی زمرہ",
     "microscopic_description": "خردبینی تفصیل",
-    "final_interpretation": "حتمی تشریح",
     "malignant_suspicious_favor": "اگر خبیث / مشتبہ ہو تو غالب امکان",
     "ancillary_studies": "اضافی مطالعات (اگر کیے گئے ہوں)",
     "comment": "تبصرہ"
@@ -22,8 +21,6 @@
     "adequacy_status": "کفایت",
     "diagnostic_category": "تشخیصی زمرہ",
     "microscopic_description_brief": "خردبینی تفصیل (مختصر)",
-    "final_interpretation_category": "زمرہ",
-    "final_interpretation_text": "حتمی تشریح",
     "favor_diagnosis": "اگر خبیث / مشتبہ ہو تو غالب امکان",
     "favor_other": "دیگر",
     "cell_block_immunocytochemistry": "سیل بلاک امیونوسائٹو کیمسٹری",

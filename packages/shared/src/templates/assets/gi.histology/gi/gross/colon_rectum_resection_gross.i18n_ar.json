@@ -1,54 +1,169 @@
 {
-  "template_title": "قالب الفحص العياني - استئصال القولون والمستقيم للورم",
-  "procedure_type": "نوع الإجراء (كما ذكره الطبيب المعالج):",
-  "specimen_length_mm": "طول العينة (مم):",
-  "anatomical_components_included_with_size": "المكونات التشريحية المشمولة (مع الحجم):",
-  "tumor_perforation": "انثقاب الورم",
-  "absent": "غير موجود",
-  "present": "موجود",
-  "tumor_dimensions_mm": "أبعاد الورم (مم): _____ × _____ × _____",
-  "tumor_site": "موقع الورم:",
-  "caecum": "الأعور",
-  "ascending_colon": "القولون الصاعد",
-  "hepatic_flexure": "الثنية الكبدية",
-  "transverse_colon": "القولون المستعرض",
-  "splenic_flexure": "الثنية الطحالية",
-  "descending_colon": "القولون النازل",
-  "sigmoid_colon": "القولون السيني",
-  "rectosigmoid_colon": "القولون المستقيمي السيني",
-  "rectum": "المستقيم",
-  "tumor_invades_peritoneal_surface": "يغزو الورم السطح البريتوني:",
-  "yes": "نعم",
-  "no": "لا",
-  "tumor_forms_discrete_serosal_nodules": "يشكل الورم عقيدات مصلية منفصلة:",
-  "distance_of_tumor_to_margins_mm": "مسافة الورم عن الهوامش (مم):",
-  "proximal": "القريب: __________",
-  "distal": "البعيد: __________",
-  "non_peritonealised_circumferential_margin": "الهامش المحيطي غير المغطى بالبريتون: __________",
-  "for_rectal_tumors_only": "لأورام المستقيم فقط",
-  "intactness_of_mesorectum": "سلامة المساريقا المستقيمية:",
-  "incomplete_grade_1": "غير كاملة (الدرجة 1)",
-  "near_complete_grade_2": "شبه كاملة (الدرجة 2)",
-  "complete_grade_3": "كاملة (الدرجة 3)",
-  "tumor_relationship_to_anterior_peritoneal_reflection": "علاقة الورم بالانعكاس البريتوني الأمامي:",
-  "entirely_above": "كله فوقه",
-  "astride": "يمتد عبره",
-  "entirely_below": "كله تحته",
-  "if_abdominoperineal_ap_resection": "في حال الاستئصال البطني العجاني (AP):",
-  "distance_from_dentate_line_mm": "المسافة من الخط المسنن (مم):",
-  "polyps": "السلائل",
-  "if_present_record_number_size_range_and_gross_appearance": "إذا كانت موجودة (سجل العدد، ومدى الحجم، والمظهر العياني):",
-  "lymph_nodes": "العقد اللمفاوية",
-  "number_identified": "العدد المحدد:",
-  "size_range_mm": "مدى الحجم (مم):",
-  "other_relevant_macroscopic_findings": "ملاحظات عيانية أخرى ذات صلة:",
-  "block_identification_key": "مفتاح تعريف القوالب",
-  "tumor": "الورم:",
-  "proximal_margin": "الهامش القريب:",
-  "distal_margin": "الهامش البعيد:",
-  "circumferential_margin": "الهامش المحيطي:",
-  "non_neoplastic_colon": "القولون غير الورمي:",
-  "additional_sections": "مقاطع إضافية:",
-  "grossed_by": "أُجري الفحص العياني بواسطة:",
-  "date": "التاريخ:"
+  "title": "استئصال القولون والمستقيم (قالب الفحص العياني)",
+  "specimen": {
+    "label": "العينة",
+    "fields": {
+      "procedure_type": {
+        "label": "نوع الإجراء (كما ذكره الطبيب المعالج)"
+      },
+      "specimen_length_mm": {
+        "label": "طول العينة (مم)"
+      },
+      "anatomical_components_included": {
+        "label": "المكونات التشريحية المشمولة (مع الحجم)"
+      }
+    }
+  },
+  "tumor": {
+    "label": "الورم",
+    "fields": {
+      "tumor_perforation": {
+        "label": "انثقاب الورم",
+        "options": [
+          "غير موجود",
+          "موجود"
+        ]
+      },
+      "tumor_dimensions_mm": {
+        "label": "أبعاد الورم (مم)"
+      },
+      "tumor_site": {
+        "label": "موقع الورم",
+        "options": [
+          "الأعور",
+          "القولون الصاعد",
+          "الثنية الكبدية",
+          "القولون المستعرض",
+          "الثنية الطحالية",
+          "القولون النازل",
+          "القولون السيني",
+          "القولون المستقيمي السيني",
+          "المستقيم"
+        ]
+      },
+      "invades_peritoneal_surface": {
+        "label": "يغزو الورم السطح البريتوني",
+        "options": [
+          "نعم",
+          "لا"
+        ]
+      },
+      "forms_discrete_serosal_nodules": {
+        "label": "يشكل الورم عقيدات مصلية منفصلة",
+        "options": [
+          "نعم",
+          "لا"
+        ]
+      }
+    }
+  },
+  "margins": {
+    "label": "الهوامش",
+    "fields": {
+      "distance_to_proximal_margin_mm": {
+        "label": "المسافة إلى الهامش القريب (مم)"
+      },
+      "distance_to_distal_margin_mm": {
+        "label": "المسافة إلى الهامش البعيد (مم)"
+      },
+      "distance_to_circumferential_margin_mm": {
+        "label": "المسافة إلى الهامش المحيطي غير المغطى بالبريتون (مم)"
+      }
+    }
+  },
+  "rectal_tumor_only": {
+    "label": "لأورام المستقيم فقط",
+    "fields": {
+      "mesorectum_intactness": {
+        "label": "سلامة المساريقا المستقيمية",
+        "options": [
+          "غير كاملة (الدرجة 1)",
+          "شبه كاملة (الدرجة 2)",
+          "كاملة (الدرجة 3)"
+        ]
+      },
+      "relationship_to_anterior_peritoneal_reflection": {
+        "label": "علاقة الورم بالانعكاس البريتوني الأمامي",
+        "options": [
+          "كله فوقه",
+          "يمتد عبره",
+          "كله تحته"
+        ]
+      },
+      "distance_from_dentate_line_mm": {
+        "label": "المسافة من الخط المسنن (مم)"
+      }
+    }
+  },
+  "polyps": {
+    "label": "السلائل",
+    "fields": {
+      "status": {
+        "label": "السلائل",
+        "options": [
+          "غير موجود",
+          "موجود"
+        ]
+      },
+      "if_present_details": {
+        "label": "إذا كانت موجودة (سجل العدد، ومدى الحجم، والمظهر العياني)"
+      }
+    }
+  },
+  "lymph_nodes": {
+    "label": "العقد اللمفاوية",
+    "fields": {
+      "number_identified": {
+        "label": "العدد المحدد"
+      },
+      "size_range_mm": {
+        "label": "مدى الحجم (مم)"
+      }
+    }
+  },
+  "other_findings": {
+    "label": "ملاحظات عيانية أخرى ذات صلة",
+    "fields": {
+      "findings": {
+        "label": "ملاحظات عيانية أخرى ذات صلة"
+      }
+    }
+  },
+  "block_identification_key": {
+    "label": "مفتاح تعريف القوالب",
+    "fields": {
+      "tumor": {
+        "label": "الورم"
+      },
+      "proximal_margin": {
+        "label": "الهامش القريب"
+      },
+      "distal_margin": {
+        "label": "الهامش البعيد"
+      },
+      "circumferential_margin": {
+        "label": "الهامش المحيطي"
+      },
+      "non_neoplastic_colon": {
+        "label": "القولون غير الورمي"
+      },
+      "lymph_nodes": {
+        "label": "العقد اللمفاوية"
+      },
+      "additional_sections": {
+        "label": "مقاطع إضافية"
+      }
+    }
+  },
+  "grossing": {
+    "label": "الفحص العياني",
+    "fields": {
+      "grossed_by_initials": {
+        "label": "أُجري الفحص العياني بواسطة"
+      },
+      "date": {
+        "label": "التاريخ"
+      }
+    }
+  }
 }

@@ -17,6 +17,33 @@ export const SEX_OPTIONS = ['Male', 'Female', 'Other', 'Unknown'] as const;
 
 export const SLIDE_TYPES = ['H&E', 'Unstained', 'IHC', 'Special stain', 'Other'] as const;
 
+export const ANCILLARY_CATEGORIES = [
+  'HE_LEVELS',
+  'IHC',
+  'SPECIAL_STAIN',
+  'MOLECULAR',
+  'SEND_OUT',
+] as const;
+
+export type AncillaryCategory = (typeof ANCILLARY_CATEGORIES)[number];
+
+export const ANCILLARY_CATEGORY_LABELS: Record<AncillaryCategory, string> = {
+  HE_LEVELS: 'H&E Levels',
+  IHC: 'IHC',
+  SPECIAL_STAIN: 'Special Stains',
+  MOLECULAR: 'Molecular',
+  SEND_OUT: 'Send-out',
+};
+
+export const ANCILLARY_ORDER_STATUSES = [
+  'PENDING',
+  'IN_PROGRESS',
+  'COMPLETE',
+  'CANCELLED',
+] as const;
+
+export type AncillaryOrderStatus = (typeof ANCILLARY_ORDER_STATUSES)[number];
+
 export const CYTOLOGY_SITE_HIERARCHY: Record<string, readonly string[]> = {
   'GYN Cytology (Pap smears)': [],
   'Fine Needle Aspiration (FNA)': ['Lymph node', 'Thyroid', 'Breast', 'Salivary gland', 'Soft tissue'],

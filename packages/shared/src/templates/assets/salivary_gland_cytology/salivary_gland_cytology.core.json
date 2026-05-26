@@ -80,22 +80,6 @@
       ]
     },
     {
-      "id": "final_interpretation",
-      "title": "Final Interpretation",
-      "fields": [
-        {
-          "id": "final_interpretation_category",
-          "label": "Milan Category",
-          "type": "text"
-        },
-        {
-          "id": "final_interpretation_text",
-          "label": "Final Interpretation",
-          "type": "text"
-        }
-      ]
-    },
-    {
       "id": "recommended_management",
       "title": "Recommended Management",
       "fields": [

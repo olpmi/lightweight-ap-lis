@@ -5,7 +5,6 @@
     "direction": "rtl"
   },
   "title": "غدة البروستاتا: خزعة بالإبرة",
-
   "tumor": {
     "label": "الورم",
     "fields": {
@@ -42,7 +41,6 @@
       }
     }
   },
-
   "positive_specimens": {
     "label": "العينة أو المنطقة الإيجابية",
     "item_label": "عينة إيجابية",
@@ -75,9 +73,9 @@
           "آفة أخرى بالموجات فوق الصوتية عبر المستقيم (TRUS)",
           "خزعة موجهة بالرنين المغناطيسي",
           "غير محدد"
-        ]
+        ],
+        "location_specify": "الموقع، حدد"
       },
-
       "histologic_type": {
         "label": "النوع النسيجي",
         "fields": {
@@ -110,14 +108,15 @@
               "سرطان عصبي صماوي كبير الخلايا",
               "نوع نسيجي آخر غير مدرج",
               "سرطان، لا يمكن تحديد النوع"
-            ]
+            ],
+            "other_specify": "أخرى، حدد",
+            "cannot_be_determined_specify": "لا يمكن التحديد، حدد"
           },
           "comment": {
             "label": "تعليق على النوع النسيجي"
           }
         }
       },
-
       "histologic_grade": {
         "label": "الدرجة النسيجية",
         "fields": {
@@ -127,7 +126,9 @@
               "غير منطبق",
               "لا يمكن تقييمه",
               "قابل للتقييم"
-            ]
+            ],
+            "not_applicable_specify": "غير قابل للتطبيق، حدد",
+            "cannot_be_assessed_specify": "لا يمكن التقييم، حدد"
           },
           "tumor_microfocus": {
             "label": "بؤرة ورمية مجهرية",
@@ -181,7 +182,6 @@
           }
         }
       },
-
       "intraductal_carcinoma": {
         "label": "السرطان داخل القناة (IDC)",
         "fields": {
@@ -198,11 +198,11 @@
               "نعم",
               "لا",
               "لا يمكن تحديده"
-            ]
+            ],
+            "cannot_be_determined_specify": "لا يمكن التحديد، حدد"
           }
         }
       },
-
       "cribriform_glands": {
         "label": "الغدد الغربالية",
         "fields": {
@@ -214,11 +214,13 @@
               "موجودة",
               "ملتبسة",
               "لا يمكن تحديدها"
-            ]
+            ],
+            "present_specify": "موجود، حدد",
+            "equivocal_explain": "غامض، اشرح",
+            "cannot_be_determined_explain": "لا يمكن التحديد، اشرح"
           }
         }
       },
-
       "tumor_quantitation": {
         "label": "كمية الورم",
         "fields": {
@@ -227,14 +229,16 @@
             "options": [
               "حدد العدد",
               "لا يمكن تحديده"
-            ]
+            ],
+            "number": "العدد"
           },
           "number_of_positive_cores": {
             "label": "عدد الأسطوانات الإيجابية",
             "options": [
               "حدد العدد",
               "لا يمكن تحديده"
-            ]
+            ],
+            "number": "العدد"
           },
           "tumor_measurement_technique": {
             "label": "طريقة قياس الورم",
@@ -260,18 +264,19 @@
               "81 - 90%",
               "أكثر من 90%",
               "لا يمكن تحديدها"
-            ]
+            ],
+            "cannot_be_determined_explain": "لا يمكن التحديد، اشرح"
           },
           "length_of_prostatic_tissue_involved": {
             "label": "طول نسيج البروستاتا المتأثر بالورم",
             "options": [
               "حدد بالمليمتر (مم)",
               "أقل من 1 مم"
-            ]
+            ],
+            "length_mm": "الطول (ملم)"
           }
         }
       },
-
       "periprostatic_fat_invasion": {
         "label": "غزو الشحم المحيط بالبروستاتا",
         "options": [
@@ -279,9 +284,10 @@
           "موجود",
           "ملتبس",
           "لا يمكن تحديده"
-        ]
+        ],
+        "equivocal_explain": "غامض، اشرح",
+        "cannot_be_determined_explain": "لا يمكن التحديد، اشرح"
       },
-
       "seminal_vesicle_or_ejaculatory_duct_invasion": {
         "label": "غزو الحويصلة المنوية / القناة الدافقة",
         "options": [
@@ -289,9 +295,10 @@
           "موجود",
           "ملتبس",
           "لا يمكن تحديده"
-        ]
+        ],
+        "equivocal_explain": "غامض، اشرح",
+        "cannot_be_determined_explain": "لا يمكن التحديد، اشرح"
       },
-
       "lymphovascular_invasion": {
         "label": "الغزو اللمفي و / أو الوعائي",
         "options": [
@@ -299,9 +306,10 @@
           "موجود",
           "ملتبس",
           "لا يمكن تحديده"
-        ]
+        ],
+        "equivocal_explain": "غامض، اشرح",
+        "cannot_be_determined_specify": "لا يمكن التحديد، حدد"
       },
-
       "perineural_invasion": {
         "label": "الغزو حول العصبي",
         "options": [
@@ -309,7 +317,6 @@
           "موجود"
         ]
       },
-
       "additional_findings": {
         "label": "النتائج الإضافية",
         "fields": {
@@ -343,7 +350,6 @@
       }
     }
   },
-
   "comments": {
     "label": "التعليقات",
     "fields": {

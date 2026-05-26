@@ -6,7 +6,6 @@
     "adequacy": "کفایت",
     "bethesda_category": "بیتھیسڈا زمرہ",
     "microscopic_description": "خردبینی تفصیل",
-    "final_interpretation": "حتمی تشریح",
     "recommended_management": "تجویز کردہ انتظام",
     "comment": "تبصرہ"
   },
@@ -17,8 +16,6 @@
     "adequacy_status": "کفایت",
     "bethesda_category": "بیتھیسڈا زمرہ",
     "microscopic_description_text": "خردبینی تفصیل (آزاد متن)",
-    "final_interpretation_category": "بیتھیسڈا زمرہ",
-    "final_interpretation_text": "حتمی تشریح",
     "recommended_management_options": "تجویز کردہ انتظام (مناسب انتخاب کریں)",
     "comment_text": "تبصرہ"
   },

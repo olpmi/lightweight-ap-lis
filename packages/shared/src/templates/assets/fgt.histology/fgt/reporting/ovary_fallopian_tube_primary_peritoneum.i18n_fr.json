@@ -1,358 +1,233 @@
 {
-  "protocol_title": "MODÈLE DE COMPTE RENDU : OVAIRE ou TROMPE DE FALLOPE ou PÉRITOINE PRIMITIF",
-  "protocol_posting_date": "Date de publication du protocole : juin 2024",
-  "standards": "Standards : AJCC-UICC 8, Rapport FIGO sur le cancer 2021",
-  "common": {
-    "not_applicable": "Non applicable",
-    "not_identified": "Non identifié",
-    "present": "Présent",
-    "absent": "Absent",
-    "cannot_be_determined": "Ne peut être déterminé",
-    "cannot_be_determined_explain": "Ne peut être déterminé (expliquer)",
-    "other_specify": "Autre (préciser)",
-    "exact_number": "Nombre exact",
-    "exact_number_specify": "Nombre exact (préciser)",
-    "at_least": "Au moins",
-    "at_least_specify": "Au moins (préciser)",
-    "exact_size": "Taille exacte",
-    "greater_than": "Supérieur à",
-    "less_than": "Inférieur à",
-    "specify": "Préciser",
-    "select_all_that_apply": "Sélectionner tout ce qui s’applique",
-    "required_only_if_applicable": "Requis uniquement si applicable",
-    "right": "Droit",
-    "left": "Gauche",
-    "bilateral": "Bilatéral",
-    "not_submitted_unknown": "Non soumis / inconnu",
-    "results_pending": "Résultats en attente",
-    "none_identified": "Aucun identifié"
-  },
-  "tumor": {
-    "title": "TUMEUR",
-    "tumor_site": {
-      "label": "Siège tumoral",
-      "instruction": "Veuillez sélectionner uniquement le site primitif d’origine de la tumeur. Pour les tumeurs ovariennes bilatérales ayant une histologie identique, choisir les ovaires bilatéraux.",
-      "options": {
-        "right_ovary": "Ovaire droit",
-        "left_ovary": "Ovaire gauche",
-        "bilateral_ovaries": "Ovaires bilatéraux",
-        "ovary_laterality_unknown": "Ovaire, latéralité non déterminable (expliquer)",
-        "right_fallopian_tube": "Trompe de Fallope droite",
-        "left_fallopian_tube": "Trompe de Fallope gauche",
-        "bilateral_fallopian_tubes": "Trompes de Fallope bilatérales",
-        "fallopian_tube_laterality_unknown": "Trompe de Fallope, latéralité non déterminable (expliquer)",
-        "right_tubo_ovarian": "Tubo-ovarien droit",
-        "left_tubo_ovarian": "Tubo-ovarien gauche",
-        "bilateral_tubo_ovarian": "Tubo-ovarien bilatéral",
-        "tubo_ovarian_laterality_unknown": "Tubo-ovarien, latéralité non déterminable (expliquer)",
-        "primary_peritoneum": "Péritoine primitif",
-        "other": "Autre (préciser)"
-      }
-    },
-    "tumor_size": {
-      "label": "Taille de la tumeur",
-      "instruction": "Pour les tumeurs bilatérales, rapporter la dimension maximale de la plus grande tumeur borderline ou maligne. Pour les carcinomes développés dans une tumeur borderline, rapporter uniquement la taille du composant carcinomateux.",
-      "greatest_dimension_cm": "Plus grande dimension en centimètres (cm)",
-      "additional_dimension_cm": "Dimensions additionnelles en centimètres (cm)",
-      "cannot_be_determined_explain": "Ne peut être déterminé (expliquer)"
-    },
-    "histologic_type": {
-      "label": "Type histologique",
-      "instruction": "Sélectionner tout ce qui s’applique",
-      "options": {
-        "serous_borderline_tumor": "Tumeur séreuse borderline",
-        "serous_borderline_micropapillary_cribriform": "Tumeur séreuse borderline, variante micropapillaire / cribriforme",
-        "serous_borderline_with_microinvasion": "Tumeur séreuse borderline avec micro-invasion",
-        "microinvasive_low_grade_serous_carcinoma": "Carcinome séreux de bas grade micro-invasif",
-        "low_grade_serous_carcinoma": "Carcinome séreux de bas grade",
-        "high_grade_serous_carcinoma": "Carcinome séreux de haut grade",
-        "mucinous_borderline_tumor": "Tumeur mucineuse borderline",
-        "mucinous_borderline_with_intraepithelial_carcinoma": "Tumeur mucineuse borderline avec carcinome intraépithélial",
-        "mucinous_borderline_with_microinvasion": "Tumeur mucineuse borderline avec micro-invasion",
-        "microinvasive_mucinous_adenocarcinoma": "Adénocarcinome mucineux micro-invasif",
-        "mucinous_adenocarcinoma": "Adénocarcinome mucineux",
-        "endometrioid_borderline_tumor": "Tumeur endométrioïde borderline",
-        "endometrioid_carcinoma": "Carcinome endométrioïde",
-        "endometrioid_carcinoma_seromucinous": "Carcinome endométrioïde, type séromucineux",
-        "seromucinous_borderline_tumor": "Tumeur séromucineuse borderline",
-        "clear_cell_borderline_tumor": "Tumeur à cellules claires borderline",
-        "clear_cell_carcinoma": "Carcinome à cellules claires",
-        "borderline_brenner_tumor": "Tumeur de Brenner borderline",
-        "malignant_brenner_tumor": "Tumeur de Brenner maligne",
-        "mesonephric_like_adenocarcinoma": "Adénocarcinome de type mésonéphrique",
-        "small_cell_carcinoma_hypercalcemic": "Carcinome à petites cellules, type hypercalcémique",
-        "dedifferentiated_carcinoma": "Carcinome dédifférencié",
-        "undifferentiated_carcinoma_nos": "Carcinome indifférencié, SAI",
-        "carcinosarcoma": "Carcinosarcome",
-        "carcinoma_subtype_unknown": "Carcinome, sous-type non déterminable",
-        "mixed_epithelial_borderline": "Tumeur épithéliale borderline mixte (préciser les types et pourcentages)",
-        "mixed_carcinoma": "Carcinome mixte (préciser les types et pourcentages)",
-        "endometrioid_stromal_sarcoma_low_grade": "Sarcome stromal endométrioïde de bas grade",
-        "endometrioid_stromal_sarcoma_high_grade": "Sarcome stromal endométrioïde de haut grade",
-        "adenosarcoma": "Adénosarcome",
-        "leiomyosarcoma": "Léiomyosarcome",
-        "fibrosarcoma": "Fibrosarcome",
-        "granulosa_cell_tumor_adult": "Tumeur à cellules de la granulosa, type adulte",
-        "granulosa_cell_tumor_juvenile": "Tumeur à cellules de la granulosa, type juvénile",
-        "steroid_cell_tumor_nos": "Tumeur à cellules stéroïdiennes, SAI",
-        "steroid_cell_tumor_malignant": "Tumeur maligne à cellules stéroïdiennes",
-        "sertoli_leydig_cell_tumor": "Tumeur à cellules de Sertoli-Leydig",
-        "other_sex_cord_stromal": "Autre tumeur des cordons sexuels et du stroma (préciser le type)",
-        "immature_teratoma": "Tératome immature",
-        "teratoma_with_malignant_transformation": "Tératome avec transformation maligne (préciser le type)",
-        "malignant_struma_ovarii": "Struma ovarii malin (préciser le type)",
-        "dysgerminoma": "Dysgerminome",
-        "yolk_sac_tumor": "Tumeur du sac vitellin",
-        "embryonal_carcinoma": "Carcinome embryonnaire",
-        "gonadoblastoma": "Gonadoblastome",
-        "choriocarcinoma_non_gestational": "Choriocarcinome, type non gestationnel",
-        "mixed_malignant_germ_cell_tumor": "Tumeur germinale maligne mixte (préciser les types et pourcentages)",
-        "primary_peritoneal_tumors": "Tumeurs péritonéales primitives",
-        "gastrointestinal_stromal_tumor": "Tumeur stromale gastro-intestinale",
-        "solitary_fibrous_tumor_malignant": "Tumeur fibreuse solitaire, maligne",
-        "desmoplastic_small_round_cell_tumor": "Tumeur desmoplastique à petites cellules rondes",
-        "other_histologic_type": "Autre type histologique non listé (préciser)"
-      },
-      "comment": "Commentaire sur le type histologique"
-    },
-    "histologic_grade": {
-      "label": "Grade histologique",
-      "instruction": "Requis pour les carcinomes endométrioïdes et mucineux, les tératomes immatures et les tumeurs à cellules de Sertoli-Leydig. Pour les tumeurs mixtes, rapporter la tumeur de grade le plus élevé et commenter les autres composants.",
-      "not_applicable": "Non applicable",
-      "who_grading_system": {
-        "label": "Système de gradation de l’OMS",
-        "gb_borderline": "GB, tumeur borderline",
-        "g1_well_differentiated": "G1, bien différenciée",
-        "g2_moderately_differentiated": "G2, modérément différenciée",
-        "g3_poorly_differentiated": "G3, peu différenciée",
-        "gx_cannot_be_assessed": "GX, ne peut être évalué"
-      },
-      "figo_grading_system": {
-        "label": "Système de gradation FIGO",
-        "grade_1": "Grade FIGO 1 (croissance solide non squameuse de 5 % ou moins)",
-        "grade_2": "Grade FIGO 2 (croissance solide non squameuse de 6 % à 50 %)",
-        "grade_3": "Grade FIGO 3 (croissance solide non squameuse supérieure à 50 %)"
-      },
-      "silverberg_grading_system": {
-        "label": "Système de gradation de Silverberg",
-        "grade_1": "Grade Silverberg 1 (score 3-5)",
-        "grade_2": "Grade Silverberg 2 (score 6-7)",
-        "grade_3": "Grade Silverberg 3 (score 8-9)"
-      },
-      "growth_pattern_grading": {
-        "label": "Gradation basée sur le mode de croissance",
-        "low_grade": "Bas grade, basé sur le mode de croissance (croissance confluente / expansive, ou croissance infiltrante de 10 % ou moins)",
-        "high_grade": "Haut grade, basé sur le mode de croissance (croissance infiltrante supérieure à 10 % de la tumeur)",
-        "other": "Autre gradation basée sur le mode de croissance (préciser)"
-      },
-      "two_tier_grading": "Système de gradation à deux niveaux",
-      "three_tier_grading": "Système de gradation à trois niveaux",
-      "low_grade": "Bas grade",
-      "high_grade": "Haut grade",
-      "grade_1_low": "Grade 1 (bas grade)",
-      "grade_2_high": "Grade 2 (haut grade)",
-      "grade_3_high": "Grade 3 (haut grade)"
-    },
-    "surface_involvement": {
-      "ovarian_surface_involvement": "Atteinte de la surface ovarienne",
-      "fallopian_tube_surface_involvement": "Atteinte de la surface de la trompe de Fallope",
-      "present_right": "Présent, droit",
-      "present_left": "Présent, gauche",
-      "present_right_and_left": "Présent, droit et gauche"
-    },
-    "implants": {
-      "label": "Implants",
-      "instruction": "Requis uniquement pour les tumeurs séreuses / séromucineuses borderline de stade avancé.",
-      "not_sampled": "Non échantillonné",
-      "present_specify_sites": "Présents (préciser les sites)",
-      "indeterminate": "Indéterminé"
-    },
-    "other_tissue_organ_involvement": {
-      "label": "Atteinte d’autres tissus / organes",
-      "instruction": "Tout organe non sélectionné est soit non atteint, soit non soumis.",
-      "options": {
-        "right_ovary": "Ovaire droit",
-        "left_ovary": "Ovaire gauche",
-        "ovary_side_not_specified": "Ovaire (côté non précisé)",
-        "right_fallopian_tube": "Trompe de Fallope droite",
-        "left_fallopian_tube": "Trompe de Fallope gauche",
-        "fallopian_tube_side_not_specified": "Trompe de Fallope (côté non précisé)",
-        "uterine_corpus": "Corps utérin",
-        "uterine_cervix": "Col utérin",
-        "pelvic_peritoneum": "Péritoine pelvien",
-        "abdominal_peritoneum": "Péritoine abdominal",
-        "omentum": "Omentum",
-        "other_organs_tissue": "Autres organes / tissus (préciser)"
-      }
-    },
-    "largest_extrapelvic_peritoneal_focus": {
-      "label": "Plus grand foyer péritonéal extrapélvien",
-      "microscopic": "Microscopique",
-      "macroscopic_2cm_or_less": "Macroscopique, 2 cm ou moins (préciser le site si applicable)",
-      "macroscopic_greater_than_2cm": "Macroscopique, supérieur à 2 cm (préciser le site si applicable)"
-    },
-    "peritoneal_ascitic_fluid": {
-      "label": "Atteinte du liquide péritonéal / ascitique",
-      "negative_for_malignant_cells": "Négatif pour cellules malignes",
-      "atypical_explain": "Atypique (expliquer)",
-      "neoplastic_cells_present": "Cellules néoplasiques présentes (néoplasme séreux de bas grade, voir la pièce opératoire correspondante)",
-      "suspicious_explain": "Suspect (expliquer)",
-      "malignant_cells_present": "Cellules malignes présentes"
-    },
-    "chemotherapy_response_score": {
-      "label": "Score de réponse à la chimiothérapie (CRS)",
-      "instruction": "Requis uniquement pour les carcinomes séreux de haut grade. L’effet du traitement est évalué sur la tumeur résiduelle dans l’omentum.",
-      "no_known_presurgical_therapy": "Aucun traitement préchirurgical connu",
-      "crs1": "CRS1 (absence de réponse certaine ou réponse minimale)",
-      "crs2": "CRS2 (réponse modérée)",
-      "crs3": "CRS3 (réponse marquée avec absence ou minime cancer résiduel)"
-    },
-    "comment": "Commentaire tumoral"
-  },
-  "regional_lymph_nodes": {
-    "title": "GANGLIONS LYMPHATIQUES RÉGIONAUX",
-    "status": {
-      "label": "Statut des ganglions lymphatiques régionaux",
-      "not_applicable_no_nodes": "Non applicable (aucun ganglion lymphatique régional soumis ou retrouvé)",
-      "regional_nodes_present": "Ganglions lymphatiques régionaux présents",
-      "all_negative": "Tous les ganglions lymphatiques régionaux sont négatifs pour les cellules tumorales",
-      "tumor_present": "Tumeur présente dans les ganglions lymphatiques régionaux"
-    },
-    "metastasis_counts": {
-      "nodes_gt_10mm": "Nombre de ganglions avec métastase supérieure à 10 mm",
-      "nodes_10mm_or_less": "Nombre de ganglions avec métastase de 10 mm ou moins (hors ITCs)",
-      "nodes_with_itcs": "Nombre de ganglions avec cellules tumorales isolées (ITCs) (0,2 mm ou moins)"
-    },
-    "nodal_sites_with_tumor": {
-      "label": "Sites ganglionnaires avec tumeur",
-      "right_pelvic": "Pelvien droit",
-      "left_pelvic": "Pelvien gauche",
-      "pelvic_nos": "Pelvien, SAI",
-      "right_para_aortic": "Para-aortique droit",
-      "left_para_aortic": "Para-aortique gauche",
-      "para_aortic_nos": "Para-aortique, SAI"
-    },
-    "largest_nodal_deposit": {
-      "size": "Taille du plus grand dépôt métastatique ganglionnaire",
-      "location": "Localisation du plus grand dépôt métastatique ganglionnaire"
-    },
-    "lymph_nodes_examined": {
-      "label": "Nombre de ganglions lymphatiques examinés",
-      "nodal_sites_examined": "Sites ganglionnaires examinés"
-    },
-    "comment": "Commentaire sur les ganglions lymphatiques régionaux"
-  },
+  "template_id": "ovary_fallopian_tube_primary_peritoneum_v1",
+  "lang": "fr",
+  "title": "MODÈLE DE COMPTE RENDU : OVAIRE ou TROMPE DE FALLOPE ou PÉRITOINE PRIMITIF",
   "distant_metastasis": {
-    "title": "MÉTASTASE À DISTANCE",
-    "distant_sites_involved": "Sites à distance atteints, si applicable",
-    "note": "Ceci exclut les métastases aux ganglions rétro-péritonéaux, pelviens, para-aortiques ou à tout ganglion régional.",
-    "options": {
-      "pleural_effusion_positive_cytology": "Épanchement pleural avec cytologie positive",
-      "liver_parenchyma": "Parenchyme hépatique",
-      "splenic_parenchyma": "Parenchyme splénique",
-      "extra_abdominal_organs": "Organes extra-abdominaux",
-      "inguinal_or_extra_abdominal_nodes": "Ganglions inguinaux et ganglions en dehors de la cavité abdominale (tels que supraclaviculaires ou axillaires)",
-      "transmural_involvement_intestine": "Atteinte transmurale de l’intestin",
-      "other": "Autre (préciser)"
-    }
-  },
-  "ptnm_classification": {
-    "title": "CLASSIFICATION pTNM (AJCC 8e édition)",
-    "intro": "La déclaration des catégories pT, pN et, le cas échéant, pM repose sur les informations disponibles pour le pathologiste au moment de l’émission du rapport. Il incombe au médecin responsable d’établir le stade pathologique final en tenant compte de toutes les informations pertinentes.",
-    "modified_classification": {
-      "label": "Classification modifiée",
-      "y": "y (après traitement néoadjuvant)",
-      "r": "r (récidive)"
-    },
-    "pt_category": {
-      "label": "Catégorie pT",
-      "pt_not_assigned": "pT non attribué (ne peut être déterminé selon les informations pathologiques disponibles)",
-      "pt0": "pT0 : aucune preuve de tumeur primitive",
-      "pt1": "pT1 : tumeur limitée à un ou aux deux ovaires ou à une ou aux deux trompes de Fallope",
-      "pt1a": "pT1a : tumeur limitée à un ovaire ou à une trompe de Fallope; pas de tumeur à la surface; pas de cellules malignes dans l’ascite ou les lavages péritonéaux",
-      "pt1b": "pT1b : tumeur limitée aux deux ovaires ou aux trompes de Fallope; pas de tumeur à la surface; pas de cellules malignes dans l’ascite ou les lavages péritonéaux",
-      "pt1c": "pT1c : tumeur limitée à un ou aux deux ovaires ou aux trompes de Fallope, avec l’un des éléments suivants",
-      "pt1c1": "pT1c1 : rupture peropératoire",
-      "pt1c2": "pT1c2 : capsule rompue avant la chirurgie ou tumeur à la surface ovarienne ou tubaire",
-      "pt1c3": "pT1c3 : cellules malignes dans l’ascite ou les lavages péritonéaux",
-      "pt1_subcategory_unknown": "pT1 (sous-catégorie non déterminable)",
-      "pt2": "pT2 : tumeur atteignant un ou les deux ovaires ou trompes de Fallope avec extension pelvienne sous le détroit supérieur, ou cancer péritonéal primitif",
-      "pt2a": "pT2a : extension et / ou implants sur l’utérus et / ou les trompes de Fallope et / ou les ovaires",
-      "pt2b": "pT2b : extension et / ou implants sur d’autres tissus pelviens",
-      "pt2_subcategory_unknown": "pT2 (sous-catégorie non déterminable)",
-      "pt3": "pT3 : tumeur atteignant un ou les deux ovaires ou trompes de Fallope, ou cancer péritonéal primitif, avec métastase péritonéale microscopiquement confirmée hors du pelvis et / ou métastase aux ganglions rétro-péritonéaux",
-      "pt3a": "pT3a : atteinte péritonéale extrapélvienne microscopique, avec ou sans ganglions rétro-péritonéaux positifs",
-      "pt3b": "pT3b : métastase péritonéale macroscopique au-delà du pelvis, de 2 cm ou moins dans sa plus grande dimension, avec ou sans métastase ganglionnaire rétro-péritonéale",
-      "pt3c": "pT3c : métastase péritonéale macroscopique au-delà du pelvis, de plus de 2 cm dans sa plus grande dimension, avec ou sans métastase ganglionnaire rétro-péritonéale",
-      "pt3_subcategory_unknown": "pT3 (sous-catégorie non déterminable)"
-    },
-    "t_suffix": {
-      "label": "Suffixe T",
-      "multiple_primary": "(m) tumeurs primitives synchrones multiples dans un seul organe"
-    },
-    "pn_category": {
-      "label": "Catégorie pN",
-      "pn_not_assigned_no_nodes": "pN non attribué (aucun ganglion soumis ou retrouvé)",
-      "pn_not_assigned_unknown": "pN non attribué (ne peut être déterminé selon les informations pathologiques disponibles)",
-      "pn0": "pN0 : aucune métastase ganglionnaire régionale",
-      "pn0_i_plus": "pN0(i+) : cellules tumorales isolées dans les ganglions régionaux, ne dépassant pas 0,2 mm",
-      "pn1": "pN1 : ganglions rétro-péritonéaux positifs uniquement (pelviens et / ou para-aortiques), confirmés histologiquement",
-      "pn1a": "pN1a : métastase jusqu’à 10 mm inclus dans la plus grande dimension",
-      "pn1b": "pN1b : métastase supérieure à 10 mm dans la plus grande dimension",
-      "pn1_subcategory_unknown": "pN1 (sous-catégorie non déterminable)"
-    },
-    "n_suffix": {
-      "label": "Suffixe N",
-      "sn": "(sn) métastase identifiée uniquement par biopsie du ganglion sentinelle",
-      "f": "(f) métastase identifiée uniquement par FNA ou biopsie au trocart"
-    },
-    "pm_category": {
-      "label": "Catégorie pM",
-      "not_applicable": "Non applicable - pM ne peut être déterminé à partir des spécimens soumis",
-      "pm1": "pM1 : métastase à distance, incluant un épanchement pleural avec cytologie positive; métastase parenchymateuse hépatique ou splénique; métastase aux organes extra-abdominaux; et atteinte transmurale de l’intestin",
-      "pm1a": "pM1a : épanchement pleural avec cytologie positive",
-      "pm1b": "pM1b : métastases parenchymateuses hépatiques ou spléniques; métastases aux organes extra-abdominaux; atteinte transmurale de l’intestin",
-      "pm1_subcategory_unknown": "pM1 (sous-catégorie non déterminable)"
+    "fields": {
+      "distant_sites_involved": {
+        "label": "Sites à distance atteints, si applicable",
+        "pleural_effusion_specify": "Épanchement pleural, préciser",
+        "liver_parenchyma_specify": "Parenchyme hépatique, préciser",
+        "splenic_parenchyma_specify": "Parenchyme splénique, préciser",
+        "extra_abdominal_organs_specify": "Organes extra-abdominaux, préciser",
+        "inguinal_lymph_nodes_specify": "Ganglions inguinaux, préciser",
+        "transmural_involvement_specify": "Atteinte transmurale, préciser",
+        "other_specify": "Autre, préciser",
+        "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
+      }
     }
   },
   "figo_stage": {
-    "title": "STADE FIGO",
     "label": "Stade FIGO (Rapport FIGO sur le cancer 2021)",
-    "note": "Les mesures indiquent la taille de la tumeur dans le ganglion lymphatique et non la taille du ganglion lui-même.",
-    "stage_i": "I : tumeur limitée aux ovaires ou aux trompes de Fallope",
-    "stage_ia": "IA : tumeur limitée à un ovaire ou à une trompe de Fallope; pas de tumeur à la surface; pas de cellules malignes dans l’ascite ou les lavages péritonéaux",
-    "stage_ib": "IB : tumeur limitée aux deux ovaires ou aux trompes de Fallope; pas de tumeur à la surface; pas de cellules malignes dans l’ascite ou les lavages péritonéaux",
-    "stage_ic": "IC : tumeur limitée à un ou aux deux ovaires ou aux trompes de Fallope, avec l’un des éléments suivants",
-    "stage_ic1": "IC1 : rupture peropératoire",
-    "stage_ic2": "IC2 : capsule rompue avant la chirurgie ou tumeur à la surface ovarienne ou tubaire",
-    "stage_ic3": "IC3 : cellules malignes dans l’ascite ou les lavages péritonéaux",
-    "stage_ic_nos": "IC : tumeur limitée à un ou aux deux ovaires ou aux trompes de Fallope, sans autre précision",
-    "stage_ii": "II : tumeur atteignant un ou les deux ovaires ou trompes de Fallope avec extension pelvienne ou cancer péritonéal",
-    "stage_iia": "IIA : extension et / ou implants sur l’utérus et / ou les trompes de Fallope et / ou les ovaires",
-    "stage_iib": "IIB : extension à d’autres tissus intrapéritonéaux pelviens",
-    "stage_iii": "III : tumeur atteignant un ou les deux ovaires ou trompes de Fallope, ou cancer péritonéal, avec dissémination cytologiquement ou histologiquement confirmée hors du pelvis et / ou métastase aux ganglions rétro-péritonéaux",
-    "stage_iiia1": "IIIA1 : ganglions rétro-péritonéaux positifs uniquement",
-    "stage_iiia1_i": "IIIA1(i) : métastase jusqu’à 10 mm dans la plus grande dimension",
-    "stage_iiia1_ii": "IIIA1(ii) : métastase supérieure à 10 mm dans la plus grande dimension",
-    "stage_iiia2": "IIIA2 : atteinte péritonéale extrapélvienne microscopique, avec ou sans ganglions rétro-péritonéaux positifs",
-    "stage_iiib": "IIIB : métastases péritonéales macroscopiques au-delà du pelvis jusqu’à 2 cm dans la plus grande dimension, avec ou sans métastase aux ganglions rétro-péritonéaux",
-    "stage_iiic": "IIIC : métastase péritonéale macroscopique au-delà du pelvis supérieure à 2 cm dans la plus grande dimension, avec ou sans métastase aux ganglions rétro-péritonéaux",
-    "stage_iv": "IV : métastase à distance, excluant les métastases péritonéales",
-    "stage_iva": "IVA : épanchement pleural avec cytologie positive",
-    "stage_ivb": "IVB : métastases parenchymateuses et métastases aux organes extra-abdominaux"
+    "fields": {
+      "figo_stage_2021": {}
+    }
   },
   "additional_findings": {
-    "title": "CONSTATATIONS ADDITIONNELLES",
     "label": "Constatations additionnelles",
-    "none_identified": "Aucune identifiée",
-    "stic": "Carcinome séreux tubaire intraépithélial (STIC)",
-    "left": "Gauche",
-    "right": "Droit",
-    "bilateral": "Bilatéral",
-    "endometriosis": "Endométriose",
-    "within_tumor": "Dans la tumeur",
-    "outside_tumor": "En dehors de la tumeur",
-    "endosalpingiosis": "Endosalpingiose",
-    "other": "Autre (préciser)"
+    "fields": {
+      "findings": {
+        "other_specify": "Autre, préciser"
+      }
+    }
+  },
+  "tumor": {
+    "fields": {
+      "tumor_site": {
+        "right_ovary_specify": "Ovaire droit, préciser",
+        "left_ovary_specify": "Ovaire gauche, préciser",
+        "bilateral_ovaries_specify": "Ovaires bilatéraux, préciser",
+        "ovary_laterality_cannot_be_determined_explain": "Latéralité de l'ovaire ne peut être déterminée, expliquer",
+        "right_fallopian_tube_specify": "Trompe droite, préciser",
+        "left_fallopian_tube_specify": "Trompe gauche, préciser",
+        "bilateral_fallopian_tubes_specify": "Trompes bilatérales, préciser",
+        "fallopian_tube_laterality_cannot_be_determined_explain": "Latéralité de la trompe ne peut être déterminée, expliquer",
+        "right_tubo_ovarian_specify": "Complexe tubo-ovarien droit, préciser",
+        "left_tubo_ovarian_specify": "Complexe tubo-ovarien gauche, préciser",
+        "bilateral_tubo_ovarian_specify": "Complexe tubo-ovarien bilatéral, préciser",
+        "tubo_ovarian_laterality_cannot_be_determined_explain": "Latéralité tubo-ovarienne ne peut être déterminée, expliquer",
+        "primary_peritoneum_specify": "Péritoine primitif, préciser",
+        "other_specify": "Autre, préciser"
+      },
+      "tumor_size": {
+        "fields": {
+          "size_type": {
+            "label": "Taille tumorale",
+            "options": [
+              "Greatest dimension in centimeters (cm)",
+              "Ne peut pas être déterminé"
+            ]
+          },
+          "greatest_dimension_cm": {
+            "label": "Plus grande dimension (cm)"
+          },
+          "additional_dimensions_cm": {
+            "label": "Dimensions supplémentaires (cm)"
+          },
+          "cannot_be_determined_explain": {
+            "label": "Ne peut pas être déterminé (expliquer)"
+          }
+        }
+      },
+      "histologic_type": {
+        "mixed_epithelial_borderline_tumor_specify": "Tumeur borderline épithéliale mixte, préciser",
+        "mixed_carcinoma_specify": "Carcinome mixte, préciser",
+        "other_sex_cord_stromal_tumor_specify": "Autre tumeur des cordons sexuels et du stroma, préciser",
+        "teratoma_with_malignant_transformation_specify": "Tératome avec transformation maligne, préciser",
+        "malignant_struma_ovarii_specify": "Struma ovarii malin, préciser",
+        "mixed_malignant_germ_cell_tumor_specify": "Tumeur germinale maligne mixte, préciser",
+        "other_histologic_type_specify": "Autre type histologique, préciser",
+        "comment": "Commentaire"
+      },
+      "histologic_grade": {
+        "fields": {
+          "grade_system": {
+            "label": "Système de gradation",
+            "options": [
+              "Non applicable",
+              "WHO Grading System",
+              "FIGO Grading System",
+              "Silverberg Grading System",
+              "Growth Pattern-based Grading",
+              "2-Tier Grading System",
+              "3-Tier Grading System"
+            ]
+          },
+          "grade_value": {
+            "label": "Valeur du grade",
+            "options": [
+              "GB, tumeur borderline",
+              "G1, bien différencié",
+              "G2, modérément différencié",
+              "G3, peu différencié",
+              "GX, ne peut pas être évalué",
+              "Grade FIGO 1",
+              "Grade FIGO 2",
+              "Grade FIGO 3",
+              "Grade Silverberg 1",
+              "Grade Silverberg 2",
+              "Grade Silverberg 3",
+              "Bas grade, basé sur la morphologie",
+              "Haut grade, basé sur la morphologie",
+              "Autre gradation basée sur la morphologie",
+              "Bas grade",
+              "Haut grade",
+              "Grade 1 (bas grade)",
+              "Grade 2 (haut grade)",
+              "Grade 3 (haut grade)"
+            ]
+          },
+          "other_growth_pattern_based_grading_specify": {
+            "label": "Autre gradation basée sur la morphologie (préciser)"
+          },
+          "gx_cannot_be_assessed_specify": {
+            "label": "GX, ne peut pas être évalué"
+          }
+        }
+      },
+      "ovarian_surface_involvement": {
+        "cannot_be_determined_explain": "Ne peut pas être déterminé, expliquer"
+      },
+      "fallopian_tube_surface_involvement": {
+        "cannot_be_determined_explain": "Ne peut pas être déterminé, expliquer"
+      },
+      "implants": {
+        "present_specify_sites": "Présent, préciser les sites"
+      },
+      "other_tissue_organ_involvement": {
+        "other_organs_tissue_specify": "Autres organes/tissus, préciser",
+        "cannot_be_determined_explain": "Ne peut pas être déterminé, expliquer"
+      },
+      "largest_extrapelvic_peritoneal_focus": {
+        "macroscopic_2cm_or_less_specify_site": "Macroscopique ≤ 2 cm, préciser le site",
+        "macroscopic_greater_than_2cm_specify_site": "Macroscopique > 2 cm, préciser le site",
+        "cannot_be_determined_explain": "Ne peut pas être déterminé, expliquer"
+      },
+      "peritoneal_ascitic_fluid_involvement": {
+        "atypical_explain": "Atypique, expliquer",
+        "other_specify": "Autre, préciser",
+        "suspicious_explain": "Suspect, expliquer",
+        "cannot_be_determined_explain": "Ne peut pas être déterminé, expliquer"
+      },
+      "chemotherapy_response_score": {
+        "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
+      },
+      "tumor_comment": {}
+    }
+  },
+  "regional_lymph_nodes": {
+    "fields": {
+      "regional_lymph_node_status": {},
+      "nodes_with_metastasis_gt_10mm": {},
+      "nodes_with_metastasis_10mm_or_less": {},
+      "nodes_with_itcs": {},
+      "nodal_sites_with_tumor": {
+        "right_pelvic_specify": "Pelvien droit, préciser",
+        "left_pelvic_specify": "Pelvien gauche, préciser",
+        "pelvic_nos_specify": "Pelvien SAI, préciser",
+        "right_para_aortic_specify": "Para-aortique droit, préciser",
+        "left_para_aortic_specify": "Para-aortique gauche, préciser",
+        "para_aortic_nos_specify": "Para-aortique SAI, préciser",
+        "other_specify": "Autre, préciser",
+        "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
+      },
+      "size_of_largest_nodal_metastatic_deposit": {
+        "fields": {
+          "size_type": {
+            "label": "Type de mesure",
+            "options": [
+              "Exact size",
+              "Au moins",
+              "Greater than",
+              "Inférieur à",
+              "Other",
+              "Ne peut pas être déterminé"
+            ]
+          },
+          "size_mm": {
+            "label": "Taille (mm)"
+          },
+          "other_specify": {
+            "label": "Autre (préciser)"
+          },
+          "cannot_be_determined_explain": {
+            "label": "Ne peut pas être déterminé (expliquer)"
+          }
+        }
+      },
+      "location_of_largest_nodal_metastatic_deposit": {
+        "right_pelvic_specify": "Pelvien droit, préciser",
+        "left_pelvic_specify": "Pelvien gauche, préciser",
+        "pelvic_nos_specify": "Pelvien SAI, préciser",
+        "right_para_aortic_specify": "Para-aortique droit, préciser",
+        "left_para_aortic_specify": "Para-aortique gauche, préciser",
+        "para_aortic_nos_specify": "Para-aortique SAI, préciser",
+        "other_specify": "Autre, préciser",
+        "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser",
+        "cannot_be_determined_explain": "Ne peut pas être déterminé, expliquer"
+      },
+      "number_of_lymph_nodes_examined": {},
+      "nodal_sites_examined": {
+        "right_pelvic_specify": "Pelvien droit, préciser",
+        "left_pelvic_specify": "Pelvien gauche, préciser",
+        "pelvic_nos_specify": "Pelvien SAI, préciser",
+        "right_para_aortic_specify": "Para-aortique droit, préciser",
+        "left_para_aortic_specify": "Para-aortique gauche, préciser",
+        "para_aortic_nos_specify": "Para-aortique SAI, préciser",
+        "other_specify": "Autre, préciser",
+        "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
+      },
+      "regional_lymph_node_comment": {}
+    }
+  },
+  "ptnm_classification": {
+    "fields": {
+      "modified_classification": {},
+      "pT_category": {},
+      "T_suffix": {},
+      "pN_category": {},
+      "N_suffix": {},
+      "pM_category": {}
+    }
   }
 }

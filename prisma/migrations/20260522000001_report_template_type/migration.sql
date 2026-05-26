@@ -1,0 +1,1 @@
+ALTER TABLE "report_template" ADD COLUMN "type" VARCHAR(20) NOT NULL DEFAULT 'final';

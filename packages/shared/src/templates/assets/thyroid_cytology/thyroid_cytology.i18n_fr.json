@@ -6,7 +6,6 @@
     "adequacy": "Adéquation",
     "bethesda_category": "Catégorie Bethesda",
     "microscopic_description": "Description microscopique",
-    "final_interpretation": "Interprétation finale",
     "recommended_management": "Prise en charge recommandée",
     "comment": "Commentaire"
   },
@@ -17,8 +16,6 @@
     "adequacy_status": "Adéquation",
     "bethesda_category": "Catégorie Bethesda",
     "microscopic_description_text": "Description microscopique (texte libre)",
-    "final_interpretation_category": "Catégorie Bethesda",
-    "final_interpretation_text": "Interprétation finale",
     "recommended_management_options": "Prise en charge recommandée (sélectionner l’option appropriée)",
     "comment_text": "Commentaire"
   },

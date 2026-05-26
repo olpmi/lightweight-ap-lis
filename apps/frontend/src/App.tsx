@@ -11,6 +11,10 @@ import ProcessingCasePage from './pages/ProcessingCasePage';
 import ResultQueuePage from './pages/ResultQueuePage';
 import ResultCasePage from './pages/ResultCasePage';
 import QueryPage from './pages/QueryPage';
+import ConfigTemplatesPage from './pages/ConfigTemplatesPage';
+import ConfigReportManagerPage from './pages/ConfigReportManagerPage';
+import AncillaryQueuePage from './pages/AncillaryQueuePage';
+import ConfigAncillaryPage from './pages/ConfigAncillaryPage';
 
 function RequireAuth({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
@@ -49,7 +53,13 @@ export default function App() {
                 <Route path="/processing/:orderId" element={<ProcessingCasePage />} />
                 <Route path="/result" element={<ResultQueuePage />} />
                 <Route path="/result/:orderId" element={<ResultCasePage />} />
+                <Route path="/ancillary" element={<AncillaryQueuePage />} />
                 <Route path="/query" element={<QueryPage />} />
+                <Route path="/config" element={<Navigate to="/config/templates" replace />} />
+                <Route path="/config/templates/*" element={<ConfigTemplatesPage />} />
+                <Route path="/config/reports" element={<ConfigReportManagerPage />} />
+                <Route path="/config/reports/:id" element={<ConfigReportManagerPage />} />
+                <Route path="/config/ancillary" element={<ConfigAncillaryPage />} />
               </Routes>
             </AppShell>
           </RequireAuth>

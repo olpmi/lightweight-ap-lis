@@ -7,7 +7,6 @@
     "preparation_methods": "Mbinu za Maandalizi",
     "microscopic_description": "Maelezo ya Kimaikroskopi",
     "diagnostic_category": "Kategoria ya Uchunguzi",
-    "final_interpretation": "Tafsiri ya Mwisho",
     "favor_diagnosis": "Ikiwa ni Chanya / Inatiliwa Shaka / Ni Neoplasia, Inaelekea",
     "ancillary_studies": "Uchunguzi wa Ziada (ikiwa umefanywa)",
     "comment_recommendation": "Maoni / Pendekezo"
@@ -17,7 +16,6 @@
     "site": "Sehemu",
     "laterality": "Upande (ikiwa inatumika)",
     "procedure_guidance": "Mwongozo wa utaratibu",
-    "clinical_history_indication": "Historia ya kliniki / sababu ya uchunguzi",
     "adequacy_status": "Ubora wa sampuli",
     "unsatisfactory_reason": "Sababu (ikiwa haifai)",
     "preparation_methods_used": "Mbinu za maandalizi",
@@ -26,7 +24,6 @@
     "microscopic_description_text": "Maelezo ya kimaikroskopi (maandishi huru)",
     "diagnostic_category": "Kategoria ya uchunguzi",
     "diagnostic_category_other": "Nyingine",
-    "final_interpretation_text": "Tafsiri ya mwisho",
     "favor_diagnosis_options": "Ikiwa ni chanya / inatiliwa shaka / ni neoplasia, inaelekea",
     "favor_diagnosis_other": "Nyingine",
     "cell_block_findings": "Matokeo ya cell block",

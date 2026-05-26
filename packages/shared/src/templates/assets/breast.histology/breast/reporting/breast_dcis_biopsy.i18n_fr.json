@@ -3,7 +3,8 @@
   "lang": "fr",
   "title": "CCIS du sein, biopsie",
   "case_summary": {
-    "label": "Résumé du cas (CCIS du sein : biopsie)"
+    "label": "Résumé du cas (CCIS du sein : biopsie)",
+    "fields": {}
   },
   "specimen": {
     "label": "Pièce",
@@ -15,11 +16,16 @@
           "Ponction à l’aiguille fine",
           "Autre",
           "Non précisé"
-        ]
+        ],
+        "other_specify": "Précisez (autre)"
       },
       "laterality": {
         "label": "Latéralité de la pièce",
-        "options": ["Droite", "Gauche", "Non précisé"]
+        "options": [
+          "Droite",
+          "Gauche",
+          "Non précisé"
+        ]
       }
     }
   },
@@ -37,7 +43,8 @@
           "Mamelon",
           "Position horaire",
           "Non précisé"
-        ]
+        ],
+        "clock_position_specify": "Précisez la position horaire"
       },
       "histologic_type": {
         "label": "Type histologique",
@@ -58,7 +65,8 @@
           "Papillaire",
           "Solide",
           "Autre"
-        ]
+        ],
+        "other_specify": "Précisez l'autre schéma architectural"
       },
       "nuclear_grade": {
         "label": "Grade nucléaire",
@@ -68,7 +76,9 @@
           "Grade III (élevé)",
           "Autre",
           "Ne peut pas être déterminé"
-        ]
+        ],
+        "other_specify": "Précisez l'autre grade nucléaire",
+        "cannot_be_determined_specify": "Précisez 'ne peut être déterminé'"
       },
       "necrosis": {
         "label": "Nécrose",
@@ -78,7 +88,9 @@
           "Présente, centrale (nécrose de type « comédo » expansive)",
           "Autre",
           "Ne peut pas être déterminée"
-        ]
+        ],
+        "other_specify": "Précisez autre nécrose",
+        "cannot_be_determined_specify": "Précisez 'ne peut être déterminé'"
       },
       "microcalcifications": {
         "label": "Microcalcifications",
@@ -87,7 +99,8 @@
           "Présentes dans le CCIS",
           "Présentes dans le tissu non néoplasique",
           "Autre"
-        ]
+        ],
+        "other_specify": "Précisez les autres microcalcifications"
       }
     }
   },
@@ -98,5 +111,11 @@
         "label": "Constatations supplémentaires"
       }
     }
+  },
+  "domain": {
+    "fields": {}
+  },
+  "protocol_posting_date": {
+    "fields": {}
   }
 }

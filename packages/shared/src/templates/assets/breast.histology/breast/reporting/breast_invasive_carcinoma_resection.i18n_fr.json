@@ -1,404 +1,624 @@
 {
-  "meta": {
-    "template_id": "breast_invasive_carcinoma_resection",
-    "language": "fr",
-    "language_name": "Français",
-    "status": "draft_for_clinical_review"
-  },
-  "protocol": {
-    "title": "MODÈLE DE COMPTE RENDU - CARCINOME MAMMAIRE INVASIF, PIÈCE DE RÉSECTION",
-    "posting_date": "Date de publication du protocole",
-    "standard": "Référentiel",
-    "instruction_single_response": "Sélectionner une seule réponse sauf indication contraire."
-  },
-  "common": {
-    "not_applicable": "Sans objet",
-    "not_identified": "Non identifié",
-    "present": "Présent",
-    "absent": "Absent",
-    "cannot_be_determined": "Ne peut être déterminé",
-    "cannot_be_assessed": "Ne peut être évalué",
-    "not_specified": "Non précisé",
-    "other_specify": "Autre (préciser)",
-    "specify": "Préciser",
-    "explain": "Expliquer",
-    "select_all": "sélectionner tout ce qui s’applique",
-    "required_if_applicable": "requis uniquement si applicable",
-    "right": "Droit",
-    "left": "Gauche",
-    "bilateral": "Bilatéral",
-    "focal": "Focal",
-    "extensive": "Étendu",
-    "unifocal": "Unifocal",
-    "multifocal": "Multifocal",
-    "exact_number": "Nombre exact",
-    "at_least": "Au moins",
-    "exact_distance": "Distance exacte",
-    "less_than": "Inférieur à",
-    "greater_than": "Supérieur à",
-    "greater_than_or_equal": "Supérieur ou égal à",
-    "mm": "mm",
-    "percent": "%",
-    "yes": "Oui",
-    "no": "Non",
-    "comment": "Commentaire"
-  },
+  "template_id": "breast_invasive_carcinoma_resection_v1",
+  "lang": "fr",
+  "title": "MODÈLE DE COMPTE RENDU - CARCINOME MAMMAIRE INVASIF, PIÈCE DE RÉSECTION",
   "specimen": {
-    "section": "SPÉCIMEN",
-    "procedure": "Procédure",
-    "procedure_options": {
-      "excision": "Exérèse (moins qu’une mastectomie totale)",
-      "total_mastectomy": "Mastectomie totale (incluant les mastectomies avec conservation du mamelon et de la peau)",
-      "other": "Autre (préciser)",
-      "not_specified": "Non précisé"
-    },
-    "laterality": "Latéralité du spécimen",
-    "laterality_options": {
-      "right": "Droite",
-      "left": "Gauche",
-      "not_specified": "Non précisé"
+    "label": "SPÉCIMEN",
+    "fields": {
+      "procedure": {
+        "label": "Procédure",
+        "options": [
+          "Exérèse (moins qu’une mastectomie totale)",
+          "Mastectomie totale (incluant les mastectomies avec conservation du mamelon et de la peau)",
+          "Autre (préciser)",
+          "Non précisé"
+        ],
+        "other_specify": "Précisez (autre)"
+      },
+      "laterality": {
+        "label": "Latéralité du spécimen",
+        "options": [
+          "Droite",
+          "Gauche",
+          "Non précisé"
+        ]
+      }
     }
   },
   "tumor": {
-    "section": "TUMEUR",
-    "site": "Site tumoral",
-    "site_options": {
-      "upper_outer_quadrant": "Quadrant supéro-externe",
-      "lower_outer_quadrant": "Quadrant inféro-externe",
-      "upper_inner_quadrant": "Quadrant supéro-interne",
-      "lower_inner_quadrant": "Quadrant inféro-interne",
-      "central": "Central",
-      "nipple": "Mamelon",
-      "clock_position": "Position horaire",
-      "not_specified": "Non précisé"
-    },
-    "histologic_type": "Type histologique",
-    "histologic_type_options": {
-      "no_residual_invasive_carcinoma": "Aucun carcinome invasif résiduel",
-      "invasive_carcinoma_nst": "Carcinome invasif de type non spécifique (canalaire)",
-      "microinvasive_carcinoma": "Carcinome micro-invasif",
-      "invasive_lobular_carcinoma": "Carcinome lobulaire invasif",
-      "mixed_ductal_lobular": "Carcinome avec caractéristiques canalaires et lobulaires mixtes",
-      "features_of": "Carcinome invasif avec caractéristiques de (préciser)",
-      "tubular": "Carcinome tubulaire",
-      "invasive_cribriform": "Carcinome cribriforme invasif",
-      "mucinous": "Carcinome mucineux",
-      "invasive_micropapillary": "Carcinome micropapillaire invasif",
-      "apocrine": "Adénocarcinome apocrine",
-      "metaplastic": "Carcinome métaplasique",
-      "encapsulated_papillary_with_invasion": "Carcinome papillaire encapsulé avec invasion",
-      "solid_papillary_with_invasion": "Carcinome papillaire solide avec invasion",
-      "intraductal_papillary_with_invasion": "Adénocarcinome papillaire intracanalaire avec invasion",
-      "adenoid_cystic": "Carcinome adénoïde kystique",
-      "neuroendocrine_tumor": "Tumeur neuroendocrine",
-      "neuroendocrine_carcinoma": "Carcinome neuroendocrine",
-      "type_cannot_be_determined": "Carcinome invasif, type indéterminé",
-      "other": "Autre type histologique non listé (préciser)"
-    },
-    "histologic_type_comment": "Commentaire sur le type histologique",
-    "histologic_grade": "Grade histologique (score de Nottingham)",
-    "grade_options": {
-      "not_applicable": "Sans objet (absence de carcinome résiduel ou micro-invasion uniquement)",
-      "nottingham_score": "Score de Nottingham",
-      "only_microinvasion_not_graded": "Micro-invasion uniquement (non gradée)",
-      "score_cannot_be_determined": "Score ne pouvant être déterminé"
-    },
-    "glandular_tubular_differentiation": "Différenciation glandulaire/tubulaire",
-    "glandular_tubular_options": {
-      "score_1": "Score 1 (plus de 75 % de la surface tumorale forme des structures glandulaires/tubulaires)",
-      "score_2": "Score 2 (10 à 75 % de la surface tumorale forme des structures glandulaires/tubulaires)",
-      "score_3": "Score 3 (moins de 10 % de la surface tumorale forme des structures glandulaires/tubulaires)"
-    },
-    "nuclear_pleomorphism": "Pléomorphisme nucléaire",
-    "nuclear_options": {
-      "score_1": "Score 1 (noyaux petits, légère augmentation de taille, contours réguliers, chromatine uniforme, faible variation de taille)",
-      "score_2": "Score 2 (cellules plus grandes que la normale, noyaux vésiculeux ouverts, nucléoles visibles, variabilité modérée de taille et de forme)",
-      "score_3": "Score 3 (noyaux vésiculeux, souvent avec nucléoles proéminents, variation marquée de taille et de forme, parfois formes très grandes et atypiques)"
-    },
-    "mitotic_rate": "Index mitotique",
-    "mitotic_rate_options": {
-      "see_table": "Voir le tableau 1 de la note D",
-      "score_1": "Score 1",
-      "score_2": "Score 2",
-      "score_3": "Score 3"
-    },
-    "overall_grade": "Grade global",
-    "overall_grade_options": {
-      "grade_1": "Grade 1 (scores 3, 4 ou 5)",
-      "grade_2": "Grade 2 (scores 6 ou 7)",
-      "grade_3": "Grade 3 (scores 8 ou 9)",
-      "only_microinvasion_not_graded": "Micro-invasion uniquement (non gradée)",
-      "score_cannot_be_determined": "Score ne pouvant être déterminé (expliquer)"
-    },
-    "tumor_size": "Taille tumorale",
-    "tumor_size_options": {
-      "no_residual": "Aucun carcinome invasif résiduel",
-      "microinvasion_only": "Micro-invasion uniquement (≤ 1 mm)",
-      "greatest_dimension_largest_focus": "Plus grande dimension du plus grand foyer invasif > 1 mm (préciser la mesure exacte en mm)",
-      "additional_dimension": "Dimension supplémentaire en mm",
-      "cannot_be_determined": "La taille du plus grand foyer invasif ne peut être déterminée (expliquer)"
-    },
-    "focality": "Focalité tumorale",
-    "focality_options": {
-      "single_focus": "Foyer unique de carcinome invasif",
-      "multiple_foci": "Foyers multiples de carcinome invasif",
-      "number_of_foci": "Nombre de foyers",
-      "sizes_of_individual_foci": "Tailles des foyers individuels en mm (peuvent être notées sur une seule ligne avec des points-virgules comme séparateurs)"
-    },
-    "dcis": "Carcinome canalaire in situ (DCIS)",
-    "dcis_options": {
-      "not_identified": "Non identifié",
-      "present": "Présent",
-      "negative_eic": "Négatif pour une composante intracanalaire extensive (EIC)",
-      "positive_eic": "Positif pour une composante intracanalaire extensive (EIC)",
-      "only_dcis_after_neoadjuvant": "Seul le DCIS est présent après traitement néoadjuvant"
-    },
-    "dcis_size": "Taille/extension du DCIS",
-    "dcis_architectural_patterns": "Architectures du DCIS",
-    "dcis_patterns": {
-      "comedo": "Comédocarcinome",
-      "paget": "Maladie de Paget (DCIS atteignant la peau du mamelon)",
-      "cribriform": "Cribriforme",
-      "micropapillary": "Micropapillaire",
-      "papillary": "Papillaire",
-      "solid": "Solide",
-      "other": "Autre (préciser)"
-    },
-    "nuclear_grade": "Grade nucléaire",
-    "nuclear_grade_options": {
-      "grade_i": "Grade I (bas)",
-      "grade_ii": "Grade II (intermédiaire)",
-      "grade_iii": "Grade III (haut)"
-    },
-    "necrosis": "Nécrose",
-    "necrosis_options": {
-      "not_identified": "Non identifiée",
-      "focal": "Présente, focale",
-      "central_comedo": "Présente, centrale (nécrose comédonienne expansive)"
-    },
-    "blocks_with_dcis": "Nombre de blocs avec DCIS",
-    "blocks_examined": "Nombre de blocs examinés",
-    "cannot_be_excluded": "Ne peut être exclu",
-    "lcis": "Carcinome lobulaire in situ (LCIS)",
-    "tumor_extent": "Extension tumorale",
-    "tumor_extent_required": "Extension tumorale (requise uniquement si la peau, le mamelon ou le muscle squelettique sont présents et atteints)",
-    "tumor_extent_options": {
-      "not_applicable": "Sans objet (peau, mamelon et muscle squelettique absents ou non atteints)",
-      "skin_present_involved": "La peau est présente et atteinte",
-      "skeletal_muscle_present_involved": "Le muscle squelettique est présent et atteint"
-    },
-    "skin_invasion": "Invasion cutanée",
-    "skin_invasion_options": {
-      "dermis_epidermis_no_ulceration": "Le carcinome envahit directement le derme ou l’épiderme sans ulcération cutanée",
-      "dermis_epidermis_with_ulceration": "Le carcinome envahit directement le derme ou l’épiderme avec ulcération cutanée",
-      "no_direct_invasion": "Le carcinome n’envahit pas directement le derme ou l’épiderme"
-    },
-    "skin_satellite_foci": "Foyers cutanés satellites",
-    "skin_satellite_options": {
-      "not_identified": "Non identifiés",
-      "present": "Des foyers cutanés satellites de carcinome invasif sont présents",
-      "dcis_nipple_epidermis": "Le DCIS atteint l’épiderme du mamelon (maladie de Paget du mamelon)"
-    },
-    "skeletal_muscle": "Muscle squelettique",
-    "skeletal_muscle_options": {
-      "invades_skeletal_muscle": "Le carcinome envahit le muscle squelettique",
-      "invades_chest_wall": "Le carcinome envahit le muscle squelettique et la paroi thoracique"
-    },
-    "lymphovascular_invasion": "Invasion lymphatique et/ou vasculaire",
-    "lvi_options": {
-      "not_identified": "Non identifiée",
-      "present": "Présente",
-      "focal": "Focale (LVI dans un seul bloc)",
-      "extensive": "Étendue (LVI dans deux blocs ou plus)",
-      "cannot_be_determined": "Ne peut être déterminée"
-    },
-    "dermal_lvi": "Invasion lymphatique et/ou vasculaire dermique",
-    "dermal_lvi_options": {
-      "no_skin_present": "Pas de peau présente",
-      "not_identified": "Non identifiée",
-      "present": "Présente",
-      "cannot_be_determined": "Ne peut être déterminée"
-    },
-    "microcalcifications": "Microcalcifications",
-    "microcalcifications_options": {
-      "not_identified": "Non identifiées",
-      "present_in_dcis": "Présentes dans le DCIS",
-      "present_in_invasive": "Présentes dans le carcinome invasif",
-      "present_in_non_neoplastic": "Présentes dans le tissu non néoplasique",
-      "other": "Autre (préciser)"
-    },
-    "treatment_effect_breast": "Effet du traitement dans le sein",
-    "treatment_effect_breast_options": {
-      "no_known_presurgical": "Aucun traitement préopératoire connu",
-      "no_definite_response": "Aucune réponse évidente au traitement préopératoire dans le carcinome invasif",
-      "probable_definite_response": "Réponse probable ou évidente au traitement préopératoire dans le carcinome invasif",
-      "no_residual_after_presurgical": "Aucun carcinome invasif résiduel dans le sein après traitement préopératoire"
-    },
-    "treatment_effect_nodes": "Effet du traitement dans les ganglions lymphatiques",
-    "treatment_effect_nodes_options": {
-      "not_applicable": "Sans objet",
-      "no_definite_response": "Aucune réponse évidente au traitement préopératoire dans le carcinome métastatique",
-      "probable_definite_response": "Réponse probable ou évidente dans le carcinome métastatique",
-      "no_metastases_with_scarring": "Pas de métastases ganglionnaires; cicatrice fibreuse ou agrégats histiocytaires possiblement liés à d’anciennes métastases avec réponse pathologique complète",
-      "no_metastases_no_scarring": "Pas de métastases ganglionnaires et pas de cicatrice fibreuse ni d’agrégats histiocytaires"
-    },
-    "rcb": "Paramètres de charge tumorale résiduelle (RCB)",
-    "primary_tumor_bed": "Lit tumoral primaire",
-    "greatest_dimension_tumor_bed": "Plus grande dimension du lit tumoral primaire en mm (atteint par du carcinome viable résiduel)",
-    "second_dimension_tumor_bed": "Deuxième plus grande dimension du lit tumoral primaire en mm",
-    "overall_cancer_cellularity": "Pourcentage global de cellularité tumorale",
-    "in_situ_percentage": "Pourcentage de cancer correspondant à une maladie in situ",
-    "positive_lymph_nodes": "Nombre de ganglions lymphatiques positifs",
-    "largest_nodal_metastasis_diameter": "Diamètre de la plus grande métastase ganglionnaire en mm",
-    "rcb_score": "Charge tumorale résiduelle",
-    "rcb_class": "Classe de charge tumorale résiduelle",
-    "rcb_classes": {
-      "rcb_0": "RCB-0 (pCR)",
-      "rcb_i": "RCB-I",
-      "rcb_ii": "RCB-II",
-      "rcb_iii": "RCB-III"
+    "label": "TUMEUR",
+    "fields": {
+      "tumor_site": {
+        "label": "Site tumoral",
+        "clock_position_specify": "Précisez la position horaire"
+      },
+      "histologic_type": {
+        "label": "Type histologique",
+        "options": [
+          "Aucun carcinome invasif résiduel",
+          "Carcinome invasif de type non spécifique (canalaire)",
+          "Carcinome micro-invasif",
+          "Carcinome lobulaire invasif",
+          "Carcinome avec caractéristiques canalaires et lobulaires mixtes",
+          "Carcinome invasif avec caractéristiques de (préciser)",
+          "Carcinome tubulaire",
+          "Carcinome cribriforme invasif",
+          "Carcinome mucineux",
+          "Carcinome micropapillaire invasif",
+          "Adénocarcinome apocrine",
+          "Carcinome métaplasique",
+          "Carcinome papillaire encapsulé avec invasion",
+          "Carcinome papillaire solide avec invasion",
+          "Adénocarcinome papillaire intracanalaire avec invasion",
+          "Carcinome adénoïde kystique",
+          "Tumeur neuroendocrine",
+          "Carcinome neuroendocrine",
+          "Carcinome invasif, type indéterminé",
+          "Autre type histologique non listé (préciser)"
+        ],
+        "features_specify": "Précisez les caractéristiques",
+        "cannot_be_determined_specify": "Précisez 'ne peut être déterminé'",
+        "other_specify": "Précisez (autre)",
+        "comment": "Commentaire"
+      },
+      "histologic_grade": {
+        "label": "Grade histologique (score de Nottingham)",
+        "fields": {
+          "applicability": {
+            "label": "Applicabilité",
+            "options": [
+              "Non applicable (aucun carcinome résiduel ou micro-invasion uniquement)",
+              "Score de Nottingham"
+            ]
+          },
+          "glandular_tubular_differentiation": {
+            "label": "Différenciation glandulaire/tubulaire",
+            "options": [
+              "Score 1 (plus de 75 % de la surface tumorale forme des structures glandulaires/tubulaires)",
+              "Score 2 (10 à 75 % de la surface tumorale forme des structures glandulaires/tubulaires)",
+              "Score 3 (moins de 10 % de la surface tumorale forme des structures glandulaires/tubulaires)",
+              "Micro-invasion uniquement (non gradée)",
+              "Score ne pouvant être déterminé (expliquer)"
+            ],
+            "cannot_be_determined_specify": "Précisez 'ne peut être déterminé'"
+          },
+          "nuclear_pleomorphism": {
+            "label": "Pléomorphisme nucléaire",
+            "options": [
+              "Score 1 (noyaux petits, légère augmentation de taille, contours réguliers, chromatine uniforme, faible variation de taille)",
+              "Score 2 (cellules plus grandes que la normale, noyaux vésiculeux ouverts, nucléoles visibles, variabilité modérée de taille et de forme)",
+              "Score 3 (noyaux vésiculeux, souvent avec nucléoles proéminents, variation marquée de taille et de forme, parfois formes très grandes et atypiques)",
+              "Micro-invasion uniquement (non gradée)",
+              "Score ne pouvant être déterminé (expliquer)"
+            ],
+            "cannot_be_determined_specify": "Précisez 'ne peut être déterminé'"
+          },
+          "mitotic_rate": {
+            "label": "Index mitotique",
+            "options": [
+              "Score 1",
+              "Score 2",
+              "Score 3",
+              "Micro-invasion uniquement (non gradée)",
+              "Score ne pouvant être déterminé (expliquer)"
+            ],
+            "reference_note": "Voir le tableau 1 de la note D",
+            "cannot_be_determined_specify": "Précisez 'ne peut être déterminé'"
+          },
+          "overall_grade": {
+            "label": "Grade global",
+            "options": [
+              "Grade 1 (scores 3, 4 ou 5)",
+              "Grade 2 (scores 6 ou 7)",
+              "Grade 3 (scores 8 ou 9)",
+              "Micro-invasion uniquement (non gradée)",
+              "Score ne pouvant être déterminé (expliquer)"
+            ],
+            "cannot_be_determined_specify": "Précisez 'ne peut être déterminé'"
+          }
+        }
+      },
+      "tumor_size": {
+        "label": "Taille tumorale",
+        "fields": {
+          "size_type": {
+            "options": [
+              "Aucun carcinome invasif résiduel",
+              "Micro-invasion uniquement (≤ 1 mm)",
+              "Plus grande dimension du plus grand foyer invasif > 1 mm",
+              "La taille du plus grand foyer invasif ne peut être déterminée"
+            ],
+            "label": "Taille tumorale"
+          },
+          "greatest_dimension_mm": {
+            "label": "Plus grande dimension (mm)"
+          },
+          "additional_dimensions_mm": {
+            "label": "Dimensions supplémentaires (mm)"
+          },
+          "cannot_be_determined_explain": {
+            "label": "La taille du plus grand foyer invasif ne peut être déterminée (expliquer)"
+          }
+        }
+      },
+      "tumor_focality": {
+        "label": "Focalité tumorale",
+        "fields": {
+          "status": {
+            "label": "Focalité tumorale",
+            "options": [
+              "Foyer unique de carcinome invasif",
+              "Foyers multiples de carcinome invasif"
+            ]
+          },
+          "number_of_foci": {
+            "label": "Nombre de foyers",
+            "fields": {
+              "count_type": {
+                "label": "Type de compte",
+                "options": [
+                  "Préciser le nombre",
+                  "Au moins",
+                  "Ne peut pas être déterminé"
+                ]
+              },
+              "count_value": {
+                "label": "Nombre de foyers"
+              }
+            }
+          },
+          "sizes_of_individual_foci_mm": {
+            "label": "Tailles des foyers individuels en millimètres (mm)"
+          },
+          "sizes_cannot_be_determined": {
+            "label": "Les tailles des foyers individuels ne peuvent être déterminées"
+          }
+        }
+      }
     }
   },
   "margins": {
-    "section": "MARGES",
-    "invasive_margin_status": "Statut des marges pour le carcinome invasif",
-    "invasive_margin_status_options": {
-      "not_applicable": "Sans objet (absence de carcinome invasif résiduel dans le spécimen)",
-      "all_negative": "Toutes les marges sont négatives pour le carcinome invasif",
-      "positive": "Carcinome invasif présent à la marge"
-    },
-    "distance_invasive_to_closest_margin": "Distance entre le carcinome invasif et la marge la plus proche",
-    "closest_margins_invasive": "Marge(s) la/les plus proche(s) du carcinome invasif",
-    "margin_names": {
-      "anterior": "Antérieure",
-      "posterior": "Postérieure",
-      "superior": "Supérieure",
-      "inferior": "Inférieure",
-      "medial": "Médiale",
-      "lateral": "Latérale",
-      "other": "Autre",
-      "cannot_be_determined": "Ne peut être déterminée"
-    },
-    "invasive_margins_involved": "Marge(s) atteinte(s) par le carcinome invasif",
-    "positive_margin_note": "Le statut de marge est considéré positif lorsqu’il y a de l’encre sur le carcinome invasif.",
-    "dcis_margin_status": "Statut des marges pour le DCIS",
-    "dcis_margin_status_options": {
-      "not_applicable": "Sans objet (pas de DCIS dans le spécimen)",
-      "all_negative": "Toutes les marges sont négatives pour le DCIS",
-      "positive": "DCIS présent à la marge"
-    },
-    "distance_dcis_to_closest_margin": "Distance entre le DCIS et la marge la plus proche",
-    "closest_margins_dcis": "Marge(s) la/les plus proche(s) du DCIS",
-    "dcis_margins_involved": "Marge(s) atteinte(s) par le DCIS"
-  },
-  "regional_lymph_nodes": {
-    "section": "GANGLIONS LYMPHATIQUES RÉGIONAUX",
-    "status": "Statut des ganglions lymphatiques régionaux",
-    "status_options": {
-      "not_applicable": "Sans objet (aucun ganglion régional soumis ou retrouvé)",
-      "present": "Ganglions lymphatiques régionaux présents",
-      "all_negative": "Tous les ganglions lymphatiques régionaux sont négatifs pour la tumeur",
-      "tumor_present": "Tumeur présente dans un/des ganglion(s) lymphatique(s) régional(aux)"
-    },
-    "macrometastases": "Nombre de ganglions avec macrométastases (> 2 mm)",
-    "micrometastases": "Nombre de ganglions avec micrométastases (> 0,2 mm à 2 mm et/ou > 200 cellules)",
-    "isolated_tumor_cells": "Nombre de ganglions avec cellules tumorales isolées (≤ 0,2 mm ou ≤ 200 cellules)",
-    "largest_metastatic_deposit": "Taille du plus grand dépôt métastatique ganglionnaire",
-    "extranodal_extension": "Extension extranodale",
-    "extranodal_options": {
-      "not_identified": "Non identifiée",
-      "present_2mm_or_less": "Présente, ≤ 2 mm",
-      "present_greater_than_2mm": "Présente, > 2 mm",
-      "specify_amount": "Préciser la quantité",
-      "present": "Présente",
-      "cannot_be_determined": "Ne peut être déterminée",
-      "other": "Autre (préciser)"
-    },
-    "total_nodes_examined": "Nombre total de ganglions examinés (sentinelles et non sentinelles)",
-    "sentinel_nodes_examined": "Nombre de ganglions sentinelles examinés",
-    "comment": "Commentaire sur les ganglions lymphatiques régionaux"
-  },
-  "distant_metastasis": {
-    "section": "MÉTASTASE À DISTANCE",
-    "sites_involved": "Site(s) distant(s) atteint(s), le cas échéant",
-    "sites": {
-      "not_applicable": "Sans objet",
-      "nonregional_lymph_nodes": "Ganglion(s) lymphatique(s) non régional(aux) (préciser si possible)",
-      "lung": "Poumon",
-      "liver": "Foie",
-      "bone": "Os",
-      "brain": "Cerveau",
-      "other": "Autre (préciser)",
-      "cannot_be_determined": "Ne peut être déterminé"
+    "label": "MARGES",
+    "fields": {
+      "dcis_margin_status": {
+        "label": "Statut des marges pour le DCIS",
+        "fields": {
+          "status": {
+            "options": [
+              "Sans objet (pas de DCIS dans le spécimen)",
+              "Toutes les marges sont négatives pour le DCIS",
+              "DCIS présent à la marge"
+            ]
+          },
+          "distance_to_closest_margin": {
+            "label": "Distance du DCIS à la marge la plus proche"
+          },
+          "closest_margins": {
+            "label": "Marge(s) la(les) plus proche(s) du DCIS",
+            "options": [
+              "Non applicable",
+              "Anterior",
+              "Posterior",
+              "Superior",
+              "Inferior",
+              "Medial",
+              "Lateral",
+              "Other",
+              "Ne peut pas être déterminé"
+            ],
+            "other_specify": "Autre, préciser",
+            "cannot_be_determined_explain": "Ne peut pas être déterminé, expliquer"
+          },
+          "margins_involved": {
+            "label": "Marge(s) atteinte(s) par le DCIS",
+            "item_label": "Libellé"
+          }
+        }
+      },
+      "invasive_carcinoma_margin_status": {
+        "fields": {
+          "status": {
+            "label": "Statut de la marge pour le carcinome invasif",
+            "options": [
+              "Non applicable (carcinome invasif résiduel absent dans le prélèvement)",
+              "Toutes les marges négatives pour le carcinome invasif",
+              "Carcinome invasif présent à la marge"
+            ]
+          },
+          "distance_to_closest_margin": {
+            "label": "Distance du carcinome invasif à la marge la plus proche"
+          },
+          "closest_margins": {
+            "label": "Marge(s) la(les) plus proche(s) du carcinome invasif",
+            "options": [
+              "Anterior",
+              "Posterior",
+              "Superior",
+              "Inferior",
+              "Medial",
+              "Lateral",
+              "Other",
+              "Ne peut pas être déterminé"
+            ],
+            "other_specify": "Autre, préciser",
+            "cannot_be_determined_explain": "Ne peut pas être déterminé, expliquer"
+          },
+          "margins_involved": {
+            "label": "Marge(s) atteinte(s) par le carcinome invasif",
+            "item_label": "Libellé"
+          }
+        }
+      }
     }
   },
-  "ptnm": {
-    "section": "CLASSIFICATION pTNM (AJCC, 8e édition)",
-    "note": "La déclaration des catégories pT, pN et, le cas échéant, pM repose sur les informations disponibles pour le pathologiste au moment de l’émission du compte rendu.",
-    "modified_classification": "Classification modifiée",
-    "modified_options": {
-      "not_applicable": "Sans objet",
-      "y": "y (après traitement néoadjuvant)",
-      "r": "r (récidive)"
-    },
-    "pt_category": "Catégorie pT",
-    "pt_options": {
-      "pt_not_assigned": "pT non attribué (ne peut être déterminé selon les informations pathologiques disponibles)",
-      "pt0": "pT0 : aucune preuve de tumeur primitive",
-      "ptis_dcis": "pTis (DCIS) : carcinome canalaire in situ",
-      "ptis_paget": "pTis (Paget) : maladie de Paget du mamelon non associée à un carcinome invasif et/ou à un DCIS dans le parenchyme mammaire",
-      "pt1": "pT1 : tumeur ≤ 20 mm dans sa plus grande dimension",
-      "pt1mi": "pT1mi : tumeur ≤ 1 mm dans sa plus grande dimension",
-      "pt1a": "pT1a : tumeur > 1 mm mais ≤ 5 mm",
-      "pt1b": "pT1b : tumeur > 5 mm mais ≤ 10 mm",
-      "pt1c": "pT1c : tumeur > 10 mm mais ≤ 20 mm",
-      "pt1_subcategory_unknown": "pT1 (sous-catégorie indéterminée)",
-      "pt2": "pT2 : tumeur > 20 mm mais ≤ 50 mm",
-      "pt3": "pT3 : tumeur > 50 mm",
-      "pt4": "pT4 : tumeur de toute taille avec extension directe à la paroi thoracique et/ou à la peau",
-      "pt4a": "pT4a : extension à la paroi thoracique",
-      "pt4b": "pT4b : ulcération et/ou nodules cutanés satellites ipsilatéraux et/ou œdème cutané",
-      "pt4c": "pT4c : T4a et T4b présents",
-      "pt4d": "pT4d : carcinome inflammatoire",
-      "pt4_subcategory_unknown": "pT4 (sous-catégorie indéterminée)"
-    },
-    "t_suffix": "Suffixe T",
-    "t_suffix_options": {
-      "not_applicable": "Sans objet",
-      "m": "(m) tumeurs primitives synchrones multiples dans un seul organe"
-    },
-    "pn_category": "Catégorie pN",
-    "pn_options": {
-      "pn_not_assigned_no_nodes": "pN non attribué (aucun ganglion soumis ou retrouvé)",
-      "pn_not_assigned_unknown": "pN non attribué (ne peut être déterminé selon les informations pathologiques disponibles)",
-      "pn0": "pN0 : aucune métastase ganglionnaire régionale identifiée ou ITCs uniquement",
-      "pn0_i_plus": "pN0 (i+) : ITCs uniquement dans les ganglions régionaux",
-      "pn0_mol_plus": "pN0 (mol+) : résultats moléculaires positifs par RT-PCR; aucune ITC détectée",
-      "pn1mi": "pN1mi : micrométastases",
-      "pn1a": "pN1a : métastases dans 1 à 3 ganglions axillaires",
-      "pn1b": "pN1b : métastases dans les ganglions sentinelles mammaires internes ipsilatéraux, hors ITCs",
-      "pn1c": "pN1c : pN1a et pN1b combinés",
-      "pn2a": "pN2a : métastases dans 4 à 9 ganglions axillaires",
-      "pn2b": "pN2b : métastases dans les ganglions mammaires internes détectés cliniquement",
-      "pn3a": "pN3a : métastases dans 10 ganglions axillaires ou plus ou dans les ganglions infraclaviculaires",
-      "pn3b": "pN3b : pN1a ou pN2a en présence de cN2b, ou pN2a en présence de pN1b",
-      "pn3c": "pN3c : métastases dans les ganglions supraclaviculaires ipsilatéraux"
-    },
-    "n_suffix": "Suffixe N",
-    "n_suffix_options": {
-      "not_applicable": "Sans objet",
-      "sn": "(sn) : ganglion(s) sentinelle(s) évalué(s)",
-      "f": "(f) : métastase ganglionnaire confirmée par cytoponction ou biopsie au trocart"
-    },
-    "pm_category": "Catégorie pM",
-    "pm_options": {
-      "not_applicable": "Sans objet - pM ne peut être déterminé à partir du/des spécimen(s) soumis",
-      "pm1": "pM1 : métastases histologiquement prouvées > 0,2 mm"
-    },
-    "previous_case_number": "Préciser le numéro de cas s’il provient d’une procédure antérieure"
+  "regional_lymph_nodes": {
+    "label": "GANGLIONS LYMPHATIQUES RÉGIONAUX",
+    "fields": {
+      "regional_lymph_node_status": {
+        "label": "Statut des ganglions lymphatiques régionaux"
+      },
+      "number_with_macrometastases": {
+        "label": "Nombre de ganglions avec macrométastases (> 2 mm)",
+        "fields": {
+          "count_type": {
+            "label": "Type de compte",
+            "options": [
+              "Exact number",
+              "Au moins",
+              "Other",
+              "Ne peut pas être déterminé"
+            ]
+          },
+          "count_value": {
+            "label": "Compte"
+          },
+          "other_specify": {
+            "label": "other specify"
+          },
+          "cannot_be_determined_explain": {
+            "label": "cannot be determined explain"
+          }
+        }
+      },
+      "number_with_micrometastases": {
+        "label": "Nombre de ganglions avec micrométastases (> 0,2 mm à 2 mm et/ou > 200 cellules)",
+        "fields": {
+          "count_type": {
+            "label": "Type de compte",
+            "options": [
+              "Exact number",
+              "Au moins",
+              "Other",
+              "Ne peut pas être déterminé"
+            ]
+          },
+          "count_value": {
+            "label": "Compte"
+          },
+          "other_specify": {
+            "label": "other specify"
+          },
+          "cannot_be_determined_explain": {
+            "label": "cannot be determined explain"
+          }
+        }
+      },
+      "extranodal_extension": {
+        "label": "Extension extranodale",
+        "options": [
+          "Non identifiée",
+          "Présente, ≤ 2 mm",
+          "Présente, > 2 mm",
+          "Préciser la quantité",
+          "Présente",
+          "Ne peut être déterminée",
+          "Autre (préciser)"
+        ],
+        "fields": {
+          "status": {
+            "label": "Statut des ganglions lymphatiques régionaux",
+            "options": [
+              "Sans objet (aucun ganglion régional soumis ou retrouvé)",
+              "Ganglions lymphatiques régionaux présents",
+              "Tous les ganglions lymphatiques régionaux sont négatifs pour la tumeur",
+              "Tumeur présente dans un/des ganglion(s) lymphatique(s) régional(aux)"
+            ]
+          },
+          "amount": {
+            "label": "Préciser la quantité"
+          },
+          "cannot_be_determined_specify": {
+            "label": "cannot be determined specify"
+          },
+          "other_specify": {
+            "label": "other specify"
+          },
+          "cannot_be_determined_explain": {
+            "label": "cannot be determined explain"
+          }
+        },
+        "cannot_be_determined_specify": "Précisez 'ne peut être déterminé'",
+        "other_specify": "Précisez (autre)",
+        "cannot_be_determined_explain": "Expliquez 'ne peut être déterminé'"
+      },
+      "comment": {
+        "label": "Commentaire sur les ganglions lymphatiques régionaux"
+      },
+      "number_with_isolated_tumor_cells": {
+        "fields": {
+          "count_type": {
+            "label": "Type de compte",
+            "options": [
+              "Non applicable",
+              "Exact number",
+              "Au moins",
+              "Other",
+              "Ne peut pas être déterminé"
+            ]
+          },
+          "count_value": {
+            "label": "Compte"
+          },
+          "other_specify": {
+            "label": "other specify"
+          },
+          "cannot_be_determined_explain": {
+            "label": "cannot be determined explain"
+          }
+        }
+      },
+      "size_of_largest_nodal_metastatic_deposit": {
+        "fields": {
+          "size_type": {
+            "label": "Type de mesure",
+            "options": [
+              "Exact size",
+              "Inférieur à",
+              "Greater than",
+              "Other",
+              "Ne peut pas être déterminé"
+            ]
+          },
+          "size_mm": {
+            "label": "Taille (mm)"
+          },
+          "other_specify": {
+            "label": "other specify"
+          },
+          "cannot_be_determined_explain": {
+            "label": "cannot be determined explain"
+          }
+        }
+      },
+      "total_number_examined": {
+        "fields": {
+          "count_type": {
+            "label": "Type de compte",
+            "options": [
+              "Exact number",
+              "Au moins",
+              "Other",
+              "Ne peut pas être déterminé"
+            ]
+          },
+          "count_value": {
+            "label": "Compte"
+          },
+          "other_specify": {
+            "label": "other specify"
+          },
+          "cannot_be_determined_explain": {
+            "label": "cannot be determined explain"
+          }
+        }
+      },
+      "number_of_sentinel_nodes_examined": {
+        "fields": {
+          "count_type": {
+            "label": "Type de compte",
+            "options": [
+              "Non applicable",
+              "Exact number",
+              "Au moins",
+              "Other",
+              "Ne peut pas être déterminé"
+            ]
+          },
+          "count_value": {
+            "label": "Compte"
+          },
+          "other_specify": {
+            "label": "other specify"
+          },
+          "cannot_be_determined_explain": {
+            "label": "cannot be determined explain"
+          }
+        }
+      }
+    }
+  },
+  "distant_metastasis": {
+    "label": "MÉTASTASE À DISTANCE",
+    "fields": {
+      "sites_involved": {
+        "label": "Site(s) distant(s) atteint(s), le cas échéant",
+        "non_regional_lymph_nodes_specify": "Précisez les ganglions lymphatiques non régionaux",
+        "lung_specify": "Précisez les poumons",
+        "liver_specify": "Précisez le foie",
+        "bone_specify": "Précisez les os",
+        "brain_specify": "Précisez le cerveau",
+        "other_specify": "Précisez (autre)",
+        "cannot_be_determined_specify": "Précisez 'ne peut être déterminé'"
+      }
+    }
   },
   "additional_findings": {
-    "section": "CONSTATATIONS ADDITIONNELLES",
-    "additional_findings_specify": "Constatations additionnelles (préciser)"
+    "label": "CONSTATATIONS ADDITIONNELLES",
+    "fields": {
+      "findings": {}
+    }
+  },
+  "dcis_lcis": {
+    "label": "CARCINOME IN SITU",
+    "fields": {
+      "dcis": {
+        "fields": {
+          "presence": {
+            "label": "DCIS",
+            "options": [
+              "Non identifié",
+              "Présent",
+              "Négatif pour une composante intracanalaire étendue (CIE)",
+              "Positif pour une composante intracanalaire étendue (CIE)",
+              "Seul le DCIS est présent après la thérapie préopératoire (néoadjuvante)"
+            ]
+          },
+          "size_extent": {
+            "label": "Taille (étendue) du DCIS"
+          },
+          "architectural_patterns": {
+            "label": "Aspects architecturaux",
+            "options": [
+              "Comédon",
+              "Maladie de Paget (DCIS impliquant la peau du mamelon)",
+              "Cribriforme",
+              "Micropapillaire",
+              "Papillaire",
+              "Solide",
+              "Other"
+            ],
+            "other_specify": "Autre, préciser"
+          },
+          "nuclear_grade": {
+            "label": "Grade nucléaire",
+            "options": [
+              "Grade I (bas)",
+              "Grade II (intermédiaire)",
+              "Grade III (haut)"
+            ]
+          },
+          "necrosis": {
+            "label": "Nécrose",
+            "options": [
+              "Non identifié",
+              "Present, focal (small foci or single cell necrosis)",
+              "Present, central (expansive \"comedo\" necrosis)"
+            ]
+          },
+          "number_of_blocks_with_dcis": {
+            "label": "Nombre de blocs avec DCIS"
+          },
+          "number_of_blocks_examined": {
+            "label": "Nombre de blocs examinés"
+          },
+          "cannot_be_excluded": {
+            "label": "Ne peut pas être exclu"
+          }
+        }
+      },
+      "lcis": {}
+    }
+  },
+  "tumor_extent": {
+    "label": "ÉTENDUE DE LA TUMEUR",
+    "fields": {
+      "extent_status": {},
+      "skin_invasion": {},
+      "skin_satellite_foci": {},
+      "skeletal_muscle": {}
+    }
+  },
+  "invasion_and_calcifications": {
+    "label": "INVASION ET MICROCALCIFICATIONS",
+    "fields": {
+      "lymphovascular_invasion": {
+        "fields": {
+          "status": {
+            "label": "Invasion lymphatique et/ou vasculaire",
+            "options": [
+              "Non identifié",
+              "Présent",
+              "Ne peut pas être déterminé"
+            ],
+            "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
+          },
+          "extent": {
+            "label": "Étendue de l'invasion lymphovasculaire",
+            "options": [
+              "Focale (ILV dans un seul bloc)",
+              "Étendue (ILV dans deux blocs ou plus)"
+            ]
+          }
+        }
+      },
+      "dermal_lymphovascular_invasion": {
+        "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
+      },
+      "microcalcifications": {
+        "other_specify": "Autre, préciser"
+      }
+    }
+  },
+  "treatment_effect_and_rcb": {
+    "label": "EFFET DU TRAITEMENT ET CHARGE RÉSIDUELLE DU CANCER",
+    "fields": {
+      "treatment_effect_breast": {},
+      "treatment_effect_lymph_nodes": {},
+      "rcb_parameters": {
+        "fields": {
+          "primary_tumor_bed_greatest_dimension_mm": {
+            "label": "Plus grande dimension du lit tumoral primaire (mm)"
+          },
+          "primary_tumor_bed_second_dimension_mm": {
+            "label": "Deuxième plus grande dimension du lit tumoral primaire (mm)"
+          },
+          "overall_cancer_cellularity_percent": {
+            "label": "Pourcentage de la cellularité cancéreuse globale"
+          },
+          "in_situ_disease_percent": {
+            "label": "Pourcentage du cancer représentant une maladie in situ"
+          },
+          "number_of_positive_lymph_nodes": {
+            "label": "Nombre de ganglions lymphatiques positifs"
+          },
+          "largest_nodal_metastasis_diameter_mm": {
+            "label": "Diamètre de la plus grande métastase ganglionnaire (mm)"
+          },
+          "residual_cancer_burden": {
+            "label": "Résidu tumoral (RCB)"
+          },
+          "residual_cancer_burden_class": {
+            "label": "Classe de résidu tumoral (RCB)",
+            "options": [
+              "RCB-0 (RCP)",
+              "RCB-I",
+              "RCB-II",
+              "RCB-III"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "ptnm_classification": {
+    "label": "CLASSIFICATION pTNM",
+    "fields": {
+      "modified_classification": {},
+      "pT_category": {},
+      "T_suffix": {},
+      "pN_category": {},
+      "N_suffix": {},
+      "pM_category": {},
+      "previous_case_number": {}
+    }
+  },
+  "domain": {
+    "fields": {}
+  },
+  "protocol_posting_date": {
+    "fields": {}
+  },
+  "standards": {
+    "fields": {}
   }
 }

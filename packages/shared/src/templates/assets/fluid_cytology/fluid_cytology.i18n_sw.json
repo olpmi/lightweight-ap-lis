@@ -7,7 +7,6 @@
     "adequacy": "Ubora",
     "diagnostic_category": "Kategoria ya Uchunguzi",
     "microscopic_description": "Maelezo ya Kimaikroskopi",
-    "final_interpretation": "Tafsiri ya Mwisho",
     "malignant_suspicious_favor": "Ikiwa ni Mbaya / Inatiliwa Shaka, Inaelekea",
     "ancillary_studies": "Uchunguzi wa Ziada (ikiwa umefanywa)",
     "comment": "Maoni"
@@ -22,8 +21,6 @@
     "adequacy_status": "Ubora",
     "diagnostic_category": "Kategoria ya uchunguzi",
     "microscopic_description_brief": "Maelezo ya kimaikroskopi (kwa ufupi)",
-    "final_interpretation_category": "Kategoria",
-    "final_interpretation_text": "Tafsiri ya mwisho",
     "favor_diagnosis": "Ikiwa ni mbaya / inatiliwa shaka, inaelekea",
     "favor_other": "Nyingine",
     "cell_block_immunocytochemistry": "Immunocytochemistry ya cell block",

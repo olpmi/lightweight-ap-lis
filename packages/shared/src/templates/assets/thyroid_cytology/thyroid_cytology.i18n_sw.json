@@ -6,7 +6,6 @@
     "adequacy": "Ubora",
     "bethesda_category": "Kategoria ya Bethesda",
     "microscopic_description": "Maelezo ya Kimaikroskopi",
-    "final_interpretation": "Tafsiri ya Mwisho",
     "recommended_management": "Usimamizi Unaopendekezwa",
     "comment": "Maoni"
   },
@@ -17,8 +16,6 @@
     "adequacy_status": "Ubora",
     "bethesda_category": "Kategoria ya Bethesda",
     "microscopic_description_text": "Maelezo ya kimaikroskopi (maandishi huru)",
-    "final_interpretation_category": "Kategoria ya Bethesda",
-    "final_interpretation_text": "Tafsiri ya mwisho",
     "recommended_management_options": "Usimamizi unaopendekezwa (chagua inayofaa)",
     "comment_text": "Maoni"
   },

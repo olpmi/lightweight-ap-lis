@@ -1,74 +1,283 @@
 {
-  "template.title": "قالب الفحص العياني: عينة استئصال بطانة الرحم",
-  "specimen.anatomic_structures_included": "التراكيب التشريحية المشمولة في العينة المقدمة",
-  "specimen.integrity": "سلامة العينة",
-  "uterus.title": "الرحم",
-  "uterus.dimensions_cm": "أبعاد الرحم (سم)",
-  "uterus.serosal_surface": "السطح المصلي",
-  "cervix.title": "عنق الرحم",
-  "cervix.dimensions": "الأبعاد",
-  "cervix.diameter_cm": "القطر (سم)",
-  "cervix.length_cm": "الطول (سم)",
-  "cervix.cervical_os": "فوهة عنق الرحم",
-  "cervix.portio_vaginalis": "الجزء المهبلي من عنق الرحم",
-  "vaginal_cuff.title": "قبة المهبل",
-  "vaginal_cuff.dimensions": "الأبعاد",
-  "vaginal_cuff.maximum_length_cm": "الطول الأقصى (سم)",
-  "vaginal_cuff.minimum_length_cm": "الطول الأدنى (سم)",
-  "vaginal_cuff.appearance": "المظهر",
-  "parametrium.title": "البارامتريوم",
-  "parametrium.left_lateral_extent_cm": "الامتداد الوحشي للبارامتريوم الأيسر (سم)",
-  "parametrium.right_lateral_extent_cm": "الامتداد الوحشي للبارامتريوم الأيمن (سم)",
-  "corpus.title": "جسم الرحم",
-  "corpus.endometrial_cavity_dimensions": "أبعاد جوف بطانة الرحم",
-  "corpus.endometrial_thickness": "سماكة بطانة الرحم",
-  "tumor.title": "الورم",
-  "tumor.site": "موقع الورم",
-  "tumor.size": "حجم الورم",
-  "tumor.greatest_dimension_cm": "أكبر بُعد (سم)",
-  "tumor.additional_dimensions_cm": "أبعاد إضافية (سم)",
-  "tumor.appearance": "المظهر",
-  "tumor.myometrial_invasion": "غزو العضلة الرحمية",
-  "tumor.depth_of_invasion_cm": "عمق الغزو (سم)",
-  "tumor.myometrial_thickness_cm": "سماكة العضلة الرحمية (سم)",
-  "tumor.lower_uterine_segment_involvement": "إصابة الجزء السفلي من الرحم",
-  "tumor.cervical_stromal_involvement": "إصابة سدى عنق الرحم",
-  "tumor.distance_from_margins": "مسافة الورم من الهوامش",
-  "tumor.ectocervical_margin_cm": "الهامش خارج عنق الرحم (سم)",
-  "tumor.paracervical_parametrial_margin_cm": "الهامش حول عنق الرحم/البارامتريوم (سم)",
-  "polyps.title": "سلائل",
-  "fibroids.title": "أورام ليفية",
-  "common.location": "الموقع",
-  "common.number": "العدد",
-  "common.dimensions": "الأبعاد",
-  "common.appearance": "المظهر",
-  "adnexa.title": "الملحقات",
-  "adnexa.left_fallopian_tube": "قناة فالوب اليسرى",
-  "adnexa.left_ovary": "المبيض الأيسر",
-  "adnexa.right_fallopian_tube": "قناة فالوب اليمنى",
-  "adnexa.right_ovary": "المبيض الأيمن",
-  "omentum.title": "الثرب",
-  "omentum.dimensions": "الأبعاد",
-  "omentum.appearance": "المظهر",
-  "lymph_nodes.title": "العقد اللمفاوية",
-  "lymph_nodes.left_pelvic": "العقد اللمفاوية الحوضية اليسرى",
-  "lymph_nodes.right_pelvic": "العقد اللمفاوية الحوضية اليمنى",
-  "lymph_nodes.left_para_aortic": "العقد اللمفاوية جانب الأبهر اليسرى",
-  "lymph_nodes.right_para_aortic": "العقد اللمفاوية جانب الأبهر اليمنى",
-  "lymph_nodes.dimensions_size_range": "الأبعاد (مدى الحجم)",
-  "block_allocation.title": "مفتاح تخصيص القوالب",
-  "block_allocation.full_thickness_endo_myometrium_with_tumor": "بطانة وعضلة الرحم بكامل السماكة مع الورم",
-  "block_allocation.anterior_posterior_lower_uterine_segment": "الجزء السفلي الأمامي والخلفي من الرحم",
-  "block_allocation.anterior_posterior_cervix": "عنق الرحم الأمامي والخلفي",
-  "block_allocation.ectocervical_margin": "الهامش خارج عنق الرحم",
-  "block_allocation.left_parametrium_paracervical_margin": "هامش البارامتريوم/حول عنق الرحم الأيسر",
-  "block_allocation.right_parametrium_paracervical_margin": "هامش البارامتريوم/حول عنق الرحم الأيمن",
-  "block_allocation.left_fallopian_tube": "قناة فالوب اليسرى",
-  "block_allocation.left_ovary": "المبيض الأيسر",
-  "block_allocation.right_fallopian_tube": "قناة فالوب اليمنى",
-  "block_allocation.right_ovary": "المبيض الأيمن",
-  "block_allocation.omentum": "الثرب",
-  "block_allocation.lymph_nodes": "العقد اللمفاوية",
-  "signoff.grossed_by": "تم الفحص العياني بواسطة",
-  "signoff.date": "التاريخ"
+  "title": "عينة استئصال بطانة الرحم (قالب الفحص العياني)",
+  "specimen": {
+    "label": "العينة",
+    "fields": {
+      "anatomic_structures_included": {
+        "label": "التراكيب التشريحية المشمولة في العينة المقدمة"
+      },
+      "specimen_integrity": {
+        "label": "سلامة العينة"
+      }
+    }
+  },
+  "uterus": {
+    "label": "الرحم",
+    "fields": {
+      "uterus_dimensions_cm": {
+        "label": "أبعاد الرحم (سم)"
+      },
+      "serosal_surface": {
+        "label": "السطح المصلي"
+      }
+    }
+  },
+  "cervix": {
+    "label": "عنق الرحم",
+    "fields": {
+      "dimensions": {
+        "label": "الأبعاد"
+      },
+      "diameter_cm": {
+        "label": "القطر (سم)"
+      },
+      "length_cm": {
+        "label": "الطول (سم)"
+      },
+      "cervical_os": {
+        "label": "فوهة عنق الرحم"
+      },
+      "portio_vaginalis": {
+        "label": "الجزء المهبلي من عنق الرحم"
+      }
+    }
+  },
+  "vaginal_cuff": {
+    "label": "قبة المهبل",
+    "fields": {
+      "maximum_length_cm": {
+        "label": "أقصى طول (سم)"
+      },
+      "minimum_length_cm": {
+        "label": "أدنى طول (سم)"
+      },
+      "appearance": {
+        "label": "المظهر"
+      }
+    }
+  },
+  "parametrium": {
+    "label": "المشيماء",
+    "fields": {
+      "left_parametrium_lateral_extent_cm": {
+        "label": "الامتداد الجانبي للمشيماء الأيسر (سم)"
+      },
+      "right_parametrium_lateral_extent_cm": {
+        "label": "الامتداد الجانبي للمشيماء الأيمن (سم)"
+      }
+    }
+  },
+  "corpus": {
+    "label": "جسم الرحم",
+    "fields": {
+      "endometrial_cavity_dimensions": {
+        "label": "أبعاد تجويف بطانة الرحم"
+      },
+      "endometrial_thickness": {
+        "label": "سماكة بطانة الرحم"
+      }
+    }
+  },
+  "tumor": {
+    "label": "الورم",
+    "fields": {
+      "tumor_site": {
+        "label": "موقع الورم"
+      },
+      "tumor_size_greatest_dimension_cm": {
+        "label": "أكبر بُعد (سم)"
+      },
+      "tumor_size_additional_dimensions_cm": {
+        "label": "أبعاد إضافية (سم)"
+      },
+      "appearance": {
+        "label": "المظهر"
+      },
+      "myometrial_invasion_depth_cm": {
+        "label": "عمق الغزو (سم)"
+      },
+      "myometrial_thickness_cm": {
+        "label": "سماكة عضل الرحم (سم)"
+      },
+      "lower_uterine_segment_involvement": {
+        "label": "إصابة الجزء السفلي من الرحم"
+      },
+      "cervical_stromal_involvement": {
+        "label": "إصابة سدى عنق الرحم"
+      },
+      "distance_to_ectocervical_margin_cm": {
+        "label": "المسافة إلى هامش الجزء الخارجي لعنق الرحم (سم)"
+      },
+      "distance_to_paracervical_parametrial_margin_cm": {
+        "label": "المسافة إلى الهامش المجاور للرحم/المشيماء (سم)"
+      }
+    }
+  },
+  "polyps": {
+    "label": "السلائل",
+    "fields": {
+      "location": {
+        "label": "الموقع"
+      },
+      "number": {
+        "label": "العدد"
+      },
+      "dimensions": {
+        "label": "الأبعاد"
+      },
+      "appearance": {
+        "label": "المظهر"
+      }
+    }
+  },
+  "fibroids": {
+    "label": "الأورام الليفية",
+    "fields": {
+      "location": {
+        "label": "الموقع"
+      },
+      "number": {
+        "label": "العدد"
+      },
+      "dimensions": {
+        "label": "الأبعاد"
+      },
+      "appearance": {
+        "label": "المظهر"
+      }
+    }
+  },
+  "adnexa": {
+    "label": "الزوائد الرحمية",
+    "fields": {
+      "left_fallopian_tube_dimensions": {
+        "label": "قناة فالوب اليسرى"
+      },
+      "left_fallopian_tube_appearance": {
+        "label": "مظهر قناة فالوب اليسرى"
+      },
+      "left_ovary_dimensions": {
+        "label": "المبيض الأيسر"
+      },
+      "left_ovary_appearance": {
+        "label": "مظهر المبيض الأيسر"
+      },
+      "right_fallopian_tube_dimensions": {
+        "label": "قناة فالوب اليمنى"
+      },
+      "right_fallopian_tube_appearance": {
+        "label": "مظهر قناة فالوب اليمنى"
+      },
+      "right_ovary_dimensions": {
+        "label": "المبيض الأيمن"
+      },
+      "right_ovary_appearance": {
+        "label": "مظهر المبيض الأيمن"
+      }
+    }
+  },
+  "omentum": {
+    "label": "الثرب",
+    "fields": {
+      "dimensions": {
+        "label": "الأبعاد"
+      },
+      "appearance": {
+        "label": "المظهر"
+      }
+    }
+  },
+  "lymph_nodes": {
+    "label": "العقد اللمفاوية",
+    "fields": {
+      "left_pelvic_appearance": {
+        "label": "العقد اللمفاوية الحوضية اليسرى"
+      },
+      "left_pelvic_number": {
+        "label": "عدد العقد الحوضية اليسرى"
+      },
+      "left_pelvic_size_range": {
+        "label": "نطاق حجم العقد الحوضية اليسرى"
+      },
+      "right_pelvic_appearance": {
+        "label": "العقد اللمفاوية الحوضية اليمنى"
+      },
+      "right_pelvic_number": {
+        "label": "عدد العقد الحوضية اليمنى"
+      },
+      "right_pelvic_size_range": {
+        "label": "نطاق حجم العقد الحوضية اليمنى"
+      },
+      "left_para_aortic_appearance": {
+        "label": "العقد اللمفاوية المجاورة للشريان الأورطي اليسرى"
+      },
+      "left_para_aortic_number": {
+        "label": "عدد العقد المجاورة للشريان الأورطي اليسرى"
+      },
+      "left_para_aortic_size_range": {
+        "label": "نطاق حجم العقد المجاورة للشريان الأورطي اليسرى"
+      },
+      "right_para_aortic_appearance": {
+        "label": "العقد اللمفاوية المجاورة للشريان الأورطي اليمنى"
+      },
+      "right_para_aortic_number": {
+        "label": "عدد العقد المجاورة للشريان الأورطي اليمنى"
+      },
+      "right_para_aortic_size_range": {
+        "label": "نطاق حجم العقد المجاورة للشريان الأورطي اليمنى"
+      }
+    }
+  },
+  "block_allocation_key": {
+    "label": "مفتاح توزيع الكتل",
+    "fields": {
+      "full_thickness_endo_myometrium_with_tumor": {
+        "label": "بطانة/عضلة الرحم بكامل السماكة مع الورم"
+      },
+      "anterior_and_posterior_lower_uterine_segment": {
+        "label": "الجزء السفلي الأمامي والخلفي من الرحم"
+      },
+      "anterior_and_posterior_cervix": {
+        "label": "عنق الرحم الأمامي والخلفي"
+      },
+      "ectocervical_margin": {
+        "label": "هامش الجزء الخارجي لعنق الرحم"
+      },
+      "left_parametrium_paracervical_margin": {
+        "label": "الهامش المشيمائي/المجاور لعنق الرحم الأيسر"
+      },
+      "right_parametrium_paracervical_margin": {
+        "label": "الهامش المشيمائي/المجاور لعنق الرحم الأيمن"
+      },
+      "left_fallopian_tube": {
+        "label": "قناة فالوب اليسرى"
+      },
+      "left_ovary": {
+        "label": "المبيض الأيسر"
+      },
+      "right_fallopian_tube": {
+        "label": "قناة فالوب اليمنى"
+      },
+      "right_ovary": {
+        "label": "المبيض الأيمن"
+      },
+      "omentum": {
+        "label": "الثرب"
+      },
+      "lymph_nodes": {
+        "label": "العقد اللمفاوية"
+      }
+    }
+  },
+  "grossing": {
+    "label": "الفحص العياني",
+    "fields": {
+      "grossed_by": {
+        "label": "أُجري الفحص العياني بواسطة"
+      },
+      "date": {
+        "label": "التاريخ"
+      }
+    }
+  }
 }
