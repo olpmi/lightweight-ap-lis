@@ -14,6 +14,11 @@ export class BlockService {
     });
     const nextBlockNumber = existing.length > 0 ? existing[0].blockNumber + 1 : 1;
 
+    // Look up the HE orderable once (auto-created by migration)
+    const heOrderable = await prisma.ancillaryOrderable.findFirst({
+      where: { category: 'HE', isActive: true },
+    });
+
     const created: object[] = [];
 
     for (let i = 0; i < count; i++) {
@@ -33,6 +38,18 @@ export class BlockService {
         },
       });
       created.push(block);
+
+      // Auto-create H&E staining order for this block, starting at MICROTOMY (no pull block step)
+      if (heOrderable) {
+        await prisma.ancillaryOrder.create({
+          data: {
+            orderId: specimen.orderId,
+            blockId,
+            orderableId: heOrderable.id,
+            status: 'MICROTOMY',
+          },
+        });
+      }
     }
 
     return created;

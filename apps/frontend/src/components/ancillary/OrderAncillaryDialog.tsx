@@ -116,7 +116,7 @@ export default function OrderAncillaryDialog({
     return selectedByCategory[cat]?.size ?? 0;
   };
 
-  const totalSelected = ANCILLARY_CATEGORIES.reduce((sum, cat) => sum + tabCount(cat), 0);
+  const totalSelected = ANCILLARY_CATEGORIES.filter((c) => c !== 'HE').reduce((sum, cat) => sum + tabCount(cat), 0);
 
   const toggleBlockId = (id: string) => {
     setSelectedBlockIds((prev) => {
@@ -276,7 +276,7 @@ export default function OrderAncillaryDialog({
               variant="scrollable"
               scrollButtons="auto"
             >
-              {ANCILLARY_CATEGORIES.map((cat) => {
+              {ANCILLARY_CATEGORIES.filter((c) => c !== 'HE').map((cat) => {
                 const count = tabCount(cat);
                 return (
                   <Tab

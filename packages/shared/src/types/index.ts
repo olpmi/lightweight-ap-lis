@@ -278,6 +278,12 @@ export interface AncillaryOrder {
   orderedById?: number | null;
   orderable?: AncillaryOrderable;
   orderedBy?: Employee;
+  block?: {
+    blockId: string;
+    blockNumber: number;
+    _count?: { slides: number };
+    slides?: Array<{ slideId: string; slideNumber: number }>;
+  } | null;
 }
 
 export interface CreateAncillaryOrderDto {

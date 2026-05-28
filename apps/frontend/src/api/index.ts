@@ -110,6 +110,11 @@ export const orderApi = {
   resultQueue: (page = 1, pageSize = 20, search = '') =>
     apiClient.get(`/orders/result-queue?page=${page}&pageSize=${pageSize}&search=${encodeURIComponent(search)}`).then((r) => r.data),
 
+  histologyQueue: (page = 1, pageSize = 50, search = '') =>
+    apiClient
+      .get(`/orders/histology-queue?page=${page}&pageSize=${pageSize}&search=${encodeURIComponent(search)}`)
+      .then((r) => r.data),
+
   materials: (orderId: string): Promise<{ data: object }> =>
     apiClient.get(`/orders/${orderId}/materials`).then((r) => r.data),
 
@@ -320,13 +325,16 @@ export interface UpdateAncillaryPanelPayload {
 
 export const ancillaryApi = {
   // Worklist
-  getQueue: (filters?: { statuses?: AncillaryOrderStatus[]; category?: AncillaryCategory; since?: string }): Promise<AncillaryOrder[]> => {
+  getQueue: (filters?: { statuses?: AncillaryOrderStatus[]; category?: AncillaryCategory; categories?: AncillaryCategory[]; since?: string; page?: number; pageSize?: number }): Promise<{ data: AncillaryOrder[]; total: number; page: number; pageSize: number }> => {
     const qs = new URLSearchParams();
     if (filters?.statuses?.length) qs.set('statuses', filters.statuses.join(','));
-    if (filters?.category) qs.set('category', filters.category);
+    if (filters?.categories?.length) qs.set('categories', filters.categories.join(','));
+    else if (filters?.category) qs.set('category', filters.category);
     if (filters?.since) qs.set('since', filters.since);
+    if (filters?.page) qs.set('page', String(filters.page));
+    if (filters?.pageSize) qs.set('pageSize', String(filters.pageSize));
     const suffix = qs.toString() ? `?${qs.toString()}` : '';
-    return apiClient.get<{ data: AncillaryOrder[] }>(`/ancillary/queue${suffix}`).then((r) => r.data.data);
+    return apiClient.get<{ data: AncillaryOrder[]; total: number; page: number; pageSize: number }>(`/ancillary/queue${suffix}`).then((r) => r.data);
   },
 
   // Per-case orders

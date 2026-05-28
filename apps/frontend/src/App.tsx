@@ -15,6 +15,8 @@ import ConfigTemplatesPage from './pages/ConfigTemplatesPage';
 import ConfigReportManagerPage from './pages/ConfigReportManagerPage';
 import AncillaryQueuePage from './pages/AncillaryQueuePage';
 import ConfigAncillaryPage from './pages/ConfigAncillaryPage';
+import HistologyQueuePage from './pages/HistologyQueuePage';
+import HistologyCasePage from './pages/HistologyCasePage';
 
 function RequireAuth({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
@@ -53,6 +55,8 @@ export default function App() {
                 <Route path="/processing/:orderId" element={<ProcessingCasePage />} />
                 <Route path="/result" element={<ResultQueuePage />} />
                 <Route path="/result/:orderId" element={<ResultCasePage />} />
+                <Route path="/histology" element={<HistologyQueuePage />} />
+                <Route path="/histology/:orderId" element={<HistologyCasePage />} />
                 <Route path="/ancillary" element={<AncillaryQueuePage />} />
                 <Route path="/query" element={<QueryPage />} />
                 <Route path="/config" element={<Navigate to="/config/templates" replace />} />

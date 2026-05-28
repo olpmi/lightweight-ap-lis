@@ -7,23 +7,29 @@ import { AncillaryService } from '../services/ancillary.service.js';
 const router = Router();
 const service = new AncillaryService();
 
-// GET /api/ancillary/queue[?statuses=PENDING,IN_PROGRESS&category=IHC]
+// GET /api/ancillary/queue[?statuses=PULL_BLOCK,MICROTOMY&category=IHC&categories=IHC,SPECIAL_STAIN]
 router.get('/queue', requireAuth, async (req, res, next) => {
   try {
     const statuses =
       typeof req.query.statuses === 'string' && req.query.statuses
         ? req.query.statuses.split(',').map((s) => s.trim())
-        : ['PENDING', 'IN_PROGRESS'];
+        : ['PULL_BLOCK', 'MICROTOMY', 'SLIDE_STAIN'];
+    const categories =
+      typeof req.query.categories === 'string' && req.query.categories
+        ? req.query.categories.split(',').map((c) => c.trim())
+        : undefined;
     const category =
-      typeof req.query.category === 'string' && req.query.category
+      !categories && typeof req.query.category === 'string' && req.query.category
         ? req.query.category
         : undefined;
     const since =
       typeof req.query.since === 'string' && req.query.since
         ? new Date(req.query.since)
         : undefined;
-    const data = await service.getQueue({ statuses, category, since });
-    res.json({ data });
+    const page = typeof req.query.page === 'string' ? parseInt(req.query.page, 10) || 1 : 1;
+    const pageSize = typeof req.query.pageSize === 'string' ? parseInt(req.query.pageSize, 10) || 20 : 20;
+    const result = await service.getQueue({ statuses, category, categories, since, page, pageSize });
+    res.json(result);
   } catch (err) {
     next(err);
   }

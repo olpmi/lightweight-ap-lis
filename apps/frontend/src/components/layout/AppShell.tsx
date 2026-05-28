@@ -29,7 +29,8 @@ import {
   Home,
   Translate,
   Settings,
-  Biotech,
+  Output,
+  Layers,
 } from '@mui/icons-material';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
@@ -65,8 +66,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     { label: t('nav_home'), path: '/', icon: <Home /> },
     { label: t('nav_orderEntry'), path: '/order-entry', icon: <Add /> },
     { label: t('nav_processing'), path: '/processing', icon: <Science /> },
+    { label: t('nav_histology'), path: '/histology', icon: <Layers /> },
     { label: t('nav_result'), path: '/result', icon: <Description /> },
-    { label: t('nav_ancillary'), path: '/ancillary', icon: <Biotech /> },
+    { label: t('nav_ancillary'), path: '/ancillary', icon: <Output /> },
     { label: t('nav_query'), path: '/query', icon: <Search /> },
     { label: t('nav_config'), path: '/config', icon: <Settings /> },
   ];

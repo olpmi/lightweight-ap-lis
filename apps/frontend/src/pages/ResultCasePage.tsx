@@ -203,7 +203,12 @@ export default function ResultCasePage() {
   const latestPrelim = prelims.at(-1);                // most recent prelim snapshot
   const latestFinal = finalReports.at(-1);
   const isSignedOut = Boolean(latestFinal && editableDrafts.length === 0);
-  const canSignOut = Boolean(form.diagnosis.trim() && form.gross.trim());
+  const allBlocks = (
+    (materialsData as { data?: { specimens: Array<{ blocks: Array<{ slides: unknown[] }> }> } } | undefined)
+      ?.data?.specimens ?? []
+  ).flatMap((s) => s.blocks ?? []);
+  const allBlocksHaveSlides = allBlocks.length === 0 || allBlocks.every((b) => (b.slides?.length ?? 0) > 0);
+  const canSignOut = Boolean(form.diagnosis.trim() && form.gross.trim() && allBlocksHaveSlides);
   const latestFinalGrossPayload = parseStructuredTemplatePayload(latestFinal?.grossPayload);
   const activeSynopticPayload = parseStructuredTemplatePayload(
     isSignedOut ? latestFinal?.synopticPayload : form.synopticPayload,
@@ -885,6 +890,12 @@ export default function ResultCasePage() {
               </>
             )}
           </Box>
+
+          {!allBlocksHaveSlides && !isSignedOut && (
+            <Alert severity="warning" sx={{ mb: 2 }}>
+              All blocks must have at least one slide before signing out.
+            </Alert>
+          )}
 
           {showKeyboardLayoutHint && (
             <Alert severity="info" sx={{ mb: 2 }}>

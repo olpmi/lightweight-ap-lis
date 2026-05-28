@@ -22,15 +22,17 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  Pagination,
+  Tabs,
+  Tab,
 } from '@mui/material';
 import { ExpandMore } from '@mui/icons-material';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient, keepPreviousData } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { ancillaryApi } from '../api';
 import { useLanguage } from '../hooks/useLanguage';
 import {
-  ANCILLARY_CATEGORIES,
-  ANCILLARY_ORDER_STATUSES,
+  SENDOUT_ORDER_STATUSES,
   type AncillaryCategory,
   type AncillaryOrderStatus,
 } from '@lis/shared';
@@ -38,24 +40,30 @@ import { formatOrderIdDisplay, formatMaterialIdDisplay } from '@lis/shared';
 import type { AncillaryOrder } from '@lis/shared';
 
 const STATUS_COLORS: Record<AncillaryOrderStatus, 'default' | 'warning' | 'info' | 'success' | 'error'> = {
-  PENDING: 'warning',
-  IN_PROGRESS: 'info',
-  COMPLETE: 'success',
+  PULL_BLOCK: 'default',
+  MICROTOMY: 'default',
+  SLIDE_STAIN: 'default',
+  DISTRIBUTED: 'default',
   CANCELLED: 'error',
+  PULL_MATERIAL: 'warning',
+  MATERIAL_SENT: 'info',
+  MATERIAL_RETURNED: 'success',
 };
 
-export default function AncillaryQueuePage() {
+const PAGE_SIZE = 20;
+
+function SendoutCaseTable({ category }: { category: AncillaryCategory }) {
   const { t } = useLanguage();
   const navigate = useNavigate();
   const qc = useQueryClient();
 
-  const [statusFilter, setStatusFilter] = useState<AncillaryOrderStatus[]>(['PENDING', 'IN_PROGRESS']);
-  const [categoryFilter, setCategoryFilter] = useState<AncillaryCategory | ''>('');
+  const [statusFilter, setStatusFilter] = useState<AncillaryOrderStatus>('PULL_MATERIAL');
   const [actionError, setActionError] = useState<string | null>(null);
   const [actionSuccess, setActionSuccess] = useState<string | null>(null);
   const [since, setSince] = useState<'1d' | '7d' | '30d' | ''>('7d');
+  const [page, setPage] = useState(1);
 
-  const showRecencyFilter = statusFilter.some((s) => s === 'COMPLETE' || s === 'CANCELLED');
+  const showRecencyFilter = statusFilter === 'MATERIAL_RETURNED' || statusFilter === 'CANCELLED';
 
   const sinceDate = useMemo(() => {
     if (!since || !showRecencyFilter) return undefined;
@@ -66,15 +74,21 @@ export default function AncillaryQueuePage() {
     return d.toISOString();
   }, [since, showRecencyFilter]);
 
-  const { data: orders = [], isLoading } = useQuery({
-    queryKey: ['ancillary-queue', statusFilter, categoryFilter, sinceDate],
+  const { data: result, isLoading } = useQuery({
+    queryKey: ['ancillary-queue', statusFilter, category, sinceDate, page],
     queryFn: () =>
       ancillaryApi.getQueue({
-        statuses: statusFilter.length ? statusFilter : undefined,
-        category: categoryFilter || undefined,
+        statuses: [statusFilter],
+        category,
         since: sinceDate,
+        page,
+        pageSize: PAGE_SIZE,
       }),
+    placeholderData: keepPreviousData,
   });
+
+  const orders = result?.data ?? [];
+  const totalPages = Math.ceil((result?.total ?? 0) / PAGE_SIZE);
 
   const updateMutation = useMutation({
     mutationFn: ({ id, status }: { id: number; status: AncillaryOrderStatus }) =>
@@ -91,7 +105,6 @@ export default function AncillaryQueuePage() {
     },
   });
 
-  // Group orders by orderId
   const grouped = orders.reduce<Record<string, AncillaryOrder[]>>((acc, order) => {
     const key = order.orderId;
     if (!acc[key]) acc[key] = [];
@@ -99,13 +112,12 @@ export default function AncillaryQueuePage() {
     return acc;
   }, {});
 
-  const categoryLabel = (cat: AncillaryCategory) => t(`anc_cat_${cat}` as Parameters<typeof t>[0]);
   const statusLabel = (s: AncillaryOrderStatus) => t(`anc_status_${s}` as Parameters<typeof t>[0]);
 
   const statusTimestamp = (order: AncillaryOrder) => {
     switch (order.status) {
-      case 'IN_PROGRESS': return order.inProgressAt ?? order.orderedAt;
-      case 'COMPLETE': return order.completedAt;
+      case 'MATERIAL_SENT': return order.inProgressAt ?? order.orderedAt;
+      case 'MATERIAL_RETURNED': return order.completedAt;
       case 'CANCELLED': return order.cancelledAt;
       default: return order.orderedAt;
     }
@@ -120,10 +132,6 @@ export default function AncillaryQueuePage() {
 
   return (
     <Box>
-      <Typography variant="h5" fontWeight={700} mb={2}>
-        {t('nav_ancillary')}
-      </Typography>
-
       {actionError && (
         <Alert severity="error" sx={{ mb: 2 }} onClose={() => setActionError(null)}>
           {actionError}
@@ -143,31 +151,16 @@ export default function AncillaryQueuePage() {
           </Typography>
           <ToggleButtonGroup
             size="small"
+            exclusive
             value={statusFilter}
-            onChange={(_, newVal: AncillaryOrderStatus[]) => setStatusFilter(newVal)}
+            onChange={(_, newVal: AncillaryOrderStatus | null) => { if (newVal) { setStatusFilter(newVal); setPage(1); } }}
           >
-            {ANCILLARY_ORDER_STATUSES.map((s) => (
+            {SENDOUT_ORDER_STATUSES.map((s) => (
               <ToggleButton key={s} value={s}>
                 {statusLabel(s)}
               </ToggleButton>
             ))}
           </ToggleButtonGroup>
-
-          <FormControl size="small" sx={{ minWidth: 160 }}>
-            <InputLabel>{t('anc_category')}</InputLabel>
-            <Select
-              value={categoryFilter}
-              label={t('anc_category')}
-              onChange={(e) => setCategoryFilter(e.target.value as AncillaryCategory | '')}
-            >
-              <MenuItem value="">All</MenuItem>
-              {ANCILLARY_CATEGORIES.map((cat) => (
-                <MenuItem key={cat} value={cat}>
-                  {categoryLabel(cat)}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
 
           {showRecencyFilter && (
             <FormControl size="small" sx={{ minWidth: 160 }}>
@@ -175,7 +168,7 @@ export default function AncillaryQueuePage() {
               <Select
                 value={since}
                 label={t('anc_since')}
-                onChange={(e) => setSince(e.target.value as '1d' | '7d' | '30d' | '')}
+                onChange={(e) => { setSince(e.target.value as '1d' | '7d' | '30d' | ''); setPage(1); }}
               >
                 <MenuItem value="1d">{t('anc_since_1d')}</MenuItem>
                 <MenuItem value="7d">{t('anc_since_7d')}</MenuItem>
@@ -196,14 +189,13 @@ export default function AncillaryQueuePage() {
       ) : (
         Object.entries(grouped).map(([orderId, caseOrders]) => {
           const firstOrder = caseOrders[0];
-          // Orders come back with orderable and possibly patient data from service
           const patientName = (firstOrder as unknown as { order?: { patient?: { lastName: string; firstName: string } } })
             ?.order?.patient
             ? `${(firstOrder as unknown as { order?: { patient?: { lastName: string; firstName: string } } }).order!.patient!.lastName}, ${(firstOrder as unknown as { order?: { patient?: { lastName: string; firstName: string } } }).order!.patient!.firstName}`
             : '';
 
           return (
-            <Accordion key={orderId} defaultExpanded sx={{ mb: 1 }}>
+            <Accordion key={orderId} sx={{ mb: 1 }}>
               <AccordionSummary expandIcon={<ExpandMore />}>
                 <Stack direction="row" spacing={1} alignItems="center" flexWrap="wrap">
                   <Chip
@@ -227,17 +219,15 @@ export default function AncillaryQueuePage() {
               <AccordionDetails sx={{ p: 0 }}>
                 <Table size="small" sx={{ tableLayout: 'fixed' }}>
                   <colgroup>
-                    <col style={{ width: '16%' }} />
-                    <col style={{ width: '27%' }} />
-                    <col style={{ width: '13%' }} />
-                    <col style={{ width: '20%' }} />
-                    <col style={{ width: '24%' }} />
+                    <col style={{ width: '18%' }} />
+                    <col style={{ width: '35%' }} />
+                    <col style={{ width: '22%' }} />
+                    <col style={{ width: '25%' }} />
                   </colgroup>
                   <TableHead>
                     <TableRow>
                       <TableCell>{t('anc_blockLabel')}</TableCell>
                       <TableCell>Test</TableCell>
-                      <TableCell>{t('anc_category')}</TableCell>
                       <TableCell>{t('anc_status')}</TableCell>
                       <TableCell align="right">Actions</TableCell>
                     </TableRow>
@@ -265,12 +255,6 @@ export default function AncillaryQueuePage() {
                         </TableCell>
                         <TableCell>
                           <Chip
-                            label={order.orderable ? categoryLabel(order.orderable.category) : '—'}
-                            size="small"
-                          />
-                        </TableCell>
-                        <TableCell>
-                          <Chip
                             label={statusLabel(order.status)}
                             color={STATUS_COLORS[order.status]}
                             size="small"
@@ -281,32 +265,32 @@ export default function AncillaryQueuePage() {
                         </TableCell>
                         <TableCell align="right">
                           <Stack direction="row" spacing={0.5} justifyContent="flex-end">
-                            {order.status === 'PENDING' && (
+                            {order.status === 'PULL_MATERIAL' && (
                               <Button
                                 size="small"
                                 variant="outlined"
                                 onClick={() =>
-                                  updateMutation.mutate({ id: order.id, status: 'IN_PROGRESS' })
+                                  updateMutation.mutate({ id: order.id, status: 'MATERIAL_SENT' })
                                 }
                                 disabled={updateMutation.isPending}
                               >
-                                {t('anc_markInProgress')}
+                                {t('anc_markMaterialSent')}
                               </Button>
                             )}
-                            {order.status === 'IN_PROGRESS' && (
+                            {order.status === 'MATERIAL_SENT' && (
                               <Button
                                 size="small"
                                 variant="contained"
                                 color="success"
                                 onClick={() =>
-                                  updateMutation.mutate({ id: order.id, status: 'COMPLETE' })
+                                  updateMutation.mutate({ id: order.id, status: 'MATERIAL_RETURNED' })
                                 }
                                 disabled={updateMutation.isPending}
                               >
-                                {t('anc_markComplete')}
+                                {t('anc_markMaterialReturned')}
                               </Button>
                             )}
-                            {(order.status === 'PENDING' || order.status === 'IN_PROGRESS') && (
+                            {(order.status === 'PULL_MATERIAL' || order.status === 'MATERIAL_SENT') && (
                               <Button
                                 size="small"
                                 variant="outlined"
@@ -319,12 +303,12 @@ export default function AncillaryQueuePage() {
                                 {t('anc_cancel')}
                               </Button>
                             )}
-                            {(order.status === 'COMPLETE' || order.status === 'CANCELLED') && (
+                            {(order.status === 'MATERIAL_RETURNED' || order.status === 'CANCELLED') && (
                               <Button
                                 size="small"
                                 variant="outlined"
                                 onClick={() =>
-                                  updateMutation.mutate({ id: order.id, status: 'PENDING' })
+                                  updateMutation.mutate({ id: order.id, status: 'PULL_MATERIAL' })
                                 }
                                 disabled={updateMutation.isPending}
                               >
@@ -342,6 +326,34 @@ export default function AncillaryQueuePage() {
           );
         })
       )}
+      {totalPages > 1 && (
+        <Box display="flex" justifyContent="center" mt={2}>
+          <Pagination count={totalPages} page={page} onChange={(_, p) => setPage(p)} size="small" />
+        </Box>
+      )}
+    </Box>
+  );
+}
+
+export default function AncillaryQueuePage() {
+  const { t } = useLanguage();
+  const [tab, setTab] = useState(0);
+
+  return (
+    <Box>
+      <Typography variant="h5" fontWeight={700} mb={2}>
+        {t('nav_ancillary')}
+      </Typography>
+      <Tabs
+        value={tab}
+        onChange={(_, v: number) => setTab(v)}
+        sx={{ mb: 2, borderBottom: 1, borderColor: 'divider' }}
+      >
+        <Tab label={t('anc_cat_SEND_OUT')} />
+        <Tab label={t('anc_cat_MOLECULAR')} />
+      </Tabs>
+      {tab === 0 && <SendoutCaseTable category="SEND_OUT" />}
+      {tab === 1 && <SendoutCaseTable category="MOLECULAR" />}
     </Box>
   );
 }
