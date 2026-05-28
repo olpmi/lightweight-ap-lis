@@ -28,7 +28,8 @@ router.get('/queue', requireAuth, async (req, res, next) => {
         : undefined;
     const page = typeof req.query.page === 'string' ? parseInt(req.query.page, 10) || 1 : 1;
     const pageSize = typeof req.query.pageSize === 'string' ? parseInt(req.query.pageSize, 10) || 20 : 20;
-    const result = await service.getQueue({ statuses, category, categories, since, page, pageSize });
+    const search = typeof req.query.search === 'string' && req.query.search ? req.query.search : undefined;
+    const result = await service.getQueue({ statuses, category, categories, since, page, pageSize, search });
     res.json(result);
   } catch (err) {
     next(err);

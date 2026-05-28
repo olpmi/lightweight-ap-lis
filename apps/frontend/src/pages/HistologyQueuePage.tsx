@@ -26,8 +26,9 @@ import {
   AccordionDetails,
   Pagination,
   TextField,
+  InputAdornment,
 } from '@mui/material';
-import { ExpandMore } from '@mui/icons-material';
+import { ExpandMore, Search } from '@mui/icons-material';
 import { useQuery, useMutation, useQueryClient, keepPreviousData } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { ancillaryApi, blockApi } from '../api';
@@ -69,6 +70,7 @@ function AncillaryCaseTable({ category }: { category: AncillaryCategory }) {
   );
   const [since, setSince] = useState<'1d' | '7d' | '30d' | ''>('7d');
   const [actionError, setActionError] = useState<string | null>(null);
+  const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
   const PAGE_SIZE = 20;
 
@@ -157,6 +159,19 @@ function AncillaryCaseTable({ category }: { category: AncillaryCategory }) {
     return acc;
   }, {});
 
+  const filteredEntries = useMemo(() => {
+    const entries = Object.entries(grouped);
+    const q = search.trim().toLowerCase();
+    if (!q) return entries;
+    return entries.filter(([orderId, caseOrders]) => {
+      if (formatOrderIdDisplay(orderId).toLowerCase().includes(q)) return true;
+      if (orderId.toLowerCase().includes(q)) return true;
+      const patient = (caseOrders[0] as unknown as { order?: { patient?: { lastName: string; firstName: string } } })?.order?.patient;
+      if (!patient) return false;
+      return patient.lastName.toLowerCase().includes(q) || patient.firstName.toLowerCase().includes(q);
+    });
+  }, [grouped, search]);
+
   const fmtDateTime = (iso: string | null | undefined) => {
     if (!iso) return null;
     return new Date(iso).toLocaleString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
@@ -178,6 +193,14 @@ function AncillaryCaseTable({ category }: { category: AncillaryCategory }) {
       )}
       <Paper variant="outlined" sx={{ p: 2, mb: 2 }}>
         <Stack direction="row" spacing={2} flexWrap="wrap" alignItems="center">
+          <TextField
+            size="small"
+            placeholder={t('anc_searchPlaceholder')}
+            value={search}
+            onChange={(e) => { setSearch(e.target.value); setPage(1); }}
+            InputProps={{ startAdornment: <InputAdornment position="start"><Search fontSize="small" /></InputAdornment> }}
+            sx={{ width: 280 }}
+          />
           <Typography variant="body2" fontWeight={600}>
             {t('anc_status')}:
           </Typography>
@@ -217,10 +240,10 @@ function AncillaryCaseTable({ category }: { category: AncillaryCategory }) {
         <Box display="flex" justifyContent="center" mt={2}>
           <CircularProgress />
         </Box>
-      ) : Object.keys(grouped).length === 0 ? (
+      ) : filteredEntries.length === 0 ? (
         <Typography color="text.secondary">{t('anc_noOrders')}</Typography>
       ) : (
-        Object.entries(grouped).map(([orderId, caseOrders]) => {
+        filteredEntries.map(([orderId, caseOrders]) => {
           const firstOrder = caseOrders[0] as unknown as {
             order?: { patient?: { lastName: string; firstName: string }; caseType?: string };
           };

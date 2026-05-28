@@ -3,6 +3,7 @@ import type {
   CreateAncillaryOrderInput,
   UpdateAncillaryOrderStatusInput,
 } from '@lis/shared';
+import { buildOrderIdConditions } from '../utils/searchUtils.js';
 
 const prisma = new PrismaClient();
 
@@ -82,8 +83,19 @@ export class AncillaryService {
    * Worklist queue — all orders matching optional status/category filters.
    * Returns orders enriched with case metadata (patient name, etc.).
    */
-  async getQueue(filters?: { statuses?: string[]; category?: string; categories?: string[]; since?: Date; page?: number; pageSize?: number }) {
+  async getQueue(filters?: { statuses?: string[]; category?: string; categories?: string[]; since?: Date; page?: number; pageSize?: number; search?: string }) {
     const andConditions: Record<string, unknown>[] = [];
+
+    if (filters?.search) {
+      const search = filters.search;
+      andConditions.push({
+        OR: [
+          ...buildOrderIdConditions(search),
+          { order: { patient: { lastName: { contains: search, mode: 'insensitive' as const } } } },
+          { order: { patient: { firstName: { contains: search, mode: 'insensitive' as const } } } },
+        ],
+      });
+    }
 
     if (filters?.statuses?.length) {
       andConditions.push({ status: { in: filters.statuses } });

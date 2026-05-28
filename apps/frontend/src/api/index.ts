@@ -325,7 +325,7 @@ export interface UpdateAncillaryPanelPayload {
 
 export const ancillaryApi = {
   // Worklist
-  getQueue: (filters?: { statuses?: AncillaryOrderStatus[]; category?: AncillaryCategory; categories?: AncillaryCategory[]; since?: string; page?: number; pageSize?: number }): Promise<{ data: AncillaryOrder[]; total: number; page: number; pageSize: number }> => {
+  getQueue: (filters?: { statuses?: AncillaryOrderStatus[]; category?: AncillaryCategory; categories?: AncillaryCategory[]; since?: string; page?: number; pageSize?: number; search?: string }): Promise<{ data: AncillaryOrder[]; total: number; page: number; pageSize: number }> => {
     const qs = new URLSearchParams();
     if (filters?.statuses?.length) qs.set('statuses', filters.statuses.join(','));
     if (filters?.categories?.length) qs.set('categories', filters.categories.join(','));
@@ -333,6 +333,7 @@ export const ancillaryApi = {
     if (filters?.since) qs.set('since', filters.since);
     if (filters?.page) qs.set('page', String(filters.page));
     if (filters?.pageSize) qs.set('pageSize', String(filters.pageSize));
+    if (filters?.search) qs.set('search', filters.search);
     const suffix = qs.toString() ? `?${qs.toString()}` : '';
     return apiClient.get<{ data: AncillaryOrder[]; total: number; page: number; pageSize: number }>(`/ancillary/queue${suffix}`).then((r) => r.data);
   },
