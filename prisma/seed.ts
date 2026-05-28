@@ -542,11 +542,11 @@ async function main() {
   }
   console.log('  ✓ Patients');
 
-  // 8. Order sequence bootstrap for year 25
+  // 8. Order sequence bootstrap for year 26
   for (const prefix of ['SU', 'CN']) {
     await prisma.orderSequenceYear.upsert({
-      where: { yearTwoDigit_prefix: { yearTwoDigit: 25, prefix } },
-      create: { yearTwoDigit: 25, prefix, lastValue: 0 },
+      where: { yearTwoDigit_prefix: { yearTwoDigit: 26, prefix } },
+      create: { yearTwoDigit: 26, prefix, lastValue: 0 },
       update: {},
     });
   }
@@ -559,12 +559,15 @@ async function main() {
   const heOrderable = await prisma.ancillaryOrderable.findFirst({ where: { category: 'HE', isActive: true } });
 
   for (let i = 0; i < ORDER_COUNT; i++) {
-    // Generate order ID by_prefix: { yearTwoDigit: 25, prefix: 'SU' }rementing the sequence
+    // Pick case type first so the correct prefix and sequence can be used
+    const caseType = pick(['Surgical Pathology', 'Cytology', 'Surgical Pathology']);
+    const prefix = caseType === 'Cytology' ? 'CN' : 'SU';
+
     const seq = await prisma.orderSequenceYear.update({
-      where: { yearTwoDigit_prefix: { yearTwoDigit: 25, prefix: 'SU' } },
+      where: { yearTwoDigit_prefix: { yearTwoDigit: 26, prefix } },
       data: { lastValue: { increment: 1 } },
     });
-    const orderId = `SU25${String(seq.lastValue).padStart(7, '0')}`;
+    const orderId = `${prefix}26${String(seq.lastValue).padStart(7, '0')}`;
 
     // Determine the "age" of the case in days (0 = today, older = past)
     const ageDays = randInt(0, 180);
@@ -572,7 +575,6 @@ async function main() {
 
     const patientId = pick(patientIds);
     const doctorId = pick(doctorIds);
-    const caseType = pick(['Surgical Pathology', 'Cytology', 'Surgical Pathology']);
 
     // Create the order
     await prisma.order.create({
