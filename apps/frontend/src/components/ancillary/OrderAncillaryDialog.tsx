@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import {
   Drawer,
   Button,
@@ -24,6 +24,8 @@ import { ancillaryApi } from '../../api';
 import { useLanguage } from '../../hooks/useLanguage';
 import { ANCILLARY_CATEGORIES, type AncillaryCategory } from '@lis/shared';
 import { formatMaterialIdDisplay } from '@lis/shared';
+
+type OrderedItem = { blockId: string; orderableId: number; levelCount?: number };
 
 interface Block {
   blockId: string;
@@ -56,25 +58,21 @@ export default function OrderAncillaryDialog({
 
   const allBlocks = specimens.flatMap((s) => s.blocks);
 
-  const [selectedBlockIds, setSelectedBlockIds] = useState<Set<string>>(new Set());
+  const [activeBlockIds, setActiveBlockIds] = useState<Set<string>>(new Set());
+  const [orderedItems, setOrderedItems] = useState<OrderedItem[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<AncillaryCategory>('HE_LEVELS');
-  const [levelCount, setLevelCount] = useState(3);
-  const [heOrdered, setHeOrdered] = useState(false);
-  const [selectedByCategory, setSelectedByCategory] = useState<Partial<Record<AncillaryCategory, Set<number>>>>({});
   const [notesByCategory, setNotesByCategory] = useState<Partial<Record<AncillaryCategory, string>>>({});
+  const [levelCountDraft, setLevelCountDraft] = useState(3);
   const [searchQuery, setSearchQuery] = useState('');
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (open) {
-      setSelectedBlockIds(
-        preselectedBlockId ? new Set([preselectedBlockId]) : new Set(),
-      );
+      setActiveBlockIds(preselectedBlockId ? new Set([preselectedBlockId]) : new Set());
+      setOrderedItems([]);
       setSelectedCategory('HE_LEVELS');
-      setLevelCount(3);
-      setHeOrdered(false);
-      setSelectedByCategory({});
       setNotesByCategory({});
+      setLevelCountDraft(3);
       setSearchQuery('');
       setError(null);
     }
@@ -93,6 +91,11 @@ export default function OrderAncillaryDialog({
     enabled: open,
   });
 
+  const heLevelsOrderable = useMemo(
+    () => orderables.find((o) => o.category === 'HE_LEVELS' && o.isActive),
+    [orderables],
+  );
+
   const categoryOrderables = orderables.filter(
     (o) => o.category === selectedCategory && o.isActive,
   );
@@ -107,19 +110,59 @@ export default function OrderAncillaryDialog({
     return categoryOrderables.filter((o) => o.name.toLowerCase().includes(q));
   }, [categoryOrderables, searchQuery]);
 
-  // Per-category helpers
-  const currentIds = selectedByCategory[selectedCategory] ?? new Set<number>();
-  const currentNotes = notesByCategory[selectedCategory] ?? '';
+  // When the active block selection changes, sync levelCountDraft from existing HE items if consistent
+  useEffect(() => {
+    if (!heLevelsOrderable || activeBlockIds.size === 0) return;
+    const heItems = orderedItems.filter(
+      (i) => i.orderableId === heLevelsOrderable.id && activeBlockIds.has(i.blockId),
+    );
+    if (heItems.length === 0) return;
+    const first = heItems[0].levelCount ?? 3;
+    if (heItems.every((i) => (i.levelCount ?? 3) === first)) setLevelCountDraft(first);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeBlockIds]);
+
+  // --- Derived check states ---
+
+  const testCheckState = useCallback(
+    (orderableId: number): 'checked' | 'indeterminate' | 'unchecked' => {
+      if (activeBlockIds.size === 0) return 'unchecked';
+      let count = 0;
+      for (const blockId of activeBlockIds) {
+        if (orderedItems.some((i) => i.blockId === blockId && i.orderableId === orderableId))
+          count++;
+      }
+      if (count === activeBlockIds.size) return 'checked';
+      if (count > 0) return 'indeterminate';
+      return 'unchecked';
+    },
+    [activeBlockIds, orderedItems],
+  );
+
+  const heCheckState = useMemo(
+    () => (heLevelsOrderable ? testCheckState(heLevelsOrderable.id) : ('unchecked' as const)),
+    [heLevelsOrderable, testCheckState],
+  );
 
   const tabCount = (cat: AncillaryCategory) => {
-    if (cat === 'HE_LEVELS') return heOrdered ? 1 : 0;
-    return selectedByCategory[cat]?.size ?? 0;
+    if (cat === 'HE_LEVELS') {
+      return heLevelsOrderable &&
+        orderedItems.some((i) => i.orderableId === heLevelsOrderable.id)
+        ? 1
+        : 0;
+    }
+    const catIds = new Set(orderables.filter((o) => o.category === cat).map((o) => o.id));
+    return new Set(
+      orderedItems.filter((i) => catIds.has(i.orderableId)).map((i) => i.orderableId),
+    ).size;
   };
 
-  const totalSelected = ANCILLARY_CATEGORIES.filter((c) => c !== 'HE').reduce((sum, cat) => sum + tabCount(cat), 0);
+  const currentNotes = notesByCategory[selectedCategory] ?? '';
+
+  // --- Mutators ---
 
   const toggleBlockId = (id: string) => {
-    setSelectedBlockIds((prev) => {
+    setActiveBlockIds((prev) => {
       const next = new Set(prev);
       if (next.has(id)) next.delete(id);
       else next.add(id);
@@ -127,21 +170,77 @@ export default function OrderAncillaryDialog({
     });
   };
 
-  const toggleId = (id: number) => {
-    setSelectedByCategory((prev) => {
-      const current = new Set(prev[selectedCategory] ?? []);
-      if (current.has(id)) current.delete(id);
-      else current.add(id);
-      return { ...prev, [selectedCategory]: current };
-    });
+  const toggleOrderable = (orderableId: number) => {
+    if (activeBlockIds.size === 0) return;
+    const allHave = [...activeBlockIds].every((blockId) =>
+      orderedItems.some((i) => i.blockId === blockId && i.orderableId === orderableId),
+    );
+    if (allHave) {
+      setOrderedItems((prev) =>
+        prev.filter((i) => !(activeBlockIds.has(i.blockId) && i.orderableId === orderableId)),
+      );
+    } else {
+      setOrderedItems((prev) => {
+        const toAdd = [...activeBlockIds]
+          .filter(
+            (blockId) =>
+              !prev.some((i) => i.blockId === blockId && i.orderableId === orderableId),
+          )
+          .map((blockId) => ({ blockId, orderableId }));
+        return [...prev, ...toAdd];
+      });
+    }
+  };
+
+  const toggleHe = () => {
+    if (!heLevelsOrderable || activeBlockIds.size === 0) return;
+    const id = heLevelsOrderable.id;
+    const allHave = [...activeBlockIds].every((blockId) =>
+      orderedItems.some((i) => i.blockId === blockId && i.orderableId === id),
+    );
+    if (allHave) {
+      setOrderedItems((prev) =>
+        prev.filter((i) => !(activeBlockIds.has(i.blockId) && i.orderableId === id)),
+      );
+    } else {
+      setOrderedItems((prev) => {
+        const toAdd = [...activeBlockIds]
+          .filter((blockId) => !prev.some((i) => i.blockId === blockId && i.orderableId === id))
+          .map((blockId) => ({ blockId, orderableId: id, levelCount: levelCountDraft }));
+        return [...prev, ...toAdd];
+      });
+    }
+  };
+
+  const setLevelCountForActive = (n: number) => {
+    if (!heLevelsOrderable) return;
+    const id = heLevelsOrderable.id;
+    setOrderedItems((prev) =>
+      prev.map((i) =>
+        activeBlockIds.has(i.blockId) && i.orderableId === id ? { ...i, levelCount: n } : i,
+      ),
+    );
   };
 
   const addAllFromPanel = (panelOrderableIds: number[]) => {
-    setSelectedByCategory((prev) => {
-      const current = new Set(prev[selectedCategory] ?? []);
-      panelOrderableIds.forEach((id) => current.add(id));
-      return { ...prev, [selectedCategory]: current };
+    if (activeBlockIds.size === 0) return;
+    setOrderedItems((prev) => {
+      const toAdd: OrderedItem[] = [];
+      for (const orderableId of panelOrderableIds) {
+        for (const blockId of activeBlockIds) {
+          if (!prev.some((i) => i.blockId === blockId && i.orderableId === orderableId)) {
+            toAdd.push({ blockId, orderableId });
+          }
+        }
+      }
+      return [...prev, ...toAdd];
     });
+  };
+
+  const removeOrderedItem = (blockId: string, orderableId: number) => {
+    setOrderedItems((prev) =>
+      prev.filter((i) => !(i.blockId === blockId && i.orderableId === orderableId)),
+    );
   };
 
   const setCurrentNotes = (val: string) => {
@@ -150,39 +249,18 @@ export default function OrderAncillaryDialog({
 
   const createMutation = useMutation({
     mutationFn: () => {
-      if (selectedBlockIds.size === 0) throw new Error('Select at least one block');
-      if (totalSelected === 0) throw new Error('Select at least one test');
-
-      const allItems: Array<{
-        orderId: string; blockId: string; orderableId: number;
-        levelCount?: number; notes?: string;
-      }> = [];
-
-      if (heOrdered) {
-        const heLevelsOrderable = orderables.find((o) => o.category === 'HE_LEVELS' && o.isActive);
-        if (!heLevelsOrderable) throw new Error('H&E Levels orderable not found');
-        for (const blockId of selectedBlockIds) {
-          allItems.push({
-            orderId, blockId,
-            orderableId: heLevelsOrderable.id,
-            levelCount: levelCount || undefined,
-            notes: notesByCategory['HE_LEVELS'] || undefined,
-          });
-        }
-      }
-
-      for (const cat of ANCILLARY_CATEGORIES) {
-        if (cat === 'HE_LEVELS') continue;
-        const ids = selectedByCategory[cat];
-        if (!ids || ids.size === 0) continue;
-        const catNotes = notesByCategory[cat] || undefined;
-        for (const blockId of selectedBlockIds) {
-          for (const orderableId of ids) {
-            allItems.push({ orderId, blockId, orderableId, notes: catNotes });
-          }
-        }
-      }
-
+      if (orderedItems.length === 0) throw new Error('Select at least one test');
+      const allItems = orderedItems.map((item) => {
+        const orderable = orderables.find((o) => o.id === item.orderableId);
+        const cat = orderable?.category;
+        return {
+          orderId,
+          blockId: item.blockId,
+          orderableId: item.orderableId,
+          levelCount: item.levelCount,
+          notes: (cat ? notesByCategory[cat] : undefined) || undefined,
+        };
+      });
       return ancillaryApi.createOrders(allItems);
     },
     onSuccess: () => {
@@ -198,7 +276,10 @@ export default function OrderAncillaryDialog({
     },
   });
 
-  const categoryLabel = (cat: AncillaryCategory) => t(`anc_cat_${cat}` as Parameters<typeof t>[0]);
+  const categoryLabel = (cat: AncillaryCategory) =>
+    t(`anc_cat_${cat}` as Parameters<typeof t>[0]);
+
+  const noMaterialActive = activeBlockIds.size === 0;
 
   return (
     <Drawer
@@ -249,16 +330,37 @@ export default function OrderAncillaryDialog({
                     </Typography>
                   )}
                   <Stack direction="row" flexWrap="wrap" gap={0.5}>
-                    {s.blocks.map((b) => (
-                      <Chip
-                        key={b.blockId}
-                        label={formatMaterialIdDisplay(b.blockId)}
-                        size="small"
-                        color={selectedBlockIds.has(b.blockId) ? 'primary' : 'default'}
-                        onClick={() => toggleBlockId(b.blockId)}
-                        sx={{ cursor: 'pointer' }}
-                      />
-                    ))}
+                    {s.blocks.map((b) => {
+                      const isActive = activeBlockIds.has(b.blockId);
+                      const hasOrders = orderedItems.some((i) => i.blockId === b.blockId);
+                      return (
+                        <Chip
+                          key={b.blockId}
+                          label={
+                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                              <span>{formatMaterialIdDisplay(b.blockId)}</span>
+                              {hasOrders && !isActive && (
+                                <Box
+                                  component="span"
+                                  sx={{
+                                    display: 'inline-block',
+                                    width: 6,
+                                    height: 6,
+                                    borderRadius: '50%',
+                                    bgcolor: 'primary.main',
+                                    opacity: 0.7,
+                                  }}
+                                />
+                              )}
+                            </Box>
+                          }
+                          size="small"
+                          color={isActive ? 'primary' : 'default'}
+                          onClick={() => toggleBlockId(b.blockId)}
+                          sx={{ cursor: 'pointer' }}
+                        />
+                      );
+                    })}
                   </Stack>
                 </Box>
               ))}
@@ -301,7 +403,7 @@ export default function OrderAncillaryDialog({
             </Tabs>
           </Box>
 
-          {/* Search field (hidden for H&E Levels which has only one orderable) */}
+          {/* Search field (hidden for H&E Levels) */}
           {selectedCategory !== 'HE_LEVELS' && (
             <TextField
               size="small"
@@ -319,135 +421,154 @@ export default function OrderAncillaryDialog({
             />
           )}
 
+          {/* No-material-active hint */}
+          {noMaterialActive && (
+            <Typography variant="body2" color="text.disabled" textAlign="center" sx={{ py: 1 }}>
+              {t('anc_selectMaterialFirst')}
+            </Typography>
+          )}
+
           {/* H&E Levels */}
-          {selectedCategory === 'HE_LEVELS' && (
+          {selectedCategory === 'HE_LEVELS' && !noMaterialActive && (
             <Stack spacing={1.5}>
               <FormControlLabel
                 control={
                   <Checkbox
-                    checked={heOrdered}
-                    onChange={(e) => setHeOrdered(e.target.checked)}
+                    checked={heCheckState === 'checked'}
+                    indeterminate={heCheckState === 'indeterminate'}
+                    onChange={toggleHe}
                   />
                 }
                 label={t('anc_heInclude')}
               />
-              {heOrdered && (
-                <>
-                  <TextField
-                    label={t('anc_levelCount')}
-                    type="number"
-                    size="small"
-                    value={levelCount}
-                    onChange={(e) => setLevelCount(Math.max(1, parseInt(e.target.value, 10) || 1))}
-                    inputProps={{ min: 1, max: 20 }}
-                    sx={{ width: 160 }}
-                  />
-                  <TextField
-                    label={t('anc_notes')}
-                    size="small"
-                    fullWidth
-                    multiline
-                    minRows={2}
-                    value={currentNotes}
-                    onChange={(e) => setCurrentNotes(e.target.value)}
-                  />
-                </>
+              {heCheckState !== 'unchecked' && (
+                <TextField
+                  label={t('anc_levelCount')}
+                  type="number"
+                  size="small"
+                  value={levelCountDraft}
+                  onChange={(e) => {
+                    const n = Math.max(1, Math.min(20, parseInt(e.target.value, 10) || 1));
+                    setLevelCountDraft(n);
+                    setLevelCountForActive(n);
+                  }}
+                  inputProps={{ min: 1, max: 20 }}
+                  sx={{ width: 160 }}
+                />
               )}
-            </Stack>
-          )}
-
-          {/* IHC / Molecular — panels + individuals */}
-          {(selectedCategory === 'IHC' || selectedCategory === 'MOLECULAR') && (
-            <Stack spacing={2}>
-              {categoryPanels.length > 0 && (
-                <Box>
-                  <Typography variant="caption" color="text.secondary" fontWeight={600} mb={0.5} display="block">
-                    {t('anc_panels')}
-                  </Typography>
-                  <Stack spacing={1}>
-                    {categoryPanels.map((panel) => {
-                      const panelItems = panel.items ?? [];
-                      const q = searchQuery.trim().toLowerCase();
-                      const panelNameMatches = q && panel.name.toLowerCase().includes(q);
-                      const visibleItems = q && !panelNameMatches
-                        ? panelItems.filter((item) =>
-                            item.orderable?.name?.toLowerCase().includes(q),
-                          )
-                        : panelItems;
-                      if (q && !panelNameMatches && visibleItems.length === 0) return null;
-                      const panelOrderableIds = panelItems
-                        .map((item) => item.orderableId)
-                        .filter((id) => orderables.some((o) => o.id === id && o.isActive));
-                      return (
-                        <Box
-                          key={panel.id}
-                          sx={{ border: '1px solid', borderColor: 'divider', borderRadius: 1, p: 1.5 }}
-                        >
-                          <Box display="flex" alignItems="center" justifyContent="space-between" mb={0.75}>
-                            <Typography variant="body2" fontWeight={600}>
-                              {panel.name}
-                            </Typography>
-                            <Button
-                              size="small"
-                              variant="outlined"
-                              onClick={() => addAllFromPanel(panelOrderableIds)}
-                            >
-                              + {t('anc_panels')}
-                            </Button>
-                          </Box>
-                          <Stack direction="row" spacing={0.5} flexWrap="wrap" gap={0.5}>
-                            {visibleItems.map((item) => (
-                              <Chip
-                                key={item.orderableId}
-                                label={item.orderable?.name ?? item.orderableId}
-                                size="small"
-                                color={currentIds.has(item.orderableId) ? 'primary' : 'default'}
-                                onClick={() => toggleId(item.orderableId)}
-                                sx={{ cursor: 'pointer' }}
-                              />
-                            ))}
-                          </Stack>
-                        </Box>
-                      );
-                    })}
-                  </Stack>
-                  {filteredOrderables.length > 0 && <Divider sx={{ mt: 2, mb: 1 }} />}
-                </Box>
-              )}
-
-              {filteredOrderables.length > 0 && (
-                <Box>
-                  <Typography variant="caption" color="text.secondary" fontWeight={600} mb={0.5} display="block">
-                    {t('anc_tests')}
-                  </Typography>
-                  <Stack direction="row" flexWrap="wrap" gap={0.5}>
-                    {filteredOrderables.map((o) => (
-                      <FormControlLabel
-                        key={o.id}
-                        control={
-                          <Checkbox
-                            size="small"
-                            checked={currentIds.has(o.id)}
-                            onChange={() => toggleId(o.id)}
-                          />
-                        }
-                        label={<Typography variant="body2">{o.name}</Typography>}
-                      />
-                    ))}
-                  </Stack>
-                </Box>
-              )}
-
-              {filteredOrderables.length === 0 && searchQuery.trim() && (
-                <Typography variant="body2" color="text.disabled" textAlign="center">
-                  {t('noResults')}
-                </Typography>
-              )}
-
               <TextField
                 label={t('anc_notes')}
                 size="small"
                 fullWidth
+                multiline
+                minRows={2}
+                value={currentNotes}
+                onChange={(e) => setCurrentNotes(e.target.value)}
+              />
+            </Stack>
+          )}
+
+          {/* IHC / Molecular — panels + individuals */}
+          {!noMaterialActive &&
+            (selectedCategory === 'IHC' || selectedCategory === 'MOLECULAR') && (
+              <Stack spacing={2}>
+                {categoryPanels.length > 0 && (
+                  <Box>
+                    <Typography variant="caption" color="text.secondary" fontWeight={600} mb={0.5} display="block">
+                      {t('anc_panels')}
+                    </Typography>
+                    <Stack spacing={1}>
+                      {categoryPanels.map((panel) => {
+                        const panelItems = panel.items ?? [];
+                        const q = searchQuery.trim().toLowerCase();
+                        const panelNameMatches = q && panel.name.toLowerCase().includes(q);
+                        const visibleItems = q && !panelNameMatches
+                          ? panelItems.filter((item) =>
+                              item.orderable?.name?.toLowerCase().includes(q),
+                            )
+                          : panelItems;
+                        if (q && !panelNameMatches && visibleItems.length === 0) return null;
+                        const panelOrderableIds = panelItems
+                          .map((item) => item.orderableId)
+                          .filter((id) => orderables.some((o) => o.id === id && o.isActive));
+                        return (
+                          <Box
+                            key={panel.id}
+                            sx={{ border: '1px solid', borderColor: 'divider', borderRadius: 1, p: 1.5 }}
+                          >
+                            <Box display="flex" alignItems="center" justifyContent="space-between" mb={0.75}>
+                              <Typography variant="body2" fontWeight={600}>
+                                {panel.name}
+                              </Typography>
+                              <Button
+                                size="small"
+                                variant="outlined"
+                                onClick={() => addAllFromPanel(panelOrderableIds)}
+                              >
+                                + {t('anc_panels')}
+                              </Button>
+                            </Box>
+                            <Stack direction="row" spacing={0.5} flexWrap="wrap" gap={0.5}>
+                              {visibleItems.map((item) => {
+                                const state = testCheckState(item.orderableId);
+                                return (
+                                  <Chip
+                                    key={item.orderableId}
+                                    label={item.orderable?.name ?? item.orderableId}
+                                    size="small"
+                                    color={state === 'unchecked' ? 'default' : 'primary'}
+                                    variant={state === 'indeterminate' ? 'outlined' : 'filled'}
+                                    onClick={() => toggleOrderable(item.orderableId)}
+                                    sx={{ cursor: 'pointer' }}
+                                  />
+                                );
+                              })}
+                            </Stack>
+                          </Box>
+                        );
+                      })}
+                    </Stack>
+                    {filteredOrderables.length > 0 && <Divider sx={{ mt: 2, mb: 1 }} />}
+                  </Box>
+                )}
+
+                {filteredOrderables.length > 0 && (
+                  <Box>
+                    <Typography variant="caption" color="text.secondary" fontWeight={600} mb={0.5} display="block">
+                      {t('anc_tests')}
+                    </Typography>
+                    <Stack direction="row" flexWrap="wrap" gap={0.5}>
+                      {filteredOrderables.map((o) => {
+                        const state = testCheckState(o.id);
+                        return (
+                          <FormControlLabel
+                            key={o.id}
+                            control={
+                              <Checkbox
+                                size="small"
+                                checked={state === 'checked'}
+                                indeterminate={state === 'indeterminate'}
+                                onChange={() => toggleOrderable(o.id)}
+                              />
+                            }
+                            label={<Typography variant="body2">{o.name}</Typography>}
+                          />
+                        );
+                      })}
+                    </Stack>
+                  </Box>
+                )}
+
+                {filteredOrderables.length === 0 && searchQuery.trim() && (
+                  <Typography variant="body2" color="text.disabled" textAlign="center">
+                    {t('noResults')}
+                  </Typography>
+                )}
+
+                <TextField
+                  label={t('anc_notes')}
+                  size="small"
+                  fullWidth
                 multiline
                 minRows={2}
                 value={currentNotes}
@@ -457,73 +578,81 @@ export default function OrderAncillaryDialog({
           )}
 
           {/* Special Stains / Send-out — simple checkbox list */}
-          {(selectedCategory === 'SPECIAL_STAIN' || selectedCategory === 'SEND_OUT') && (
-            <Stack spacing={1.5}>
-              {filteredOrderables.length === 0 && searchQuery.trim() ? (
-                <Typography variant="body2" color="text.disabled" textAlign="center">
-                  {t('noResults')}
-                </Typography>
-              ) : (
-                filteredOrderables.map((o) => (
-                  <FormControlLabel
-                    key={o.id}
-                    control={
-                      <Checkbox
-                        checked={currentIds.has(o.id)}
-                        onChange={() => toggleId(o.id)}
+          {!noMaterialActive &&
+            (selectedCategory === 'SPECIAL_STAIN' || selectedCategory === 'SEND_OUT') && (
+              <Stack spacing={1.5}>
+                {filteredOrderables.length === 0 && searchQuery.trim() ? (
+                  <Typography variant="body2" color="text.disabled" textAlign="center">
+                    {t('noResults')}
+                  </Typography>
+                ) : (
+                  filteredOrderables.map((o) => {
+                    const state = testCheckState(o.id);
+                    return (
+                      <FormControlLabel
+                        key={o.id}
+                        control={
+                          <Checkbox
+                            checked={state === 'checked'}
+                            indeterminate={state === 'indeterminate'}
+                            onChange={() => toggleOrderable(o.id)}
+                          />
+                        }
+                        label={o.name}
                       />
-                    }
-                    label={o.name}
-                  />
-                ))
-              )}
-              <TextField
-                label={t('anc_notes')}
-                size="small"
-                fullWidth
-                multiline
-                minRows={2}
-                value={currentNotes}
-                onChange={(e) => setCurrentNotes(e.target.value)}
-              />
-            </Stack>
-          )}
+                    );
+                  })
+                )}
+                <TextField
+                  label={t('anc_notes')}
+                  size="small"
+                  fullWidth
+                  multiline
+                  minRows={2}
+                  value={currentNotes}
+                  onChange={(e) => setCurrentNotes(e.target.value)}
+                />
+              </Stack>
+            )}
 
-          {/* Cross-category summary: tests queued in other tabs */}
-          {(() => {
-            const summaryCats = ANCILLARY_CATEGORIES.filter(
-              (cat) => cat !== selectedCategory && tabCount(cat) > 0,
-            );
-            if (summaryCats.length === 0) return null;
-            return (
-              <Box sx={{ bgcolor: 'action.hover', borderRadius: 1, p: 1.5 }}>
-                <Typography variant="caption" fontWeight={600} color="text.secondary" display="block" mb={1}>
-                  {t('anc_orderSummary')}
-                </Typography>
-                <Stack spacing={0.75}>
-                  {summaryCats.map((cat) => (
-                    <Box key={cat} display="flex" alignItems="flex-start" gap={1}>
-                      <Typography variant="caption" color="text.secondary" sx={{ minWidth: 100, pt: 0.25 }}>
-                        {categoryLabel(cat)}:
+          {/* Per-material order summary */}
+          {orderedItems.length > 0 && (
+            <Box sx={{ bgcolor: 'action.hover', borderRadius: 1, p: 1.5 }}>
+              <Typography variant="caption" fontWeight={600} color="text.secondary" display="block" mb={1}>
+                {t('anc_orderSummary')}
+              </Typography>
+              <Stack spacing={1}>
+                {allBlocks
+                  .filter((b) => orderedItems.some((i) => i.blockId === b.blockId))
+                  .map((b) => (
+                    <Box key={b.blockId}>
+                      <Typography variant="caption" color="text.secondary" fontWeight={600} mb={0.5} display="block">
+                        {formatMaterialIdDisplay(b.blockId)}
                       </Typography>
                       <Stack direction="row" flexWrap="wrap" gap={0.5}>
-                        {cat === 'HE_LEVELS' ? (
-                          <Chip label={`×${levelCount} levels`} size="small" color="primary" />
-                        ) : (
-                          Array.from(selectedByCategory[cat] ?? []).map((id) => {
-                            const o = orderables.find((x) => x.id === id);
+                        {orderedItems
+                          .filter((i) => i.blockId === b.blockId)
+                          .map((item) => {
+                            const orderable = orderables.find((o) => o.id === item.orderableId);
+                            const label = item.levelCount
+                              ? `${orderable?.name ?? `#${item.orderableId}`} ×${item.levelCount}`
+                              : (orderable?.name ?? `#${item.orderableId}`);
                             return (
-                              <Chip key={id} label={o?.name ?? `#${id}`} size="small" color="primary" />
+                              <Chip
+                                key={item.orderableId}
+                                label={label}
+                                size="small"
+                                color="primary"
+                                onDelete={() => removeOrderedItem(b.blockId, item.orderableId)}
+                              />
                             );
-                          })
-                        )}
+                          })}
                       </Stack>
                     </Box>
                   ))}
-                </Stack>
-              </Box>
-            );
-          })()}
+              </Stack>
+            </Box>
+          )}
         </Stack>
       </Box>
 
@@ -544,11 +673,7 @@ export default function OrderAncillaryDialog({
         <Button
           variant="contained"
           onClick={() => createMutation.mutate()}
-          disabled={
-            createMutation.isPending ||
-            selectedBlockIds.size === 0 ||
-            totalSelected === 0
-          }
+          disabled={createMutation.isPending || orderedItems.length === 0}
         >
           {createMutation.isPending ? (
             <CircularProgress size={18} />
