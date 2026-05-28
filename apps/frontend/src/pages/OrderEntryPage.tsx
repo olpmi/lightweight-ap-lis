@@ -26,7 +26,7 @@ import {
 import { Add, Delete, Download } from '@mui/icons-material';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { useBlocker } from 'react-router-dom';
-import { orderApi, lookupApi, patientApi, doctorApi } from '../api';
+import { orderApi, lookupApi, patientApi, doctorApi, specimenApi, blockApi } from '../api';
 import { formatOrderIdDisplay, BODY_SITE_HIERARCHY, CYTOLOGY_SITE_HIERARCHY } from '@lis/shared';
 import { useLanguage } from '../hooks/useLanguage';
 import { useNavigationGuard } from '../hooks/useNavigationGuard';
@@ -37,6 +37,9 @@ interface SpecimenRow {
   bodySiteId: number | '';
   specimenTypeId: number | '';
   coldIschemicTime: string;
+  smearCount: number;
+  thinPrepCount: number;
+  cellBlockCount: number;
 }
 
 export default function OrderEntryPage() {
@@ -58,7 +61,7 @@ export default function OrderEntryPage() {
     doctorFirstName: '',
   });
 
-  const [specimens, setSpecimens] = useState<SpecimenRow[]>([{ id: '1', site: '', bodySiteId: '', specimenTypeId: '', coldIschemicTime: '' }]);
+  const [specimens, setSpecimens] = useState<SpecimenRow[]>([{ id: '1', site: '', bodySiteId: '', specimenTypeId: '', coldIschemicTime: '', smearCount: 0, thinPrepCount: 0, cellBlockCount: 0 }]);
   const [createdOrder, setCreatedOrder] = useState<{ orderId: string } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [successOpen, setSuccessOpen] = useState(false);
@@ -124,19 +127,13 @@ export default function OrderEntryPage() {
       setSelectedPatient(null);
       setSelectedDoctor(null);
       setForm({ caseType: 'Surgical Pathology', patientLastName: '', patientFirstName: '', patientDateOfBirth: '', patientSex: '', doctorLastName: '', doctorFirstName: '' });
-      setSpecimens([{ id: '1', site: '', bodySiteId: '', specimenTypeId: '', coldIschemicTime: '' }]);
+      setSpecimens([{ id: '1', site: '', bodySiteId: '', specimenTypeId: '', coldIschemicTime: '', smearCount: 0, thinPrepCount: 0, cellBlockCount: 0 }]);
       setResetKey((k) => k + 1);
-    },
-    onError: (err: unknown) => {
-      setError(
-        (err as { response?: { data?: { error?: { message?: string } } } })?.response?.data?.error
-          ?.message ?? t('errorGeneric')
-      );
     },
   });
 
   const addSpecimen = () =>
-    setSpecimens([...specimens, { id: String(Date.now()), site: '', bodySiteId: '', specimenTypeId: '', coldIschemicTime: '' }]);
+    setSpecimens([...specimens, { id: String(Date.now()), site: '', bodySiteId: '', specimenTypeId: '', coldIschemicTime: '', smearCount: 0, thinPrepCount: 0, cellBlockCount: 0 }]);
 
   const removeSpecimen = (id: string) =>
     setSpecimens(specimens.filter((s) => s.id !== id));
@@ -158,9 +155,18 @@ export default function OrderEntryPage() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
+
+    const isCyto = form.caseType === 'Cytology';
+
+    // Capture cytology material counts before state resets on success
+    const cytoMats = specimens.map((s) => ({
+      smearCount: s.smearCount,
+      thinPrepCount: s.thinPrepCount,
+      cellBlockCount: s.cellBlockCount,
+    }));
 
     const payload: Record<string, unknown> = {
       registeredDate: new Date().toISOString(),
@@ -188,7 +194,38 @@ export default function OrderEntryPage() {
       payload.doctorFirstName = form.doctorFirstName;
     }
 
-    createMutation.mutate(payload);
+    try {
+      const order = await createMutation.mutateAsync(payload) as {
+        orderId: string;
+        specimens?: Array<{ specimenId: string; specimenCode: string }>;
+      };
+
+      if (isCyto && order.specimens) {
+        for (let i = 0; i < order.specimens.length; i++) {
+          const spec = order.specimens[i];
+          const mat = cytoMats[i];
+          if (!mat) continue;
+
+          const slideCount = mat.smearCount + mat.thinPrepCount;
+          if (slideCount > 0) {
+            const blocks = await specimenApi.createBlocks(spec.specimenId, 1) as Array<{ blockId: string }>;
+            const slideBlockId = blocks[0]?.blockId;
+            if (slideBlockId) {
+              if (mat.smearCount > 0) await blockApi.createSlides(slideBlockId, mat.smearCount, 'Smear');
+              if (mat.thinPrepCount > 0) await blockApi.createSlides(slideBlockId, mat.thinPrepCount, 'ThinPrep');
+            }
+          }
+          if (mat.cellBlockCount > 0) {
+            await specimenApi.createBlocks(spec.specimenId, mat.cellBlockCount);
+          }
+        }
+      }
+    } catch (err) {
+      setError(
+        (err as { response?: { data?: { error?: { message?: string } } } })?.response?.data?.error
+          ?.message ?? t('errorGeneric')
+      );
+    }
   };
 
   return (
@@ -224,6 +261,8 @@ export default function OrderEntryPage() {
           </Typography>
         </Alert>
       )}
+
+
 
       <Box component="form" onSubmit={handleSubmit}>
         <Grid container spacing={3}>
@@ -326,7 +365,7 @@ export default function OrderEntryPage() {
                 <Select label={t('oe_caseType')} value={form.caseType} onChange={(e) => {
                   setForm({ ...form, caseType: e.target.value });
                   // Reset specimens when switching case type
-                  setSpecimens([{ id: '1', site: '', bodySiteId: '', specimenTypeId: '', coldIschemicTime: '' }]);
+                  setSpecimens([{ id: '1', site: '', bodySiteId: '', specimenTypeId: '', coldIschemicTime: '', smearCount: 0, thinPrepCount: 0, cellBlockCount: 0 }]);
                 }}>
                   <MenuItem value="Surgical Pathology">{t('oe_surgicalPathology')}</MenuItem>
                   <MenuItem value="Cytology">{t('oe_cytology')}</MenuItem>
@@ -423,6 +462,43 @@ export default function OrderEntryPage() {
                           onChange={(e) => updateSpecimen(spec.id, 'coldIschemicTime', e.target.value)}
                           required
                         />
+                      )}
+                      {/* Cytology materials — smears, ThinPrep, cell blocks */}
+                      {isCytology && (
+                        <Box sx={{ gridColumn: '1 / -1', mt: 0.5 }}>
+                          <Typography variant="caption" color="text.secondary" fontWeight={600} display="block" mb={0.75}>
+                            {t('oe_cytologyMaterials')}
+                          </Typography>
+                          <Box display="flex" gap={1.5} flexWrap="wrap">
+                            <TextField
+                              label={t('oe_smears')}
+                              type="number"
+                              size="small"
+                              value={spec.smearCount}
+                              onChange={(e) => setSpecimens(specimens.map((s) => s.id === spec.id ? { ...s, smearCount: parseInt(e.target.value) || 0 } : s))}
+                              inputProps={{ min: 0, max: 50 }}
+                              sx={{ width: 90 }}
+                            />
+                            <TextField
+                              label={t('oe_thinPrep')}
+                              type="number"
+                              size="small"
+                              value={spec.thinPrepCount}
+                              onChange={(e) => setSpecimens(specimens.map((s) => s.id === spec.id ? { ...s, thinPrepCount: parseInt(e.target.value) || 0 } : s))}
+                              inputProps={{ min: 0, max: 50 }}
+                              sx={{ width: 90 }}
+                            />
+                            <TextField
+                              label={t('oe_cellBlocks')}
+                              type="number"
+                              size="small"
+                              value={spec.cellBlockCount}
+                              onChange={(e) => setSpecimens(specimens.map((s) => s.id === spec.id ? { ...s, cellBlockCount: parseInt(e.target.value) || 0 } : s))}
+                              inputProps={{ min: 0, max: 20 }}
+                              sx={{ width: 100 }}
+                            />
+                          </Box>
+                        </Box>
                       )}
                     </Box>
                   </Box>

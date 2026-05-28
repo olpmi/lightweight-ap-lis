@@ -15,7 +15,7 @@ export const FILE_TYPES = {
 
 export const SEX_OPTIONS = ['Male', 'Female', 'Other', 'Unknown'] as const;
 
-export const SLIDE_TYPES = ['H&E', 'Unstained', 'IHC', 'Special stain', 'Other'] as const;
+export const SLIDE_TYPES = ['H&E', 'Unstained', 'IHC', 'Special stain', 'Other', 'Smear'] as const;
 
 export const ANCILLARY_CATEGORIES = [
   'HE_LEVELS',
@@ -23,6 +23,7 @@ export const ANCILLARY_CATEGORIES = [
   'SPECIAL_STAIN',
   'MOLECULAR',
   'SEND_OUT',
+  'HE',
 ] as const;
 
 export type AncillaryCategory = (typeof ANCILLARY_CATEGORIES)[number];
@@ -33,16 +34,24 @@ export const ANCILLARY_CATEGORY_LABELS: Record<AncillaryCategory, string> = {
   SPECIAL_STAIN: 'Special Stains',
   MOLECULAR: 'Molecular',
   SEND_OUT: 'Send-out',
+  HE: 'H&E',
 };
 
 export const ANCILLARY_ORDER_STATUSES = [
-  'PENDING',
-  'IN_PROGRESS',
-  'COMPLETE',
+  'PULL_BLOCK',
+  'MICROTOMY',
+  'SLIDE_STAIN',
+  'DISTRIBUTED',
   'CANCELLED',
+  'PULL_MATERIAL',
+  'MATERIAL_SENT',
+  'MATERIAL_RETURNED',
 ] as const;
 
 export type AncillaryOrderStatus = (typeof ANCILLARY_ORDER_STATUSES)[number];
+
+export const HISTOLOGY_ORDER_STATUSES = ['PULL_BLOCK', 'MICROTOMY', 'SLIDE_STAIN', 'DISTRIBUTED', 'CANCELLED'] as const;
+export const SENDOUT_ORDER_STATUSES = ['PULL_MATERIAL', 'MATERIAL_SENT', 'MATERIAL_RETURNED', 'CANCELLED'] as const;
 
 export const CYTOLOGY_SITE_HIERARCHY: Record<string, readonly string[]> = {
   'GYN Cytology (Pap smears)': [],

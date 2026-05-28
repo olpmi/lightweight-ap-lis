@@ -555,6 +555,9 @@ async function main() {
   const now = new Date();
   const ORDER_COUNT = 300;
 
+  // Look up HE orderable (inserted by migration) for auto-creating H&E orders per block
+  const heOrderable = await prisma.ancillaryOrderable.findFirst({ where: { category: 'HE', isActive: true } });
+
   for (let i = 0; i < ORDER_COUNT; i++) {
     // Generate order ID by_prefix: { yearTwoDigit: 25, prefix: 'SU' }rementing the sequence
     const seq = await prisma.orderSequenceYear.update({
@@ -639,6 +642,12 @@ async function main() {
             createdDatetime: subtractDays(registeredDate, -randInt(1, 3)),
           },
         });
+
+        if (heOrderable) {
+          await prisma.ancillaryOrder.create({
+            data: { orderId, blockId, orderableId: heOrderable.id, status: 'MICROTOMY' },
+          });
+        }
 
         const slideCount = randInt(1, 3);
         for (let sl = 1; sl <= slideCount; sl++) {

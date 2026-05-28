@@ -143,7 +143,6 @@ export default function ProcessingCasePage() {
   const [saveError, setSaveError] = useState<string | null>(null);
   const [blockCounts, setBlockCounts] = useState<Record<string, number>>({});
   const [slideCounts, setSlideCounts] = useState<Record<string, number>>({});
-  const [slideTypes, setSlideTypes] = useState<Record<string, string>>({});
 
   const { data: grossTemplates = [] } = useQuery<TemplateCatalogEntry[]>({
     queryKey: ['template-catalog', 'gross', lang],
@@ -388,49 +387,14 @@ export default function ProcessingCasePage() {
           </AccordionSummary>
           <AccordionDetails>
             {order?.caseType === 'Cytology' ? (
-              /* ── Cytology: simple slides-only UI ── */
+              /* ── Cytology: read-only slide display (materials managed at order entry / histology) ── */
               <Box>
-                <Box display="flex" alignItems="center" gap={1} mb={2}>
-                  <TextField
-                    label={t('pc_numSlides')}
-                    type="number"
-                    size="small"
-                    value={slideCounts[spec.specimenId] ?? 1}
-                    onChange={(e) => setSlideCounts({ ...slideCounts, [spec.specimenId]: parseInt(e.target.value) || 1 })}
-                    sx={{ width: 80 }}
-                    inputProps={{ min: 1, max: 200 }}
-                  />
-                  <Button
-                    variant="contained"
-                    size="small"
-                    startIcon={<Add />}
-                    onClick={async () => {
-                      let blockId: string | undefined = spec.blocks[0]?.blockId;
-                      if (!blockId) {
-                        const result = await createBlocks({ specimenId: spec.specimenId, count: 1 });
-                        blockId = (result as Array<{ blockId: string }>)[0]?.blockId;
-                      }
-                      if (blockId) {
-                        await createSlides({ blockId, count: slideCounts[spec.specimenId] ?? 1, slideType: 'H&E' });
-                      }
-                    }}
-                    disabled={creatingBlocks || creatingSlides}
-                    data-testid={`add-slides-${spec.specimenCode}`}
-                  >
-                    {t('pc_addSlides')}
-                  </Button>
-                </Box>
                 <Stack direction="row" spacing={0.5} flexWrap="wrap">
                   {spec.blocks.flatMap((b) => b.slides).map((sl) => (
                     <Chip
                       key={sl.slideId}
-                      label={`${formatMaterialIdDisplay(sl.slideId)} [${tSlideType(sl.slideType ?? 'H&E')}]`}
+                      label={`${formatMaterialIdDisplay(sl.slideId)} [${tSlideType(sl.slideType ?? 'Smear')}]`}
                       size="small"
-                      onDelete={isSaved ? undefined : () => {
-                        const block = spec.blocks.find((b) => b.slides.some((s) => s.slideId === sl.slideId));
-                        if (block) doDeleteSlide({ blockId: block.blockId, slideId: sl.slideId });
-                      }}
-                      deleteIcon={<Delete fontSize="small" />}
                     />
                   ))}
                   {spec.blocks.flatMap((b) => b.slides).length === 0 && (
@@ -468,7 +432,6 @@ export default function ProcessingCasePage() {
                   <TableRow>
                     <TableCell>{t('pc_blockId')}</TableCell>
                     <TableCell>{t('pc_slides')}</TableCell>
-                    <TableCell>{t('pc_addSlidesHeader')}</TableCell>
                     {!isSaved && <TableCell align="center">{t('common_delete')}</TableCell>}
                   </TableRow>
                 </TableHead>
@@ -493,48 +456,6 @@ export default function ProcessingCasePage() {
                             <Typography variant="caption" color="text.secondary">{t('pc_none')}</Typography>
                           )}
                         </Stack>
-                      </TableCell>
-                      <TableCell>
-                        <Box display="flex" alignItems="center" gap={1}>
-                          <TextField
-                            type="number"
-                            size="small"
-                            value={slideCounts[block.blockId] ?? 1}
-                            onChange={(e) =>
-                              setSlideCounts({ ...slideCounts, [block.blockId]: parseInt(e.target.value) || 1 })
-                            }
-                            sx={{ width: 70 }}
-                            inputProps={{ min: 1, max: 100 }}
-                          />
-                          <FormControl size="small" sx={{ width: 120 }}>
-                            <InputLabel>{t('pc_slideType')}</InputLabel>
-                            <Select
-                              label={t('pc_slideType')}
-                              value={slideTypes[block.blockId] ?? 'H&E'}
-                              onChange={(e) => setSlideTypes({ ...slideTypes, [block.blockId]: e.target.value })}
-                            >
-                              {['H&E', 'Unstained', 'IHC', 'Special stain'].map((st) => (
-                                <MenuItem key={st} value={st}>{tSlideType(st)}</MenuItem>
-                              ))}
-                            </Select>
-                          </FormControl>
-                          <Button
-                            size="small"
-                            variant="outlined"
-                            startIcon={<Add />}
-                            onClick={() =>
-                              createSlides({
-                                blockId: block.blockId,
-                                count: slideCounts[block.blockId] ?? 1,
-                                slideType: slideTypes[block.blockId] ?? 'H&E',
-                              })
-                            }
-                            disabled={creatingSlides}
-                            data-testid={`create-slides-${block.blockId}`}
-                          >
-                            {t('pc_slides')}
-                          </Button>
-                        </Box>
                       </TableCell>
                       {!isSaved && (
                         <TableCell align="center">

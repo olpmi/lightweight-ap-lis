@@ -26,14 +26,17 @@ export class QueueService {
           },
         };
 
-    // For default view: also require no blocks or slides
-    const noMaterials = showAll
+    // For default view: require no Report with a saved gross description
+    const noGross = showAll
       ? {}
       : {
           NOT: {
-            specimens: {
+            reports: {
               some: {
-                blocks: { some: {} },
+                AND: [
+                  { gross: { not: null } },
+                  { gross: { not: '' } },
+                ],
               },
             },
           },
@@ -52,7 +55,7 @@ export class QueueService {
 
     const where = {
       ...notSignedOut,
-      ...noMaterials,
+      ...noGross,
       ...searchFilter,
     };
 
@@ -86,11 +89,15 @@ export class QueueService {
     pageSize: number,
     search = ''
   ): Promise<{ data: object[]; total: number; page: number; pageSize: number }> {
-    // Must have at least one block
+    // Must have at least one slide
     const hasMaterials = {
       specimens: {
         some: {
-          blocks: { some: {} },
+          blocks: {
+            some: {
+              slides: { some: {} },
+            },
+          },
         },
       },
     };
@@ -129,6 +136,79 @@ export class QueueService {
           doctor: true,
           specimens: {
             include: { bodySite: true, specimenType: true },
+          },
+        },
+      }),
+      prisma.order.count({ where }),
+    ]);
+
+    return { data, total, page, pageSize };
+  }
+
+  /**
+   * Histology queue:
+   *   - has at least one block with no slides
+   *   - no final signed-out report
+   */
+  async getHistologyQueue(
+    page: number,
+    pageSize: number,
+    search = ''
+  ): Promise<{ data: object[]; total: number; page: number; pageSize: number }> {
+    const hasBlocksNeedingSlides = {
+      specimens: {
+        some: {
+          blocks: {
+            some: {
+              slides: { none: {} },
+            },
+          },
+        },
+      },
+    };
+
+    const notSignedOut = {
+      reports: {
+        none: {
+          isFinal: true,
+          signedOutDatetime: { not: null },
+        },
+      },
+    };
+
+    const searchFilter = search
+      ? {
+          OR: [
+            ...buildOrderIdConditions(search),
+            { patient: { lastName: { contains: search, mode: 'insensitive' as const } } },
+            { patient: { firstName: { contains: search, mode: 'insensitive' as const } } },
+            { patient: { patientId: { contains: search, mode: 'insensitive' as const } } },
+          ],
+        }
+      : {};
+
+    const where = { ...hasBlocksNeedingSlides, ...notSignedOut, ...searchFilter };
+
+    const [data, total] = await Promise.all([
+      prisma.order.findMany({
+        where,
+        skip: (page - 1) * pageSize,
+        take: pageSize,
+        orderBy: { registeredDate: 'desc' },
+        include: {
+          patient: true,
+          doctor: true,
+          specimens: {
+            include: {
+              bodySite: true,
+              specimenType: true,
+              blocks: {
+                where: { slides: { none: {} } },
+                include: { slides: true },
+                orderBy: { blockNumber: 'asc' },
+              },
+            },
+            orderBy: { specimenCode: 'asc' },
           },
         },
       }),

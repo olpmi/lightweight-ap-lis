@@ -264,15 +264,20 @@ enum AncillaryCategory {
   SPECIAL_STAIN
   MOLECULAR
   SEND_OUT
+  HE
 
   @@map("ancillary_category")
 }
 
 enum AncillaryOrderStatus {
-  PENDING
-  IN_PROGRESS
-  COMPLETE
+  PULL_BLOCK
+  MICROTOMY
+  SLIDE_STAIN
+  DISTRIBUTED
   CANCELLED
+  PULL_MATERIAL
+  MATERIAL_SENT
+  MATERIAL_RETURNED
 
   @@map("ancillary_order_status")
 }
@@ -324,7 +329,7 @@ model AncillaryOrder {
   orderId      String               @map("order_id") @db.Char(11)
   blockId      String               @map("block_id") @db.VarChar(30)
   orderableId  Int                  @map("orderable_id")
-  status       AncillaryOrderStatus @default(PENDING)
+  status       AncillaryOrderStatus @default(PULL_BLOCK)
   levelCount   Int?                 @map("level_count")
   notes        String?              @db.Text
   resultNotes  String?              @map("result_notes") @db.Text

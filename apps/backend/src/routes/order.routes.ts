@@ -29,6 +29,19 @@ router.get('/processing-queue', requireAuth, async (req: Request, res: Response,
   }
 });
 
+// GET /api/orders/histology-queue
+router.get('/histology-queue', requireAuth, async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const page = parseInt(String(req.query.page ?? '1'));
+    const pageSize = parseInt(String(req.query.pageSize ?? '50'));
+    const search = String(req.query.search ?? '');
+    const data = await queueService.getHistologyQueue(page, pageSize, search);
+    res.json(data);
+  } catch (err) {
+    next(err);
+  }
+});
+
 // GET /api/orders/result-queue
 router.get('/result-queue', requireAuth, async (req: Request, res: Response, next: NextFunction) => {
   try {
