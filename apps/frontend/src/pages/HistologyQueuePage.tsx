@@ -27,8 +27,9 @@ import {
   Pagination,
   TextField,
   InputAdornment,
+  Tooltip,
 } from '@mui/material';
-import { ExpandMore, Search } from '@mui/icons-material';
+import { ExpandMore, Search, Delete } from '@mui/icons-material';
 import { useQuery, useMutation, useQueryClient, keepPreviousData } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { ancillaryApi, blockApi } from '../api';
@@ -113,6 +114,13 @@ function AncillaryCaseTable({ category }: { category: AncillaryCategory }) {
   const createSlidesMutation = useMutation({
     mutationFn: ({ blockId, count }: { blockId: string; count: number }) =>
       blockApi.createSlides(blockId, count, 'H&E'),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ['ancillary-queue'] }),
+    onError: () => setActionError(t('errorGeneric')),
+  });
+
+  const discardSlideMutation = useMutation({
+    mutationFn: ({ blockId, slideId }: { blockId: string; slideId: string }) =>
+      blockApi.discardSlide(blockId, slideId),
     onSuccess: () => qc.invalidateQueries({ queryKey: ['ancillary-queue'] }),
     onError: () => setActionError(t('errorGeneric')),
   });
@@ -354,7 +362,21 @@ function AncillaryCaseTable({ category }: { category: AncillaryCategory }) {
                                   variant={(order.block?._count?.slides ?? 0) > 0 ? 'filled' : 'outlined'}
                                 />
                                 {order.block?.slides?.map((sl) => (
-                                  <Chip key={sl.slideId} label={formatMaterialIdDisplay(sl.slideId)} size="small" variant="outlined" />
+                                  <Chip
+                                    key={sl.slideId}
+                                    label={formatMaterialIdDisplay(sl.slideId)}
+                                    size="small"
+                                    variant="outlined"
+                                    sx={sl.discarded ? { opacity: 0.55 } : undefined}
+                                    onDelete={sl.discarded ? undefined : () =>
+                                      discardSlideMutation.mutate({ blockId: order.blockId, slideId: sl.slideId })
+                                    }
+                                    deleteIcon={
+                                      <Tooltip title={t('hc_discardSlideTooltip')}>
+                                        <Delete fontSize="small" />
+                                      </Tooltip>
+                                    }
+                                  />
                                 ))}
                               </Stack>
                               <Stack direction="row" spacing={0.5} alignItems="center">
@@ -397,7 +419,13 @@ function AncillaryCaseTable({ category }: { category: AncillaryCategory }) {
                                 variant={(order.block?._count?.slides ?? 0) > 0 ? 'filled' : 'outlined'}
                               />
                               {order.block?.slides?.map((sl) => (
-                                <Chip key={sl.slideId} label={formatMaterialIdDisplay(sl.slideId)} size="small" variant="outlined" />
+                                <Chip
+                                  key={sl.slideId}
+                                  label={formatMaterialIdDisplay(sl.slideId)}
+                                  size="small"
+                                  variant="outlined"
+                                  sx={sl.discarded ? { opacity: 0.55 } : undefined}
+                                />
                               ))}
                             </Stack>
                           </TableCell>

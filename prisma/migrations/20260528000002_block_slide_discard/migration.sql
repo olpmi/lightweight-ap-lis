@@ -1,0 +1,2 @@
+ALTER TABLE "block" ADD COLUMN "discarded" BOOLEAN NOT NULL DEFAULT false;
+ALTER TABLE "slide" ADD COLUMN "discarded" BOOLEAN NOT NULL DEFAULT false;
