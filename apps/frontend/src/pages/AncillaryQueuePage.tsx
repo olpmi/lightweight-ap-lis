@@ -19,16 +19,14 @@ import {
   MenuItem,
   ToggleButton,
   ToggleButtonGroup,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
   Pagination,
   Tabs,
   Tab,
   TextField,
   InputAdornment,
+  IconButton,
 } from '@mui/material';
-import { ExpandMore, Search } from '@mui/icons-material';
+import { KeyboardArrowDown, KeyboardArrowRight, Search } from '@mui/icons-material';
 import { useQuery, useMutation, useQueryClient, keepPreviousData } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { ancillaryApi } from '../api';
@@ -53,6 +51,116 @@ const STATUS_COLORS: Record<AncillaryOrderStatus, 'default' | 'warning' | 'info'
 };
 
 const PAGE_SIZE = 20;
+
+// ─── Per-group rows rendered inside a shared table ───────────────────────────
+
+type TFn = ReturnType<typeof useLanguage>['t'];
+
+interface SendoutGroupRowsProps {
+  orderId: string;
+  caseOrders: AncillaryOrder[];
+  updateMutation: { mutate: (args: { id: number; status: AncillaryOrderStatus }) => void; isPending: boolean };
+  statusLabel: (s: AncillaryOrderStatus) => string;
+  fmtDateTime: (iso: string | null | undefined) => string | null;
+  statusTimestamp: (order: AncillaryOrder) => string | null | undefined;
+  t: TFn;
+}
+
+function SendoutGroupRows({ orderId, caseOrders, updateMutation, statusLabel, fmtDateTime, statusTimestamp, t }: SendoutGroupRowsProps) {
+  const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const firstOrder = caseOrders[0] as unknown as { order?: { patient?: { lastName: string; firstName: string } } };
+  const patient = firstOrder?.order?.patient;
+  const patientName = patient ? `${patient.lastName}, ${patient.firstName}` : '';
+
+  return (
+    <>
+      {/* Group header row */}
+      <TableRow
+        sx={{ bgcolor: 'action.hover', cursor: 'pointer', '&:hover': { bgcolor: 'action.selected' } }}
+        onClick={() => setOpen((v) => !v)}
+      >
+        <TableCell sx={{ py: 0.5 }}>
+          <IconButton size="small" tabIndex={-1}>
+            {open ? <KeyboardArrowDown fontSize="small" /> : <KeyboardArrowRight fontSize="small" />}
+          </IconButton>
+        </TableCell>
+        <TableCell colSpan={2} sx={{ py: 0.5 }}>
+          <Stack direction="row" spacing={1} alignItems="center">
+            <Chip
+              label={formatOrderIdDisplay(orderId)}
+              color="primary"
+              size="small"
+              onClick={(e) => { e.stopPropagation(); navigate(`/result/${orderId}`); }}
+              sx={{ cursor: 'pointer' }}
+            />
+            {patientName && <Typography variant="body2" fontWeight={600}>{patientName}</Typography>}
+            <Chip label={`${caseOrders.length}`} size="small" variant="outlined" />
+          </Stack>
+        </TableCell>
+        <TableCell />
+        <TableCell />
+      </TableRow>
+
+      {/* Detail rows */}
+      {caseOrders.map((order) => (
+        <TableRow key={order.id} sx={{ display: open ? undefined : 'none' }}>
+          <TableCell />
+          <TableCell>
+            <Chip label={formatMaterialIdDisplay(order.blockId)} size="small" variant="outlined" />
+          </TableCell>
+          <TableCell>
+            <Typography variant="body2">
+              {order.orderable?.name ?? `#${order.orderableId}`}
+              {order.levelCount ? ` ×${order.levelCount}` : ''}
+            </Typography>
+            {order.notes && <Typography variant="caption" color="text.secondary">{order.notes}</Typography>}
+          </TableCell>
+          <TableCell>
+            <Chip label={statusLabel(order.status)} color={STATUS_COLORS[order.status]} size="small" />
+            <Typography variant="caption" display="block" color="text.secondary" mt={0.25}>
+              {fmtDateTime(statusTimestamp(order))}
+            </Typography>
+          </TableCell>
+          <TableCell align="right">
+            <Stack direction="row" spacing={0.5} justifyContent="flex-end">
+              {order.status === 'PULL_MATERIAL' && (
+                <Button size="small" variant="outlined"
+                  onClick={() => updateMutation.mutate({ id: order.id, status: 'MATERIAL_SENT' })}
+                  disabled={updateMutation.isPending}>
+                  {t('anc_markMaterialSent')}
+                </Button>
+              )}
+              {order.status === 'MATERIAL_SENT' && (
+                <Button size="small" variant="contained" color="success"
+                  onClick={() => updateMutation.mutate({ id: order.id, status: 'MATERIAL_RETURNED' })}
+                  disabled={updateMutation.isPending}>
+                  {t('anc_markMaterialReturned')}
+                </Button>
+              )}
+              {(order.status === 'PULL_MATERIAL' || order.status === 'MATERIAL_SENT') && (
+                <Button size="small" variant="outlined" color="error"
+                  onClick={() => updateMutation.mutate({ id: order.id, status: 'CANCELLED' })}
+                  disabled={updateMutation.isPending}>
+                  {t('anc_cancel')}
+                </Button>
+              )}
+              {(order.status === 'MATERIAL_RETURNED' || order.status === 'CANCELLED') && (
+                <Button size="small" variant="outlined"
+                  onClick={() => updateMutation.mutate({ id: order.id, status: 'PULL_MATERIAL' })}
+                  disabled={updateMutation.isPending}>
+                  {t('anc_reactivate')}
+                </Button>
+              )}
+            </Stack>
+          </TableCell>
+        </TableRow>
+      ))}
+    </>
+  );
+}
+
+// ─── Main worklist table ──────────────────────────────────────────────────────
 
 function SendoutCaseTable({ category }: { category: AncillaryCategory }) {
   const { t } = useLanguage();
@@ -211,144 +319,38 @@ function SendoutCaseTable({ category }: { category: AncillaryCategory }) {
       ) : filteredEntries.length === 0 ? (
         <Typography color="text.secondary">{t('anc_noOrders')}</Typography>
       ) : (
-        filteredEntries.map(([orderId, caseOrders]) => {
-          const firstOrder = caseOrders[0];
-          const patientName = (firstOrder as unknown as { order?: { patient?: { lastName: string; firstName: string } } })
-            ?.order?.patient
-            ? `${(firstOrder as unknown as { order?: { patient?: { lastName: string; firstName: string } } }).order!.patient!.lastName}, ${(firstOrder as unknown as { order?: { patient?: { lastName: string; firstName: string } } }).order!.patient!.firstName}`
-            : '';
-
-          return (
-            <Accordion key={orderId} sx={{ mb: 1 }}>
-              <AccordionSummary expandIcon={<ExpandMore />}>
-                <Stack direction="row" spacing={1} alignItems="center" flexWrap="wrap">
-                  <Chip
-                    label={formatOrderIdDisplay(orderId)}
-                    color="primary"
-                    size="small"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      navigate(`/result/${orderId}`);
-                    }}
-                    sx={{ cursor: 'pointer' }}
-                  />
-                  {patientName && (
-                    <Typography variant="body2" fontWeight={600}>
-                      {patientName}
-                    </Typography>
-                  )}
-                  <Chip label={`${caseOrders.length}`} size="small" variant="outlined" />
-                </Stack>
-              </AccordionSummary>
-              <AccordionDetails sx={{ p: 0 }}>
-                <Table size="small" sx={{ tableLayout: 'fixed' }}>
-                  <colgroup>
-                    <col style={{ width: '18%' }} />
-                    <col style={{ width: '35%' }} />
-                    <col style={{ width: '22%' }} />
-                    <col style={{ width: '25%' }} />
-                  </colgroup>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>{t('anc_blockLabel')}</TableCell>
-                      <TableCell>Test</TableCell>
-                      <TableCell>{t('anc_status')}</TableCell>
-                      <TableCell align="right">Actions</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {caseOrders.map((order) => (
-                      <TableRow key={order.id}>
-                        <TableCell>
-                          <Chip
-                            label={formatMaterialIdDisplay(order.blockId)}
-                            size="small"
-                            variant="outlined"
-                          />
-                        </TableCell>
-                        <TableCell>
-                          <Typography variant="body2">
-                            {order.orderable?.name ?? `#${order.orderableId}`}
-                            {order.levelCount ? ` ×${order.levelCount}` : ''}
-                          </Typography>
-                          {order.notes && (
-                            <Typography variant="caption" color="text.secondary">
-                              {order.notes}
-                            </Typography>
-                          )}
-                        </TableCell>
-                        <TableCell>
-                          <Chip
-                            label={statusLabel(order.status)}
-                            color={STATUS_COLORS[order.status]}
-                            size="small"
-                          />
-                          <Typography variant="caption" display="block" color="text.secondary" mt={0.25}>
-                            {fmtDateTime(statusTimestamp(order))}
-                          </Typography>
-                        </TableCell>
-                        <TableCell align="right">
-                          <Stack direction="row" spacing={0.5} justifyContent="flex-end">
-                            {order.status === 'PULL_MATERIAL' && (
-                              <Button
-                                size="small"
-                                variant="outlined"
-                                onClick={() =>
-                                  updateMutation.mutate({ id: order.id, status: 'MATERIAL_SENT' })
-                                }
-                                disabled={updateMutation.isPending}
-                              >
-                                {t('anc_markMaterialSent')}
-                              </Button>
-                            )}
-                            {order.status === 'MATERIAL_SENT' && (
-                              <Button
-                                size="small"
-                                variant="contained"
-                                color="success"
-                                onClick={() =>
-                                  updateMutation.mutate({ id: order.id, status: 'MATERIAL_RETURNED' })
-                                }
-                                disabled={updateMutation.isPending}
-                              >
-                                {t('anc_markMaterialReturned')}
-                              </Button>
-                            )}
-                            {(order.status === 'PULL_MATERIAL' || order.status === 'MATERIAL_SENT') && (
-                              <Button
-                                size="small"
-                                variant="outlined"
-                                color="error"
-                                onClick={() =>
-                                  updateMutation.mutate({ id: order.id, status: 'CANCELLED' })
-                                }
-                                disabled={updateMutation.isPending}
-                              >
-                                {t('anc_cancel')}
-                              </Button>
-                            )}
-                            {(order.status === 'MATERIAL_RETURNED' || order.status === 'CANCELLED') && (
-                              <Button
-                                size="small"
-                                variant="outlined"
-                                onClick={() =>
-                                  updateMutation.mutate({ id: order.id, status: 'PULL_MATERIAL' })
-                                }
-                                disabled={updateMutation.isPending}
-                              >
-                                {t('anc_reactivate')}
-                              </Button>
-                            )}
-                          </Stack>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </AccordionDetails>
-            </Accordion>
-          );
-        })
+        <Table size="small" sx={{ tableLayout: 'fixed' }}>
+          <colgroup>
+            <col style={{ width: 32 }} />
+            <col style={{ width: '15%' }} />
+            <col style={{ width: '35%' }} />
+            <col style={{ width: '20%' }} />
+            <col />
+          </colgroup>
+          <TableHead>
+            <TableRow>
+              <TableCell />
+              <TableCell>{t('anc_blockLabel')}</TableCell>
+              <TableCell>Test</TableCell>
+              <TableCell>{t('anc_status')}</TableCell>
+              <TableCell align="right">Actions</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {filteredEntries.map(([orderId, caseOrders]) => (
+              <SendoutGroupRows
+                key={orderId}
+                orderId={orderId}
+                caseOrders={caseOrders}
+                updateMutation={updateMutation}
+                statusLabel={statusLabel}
+                fmtDateTime={fmtDateTime}
+                statusTimestamp={statusTimestamp}
+                t={t}
+              />
+            ))}
+          </TableBody>
+        </Table>
       )}
       {totalPages > 1 && (
         <Box display="flex" justifyContent="center" mt={2}>
