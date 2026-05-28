@@ -128,7 +128,7 @@ function AncillaryCaseTable({ category }: { category: AncillaryCategory }) {
   const bulkAddSlides = (caseOrders: AncillaryOrder[]) => {
     const targets = caseOrders.filter((o) => o.status === 'MICROTOMY');
     Promise.all(
-      targets.map((o) => createSlidesMutation.mutateAsync({ blockId: o.blockId, count: 1 }))
+      targets.map((o) => createSlidesMutation.mutateAsync({ blockId: o.blockId, count: slideCounts[o.blockId] ?? (o.levelCount ?? 1) }))
     ).catch(() => setActionError(t('errorGeneric')));
   };
 
@@ -383,7 +383,7 @@ function AncillaryCaseTable({ category }: { category: AncillaryCategory }) {
                                 <TextField
                                   type="number"
                                   size="small"
-                                  value={slideCounts[order.blockId] ?? 1}
+                                  value={slideCounts[order.blockId] ?? (order.levelCount ?? 1)}
                                   onChange={(e) =>
                                     setSlideCounts((prev) => ({
                                       ...prev,
@@ -399,7 +399,7 @@ function AncillaryCaseTable({ category }: { category: AncillaryCategory }) {
                                   onClick={() =>
                                     createSlidesMutation.mutate({
                                       blockId: order.blockId,
-                                      count: slideCounts[order.blockId] ?? 1,
+                                      count: slideCounts[order.blockId] ?? (order.levelCount ?? 1),
                                     })
                                   }
                                   disabled={createSlidesMutation.isPending}
