@@ -21,15 +21,14 @@ import {
   ToggleButtonGroup,
   Tabs,
   Tab,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
+  Collapse,
   Pagination,
   TextField,
   InputAdornment,
   Tooltip,
+  IconButton,
 } from '@mui/material';
-import { ExpandMore, Search, Delete } from '@mui/icons-material';
+import { KeyboardArrowDown, KeyboardArrowRight, Search, Delete } from '@mui/icons-material';
 import { useQuery, useMutation, useQueryClient, keepPreviousData } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { ancillaryApi, blockApi } from '../api';
@@ -61,6 +60,227 @@ const HIST_STATUS_COLORS: Record<AncillaryOrderStatus, 'default' | 'warning' | '
   MATERIAL_SENT: 'default',
   MATERIAL_RETURNED: 'default',
 };
+
+// ─── Per-group rows rendered inside a shared table ───────────────────────────
+
+type TFn = ReturnType<typeof useLanguage>['t'];
+
+interface HistGroupRowsProps {
+  orderId: string;
+  caseOrders: AncillaryOrder[];
+  statusFilter: AncillaryOrderStatus;
+  category: AncillaryCategory;
+  updateMutation: { mutate: (args: { id: number; status: AncillaryOrderStatus }) => void; isPending: boolean };
+  createSlidesMutation: { mutate: (args: { blockId: string; count: number }) => void; mutateAsync: (args: { blockId: string; count: number }) => Promise<unknown>; isPending: boolean };
+  discardSlideMutation: { mutate: (args: { blockId: string; slideId: string }) => void };
+  slideCounts: Record<string, number>;
+  setSlideCounts: React.Dispatch<React.SetStateAction<Record<string, number>>>;
+  bulkAddSlides: (orders: AncillaryOrder[]) => void;
+  bulkAdvance: (orders: AncillaryOrder[]) => void;
+  bulkCancel: (orders: AncillaryOrder[]) => void;
+  bulkNextLabel: (orders: AncillaryOrder[]) => string;
+  canAdvance: (o: AncillaryOrder) => boolean;
+  fmtDateTime: (iso: string | null | undefined) => string | null;
+  statusTimestamp: (order: AncillaryOrder) => string | null | undefined;
+  t: TFn;
+}
+
+function HistGroupRows({
+  orderId,
+  caseOrders,
+  statusFilter,
+  category,
+  updateMutation,
+  createSlidesMutation,
+  discardSlideMutation,
+  slideCounts,
+  setSlideCounts,
+  bulkAddSlides,
+  bulkAdvance,
+  bulkCancel,
+  bulkNextLabel,
+  fmtDateTime,
+  statusTimestamp,
+  t,
+}: HistGroupRowsProps) {
+  const [open, setOpen] = useState(false);
+  const firstOrder = caseOrders[0] as unknown as { order?: { patient?: { lastName: string; firstName: string } } };
+  const patient = firstOrder?.order?.patient;
+  const patientName = patient ? `${patient.lastName}, ${patient.firstName}` : '';
+  const active = caseOrders.filter((o) => o.status === 'PULL_BLOCK' || o.status === 'MICROTOMY' || o.status === 'SLIDE_STAIN');
+
+  return (
+    <>
+      {/* Group header row */}
+      <TableRow
+        sx={{ bgcolor: 'action.hover', cursor: 'pointer', '&:hover': { bgcolor: 'action.selected' } }}
+        onClick={() => setOpen((v) => !v)}
+      >
+        <TableCell sx={{ py: 0.5 }}>
+          <IconButton size="small" tabIndex={-1}>
+            {open ? <KeyboardArrowDown fontSize="small" /> : <KeyboardArrowRight fontSize="small" />}
+          </IconButton>
+        </TableCell>
+        <TableCell colSpan={2} sx={{ py: 0.5 }}>
+          <Stack direction="row" spacing={1} alignItems="center">
+            <Chip label={formatOrderIdDisplay(orderId)} color="primary" size="small" sx={{ cursor: 'pointer' }} />
+            {patientName && <Typography variant="body2" fontWeight={600}>{patientName}</Typography>}
+            <Chip label={`${caseOrders.length}`} size="small" variant="outlined" />
+          </Stack>
+        </TableCell>
+        <TableCell />
+        <TableCell />
+        <TableCell align="right" sx={{ py: 0.5 }} onClick={(e) => e.stopPropagation()}>
+          {active.length > 0 && (
+            <Stack direction="row" spacing={0.5} justifyContent="flex-end">
+              {statusFilter === 'MICROTOMY' && (
+                <Button size="small" variant="outlined" disabled={createSlidesMutation.isPending}
+                  onClick={() => bulkAddSlides(caseOrders)}>
+                  {t('anc_addSlidesToAll')}
+                </Button>
+              )}
+              <Button size="small" variant="outlined" disabled={updateMutation.isPending}
+                onClick={() => bulkAdvance(caseOrders)}>
+                {bulkNextLabel(caseOrders)}
+              </Button>
+              <Button size="small" variant="outlined" color="error" disabled={updateMutation.isPending}
+                onClick={() => bulkCancel(caseOrders)}>
+                {t('anc_cancelAll')}
+              </Button>
+            </Stack>
+          )}
+        </TableCell>
+      </TableRow>
+
+      {/* Detail rows */}
+      {caseOrders.map((order) => (
+        <TableRow key={order.id} sx={{ display: open ? undefined : 'none' }}>
+          <TableCell />
+          <TableCell>
+            <Chip label={formatMaterialIdDisplay(order.blockId)} size="small" variant="outlined" />
+          </TableCell>
+          <TableCell>
+            <Typography variant="body2">
+              {order.orderable?.name ?? `#${order.orderableId}`}
+              {order.levelCount ? ` ×${order.levelCount}` : ''}
+            </Typography>
+            {order.notes && <Typography variant="caption" color="text.secondary">{order.notes}</Typography>}
+          </TableCell>
+          <TableCell>
+            <Chip
+              label={t(`anc_status_${order.status}` as Parameters<typeof t>[0])}
+              color={HIST_STATUS_COLORS[order.status]}
+              size="small"
+            />
+            <Typography variant="caption" display="block" color="text.secondary" mt={0.25}>
+              {fmtDateTime(statusTimestamp(order))}
+            </Typography>
+          </TableCell>
+          {statusFilter === 'MICROTOMY' ? (
+            <TableCell>
+              <Stack direction="column" spacing={0.5}>
+                <Stack direction="row" spacing={0.5} alignItems="center" flexWrap="wrap">
+                  <Chip
+                    label={order.block?._count?.slides ?? 0}
+                    size="small"
+                    color={(order.block?._count?.slides ?? 0) > 0 ? 'success' : 'default'}
+                    variant={(order.block?._count?.slides ?? 0) > 0 ? 'filled' : 'outlined'}
+                  />
+                  {order.block?.slides?.map((sl) => (
+                    <Chip
+                      key={sl.slideId}
+                      label={formatMaterialIdDisplay(sl.slideId)}
+                      size="small"
+                      variant="outlined"
+                      sx={sl.discarded ? { opacity: 0.55 } : undefined}
+                      onDelete={sl.discarded ? undefined : () =>
+                        discardSlideMutation.mutate({ blockId: order.blockId, slideId: sl.slideId })}
+                      deleteIcon={<Tooltip title={t('hc_discardSlideTooltip')}><Delete fontSize="small" /></Tooltip>}
+                    />
+                  ))}
+                </Stack>
+                <Stack direction="row" spacing={0.5} alignItems="center">
+                  <TextField
+                    type="number"
+                    size="small"
+                    value={slideCounts[order.blockId] ?? (order.levelCount ?? 1)}
+                    onChange={(e) => setSlideCounts((prev) => ({ ...prev, [order.blockId]: Math.max(1, parseInt(e.target.value) || 1) }))}
+                    sx={{ width: 65 }}
+                    inputProps={{ min: 1, max: 50 }}
+                  />
+                  <Button
+                    size="small"
+                    variant="outlined"
+                    onClick={() => createSlidesMutation.mutate({ blockId: order.blockId, count: slideCounts[order.blockId] ?? (order.levelCount ?? 1) })}
+                    disabled={createSlidesMutation.isPending}
+                  >
+                    {t('pc_addSlidesBtn')}
+                  </Button>
+                </Stack>
+              </Stack>
+            </TableCell>
+          ) : (
+            <TableCell>
+              <Stack direction="row" spacing={0.5} flexWrap="wrap" alignItems="center">
+                <Chip
+                  label={order.block?._count?.slides ?? 0}
+                  size="small"
+                  color={(order.block?._count?.slides ?? 0) > 0 ? 'success' : 'default'}
+                  variant={(order.block?._count?.slides ?? 0) > 0 ? 'filled' : 'outlined'}
+                />
+                {order.block?.slides?.map((sl) => (
+                  <Chip key={sl.slideId} label={formatMaterialIdDisplay(sl.slideId)} size="small" variant="outlined"
+                    sx={sl.discarded ? { opacity: 0.55 } : undefined} />
+                ))}
+              </Stack>
+            </TableCell>
+          )}
+          <TableCell align="right">
+            <Stack direction="row" spacing={0.5} justifyContent="flex-end">
+              {order.status === 'PULL_BLOCK' && category !== 'HE' && (
+                <Button size="small" variant="outlined"
+                  onClick={() => updateMutation.mutate({ id: order.id, status: 'MICROTOMY' })}
+                  disabled={updateMutation.isPending}>
+                  {t('anc_markMicrotomy')}
+                </Button>
+              )}
+              {order.status === 'MICROTOMY' && (
+                <Button size="small" variant="outlined" color="info"
+                  onClick={() => updateMutation.mutate({ id: order.id, status: 'SLIDE_STAIN' })}
+                  disabled={updateMutation.isPending || (order.block?._count?.slides ?? 0) === 0}>
+                  {t('anc_markSlideStain')}
+                </Button>
+              )}
+              {order.status === 'SLIDE_STAIN' && (
+                <Button size="small" variant="contained" color="success"
+                  onClick={() => updateMutation.mutate({ id: order.id, status: 'DISTRIBUTED' })}
+                  disabled={updateMutation.isPending}>
+                  {t('anc_markDistributed')}
+                </Button>
+              )}
+              {(order.status === 'PULL_BLOCK' || order.status === 'MICROTOMY' || order.status === 'SLIDE_STAIN') && (
+                <Button size="small" variant="outlined" color="error"
+                  onClick={() => updateMutation.mutate({ id: order.id, status: 'CANCELLED' })}
+                  disabled={updateMutation.isPending}>
+                  {t('anc_cancel')}
+                </Button>
+              )}
+              {(order.status === 'DISTRIBUTED' || order.status === 'CANCELLED') && (
+                <Button size="small" variant="outlined"
+                  onClick={() => updateMutation.mutate({ id: order.id, status: category === 'HE' ? 'MICROTOMY' : 'PULL_BLOCK' })}
+                  disabled={updateMutation.isPending}>
+                  {t('anc_reactivate')}
+                </Button>
+              )}
+            </Stack>
+          </TableCell>
+        </TableRow>
+      ))}
+    </>
+  );
+}
+
+// ─── Main worklist table ──────────────────────────────────────────────────────
 
 function AncillaryCaseTable({ category }: { category: AncillaryCategory }) {
   const { t } = useLanguage();
@@ -251,232 +471,50 @@ function AncillaryCaseTable({ category }: { category: AncillaryCategory }) {
       ) : filteredEntries.length === 0 ? (
         <Typography color="text.secondary">{t('anc_noOrders')}</Typography>
       ) : (
-        filteredEntries.map(([orderId, caseOrders]) => {
-          const firstOrder = caseOrders[0] as unknown as {
-            order?: { patient?: { lastName: string; firstName: string }; caseType?: string };
-          };
-          const patient = firstOrder?.order?.patient;
-          const patientName = patient ? `${patient.lastName}, ${patient.firstName}` : '';
-          return (
-            <Accordion key={orderId} sx={{ mb: 1 }}>
-              <AccordionSummary expandIcon={<ExpandMore />}>
-                <Stack direction="row" spacing={1} alignItems="center" flexWrap="wrap" sx={{ flex: 1, mr: 1 }}>
-                  <Chip
-                    label={formatOrderIdDisplay(orderId)}
-                    color="primary"
-                    size="small"
-                    sx={{ cursor: 'default' }}
-                  />
-                  {patientName && (
-                    <Typography variant="body2" fontWeight={600}>{patientName}</Typography>
-                  )}
-                  <Chip label={`${caseOrders.length}`} size="small" variant="outlined" />
-                  {(() => {
-                    const active = caseOrders.filter((o) => o.status === 'PULL_BLOCK' || o.status === 'MICROTOMY' || o.status === 'SLIDE_STAIN');
-                    if (active.length === 0) return null;
-                    return (
-                      <Stack direction="row" spacing={0.5} sx={{ ml: 'auto' }} onClick={(e) => e.stopPropagation()}>
-                        {statusFilter === 'MICROTOMY' && (
-                          <Button
-                            size="small"
-                            variant="outlined"
-                            disabled={createSlidesMutation.isPending}
-                            onClick={() => bulkAddSlides(caseOrders)}
-                          >
-                            {t('anc_addSlidesToAll')}
-                          </Button>
-                        )}
-                        <Button
-                          size="small"
-                          variant="outlined"
-                          disabled={updateMutation.isPending}
-                          onClick={() => bulkAdvance(caseOrders)}
-                        >
-                          {bulkNextLabel(caseOrders)}
-                        </Button>
-                        <Button
-                          size="small"
-                          variant="outlined"
-                          color="error"
-                          disabled={updateMutation.isPending}
-                          onClick={() => bulkCancel(caseOrders)}
-                        >
-                          {t('anc_cancelAll')}
-                        </Button>
-                      </Stack>
-                    );
-                  })()}
-                </Stack>
-              </AccordionSummary>
-              <AccordionDetails sx={{ p: 0 }}>
-                <Table size="small" sx={{ tableLayout: 'fixed' }}>
-                  <colgroup>
-                    <col style={{ width: '13%' }} />
-                    <col style={{ width: '18%' }} />
-                    <col style={{ width: '14%' }} />
-                    <col style={{ width: '27%' }} />
-                    <col style={{ width: '28%' }} />
-                  </colgroup>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>{t('anc_blockLabel')}</TableCell>
-                      <TableCell>Test</TableCell>
-                      <TableCell>{t('anc_status')}</TableCell>
-                      <TableCell>{t('pc_slides')}</TableCell>
-                      <TableCell align="right">Actions</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {caseOrders.map((order) => (
-                      <TableRow key={order.id}>
-                        <TableCell>
-                          <Chip label={formatMaterialIdDisplay(order.blockId)} size="small" variant="outlined" />
-                        </TableCell>
-                        <TableCell>
-                          <Typography variant="body2">
-                            {order.orderable?.name ?? `#${order.orderableId}`}
-                            {order.levelCount ? ` ×${order.levelCount}` : ''}
-                          </Typography>
-                          {order.notes && (
-                            <Typography variant="caption" color="text.secondary">{order.notes}</Typography>
-                          )}
-                        </TableCell>
-                        <TableCell>
-                          <Chip
-                            label={t(`anc_status_${order.status}` as Parameters<typeof t>[0])}
-                            color={HIST_STATUS_COLORS[order.status]}
-                            size="small"
-                          />
-                          <Typography variant="caption" display="block" color="text.secondary" mt={0.25}>
-                            {fmtDateTime(statusTimestamp(order))}
-                          </Typography>
-                        </TableCell>
-                        {statusFilter === 'MICROTOMY' ? (
-                          <TableCell>
-                            <Stack direction="column" spacing={0.5}>
-                              <Stack direction="row" spacing={0.5} alignItems="center" flexWrap="wrap">
-                                <Chip
-                                  label={order.block?._count?.slides ?? 0}
-                                  size="small"
-                                  color={(order.block?._count?.slides ?? 0) > 0 ? 'success' : 'default'}
-                                  variant={(order.block?._count?.slides ?? 0) > 0 ? 'filled' : 'outlined'}
-                                />
-                                {order.block?.slides?.map((sl) => (
-                                  <Chip
-                                    key={sl.slideId}
-                                    label={formatMaterialIdDisplay(sl.slideId)}
-                                    size="small"
-                                    variant="outlined"
-                                    sx={sl.discarded ? { opacity: 0.55 } : undefined}
-                                    onDelete={sl.discarded ? undefined : () =>
-                                      discardSlideMutation.mutate({ blockId: order.blockId, slideId: sl.slideId })
-                                    }
-                                    deleteIcon={
-                                      <Tooltip title={t('hc_discardSlideTooltip')}>
-                                        <Delete fontSize="small" />
-                                      </Tooltip>
-                                    }
-                                  />
-                                ))}
-                              </Stack>
-                              <Stack direction="row" spacing={0.5} alignItems="center">
-                                <TextField
-                                  type="number"
-                                  size="small"
-                                  value={slideCounts[order.blockId] ?? (order.levelCount ?? 1)}
-                                  onChange={(e) =>
-                                    setSlideCounts((prev) => ({
-                                      ...prev,
-                                      [order.blockId]: Math.max(1, parseInt(e.target.value) || 1),
-                                    }))
-                                  }
-                                  sx={{ width: 65 }}
-                                  inputProps={{ min: 1, max: 50 }}
-                                />
-                                <Button
-                                  size="small"
-                                  variant="outlined"
-                                  onClick={() =>
-                                    createSlidesMutation.mutate({
-                                      blockId: order.blockId,
-                                      count: slideCounts[order.blockId] ?? (order.levelCount ?? 1),
-                                    })
-                                  }
-                                  disabled={createSlidesMutation.isPending}
-                                >
-                                  {t('pc_addSlidesBtn')}
-                                </Button>
-                              </Stack>
-                            </Stack>
-                          </TableCell>
-                        ) : (
-                          <TableCell>
-                            <Stack direction="row" spacing={0.5} flexWrap="wrap" alignItems="center">
-                              <Chip
-                                label={order.block?._count?.slides ?? 0}
-                                size="small"
-                                color={(order.block?._count?.slides ?? 0) > 0 ? 'success' : 'default'}
-                                variant={(order.block?._count?.slides ?? 0) > 0 ? 'filled' : 'outlined'}
-                              />
-                              {order.block?.slides?.map((sl) => (
-                                <Chip
-                                  key={sl.slideId}
-                                  label={formatMaterialIdDisplay(sl.slideId)}
-                                  size="small"
-                                  variant="outlined"
-                                  sx={sl.discarded ? { opacity: 0.55 } : undefined}
-                                />
-                              ))}
-                            </Stack>
-                          </TableCell>
-                        )}
-                        <TableCell align="right">
-                          <Stack direction="row" spacing={0.5} justifyContent="flex-end">
-                            {order.status === 'PULL_BLOCK' && category !== 'HE' && (
-                              <Button size="small" variant="outlined"
-                                onClick={() => updateMutation.mutate({ id: order.id, status: 'MICROTOMY' })}
-                                disabled={updateMutation.isPending}>
-                                {t('anc_markMicrotomy')}
-                              </Button>
-                            )}
-                            {order.status === 'MICROTOMY' && (
-                              <Button size="small" variant="outlined" color="info"
-                                onClick={() => updateMutation.mutate({ id: order.id, status: 'SLIDE_STAIN' })}
-                                disabled={updateMutation.isPending || (order.block?._count?.slides ?? 0) === 0}>
-                                {t('anc_markSlideStain')}
-                              </Button>
-                            )}
-                            {order.status === 'SLIDE_STAIN' && (
-                              <Button size="small" variant="contained" color="success"
-                                onClick={() => updateMutation.mutate({ id: order.id, status: 'DISTRIBUTED' })}
-                                disabled={updateMutation.isPending}>
-                                {t('anc_markDistributed')}
-                              </Button>
-                            )}
-                            {(order.status === 'PULL_BLOCK' || order.status === 'MICROTOMY' || order.status === 'SLIDE_STAIN') && (
-                              <Button size="small" variant="outlined" color="error"
-                                onClick={() => updateMutation.mutate({ id: order.id, status: 'CANCELLED' })}
-                                disabled={updateMutation.isPending}>
-                                {t('anc_cancel')}
-                              </Button>
-                            )}
-                            {(order.status === 'DISTRIBUTED' || order.status === 'CANCELLED') && (
-                              <Button size="small" variant="outlined"
-                                onClick={() => updateMutation.mutate({ id: order.id, status: category === 'HE' ? 'MICROTOMY' : 'PULL_BLOCK' })}
-                                disabled={updateMutation.isPending}>
-                                {t('anc_reactivate')}
-                              </Button>
-                            )}
-                          </Stack>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </AccordionDetails>
-            </Accordion>
-          );
-        })
+        <Table size="small" sx={{ tableLayout: 'fixed' }}>
+          <colgroup>
+            <col style={{ width: 32 }} />
+            <col style={{ width: '12%' }} />
+            <col style={{ width: '17%' }} />
+            <col style={{ width: '14%' }} />
+            <col style={{ width: '27%' }} />
+            <col />
+          </colgroup>
+          <TableHead>
+            <TableRow>
+              <TableCell />
+              <TableCell>{t('anc_blockLabel')}</TableCell>
+              <TableCell>Test</TableCell>
+              <TableCell>{t('anc_status')}</TableCell>
+              <TableCell>{t('pc_slides')}</TableCell>
+              <TableCell align="right">Actions</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {filteredEntries.map(([orderId, caseOrders]) => (
+              <HistGroupRows
+                key={orderId}
+                orderId={orderId}
+                caseOrders={caseOrders}
+                statusFilter={statusFilter}
+                category={category}
+                updateMutation={updateMutation}
+                createSlidesMutation={createSlidesMutation}
+                discardSlideMutation={discardSlideMutation}
+                slideCounts={slideCounts}
+                setSlideCounts={setSlideCounts}
+                bulkAddSlides={bulkAddSlides}
+                bulkAdvance={bulkAdvance}
+                bulkCancel={bulkCancel}
+                bulkNextLabel={bulkNextLabel}
+                canAdvance={canAdvance}
+                fmtDateTime={fmtDateTime}
+                statusTimestamp={statusTimestamp}
+                t={t}
+              />
+            ))}
+          </TableBody>
+        </Table>
       )}
       {totalPages > 1 && (
         <Box display="flex" justifyContent="center" mt={2}>
