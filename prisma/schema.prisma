@@ -141,6 +141,7 @@ model Block {
   specimenId      String    @map("specimen_id") @db.VarChar(20)
   blockNumber     Int       @map("block_number")
   createdDatetime DateTime? @map("created_datetime")
+  discarded       Boolean   @default(false) @map("discarded")
 
   specimen        Specimen         @relation(fields: [specimenId], references: [specimenId])
   slides          Slide[]
@@ -155,6 +156,7 @@ model Slide {
   blockId     String  @map("block_id") @db.VarChar(30)
   slideNumber Int     @map("slide_number")
   slideType   String? @map("slide_type") @db.VarChar(50)
+  discarded   Boolean @default(false) @map("discarded")
 
   block Block @relation(fields: [blockId], references: [blockId])
 

@@ -34,11 +34,13 @@ interface Slide {
   slideId: string;
   slideNumber: number;
   slideType?: string;
+  discarded: boolean;
 }
 interface Block {
   blockId: string;
   blockNumber: number;
   slides: Slide[];
+  discarded: boolean;
 }
 interface Specimen {
   specimenId: string;
@@ -93,9 +95,9 @@ export default function HistologyCasePage() {
     onError: () => setActionError(t('errorGeneric')),
   });
 
-  const { mutateAsync: doDeleteSlide } = useMutation({
+  const { mutateAsync: doDiscardSlide } = useMutation({
     mutationFn: ({ blockId, slideId }: { blockId: string; slideId: string }) =>
-      blockApi.deleteSlide(blockId, slideId),
+      blockApi.discardSlide(blockId, slideId),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['materials', orderId] });
       qc.invalidateQueries({ queryKey: ['histology-queue'] });
@@ -248,44 +250,51 @@ export default function HistologyCasePage() {
                 </TableHead>
                 <TableBody>
                   {spec.blocks.map((block) => (
-                    <TableRow key={block.blockId}>
+                    <TableRow key={block.blockId} sx={block.discarded ? { opacity: 0.55 } : undefined}>
                       <TableCell>
-                        <Chip
-                          label={formatMaterialIdDisplay(block.blockId)}
-                          size="small"
-                          variant="outlined"
-                        />
+                        <Box display="flex" alignItems="center" gap={0.5}>
+                          <Chip
+                            label={formatMaterialIdDisplay(block.blockId)}
+                            size="small"
+                            variant="outlined"
+                          />
+                          {block.discarded && <Chip label={t('label_discarded')} size="small" color="error" />}
+                        </Box>
                       </TableCell>
                       <TableCell>
-                        <TextField
-                          type="number"
-                          size="small"
-                          value={slideCounts[block.blockId] ?? 1}
-                          onChange={(e) =>
-                            setSlideCounts({
-                              ...slideCounts,
-                              [block.blockId]: parseInt(e.target.value) || 1,
-                            })
-                          }
-                          sx={{ width: 70 }}
-                          inputProps={{ min: 1, max: 100 }}
-                        />
+                        {!block.discarded && (
+                          <TextField
+                            type="number"
+                            size="small"
+                            value={slideCounts[block.blockId] ?? 1}
+                            onChange={(e) =>
+                              setSlideCounts({
+                                ...slideCounts,
+                                [block.blockId]: parseInt(e.target.value) || 1,
+                              })
+                            }
+                            sx={{ width: 70 }}
+                            inputProps={{ min: 1, max: 100 }}
+                          />
+                        )}
                       </TableCell>
                       <TableCell>
-                        <Button
-                          size="small"
-                          variant="contained"
-                          startIcon={<Add />}
-                          onClick={() =>
-                            createSlides({
-                              blockId: block.blockId,
-                              count: slideCounts[block.blockId] ?? 1,
-                            })
-                          }
-                          disabled={creatingSlides}
-                        >
-                          {t('pc_addSlidesBtn')}
-                        </Button>
+                        {!block.discarded && (
+                          <Button
+                            size="small"
+                            variant="contained"
+                            startIcon={<Add />}
+                            onClick={() =>
+                              createSlides({
+                                blockId: block.blockId,
+                                count: slideCounts[block.blockId] ?? 1,
+                              })
+                            }
+                            disabled={creatingSlides}
+                          >
+                            {t('pc_addSlidesBtn')}
+                          </Button>
+                        )}
                       </TableCell>
                       <TableCell>
                         <Stack direction="row" spacing={0.5} flexWrap="wrap">
@@ -294,11 +303,12 @@ export default function HistologyCasePage() {
                               key={sl.slideId}
                               label={`${formatMaterialIdDisplay(sl.slideId)} [${tSlideType(sl.slideType ?? 'H&E')}]`}
                               size="small"
-                              onDelete={() =>
-                                doDeleteSlide({ blockId: block.blockId, slideId: sl.slideId })
+                              sx={sl.discarded ? { opacity: 0.55 } : undefined}
+                              onDelete={sl.discarded ? undefined : () =>
+                                doDiscardSlide({ blockId: block.blockId, slideId: sl.slideId })
                               }
                               deleteIcon={
-                                <Tooltip title={t('common_delete')}>
+                                <Tooltip title={t('hc_discardSlideTooltip')}>
                                   <Delete fontSize="small" />
                                 </Tooltip>
                               }

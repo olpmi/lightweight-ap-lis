@@ -59,11 +59,13 @@ interface Slide {
   slideId: string;
   slideNumber: number;
   slideType?: string;
+  discarded: boolean;
 }
 interface Block {
   blockId: string;
   blockNumber: number;
   slides: Slide[];
+  discarded: boolean;
 }
 interface Specimen {
   specimenId: string;
@@ -119,14 +121,8 @@ export default function ProcessingCasePage() {
     onSuccess: () => qc.invalidateQueries({ queryKey: ['materials', orderId] }),
   });
 
-  const { mutateAsync: doDeleteBlock } = useMutation({
-    mutationFn: (blockId: string) => blockApi.deleteBlock(blockId),
-    onSuccess: () => qc.invalidateQueries({ queryKey: ['materials', orderId] }),
-  });
-
-  const { mutateAsync: doDeleteSlide } = useMutation({
-    mutationFn: ({ blockId, slideId }: { blockId: string; slideId: string }) =>
-      blockApi.deleteSlide(blockId, slideId),
+  const { mutateAsync: doDiscardBlock } = useMutation({
+    mutationFn: (blockId: string) => blockApi.discardBlock(blockId),
     onSuccess: () => qc.invalidateQueries({ queryKey: ['materials', orderId] }),
   });
 
@@ -432,14 +428,17 @@ export default function ProcessingCasePage() {
                   <TableRow>
                     <TableCell>{t('pc_blockId')}</TableCell>
                     <TableCell>{t('pc_slides')}</TableCell>
-                    {!isSaved && <TableCell align="center">{t('common_delete')}</TableCell>}
+                    {!isSaved && <TableCell align="center">{t('common_discard')}</TableCell>}
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {spec.blocks.map((block) => (
-                    <TableRow key={block.blockId}>
+                    <TableRow key={block.blockId} sx={block.discarded ? { opacity: 0.55 } : undefined}>
                       <TableCell>
-                        <Typography variant="body2" fontWeight={600}>{formatMaterialIdDisplay(block.blockId)}</Typography>
+                        <Box display="flex" alignItems="center" gap={0.5}>
+                          <Typography variant="body2" fontWeight={600}>{formatMaterialIdDisplay(block.blockId)}</Typography>
+                          {block.discarded && <Chip label={t('label_discarded')} size="small" color="error" />}
+                        </Box>
                       </TableCell>
                       <TableCell>
                         <Stack direction="row" spacing={0.5} flexWrap="wrap">
@@ -448,8 +447,7 @@ export default function ProcessingCasePage() {
                               key={sl.slideId}
                               label={`${formatMaterialIdDisplay(sl.slideId)} [${tSlideType(sl.slideType ?? 'H&E')}]`}
                               size="small"
-                              onDelete={isSaved ? undefined : () => doDeleteSlide({ blockId: block.blockId, slideId: sl.slideId })}
-                              deleteIcon={<Delete fontSize="small" />}
+                              sx={sl.discarded ? { opacity: 0.55 } : undefined}
                             />
                           ))}
                           {block.slides.length === 0 && (
@@ -459,15 +457,17 @@ export default function ProcessingCasePage() {
                       </TableCell>
                       {!isSaved && (
                         <TableCell align="center">
-                          <Tooltip title={t('pc_deleteBlockTooltip')}>
-                            <IconButton
-                              size="small"
-                              color="error"
-                              onClick={() => doDeleteBlock(block.blockId)}
-                            >
-                              <Delete fontSize="small" />
-                            </IconButton>
-                          </Tooltip>
+                          {!block.discarded && (
+                            <Tooltip title={t('pc_discardBlockTooltip')}>
+                              <IconButton
+                                size="small"
+                                color="error"
+                                onClick={() => doDiscardBlock(block.blockId)}
+                              >
+                                <Delete fontSize="small" />
+                              </IconButton>
+                            </Tooltip>
+                          )}
                         </TableCell>
                       )}
                     </TableRow>

@@ -158,8 +158,8 @@ export class AncillaryService {
           select: {
             blockId: true,
             blockNumber: true,
-            _count: { select: { slides: true } },
-            slides: { select: { slideId: true, slideNumber: true }, orderBy: { slideNumber: 'asc' } },
+            _count: { select: { slides: { where: { discarded: false } } } },
+            slides: { select: { slideId: true, slideNumber: true, discarded: true }, orderBy: { slideNumber: 'asc' } },
           },
         },
       },

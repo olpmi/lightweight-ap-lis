@@ -3,6 +3,20 @@ import { AppError } from '../middleware/error.middleware.js';
 import { generateBlockId } from '../utils/idGenerator.js';
 
 export class BlockService {
+  async discardBlock(blockId: string): Promise<object> {
+    const block = await prisma.block.findUnique({ where: { blockId } });
+    if (!block) throw new AppError(404, 'NOT_FOUND', `Block ${blockId} not found`);
+    if (block.discarded) throw new AppError(400, 'ALREADY_DISCARDED', `Block ${blockId} is already discarded`);
+
+    await prisma.$transaction([
+      prisma.slide.updateMany({ where: { blockId }, data: { discarded: true } }),
+      prisma.ancillaryOrder.updateMany({ where: { blockId }, data: { status: 'CANCELLED' } }),
+      prisma.block.update({ where: { blockId }, data: { discarded: true } }),
+    ]);
+
+    return { blockId, discarded: true };
+  }
+
   async createBlocks(specimenId: string, count: number): Promise<object[]> {
     const specimen = await prisma.specimen.findUnique({ where: { specimenId } });
     if (!specimen) throw new AppError(404, 'NOT_FOUND', `Specimen ${specimenId} not found`);

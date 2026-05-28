@@ -282,7 +282,7 @@ export interface AncillaryOrder {
     blockId: string;
     blockNumber: number;
     _count?: { slides: number };
-    slides?: Array<{ slideId: string; slideNumber: number }>;
+    slides?: Array<{ slideId: string; slideNumber: number; discarded: boolean }>;
   } | null;
 }
 
