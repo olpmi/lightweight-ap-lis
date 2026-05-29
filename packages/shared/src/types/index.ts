@@ -227,7 +227,12 @@ export interface OrderWithDetails extends Order {
 export interface OrderMaterials {
   specimens: Array<
     Specimen & {
-      blocks: Array<Block & { slides: Slide[] }>;
+      blocks: Array<
+        Block & {
+          slides: Slide[];
+          ancillaryOrders?: Array<{ id: number; status: AncillaryOrderStatus; orderableId: number }>;
+        }
+      >;
     }
   >;
 }

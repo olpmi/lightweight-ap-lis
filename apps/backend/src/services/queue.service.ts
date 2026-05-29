@@ -81,7 +81,7 @@ export class QueueService {
 
   /**
    * Result queue:
-   *   - has at least one block or slide
+   *   - has at least one ancillary order in DISTRIBUTED status (slides delivered to pathologist)
    *   - no final signed-out latest report
    */
   async getResultQueue(
@@ -89,16 +89,10 @@ export class QueueService {
     pageSize: number,
     search = ''
   ): Promise<{ data: object[]; total: number; page: number; pageSize: number }> {
-    // Must have at least one slide
+    // Case enters Result only once at least one ancillary order (typically H&E) is DISTRIBUTED.
     const hasMaterials = {
-      specimens: {
-        some: {
-          blocks: {
-            some: {
-              slides: { some: {} },
-            },
-          },
-        },
+      ancillaryOrders: {
+        some: { status: 'DISTRIBUTED' as const },
       },
     };
 
@@ -232,6 +226,10 @@ export class QueueService {
               orderBy: { blockNumber: 'asc' },
               include: {
                 slides: { orderBy: { slideNumber: 'asc' } },
+                ancillaryOrders: {
+                  where: { orderable: { category: 'HE' } },
+                  select: { id: true, status: true, orderableId: true },
+                },
               },
             },
           },

@@ -214,6 +214,36 @@ export class ReportService {
     if (!report) throw new AppError(404, 'NOT_FOUND', `Report ${reportId} not found`);
     if (report.isFinal) throw new AppError(409, 'CONFLICT', 'Report is already signed out and cannot be modified');
 
+    // Workflow guard: every block must have at least one slide AND every H&E ancillary
+    // order on this case must be DISTRIBUTED. Prelim reports bypass this (see signPrelim).
+    const blocks = await prisma.block.findMany({
+      where: { specimen: { orderId: report.orderId }, discarded: false },
+      select: {
+        blockId: true,
+        _count: { select: { slides: { where: { discarded: false } } } },
+        ancillaryOrders: {
+          where: { orderable: { category: 'HE' } },
+          select: { status: true },
+        },
+      },
+    });
+    if (blocks.length === 0) {
+      throw new AppError(400, 'WORKFLOW', 'Cannot sign out: case has no blocks');
+    }
+    for (const b of blocks) {
+      if (b._count.slides === 0) {
+        throw new AppError(400, 'WORKFLOW', `Cannot sign out: block ${b.blockId} has no slides`);
+      }
+      const heOrders = b.ancillaryOrders;
+      if (heOrders.length === 0 || heOrders.some((o) => o.status !== 'DISTRIBUTED')) {
+        throw new AppError(
+          400,
+          'WORKFLOW',
+          `Cannot sign out: H&E for block ${b.blockId} is not distributed`,
+        );
+      }
+    }
+
     const now = new Date();
 
     const signed = await prisma.report.update({

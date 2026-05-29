@@ -205,11 +205,18 @@ export default function ResultCasePage() {
   const latestFinal = finalReports.at(-1);
   const isSignedOut = Boolean(latestFinal && editableDrafts.length === 0);
   const allBlocks = (
-    (materialsData as { data?: { specimens: Array<{ blocks: Array<{ slides: unknown[] }> }> } } | undefined)
-      ?.data?.specimens ?? []
+    (materialsData as { data?: OrderMaterials } | undefined)?.data?.specimens ?? []
   ).flatMap((s) => s.blocks ?? []);
   const allBlocksHaveSlides = allBlocks.length === 0 || allBlocks.every((b) => (b.slides?.length ?? 0) > 0);
-  const canSignOut = Boolean(form.diagnosis.trim() && form.gross.trim() && allBlocksHaveSlides);
+  const allHeAncillaryDistributed =
+    allBlocks.length > 0 &&
+    allBlocks.every((b) => {
+      const he = b.ancillaryOrders ?? [];
+      return he.length > 0 && he.every((o) => o.status === 'DISTRIBUTED');
+    });
+  const canSignOut = Boolean(
+    form.diagnosis.trim() && form.gross.trim() && allBlocksHaveSlides && allHeAncillaryDistributed,
+  );
   const latestFinalGrossPayload = parseStructuredTemplatePayload(latestFinal?.grossPayload);
   const activeSynopticPayload = parseStructuredTemplatePayload(
     isSignedOut ? latestFinal?.synopticPayload : form.synopticPayload,
