@@ -62,6 +62,10 @@ const HIST_STATUS_COLORS: Record<AncillaryOrderStatus, 'default' | 'warning' | '
   MATERIAL_RETURNED: 'default',
 };
 
+// Natural alphanumeric compare so SU-26-100-A2 < SU-26-100-A10 and A1 < A2 < A3.
+const naturalCompare = (a: string, b: string) =>
+  a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' });
+
 // ─── Per-group rows rendered inside a shared table ───────────────────────────
 
 type TFn = ReturnType<typeof useLanguage>['t'];
@@ -80,13 +84,14 @@ interface HistGroupRowsProps {
   bulkAdvance: (orders: AncillaryOrder[]) => void;
   bulkCancel: (orders: AncillaryOrder[]) => void;
   bulkNextLabel: (orders: AncillaryOrder[]) => string;
+  bulkPending: boolean;
   canAdvance: (o: AncillaryOrder) => boolean;
   fmtDateTime: (iso: string | null | undefined) => string | null;
   statusTimestamp: (order: AncillaryOrder) => string | null | undefined;
   t: TFn;
 }
 
-function HistGroupRows({
+function HistGroupRowsImpl({
   orderId,
   caseOrders,
   statusFilter,
@@ -100,11 +105,18 @@ function HistGroupRows({
   bulkAdvance,
   bulkCancel,
   bulkNextLabel,
+  bulkPending,
   fmtDateTime,
   statusTimestamp,
   t,
 }: HistGroupRowsProps) {
   const [open, setOpen] = useState(false);
+  // Sort blocks alphanumerically (A1 < A2 < A3 < A10) within the case group.
+  const sortedCaseOrders = useMemo(
+    () => [...caseOrders].sort((a, b) => naturalCompare(a.blockId, b.blockId)),
+    [caseOrders],
+  );
+  caseOrders = sortedCaseOrders;
   const firstOrder = caseOrders[0] as unknown as { order?: { patient?: { lastName: string; firstName: string } } };
   const patient = firstOrder?.order?.patient;
   const patientName = patient ? `${patient.lastName}, ${patient.firstName}` : '';
@@ -135,16 +147,16 @@ function HistGroupRows({
           {active.length > 0 && (
             <Stack direction="row" spacing={0.5} justifyContent="flex-end">
               {statusFilter === 'MICROTOMY' && (
-                <Button size="small" variant="outlined" disabled={createSlidesMutation.isPending}
+                <Button size="small" variant="outlined" disabled={bulkPending || createSlidesMutation.isPending}
                   onClick={() => bulkAddSlides(caseOrders)}>
                   {t('anc_addSlidesToAll')}
                 </Button>
               )}
-              <Button size="small" variant="outlined" disabled={updateMutation.isPending}
+              <Button size="small" variant="outlined" disabled={bulkPending || updateMutation.isPending}
                 onClick={() => bulkAdvance(caseOrders)}>
                 {bulkNextLabel(caseOrders)}
               </Button>
-              <Button size="small" variant="outlined" color="error" disabled={updateMutation.isPending}
+              <Button size="small" variant="outlined" color="error" disabled={bulkPending || updateMutation.isPending}
                 onClick={() => bulkCancel(caseOrders)}>
                 {t('anc_cancelAll')}
               </Button>
@@ -281,6 +293,30 @@ function HistGroupRows({
   );
 }
 
+// Memoize so typing into one group's slide-count input or a single-row mutation
+// doesn't re-render every other case group on the page. We compare the props
+// that actually drive this group's render and skip slideCounts/setSlideCounts
+// identity changes when none of this group's blockIds are affected.
+const HistGroupRows = React.memo(HistGroupRowsImpl, (prev, next) => {
+  if (
+    prev.orderId !== next.orderId ||
+    prev.caseOrders !== next.caseOrders ||
+    prev.statusFilter !== next.statusFilter ||
+    prev.category !== next.category ||
+    prev.updateMutation.isPending !== next.updateMutation.isPending ||
+    prev.createSlidesMutation.isPending !== next.createSlidesMutation.isPending ||
+    prev.bulkPending !== next.bulkPending ||
+    prev.t !== next.t
+  ) {
+    return false;
+  }
+  // Re-render only if a slideCount for one of this group's blocks changed.
+  for (const o of next.caseOrders) {
+    if (prev.slideCounts[o.blockId] !== next.slideCounts[o.blockId]) return false;
+  }
+  return true;
+});
+
 // ─── Main worklist table ──────────────────────────────────────────────────────
 
 function AncillaryCaseTable({ category }: { category: AncillaryCategory }) {
@@ -332,9 +368,23 @@ function AncillaryCaseTable({ category }: { category: AncillaryCategory }) {
 
   const [slideCounts, setSlideCounts] = useState<Record<string, number>>({});
 
+  // Retry once on 409 CONFLICT (backend throws when concurrent slide-creation
+  // transactions race on the same block under Serializable isolation).
+  const createSlidesWithRetry = async (blockId: string, count: number) => {
+    try {
+      return await blockApi.createSlides(blockId, count, 'H&E');
+    } catch (err) {
+      const status = (err as { response?: { status?: number } })?.response?.status;
+      if (status === 409) {
+        return await blockApi.createSlides(blockId, count, 'H&E');
+      }
+      throw err;
+    }
+  };
+
   const createSlidesMutation = useMutation({
     mutationFn: ({ blockId, count }: { blockId: string; count: number }) =>
-      blockApi.createSlides(blockId, count, 'H&E'),
+      createSlidesWithRetry(blockId, count),
     onSuccess: () => qc.invalidateQueries({ queryKey: qk.ancillaryQueue.all }),
     onError: () => setActionError(t('errorGeneric')),
   });
@@ -346,11 +396,31 @@ function AncillaryCaseTable({ category }: { category: AncillaryCategory }) {
     onError: () => setActionError(t('errorGeneric')),
   });
 
-  const bulkAddSlides = (caseOrders: AncillaryOrder[]) => {
+  const [bulkPending, setBulkPending] = useState(false);
+
+  // Run sequentially so concurrent Serializable transactions on different
+  // blocks don't race on shared lookups (intermittent 409s previously caused
+  // "only added to a subset"). Single invalidation at the end avoids 4 mid-
+  // flight refetches that re-rendered every row's buttons.
+  const bulkAddSlides = async (caseOrders: AncillaryOrder[]) => {
     const targets = caseOrders.filter((o) => o.status === 'MICROTOMY');
-    Promise.all(
-      targets.map((o) => createSlidesMutation.mutateAsync({ blockId: o.blockId, count: slideCounts[o.blockId] ?? (o.levelCount ?? 1) }))
-    ).catch(() => setActionError(t('errorGeneric')));
+    if (targets.length === 0) return;
+    setBulkPending(true);
+    let failures = 0;
+    try {
+      for (const o of targets) {
+        const count = slideCounts[o.blockId] ?? (o.levelCount ?? 1);
+        try {
+          await createSlidesWithRetry(o.blockId, count);
+        } catch {
+          failures++;
+        }
+      }
+    } finally {
+      setBulkPending(false);
+      qc.invalidateQueries({ queryKey: qk.ancillaryQueue.all });
+      if (failures > 0) setActionError(t('errorGeneric'));
+    }
   };
 
   const canAdvance = (o: AncillaryOrder) => {
@@ -360,18 +430,44 @@ function AncillaryCaseTable({ category }: { category: AncillaryCategory }) {
     return true;
   };
 
-  const bulkAdvance = (caseOrders: AncillaryOrder[]) => {
+  const bulkAdvance = async (caseOrders: AncillaryOrder[]) => {
     const actionable = caseOrders.filter(canAdvance);
-    Promise.all(
-      actionable.map((o) => updateMutation.mutateAsync({ id: o.id, status: NEXT_STATUS[o.status]! }))
-    ).catch(() => setActionError(t('errorGeneric')));
+    if (actionable.length === 0) return;
+    setBulkPending(true);
+    let failures = 0;
+    try {
+      for (const o of actionable) {
+        try {
+          await ancillaryApi.updateStatus(o.id, { status: NEXT_STATUS[o.status]! });
+        } catch {
+          failures++;
+        }
+      }
+    } finally {
+      setBulkPending(false);
+      qc.invalidateQueries({ queryKey: qk.ancillaryQueue.all });
+      if (failures > 0) setActionError(t('errorGeneric'));
+    }
   };
 
-  const bulkCancel = (caseOrders: AncillaryOrder[]) => {
+  const bulkCancel = async (caseOrders: AncillaryOrder[]) => {
     const actionable = caseOrders.filter((o) => o.status === 'PULL_BLOCK' || o.status === 'MICROTOMY' || o.status === 'SLIDE_STAIN');
-    Promise.all(
-      actionable.map((o) => updateMutation.mutateAsync({ id: o.id, status: 'CANCELLED' }))
-    ).catch(() => setActionError(t('errorGeneric')));
+    if (actionable.length === 0) return;
+    setBulkPending(true);
+    let failures = 0;
+    try {
+      for (const o of actionable) {
+        try {
+          await ancillaryApi.updateStatus(o.id, { status: 'CANCELLED' });
+        } catch {
+          failures++;
+        }
+      }
+    } finally {
+      setBulkPending(false);
+      qc.invalidateQueries({ queryKey: qk.ancillaryQueue.all });
+      if (failures > 0) setActionError(t('errorGeneric'));
+    }
   };
 
   const bulkNextLabel = (caseOrders: AncillaryOrder[]): string => {
@@ -381,12 +477,16 @@ function AncillaryCaseTable({ category }: { category: AncillaryCategory }) {
     return t('anc_advanceAll');
   };
 
-  const grouped = orders.reduce<Record<string, AncillaryOrder[]>>((acc, order) => {
-    const key = order.orderId;
-    if (!acc[key]) acc[key] = [];
-    acc[key].push(order);
-    return acc;
-  }, {});
+  const grouped = useMemo(
+    () =>
+      orders.reduce<Record<string, AncillaryOrder[]>>((acc, order) => {
+        const key = order.orderId;
+        if (!acc[key]) acc[key] = [];
+        acc[key].push(order);
+        return acc;
+      }, {}),
+    [orders],
+  );
 
   const filteredEntries = useMemo(() => {
     const entries = Object.entries(grouped);
@@ -508,6 +608,7 @@ function AncillaryCaseTable({ category }: { category: AncillaryCategory }) {
                 bulkAdvance={bulkAdvance}
                 bulkCancel={bulkCancel}
                 bulkNextLabel={bulkNextLabel}
+                bulkPending={bulkPending}
                 canAdvance={canAdvance}
                 fmtDateTime={fmtDateTime}
                 statusTimestamp={statusTimestamp}
