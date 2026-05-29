@@ -28,6 +28,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 import { type Lang, useLanguage } from '../hooks/useLanguage';
 import { employeeApi, lookupApi } from '../api';
+import { qk } from '../api/queryKeys';
 import type { Employee, EmployeeRole } from '@lis/shared';
 
 export default function LoginPage() {
@@ -48,12 +49,12 @@ export default function LoginPage() {
   });
 
   const { data: roles } = useQuery<EmployeeRole[]>({
-    queryKey: ['employee-roles'],
+    queryKey: qk.employeeRoles,
     queryFn: lookupApi.employeeRoles,
   });
 
   const { data: searchResults, isLoading: searching } = useQuery<Employee[]>({
-    queryKey: ['employee-search', searchQuery],
+    queryKey: qk.employeeSearch(searchQuery),
     queryFn: () => employeeApi.search(searchQuery),
     enabled: searchQuery.length >= 1,
   });

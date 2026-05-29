@@ -22,6 +22,7 @@ import { Search } from '@mui/icons-material';
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { orderApi } from '../api';
+import { qk } from '../api/queryKeys';
 import { formatOrderIdDisplay } from '@lis/shared';
 import { useLanguage } from '../hooks/useLanguage';
 
@@ -39,7 +40,7 @@ export default function ProcessingQueuePage() {
     page: number;
     pageSize: number;
   }>({
-    queryKey: ['processing-queue', page, showAll, search],
+    queryKey: qk.processingQueue.byParams(page, showAll, search),
     queryFn: () => orderApi.processingQueue(page, PAGE_SIZE, showAll, search),
     placeholderData: keepPreviousData,
   });

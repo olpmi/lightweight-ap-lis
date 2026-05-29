@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Typography,
@@ -36,8 +36,10 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useNavigationGuard } from '../hooks/useNavigationGuard';
 import { orderApi, specimenApi, blockApi, reportApi, lookupApi } from '../api';
+import { qk } from '../api/queryKeys';
 import { useAuth } from '../hooks/useAuth';
 import { useLanguage } from '../hooks/useLanguage';
+import type { OrderMaterials } from '@lis/shared';
 import {
   formatOrderIdDisplay,
   formatMaterialIdDisplay,
@@ -92,19 +94,19 @@ export default function ProcessingCasePage() {
   const narrativeInputProps = { lang, dir: direction };
 
   const { data: orderData, isLoading } = useQuery<{ data: object }>({
-    queryKey: ['order', orderId],
+    queryKey: qk.order.byId(orderId),
     queryFn: () => orderApi.get(orderId!).then((d) => ({ data: d })),
     enabled: Boolean(orderId),
   });
 
-  const { data: materialsData, isLoading: loadingMaterials } = useQuery<{ data: { specimens: Specimen[] } }>({
-    queryKey: ['materials', orderId],
-    queryFn: () => orderApi.materials(orderId!) as Promise<{ data: { specimens: Specimen[] } }>,
+  const { data: materialsData, isLoading: loadingMaterials } = useQuery<{ data: OrderMaterials }>({
+    queryKey: qk.materials.byOrder(orderId),
+    queryFn: () => orderApi.materials(orderId!),
     enabled: Boolean(orderId),
   });
 
   const { data: reportsData } = useQuery<{ data: ReportSummary[] }>({
-    queryKey: ['reports', orderId],
+    queryKey: qk.reports.byOrder(orderId),
     queryFn: () => reportApi.list(orderId!).then((d) => ({ data: d as ReportSummary[] })),
     enabled: Boolean(orderId),
   });
@@ -112,18 +114,18 @@ export default function ProcessingCasePage() {
   const { mutateAsync: createBlocks, isPending: creatingBlocks } = useMutation({
     mutationFn: ({ specimenId, count }: { specimenId: string; count: number }) =>
       specimenApi.createBlocks(specimenId, count),
-    onSuccess: () => qc.invalidateQueries({ queryKey: ['materials', orderId] }),
+    onSuccess: () => qc.invalidateQueries({ queryKey: qk.materials.byOrder(orderId) }),
   });
 
   const { mutateAsync: createSlides, isPending: creatingSlides } = useMutation({
     mutationFn: ({ blockId, count, slideType }: { blockId: string; count: number; slideType?: string }) =>
       blockApi.createSlides(blockId, count, slideType),
-    onSuccess: () => qc.invalidateQueries({ queryKey: ['materials', orderId] }),
+    onSuccess: () => qc.invalidateQueries({ queryKey: qk.materials.byOrder(orderId) }),
   });
 
   const { mutateAsync: doDiscardBlock } = useMutation({
     mutationFn: (blockId: string) => blockApi.discardBlock(blockId),
-    onSuccess: () => qc.invalidateQueries({ queryKey: ['materials', orderId] }),
+    onSuccess: () => qc.invalidateQueries({ queryKey: qk.materials.byOrder(orderId) }),
   });
 
   const [clinicalHistory, setClinicalHistory] = useState('');
@@ -141,12 +143,12 @@ export default function ProcessingCasePage() {
   const [slideCounts, setSlideCounts] = useState<Record<string, number>>({});
 
   const { data: grossTemplates = [] } = useQuery<TemplateCatalogEntry[]>({
-    queryKey: ['template-catalog', 'gross', lang],
+    queryKey: qk.templateCatalog('gross', lang),
     queryFn: () => lookupApi.templateCatalog({ kind: 'gross', language: lang }),
   });
 
   const { data: grossTemplateDefinition, isLoading: grossTemplateLoading } = useQuery<TemplateDefinition>({
-    queryKey: ['template-definition', grossTemplateKey, lang],
+    queryKey: qk.templateDefinition(grossTemplateKey, lang),
     queryFn: () => lookupApi.templateDefinition(grossTemplateKey, lang),
     enabled: Boolean(grossTemplateKey),
   });
@@ -202,8 +204,8 @@ export default function ProcessingCasePage() {
         grossPayload: grossPayload || undefined,
         pathologistEmployeeId,
       });
-      qc.invalidateQueries({ queryKey: ['order', orderId] });
-      qc.invalidateQueries({ queryKey: ['reports', orderId] });
+      qc.invalidateQueries({ queryKey: qk.order.byId(orderId) });
+      qc.invalidateQueries({ queryKey: qk.reports.byOrder(orderId) });
     },
     onSuccess: () => {
       setIsSaved(true);

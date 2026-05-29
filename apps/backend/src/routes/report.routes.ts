@@ -10,6 +10,14 @@ import { AppError } from '../middleware/error.middleware.js';
 const router = Router();
 const service = new ReportService();
 
+function parseReportId(raw: string): number {
+  const id = parseInt(raw, 10);
+  if (!Number.isFinite(id) || id <= 0) {
+    throw new AppError(400, 'BAD_REQUEST', `Invalid reportId: ${raw}`);
+  }
+  return id;
+}
+
 function resolveLanguage(req: Request): AppLanguageCode {
   const requested = typeof req.query.language === 'string'
     ? req.query.language
@@ -26,8 +34,9 @@ function resolveLanguage(req: Request): AppLanguageCode {
 // GET /api/reports/:reportId/pdf
 router.get('/:reportId/pdf', requireAuth, async (req: Request, res: Response, next: NextFunction) => {
   try {
+    const reportId = parseReportId(req.params.reportId);
     const report = await prisma.report.findUnique({
-      where: { reportId: BigInt(req.params.reportId) },
+      where: { reportId: BigInt(reportId) },
       include: {
         reportFiles: {
           where: { fileType: { in: ['report_pdf', 'prelim_pdf', 'amended_pdf'] } },
@@ -54,8 +63,9 @@ router.get('/:reportId/pdf', requireAuth, async (req: Request, res: Response, ne
 // GET /api/reports/:reportId/patient-summary.pdf?language=sw
 router.get('/:reportId/patient-summary.pdf', requireAuth, async (req: Request, res: Response, next: NextFunction) => {
   try {
+    const reportId = parseReportId(req.params.reportId);
     const language = resolveLanguage(req);
-    const { fileName, pdfBytes } = await service.renderPatientSummaryPdf(parseInt(req.params.reportId, 10), language);
+    const { fileName, pdfBytes } = await service.renderPatientSummaryPdf(reportId, language);
 
     res.setHeader('Content-Type', 'application/pdf');
     res.setHeader('Content-Disposition', `inline; filename="${fileName}"`);
@@ -68,7 +78,8 @@ router.get('/:reportId/patient-summary.pdf', requireAuth, async (req: Request, r
 // POST /api/reports/:reportId/signout
 router.post('/:reportId/signout', requireAuth, validateBody(signOutReportSchema), async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const data = await service.signOut(parseInt(req.params.reportId), req.body);
+    const reportId = parseReportId(req.params.reportId);
+    const data = await service.signOut(reportId, req.body);
     res.json({ data });
   } catch (err) {
     next(err);
@@ -78,7 +89,8 @@ router.post('/:reportId/signout', requireAuth, validateBody(signOutReportSchema)
 // POST /api/reports/:reportId/signprelim
 router.post('/:reportId/signprelim', requireAuth, validateBody(signOutReportSchema), async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const data = await service.signPrelim(parseInt(req.params.reportId), req.body);
+    const reportId = parseReportId(req.params.reportId);
+    const data = await service.signPrelim(reportId, req.body);
     res.json({ data });
   } catch (err) {
     next(err);

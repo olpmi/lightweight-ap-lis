@@ -27,7 +27,9 @@ import { Add, Delete, Download } from '@mui/icons-material';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { useBlocker } from 'react-router-dom';
 import { orderApi, lookupApi, patientApi, doctorApi, specimenApi, blockApi } from '../api';
+import { qk } from '../api/queryKeys';
 import { formatOrderIdDisplay, BODY_SITE_HIERARCHY, CYTOLOGY_SITE_HIERARCHY } from '@lis/shared';
+import type { CreateOrderDto } from '@lis/shared';
 import { useLanguage } from '../hooks/useLanguage';
 import { useNavigationGuard } from '../hooks/useNavigationGuard';
 
@@ -94,22 +96,22 @@ export default function OrderEntryPage() {
   }, [isDirty]);
 
   const { data: bodySites } = useQuery<object[]>({
-    queryKey: ['body-sites'],
+    queryKey: qk.bodySites,
     queryFn: lookupApi.bodySites,
   });
   const { data: specimenTypes } = useQuery<object[]>({
-    queryKey: ['specimen-types'],
+    queryKey: qk.specimenTypes,
     queryFn: lookupApi.specimenTypes,
   });
 
   const { data: patientResults, isFetching: searchingPatients } = useQuery<object[]>({
-    queryKey: ['patient-search', patientSearch],
+    queryKey: qk.patientSearch(patientSearch),
     queryFn: () => patientApi.search(patientSearch),
     enabled: true,
   });
 
   const { data: doctorResults, isFetching: searchingDoctors } = useQuery<object[]>({
-    queryKey: ['doctor-search', doctorSearch],
+    queryKey: qk.doctorSearch(doctorSearch),
     queryFn: () => doctorApi.search(doctorSearch),
     enabled: true,
   });
@@ -195,7 +197,7 @@ export default function OrderEntryPage() {
     }
 
     try {
-      const order = await createMutation.mutateAsync(payload) as {
+      const order = await createMutation.mutateAsync(payload as unknown as CreateOrderDto) as {
         orderId: string;
         specimens?: Array<{ specimenId: string; specimenCode: string }>;
       };

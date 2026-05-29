@@ -34,6 +34,7 @@ import {
 import { Edit, Delete, Add, ExpandMore, ExpandLess } from '@mui/icons-material';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { ancillaryApi } from '../api';
+import { qk } from '../api/queryKeys';
 import { useLanguage } from '../hooks/useLanguage';
 import ConfigLayout from '../components/layout/ConfigLayout';
 import {
@@ -288,12 +289,12 @@ export default function ConfigAncillaryPage() {
   const [mutationError, setMutationError] = useState<string | null>(null);
 
   const { data: orderables = [], isLoading: loadingTests } = useQuery({
-    queryKey: ['config-ancillary-orderables'],
+    queryKey: qk.ancillaryOrderables,
     queryFn: () => ancillaryApi.getOrderables(),
   });
 
   const { data: panels = [], isLoading: loadingPanels } = useQuery({
-    queryKey: ['config-ancillary-panels'],
+    queryKey: qk.ancillaryPanels,
     queryFn: () => ancillaryApi.getPanels(),
   });
 
@@ -301,8 +302,7 @@ export default function ConfigAncillaryPage() {
     mutationFn: (data: Parameters<typeof ancillaryApi.createOrderable>[0]) =>
       ancillaryApi.createOrderable(data),
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['config-ancillary-orderables'] });
-      qc.invalidateQueries({ queryKey: ['ancillary-orderables'] });
+      qc.invalidateQueries({ queryKey: qk.ancillaryOrderables });
       setTestDialogOpen(false);
       setMutationError(null);
     },
@@ -318,8 +318,7 @@ export default function ConfigAncillaryPage() {
     mutationFn: ({ id, data }: { id: number; data: Parameters<typeof ancillaryApi.updateOrderable>[1] }) =>
       ancillaryApi.updateOrderable(id, data),
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['config-ancillary-orderables'] });
-      qc.invalidateQueries({ queryKey: ['ancillary-orderables'] });
+      qc.invalidateQueries({ queryKey: qk.ancillaryOrderables });
       setTestDialogOpen(false);
       setMutationError(null);
     },
@@ -334,8 +333,7 @@ export default function ConfigAncillaryPage() {
   const deleteTestMutation = useMutation({
     mutationFn: (id: number) => ancillaryApi.deleteOrderable(id),
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['config-ancillary-orderables'] });
-      qc.invalidateQueries({ queryKey: ['ancillary-orderables'] });
+      qc.invalidateQueries({ queryKey: qk.ancillaryOrderables });
       setDeleteConfirm(null);
     },
     onError: (err: unknown) => {
@@ -351,8 +349,7 @@ export default function ConfigAncillaryPage() {
     mutationFn: (data: Parameters<typeof ancillaryApi.createPanel>[0]) =>
       ancillaryApi.createPanel(data),
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['config-ancillary-panels'] });
-      qc.invalidateQueries({ queryKey: ['ancillary-panels'] });
+      qc.invalidateQueries({ queryKey: qk.ancillaryPanels });
       setPanelDialogOpen(false);
       setMutationError(null);
     },
@@ -368,8 +365,7 @@ export default function ConfigAncillaryPage() {
     mutationFn: ({ id, data }: { id: number; data: Parameters<typeof ancillaryApi.updatePanel>[1] }) =>
       ancillaryApi.updatePanel(id, data),
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['config-ancillary-panels'] });
-      qc.invalidateQueries({ queryKey: ['ancillary-panels'] });
+      qc.invalidateQueries({ queryKey: qk.ancillaryPanels });
       setPanelDialogOpen(false);
       setMutationError(null);
     },
@@ -384,8 +380,7 @@ export default function ConfigAncillaryPage() {
   const deletePanelMutation = useMutation({
     mutationFn: (id: number) => ancillaryApi.deletePanel(id),
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['config-ancillary-panels'] });
-      qc.invalidateQueries({ queryKey: ['ancillary-panels'] });
+      qc.invalidateQueries({ queryKey: qk.ancillaryPanels });
       setDeleteConfirm(null);
     },
     onError: (err: unknown) => {

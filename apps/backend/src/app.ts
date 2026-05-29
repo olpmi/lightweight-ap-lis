@@ -37,6 +37,11 @@ export function createApp(): express.Application {
     return value;
   });
 
+  // Trust the first reverse proxy (nginx in prod, the docker network in dev)
+  // so that req.ip / X-Forwarded-For resolve to the real client. express-rate-limit
+  // requires this to bucket attempts per-client instead of per-proxy.
+  app.set('trust proxy', 1);
+
   // Security headers
   app.use(helmet({ contentSecurityPolicy: false }));
 
@@ -51,9 +56,11 @@ export function createApp(): express.Application {
   // Compression
   app.use(compression());
 
-  // Body parsing
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: true }));
+  // Body parsing. Cap payload sizes so a single malicious request can't pin
+  // memory; templates + report HTML can be a few hundred KB, so 2 MB is a
+  // generous ceiling.
+  app.use(express.json({ limit: '2mb' }));
+  app.use(express.urlencoded({ extended: true, limit: '2mb' }));
 
   // HTTP request logging
   app.use(

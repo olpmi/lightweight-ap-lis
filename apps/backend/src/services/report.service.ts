@@ -1,5 +1,6 @@
 import { prisma } from '../lib/prisma.js';
 import { AppError } from '../middleware/error.middleware.js';
+import { logger } from '../lib/logger.js';
 import {
   type AppLanguageCode,
   type CreateDraftReportInput,
@@ -279,7 +280,8 @@ export class ReportService {
         },
       });
     } catch (err) {
-      // PDF generation failure should not block sign-out
+      // PDF generation failure should not block sign-out, but must be logged for audit/recovery.
+      logger.warn({ err, reportId }, 'Final report PDF generation failed after sign-out');
     }
 
     return signed;
@@ -356,7 +358,8 @@ export class ReportService {
         },
       });
     } catch (err) {
-      // PDF generation failure should not block prelim sign-out
+      // PDF generation failure should not block prelim sign-out, but must be logged.
+      logger.warn({ err, reportId }, 'Preliminary report PDF generation failed after sign-out');
     }
 
     // Create a new editable draft (copy of prelim content) for continued editing

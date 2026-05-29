@@ -1,21 +1,15 @@
-/*
-  Warnings:
+-- This migration is safe to run on tables that contain data:
+--   * New `updated_at` columns are added with a DEFAULT CURRENT_TIMESTAMP so
+--     existing rows get a value; the default is then dropped to match Prisma's
+--     @updatedAt semantics (app-managed timestamp on every write).
+--   * Enum migrations on existing string columns use ALTER COLUMN ... TYPE ...
+--     USING (col::text::enum_type), preserving existing values that already
+--     match an enum label. Defaults are dropped before the type change and
+--     restored after, because PostgreSQL otherwise refuses to alter a column
+--     whose DEFAULT still references the prior type.
+--   * `report.synoptic_data` is dropped (replaced by `synopticPayload`); if you
+--     need to preserve historical values, copy them out before applying.
 
-  - The `default_language` column on the `employee` table would be dropped and recreated. This will lead to data loss if there is data in the column.
-  - You are about to drop the column `synoptic_data` on the `report` table. All the data in the column will be lost.
-  - The `reactivation_type` column on the `report` table would be dropped and recreated. This will lead to data loss if there is data in the column.
-  - The `type` column on the `report_template` table would be dropped and recreated. This will lead to data loss if there is data in the column.
-  - Added the required column `updated_at` to the `ancillary_order` table without a default value. This is not possible if the table is not empty.
-  - Added the required column `updated_at` to the `block` table without a default value. This is not possible if the table is not empty.
-  - Added the required column `updated_at` to the `orders` table without a default value. This is not possible if the table is not empty.
-  - Changed the type of `sex` on the `patient` table. No cast exists, the column would be dropped and recreated, which cannot be done if there is data, since the column is required.
-  - Added the required column `updated_at` to the `report` table without a default value. This is not possible if the table is not empty.
-  - Changed the type of `file_type` on the `report_file` table. No cast exists, the column would be dropped and recreated, which cannot be done if there is data, since the column is required.
-  - Changed the type of `report_type` on the `report_layout` table. No cast exists, the column would be dropped and recreated, which cannot be done if there is data, since the column is required.
-  - Added the required column `updated_at` to the `slide` table without a default value. This is not possible if the table is not empty.
-  - Added the required column `updated_at` to the `specimen` table without a default value. This is not possible if the table is not empty.
-
-*/
 -- CreateEnum
 CREATE TYPE "sex" AS ENUM ('Male', 'Female', 'Other', 'Unknown');
 
@@ -49,47 +43,63 @@ ALTER TABLE "slide" DROP CONSTRAINT "slide_block_id_fkey";
 -- DropForeignKey
 ALTER TABLE "specimen" DROP CONSTRAINT "specimen_order_id_fkey";
 
--- AlterTable
-ALTER TABLE "ancillary_order" ADD COLUMN     "updated_at" TIMESTAMP(3) NOT NULL;
+-- AlterTable: ancillary_order — add updated_at safely
+ALTER TABLE "ancillary_order" ADD COLUMN "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE "ancillary_order" ALTER COLUMN "updated_at" DROP DEFAULT;
 
--- AlterTable
-ALTER TABLE "block" ADD COLUMN     "updated_at" TIMESTAMP(3) NOT NULL;
+-- AlterTable: block — add updated_at safely
+ALTER TABLE "block" ADD COLUMN "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE "block" ALTER COLUMN "updated_at" DROP DEFAULT;
 
--- AlterTable
-ALTER TABLE "employee" DROP COLUMN "default_language",
-ADD COLUMN     "default_language" "app_language" NOT NULL DEFAULT 'en';
+-- AlterTable: employee.default_language — convert to enum, preserving existing values
+ALTER TABLE "employee" ALTER COLUMN "default_language" DROP DEFAULT;
+ALTER TABLE "employee"
+  ALTER COLUMN "default_language" TYPE "app_language"
+  USING ("default_language"::text::"app_language");
+ALTER TABLE "employee" ALTER COLUMN "default_language" SET DEFAULT 'en';
 
--- AlterTable
-ALTER TABLE "orders" ADD COLUMN     "updated_at" TIMESTAMP(3) NOT NULL;
+-- AlterTable: orders — add updated_at safely
+ALTER TABLE "orders" ADD COLUMN "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE "orders" ALTER COLUMN "updated_at" DROP DEFAULT;
 
--- AlterTable
-ALTER TABLE "patient" DROP COLUMN "sex",
-ADD COLUMN     "sex" "sex" NOT NULL;
+-- AlterTable: patient.sex — convert to enum, preserving existing values
+ALTER TABLE "patient"
+  ALTER COLUMN "sex" TYPE "sex"
+  USING ("sex"::text::"sex");
 
--- AlterTable
-ALTER TABLE "report" DROP COLUMN "synoptic_data",
-ADD COLUMN     "updated_at" TIMESTAMP(3) NOT NULL,
-DROP COLUMN "reactivation_type",
-ADD COLUMN     "reactivation_type" "reactivation_type";
+-- AlterTable: report — drop synoptic_data, add updated_at, convert reactivation_type to enum
+ALTER TABLE "report" DROP COLUMN "synoptic_data";
+ALTER TABLE "report" ADD COLUMN "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE "report" ALTER COLUMN "updated_at" DROP DEFAULT;
+ALTER TABLE "report"
+  ALTER COLUMN "reactivation_type" TYPE "reactivation_type"
+  USING ("reactivation_type"::text::"reactivation_type");
 
--- AlterTable
-ALTER TABLE "report_file" DROP COLUMN "file_type",
-ADD COLUMN     "file_type" "report_file_type" NOT NULL;
+-- AlterTable: report_file.file_type — convert to enum
+ALTER TABLE "report_file"
+  ALTER COLUMN "file_type" TYPE "report_file_type"
+  USING ("file_type"::text::"report_file_type");
 
--- AlterTable
-ALTER TABLE "report_layout" DROP COLUMN "report_type",
-ADD COLUMN     "report_type" "report_type" NOT NULL,
-ALTER COLUMN "updated_at" DROP DEFAULT;
+-- AlterTable: report_layout.report_type — convert to enum, drop stale default on updated_at
+ALTER TABLE "report_layout"
+  ALTER COLUMN "report_type" TYPE "report_type"
+  USING ("report_type"::text::"report_type");
+ALTER TABLE "report_layout" ALTER COLUMN "updated_at" DROP DEFAULT;
 
--- AlterTable
-ALTER TABLE "report_template" DROP COLUMN "type",
-ADD COLUMN     "type" "report_type" NOT NULL DEFAULT 'final';
+-- AlterTable: report_template.type — convert to enum, preserving default
+ALTER TABLE "report_template" ALTER COLUMN "type" DROP DEFAULT;
+ALTER TABLE "report_template"
+  ALTER COLUMN "type" TYPE "report_type"
+  USING ("type"::text::"report_type");
+ALTER TABLE "report_template" ALTER COLUMN "type" SET DEFAULT 'final';
 
--- AlterTable
-ALTER TABLE "slide" ADD COLUMN     "updated_at" TIMESTAMP(3) NOT NULL;
+-- AlterTable: slide — add updated_at safely
+ALTER TABLE "slide" ADD COLUMN "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE "slide" ALTER COLUMN "updated_at" DROP DEFAULT;
 
--- AlterTable
-ALTER TABLE "specimen" ADD COLUMN     "updated_at" TIMESTAMP(3) NOT NULL;
+-- AlterTable: specimen — add updated_at safely
+ALTER TABLE "specimen" ADD COLUMN "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE "specimen" ALTER COLUMN "updated_at" DROP DEFAULT;
 
 -- CreateIndex
 CREATE INDEX "ancillary_order_order_id_idx" ON "ancillary_order"("order_id");

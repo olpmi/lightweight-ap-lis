@@ -255,6 +255,9 @@ model Report {
   @@index([reportTemplateId])
   @@index([pathologistEmployeeId])
   @@index([supersedesReportId])
+  // Supports the "is this order signed out?" filter used by every queue
+  // (`reports: { none: { isFinal: true, signedOutDatetime: { not: null } } }`).
+  @@index([orderId, isFinal, signedOutDatetime])
   @@map("report")
 }
 

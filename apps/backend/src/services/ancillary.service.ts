@@ -1,11 +1,9 @@
-import { PrismaClient } from '@prisma/client';
 import type {
   CreateAncillaryOrderInput,
   UpdateAncillaryOrderStatusInput,
 } from '@lis/shared';
 import { buildOrderIdConditions } from '../utils/searchUtils.js';
-
-const prisma = new PrismaClient();
+import { prisma } from '../lib/prisma.js';
 
 const ORDERABLE_INCLUDE = {
   orderable: true,

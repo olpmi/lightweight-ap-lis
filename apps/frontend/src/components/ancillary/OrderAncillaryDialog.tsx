@@ -21,6 +21,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { ancillaryApi } from '../../api';
+import { qk } from '../../api/queryKeys';
 import { useLanguage } from '../../hooks/useLanguage';
 import { ANCILLARY_CATEGORIES, type AncillaryCategory } from '@lis/shared';
 import { formatMaterialIdDisplay } from '@lis/shared';
@@ -80,13 +81,13 @@ export default function OrderAncillaryDialog({
   }, [open, preselectedBlockId]);
 
   const { data: orderables = [] } = useQuery({
-    queryKey: ['ancillary-orderables'],
+    queryKey: qk.ancillaryOrderables,
     queryFn: () => ancillaryApi.getOrderables(),
     enabled: open,
   });
 
   const { data: panels = [] } = useQuery({
-    queryKey: ['ancillary-panels'],
+    queryKey: qk.ancillaryPanels,
     queryFn: () => ancillaryApi.getPanels(),
     enabled: open,
   });
@@ -264,8 +265,8 @@ export default function OrderAncillaryDialog({
       return ancillaryApi.createOrders(allItems);
     },
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['ancillary-orders', orderId] });
-      qc.invalidateQueries({ queryKey: ['ancillary-block-counts', orderId] });
+      qc.invalidateQueries({ queryKey: qk.ancillaryOrders.byOrder(orderId) });
+      qc.invalidateQueries({ queryKey: qk.ancillaryBlockCounts.byOrder(orderId) });
       onClose();
     },
     onError: (err: unknown) => {

@@ -1,5 +1,13 @@
 import { PrismaClient } from '@prisma/client';
 
+if (process.env.NODE_ENV === 'production') {
+  // Defensive guard: this seed inserts ~300 synthetic orders and must never run in prod.
+  // Set ALLOW_PROD_SEED=1 to override (e.g. for an intentional staging reset).
+  if (process.env.ALLOW_PROD_SEED !== '1') {
+    throw new Error('Refusing to seed: NODE_ENV=production. Set ALLOW_PROD_SEED=1 to override.');
+  }
+}
+
 const prisma = new PrismaClient();
 
 // ---------------------------------------------------------------------------

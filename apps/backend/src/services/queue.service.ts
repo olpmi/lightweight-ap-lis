@@ -219,24 +219,28 @@ export class QueueService {
   }
 
   async getOrderMaterials(orderId: string): Promise<object> {
-    const order = await prisma.order.findUnique({ where: { orderId } });
-    if (!order) throw new AppError(404, 'NOT_FOUND', `Order ${orderId} not found`);
-
-    const specimens = await prisma.specimen.findMany({
+    // Single query: fetch the order with its specimens/blocks/slides in one
+    // round-trip. Returns 404 when the order doesn't exist.
+    const order = await prisma.order.findUnique({
       where: { orderId },
-      include: {
-        bodySite: true,
-        specimenType: true,
-        blocks: {
-          orderBy: { blockNumber: 'asc' },
+      select: {
+        specimens: {
           include: {
-            slides: { orderBy: { slideNumber: 'asc' } },
+            bodySite: true,
+            specimenType: true,
+            blocks: {
+              orderBy: { blockNumber: 'asc' },
+              include: {
+                slides: { orderBy: { slideNumber: 'asc' } },
+              },
+            },
           },
+          orderBy: { specimenCode: 'asc' },
         },
       },
-      orderBy: { specimenCode: 'asc' },
     });
+    if (!order) throw new AppError(404, 'NOT_FOUND', `Order ${orderId} not found`);
 
-    return { specimens };
+    return { specimens: order.specimens };
   }
 }

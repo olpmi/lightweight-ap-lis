@@ -1,4 +1,5 @@
 import { Router, Request, Response, NextFunction } from 'express';
+import rateLimit from 'express-rate-limit';
 import { AuthService } from '../services/auth.service.js';
 import { validateBody } from '../middleware/validate.middleware.js';
 import { loginSchema } from '@lis/shared';
@@ -6,8 +7,20 @@ import { loginSchema } from '@lis/shared';
 const router = Router();
 const authService = new AuthService();
 
+// Rate-limit login attempts to slow password-spray / enumeration. The cap is
+// per-IP and resets every window. Disabled when `NODE_ENV !== 'production'` so
+// integration tests + dev hot-reloads aren't throttled.
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  limit: 20,                // 20 attempts per IP per window
+  standardHeaders: 'draft-7',
+  legacyHeaders: false,
+  skip: () => process.env.NODE_ENV !== 'production',
+  message: { error: { code: 'TOO_MANY_REQUESTS', message: 'Too many login attempts, please retry later.' } },
+});
+
 // POST /api/auth/login
-router.post('/login', validateBody(loginSchema), async (req: Request, res: Response, next: NextFunction) => {
+router.post('/login', loginLimiter, validateBody(loginSchema), async (req: Request, res: Response, next: NextFunction) => {
   try {
     const employee = await authService.login(req.body);
 

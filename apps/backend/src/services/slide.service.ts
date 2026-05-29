@@ -1,3 +1,4 @@
+import { Prisma } from '@prisma/client';
 import { prisma } from '../lib/prisma.js';
 import { AppError } from '../middleware/error.middleware.js';
 import { generateSlideId } from '../utils/idGenerator.js';
@@ -14,36 +15,48 @@ export class SlideService {
   }
 
   async createSlides(blockId: string, count: number, slideType?: string): Promise<object[]> {
+    if (!Number.isInteger(count) || count <= 0 || count > 100) {
+      throw new AppError(400, 'BAD_REQUEST', 'count must be an integer between 1 and 100');
+    }
+
     const block = await prisma.block.findUnique({ where: { blockId } });
     if (!block) throw new AppError(404, 'NOT_FOUND', `Block ${blockId} not found`);
     if (block.discarded) throw new AppError(400, 'BLOCK_DISCARDED', `Block ${blockId} is discarded`);
 
-    const existing = await prisma.slide.findMany({
-      where: { blockId },
-      orderBy: { slideNumber: 'desc' },
-    });
-    const nextSlideNumber = existing.length > 0 ? existing[0].slideNumber + 1 : 1;
+    try {
+      return await prisma.$transaction(
+        async (tx) => {
+          const latest = await tx.slide.findFirst({
+            where: { blockId },
+            orderBy: { slideNumber: 'desc' },
+            select: { slideNumber: true },
+          });
+          const nextSlideNumber = (latest?.slideNumber ?? 0) + 1;
 
-    const created: object[] = [];
+          const created: object[] = [];
+          for (let i = 0; i < count; i++) {
+            const slideNumber = nextSlideNumber + i;
+            const slideId = generateSlideId(blockId, slideNumber);
 
-    for (let i = 0; i < count; i++) {
-      const slideNumber = nextSlideNumber + i;
-      const slideId = generateSlideId(blockId, slideNumber);
-
-      const exists = await prisma.slide.findUnique({ where: { slideId } });
-      if (exists) continue;
-
-      const slide = await prisma.slide.create({
-        data: {
-          slideId,
-          blockId,
-          slideNumber,
-          slideType: slideType ?? 'H&E',
+            const slide = await tx.slide.create({
+              data: {
+                slideId,
+                blockId,
+                slideNumber,
+                slideType: slideType ?? 'H&E',
+              },
+            });
+            created.push(slide);
+          }
+          return created;
         },
-      });
-      created.push(slide);
+        { isolationLevel: Prisma.TransactionIsolationLevel.Serializable },
+      );
+    } catch (err) {
+      if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2002') {
+        throw new AppError(409, 'CONFLICT', 'Concurrent slide creation detected, please retry');
+      }
+      throw err;
     }
-
-    return created;
   }
 }

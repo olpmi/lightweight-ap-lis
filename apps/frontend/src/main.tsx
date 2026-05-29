@@ -15,6 +15,7 @@ import App from './App';
 import { AuthProvider } from './hooks/useAuth';
 import { LanguageProvider } from './hooks/useLanguage';
 import { NavigationGuardProvider } from './hooks/useNavigationGuard';
+import { ErrorBoundary } from './components/ErrorBoundary';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -24,20 +25,22 @@ const queryClient = new QueryClient({
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <BrowserRouter>
-          <AuthProvider>
-              <LanguageProvider>
-                <NavigationGuardProvider>
-                  <App />
-                </NavigationGuardProvider>
-              </LanguageProvider>
-            </AuthProvider>
-        </BrowserRouter>
-      </ThemeProvider>
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <BrowserRouter>
+            <AuthProvider>
+                <LanguageProvider>
+                  <NavigationGuardProvider>
+                    <App />
+                  </NavigationGuardProvider>
+                </LanguageProvider>
+              </AuthProvider>
+          </BrowserRouter>
+        </ThemeProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
+    </ErrorBoundary>
   </React.StrictMode>
 );
