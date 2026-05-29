@@ -33,6 +33,7 @@ import ArticleIcon from '@mui/icons-material/Article';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useLanguage } from '../hooks/useLanguage';
 import { configReportLayoutApi, type ReportLayout, type UpsertReportLayoutPayload } from '../api';
+import { qk } from '../api/queryKeys';
 import apiClient from '../api/client';
 import ConfigLayout from '../components/layout/ConfigLayout';
 
@@ -88,7 +89,7 @@ export default function ConfigReportManagerPage() {
   const [previewing, setPreviewing] = useState(false);
 
   const { data: layouts = [], isLoading } = useQuery({
-    queryKey: ['report-layouts'],
+    queryKey: qk.reportLayouts,
     queryFn: configReportLayoutApi.list,
   });
 
@@ -114,7 +115,7 @@ export default function ConfigReportManagerPage() {
   const saveMutation = useMutation({
     mutationFn: (payload: UpsertReportLayoutPayload) => configReportLayoutApi.upsert(payload),
     onSuccess: () => {
-      void queryClient.invalidateQueries({ queryKey: ['report-layouts'] });
+      void queryClient.invalidateQueries({ queryKey: qk.reportLayouts });
       setSnack({ msg: t('rpt_saved'), severity: 'success' });
     },
     onError: () => setSnack({ msg: t('rpt_saveFailed'), severity: 'error' }),
@@ -123,7 +124,7 @@ export default function ConfigReportManagerPage() {
   const resetMutation = useMutation({
     mutationFn: () => configReportLayoutApi.reset(selectedType),
     onSuccess: (layout) => {
-      void queryClient.invalidateQueries({ queryKey: ['report-layouts'] });
+      void queryClient.invalidateQueries({ queryKey: qk.reportLayouts });
       setEditName(layout.name);
       setEditHtml(layout.htmlTemplate);
       setEditActive(layout.isActive);

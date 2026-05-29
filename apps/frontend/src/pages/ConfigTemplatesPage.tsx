@@ -29,6 +29,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import type { TemplateCatalogEntry } from '@lis/shared';
 import { useLanguage } from '../hooks/useLanguage';
 import { configApi } from '../api';
+import { qk } from '../api/queryKeys';
 import TemplateEditorPanel from '../components/config/TemplateEditorPanel';
 import CreateTemplateDialog from '../components/config/CreateTemplateDialog';
 import ConfigLayout from '../components/layout/ConfigLayout';
@@ -221,7 +222,7 @@ export default function ConfigTemplatesPage() {
   const queryClient = useQueryClient();
 
   const { data: catalog = [], isLoading, error } = useQuery({
-    queryKey: ['config-templates'],
+    queryKey: qk.configTemplates,
     queryFn: () => configApi.listTemplates(),
   });
 
@@ -267,7 +268,7 @@ export default function ConfigTemplatesPage() {
   };
 
   const handleCreated = (templateKey: string) => {
-    void queryClient.invalidateQueries({ queryKey: ['config-templates'] });
+    void queryClient.invalidateQueries({ queryKey: qk.configTemplates });
     handleSelectTemplate(templateKey);
     // Auto-expand ancestor folders of the new template
     const parts = templateKey.split('/');

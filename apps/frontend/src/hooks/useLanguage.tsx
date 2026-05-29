@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { APP_LANGUAGE_CODES, type AppLanguageCode } from '@lis/shared';
 
 export type Lang = AppLanguageCode;
@@ -2114,38 +2114,34 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     document.documentElement.dir = direction;
   }, [direction, lang]);
 
-  const t = (key: keyof Translations) => dict[key] as string;
-  const tSite = (name: string) => {
-    const key = SITE_KEY_MAP[name];
-    return key ? (dict[key] as string) : name;
-  };
-  const tOrgan = (name: string) => {
-    const key = ORGAN_KEY_MAP[name];
-    return key ? (dict[key] as string) : name;
-  };
-  const tSpecimenType = (name: string) => {
-    const key = SPECIMEN_TYPE_KEY_MAP[name];
-    return key ? (dict[key] as string) : name;
-  };
-  const tSlideType = (name: string) => {
-    const key = SLIDE_TYPE_KEY_MAP[name];
-    return key ? (dict[key] as string) : name;
-  };
-  const tCaseType = (name: string) => {
-    const key = CASE_TYPE_KEY_MAP[name];
-    return key ? (dict[key] as string) : name;
-  };
-  const tSex = (name: string) => {
-    const key = SEX_KEY_MAP[name];
-    return key ? (dict[key] as string) : name;
-  };
-  const tRole = (name: string) => {
-    const key = ROLE_KEY_MAP[name];
-    return key ? (dict[key] as string) : name;
-  };
+  // Memoize the context value so consumers don't re-render on every parent
+  // render. All helpers are derived from `dict`, so they only need to change
+  // when the language changes.
+  const value = useMemo<LanguageContextValue>(() => {
+    const t = (key: keyof Translations) => dict[key] as string;
+    const tFromMap = (map: Record<string, keyof Translations>) =>
+      (name: string) => {
+        const key = map[name];
+        return key ? (dict[key] as string) : name;
+      };
+    return {
+      lang,
+      setLang,
+      direction,
+      languageOptions: LANGUAGE_OPTIONS,
+      t,
+      tSite: tFromMap(SITE_KEY_MAP),
+      tOrgan: tFromMap(ORGAN_KEY_MAP),
+      tSpecimenType: tFromMap(SPECIMEN_TYPE_KEY_MAP),
+      tSlideType: tFromMap(SLIDE_TYPE_KEY_MAP),
+      tCaseType: tFromMap(CASE_TYPE_KEY_MAP),
+      tSex: tFromMap(SEX_KEY_MAP),
+      tRole: tFromMap(ROLE_KEY_MAP),
+    };
+  }, [dict, direction, lang, setLang]);
 
   return (
-    <LanguageContext.Provider value={{ lang, setLang, direction, languageOptions: LANGUAGE_OPTIONS, t, tSite, tOrgan, tSpecimenType, tSlideType, tCaseType, tSex, tRole }}>
+    <LanguageContext.Provider value={value}>
       {children}
     </LanguageContext.Provider>
   );

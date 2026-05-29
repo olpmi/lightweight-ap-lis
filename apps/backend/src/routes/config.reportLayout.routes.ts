@@ -9,8 +9,14 @@ const router = Router();
 const layoutService = new ConfigReportLayoutService();
 const pdfLayoutService = new PdfLayoutService();
 
+const REPORT_TYPES = ['final', 'preliminary', 'addendum', 'revision'] as const;
+type ReportType = (typeof REPORT_TYPES)[number];
+function isReportType(v: string): v is ReportType {
+  return (REPORT_TYPES as readonly string[]).includes(v);
+}
+
 const upsertSchema = z.object({
-  reportType: z.enum(['final', 'preliminary', 'addendum', 'revision']),
+  reportType: z.enum(REPORT_TYPES),
   name: z.string().min(1).max(255),
   htmlTemplate: z.string().min(1),
   isActive: z.boolean().optional(),
@@ -31,7 +37,9 @@ router.get('/', async (_req, res, next) => {
 // GET /api/config/report-layouts/:reportType
 router.get('/:reportType', async (req, res, next) => {
   try {
-    const layout = await layoutService.getLayout(req.params.reportType as 'final' | 'preliminary' | 'addendum' | 'revision');
+    const { reportType } = req.params;
+    if (!isReportType(reportType)) return res.status(400).json({ message: 'Invalid report type' });
+    const layout = await layoutService.getLayout(reportType);
     if (!layout) return res.status(404).json({ message: 'Layout not found' });
     res.json(layout);
   } catch (err) {
@@ -54,10 +62,10 @@ router.put('/', validateBody(upsertSchema), async (req, res, next) => {
 router.post('/:reportType/reset', async (req, res, next) => {
   try {
     const { reportType } = req.params;
-    if (!['final', 'preliminary', 'addendum', 'revision'].includes(reportType)) {
+    if (!isReportType(reportType)) {
       return res.status(400).json({ message: 'Invalid report type' });
     }
-    const layout = await layoutService.resetToDefault(reportType as 'final' | 'preliminary' | 'addendum' | 'revision');
+    const layout = await layoutService.resetToDefault(reportType);
     res.json(layout);
   } catch (err) {
     next(err);
@@ -68,10 +76,11 @@ router.post('/:reportType/reset', async (req, res, next) => {
 router.post('/:reportType/preview', async (req, res, next) => {
   try {
     const { reportType } = req.params;
+    if (!isReportType(reportType)) return res.status(400).json({ message: 'Invalid report type' });
     // Use the template from the request body if provided, otherwise use the saved one
     let htmlTemplate: string | undefined = req.body?.htmlTemplate;
     if (!htmlTemplate) {
-      const saved = await layoutService.getLayout(reportType as 'final' | 'preliminary' | 'addendum' | 'revision');
+      const saved = await layoutService.getLayout(reportType);
       if (!saved) return res.status(404).json({ message: 'Layout not found. Save it first.' });
       htmlTemplate = saved.htmlTemplate;
     }

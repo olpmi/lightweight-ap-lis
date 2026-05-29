@@ -1,11 +1,8 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Typography,
   Paper,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
   TextField,
   Button,
   CircularProgress,
@@ -25,20 +22,24 @@ import {
   Link,
   Tabs,
   Tab,
-  IconButton,
 } from '@mui/material';
-import { ExpandMore, Send, Refresh, PictureAsPdf, DragIndicator, Science, ExitToApp, Biotech } from '@mui/icons-material';
+import { Send, Refresh, PictureAsPdf, DragIndicator, Science, ExitToApp } from '@mui/icons-material';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useParams, useNavigate } from 'react-router-dom';
 import { orderApi, reportApi, lookupApi, ancillaryApi } from '../api';
+import { qk } from '../api/queryKeys';
 import OrderAncillaryDialog from '../components/ancillary/OrderAncillaryDialog';
-import type { AncillaryOrder } from '@lis/shared';
+import ResultMaterialsTab from '../components/resultCase/ResultMaterialsTab';
+import ResultAncillaryTab from '../components/resultCase/ResultAncillaryTab';
+import ResultReportHistoryTab from '../components/resultCase/ResultReportHistoryTab';
+import ResultPatientSummaryTab from '../components/resultCase/ResultPatientSummaryTab';
+import type { OrderMaterials } from '@lis/shared';
+import type { AncillaryOrder, AncillaryOrderStatus } from '@lis/shared';
 import { useAuth } from '../hooks/useAuth';
 import { useLanguage } from '../hooks/useLanguage';
 import { useNavigationGuard } from '../hooks/useNavigationGuard';
 import {
   formatOrderIdDisplay,
-  formatMaterialIdDisplay,
   resolvePatientSummary,
   type PatientSummaryDefinition,
   type PatientSummaryLanguageCode,
@@ -139,41 +140,41 @@ export default function ResultCasePage() {
   // â”€â”€ Queries â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
   const { data: orderData, isLoading } = useQuery<{ data: object }>({
-    queryKey: ['order', orderId],
+    queryKey: qk.order.byId(orderId),
     queryFn: () => orderApi.get(orderId!).then((d) => ({ data: d })),
     enabled: Boolean(orderId),
   });
 
   const { data: reportsData, isLoading: loadingReports } = useQuery<{ data: Report[] }>({
-    queryKey: ['reports', orderId],
+    queryKey: qk.reports.byOrder(orderId),
     queryFn: () => reportApi.list(orderId!).then((d) => ({ data: d as Report[] })),
     enabled: Boolean(orderId),
   });
 
   const { data: materialsData } = useQuery({
-    queryKey: ['materials', orderId],
+    queryKey: qk.materials.byOrder(orderId),
     queryFn: () => orderApi.materials(orderId!),
     enabled: Boolean(orderId),
   });
 
   const { data: ancillaryOrders = [] } = useQuery<AncillaryOrder[]>({
-    queryKey: ['ancillary-orders', orderId],
+    queryKey: qk.ancillaryOrders.byOrder(orderId),
     queryFn: () => ancillaryApi.getOrdersByCase(orderId!),
     enabled: Boolean(orderId) && tab === 'ancillary',
   });
 
   const { data: blockOrderCounts = {} } = useQuery<Record<string, number>>({
-    queryKey: ['ancillary-block-counts', orderId],
+    queryKey: qk.ancillaryBlockCounts.byOrder(orderId),
     queryFn: () => ancillaryApi.getBlockOrderCounts(orderId!),
     enabled: Boolean(orderId) && tab === 'materials',
   });
 
   const ancillaryStatusMutation = useMutation({
-    mutationFn: ({ id, status }: { id: number; status: 'IN_PROGRESS' | 'COMPLETE' | 'CANCELLED' }) =>
+    mutationFn: ({ id, status }: { id: number; status: AncillaryOrderStatus }) =>
       ancillaryApi.updateStatus(id, { status }),
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['ancillary-orders', orderId] });
-      qc.invalidateQueries({ queryKey: ['ancillary-block-counts', orderId] });
+      qc.invalidateQueries({ queryKey: qk.ancillaryOrders.byOrder(orderId) });
+      qc.invalidateQueries({ queryKey: qk.ancillaryBlockCounts.byOrder(orderId) });
       setSuccess(t('anc_statusUpdated'));
     },
     onError: (err: unknown) =>
@@ -184,12 +185,12 @@ export default function ResultCasePage() {
   });
 
   const { data: reportingTemplates = [] } = useQuery<TemplateCatalogEntry[]>({
-    queryKey: ['template-catalog', 'reporting', lang],
+    queryKey: qk.templateCatalog('reporting', lang),
     queryFn: () => lookupApi.templateCatalog({ kind: 'reporting', language: lang }),
   });
 
   const { data: reportingTemplateDefinition, isLoading: reportingTemplateLoading } = useQuery<TemplateDefinition>({
-    queryKey: ['template-definition', form.reportTemplateKey, lang],
+    queryKey: qk.templateDefinition(form.reportTemplateKey, lang),
     queryFn: () => lookupApi.templateDefinition(form.reportTemplateKey, lang),
     enabled: Boolean(form.reportTemplateKey),
   });
@@ -219,7 +220,7 @@ export default function ResultCasePage() {
     : form.grossTemplateKey;
 
   const { data: patientSummaryDefinition } = useQuery<PatientSummaryDefinition>({
-    queryKey: ['patient-summary-definition', activePatientSummaryTemplateId, patientSummaryLanguage],
+    queryKey: qk.patientSummaryDefinition(activePatientSummaryTemplateId, patientSummaryLanguage),
     queryFn: () => lookupApi.patientSummaryDefinition(activePatientSummaryTemplateId, patientSummaryLanguage),
     enabled: Boolean(activePatientSummaryTemplateId),
     placeholderData: (previousData) => previousData,
@@ -244,7 +245,7 @@ export default function ResultCasePage() {
   );
 
   const { data: grossTemplateDefinition } = useQuery<TemplateDefinition>({
-    queryKey: ['template-definition', activeGrossTemplateKey, lang],
+    queryKey: qk.templateDefinition(activeGrossTemplateKey, lang),
     queryFn: () => lookupApi.templateDefinition(activeGrossTemplateKey, lang),
     enabled: Boolean(activeGrossTemplateKey),
   });
@@ -339,7 +340,7 @@ export default function ResultCasePage() {
   const saveHistoryMutation = useMutation({
     mutationFn: () => orderApi.updateClinicalHistory(orderId!, clinicalHistory || null),
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['order', orderId] });
+      qc.invalidateQueries({ queryKey: qk.order.byId(orderId) });
       setSuccess(t('rc_clinicalHistorySaved'));
     },
     onError: (err: unknown) =>
@@ -353,13 +354,12 @@ export default function ResultCasePage() {
         comment: form.comment || undefined,
         gross: form.gross || undefined,
         grossPayload: form.grossPayload || undefined,
-        synopticData: form.synopticData || undefined,
         synopticPayload: form.synopticPayload || undefined,
         reportTemplateId: form.reportTemplateId || undefined,
         pathologistEmployeeId: user?.employeeId ? Number(user.employeeId) : undefined,
       }),
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['reports', orderId] });
+      qc.invalidateQueries({ queryKey: qk.reports.byOrder(orderId) });
       setSuccess(t('rc_draftSaved'));
       setIsDirty(false);
     },
@@ -418,7 +418,6 @@ export default function ResultCasePage() {
         gross: form.gross,
         grossPayload: form.grossPayload || undefined,
         reportTemplateId: form.reportTemplateId || undefined,
-        synopticData: form.synopticData || undefined,
         synopticPayload: form.synopticPayload || undefined,
         pathologistEmployeeId: Number(pathologistId),
       };
@@ -432,7 +431,7 @@ export default function ResultCasePage() {
       return reportApi.signPrelim(reportId, data);
     },
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['reports', orderId] });
+      qc.invalidateQueries({ queryKey: qk.reports.byOrder(orderId) });
       setSignPrelimDialogOpen(false);
       setSuccess(t('rc_signedPrelimSuccess'));
       setIsDirty(false);
@@ -451,7 +450,6 @@ export default function ResultCasePage() {
         gross: form.gross,
         grossPayload: form.grossPayload || undefined,
         reportTemplateId: form.reportTemplateId || undefined,
-        synopticData: form.synopticData || undefined,
         synopticPayload: form.synopticPayload || undefined,
         pathologistEmployeeId: Number(pathologistId),
       };
@@ -466,8 +464,8 @@ export default function ResultCasePage() {
       return reportApi.signOut(reportId, data);
     },
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['reports', orderId] });
-      qc.invalidateQueries({ queryKey: ['result-queue'] });
+      qc.invalidateQueries({ queryKey: qk.reports.byOrder(orderId) });
+      qc.invalidateQueries({ queryKey: qk.resultQueue.all });
       setSignOutDialogOpen(false);
       setSuccess(t('rc_signedOutSuccess'));
       setIsDirty(false);
@@ -480,8 +478,8 @@ export default function ResultCasePage() {
     mutationFn: (reactivationType: 'revise' | 'addend') =>
       reportApi.reactivate(orderId!, reactivationType, reactivationReason),
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['reports', orderId] });
-      qc.invalidateQueries({ queryKey: ['order', orderId] });
+      qc.invalidateQueries({ queryKey: qk.reports.byOrder(orderId) });
+      qc.invalidateQueries({ queryKey: qk.order.byId(orderId) });
       setReactivateDialogOpen(false);
       setReactivationReason('');
       setSuccess(t('rc_reactivatedSuccess'));
@@ -959,291 +957,55 @@ export default function ResultCasePage() {
 
       {/* â”€â”€ Materials tab â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       {tab === 'materials' && (
-        <Paper sx={{ p: 2 }}>
-          <Typography variant="subtitle1" fontWeight={700} mb={2}>{t('pc_materials')}</Typography>
-          {(((materialsData as { data?: { specimens: unknown[] } })?.data?.specimens ?? []) as Array<{
-            specimenId: string;
-            specimenCode: string;
-            bodySite?: { bodySiteName: string };
-            specimenType?: { specimenTypeName: string };
-            blocks: Array<{ blockId: string; slides: Array<{ slideId: string; slideType?: string }> }>;
-          }>).map((spec) => (
-            <Accordion key={spec.specimenId} defaultExpanded>
-              <AccordionSummary expandIcon={<ExpandMore />}>
-                <Typography fontWeight={600}>{t('oe_specimen')} {spec.specimenCode}</Typography>
-                {spec.bodySite && <Chip label={localizeBodySiteName(spec.bodySite.bodySiteName)} size="small" sx={{ ml: 1 }} />}
-              </AccordionSummary>
-              <AccordionDetails>
-                {spec.blocks.map((block) => (
-                  <Box key={block.blockId} mb={1}>
-                    <Box display="flex" alignItems="center" gap={1}>
-                      <Typography variant="body2" fontWeight={600}>{formatMaterialIdDisplay(block.blockId)}</Typography>
-                      {(blockOrderCounts[block.blockId] ?? 0) > 0 && (
-                        <Chip
-                          label={blockOrderCounts[block.blockId]}
-                          size="small"
-                          color="primary"
-                          variant="outlined"
-                        />
-                      )}
-                      <IconButton
-                        size="small"
-                        title={t('anc_orderAncillary')}
-                        onClick={() => {
-                          setAncillaryPreselectedBlock(block.blockId);
-                          setAncillaryDialogOpen(true);
-                        }}
-                      >
-                        <Biotech fontSize="small" />
-                      </IconButton>
-                    </Box>
-                    <Stack direction="row" spacing={0.5} flexWrap="wrap" mt={0.5}>
-                      {block.slides.map((sl) => <Chip key={sl.slideId} label={formatMaterialIdDisplay(sl.slideId)} size="small" />)}
-                    </Stack>
-                  </Box>
-                ))}
-              </AccordionDetails>
-            </Accordion>
-          ))}
-        </Paper>
+        <ResultMaterialsTab
+          specimens={
+            ((materialsData as { data?: OrderMaterials } | undefined)?.data?.specimens ?? []) as OrderMaterials['specimens']
+          }
+          blockOrderCounts={blockOrderCounts}
+          t={t as unknown as (key: string) => string}
+          localizeBodySiteName={localizeBodySiteName}
+          onOrderAncillary={(blockId) => {
+            setAncillaryPreselectedBlock(blockId);
+            setAncillaryDialogOpen(true);
+          }}
+        />
       )}
 
       {/* â”€â”€ Report History tab â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       {/* ── Ancillary tab ──────────────────────────────────────────────────────── */}
       {tab === 'ancillary' && (
-        <Paper sx={{ p: 2 }}>
-          <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
-            <Typography variant="subtitle1" fontWeight={700}>{t('rc_ancillaryTab')}</Typography>
-            <Button
-              variant="contained"
-              size="small"
-              startIcon={<Biotech />}
-              onClick={() => {
-                setAncillaryPreselectedBlock(undefined);
-                setAncillaryDialogOpen(true);
-              }}
-            >
-              {t('anc_orderNewTest')}
-            </Button>
-          </Box>
-          {ancillaryOrders.length === 0 ? (
-            <Typography color="text.secondary">{t('anc_noOrders')}</Typography>
-          ) : (
-            (() => {
-              const grouped = ancillaryOrders.reduce<Record<string, AncillaryOrder[]>>((acc, o) => {
-                if (!acc[o.blockId]) acc[o.blockId] = [];
-                acc[o.blockId].push(o);
-                return acc;
-              }, {});
-              const statusLabel = (s: string) => t(`anc_status_${s}` as Parameters<typeof t>[0]);
-              const statusColor = (s: string): 'default' | 'warning' | 'info' | 'success' | 'error' =>
-                s === 'PENDING' ? 'warning' : s === 'IN_PROGRESS' ? 'info' : s === 'COMPLETE' ? 'success' : 'error';
-              return Object.entries(grouped).map(([blockId, blkOrders]) => (
-                <Box key={blockId} mb={2}>
-                  <Box display="flex" alignItems="center" gap={1} mb={1}>
-                    <Chip label={formatMaterialIdDisplay(blockId)} size="small" variant="outlined" />
-                    <Button
-                      size="small"
-                      startIcon={<Biotech />}
-                      onClick={() => {
-                        setAncillaryPreselectedBlock(blockId);
-                        setAncillaryDialogOpen(true);
-                      }}
-                    >
-                      {t('anc_orderAncillary')}
-                    </Button>
-                  </Box>
-                  <Table size="small" sx={{ tableLayout: 'fixed' }}>
-                    <colgroup>
-                      <col style={{ width: '34%' }} />
-                      <col style={{ width: '20%' }} />
-                      <col style={{ width: '22%' }} />
-                      <col style={{ width: '24%' }} />
-                    </colgroup>
-                    <TableHead>
-                      <TableRow>
-                        <TableCell>Test</TableCell>
-                        <TableCell>{t('anc_category')}</TableCell>
-                        <TableCell>{t('anc_status')}</TableCell>
-                        <TableCell align="right">Actions</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {blkOrders.map((o) => (
-                        <TableRow key={o.id}>
-                          <TableCell>
-                            <Typography variant="body2">
-                              {o.orderable?.name ?? `#${o.orderableId}`}
-                              {o.levelCount ? ` ×${o.levelCount}` : ''}
-                            </Typography>
-                            {o.notes && (
-                              <Typography variant="caption" color="text.secondary">
-                                {o.notes}
-                              </Typography>
-                            )}
-                          </TableCell>
-                          <TableCell>
-                            <Chip
-                              label={o.orderable ? t(`anc_cat_${o.orderable.category}` as Parameters<typeof t>[0]) : '—'}
-                              size="small"
-                            />
-                          </TableCell>
-                          <TableCell>
-                            <Chip label={statusLabel(o.status)} color={statusColor(o.status)} size="small" />
-                            <Typography variant="caption" display="block" color="text.secondary" mt={0.25}>
-                              {(() => {
-                                const ts = o.status === 'IN_PROGRESS' ? (o.inProgressAt ?? o.orderedAt)
-                                  : o.status === 'COMPLETE' ? o.completedAt
-                                  : o.status === 'CANCELLED' ? o.cancelledAt
-                                  : o.orderedAt;
-                                return ts ? new Date(ts).toLocaleString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : null;
-                              })()}
-                            </Typography>
-                          </TableCell>
-                          <TableCell align="right">
-                            <Stack direction="row" spacing={0.5} justifyContent="flex-end">
-                              {o.status === 'IN_PROGRESS' && (
-                                <Button size="small" variant="contained" color="success"
-                                  onClick={() => ancillaryStatusMutation.mutate({ id: o.id, status: 'COMPLETE' })}
-                                  disabled={ancillaryStatusMutation.isPending}>
-                                  {t('anc_markComplete')}
-                                </Button>
-                              )}
-                              {(o.status === 'PENDING' || o.status === 'IN_PROGRESS') && (
-                                <Button size="small" variant="outlined" color="error"
-                                  onClick={() => ancillaryStatusMutation.mutate({ id: o.id, status: 'CANCELLED' })}
-                                  disabled={ancillaryStatusMutation.isPending}>
-                                  {t('anc_cancel')}
-                                </Button>
-                              )}
-                              {(o.status === 'COMPLETE' || o.status === 'CANCELLED') && (
-                                <Button size="small" variant="outlined"
-                                  onClick={() => ancillaryStatusMutation.mutate({ id: o.id, status: 'PENDING' })}
-                                  disabled={ancillaryStatusMutation.isPending}>
-                                  {t('anc_reactivate')}
-                                </Button>
-                              )}
-                            </Stack>
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </Box>
-              ));
-            })()
-          )}
-        </Paper>
+        <ResultAncillaryTab
+          ancillaryOrders={ancillaryOrders}
+          t={t as unknown as (key: string) => string}
+          onOrderNew={() => {
+            setAncillaryPreselectedBlock(undefined);
+            setAncillaryDialogOpen(true);
+          }}
+          onOrderForBlock={(blockId) => {
+            setAncillaryPreselectedBlock(blockId);
+            setAncillaryDialogOpen(true);
+          }}
+          onCancelOrder={(id) => ancillaryStatusMutation.mutate({ id, status: 'CANCELLED' })}
+          cancelPending={ancillaryStatusMutation.isPending}
+        />
       )}
 
       {tab === 'report-history' && (
-        <Paper sx={{ p: 2 }}>
-          <Typography variant="subtitle1" fontWeight={700} mb={2}>{t('rc_reportHistory')}</Typography>
-          <Table size="small">
-            <TableHead>
-              <TableRow>
-                <TableCell>{t('rc_version')}</TableCell>
-                <TableCell>{t('rq_status')}</TableCell>
-                <TableCell>{t('rc_signedOut')}</TableCell>
-                <TableCell>{t('rc_pathologist')}</TableCell>
-                <TableCell>{t('rc_reportPdf')}</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {(reportsData?.data ?? []).map((report) => (
-                <TableRow key={Number(report.reportId)}>
-                  <TableCell>
-                    {report.versionNumber}
-                    {report.reactivationType ? ` (${report.reactivationType === 'addend' ? t('rc_addend') : t('rc_revision')})` : ''}
-                  </TableCell>
-                  <TableCell>
-                    {report.isFinal
-                      ? <Chip label={t('rc_final')} color="success" size="small" />
-                      : report.isPrelim
-                        ? <Chip label={t('rc_prelim')} color="warning" size="small" />
-                        : <Chip label={t('rc_draft')} size="small" />}
-                  </TableCell>
-                  <TableCell>
-                    {report.signedOutDatetime ? new Date(report.signedOutDatetime).toLocaleString() : '\u2014'}
-                  </TableCell>
-                  <TableCell>
-                    {report.pathologist ? `${report.pathologist.lastName}, ${report.pathologist.firstName}` : '\u2014'}
-                  </TableCell>
-                  <TableCell>
-                    {(report.isFinal || (report.isPrelim && report.reportFiles && report.reportFiles.length > 0)) && (
-                      <Button
-                        href={reportApi.pdfUrl(Number(report.reportId))}
-                        target="_blank"
-                        size="small"
-                        startIcon={<PictureAsPdf />}
-                      >
-                        {t('rc_reportPdf')}
-                      </Button>
-                    )}
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </Paper>
+        <ResultReportHistoryTab
+          reports={reportsData?.data ?? []}
+          t={t as unknown as (key: string) => string}
+        />
       )}
 
       {tab === 'patient-summary' && resolvedPatientSummary && (
-        <Paper variant="outlined" sx={{ p: 2 }}>
-          <Box display="flex" justifyContent="space-between" alignItems="flex-start" gap={2} flexWrap="wrap" mb={1.5}>
-            <Box>
-              <Typography variant="subtitle2" color="text.secondary">
-                Patient Summary
-              </Typography>
-              <Typography variant="h6" fontWeight={700}>
-                {resolvedPatientSummary.patientTitle}
-              </Typography>
-            </Box>
-            <Stack direction="row" spacing={1} flexWrap="wrap">
-              <Button
-                size="small"
-                variant={patientSummaryLanguage === 'en' ? 'contained' : 'outlined'}
-                onClick={() => setPatientSummaryLanguage('en')}
-              >
-                EN
-              </Button>
-              <Button
-                size="small"
-                variant={patientSummaryLanguage === 'sw' ? 'contained' : 'outlined'}
-                onClick={() => setPatientSummaryLanguage('sw')}
-              >
-                SW
-              </Button>
-              <Button
-                size="small"
-                variant="outlined"
-                startIcon={<PictureAsPdf />}
-                onClick={() => {
-                  void handleOpenPatientSummaryPdf();
-                }}
-                disabled={!canOpenPatientSummaryPdf || saveDraftMutation.isPending}
-              >
-                Open PDF
-              </Button>
-            </Stack>
-          </Box>
-
-          <Stack spacing={1.5}>
-            <Box>
-              <Typography variant="overline" color="text.secondary">Summary</Typography>
-              <Typography variant="body2">{resolvedPatientSummary.plainLanguageSummary}</Typography>
-            </Box>
-            <Box>
-              <Typography variant="overline" color="text.secondary">What This Means</Typography>
-              <Typography variant="body2">{resolvedPatientSummary.whatThisMeans}</Typography>
-            </Box>
-            <Box>
-              <Typography variant="overline" color="text.secondary">Possible Next Steps</Typography>
-              <Typography variant="body2">{resolvedPatientSummary.possibleNextSteps}</Typography>
-            </Box>
-            <Alert severity="info">{resolvedPatientSummary.safetyNote}</Alert>
-          </Stack>
-        </Paper>
+        <ResultPatientSummaryTab
+          resolvedPatientSummary={resolvedPatientSummary}
+          patientSummaryLanguage={patientSummaryLanguage}
+          onChangeLanguage={setPatientSummaryLanguage}
+          canOpenPdf={canOpenPatientSummaryPdf}
+          pdfPending={saveDraftMutation.isPending}
+          onOpenPdf={() => { void handleOpenPatientSummaryPdf(); }}
+        />
       )}
 
       {/* Sign-out confirmation dialog */}

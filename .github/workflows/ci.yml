@@ -48,8 +48,8 @@ jobs:
       - run: npm ci --workspaces --include-workspace-root
       - run: npm run build --workspace=packages/shared
       - run: npx prisma generate --schema=prisma/schema.prisma
-      - run: npx eslint apps/backend/src --ext .ts || true
-      - run: npx eslint apps/frontend/src --ext .ts,.tsx || true
+      - run: npx eslint apps/backend/src --ext .ts
+      - run: npx eslint apps/frontend/src --ext .ts,.tsx
 
   # ─── Backend tests ────────────────────────────────────────────────────────
   backend-tests:

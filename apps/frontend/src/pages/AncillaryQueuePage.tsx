@@ -30,6 +30,7 @@ import { KeyboardArrowDown, KeyboardArrowRight, Search } from '@mui/icons-materi
 import { useQuery, useMutation, useQueryClient, keepPreviousData } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { ancillaryApi } from '../api';
+import { qk } from '../api/queryKeys';
 import { useLanguage } from '../hooks/useLanguage';
 import {
   SENDOUT_ORDER_STATUSES,
@@ -186,7 +187,7 @@ function SendoutCaseTable({ category }: { category: AncillaryCategory }) {
   }, [since, showRecencyFilter]);
 
   const { data: result, isLoading } = useQuery({
-    queryKey: ['ancillary-queue', statusFilter, category, sinceDate, page],
+    queryKey: qk.ancillaryQueue.byFilters(statusFilter, category, sinceDate, page),
     queryFn: () =>
       ancillaryApi.getQueue({
         statuses: [statusFilter],
@@ -205,7 +206,7 @@ function SendoutCaseTable({ category }: { category: AncillaryCategory }) {
     mutationFn: ({ id, status }: { id: number; status: AncillaryOrderStatus }) =>
       ancillaryApi.updateStatus(id, { status }),
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['ancillary-queue'] });
+      qc.invalidateQueries({ queryKey: qk.ancillaryQueue.all });
       setActionSuccess(t('anc_statusUpdated'));
     },
     onError: (err: unknown) => {

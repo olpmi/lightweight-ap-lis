@@ -1,11 +1,25 @@
 import apiClient from './client';
 import type {
   AppLanguageCode,
+  Block,
+  BodySite,
+  CreateEmployeeDto,
+  CreateOrderDto,
+  Doctor,
   Employee,
   EmployeeRole,
+  Order,
+  OrderMaterials,
+  OrderWithDetails,
+  PaginatedResult,
+  Patient,
   PatientSummaryDefinition,
+  Report,
   ReportTemplate,
   ReportTemplateType,
+  Slide,
+  Specimen,
+  SpecimenType,
   TemplateCatalogEntry,
   TemplateDefinition,
   TemplateKind,
@@ -16,6 +30,49 @@ import type {
   AncillaryOrderStatus,
 } from '@lis/shared';
 
+// Queue rows include patient, doctor, and specimens (with body-site / specimen-type)
+// but not reports. Defined locally so consumers get autocompletion on the common fields.
+export interface QueueOrder extends Order {
+  patient: Patient;
+  doctor: Doctor;
+  specimens: Array<Specimen & { bodySite?: BodySite; specimenType?: SpecimenType }>;
+}
+
+export interface HistologyQueueOrder extends QueueOrder {
+  specimens: Array<
+    Specimen & {
+      bodySite?: BodySite;
+      specimenType?: SpecimenType;
+      blocks: Array<Block & { slides: Slide[] }>;
+    }
+  >;
+}
+
+export interface CreateDoctorPayload {
+  lastName: string;
+  firstName: string;
+}
+
+export interface CreateDraftReportPayload {
+  diagnosis?: string;
+  comment?: string;
+  reportTemplateId?: number;
+  gross?: string;
+  grossPayload?: string;
+  synopticPayload?: string;
+  pathologistEmployeeId?: number;
+}
+
+export interface SignOutReportPayload {
+  diagnosis: string;
+  comment?: string;
+  reportTemplateId?: number;
+  gross?: string;
+  grossPayload?: string;
+  synopticPayload?: string;
+  pathologistEmployeeId: number;
+}
+
 export interface SessionEmployee {
   employeeId: number;
   userName: string;
@@ -24,7 +81,7 @@ export interface SessionEmployee {
 }
 
 export const authApi = {
-  login: (payload: { employeeId?: number; newEmployee?: object }) =>
+  login: (payload: { employeeId?: number; newEmployee?: CreateEmployeeDto }) =>
     apiClient.post<{ data: Employee }>('/auth/login', payload).then((r) => r.data.data),
 
   logout: () => apiClient.post('/auth/logout'),
@@ -34,9 +91,12 @@ export const authApi = {
 };
 
 export const lookupApi = {
-  bodySites: () => apiClient.get<{ data: object[] }>('/lookups/body-sites').then((r) => r.data.data),
-  specimenTypes: () => apiClient.get<{ data: object[] }>('/lookups/specimen-types').then((r) => r.data.data),
-  reportTemplates: () => apiClient.get<{ data: object[] }>('/lookups/report-templates').then((r) => r.data.data),
+  bodySites: (): Promise<BodySite[]> =>
+    apiClient.get<{ data: BodySite[] }>('/lookups/body-sites').then((r) => r.data.data),
+  specimenTypes: (): Promise<SpecimenType[]> =>
+    apiClient.get<{ data: SpecimenType[] }>('/lookups/specimen-types').then((r) => r.data.data),
+  reportTemplates: (): Promise<ReportTemplate[]> =>
+    apiClient.get<{ data: ReportTemplate[] }>('/lookups/report-templates').then((r) => r.data.data),
   templateCatalog: (params?: { language?: AppLanguageCode; kind?: TemplateKind }) => {
     const query = new URLSearchParams();
     if (params?.language) query.set('language', params.language);
@@ -65,77 +125,79 @@ export const lookupApi = {
 export const employeeApi = {
   search: (q: string): Promise<Employee[]> =>
     apiClient.get<{ data: Employee[] }>(`/employees/search?q=${encodeURIComponent(q)}`).then((r) => r.data.data),
-  create: (data: object): Promise<Employee> =>
+  create: (data: CreateEmployeeDto): Promise<Employee> =>
     apiClient.post<{ data: Employee }>('/employees', data).then((r) => r.data.data),
   updateLanguage: (employeeId: number, language: string): Promise<void> =>
     apiClient.patch(`/employees/${employeeId}/language`, { language }).then(() => undefined),
 };
 
 export const doctorApi = {
-  search: (q: string): Promise<object[]> =>
-    apiClient.get<{ data: object[] }>(`/doctors/search?q=${encodeURIComponent(q)}`).then((r) => r.data.data),
-  create: (data: object): Promise<object> =>
-    apiClient.post<{ data: object }>('/doctors', data).then((r) => r.data.data),
+  search: (q: string): Promise<Doctor[]> =>
+    apiClient.get<{ data: Doctor[] }>(`/doctors/search?q=${encodeURIComponent(q)}`).then((r) => r.data.data),
+  create: (data: CreateDoctorPayload): Promise<Doctor> =>
+    apiClient.post<{ data: Doctor }>('/doctors', data).then((r) => r.data.data),
 };
 
 export const patientApi = {
-  search: (q: string): Promise<object[]> =>
-    apiClient.get<{ data: object[] }>(`/patients/search?q=${encodeURIComponent(q)}`).then((r) => r.data.data),
+  search: (q: string): Promise<Patient[]> =>
+    apiClient.get<{ data: Patient[] }>(`/patients/search?q=${encodeURIComponent(q)}`).then((r) => r.data.data),
 };
 
 export const orderApi = {
-  create: (data: object): Promise<object> =>
-    apiClient.post<{ data: object }>('/orders', data).then((r) => r.data.data),
+  create: (data: CreateOrderDto): Promise<OrderWithDetails> =>
+    apiClient.post<{ data: OrderWithDetails }>('/orders', data).then((r) => r.data.data),
 
-  get: (orderId: string): Promise<object> =>
-    apiClient.get<{ data: object }>(`/orders/${orderId}`).then((r) => r.data.data),
+  get: (orderId: string): Promise<OrderWithDetails> =>
+    apiClient.get<{ data: OrderWithDetails }>(`/orders/${orderId}`).then((r) => r.data.data),
 
-  list: (page = 1, pageSize = 20): Promise<{ data: object[]; total: number; page: number; pageSize: number }> =>
-    apiClient.get(`/orders?page=${page}&pageSize=${pageSize}`).then((r) => r.data),
+  list: (page = 1, pageSize = 20): Promise<PaginatedResult<QueueOrder>> =>
+    apiClient.get<PaginatedResult<QueueOrder>>(`/orders?page=${page}&pageSize=${pageSize}`).then((r) => r.data),
 
-  query: (params: { orderId?: string; patientId?: string; page?: number; pageSize?: number }) => {
+  query: (params: { orderId?: string; patientId?: string; page?: number; pageSize?: number }): Promise<PaginatedResult<QueueOrder>> => {
     const qs = new URLSearchParams();
     if (params.orderId) qs.set('orderId', params.orderId);
     if (params.patientId) qs.set('patientId', params.patientId);
     qs.set('page', String(params.page ?? 1));
     qs.set('pageSize', String(params.pageSize ?? 20));
-    return apiClient.get(`/orders/query?${qs}`).then((r) => r.data);
+    return apiClient.get<PaginatedResult<QueueOrder>>(`/orders/query?${qs}`).then((r) => r.data);
   },
 
-  processingQueue: (page = 1, pageSize = 20, showAll = false, search = '') =>
+  processingQueue: (page = 1, pageSize = 20, showAll = false, search = ''): Promise<PaginatedResult<QueueOrder>> =>
     apiClient
-      .get(`/orders/processing-queue?page=${page}&pageSize=${pageSize}&showAll=${showAll}&search=${encodeURIComponent(search)}`)
+      .get<PaginatedResult<QueueOrder>>(`/orders/processing-queue?page=${page}&pageSize=${pageSize}&showAll=${showAll}&search=${encodeURIComponent(search)}`)
       .then((r) => r.data),
 
-  resultQueue: (page = 1, pageSize = 20, search = '') =>
-    apiClient.get(`/orders/result-queue?page=${page}&pageSize=${pageSize}&search=${encodeURIComponent(search)}`).then((r) => r.data),
-
-  histologyQueue: (page = 1, pageSize = 50, search = '') =>
+  resultQueue: (page = 1, pageSize = 20, search = ''): Promise<PaginatedResult<QueueOrder>> =>
     apiClient
-      .get(`/orders/histology-queue?page=${page}&pageSize=${pageSize}&search=${encodeURIComponent(search)}`)
+      .get<PaginatedResult<QueueOrder>>(`/orders/result-queue?page=${page}&pageSize=${pageSize}&search=${encodeURIComponent(search)}`)
       .then((r) => r.data),
 
-  materials: (orderId: string): Promise<{ data: object }> =>
-    apiClient.get(`/orders/${orderId}/materials`).then((r) => r.data),
+  histologyQueue: (page = 1, pageSize = 50, search = ''): Promise<PaginatedResult<HistologyQueueOrder>> =>
+    apiClient
+      .get<PaginatedResult<HistologyQueueOrder>>(`/orders/histology-queue?page=${page}&pageSize=${pageSize}&search=${encodeURIComponent(search)}`)
+      .then((r) => r.data),
+
+  materials: (orderId: string): Promise<{ data: OrderMaterials }> =>
+    apiClient.get<{ data: OrderMaterials }>(`/orders/${orderId}/materials`).then((r) => r.data),
 
   worksheetPdfUrl: (orderId: string) => `/api/orders/${orderId}/worksheet-pdf`,
   referenceStripsPdfUrl: (orderId: string) => `/api/orders/${orderId}/reference-strips-pdf`,
 
-  updateClinicalHistory: (orderId: string, clinicalHistory: string | null) =>
-    apiClient.patch(`/orders/${orderId}/clinical-history`, { clinicalHistory }).then((r) => r.data),
+  updateClinicalHistory: (orderId: string, clinicalHistory: string | null): Promise<{ data: Order }> =>
+    apiClient.patch<{ data: Order }>(`/orders/${orderId}/clinical-history`, { clinicalHistory }).then((r) => r.data),
 };
 
 export const specimenApi = {
-  createBlocks: (specimenId: string, count: number): Promise<object[]> =>
+  createBlocks: (specimenId: string, count: number): Promise<Block[]> =>
     apiClient
-      .post<{ data: object[] }>(`/specimens/${specimenId}/blocks`, { count })
+      .post<{ data: Block[] }>(`/specimens/${specimenId}/blocks`, { count })
       .then((r) => r.data.data),
 };
 
 export const blockApi = {
-  createSlides: (blockId: string, count: number, slideType?: string): Promise<object[]> =>
+  createSlides: (blockId: string, count: number, slideType?: string): Promise<Slide[]> =>
     apiClient
-      .post<{ data: object[] }>(`/blocks/${blockId}/slides`, { count, slideType })
+      .post<{ data: Slide[] }>(`/blocks/${blockId}/slides`, { count, slideType })
       .then((r) => r.data.data),
   discardBlock: (blockId: string): Promise<void> =>
     apiClient.patch(`/blocks/${blockId}/discard`).then(() => undefined),
@@ -144,21 +206,21 @@ export const blockApi = {
 };
 
 export const reportApi = {
-  list: (orderId: string): Promise<object[]> =>
-    apiClient.get<{ data: object[] }>(`/orders/${orderId}/reports`).then((r) => r.data.data),
+  list: (orderId: string): Promise<Report[]> =>
+    apiClient.get<{ data: Report[] }>(`/orders/${orderId}/reports`).then((r) => r.data.data),
 
-  createDraft: (orderId: string, data: object): Promise<object> =>
-    apiClient.post<{ data: object }>(`/orders/${orderId}/reports/draft`, data).then((r) => r.data.data),
+  createDraft: (orderId: string, data: CreateDraftReportPayload): Promise<Report> =>
+    apiClient.post<{ data: Report }>(`/orders/${orderId}/reports/draft`, data).then((r) => r.data.data),
 
-  signOut: (reportId: number, data: object): Promise<object> =>
-    apiClient.post<{ data: object }>(`/reports/${reportId}/signout`, data).then((r) => r.data.data),
+  signOut: (reportId: number, data: SignOutReportPayload): Promise<Report> =>
+    apiClient.post<{ data: Report }>(`/reports/${reportId}/signout`, data).then((r) => r.data.data),
 
-  signPrelim: (reportId: number, data: object): Promise<object> =>
-    apiClient.post<{ data: object }>(`/reports/${reportId}/signprelim`, data).then((r) => r.data.data),
+  signPrelim: (reportId: number, data: SignOutReportPayload): Promise<Report> =>
+    apiClient.post<{ data: Report }>(`/reports/${reportId}/signprelim`, data).then((r) => r.data.data),
 
-  reactivate: (orderId: string, reactivationType: 'revise' | 'addend', reactivationReason: string): Promise<object> =>
+  reactivate: (orderId: string, reactivationType: 'revise' | 'addend', reactivationReason: string): Promise<Order> =>
     apiClient
-      .post<{ data: object }>(`/orders/${orderId}/reactivate`, { reactivationType, reactivationReason })
+      .post<{ data: Order }>(`/orders/${orderId}/reactivate`, { reactivationType, reactivationReason })
       .then((r) => r.data.data),
 
   pdfUrl: (reportId: number) => `/api/reports/${reportId}/pdf`,

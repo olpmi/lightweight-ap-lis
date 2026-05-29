@@ -20,6 +20,7 @@ import { Search } from '@mui/icons-material';
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { orderApi } from '../api';
+import { qk } from '../api/queryKeys';
 import { formatOrderIdDisplay } from '@lis/shared';
 import { useLanguage } from '../hooks/useLanguage';
 
@@ -36,7 +37,7 @@ export default function ResultQueuePage() {
     page: number;
     pageSize: number;
   }>({
-    queryKey: ['result-queue', page, search],
+    queryKey: qk.resultQueue.byParams(page, search),
     queryFn: () => orderApi.resultQueue(page, PAGE_SIZE, search),
     placeholderData: keepPreviousData,
   });

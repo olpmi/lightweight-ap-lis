@@ -16,9 +16,13 @@ const createPatientSchema = z.object({
 });
 
 // GET /api/patients/search?q=...
-router.get('/search', async (req: Request, res: Response, next: NextFunction) => {
+router.get('/search', requireAuth, async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const q = String(req.query.q ?? '');
+    const q = String(req.query.q ?? '').trim();
+    if (q.length === 0 || q.length > 100) {
+      res.status(400).json({ error: { code: 'BAD_REQUEST', message: 'q must be 1-100 characters' } });
+      return;
+    }
     const data = await service.search(q);
     res.json({ data });
   } catch (err) {

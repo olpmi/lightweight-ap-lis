@@ -21,6 +21,7 @@ import { Search } from '@mui/icons-material';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { orderApi } from '../api';
+import { qk } from '../api/queryKeys';
 import { formatOrderIdDisplay } from '@lis/shared';
 import { useLanguage } from '../hooks/useLanguage';
 
@@ -37,7 +38,7 @@ export default function QueryPage() {
   const [queryParams, setQueryParams] = useState<{ orderId?: string; patientId?: string }>({});
 
   const { data, isLoading, isError } = useQuery({
-    queryKey: ['query', queryParams, page],
+    queryKey: qk.query(queryParams, page),
     queryFn: () => orderApi.query({ ...queryParams, page, pageSize: PAGE_SIZE }),
     enabled: submitted && (Boolean(queryParams.orderId) || Boolean(queryParams.patientId)),
   });
@@ -56,7 +57,7 @@ export default function QueryPage() {
     orderId: string;
     registeredDate: string;
     caseType?: string;
-    isSignedOut: boolean;
+    isSignedOut?: boolean;
     patient: { lastName: string; firstName: string; patientId: string };
     doctor: { lastName: string; firstName: string };
   }>;

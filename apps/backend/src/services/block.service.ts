@@ -1,3 +1,4 @@
+import { Prisma } from '@prisma/client';
 import { prisma } from '../lib/prisma.js';
 import { AppError } from '../middleware/error.middleware.js';
 import { generateBlockId } from '../utils/idGenerator.js';
@@ -18,54 +19,66 @@ export class BlockService {
   }
 
   async createBlocks(specimenId: string, count: number): Promise<object[]> {
+    if (!Number.isInteger(count) || count <= 0 || count > 100) {
+      throw new AppError(400, 'BAD_REQUEST', 'count must be an integer between 1 and 100');
+    }
+
     const specimen = await prisma.specimen.findUnique({ where: { specimenId } });
     if (!specimen) throw new AppError(404, 'NOT_FOUND', `Specimen ${specimenId} not found`);
 
-    // Find the current max block number for this specimen
-    const existing = await prisma.block.findMany({
-      where: { specimenId },
-      orderBy: { blockNumber: 'desc' },
-    });
-    const nextBlockNumber = existing.length > 0 ? existing[0].blockNumber + 1 : 1;
-
-    // Look up the HE orderable once (auto-created by migration)
+    // Look up the HE orderable once (auto-created by migration); read outside the tx.
     const heOrderable = await prisma.ancillaryOrderable.findFirst({
       where: { category: 'HE', isActive: true },
     });
 
-    const created: object[] = [];
+    // Serialize concurrent block creation per-specimen. The Serializable isolation level
+    // makes Postgres reject conflicting concurrent transactions with 40001, which is
+    // mapped here to a 409 so the caller can retry.
+    try {
+      return await prisma.$transaction(
+        async (tx) => {
+          const latest = await tx.block.findFirst({
+            where: { specimenId },
+            orderBy: { blockNumber: 'desc' },
+            select: { blockNumber: true },
+          });
+          const nextBlockNumber = (latest?.blockNumber ?? 0) + 1;
 
-    for (let i = 0; i < count; i++) {
-      const blockNumber = nextBlockNumber + i;
-      const blockId = generateBlockId(specimen.orderId, specimen.specimenCode, blockNumber);
+          const created: object[] = [];
+          for (let i = 0; i < count; i++) {
+            const blockNumber = nextBlockNumber + i;
+            const blockId = generateBlockId(specimen.orderId, specimen.specimenCode, blockNumber);
 
-      // Check for duplicate
-      const exists = await prisma.block.findUnique({ where: { blockId } });
-      if (exists) continue;
+            const block = await tx.block.create({
+              data: {
+                blockId,
+                specimenId,
+                blockNumber,
+                createdDatetime: new Date(),
+              },
+            });
+            created.push(block);
 
-      const block = await prisma.block.create({
-        data: {
-          blockId,
-          specimenId,
-          blockNumber,
-          createdDatetime: new Date(),
+            if (heOrderable) {
+              await tx.ancillaryOrder.create({
+                data: {
+                  orderId: specimen.orderId,
+                  blockId,
+                  orderableId: heOrderable.id,
+                  status: 'MICROTOMY',
+                },
+              });
+            }
+          }
+          return created;
         },
-      });
-      created.push(block);
-
-      // Auto-create H&E staining order for this block, starting at MICROTOMY (no pull block step)
-      if (heOrderable) {
-        await prisma.ancillaryOrder.create({
-          data: {
-            orderId: specimen.orderId,
-            blockId,
-            orderableId: heOrderable.id,
-            status: 'MICROTOMY',
-          },
-        });
+        { isolationLevel: Prisma.TransactionIsolationLevel.Serializable },
+      );
+    } catch (err) {
+      if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2002') {
+        throw new AppError(409, 'CONFLICT', 'Concurrent block creation detected, please retry');
       }
+      throw err;
     }
-
-    return created;
   }
 }

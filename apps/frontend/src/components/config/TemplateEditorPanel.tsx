@@ -19,6 +19,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import type { AppLanguageCode, TemplateCatalogEntry } from '@lis/shared';
 import { useLanguage } from '../../hooks/useLanguage';
 import { configApi, type SaveTemplatePayload } from '../../api';
+import { qk } from '../../api/queryKeys';
 import {
   normalizeTemplateDefinition,
   resolveTemplateFormValues,
@@ -50,7 +51,7 @@ export default function TemplateEditorPanel({ entry }: TemplateEditorPanelProps)
   });
 
   const { data: files, isLoading, error } = useQuery({
-    queryKey: ['config-template-files', entry.templateKey],
+    queryKey: qk.configTemplateFiles(entry.templateKey),
     queryFn: () => configApi.getTemplateFiles(entry.templateKey),
   });
 
@@ -84,8 +85,8 @@ export default function TemplateEditorPanel({ entry }: TemplateEditorPanelProps)
   const saveMutation = useMutation({
     mutationFn: (payload: SaveTemplatePayload) => configApi.updateTemplate(payload),
     onSuccess: () => {
-      void queryClient.invalidateQueries({ queryKey: ['config-templates'] });
-      void queryClient.invalidateQueries({ queryKey: ['config-template-files', entry.templateKey] });
+      void queryClient.invalidateQueries({ queryKey: qk.configTemplates });
+      void queryClient.invalidateQueries({ queryKey: qk.configTemplateFiles(entry.templateKey) });
       setSnackbar({ open: true, message: t('cfg_saved'), severity: 'success' });
     },
     onError: () => {

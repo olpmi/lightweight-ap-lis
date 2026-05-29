@@ -32,6 +32,7 @@ import { KeyboardArrowDown, KeyboardArrowRight, Search, Delete } from '@mui/icon
 import { useQuery, useMutation, useQueryClient, keepPreviousData } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { ancillaryApi, blockApi } from '../api';
+import { qk } from '../api/queryKeys';
 import { useLanguage } from '../hooks/useLanguage';
 import { type AncillaryOrderStatus, type AncillaryOrder, type AncillaryCategory } from '@lis/shared';
 import { formatOrderIdDisplay, formatMaterialIdDisplay } from '@lis/shared';
@@ -307,7 +308,7 @@ function AncillaryCaseTable({ category }: { category: AncillaryCategory }) {
   }, [since, showRecencyFilter]);
 
   const { data: result, isLoading } = useQuery({
-    queryKey: ['ancillary-queue', statusFilter, category, sinceDate, page],
+    queryKey: qk.ancillaryQueue.byFilters(statusFilter, category, sinceDate, page),
     queryFn: () =>
       ancillaryApi.getQueue({
         statuses: [statusFilter],
@@ -325,7 +326,7 @@ function AncillaryCaseTable({ category }: { category: AncillaryCategory }) {
   const updateMutation = useMutation({
     mutationFn: ({ id, status }: { id: number; status: AncillaryOrderStatus }) =>
       ancillaryApi.updateStatus(id, { status }),
-    onSuccess: () => qc.invalidateQueries({ queryKey: ['ancillary-queue'] }),
+    onSuccess: () => qc.invalidateQueries({ queryKey: qk.ancillaryQueue.all }),
     onError: () => setActionError(t('errorGeneric')),
   });
 
@@ -334,14 +335,14 @@ function AncillaryCaseTable({ category }: { category: AncillaryCategory }) {
   const createSlidesMutation = useMutation({
     mutationFn: ({ blockId, count }: { blockId: string; count: number }) =>
       blockApi.createSlides(blockId, count, 'H&E'),
-    onSuccess: () => qc.invalidateQueries({ queryKey: ['ancillary-queue'] }),
+    onSuccess: () => qc.invalidateQueries({ queryKey: qk.ancillaryQueue.all }),
     onError: () => setActionError(t('errorGeneric')),
   });
 
   const discardSlideMutation = useMutation({
     mutationFn: ({ blockId, slideId }: { blockId: string; slideId: string }) =>
       blockApi.discardSlide(blockId, slideId),
-    onSuccess: () => qc.invalidateQueries({ queryKey: ['ancillary-queue'] }),
+    onSuccess: () => qc.invalidateQueries({ queryKey: qk.ancillaryQueue.all }),
     onError: () => setActionError(t('errorGeneric')),
   });
 

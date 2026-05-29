@@ -27,8 +27,10 @@ import { ExpandMore, Add, Science, Delete } from '@mui/icons-material';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useParams, useNavigate } from 'react-router-dom';
 import { orderApi, specimenApi, blockApi } from '../api';
+import { qk } from '../api/queryKeys';
 import { useLanguage } from '../hooks/useLanguage';
 import { formatOrderIdDisplay, formatMaterialIdDisplay } from '@lis/shared';
+import type { OrderMaterials } from '@lis/shared';
 
 interface Slide {
   slideId: string;
@@ -62,23 +64,45 @@ export default function HistologyCasePage() {
   const [actionSuccess, setActionSuccess] = useState<string | null>(null);
 
   const { data: orderData, isLoading: orderLoading } = useQuery<{ data: object }>({
-    queryKey: ['order', orderId],
+    queryKey: qk.order.byId(orderId),
     queryFn: () => orderApi.get(orderId!).then((d) => ({ data: d })),
     enabled: Boolean(orderId),
   });
 
-  const { data: materialsData, isLoading: materialsLoading } = useQuery<{ data: { specimens: Specimen[] } }>({
-    queryKey: ['materials', orderId],
-    queryFn: () => orderApi.materials(orderId!) as Promise<{ data: { specimens: Specimen[] } }>,
+  const { data: materialsData, isLoading: materialsLoading } = useQuery<{ data: OrderMaterials }>({
+    queryKey: qk.materials.byOrder(orderId),
+    queryFn: () => orderApi.materials(orderId!),
     enabled: Boolean(orderId),
   });
 
   const { mutateAsync: createBlocks, isPending: creatingBlocks } = useMutation({
     mutationFn: ({ specimenId, count }: { specimenId: string; count: number }) =>
       specimenApi.createBlocks(specimenId, count),
-    onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['materials', orderId] });
-      qc.invalidateQueries({ queryKey: ['histology-queue'] });
+    onSuccess: (newBlocks, { specimenId }) => {
+      // Patch the materials cache in place: append the new blocks (with empty
+      // slides arrays) to the matching specimen. Avoids a network round-trip
+      // and the full-tree reconciliation that an invalidation triggers.
+      qc.setQueryData<{ data: OrderMaterials } | undefined>(
+        qk.materials.byOrder(orderId),
+        (prev) => {
+          if (!prev) return prev;
+          return {
+            ...prev,
+            data: {
+              ...prev.data,
+              specimens: prev.data.specimens.map((s) =>
+                s.specimenId === specimenId
+                  ? { ...s, blocks: [...s.blocks, ...newBlocks.map((b) => ({ ...b, slides: [] }))] }
+                  : s,
+              ),
+            },
+          };
+        },
+      );
+      // Mark the histology worklist stale but don't refetch it now — it's a
+      // heavy joined query and the user isn't looking at it. Next mount of the
+      // queue page will pick up the change.
+      qc.invalidateQueries({ queryKey: qk.histologyQueue.all, refetchType: 'none' });
       setActionSuccess(t('anc_statusUpdated'));
     },
     onError: () => setActionError(t('errorGeneric')),
@@ -87,9 +111,26 @@ export default function HistologyCasePage() {
   const { mutateAsync: createSlides, isPending: creatingSlides } = useMutation({
     mutationFn: ({ blockId, count }: { blockId: string; count: number }) =>
       blockApi.createSlides(blockId, count, 'H&E'),
-    onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['materials', orderId] });
-      qc.invalidateQueries({ queryKey: ['histology-queue'] });
+    onSuccess: (newSlides, { blockId }) => {
+      qc.setQueryData<{ data: OrderMaterials } | undefined>(
+        qk.materials.byOrder(orderId),
+        (prev) => {
+          if (!prev) return prev;
+          return {
+            ...prev,
+            data: {
+              ...prev.data,
+              specimens: prev.data.specimens.map((s) => ({
+                ...s,
+                blocks: s.blocks.map((b) =>
+                  b.blockId === blockId ? { ...b, slides: [...b.slides, ...newSlides] } : b,
+                ),
+              })),
+            },
+          };
+        },
+      );
+      qc.invalidateQueries({ queryKey: qk.histologyQueue.all, refetchType: 'none' });
       setActionSuccess(t('anc_statusUpdated'));
     },
     onError: () => setActionError(t('errorGeneric')),
@@ -98,9 +139,33 @@ export default function HistologyCasePage() {
   const { mutateAsync: doDiscardSlide } = useMutation({
     mutationFn: ({ blockId, slideId }: { blockId: string; slideId: string }) =>
       blockApi.discardSlide(blockId, slideId),
-    onSuccess: () => {
-      qc.invalidateQueries({ queryKey: ['materials', orderId] });
-      qc.invalidateQueries({ queryKey: ['histology-queue'] });
+    onSuccess: (_void, { blockId, slideId }) => {
+      qc.setQueryData<{ data: OrderMaterials } | undefined>(
+        qk.materials.byOrder(orderId),
+        (prev) => {
+          if (!prev) return prev;
+          return {
+            ...prev,
+            data: {
+              ...prev.data,
+              specimens: prev.data.specimens.map((s) => ({
+                ...s,
+                blocks: s.blocks.map((b) =>
+                  b.blockId !== blockId
+                    ? b
+                    : {
+                        ...b,
+                        slides: b.slides.map((sl) =>
+                          sl.slideId === slideId ? { ...sl, discarded: true } : sl,
+                        ),
+                      },
+                ),
+              })),
+            },
+          };
+        },
+      );
+      qc.invalidateQueries({ queryKey: qk.histologyQueue.all, refetchType: 'none' });
     },
     onError: () => setActionError(t('errorGeneric')),
   });

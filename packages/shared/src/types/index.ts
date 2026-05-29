@@ -85,6 +85,7 @@ export interface Block {
   specimenId: string;
   blockNumber: number;
   createdDatetime?: string | null;
+  discarded: boolean;
 }
 
 export interface Slide {
@@ -92,6 +93,7 @@ export interface Slide {
   blockId: string;
   slideNumber: number;
   slideType?: string | null;
+  discarded: boolean;
 }
 
 export interface Report {
@@ -108,6 +110,7 @@ export interface Report {
   createdAt: string;
   signedOutDatetime?: string | null;
   isFinal: boolean;
+  isPrelim: boolean;
   isAmendment: boolean;
   supersedesReportId?: number | null;
   pathologist?: Employee;

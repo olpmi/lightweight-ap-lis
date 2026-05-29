@@ -1,12 +1,10 @@
-import { PrismaClient } from '@prisma/client';
 import type {
   CreateAncillaryOrderableInput,
   UpdateAncillaryOrderableInput,
   CreateAncillaryPanelInput,
   UpdateAncillaryPanelInput,
 } from '@lis/shared';
-
-const prisma = new PrismaClient();
+import { prisma } from '../lib/prisma.js';
 
 export class ConfigAncillaryService {
   // ---------------------------------------------------------------------------
