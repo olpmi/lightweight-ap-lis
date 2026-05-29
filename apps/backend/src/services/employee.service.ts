@@ -1,6 +1,6 @@
 import { prisma } from '../lib/prisma.js';
 import { AppError } from '../middleware/error.middleware.js';
-import { CreateEmployeeInput } from '@lis/shared';
+import { CreateEmployeeInput, AppLanguageCode } from '@lis/shared';
 
 export class EmployeeService {
   async search(query: string): Promise<object[]> {
@@ -47,7 +47,7 @@ export class EmployeeService {
     });
   }
 
-  async updateLanguage(employeeId: number, language: string): Promise<object> {
+  async updateLanguage(employeeId: number, language: AppLanguageCode): Promise<object> {
     const emp = await prisma.employee.findUnique({ where: { employeeId: BigInt(employeeId) } });
     if (!emp) throw new AppError(404, 'NOT_FOUND', `Employee ${employeeId} not found`);
 

@@ -1,8 +1,8 @@
 import { prisma } from '../lib/prisma.js';
-import type { CreateReportTemplateInput, UpdateReportTemplateInput } from '@lis/shared';
+import type { CreateReportTemplateInput, UpdateReportTemplateInput, ReportTemplateType } from '@lis/shared';
 
 export class ConfigReportTemplateService {
-  async listReportTemplates(type?: string) {
+  async listReportTemplates(type?: ReportTemplateType) {
     return prisma.reportTemplate.findMany({
       where: type ? { type } : undefined,
       orderBy: [{ type: 'asc' }, { templateName: 'asc' }],

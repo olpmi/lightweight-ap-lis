@@ -31,7 +31,7 @@ router.get('/', async (_req, res, next) => {
 // GET /api/config/report-layouts/:reportType
 router.get('/:reportType', async (req, res, next) => {
   try {
-    const layout = await layoutService.getLayout(req.params.reportType);
+    const layout = await layoutService.getLayout(req.params.reportType as 'final' | 'preliminary' | 'addendum' | 'revision');
     if (!layout) return res.status(404).json({ message: 'Layout not found' });
     res.json(layout);
   } catch (err) {
@@ -71,7 +71,7 @@ router.post('/:reportType/preview', async (req, res, next) => {
     // Use the template from the request body if provided, otherwise use the saved one
     let htmlTemplate: string | undefined = req.body?.htmlTemplate;
     if (!htmlTemplate) {
-      const saved = await layoutService.getLayout(reportType);
+      const saved = await layoutService.getLayout(reportType as 'final' | 'preliminary' | 'addendum' | 'revision');
       if (!saved) return res.status(404).json({ message: 'Layout not found. Save it first.' });
       htmlTemplate = saved.htmlTemplate;
     }

@@ -1,5 +1,8 @@
 import { prisma } from '../lib/prisma.js';
 import { AppError } from '../middleware/error.middleware.js';
+import { SEX_OPTIONS } from '@lis/shared';
+
+type SexValue = (typeof SEX_OPTIONS)[number];
 
 export class PatientService {
   async search(query: string): Promise<object[]> {
@@ -26,7 +29,7 @@ export class PatientService {
     lastName: string;
     firstName: string;
     dateOfBirth: string;
-    sex: string;
+    sex: SexValue;
   }): Promise<object> {
     const existing = await prisma.patient.findUnique({ where: { patientId: data.patientId } });
     if (existing) {
@@ -48,7 +51,7 @@ export class PatientService {
     lastName: string;
     firstName: string;
     dateOfBirth: string;
-    sex: string;
+    sex: SexValue;
   }): Promise<{ patientId: string }> {
     const existing = await prisma.patient.findUnique({ where: { patientId: data.patientId } });
     if (existing) return existing;

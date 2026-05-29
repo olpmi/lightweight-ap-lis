@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { requireAuth } from '../middleware/auth.middleware.js';
 import { validateBody } from '../middleware/validate.middleware.js';
-import { createReportTemplateSchema, updateReportTemplateSchema } from '@lis/shared';
+import { createReportTemplateSchema, updateReportTemplateSchema, REPORT_TEMPLATE_TYPES, type ReportTemplateType } from '@lis/shared';
 import { ConfigReportTemplateService } from '../services/config.reportTemplate.service.js';
 
 const router = Router();
@@ -10,7 +10,11 @@ const service = new ConfigReportTemplateService();
 // GET /api/config/report-templates[?type=final|preliminary|addendum|revision]
 router.get('/', requireAuth, async (req, res, next) => {
   try {
-    const type = typeof req.query.type === 'string' ? req.query.type : undefined;
+    const rawType = typeof req.query.type === 'string' ? req.query.type : undefined;
+    const type: ReportTemplateType | undefined =
+      rawType && (REPORT_TEMPLATE_TYPES as readonly string[]).includes(rawType)
+        ? (rawType as ReportTemplateType)
+        : undefined;
     const data = await service.listReportTemplates(type);
     res.json({ data });
   } catch (err) {

@@ -171,7 +171,6 @@ export class ReportService {
           reportTemplateId: data.reportTemplateId,
           gross: data.gross,
           grossPayload: data.grossPayload,
-          synopticData: data.synopticData,
           synopticPayload: data.synopticPayload,
           pathologistEmployeeId: data.pathologistEmployeeId != null
             ? BigInt(data.pathologistEmployeeId)
@@ -197,7 +196,6 @@ export class ReportService {
         reportTemplateId: data.reportTemplateId,
         gross: data.gross,
         grossPayload: data.grossPayload,
-        synopticData: data.synopticData,
         synopticPayload: data.synopticPayload,
         pathologistEmployeeId: data.pathologistEmployeeId != null
           ? BigInt(data.pathologistEmployeeId)
@@ -225,7 +223,6 @@ export class ReportService {
         reportTemplateId: data.reportTemplateId,
         gross: data.gross,
         grossPayload: data.grossPayload,
-        synopticData: data.synopticData,
         synopticPayload: data.synopticPayload,
         pathologistEmployeeId: BigInt(data.pathologistEmployeeId),
         signedOutDatetime: now,
@@ -307,7 +304,6 @@ export class ReportService {
         reportTemplateId: data.reportTemplateId,
         gross: data.gross,
         grossPayload: data.grossPayload,
-        synopticData: data.synopticData,
         synopticPayload: data.synopticPayload,
         pathologistEmployeeId: BigInt(data.pathologistEmployeeId),
         isPrelim: true,
@@ -372,7 +368,6 @@ export class ReportService {
         comment: prelim.comment ?? undefined,
         gross: prelim.gross ?? undefined,
         grossPayload: prelim.grossPayload ?? undefined,
-        synopticData: prelim.synopticData ?? undefined,
         synopticPayload: prelim.synopticPayload ?? undefined,
         reportTemplateId: prelim.reportTemplateId ?? undefined,
         pathologistEmployeeId: prelim.pathologistEmployeeId ?? undefined,
@@ -412,7 +407,6 @@ export class ReportService {
         comment: latestFinal.comment ?? undefined,
         gross: latestFinal.gross ?? undefined,
         grossPayload: latestFinal.grossPayload ?? undefined,
-        synopticData: latestFinal.synopticData ?? undefined,
         synopticPayload: latestFinal.synopticPayload ?? undefined,
         reportTemplateId: latestFinal.reportTemplateId ?? undefined,
         reactivationType: data.reactivationType,
