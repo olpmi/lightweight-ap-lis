@@ -103,7 +103,6 @@ export interface Report {
   reportTemplateId?: number | null;
   gross?: string | null;
   grossPayload?: string | null;
-  synopticData?: string | null;
   synopticPayload?: string | null;
   pathologistEmployeeId?: number | null;
   createdAt: string;
@@ -176,7 +175,6 @@ export interface CreateDraftReportDto {
   reportTemplateId?: number;
   gross?: string;
   grossPayload?: string;
-  synopticData?: string;
   synopticPayload?: string;
   pathologistEmployeeId?: number;
 }
@@ -187,7 +185,6 @@ export interface SignOutReportDto {
   reportTemplateId?: number;
   gross?: string;
   grossPayload?: string;
-  synopticData?: string;
   synopticPayload?: string;
   pathologistEmployeeId: number;
 }

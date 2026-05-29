@@ -1,5 +1,6 @@
 import { prisma } from '../lib/prisma.js';
 import { DEFAULT_REPORT_HTML_TEMPLATE } from './pdf.layout.service.js';
+import type { ReportTemplateType } from '@lis/shared';
 
 const REPORT_TYPES = ['final', 'preliminary', 'addendum', 'revision'] as const;
 type ReportType = typeof REPORT_TYPES[number];
@@ -11,7 +12,7 @@ export class ConfigReportLayoutService {
     });
   }
 
-  async getLayout(reportType: string) {
+  async getLayout(reportType: ReportTemplateType) {
     return prisma.reportLayout.findUnique({ where: { reportType } });
   }
 

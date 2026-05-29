@@ -1,9 +1,10 @@
 import { z } from 'zod';
 import { APP_LANGUAGE_CODES } from '../templates/index.js';
 import { REPORT_TEMPLATE_TYPES } from '../types/index.js';
-import { ANCILLARY_CATEGORIES, ANCILLARY_ORDER_STATUSES } from '../constants/index.js';
+import { ANCILLARY_CATEGORIES, ANCILLARY_ORDER_STATUSES, SEX_OPTIONS } from '../constants/index.js';
 
 const appLanguageSchema = z.enum(APP_LANGUAGE_CODES);
+const sexSchema = z.enum(SEX_OPTIONS);
 
 export const createEmployeeSchema = z.object({
   lastName: z.string().min(1, 'Last name is required').max(100),
@@ -44,7 +45,7 @@ export const createOrderSchema = z.object({
   patientLastName: z.string().max(100).optional(),
   patientFirstName: z.string().max(100).optional(),
   patientDateOfBirth: z.string().optional(),
-  patientSex: z.string().max(20).optional(),
+  patientSex: sexSchema.optional(),
 
   // Doctor - either existing doctorId or new doctor fields
   doctorId: z.number().int().positive().optional(),
@@ -73,7 +74,6 @@ export const createDraftReportSchema = z.object({
   reportTemplateId: z.number().int().positive().optional(),
   gross: z.string().optional(),
   grossPayload: z.string().optional(),
-  synopticData: z.string().optional(),
   synopticPayload: z.string().optional(),
   pathologistEmployeeId: z.number().int().positive().optional(),
 });
@@ -84,7 +84,6 @@ export const signOutReportSchema = z.object({
   reportTemplateId: z.number().int().positive().optional(),
   gross: z.string().min(1, 'Gross description is required for sign-out'),
   grossPayload: z.string().optional(),
-  synopticData: z.string().optional(),
   synopticPayload: z.string().optional(),
   pathologistEmployeeId: z.number().int().positive('Pathologist is required for sign-out'),
 });
