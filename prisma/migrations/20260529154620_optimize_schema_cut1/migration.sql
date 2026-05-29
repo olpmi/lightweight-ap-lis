@@ -143,11 +143,10 @@ CREATE INDEX "report_pathologist_employee_id_idx" ON "report"("pathologist_emplo
 -- CreateIndex
 CREATE INDEX "report_supersedes_report_id_idx" ON "report"("supersedes_report_id");
 
--- CreateIndex
-CREATE INDEX "report_file_report_id_file_type_created_at_idx" ON "report_file"("report_id", "file_type", "created_at");
+-- report_file_report_id_file_type_created_at_idx was already created by 20260430000000_init.
 
--- CreateIndex
-CREATE UNIQUE INDEX "report_layout_report_type_key" ON "report_layout"("report_type");
+-- report_layout_report_type_key is created implicitly by the UNIQUE constraint in
+-- 20260522000002_report_layout.
 
 -- CreateIndex
 CREATE INDEX "specimen_body_site_id_idx" ON "specimen"("body_site_id");

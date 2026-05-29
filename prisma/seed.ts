@@ -566,6 +566,33 @@ async function main() {
   // Look up HE orderable (inserted by migration) for auto-creating H&E orders per block
   const heOrderable = await prisma.ancillaryOrderable.findFirst({ where: { category: 'HE', isActive: true } });
 
+  // Explicit per-stage bucket plan so every queue/area has demo data conforming to the
+  // 5-stage workflow:
+  //   1 = specimens only (Processing, Query)
+  //   2 = one specimen has a block, no gross (Processing, Histology, Query)
+  //   3 = all specimens have blocks + gross saved, no slides (Histology, Query)
+  //   4 = blocks + slides + all H&E DISTRIBUTED + gross saved, not signed out
+  //       (Histology distributed view, Result, Query)
+  //   5 = signed out (Query only)
+  //   reactivated = signed out v1 + draft v2 (Query, Result depending on materials)
+  type Stage = 1 | 2 | 3 | 4 | 5 | 'reactivated';
+  const STAGE_PLAN: Stage[] = [
+    ...Array<Stage>(20).fill(1),
+    ...Array<Stage>(30).fill(2),
+    ...Array<Stage>(30).fill(3),
+    ...Array<Stage>(60).fill(4),
+    ...Array<Stage>(150).fill(5),
+    ...Array<Stage>(10).fill('reactivated'),
+  ];
+  // Shuffle deterministically so case IDs aren't sorted by stage.
+  for (let i = STAGE_PLAN.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    [STAGE_PLAN[i], STAGE_PLAN[j]] = [STAGE_PLAN[j], STAGE_PLAN[i]];
+  }
+  // Pad/trim to ORDER_COUNT (Stage 5 fills any gap).
+  while (STAGE_PLAN.length < ORDER_COUNT) STAGE_PLAN.push(5);
+  STAGE_PLAN.length = ORDER_COUNT;
+
   for (let i = 0; i < ORDER_COUNT; i++) {
     // Pick case type first so the correct prefix and sequence can be used
     const caseType = pick(['Surgical Pathology', 'Cytology', 'Surgical Pathology']);
@@ -577,8 +604,16 @@ async function main() {
     });
     const orderId = `${prefix}26${String(seq.lastValue).padStart(7, '0')}`;
 
-    // Determine the "age" of the case in days (0 = today, older = past)
-    const ageDays = randInt(0, 180);
+    const stage: Stage = STAGE_PLAN[i];
+
+    // Pick a case age that's plausible for the stage so timestamps look natural.
+    let ageDays: number;
+    if (stage === 1) ageDays = randInt(0, 3);
+    else if (stage === 2) ageDays = randInt(1, 5);
+    else if (stage === 3) ageDays = randInt(2, 7);
+    else if (stage === 4) ageDays = randInt(3, 10);
+    else if (stage === 5) ageDays = randInt(7, 180);
+    else ageDays = randInt(14, 90);
     const registeredDate = subtractDays(now, ageDays);
 
     const patientId = pick(patientIds);
@@ -603,20 +638,8 @@ async function main() {
       },
     });
 
-    // Determine case stage based on age and random distribution
-    // Stages: registered-only (no materials), has materials (blocks/slides), signed-out, reactivated
-    let stage: 'registered_only' | 'materials' | 'signed_out' | 'reactivated';
-    const r = rng();
-    if (ageDays < 5) {
-      stage = r < 0.5 ? 'registered_only' : 'materials';
-    } else if (ageDays < 30) {
-      stage = r < 0.2 ? 'materials' : r < 0.6 ? 'signed_out' : 'signed_out';
-    } else {
-      stage = r < 0.05 ? 'materials' : r < 0.1 ? 'reactivated' : 'signed_out';
-    }
-
     // Always create specimens first
-    const specimenCount = randInt(1, stage === 'registered_only' ? 2 : 3);
+    const specimenCount = randInt(1, stage === 1 ? 2 : 3);
     const specCodes: string[] = [];
     const specimenIds: string[] = [];
 
@@ -636,59 +659,103 @@ async function main() {
       specimenIds.push(specimenId);
     }
 
-    if (stage === 'registered_only') continue;
+    if (stage === 1) continue;
 
-    // Create blocks and slides
-    for (const specimenId of specimenIds) {
+    // Decide block-creation scope and slide creation per stage.
+    //   Stage 2: only the first specimen gets blocks; no slides.
+    //   Stage 3: every specimen gets blocks; no slides.
+    //   Stage 4/5/reactivated: every specimen gets blocks AND slides.
+    const specimensWithBlocks = stage === 2 ? specimenIds.slice(0, 1) : specimenIds;
+    const createSlides = stage === 4 || stage === 5 || stage === 'reactivated';
+    const heStatus: 'MICROTOMY' | 'DISTRIBUTED' = createSlides ? 'DISTRIBUTED' : 'MICROTOMY';
+
+    for (const specimenId of specimensWithBlocks) {
       const blockCount = randInt(1, 3);
       for (let b = 1; b <= blockCount; b++) {
         const specCode = specimenId.split('-').slice(1).join('-');
         const blockId = `${orderId}-${specCode}${b}`;
+        const blockCreated = subtractDays(registeredDate, -randInt(1, 3));
         await prisma.block.create({
           data: {
             blockId,
             specimenId,
             blockNumber: b,
-            createdDatetime: subtractDays(registeredDate, -randInt(1, 3)),
+            createdDatetime: blockCreated,
           },
         });
 
         if (heOrderable) {
           await prisma.ancillaryOrder.create({
-            data: { orderId, blockId, orderableId: heOrderable.id, status: 'MICROTOMY' },
+            data: {
+              orderId,
+              blockId,
+              orderableId: heOrderable.id,
+              status: heStatus,
+              orderedAt: blockCreated,
+              inProgressAt: blockCreated,
+              completedAt: heStatus === 'DISTRIBUTED' ? subtractDays(blockCreated, -1) : null,
+            },
           });
         }
 
-        const slideCount = randInt(1, 3);
-        for (let sl = 1; sl <= slideCount; sl++) {
-          const slideId = `${orderId}-${specCode}${b}-S${sl}`;
-          await prisma.slide.create({
-            data: {
-              slideId,
-              blockId,
-              slideNumber: sl,
-              slideType: pick(['H&E', 'H&E', 'H&E', 'Unstained', 'Special stain']),
-            },
-          });
+        if (createSlides) {
+          const slideCount = randInt(1, 3);
+          for (let sl = 1; sl <= slideCount; sl++) {
+            const slideId = `${orderId}-${specCode}${b}-S${sl}`;
+            await prisma.slide.create({
+              data: {
+                slideId,
+                blockId,
+                slideNumber: sl,
+                slideType: pick(['H&E', 'H&E', 'H&E', 'Unstained', 'Special stain']),
+              },
+            });
+          }
         }
       }
     }
 
-    if (stage === 'materials') continue;
+    if (stage === 2) continue;
 
-    // Create a signed-out report
+    // Stage 3 and 4 share a non-final draft report with gross + diagnosis populated.
+    // Stage 5 / reactivated create a final signed report (and reactivated adds v2 draft).
     const pathologist = pick(pathologists);
-    const signedOutDate = subtractDays(registeredDate, -randInt(3, 14));
     const structuredReport = caseType === 'Cytology' ? pick(CYTOLOGY_STRUCTURED_REPORTS) : null;
+    const diagnosis = structuredReport?.diagnosis ?? pick(DIAGNOSES);
+    const gross = pick(GROSS_DESCRIPTIONS);
+    const comment = pick(COMMENTS);
+    const reportTemplateId = structuredReport ? undefined : pick(templateIds);
+    const synopticPayload = structuredReport ? buildStructuredSeedPayload(structuredReport) : undefined;
+
+    if (stage === 3 || stage === 4) {
+      await prisma.report.create({
+        data: {
+          orderId,
+          versionNumber: 1,
+          diagnosis,
+          comment,
+          gross,
+          reportTemplateId,
+          synopticPayload,
+          pathologistEmployeeId: pathologist.employeeId,
+          createdAt: subtractDays(registeredDate, -randInt(1, 3)),
+          isFinal: false,
+        },
+      });
+      continue;
+    }
+
+    // Stage 5 or reactivated: signed-out report.
+    const signedOutDate = subtractDays(registeredDate, -randInt(3, 14));
     const report = await prisma.report.create({
       data: {
         orderId,
         versionNumber: 1,
-        diagnosis: structuredReport?.diagnosis ?? pick(DIAGNOSES),
-        comment: pick(COMMENTS),
-        gross: pick(GROSS_DESCRIPTIONS),
-        reportTemplateId: structuredReport ? undefined : pick(templateIds),
-        synopticPayload: structuredReport ? buildStructuredSeedPayload(structuredReport) : undefined,
+        diagnosis,
+        comment,
+        gross,
+        reportTemplateId,
+        synopticPayload,
         pathologistEmployeeId: pathologist.employeeId,
         createdAt: signedOutDate,
         signedOutDatetime: signedOutDate,
