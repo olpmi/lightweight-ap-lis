@@ -38,6 +38,8 @@ import { useNavigationGuard } from '../hooks/useNavigationGuard';
 import { orderApi, specimenApi, blockApi, reportApi, lookupApi } from '../api';
 import { qk } from '../api/queryKeys';
 import { useAuth } from '../hooks/useAuth';
+import { useOrderLock } from '../hooks/useOrderLock';
+import { formatLockedBanner } from '../utils/orderLockBanner';
 import { useLanguage } from '../hooks/useLanguage';
 import type { OrderMaterials } from '@lis/shared';
 import {
@@ -82,6 +84,7 @@ interface ReportSummary {
   isFinal: boolean;
   gross?: string;
   grossPayload?: string;
+  updatedAt?: string;
 }
 
 export default function ProcessingCasePage() {
@@ -92,6 +95,11 @@ export default function ProcessingCasePage() {
   const { t, lang, direction, tSite, tOrgan, tSpecimenType, tSlideType, tCaseType } = useLanguage();
   const showKeyboardLayoutHint = lang === 'ar' || lang === 'ur';
   const narrativeInputProps = { lang, dir: direction };
+
+  // Pessimistic edit lock — same Order-level lease used by ResultCasePage.
+  // While another user holds it, the form is disabled and a banner names the holder.
+  const orderLock = useOrderLock(orderId);
+  const isLockedByOther = orderLock.status === 'locked';
 
   const { data: orderData, isLoading } = useQuery<{ data: object }>({
     queryKey: qk.order.byId(orderId),
@@ -203,6 +211,8 @@ export default function ProcessingCasePage() {
         gross: grossDescription,
         grossPayload: grossPayload || undefined,
         pathologistEmployeeId,
+        // Optimistic-locking token so concurrent gross edits surface as 409 DRAFT_STALE.
+        expectedUpdatedAt: latestDraft?.updatedAt,
       });
       qc.invalidateQueries({ queryKey: qk.order.byId(orderId) });
       qc.invalidateQueries({ queryKey: qk.reports.byOrder(orderId) });
@@ -268,6 +278,12 @@ export default function ProcessingCasePage() {
         <Typography color="text.primary">{formatOrderIdDisplay(orderId ?? '')}</Typography>
       </Breadcrumbs>
 
+      {isLockedByOther && (
+        <Alert severity="warning" sx={{ mb: 2 }} data-testid="order-lock-banner">
+          {formatLockedBanner(lang, orderLock.holder?.employeeName)}
+        </Alert>
+      )}
+
       <Box display="flex" alignItems="center" justifyContent="space-between" mb={3}>
         <Typography variant="h5" data-testid="order-id-heading">
           {formatOrderIdDisplay(order?.orderId ?? '')}
@@ -287,7 +303,7 @@ export default function ProcessingCasePage() {
             size="small"
             startIcon={saveMutation.isPending ? <CircularProgress size={14} /> : <Save />}
             onClick={() => saveMutation.mutate()}
-            disabled={saveMutation.isPending}
+            disabled={saveMutation.isPending || isLockedByOther}
             data-testid="save-case-btn"
           >
             {t('pc_save')}
@@ -297,7 +313,7 @@ export default function ProcessingCasePage() {
             size="small"
             startIcon={saveMutation.isPending ? <CircularProgress size={14} /> : <ExitToApp />}
             onClick={handleSaveAndExit}
-            disabled={saveMutation.isPending}
+            disabled={saveMutation.isPending || isLockedByOther}
             data-testid="save-exit-btn"
           >
             {t('pc_saveAndExit')}
@@ -349,7 +365,23 @@ export default function ProcessingCasePage() {
         </Paper>
       )}
 
-      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1.3fr' }, gap: 2, mb: 3 }}>
+      <Box
+        component="fieldset"
+        disabled={isLockedByOther}
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: { xs: '1fr', md: '1fr 1.3fr' },
+          gap: 2,
+          mb: 3,
+          // Strip default fieldset chrome.
+          border: 0,
+          p: 0,
+          m: 0,
+          minWidth: 0,
+          // Faded look while another user is editing.
+          opacity: isLockedByOther ? 0.6 : 1,
+        }}
+      >
         <Box>
           <Paper sx={{ p: 2, mb: 2 }}>
             {showKeyboardLayoutHint && (

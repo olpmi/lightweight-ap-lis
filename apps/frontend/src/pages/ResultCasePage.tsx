@@ -36,6 +36,8 @@ import ResultPatientSummaryTab from '../components/resultCase/ResultPatientSumma
 import type { OrderMaterials } from '@lis/shared';
 import type { AncillaryOrder, AncillaryOrderStatus } from '@lis/shared';
 import { useAuth } from '../hooks/useAuth';
+import { useOrderLock } from '../hooks/useOrderLock';
+import { formatLockedBanner } from '../utils/orderLockBanner';
 import { useLanguage } from '../hooks/useLanguage';
 import { useNavigationGuard } from '../hooks/useNavigationGuard';
 import {
@@ -94,6 +96,11 @@ export default function ResultCasePage() {
   const { t, lang, direction, tSite, tOrgan, tCaseType, tSex } = useLanguage();
   const showKeyboardLayoutHint = lang === 'ar' || lang === 'ur';
   const narrativeInputProps = { lang, dir: direction };
+
+  // Pessimistic edit lock. While another user holds it, the form renders
+  // read-only and a banner names the holder.
+  const orderLock = useOrderLock(orderId);
+  const isLockedByOther = orderLock.status === 'locked';
 
   // Panel labels depend on current language — defined inside component
   const PANEL_LABELS: Record<PanelId, string> = {
@@ -364,6 +371,9 @@ export default function ResultCasePage() {
         synopticPayload: form.synopticPayload || undefined,
         reportTemplateId: form.reportTemplateId || undefined,
         pathologistEmployeeId: user?.employeeId ? Number(user.employeeId) : undefined,
+        // Optimistic-locking token: rejects the save if the draft was modified
+        // server-side since this page loaded it.
+        expectedUpdatedAt: latestDraft?.updatedAt,
       }),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: qk.reports.byOrder(orderId) });
@@ -427,6 +437,7 @@ export default function ResultCasePage() {
         reportTemplateId: form.reportTemplateId || undefined,
         synopticPayload: form.synopticPayload || undefined,
         pathologistEmployeeId: Number(pathologistId),
+        expectedUpdatedAt: latestDraft?.updatedAt,
       };
       let reportId: number;
       if (latestDraft) {
@@ -459,6 +470,7 @@ export default function ResultCasePage() {
         reportTemplateId: form.reportTemplateId || undefined,
         synopticPayload: form.synopticPayload || undefined,
         pathologistEmployeeId: Number(pathologistId),
+        expectedUpdatedAt: latestDraft?.updatedAt,
       };
       // Create draft first if none exists, then sign it out
       let reportId: number;
@@ -604,7 +616,22 @@ export default function ResultCasePage() {
         clinicalHistory;
       return (
         <Typography variant="body2" sx={{ whiteSpace: 'pre-wrap', color: text ? 'text.primary' : 'text.disabled' }}>
-          {text || 'â€”'}
+          {text || '—'}
+        </Typography>
+      );
+    }
+    if (isLockedByOther) {
+      // Mirror the signed-out render but pull from the current draft so the
+      // viewer sees what the holder is actively editing.
+      const text =
+        id === 'diagnosis' ? form.diagnosis :
+        id === 'comment' ? form.comment :
+        id === 'gross' ? form.gross :
+        id === 'synoptic' ? form.synopticData :
+        clinicalHistory;
+      return (
+        <Typography variant="body2" sx={{ whiteSpace: 'pre-wrap', color: text ? 'text.primary' : 'text.disabled' }}>
+          {text || '—'}
         </Typography>
       );
     }
@@ -750,6 +777,13 @@ export default function ResultCasePage() {
         <Typography color="text.primary">{formatOrderIdDisplay(orderId ?? '')}</Typography>
       </Breadcrumbs>
 
+      {/* Edit-lock banner: shown while another user is editing this case. */}
+      {isLockedByOther && (
+        <Alert severity="warning" sx={{ mb: 2 }} data-testid="order-lock-banner">
+          {formatLockedBanner(lang, orderLock.holder?.employeeName)}
+        </Alert>
+      )}
+
       {/* Case header â€” patient info + accession number */}
       <Paper variant="outlined" sx={{ p: 2, mb: 2 }}>
         <Box display="flex" alignItems="flex-start" gap={1} flexWrap="wrap">
@@ -846,7 +880,7 @@ export default function ResultCasePage() {
               <>
                 <Button
                   onClick={() => saveDraftMutation.mutate()}
-                  disabled={saveDraftMutation.isPending}
+                  disabled={saveDraftMutation.isPending || isLockedByOther}
                   variant="outlined"
                   size="small"
                   data-testid="save-draft-btn"
@@ -855,7 +889,7 @@ export default function ResultCasePage() {
                 </Button>
                 <Button
                   onClick={handleSaveAndExit}
-                  disabled={saveDraftMutation.isPending}
+                  disabled={saveDraftMutation.isPending || isLockedByOther}
                   variant="outlined"
                   size="small"
                   startIcon={saveDraftMutation.isPending ? <CircularProgress size={14} /> : <ExitToApp />}
@@ -877,7 +911,7 @@ export default function ResultCasePage() {
                 <Button
                   variant="outlined"
                   color="secondary"
-                  disabled={!canSignOut || signPrelimMutation.isPending}
+                  disabled={!canSignOut || signPrelimMutation.isPending || isLockedByOther}
                   onClick={() => setSignPrelimDialogOpen(true)}
                   data-testid="sign-prelim-btn"
                 >
@@ -886,7 +920,7 @@ export default function ResultCasePage() {
                 <Button
                   variant="contained"
                   startIcon={<Send />}
-                  disabled={!canSignOut}
+                  disabled={!canSignOut || isLockedByOther}
                   onClick={() => setSignOutDialogOpen(true)}
                   data-testid="sign-out-btn"
                 >
