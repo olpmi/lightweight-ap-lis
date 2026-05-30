@@ -27,8 +27,8 @@ jobs:
       workflows: ${{ steps.filter.outputs.workflows }}
       docker: ${{ steps.filter.outputs.docker }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: dorny/paths-filter@v3
+      - uses: actions/checkout@v6
+      - uses: dorny/paths-filter@v4
         id: filter
         with:
           filters: |
@@ -69,7 +69,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: changes
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: ./.github/actions/setup
       - name: Typecheck backend
         if: needs.changes.outputs.backend == 'true' || needs.changes.outputs.workflows == 'true'
@@ -83,7 +83,7 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: ./.github/actions/setup
       - run: pnpm --filter @lis/backend lint
       - run: pnpm --filter @lis/frontend lint
@@ -115,7 +115,7 @@ jobs:
       SESSION_SECRET: test-ci-secret-do-not-use-in-production
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: ./.github/actions/setup
 
       - name: Run migrations
@@ -134,7 +134,7 @@ jobs:
 
       - name: Upload backend coverage report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: backend-coverage
           path: apps/backend/coverage/
@@ -147,7 +147,7 @@ jobs:
     needs: changes
     if: needs.changes.outputs.frontend == 'true' || needs.changes.outputs.workflows == 'true'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: ./.github/actions/setup
 
       - name: Run frontend tests with coverage
@@ -163,7 +163,7 @@ jobs:
 
       - name: Upload frontend coverage report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: frontend-coverage
           path: apps/frontend/coverage/
@@ -195,7 +195,7 @@ jobs:
       DATABASE_URL: postgresql://lis_user:lis_password@localhost:5432/lis_drift
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: ./.github/actions/setup
 
       - name: Apply migrations to clean DB
@@ -247,7 +247,7 @@ jobs:
       PORT: 3001
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: ./.github/actions/setup
 
       - name: Run migrations and seed
@@ -283,13 +283,13 @@ jobs:
           PLAYWRIGHT_BASE_URL: http://localhost:5173
           PLAYWRIGHT_BACKEND_URL: http://localhost:3001
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: failure()
         with:
           name: playwright-report
           path: apps/frontend/playwright-report/
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: failure()
         with:
           name: playwright-test-results
