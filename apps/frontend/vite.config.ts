@@ -32,5 +32,18 @@ export default defineConfig({
     // Playwright specs live alongside Vitest tests under src/tests/ but use a
     // different runner; keep them out of the Vitest run.
     exclude: ['**/node_modules/**', '**/dist/**', 'src/tests/e2e/**'],
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'lcov', 'json-summary'],
+      // Conservative starting floor — ratchet up as more component tests land.
+      thresholds: {
+        lines: 30,
+        functions: 25,
+        statements: 30,
+        branches: 45,
+      },
+      include: ['src/**/*.{ts,tsx}'],
+      exclude: ['src/tests/**', 'src/**/*.test.{ts,tsx}', 'src/main.tsx'],
+    },
   },
 });

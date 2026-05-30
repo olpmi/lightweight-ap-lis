@@ -32,12 +32,12 @@ const hasDb = Boolean(process.env.DATABASE_URL && process.env.SESSION_SECRET);
 describe.skipIf(!hasDb)('Order → sign-out workflow', () => {
   const nonce = Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
   const userName = `wf_${nonce}`;
-  const patientId = `WFP${nonce.slice(-7).toUpperCase()}`;
   let roleId = 0;
   let employeeId = 0;
   let bodySiteId = 0;
   let orderId = '';
   let doctorId: bigint | null = null;
+  let capturedPatientId = '';
 
   const app = createApp();
   const agent = request.agent(app);
@@ -71,11 +71,20 @@ describe.skipIf(!hasDb)('Order → sign-out workflow', () => {
   });
 
   afterAll(async () => {
-    // Cascade-delete via order; patient/doctor/employee are cleared explicitly.
+    // Schema isn't ON DELETE CASCADE — tear down children before the order.
     if (orderId) {
-      await prisma.order.deleteMany({ where: { orderId } });
+      const where = { orderId } as const;
+      await prisma.ancillaryOrder.deleteMany({ where });
+      await prisma.reportFile.deleteMany({ where: { report: { orderId } } });
+      await prisma.report.deleteMany({ where });
+      await prisma.slide.deleteMany({ where: { block: { specimen: { orderId } } } });
+      await prisma.block.deleteMany({ where: { specimen: { orderId } } });
+      await prisma.specimen.deleteMany({ where });
+      await prisma.order.deleteMany({ where });
     }
-    await prisma.patient.deleteMany({ where: { patientId } });
+    if (capturedPatientId) {
+      await prisma.patient.deleteMany({ where: { patientId: capturedPatientId } });
+    }
     if (doctorId !== null) {
       await prisma.doctor.deleteMany({ where: { doctorId } });
     }
@@ -86,14 +95,16 @@ describe.skipIf(!hasDb)('Order → sign-out workflow', () => {
   });
 
   it('walks the full order lifecycle and reflects sign-out in /query', async () => {
-    // 1. Create order with new patient + new doctor + one specimen
+    // 1. Create order with new patient + new doctor + one specimen.
+    // Note: do NOT pre-supply patientId — that would force findById on a patient
+    // that doesn't yet exist. Let the service auto-generate one and capture it
+    // from the created order for cleanup.
     const createRes = await agent.post('/api/orders').send({
-      patientId,
-      patientLastName: 'Doe',
+      patientLastName: `Doe_${nonce}`,
       patientFirstName: 'Jane',
       patientDateOfBirth: '1980-01-01',
-      patientSex: 'F',
-      doctorLastName: 'House',
+      patientSex: 'Female',
+      doctorLastName: `House_${nonce}`,
       doctorFirstName: 'Gregory',
       caseType: 'SU',
       registeredDate: new Date().toISOString(),
@@ -106,9 +117,10 @@ describe.skipIf(!hasDb)('Order → sign-out workflow', () => {
     expect(specimens).toHaveLength(1);
     const specimenId = specimens[0].specimenId;
 
-    // Capture created doctor for cleanup
+    // Capture created patient + doctor for cleanup
     const order = await prisma.order.findUniqueOrThrow({ where: { orderId } });
     doctorId = order.doctorId;
+    capturedPatientId = order.patientId;
 
     // 2. Processing queue (showAll=true so already-with-materials cases still appear)
     const procRes = await agent.get('/api/orders/processing-queue').query({
@@ -131,6 +143,25 @@ describe.skipIf(!hasDb)('Order → sign-out workflow', () => {
     const slideRes = await agent.post(`/api/blocks/${blockId}/slides`).send({ count: 1 });
     expect(slideRes.status).toBe(201);
     expect(slideRes.body.data).toHaveLength(1);
+
+    // 4b. Block creation auto-creates an HE ancillary order in MICROTOMY.
+    // The sign-out workflow guard requires every HE ancillary to be DISTRIBUTED,
+    // so advance it: MICROTOMY → SLIDE_STAIN → DISTRIBUTED.
+    const heOrders = await prisma.ancillaryOrder.findMany({
+      where: { blockId, orderable: { category: 'HE' } },
+      select: { id: true },
+    });
+    expect(heOrders.length).toBeGreaterThan(0);
+    for (const he of heOrders) {
+      const stain = await agent
+        .patch(`/api/ancillary/orders/${he.id}/status`)
+        .send({ status: 'SLIDE_STAIN' });
+      expect(stain.status).toBe(200);
+      const dist = await agent
+        .patch(`/api/ancillary/orders/${he.id}/status`)
+        .send({ status: 'DISTRIBUTED' });
+      expect(dist.status).toBe(200);
+    }
 
     // 5. Result queue should now include the order (has materials, not signed out)
     const resultBefore = await agent.get('/api/orders/result-queue').query({
