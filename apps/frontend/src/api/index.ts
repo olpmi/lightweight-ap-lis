@@ -61,6 +61,9 @@ export interface CreateDraftReportPayload {
   grossPayload?: string;
   synopticPayload?: string;
   pathologistEmployeeId?: number;
+  // ISO timestamp of the draft as the client loaded it. When the server still
+  // sees that timestamp the update succeeds; otherwise it returns 409 DRAFT_STALE.
+  expectedUpdatedAt?: string;
 }
 
 export interface SignOutReportPayload {
@@ -71,6 +74,7 @@ export interface SignOutReportPayload {
   grossPayload?: string;
   synopticPayload?: string;
   pathologistEmployeeId: number;
+  expectedUpdatedAt?: string;
 }
 
 export interface SessionEmployee {
@@ -185,7 +189,30 @@ export const orderApi = {
 
   updateClinicalHistory: (orderId: string, clinicalHistory: string | null): Promise<{ data: Order }> =>
     apiClient.patch<{ data: Order }>(`/orders/${orderId}/clinical-history`, { clinicalHistory }).then((r) => r.data),
+
+  // --- Edit lock --------------------------------------------------------
+  acquireLock: (orderId: string): Promise<OrderLockState> =>
+    apiClient
+      // Lock 409s are handled inline by useOrderLock — don't fire the global toast.
+      .post<{ data: OrderLockState }>(`/orders/${orderId}/lock`, undefined, {
+        headers: { 'x-silent-conflict': '1' },
+      })
+      .then((r) => r.data.data),
+
+  getLock: (orderId: string): Promise<OrderLockState> =>
+    apiClient.get<{ data: OrderLockState }>(`/orders/${orderId}/lock`).then((r) => r.data.data),
+
+  releaseLock: (orderId: string): Promise<void> =>
+    apiClient.delete(`/orders/${orderId}/lock`).then(() => undefined),
 };
+
+export interface OrderLockState {
+  orderId: string;
+  editingEmployeeId: number | null;
+  editingEmployeeName: string | null;
+  editingExpiresAt: string | null;
+  ownedByRequester: boolean;
+}
 
 export const specimenApi = {
   createBlocks: (specimenId: string, count: number): Promise<Block[]> =>
@@ -195,9 +222,13 @@ export const specimenApi = {
 };
 
 export const blockApi = {
-  createSlides: (blockId: string, count: number, slideType?: string): Promise<Slide[]> =>
+  createSlides: (blockId: string, count: number, slideType?: string, opts?: { silentConflict?: boolean }): Promise<Slide[]> =>
     apiClient
-      .post<{ data: Slide[] }>(`/blocks/${blockId}/slides`, { count, slideType })
+      .post<{ data: Slide[] }>(
+        `/blocks/${blockId}/slides`,
+        { count, slideType },
+        opts?.silentConflict ? { headers: { 'x-silent-conflict': '1' } } : undefined,
+      )
       .then((r) => r.data.data),
   discardBlock: (blockId: string): Promise<void> =>
     apiClient.patch(`/blocks/${blockId}/discard`).then(() => undefined),

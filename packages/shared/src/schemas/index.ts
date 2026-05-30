@@ -76,6 +76,10 @@ export const createDraftReportSchema = z.object({
   grossPayload: z.string().optional(),
   synopticPayload: z.string().optional(),
   pathologistEmployeeId: z.number().int().positive().optional(),
+  // Optimistic-locking token: ISO timestamp of the draft the client loaded.
+  // When provided and an editable draft already exists, the update only
+  // succeeds if the row's updatedAt still matches; otherwise -> 409 DRAFT_STALE.
+  expectedUpdatedAt: z.string().datetime().optional(),
 });
 
 export const signOutReportSchema = z.object({
@@ -86,6 +90,8 @@ export const signOutReportSchema = z.object({
   grossPayload: z.string().optional(),
   synopticPayload: z.string().optional(),
   pathologistEmployeeId: z.number().int().positive('Pathologist is required for sign-out'),
+  // Optimistic-locking token, see createDraftReportSchema.
+  expectedUpdatedAt: z.string().datetime().optional(),
 });
 
 export const reactivateOrderSchema = z.object({

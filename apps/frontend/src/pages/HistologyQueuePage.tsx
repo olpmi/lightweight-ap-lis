@@ -369,14 +369,16 @@ function AncillaryCaseTable({ category }: { category: AncillaryCategory }) {
   const [slideCounts, setSlideCounts] = useState<Record<string, number>>({});
 
   // Retry once on 409 CONFLICT (backend throws when concurrent slide-creation
-  // transactions race on the same block under Serializable isolation).
+  // transactions race on the same block under Serializable isolation). Both
+  // attempts opt out of the global ConflictToast since the retry resolves the
+  // collision transparently for an idempotent retry-after-collision.
   const createSlidesWithRetry = async (blockId: string, count: number) => {
     try {
-      return await blockApi.createSlides(blockId, count, 'H&E');
+      return await blockApi.createSlides(blockId, count, 'H&E', { silentConflict: true });
     } catch (err) {
       const status = (err as { response?: { status?: number } })?.response?.status;
       if (status === 409) {
-        return await blockApi.createSlides(blockId, count, 'H&E');
+        return await blockApi.createSlides(blockId, count, 'H&E', { silentConflict: true });
       }
       throw err;
     }

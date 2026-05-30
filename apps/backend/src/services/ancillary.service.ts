@@ -2,8 +2,14 @@ import type {
   CreateAncillaryOrderInput,
   UpdateAncillaryOrderStatusInput,
 } from '@lis/shared';
+import {
+  type AncillaryStatus,
+  isValidAncillaryTransition,
+} from '@lis/shared';
+import { Prisma } from '@prisma/client';
 import { buildOrderIdConditions } from '../utils/searchUtils.js';
 import { prisma } from '../lib/prisma.js';
+import { AppError } from '../middleware/error.middleware.js';
 
 const ORDERABLE_INCLUDE = {
   orderable: true,
@@ -169,23 +175,65 @@ export class AncillaryService {
 
   /**
    * Update the status (and optional result notes) of a single ancillary order.
+   *
+   * Concurrency model:
+   *   1. Validate the requested transition against the state machine. Reject
+   *      invalid transitions with 400 INVALID_TRANSITION.
+   *   2. Apply the update with a WHERE clause that pins the current status, so
+   *      two techs racing on the same row only allow one to win. The loser hits
+   *      P2025 and is normalized to 409 by the error middleware.
    */
   async updateStatus(id: number, data: UpdateAncillaryOrderStatusInput) {
+    const current = await prisma.ancillaryOrder.findUnique({
+      where: { id },
+      select: { status: true },
+    });
+    if (!current) {
+      throw new AppError(404, 'NOT_FOUND', `Ancillary order ${id} not found`);
+    }
+
+    const from = current.status as AncillaryStatus;
+    const to = data.status as AncillaryStatus;
+    if (!isValidAncillaryTransition(from, to)) {
+      throw new AppError(
+        400,
+        'INVALID_TRANSITION',
+        `Cannot transition ancillary order from ${from} to ${to}`,
+        { from, to },
+      );
+    }
+
     const now = new Date();
     const timestamps: Record<string, Date> = {};
-    if (data.status === 'MICROTOMY') timestamps.inProgressAt = now;
-    if (data.status === 'MATERIAL_SENT') timestamps.inProgressAt = now;
-    if (data.status === 'DISTRIBUTED') timestamps.completedAt = now;
-    if (data.status === 'MATERIAL_RETURNED') timestamps.completedAt = now;
-    if (data.status === 'CANCELLED') timestamps.cancelledAt = now;
-    return prisma.ancillaryOrder.update({
-      where: { id },
-      data: {
-        status: data.status as 'PULL_BLOCK' | 'MICROTOMY' | 'SLIDE_STAIN' | 'DISTRIBUTED' | 'CANCELLED' | 'PULL_MATERIAL' | 'MATERIAL_SENT' | 'MATERIAL_RETURNED',
-        resultNotes: data.resultNotes ?? undefined,
-        ...timestamps,
-      },
-      include: ORDERABLE_INCLUDE,
-    });
+    if (to === 'MICROTOMY') timestamps.inProgressAt = now;
+    if (to === 'MATERIAL_SENT') timestamps.inProgressAt = now;
+    if (to === 'DISTRIBUTED') timestamps.completedAt = now;
+    if (to === 'MATERIAL_RETURNED') timestamps.completedAt = now;
+    if (to === 'CANCELLED') timestamps.cancelledAt = now;
+
+    try {
+      return await prisma.ancillaryOrder.update({
+        // Atomic guard: only update if status is still the value we validated against.
+        where: { id, status: from },
+        data: {
+          status: to,
+          resultNotes: data.resultNotes ?? undefined,
+          ...timestamps,
+        },
+        include: ORDERABLE_INCLUDE,
+      });
+    } catch (err) {
+      if (
+        err instanceof Prisma.PrismaClientKnownRequestError &&
+        err.code === 'P2025'
+      ) {
+        throw new AppError(
+          409,
+          'STATUS_CHANGED_BY_ANOTHER_USER',
+          'Ancillary order status was changed by another user; please reload',
+        );
+      }
+      throw err;
+    }
   }
 }

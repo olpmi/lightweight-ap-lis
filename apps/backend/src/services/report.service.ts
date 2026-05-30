@@ -1,3 +1,4 @@
+import { Prisma } from '@prisma/client';
 import { prisma } from '../lib/prisma.js';
 import { AppError } from '../middleware/error.middleware.js';
 import { logger } from '../lib/logger.js';
@@ -156,54 +157,88 @@ export class ReportService {
     const order = await prisma.order.findUnique({ where: { orderId } });
     if (!order) throw new AppError(404, 'NOT_FOUND', `Order ${orderId} not found`);
 
-    // Check if there's already an unsigned, non-prelim draft
-    const existingDraft = await prisma.report.findFirst({
-      where: { orderId, isFinal: false, isPrelim: false },
-      orderBy: { versionNumber: 'desc' },
-    });
+    // Wrap "find existing draft -> update OR find latest version -> create v+1" in a
+    // Serializable transaction. Concurrent callers will either both update the same
+    // existing draft (last-write-wins on text fields, acceptable) or collide on
+    // @@unique([orderId, versionNumber]) -> P2002 -> 409 via error middleware.
+    //
+    // Optimistic locking: if the client provides expectedUpdatedAt (the draft's
+    // mtime when they loaded it), we add it to the WHERE clause so two pathologists
+    // editing the same draft concurrently can't silently overwrite each other.
+    // The loser gets P2025 -> 409 DRAFT_STALE.
+    const expected = data.expectedUpdatedAt ? new Date(data.expectedUpdatedAt) : null;
+    try {
+      return await prisma.$transaction(
+        async (tx) => {
+          const existingDraft = await tx.report.findFirst({
+            where: { orderId, isFinal: false, isPrelim: false },
+            orderBy: { versionNumber: 'desc' },
+          });
 
-    if (existingDraft) {
-      // Update the existing draft
-      return prisma.report.update({
-        where: { reportId: existingDraft.reportId },
-        data: {
-          diagnosis: data.diagnosis,
-          comment: data.comment,
-          reportTemplateId: data.reportTemplateId,
-          gross: data.gross,
-          grossPayload: data.grossPayload,
-          synopticPayload: data.synopticPayload,
-          pathologistEmployeeId: data.pathologistEmployeeId != null
-            ? BigInt(data.pathologistEmployeeId)
-            : undefined,
+          if (existingDraft) {
+            return tx.report.update({
+              where: expected
+                ? { reportId: existingDraft.reportId, updatedAt: expected }
+                : { reportId: existingDraft.reportId },
+              data: {
+                diagnosis: data.diagnosis,
+                comment: data.comment,
+                reportTemplateId: data.reportTemplateId,
+                gross: data.gross,
+                grossPayload: data.grossPayload,
+                synopticPayload: data.synopticPayload,
+                pathologistEmployeeId: data.pathologistEmployeeId != null
+                  ? BigInt(data.pathologistEmployeeId)
+                  : undefined,
+              },
+              include: REPORT_INCLUDE,
+            });
+          }
+
+          const latestReport = await tx.report.findFirst({
+            where: { orderId },
+            orderBy: { versionNumber: 'desc' },
+          });
+          const versionNumber = (latestReport?.versionNumber ?? 0) + 1;
+
+          return tx.report.create({
+            data: {
+              orderId,
+              versionNumber,
+              diagnosis: data.diagnosis,
+              comment: data.comment,
+              reportTemplateId: data.reportTemplateId,
+              gross: data.gross,
+              grossPayload: data.grossPayload,
+              synopticPayload: data.synopticPayload,
+              pathologistEmployeeId: data.pathologistEmployeeId != null
+                ? BigInt(data.pathologistEmployeeId)
+                : undefined,
+            },
+            include: REPORT_INCLUDE,
+          });
         },
-        include: REPORT_INCLUDE,
-      });
+        { isolationLevel: Prisma.TransactionIsolationLevel.Serializable },
+      );
+    } catch (err) {
+      if (err instanceof Prisma.PrismaClientKnownRequestError) {
+        if (err.code === 'P2025' && expected) {
+          throw new AppError(
+            409,
+            'DRAFT_STALE',
+            'Another user updated this draft while you were editing; please reload',
+          );
+        }
+        if (err.code === 'P2002') {
+          throw new AppError(
+            409,
+            'DRAFT_VERSION_CONFLICT',
+            'Another user created a draft for this order; please reload',
+          );
+        }
+      }
+      throw err;
     }
-
-    // Get next version number
-    const latestReport = await prisma.report.findFirst({
-      where: { orderId },
-      orderBy: { versionNumber: 'desc' },
-    });
-    const versionNumber = (latestReport?.versionNumber ?? 0) + 1;
-
-    return prisma.report.create({
-      data: {
-        orderId,
-        versionNumber,
-        diagnosis: data.diagnosis,
-        comment: data.comment,
-        reportTemplateId: data.reportTemplateId,
-        gross: data.gross,
-        grossPayload: data.grossPayload,
-        synopticPayload: data.synopticPayload,
-        pathologistEmployeeId: data.pathologistEmployeeId != null
-          ? BigInt(data.pathologistEmployeeId)
-          : undefined,
-      },
-      include: REPORT_INCLUDE,
-    });
   }
 
   async signOut(reportId: number, data: SignOutReportInput): Promise<object> {
@@ -246,36 +281,68 @@ export class ReportService {
 
     const now = new Date();
 
-    const signed = await prisma.report.update({
-      where: { reportId: BigInt(reportId) },
-      data: {
-        diagnosis: data.diagnosis,
-        comment: data.comment,
-        reportTemplateId: data.reportTemplateId,
-        gross: data.gross,
-        grossPayload: data.grossPayload,
-        synopticPayload: data.synopticPayload,
-        pathologistEmployeeId: BigInt(data.pathologistEmployeeId),
-        signedOutDatetime: now,
-        isFinal: true,
-      },
-      include: {
-        ...REPORT_INCLUDE,
-        order: {
-          include: {
-            patient: true,
-            doctor: true,
-            specimens: { include: { bodySite: true, specimenType: true } },
-          },
-        },
-      },
-    });
+    // Atomic: flip isFinal and complete the order in a single Serializable txn,
+    // guarded by where: { isFinal: false }. Two concurrent sign-outs: only one
+    // succeeds; the other gets P2025 -> 409 via error middleware.
+    // Optimistic locking: if expectedUpdatedAt is provided, the draft must not
+    // have been modified since the client loaded it.
+    const expected = data.expectedUpdatedAt ? new Date(data.expectedUpdatedAt) : null;
+    const signed = await prisma.$transaction(
+      async (tx) => {
+        try {
+          const updated = await tx.report.update({
+            where: expected
+              ? { reportId: BigInt(reportId), isFinal: false, updatedAt: expected }
+              : { reportId: BigInt(reportId), isFinal: false },
+            data: {
+              diagnosis: data.diagnosis,
+              comment: data.comment,
+              reportTemplateId: data.reportTemplateId,
+              gross: data.gross,
+              grossPayload: data.grossPayload,
+              synopticPayload: data.synopticPayload,
+              pathologistEmployeeId: BigInt(data.pathologistEmployeeId),
+              signedOutDatetime: now,
+              isFinal: true,
+            },
+            include: {
+              ...REPORT_INCLUDE,
+              order: {
+                include: {
+                  patient: true,
+                  doctor: true,
+                  specimens: { include: { bodySite: true, specimenType: true } },
+                },
+              },
+            },
+          });
 
-    // Mark order as completed
-    await prisma.order.update({
-      where: { orderId: report.orderId },
-      data: { completedDate: now },
-    });
+          await tx.order.update({
+            where: { orderId: updated.orderId },
+            data: { completedDate: now },
+          });
+
+          return updated;
+        } catch (err) {
+          if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2025') {
+            if (expected) {
+              throw new AppError(
+                409,
+                'DRAFT_STALE',
+                'Another user updated this draft while you were editing; please reload',
+              );
+            }
+            throw new AppError(
+              409,
+              'REPORT_ALREADY_FINAL',
+              'Report was signed out by another user; please reload',
+            );
+          }
+          throw err;
+        }
+      },
+      { isolationLevel: Prisma.TransactionIsolationLevel.Serializable },
+    );
 
     // Generate report PDF — use layout template if one is active for 'final', else fall back to pdf-lib
     try {
@@ -327,31 +394,89 @@ export class ReportService {
 
     const now = new Date();
 
-    // Freeze this version as the preliminary report
-    const prelim = await prisma.report.update({
-      where: { reportId: BigInt(reportId) },
-      data: {
-        diagnosis: data.diagnosis,
-        comment: data.comment,
-        reportTemplateId: data.reportTemplateId,
-        gross: data.gross,
-        grossPayload: data.grossPayload,
-        synopticPayload: data.synopticPayload,
-        pathologistEmployeeId: BigInt(data.pathologistEmployeeId),
-        isPrelim: true,
-        signedOutDatetime: now,
+    // Atomic: flip isPrelim, freeze content, and create the next draft (v+1) in
+    // one Serializable txn. The guard where: { isPrelim: false, isFinal: false }
+    // ensures concurrent prelim/sign-out attempts collide -> P2025 -> 409.
+    // The new draft create is inside the txn so it shares the @@unique
+    // [orderId, versionNumber] guarantee.
+    // Optimistic locking: if expectedUpdatedAt is provided, the draft must not
+    // have been modified since the client loaded it.
+    const expectedPrelim = data.expectedUpdatedAt ? new Date(data.expectedUpdatedAt) : null;
+    const prelim = await prisma.$transaction(
+      async (tx) => {
+        try {
+          const updated = await tx.report.update({
+            where: expectedPrelim
+              ? { reportId: BigInt(reportId), isPrelim: false, isFinal: false, updatedAt: expectedPrelim }
+              : { reportId: BigInt(reportId), isPrelim: false, isFinal: false },
+            data: {
+              diagnosis: data.diagnosis,
+              comment: data.comment,
+              reportTemplateId: data.reportTemplateId,
+              gross: data.gross,
+              grossPayload: data.grossPayload,
+              synopticPayload: data.synopticPayload,
+              pathologistEmployeeId: BigInt(data.pathologistEmployeeId),
+              isPrelim: true,
+              signedOutDatetime: now,
+            },
+            include: {
+              ...REPORT_INCLUDE,
+              order: {
+                include: {
+                  patient: true,
+                  doctor: true,
+                  specimens: { include: { bodySite: true, specimenType: true } },
+                },
+              },
+            },
+          });
+
+          // Create the next editable draft inside the same txn.
+          await tx.report.create({
+            data: {
+              orderId: updated.orderId,
+              versionNumber: updated.versionNumber + 1,
+              diagnosis: updated.diagnosis ?? undefined,
+              comment: updated.comment ?? undefined,
+              gross: updated.gross ?? undefined,
+              grossPayload: updated.grossPayload ?? undefined,
+              synopticPayload: updated.synopticPayload ?? undefined,
+              reportTemplateId: updated.reportTemplateId ?? undefined,
+              pathologistEmployeeId: updated.pathologistEmployeeId ?? undefined,
+            },
+          });
+
+          return updated;
+        } catch (err) {
+          if (err instanceof Prisma.PrismaClientKnownRequestError) {
+            if (err.code === 'P2025') {
+              if (expectedPrelim) {
+                throw new AppError(
+                  409,
+                  'DRAFT_STALE',
+                  'Another user updated this draft while you were editing; please reload',
+                );
+              }
+              throw new AppError(
+                409,
+                'REPORT_ALREADY_SIGNED',
+                'Report was signed out by another user; please reload',
+              );
+            }
+            if (err.code === 'P2002') {
+              throw new AppError(
+                409,
+                'DRAFT_VERSION_CONFLICT',
+                'Another user created a draft for this order; please reload',
+              );
+            }
+          }
+          throw err;
+        }
       },
-      include: {
-        ...REPORT_INCLUDE,
-        order: {
-          include: {
-            patient: true,
-            doctor: true,
-            specimens: { include: { bodySite: true, specimenType: true } },
-          },
-        },
-      },
-    });
+      { isolationLevel: Prisma.TransactionIsolationLevel.Serializable },
+    );
 
     // Generate preliminary PDF — use layout template if one is active for 'preliminary', else fall back to pdf-lib
     try {
@@ -392,21 +517,6 @@ export class ReportService {
       logger.warn({ err, reportId }, 'Preliminary report PDF generation failed after sign-out');
     }
 
-    // Create a new editable draft (copy of prelim content) for continued editing
-    await prisma.report.create({
-      data: {
-        orderId: prelim.orderId,
-        versionNumber: prelim.versionNumber + 1,
-        diagnosis: prelim.diagnosis ?? undefined,
-        comment: prelim.comment ?? undefined,
-        gross: prelim.gross ?? undefined,
-        grossPayload: prelim.grossPayload ?? undefined,
-        synopticPayload: prelim.synopticPayload ?? undefined,
-        reportTemplateId: prelim.reportTemplateId ?? undefined,
-        pathologistEmployeeId: prelim.pathologistEmployeeId ?? undefined,
-      },
-    });
-
     return prelim;
   }
 
@@ -414,42 +524,66 @@ export class ReportService {
     const order = await prisma.order.findUnique({ where: { orderId } });
     if (!order) throw new AppError(404, 'NOT_FOUND', `Order ${orderId} not found`);
 
-    // Get the latest signed-out report
-    const latestFinal = await prisma.report.findFirst({
-      where: { orderId, isFinal: true },
-      orderBy: { versionNumber: 'desc' },
-    });
-    if (!latestFinal) throw new AppError(400, 'BAD_REQUEST', 'Order has no signed-out report to reactivate from');
+    // Atomic: latestFinal lookup + order flip (guarded against double-reactivate)
+    // + new draft create, all in one Serializable txn. Two concurrent reactivate
+    // calls: only one wins. The other gets P2025 (order guard) or P2002 (version
+    // collision) -> 409 via the catch block below.
+    try {
+      return await prisma.$transaction(
+        async (tx) => {
+          const latestFinal = await tx.report.findFirst({
+            where: { orderId, isFinal: true },
+            orderBy: { versionNumber: 'desc' },
+          });
+          if (!latestFinal) throw new AppError(400, 'BAD_REQUEST', 'Order has no signed-out report to reactivate from');
 
-    // Mark order reactivated
-    await prisma.order.update({
-      where: { orderId },
-      data: {
-        isReactivated: true,
-        reactivatedFromReportId: latestFinal.reportId,
-        completedDate: null,
-      },
-    });
+          await tx.order.update({
+            where: { orderId, isReactivated: false },
+            data: {
+              isReactivated: true,
+              reactivatedFromReportId: latestFinal.reportId,
+              completedDate: null,
+            },
+          });
 
-    // Create new draft version
-    const newDraft = await prisma.report.create({
-      data: {
-        orderId,
-        versionNumber: latestFinal.versionNumber + 1,
-        diagnosis: latestFinal.diagnosis ?? undefined,
-        comment: latestFinal.comment ?? undefined,
-        gross: latestFinal.gross ?? undefined,
-        grossPayload: latestFinal.grossPayload ?? undefined,
-        synopticPayload: latestFinal.synopticPayload ?? undefined,
-        reportTemplateId: latestFinal.reportTemplateId ?? undefined,
-        reactivationType: data.reactivationType,
-        reactivationReason: data.reactivationReason ?? undefined,
-        supersedesReportId: latestFinal.reportId,
-      },
-      include: REPORT_INCLUDE,
-    });
-
-    return newDraft;
+          return tx.report.create({
+            data: {
+              orderId,
+              versionNumber: latestFinal.versionNumber + 1,
+              diagnosis: latestFinal.diagnosis ?? undefined,
+              comment: latestFinal.comment ?? undefined,
+              gross: latestFinal.gross ?? undefined,
+              grossPayload: latestFinal.grossPayload ?? undefined,
+              synopticPayload: latestFinal.synopticPayload ?? undefined,
+              reportTemplateId: latestFinal.reportTemplateId ?? undefined,
+              reactivationType: data.reactivationType,
+              reactivationReason: data.reactivationReason ?? undefined,
+              supersedesReportId: latestFinal.reportId,
+            },
+            include: REPORT_INCLUDE,
+          });
+        },
+        { isolationLevel: Prisma.TransactionIsolationLevel.Serializable },
+      );
+    } catch (err) {
+      if (err instanceof Prisma.PrismaClientKnownRequestError) {
+        if (err.code === 'P2025') {
+          throw new AppError(
+            409,
+            'ORDER_ALREADY_REACTIVATED',
+            'Order was reactivated by another user; please reload',
+          );
+        }
+        if (err.code === 'P2002') {
+          throw new AppError(
+            409,
+            'DRAFT_VERSION_CONFLICT',
+            'Another user created a draft for this order; please reload',
+          );
+        }
+      }
+      throw err;
+    }
   }
 
   async getResolvedPatientSummary(reportId: number, language: AppLanguageCode) {

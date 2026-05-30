@@ -108,6 +108,9 @@ export interface Report {
   synopticPayload?: string | null;
   pathologistEmployeeId?: number | null;
   createdAt: string;
+  // Server-maintained mtime; clients pass it back as expectedUpdatedAt for
+  // optimistic locking on draft saves and sign-out.
+  updatedAt: string;
   signedOutDatetime?: string | null;
   isFinal: boolean;
   isPrelim: boolean;

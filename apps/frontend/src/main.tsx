@@ -16,6 +16,7 @@ import { AuthProvider } from './hooks/useAuth';
 import { LanguageProvider } from './hooks/useLanguage';
 import { NavigationGuardProvider } from './hooks/useNavigationGuard';
 import { ErrorBoundary } from './components/ErrorBoundary';
+import { ConflictToast } from './components/ConflictToast';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -34,6 +35,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                 <LanguageProvider>
                   <NavigationGuardProvider>
                     <App />
+                    <ConflictToast />
                   </NavigationGuardProvider>
                 </LanguageProvider>
               </AuthProvider>

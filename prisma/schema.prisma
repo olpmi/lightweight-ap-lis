@@ -154,6 +154,11 @@ model Order {
   completedDate           DateTime? @map("completed_date")
   isReactivated           Boolean   @default(false) @map("is_reactivated")
   reactivatedFromReportId BigInt?   @map("reactivated_from_report_id")
+  // Pessimistic edit lock (lease-based). Held by one user at a time while they
+  // are on the result page. Cleared on release or when expiresAt elapses.
+  editingEmployeeId       BigInt?   @map("editing_employee_id")
+  editingEmployeeName     String?   @map("editing_employee_name") @db.VarChar(255)
+  editingExpiresAt        DateTime? @map("editing_expires_at")
   updatedAt               DateTime  @updatedAt @map("updated_at")
 
   patient               Patient @relation(fields: [patientId], references: [patientId], onDelete: Restrict)

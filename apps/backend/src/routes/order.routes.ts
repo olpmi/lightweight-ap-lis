@@ -2,6 +2,7 @@ import { Router, Request, Response, NextFunction } from 'express';
 import { OrderService } from '../services/order.service.js';
 import { QueueService } from '../services/queue.service.js';
 import { PdfService } from '../services/pdf.service.js';
+import { OrderLockService } from '../services/orderLock.service.js';
 import { requireAuth } from '../middleware/auth.middleware.js';
 import { validateBody } from '../middleware/validate.middleware.js';
 import { createOrderSchema, normalizeOrderId } from '@lis/shared';
@@ -14,6 +15,7 @@ const router = Router();
 const orderService = new OrderService();
 const queueService = new QueueService();
 const pdfService = new PdfService();
+const lockService = new OrderLockService();
 
 // GET /api/orders/processing-queue
 router.get('/processing-queue', requireAuth, async (req: Request, res: Response, next: NextFunction) => {
@@ -114,7 +116,46 @@ router.get('/:orderId', requireAuth, async (req: Request, res: Response, next: N
     next(err);
   }
 });
+// --- Edit lock --------------------------------------------------------------
+//
+// Lease-based pessimistic lock so two users can't both edit the same case's
+// result/draft simultaneously. The client acquires on mount, heartbeats while
+// it stays mounted, and releases on unmount. Other clients see the holder's
+// name and render the page read-only.
 
+// POST /api/orders/:orderId/lock — acquire or refresh
+router.post('/:orderId/lock', requireAuth, async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const employeeId = req.session.employeeId!;
+    const employeeName = `${req.session.employeeUserName ?? ''}`.trim() || `User ${employeeId}`;
+    const data = await lockService.acquire(req.params.orderId, Number(employeeId), employeeName);
+    res.json({ data });
+  } catch (err) {
+    next(err);
+  }
+});
+
+// GET /api/orders/:orderId/lock — read current state (used by polling readers)
+router.get('/:orderId/lock', requireAuth, async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const employeeId = req.session.employeeId!;
+    const data = await lockService.getState(req.params.orderId, Number(employeeId));
+    res.json({ data });
+  } catch (err) {
+    next(err);
+  }
+});
+
+// DELETE /api/orders/:orderId/lock — release (only if requester is holder)
+router.delete('/:orderId/lock', requireAuth, async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const employeeId = req.session.employeeId!;
+    await lockService.release(req.params.orderId, Number(employeeId));
+    res.status(204).end();
+  } catch (err) {
+    next(err);
+  }
+});
 // GET /api/orders/:orderId/materials
 router.get('/:orderId/materials', requireAuth, async (req: Request, res: Response, next: NextFunction) => {
   try {
