@@ -2,52 +2,87 @@ name: CI
 
 on:
   push:
-    branches: [main, develop]
+    branches: [main, develop, dev]
   pull_request:
-    branches: [main, develop]
+    branches: [main, develop, dev]
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: write
 
 jobs:
-  # ─── Install & Typecheck ──────────────────────────────────────────────────
-  setup:
-    name: Install & Typecheck
+  # ─── Path filter ──────────────────────────────────────────────────────────
+  changes:
+    name: Detect changes
     runs-on: ubuntu-latest
+    outputs:
+      backend: ${{ steps.filter.outputs.backend }}
+      frontend: ${{ steps.filter.outputs.frontend }}
+      prisma: ${{ steps.filter.outputs.prisma }}
+      shared: ${{ steps.filter.outputs.shared }}
+      workflows: ${{ steps.filter.outputs.workflows }}
+      docker: ${{ steps.filter.outputs.docker }}
     steps:
       - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
+      - uses: dorny/paths-filter@v3
+        id: filter
         with:
-          node-version: '20'
-          cache: 'npm'
+          filters: |
+            backend:
+              - 'apps/backend/**'
+              - 'packages/shared/**'
+              - 'prisma/**'
+              - 'package.json'
+              - 'package-lock.json'
+              - 'tsconfig.base.json'
+              - '.github/workflows/ci.yml'
+              - '.github/actions/setup/**'
+            frontend:
+              - 'apps/frontend/**'
+              - 'packages/shared/**'
+              - 'package.json'
+              - 'package-lock.json'
+              - 'tsconfig.base.json'
+              - '.github/workflows/ci.yml'
+              - '.github/actions/setup/**'
+            prisma:
+              - 'prisma/**'
+            shared:
+              - 'packages/shared/**'
+            workflows:
+              - '.github/workflows/**'
+              - '.github/actions/**'
+            docker:
+              - 'docker/**'
+              - 'docker-compose*.yml'
+              - '.dockerignore'
 
-      - name: Install dependencies
-        run: npm ci --workspaces --include-workspace-root
-
-      - name: Build shared package
-        run: npm run build --workspace=packages/shared
-
-      - name: Generate Prisma client
-        run: npx prisma generate --schema=prisma/schema.prisma
-
+  # ─── Typecheck ────────────────────────────────────────────────────────────
+  typecheck:
+    name: Typecheck
+    runs-on: ubuntu-latest
+    needs: changes
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
       - name: Typecheck backend
+        if: needs.changes.outputs.backend == 'true' || needs.changes.outputs.workflows == 'true'
         run: npm run typecheck --workspace=apps/backend
-
       - name: Typecheck frontend
+        if: needs.changes.outputs.frontend == 'true' || needs.changes.outputs.workflows == 'true'
         run: npm run typecheck --workspace=apps/frontend
 
   # ─── Lint ─────────────────────────────────────────────────────────────────
   lint:
     name: Lint
     runs-on: ubuntu-latest
-    needs: setup
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-      - run: npm ci --workspaces --include-workspace-root
-      - run: npm run build --workspace=packages/shared
-      - run: npx prisma generate --schema=prisma/schema.prisma
+      - uses: ./.github/actions/setup
       - run: npx eslint apps/backend/src --ext .ts
       - run: npx eslint apps/frontend/src --ext .ts,.tsx
 
@@ -55,6 +90,8 @@ jobs:
   backend-tests:
     name: Backend Tests
     runs-on: ubuntu-latest
+    needs: changes
+    if: needs.changes.outputs.backend == 'true' || needs.changes.outputs.workflows == 'true'
 
     services:
       postgres:
@@ -77,24 +114,22 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - run: npm ci --workspaces --include-workspace-root
-
-      - name: Build shared package
-        run: npm run build --workspace=packages/shared
-
-      - name: Generate Prisma client
-        run: npx prisma generate --schema=prisma/schema.prisma
+      - uses: ./.github/actions/setup
 
       - name: Run migrations
         run: npx prisma migrate deploy --schema=prisma/schema.prisma
 
       - name: Run backend tests with coverage
         run: npm run test:coverage --workspace=apps/backend
+
+      - name: Comment coverage on PR (backend)
+        if: github.event_name == 'pull_request'
+        uses: davelosert/vitest-coverage-report-action@v2
+        with:
+          name: backend
+          json-summary-path: apps/backend/coverage/coverage-summary.json
+          json-final-path: apps/backend/coverage/coverage-final.json
+          working-directory: apps/backend
 
       - name: Upload backend coverage report
         if: always()
@@ -108,18 +143,23 @@ jobs:
   frontend-tests:
     name: Frontend Tests
     runs-on: ubuntu-latest
-    needs: setup
+    needs: changes
+    if: needs.changes.outputs.frontend == 'true' || needs.changes.outputs.workflows == 'true'
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-      - run: npm ci --workspaces --include-workspace-root
-      - run: npm run build --workspace=packages/shared
-      - run: npx prisma generate --schema=prisma/schema.prisma
+      - uses: ./.github/actions/setup
+
       - name: Run frontend tests with coverage
         run: npm run test:coverage --workspace=apps/frontend
+
+      - name: Comment coverage on PR (frontend)
+        if: github.event_name == 'pull_request'
+        uses: davelosert/vitest-coverage-report-action@v2
+        with:
+          name: frontend
+          json-summary-path: apps/frontend/coverage/coverage-summary.json
+          json-final-path: apps/frontend/coverage/coverage-final.json
+          working-directory: apps/frontend
 
       - name: Upload frontend coverage report
         if: always()
@@ -129,11 +169,62 @@ jobs:
           path: apps/frontend/coverage/
           if-no-files-found: warn
 
+  # ─── Prisma schema-drift guard ────────────────────────────────────────────
+  prisma-drift:
+    name: Prisma schema drift
+    runs-on: ubuntu-latest
+    needs: changes
+    if: needs.changes.outputs.prisma == 'true' || needs.changes.outputs.workflows == 'true'
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: lis_user
+          POSTGRES_PASSWORD: lis_password
+          POSTGRES_DB: lis_drift
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      DATABASE_URL: postgresql://lis_user:lis_password@localhost:5432/lis_drift
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+
+      - name: Apply migrations to clean DB
+        run: npx prisma migrate deploy --schema=prisma/schema.prisma
+
+      # Fails if committed migrations do not produce the schema declared in
+      # schema.prisma (i.e. schema.prisma was edited without a new migration).
+      - name: Diff migrations -> schema.prisma (exit non-zero on drift)
+        run: |
+          npx prisma migrate diff \
+            --from-migrations prisma/migrations \
+            --to-schema-datamodel prisma/schema.prisma \
+            --shadow-database-url "$DATABASE_URL" \
+            --exit-code
+
+      # Belt-and-braces: applied DB state must equal schema.prisma.
+      - name: Diff applied DB -> schema.prisma (exit non-zero on drift)
+        run: |
+          npx prisma migrate diff \
+            --from-url "$DATABASE_URL" \
+            --to-schema-datamodel prisma/schema.prisma \
+            --exit-code
+
   # ─── Playwright E2E ───────────────────────────────────────────────────────
   e2e:
     name: Playwright E2E
     runs-on: ubuntu-latest
-    needs: [backend-tests, frontend-tests]
+    needs: [changes, backend-tests, frontend-tests]
+    if: needs.changes.outputs.backend == 'true' || needs.changes.outputs.frontend == 'true' || needs.changes.outputs.workflows == 'true'
 
     services:
       postgres:
@@ -157,18 +248,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - run: npm ci --workspaces --include-workspace-root
-
-      - name: Build shared package
-        run: npm run build --workspace=packages/shared
-
-      - name: Generate Prisma client
-        run: npx prisma generate --schema=prisma/schema.prisma
+      - uses: ./.github/actions/setup
 
       - name: Run migrations and seed
         run: |

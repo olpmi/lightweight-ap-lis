@@ -1,4 +1,44 @@
+# Dependencies
 node_modules
 **/node_modules
+.pnpm-store
+
+# Build output
+**/dist
+**/build
+**/.next
+**/.turbo
+**/.vite
+
+# Test output
+**/coverage
+apps/frontend/test-results
+apps/frontend/playwright-report
+
+# VCS / CI
 .git
+.gitignore
+.github
+.gitleaks.toml
+
+# Editor/OS
+.vscode
+.idea
+.DS_Store
+Thumbs.db
+
+# Local env / secrets — keep .example files
+.env
+.env.*
+!.env.*.example
+secrets/
+
+# Logs
 *.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Docs (Dockerfiles don't need them)
+docs/
+*.md
+!README.md

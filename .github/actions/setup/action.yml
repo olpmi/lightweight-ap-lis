@@ -1,0 +1,26 @@
+name: Setup repo
+description: Checkout-aware setup. Installs Node, npm deps, builds @lis/shared, generates Prisma client.
+inputs:
+  node-version:
+    description: Node.js version
+    required: false
+    default: '20'
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: 'npm'
+
+    - name: Install dependencies
+      shell: bash
+      run: npm ci --workspaces --include-workspace-root
+
+    - name: Build shared package
+      shell: bash
+      run: npm run build --workspace=packages/shared
+
+    - name: Generate Prisma client
+      shell: bash
+      run: npx prisma generate --schema=prisma/schema.prisma

@@ -1,0 +1,28 @@
+name: OSV-Scanner
+
+on:
+  push:
+    branches: [main, develop, dev]
+  pull_request:
+    branches: [main, develop, dev]
+  schedule:
+    - cron: '0 6 * * 1'
+
+concurrency:
+  group: osv-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  scan:
+    name: OSV scan
+    uses: google/osv-scanner-action/.github/workflows/osv-scanner-reusable.yml@v1.9.1
+    with:
+      scan-args: |-
+        --lockfile=./package-lock.json
+        --lockfile=./pnpm-lock.yaml
+        --recursive
+        ./
