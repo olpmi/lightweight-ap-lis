@@ -19,7 +19,9 @@ permissions:
   contents: read
   packages: write
   id-token: write          # OIDC for cosign keyless signing
-  security-events: write   # Trivy SARIF upload
+  # NOTE: this repo is private without GitHub Advanced Security, so Trivy
+  # SARIF cannot be uploaded to the Security tab. The scan still runs and
+  # the report is published as a build artifact below.
 
 jobs:
   build-push-scan-sign:
@@ -78,24 +80,25 @@ jobs:
           provenance: true
           sbom: true
 
-      # Reports CRITICAL+HIGH to code scanning but does not fail the build.
+      # Reports CRITICAL+HIGH as a JSON artifact but does not fail the build.
       - name: Trivy scan (report)
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: ${{ env.IMAGE_NAME }}@${{ steps.build.outputs.digest }}
-          format: sarif
-          output: trivy-${{ matrix.service }}.sarif
+          format: json
+          output: trivy-${{ matrix.service }}.json
           severity: CRITICAL,HIGH
           ignore-unfixed: true
           vuln-type: os,library
           exit-code: '0'
 
-      - name: Upload Trivy SARIF
+      - name: Upload Trivy report artifact
         if: always()
-        uses: github/codeql-action/upload-sarif@v3
+        uses: actions/upload-artifact@v4
         with:
-          sarif_file: trivy-${{ matrix.service }}.sarif
-          category: trivy-${{ matrix.service }}
+          name: trivy-${{ matrix.service }}-report
+          path: trivy-${{ matrix.service }}.json
+          retention-days: 30
 
       # Fails the build only on CRITICAL vulnerabilities.
       - name: Trivy scan (gate on CRITICAL)
