@@ -38,16 +38,29 @@ const BODY_SITES = [
   // Hepatobiliary & Pancreas
   'Liver', 'Gallbladder', 'Bile duct', 'Pancreas',
   // Breast
-  'Breast', 'Axillary tissue',
+  'Left Breast', 'Right Breast', 'Breast',
+  'Left Axillary tissue', 'Right Axillary tissue', 'Axillary tissue',
   // Gynecologic
-  'Cervix', 'Endometrium', 'Myometrium', 'Ovary', 'Fallopian tube', 'Vulva', 'Vagina',
+  'Cervix', 'Endometrium', 'Myometrium',
+  'Left Ovary', 'Right Ovary', 'Ovary',
+  'Left Fallopian tube', 'Right Fallopian tube', 'Fallopian tube',
+  'Vulva', 'Vagina',
   // Urologic (GU)
-  'Prostate', 'Bladder', 'Kidney', 'Ureter', 'Testis', 'Epididymis', 'Penis',
+  'Prostate', 'Bladder',
+  'Left Kidney', 'Right Kidney', 'Kidney',
+  'Left Ureter', 'Right Ureter', 'Ureter',
+  'Left Testis', 'Right Testis', 'Testis',
+  'Left Epididymis', 'Right Epididymis', 'Epididymis',
+  'Penis',
   // Head & Neck
-  'Oral cavity', 'Tongue', 'Salivary gland', 'Thyroid', 'Parathyroid',
+  'Oral cavity', 'Tongue',
+  'Left Salivary gland', 'Right Salivary gland', 'Salivary gland',
+  'Thyroid', 'Parathyroid',
   'Larynx', 'Pharynx', 'Nasal cavity / Sinus', 'Neck (soft tissue/unspecified)',
   // Respiratory
-  'Lung', 'Pleura', 'Bronchus',
+  'Left Lung', 'Right Lung', 'Lung',
+  'Left Pleura', 'Right Pleura', 'Pleura',
+  'Left Bronchus', 'Right Bronchus', 'Bronchus',
   // Skin
   'Skin',
   // Lymph Node / Hematolymphoid
