@@ -93,8 +93,16 @@ jobs:
       - name: Run migrations
         run: npx prisma migrate deploy --schema=prisma/schema.prisma
 
-      - name: Run backend tests
-        run: npm run test --workspace=apps/backend
+      - name: Run backend tests with coverage
+        run: npm run test:coverage --workspace=apps/backend
+
+      - name: Upload backend coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-coverage
+          path: apps/backend/coverage/
+          if-no-files-found: warn
 
   # ─── Frontend tests ───────────────────────────────────────────────────────
   frontend-tests:
@@ -110,8 +118,16 @@ jobs:
       - run: npm ci --workspaces --include-workspace-root
       - run: npm run build --workspace=packages/shared
       - run: npx prisma generate --schema=prisma/schema.prisma
-      - name: Run frontend tests
-        run: npm run test --workspace=apps/frontend
+      - name: Run frontend tests with coverage
+        run: npm run test:coverage --workspace=apps/frontend
+
+      - name: Upload frontend coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-coverage
+          path: apps/frontend/coverage/
+          if-no-files-found: warn
 
   # ─── Playwright E2E ───────────────────────────────────────────────────────
   e2e:
