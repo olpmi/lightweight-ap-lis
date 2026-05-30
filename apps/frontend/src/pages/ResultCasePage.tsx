@@ -81,6 +81,7 @@ interface Report {
   pathologist?: Employee;
   reportTemplate?: { reportTemplateId: number; templateName: string; templateText?: string };
   reportFiles?: Array<{ reportFileId: number | bigint; fileType: string }>;
+  updatedAt?: string;
 }
 
 type PanelId = 'diagnosis' | 'comment' | 'synoptic' | 'gross' | 'clinicalHistory';

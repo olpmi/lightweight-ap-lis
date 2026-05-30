@@ -27,6 +27,7 @@
     "audit:templates": "node ./scripts/audit-templates.mjs"
   },
   "devDependencies": {
+    "@types/node": "^20.12.0",
     "typescript": "*"
   },
   "dependencies": {
