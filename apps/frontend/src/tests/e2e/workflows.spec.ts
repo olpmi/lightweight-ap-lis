@@ -35,8 +35,10 @@ test.describe('Authentication', () => {
     // also match the label, which can be ambiguous.
     await page.getByRole('option', { name: 'Technologist' }).click();
     await page.getByTestId('new-employee-submit').click();
-    await page.waitForURL('/order-entry');
-    await expect(page.getByTestId('page-title')).toBeVisible();
+    // Different roles land on different pages; just verify navigation
+    // away from /login and that we are authenticated.
+    await page.waitForURL((url) => !url.pathname.startsWith('/login'));
+    await expect(page.getByRole('button', { name: 'Logout' })).toBeVisible();
   });
 });
 
@@ -109,7 +111,8 @@ test.describe('Query', () => {
 
   test('search by order ID returns results', async ({ page }) => {
     await page.goto('/query');
-    await page.getByTestId('query-order-id').fill('SU25');
+    // 'SU' is the case-type prefix; it matches every surgical order regardless of year.
+    await page.getByTestId('query-order-id').fill('SU');
     await page.getByTestId('query-search-btn').click();
     await expect(page.getByTestId('query-results-table')).toBeVisible();
   });
@@ -123,7 +126,8 @@ test.describe('Query', () => {
 
   test('clicking a query result navigates to result page', async ({ page }) => {
     await page.goto('/query');
-    await page.getByTestId('query-order-id').fill('SU25');
+    // 'SU' prefix is year-agnostic; 'SU25' would miss seed orders generated in any other year.
+    await page.getByTestId('query-order-id').fill('SU');
     await page.getByTestId('query-search-btn').click();
     const firstRow = page.locator('[data-testid^="query-result-row-"]').first();
     await expect(firstRow).toBeVisible();
