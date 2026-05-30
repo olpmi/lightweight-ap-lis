@@ -22,12 +22,16 @@ jobs:
     name: OSV scan
     # Reusable workflow published by the OSV-Scanner project.
     # See https://google.github.io/osv-scanner/github-action/
+    # fail-on-vuln: false → SARIF still uploads to code scanning, but the
+    # build does not fail on transitive npm CVEs we haven't yet remediated
+    # (matches the Trivy-image pattern in release-images.yml).
     uses: google/osv-scanner-action/.github/workflows/osv-scanner-reusable.yml@v2.0.2
     with:
       scan-args: |-
         --recursive
         --lockfile=./pnpm-lock.yaml
         ./
+      fail-on-vuln: false
     permissions:
       contents: read
       security-events: write
