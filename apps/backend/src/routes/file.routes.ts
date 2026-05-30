@@ -7,7 +7,7 @@ import { createDraftReportSchema, reactivateOrderSchema } from '@lis/shared';
 import fs from 'fs';
 import { AppError } from '../middleware/error.middleware.js';
 
-const router = Router();
+const router: Router = Router();
 const reportService = new ReportService();
 
 // GET /api/report-files/:reportFileId/download

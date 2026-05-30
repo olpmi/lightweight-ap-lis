@@ -25,6 +25,18 @@ export default defineConfig({
       },
     },
   },
+  // `vite preview` does not inherit `server.proxy`; e2e/CI runs the built
+  // bundle via preview, so re-declare the /api proxy here too.
+  preview: {
+    port: 5173,
+    host: true,
+    proxy: {
+      '/api': {
+        target: process.env.VITE_API_BASE_URL ?? 'http://localhost:3001',
+        changeOrigin: true,
+      },
+    },
+  },
   test: {
     globals: true,
     environment: 'jsdom',

@@ -11,7 +11,7 @@ import fs from 'fs';
 import { GENERATED_PDFS_DIR } from '../utils/storageDirs.js';
 import path from 'path';
 
-const router = Router();
+const router: Router = Router();
 const orderService = new OrderService();
 const queueService = new QueueService();
 const pdfService = new PdfService();
@@ -123,7 +123,7 @@ router.get('/:orderId', requireAuth, async (req: Request, res: Response, next: N
 // it stays mounted, and releases on unmount. Other clients see the holder's
 // name and render the page read-only.
 
-// POST /api/orders/:orderId/lock — acquire or refresh
+// POST /api/orders/:orderId/lock â€” acquire or refresh
 router.post('/:orderId/lock', requireAuth, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const employeeId = req.session.employeeId!;
@@ -135,7 +135,7 @@ router.post('/:orderId/lock', requireAuth, async (req: Request, res: Response, n
   }
 });
 
-// GET /api/orders/:orderId/lock — read current state (used by polling readers)
+// GET /api/orders/:orderId/lock â€” read current state (used by polling readers)
 router.get('/:orderId/lock', requireAuth, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const employeeId = req.session.employeeId!;
@@ -146,7 +146,7 @@ router.get('/:orderId/lock', requireAuth, async (req: Request, res: Response, ne
   }
 });
 
-// DELETE /api/orders/:orderId/lock — release (only if requester is holder)
+// DELETE /api/orders/:orderId/lock â€” release (only if requester is holder)
 router.delete('/:orderId/lock', requireAuth, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const employeeId = req.session.employeeId!;

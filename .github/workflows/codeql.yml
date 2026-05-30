@@ -1,0 +1,56 @@
+name: CodeQL
+
+on:
+  push:
+    branches: [main, develop, dev]
+  pull_request:
+    branches: [main, develop, dev]
+  schedule:
+    # Weekly Sunday 06:00 UTC
+    - cron: '0 6 * * 0'
+
+concurrency:
+  group: codeql-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  analyze:
+    name: Analyze (${{ matrix.language }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    # NOTE: this repo is private without GitHub Advanced Security, so SARIF
+    # cannot be uploaded to the Security tab. We run the analysis and publish
+    # the SARIF as a build artifact instead.
+    permissions:
+      actions: read
+      contents: read
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [javascript-typescript]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+          build-mode: none
+          queries: security-and-quality
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: '/language:${{ matrix.language }}'
+          upload: never
+          output: codeql-results
+
+      - name: Upload CodeQL SARIF artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: codeql-${{ matrix.language }}-sarif
+          path: codeql-results
+          retention-days: 30

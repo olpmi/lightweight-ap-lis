@@ -5,7 +5,7 @@ import { requireAuth } from '../middleware/auth.middleware.js';
 import { validateBody } from '../middleware/validate.middleware.js';
 import { createSlidesSchema } from '@lis/shared';
 
-const router = Router();
+const router: Router = Router();
 const slideService = new SlideService();
 const blockService = new BlockService();
 

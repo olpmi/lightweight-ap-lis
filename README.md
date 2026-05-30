@@ -1,4 +1,4 @@
-# Lightweight AP LIS
+﻿# Lightweight AP LIS
 
 A lightweight **Anatomic Pathology Laboratory Information System** prototype implemented as a monorepo.
 
@@ -6,14 +6,14 @@ A lightweight **Anatomic Pathology Laboratory Information System** prototype imp
 
 | Layer | Technology |
 |---|---|
-| Backend | Node.js · Express · TypeScript · Prisma |
+| Backend | Node.js Â· Express Â· TypeScript Â· Prisma |
 | Database | PostgreSQL |
-| Frontend | React · Vite · TypeScript · MUI v5 |
+| Frontend | React Â· Vite Â· TypeScript Â· MUI v5 |
 | API data | TanStack Query (React Query) |
 | Validation | Zod (shared schemas) |
 | PDF generation | pdf-lib |
 | Session auth | express-session |
-| Testing | Vitest · React Testing Library · Playwright |
+| Testing | Vitest Â· React Testing Library Â· Playwright |
 | CI/CD | GitHub Actions |
 | Local dev | Docker Compose |
 
@@ -37,10 +37,10 @@ A lightweight **Anatomic Pathology Laboratory Information System** prototype imp
 ## Prerequisites
 
 - Node.js 20+
-- npm 10+ (ships with Node 20). pnpm 10+ also works — the workspace declares both `workspaces` (npm) and `pnpm-workspace.yaml`. The commands below use npm to match CI.
+- pnpm 9+ (`corepack enable && corepack prepare pnpm@9 --activate`). The repo is a pnpm workspace (`pnpm-workspace.yaml`) and CI runs the pnpm-lock.yaml under `pnpm install --frozen-lockfile`.
 - Docker (for containerized run) or PostgreSQL 16+ (for local dev)
 
-## Quick start — Docker Compose
+## Quick start â€” Docker Compose
 
 This repo ships **two Compose stacks**:
 
@@ -49,7 +49,7 @@ This repo ships **two Compose stacks**:
 | **Development** (default) | `docker-compose.yml` (optionally `+ docker-compose.dev.yml` for Vite HMR) | Containerized PostgreSQL | Local development, demos, CI |
 | **Production** | `docker-compose.prod.yml` (standalone) | Google Cloud SQL via Cloud SQL Auth Proxy sidecar | Real deployments |
 
-The two stacks share the same backend/frontend images and code. **The only difference is the database wiring** — dev runs Postgres in a container; prod connects to a managed Cloud SQL instance through an Auth Proxy sidecar. Bring one stack down before starting another so they do not compete for container names and ports.
+The two stacks share the same backend/frontend images and code. **The only difference is the database wiring** â€” dev runs Postgres in a container; prod connects to a managed Cloud SQL instance through an Auth Proxy sidecar. Bring one stack down before starting another so they do not compete for container names and ports.
 
 ### Dev path 1. Base Compose stack (`docker-compose.yml`)
 
@@ -99,7 +99,7 @@ docker compose -f docker-compose.yml -f docker-compose.dev.yml down
 
 ### Production stack (`docker-compose.prod.yml`)
 
-The prod stack replaces the local `postgres` service with a `cloudsql-proxy` sidecar that fronts your Cloud SQL instance using IAM authentication. Backend startup runs `prisma migrate deploy` only — **no `db push`, no seeding**.
+The prod stack replaces the local `postgres` service with a `cloudsql-proxy` sidecar that fronts your Cloud SQL instance using IAM authentication. Backend startup runs `prisma migrate deploy` only â€” **no `db push`, no seeding**.
 
 Prerequisites on the host:
 
@@ -112,7 +112,7 @@ Setup:
 ```bash
 # 1. Configure environment
 cp .env.production.example .env.production
-# Edit .env.production — set DATABASE_URL, INSTANCE_CONNECTION_NAME,
+# Edit .env.production â€” set DATABASE_URL, INSTANCE_CONNECTION_NAME,
 # SESSION_SECRET, CORS_ORIGIN.
 
 # 2. Place the service-account key (the path is gitignored)
@@ -129,34 +129,34 @@ To stop it:
 docker compose --env-file .env.production -f docker-compose.prod.yml down
 ```
 
-> **Security:** never commit `.env.production` or anything in `secrets/` — both are listed in `.gitignore`.
+> **Security:** never commit `.env.production` or anything in `secrets/` â€” both are listed in `.gitignore`.
 
-## Quick start — Local development
+## Quick start â€” Local development
 
 ### 1. Install dependencies
 
 ```bash
-npm install
+pnpm install
 ```
 
 ### 2. Set up environment variables
 
 ```bash
 cp .env.development.example .env
-# Edit .env — set DATABASE_URL and SESSION_SECRET
+# Edit .env â€” set DATABASE_URL and SESSION_SECRET
 ```
 
 ### 3. Set up the database
 
 ```bash
 # Run migrations
-npm run db:migrate
+pnpm db:migrate
 
 # Generate the Prisma client
-npm run db:generate
+pnpm db:generate
 
 # Seed with demo data
-npm run db:seed
+pnpm db:seed
 ```
 
 ### 4. Start development servers
@@ -164,11 +164,11 @@ npm run db:seed
 In separate terminals:
 
 ```bash
-# Terminal 1 — backend (hot reload)
-npm run dev:backend
+# Terminal 1 â€” backend (hot reload)
+pnpm dev:backend
 
-# Terminal 2 — frontend (Vite HMR)
-npm run dev:frontend
+# Terminal 2 â€” frontend (Vite HMR)
+pnpm dev:frontend
 ```
 
 Frontend: **http://localhost:5173**  
@@ -178,8 +178,8 @@ Backend: **http://localhost:3001**
 
 | Variable | Description | Default |
 |---|---|---|
-| `DATABASE_URL` | PostgreSQL connection URL | — |
-| `SESSION_SECRET` | Express session secret (keep long and random) | — |
+| `DATABASE_URL` | PostgreSQL connection URL | â€” |
+| `SESSION_SECRET` | Express session secret (keep long and random) | â€” |
 | `PORT` | Backend port | `3001` |
 | `NODE_ENV` | Environment | `development` |
 | `CORS_ORIGIN` | Allowed CORS origin | `http://localhost:5173` |
@@ -207,7 +207,7 @@ The backend exposes an unauthenticated `GET /health` endpoint (`{ "status": "ok"
 ### Result (`/result`)
 - Queue of cases that have materials but no signed-out report
 - Open a case to enter a result (diagnosis, gross, comment)
-- Sign out the report — generates a report PDF
+- Sign out the report â€” generates a report PDF
 - Reactivate a signed-out case to create an amendment/revision
 - Concurrent edits are guarded by optimistic locking: every save sends `expectedUpdatedAt` and a stale submission surfaces a `DRAFT_STALE` toast instead of overwriting another user's work
 
@@ -219,9 +219,9 @@ The backend exposes an unauthenticated `GET /health` endpoint (`{ "status": "ok"
 
 ```
 SU{YY}{NNNNNNN}
-  SU     — fixed prefix
-  YY     — 2-digit year (e.g. 25 for 2025)
-  NNNNNNN — 7-digit zero-padded sequence, resets each year
+  SU     â€” fixed prefix
+  YY     â€” 2-digit year (e.g. 25 for 2025)
+  NNNNNNN â€” 7-digit zero-padded sequence, resets each year
 
 Example: SU250000001
 ```
@@ -236,27 +236,27 @@ Sequence generation is concurrency-safe via a dedicated `order_sequence_year` ta
 | Block | `{orderId}-{specimenCode}{blockNumber}` | `SU250000001-A1` |
 | Slide | `{blockId}-S{slideNumber}` | `SU250000001-A1-S1` |
 
-Specimen codes use Excel-style progression: A → Z → AA → AZ → BA → ...
+Specimen codes use Excel-style progression: A â†’ Z â†’ AA â†’ AZ â†’ BA â†’ ...
 
 ## Running tests
 
 ```bash
 # All tests (unit + integration + component)
-npm test
+pnpm test
 
 # Backend unit + integration tests only
-npm run test:backend
+pnpm test:backend
 
 # Frontend component tests only
-npm run test:frontend
+pnpm test:frontend
 
 # Typecheck all packages
-npm run typecheck
+pnpm typecheck
 ```
 
 ### End-to-end tests (Playwright)
 
-The E2E suite assumes the seeded demo database — in particular the
+The E2E suite assumes the seeded demo database â€” in particular the
 `asmith` Pathologist account and the queues populated by `prisma/seed.ts`.
 It expects a backend on `:3001` and a frontend on `:5173`.
 
@@ -267,12 +267,12 @@ Quick local path:
 docker compose -f docker-compose.yml up --build -d
 
 # 2. Run the suite
-npm run test:e2e
+pnpm test:e2e
 ```
 
 When running outside Docker the Playwright config will auto-start the
 Vite dev server, but you must start the backend yourself first
-(`npm run dev:backend`).
+(`pnpm dev:backend`).
 
 Override the login user with `E2E_USER=<username>` if you change the
 seed. The HTML report is written to
@@ -286,24 +286,24 @@ letting every test time out individually.
 ### Backend integration tests
 
 `apps/backend/src/tests/integration/orderWorkflow.test.ts` covers the
-full login → create order → block → slide → draft → sign-out → query
+full login â†’ create order â†’ block â†’ slide â†’ draft â†’ sign-out â†’ query
 flow against a real Postgres. It is skipped unless `DATABASE_URL` and
 `SESSION_SECRET` are set.
 
 On native Windows the Prisma client can fail SCRAM auth against a
 dockerised Postgres exposed on `localhost`; if you hit
 `Authentication failed against database server at localhost`, run the
-test inside the backend container instead — see the comment at the top
+test inside the backend container instead â€” see the comment at the top
 of the test file for the exact `docker run` command.
 
 ## Database commands
 
 ```bash
-npm run db:migrate         # Apply pending migrations (dev)
-npm run db:generate        # Re-generate Prisma client after schema changes
-npm run db:seed            # Seed the database
-npm run db:studio          # Open Prisma Studio
-npm run db:reset           # Reset and re-seed (destructive)
+pnpm db:migrate         # Apply pending migrations (dev)
+pnpm db:generate        # Re-generate Prisma client after schema changes
+pnpm db:seed            # Seed the database
+pnpm db:studio          # Open Prisma Studio
+pnpm db:reset           # Reset and re-seed (destructive)
 ```
 
 ## PDF files

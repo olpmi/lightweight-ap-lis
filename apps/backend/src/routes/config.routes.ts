@@ -8,7 +8,7 @@ import {
   saveTemplate,
 } from '../services/config.service.js';
 
-const router = Router();
+const router: Router = Router();
 
 // Validate query language
 function parseLanguage(raw: unknown): AppLanguageCode {
@@ -33,7 +33,7 @@ const saveTemplateBodySchema = z.object({
 });
 
 // ---------------------------------------------------------------------------
-// GET /api/config/templates  — list full catalog (built-in + custom)
+// GET /api/config/templates  â€” list full catalog (built-in + custom)
 // ---------------------------------------------------------------------------
 
 router.get('/templates', requireAuth, async (req, res, next) => {
@@ -71,7 +71,7 @@ router.get('/templates/files', requireAuth, async (req, res, next) => {
 });
 
 // ---------------------------------------------------------------------------
-// PUT /api/config/templates/files  — update an existing template
+// PUT /api/config/templates/files  â€” update an existing template
 // ---------------------------------------------------------------------------
 
 router.put('/templates/files', requireAuth, async (req, res, next) => {
@@ -98,7 +98,7 @@ router.put('/templates/files', requireAuth, async (req, res, next) => {
 });
 
 // ---------------------------------------------------------------------------
-// POST /api/config/templates/files  — create a new template
+// POST /api/config/templates/files  â€” create a new template
 // ---------------------------------------------------------------------------
 
 router.post('/templates/files', requireAuth, async (req, res, next) => {

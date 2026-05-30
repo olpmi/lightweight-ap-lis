@@ -1,0 +1,60 @@
+name: OSV-Scanner
+
+on:
+  push:
+    branches: [main, develop, dev]
+  pull_request:
+    branches: [main, develop, dev]
+  schedule:
+    - cron: '0 6 * * 1'
+
+concurrency:
+  group: osv-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  scan:
+    name: OSV scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    # NOTE: this repo is private without GitHub Advanced Security, so SARIF
+    # cannot be uploaded to the Security tab. We invoke osv-scanner directly
+    # and publish JSON + table reports as build artifacts.
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install osv-scanner
+        run: |
+          set -euo pipefail
+          VERSION=v2.0.2
+          curl -sSL -o osv-scanner \
+            "https://github.com/google/osv-scanner/releases/download/${VERSION}/osv-scanner_linux_amd64"
+          chmod +x osv-scanner
+          ./osv-scanner --version
+
+      - name: Run OSV-Scanner (JSON)
+        run: |
+          set +e
+          ./osv-scanner --recursive --lockfile=./pnpm-lock.yaml --format=json --output=osv-results.json ./
+          # Don't fail the build on transitive CVEs (matches Trivy gating pattern).
+          exit 0
+
+      - name: Run OSV-Scanner (table, for log readability)
+        run: |
+          set +e
+          ./osv-scanner --recursive --lockfile=./pnpm-lock.yaml --format=table ./ | tee osv-results.txt
+          exit 0
+
+      - name: Upload OSV scan artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: osv-scan-results
+          path: |
+            osv-results.json
+            osv-results.txt
+          retention-days: 30

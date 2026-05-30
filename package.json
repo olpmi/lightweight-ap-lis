@@ -2,21 +2,16 @@
   "name": "lightweight-ap-lis",
   "version": "1.0.0",
   "private": true,
-  "workspaces": [
-    "apps/backend",
-    "apps/frontend",
-    "packages/shared"
-  ],
   "scripts": {
-    "dev:backend": "npm run dev --workspace=apps/backend",
-    "dev:frontend": "npm run dev --workspace=apps/frontend",
-    "build": "npm run build --workspaces",
-    "test": "npm run test --workspaces --if-present",
-    "test:backend": "npm run test --workspace=apps/backend",
-    "test:frontend": "npm run test --workspace=apps/frontend",
-    "test:e2e": "npm run test:e2e --workspace=apps/frontend",
-    "lint": "npm run lint --workspaces --if-present",
-    "typecheck": "npm run typecheck --workspaces --if-present",
+    "dev:backend": "pnpm --filter @lis/backend dev",
+    "dev:frontend": "pnpm --filter @lis/frontend dev",
+    "build": "pnpm -r build",
+    "test": "pnpm -r --if-present test",
+    "test:backend": "pnpm --filter @lis/backend test",
+    "test:frontend": "pnpm --filter @lis/frontend test",
+    "test:e2e": "pnpm --filter @lis/frontend test:e2e",
+    "lint": "pnpm -r --if-present lint",
+    "typecheck": "pnpm -r --if-present typecheck",
     "db:migrate": "prisma migrate dev --schema=prisma/schema.prisma",
     "db:migrate:deploy": "prisma migrate deploy --schema=prisma/schema.prisma",
     "db:generate": "prisma generate --schema=prisma/schema.prisma",
@@ -26,14 +21,15 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.0.0",
-    "typescript-eslint": "^8.0.0",
-    "eslint": "^9.0.0",
-    "prettier": "^3.3.0",
-    "typescript": "^5.4.0",
-    "tsx": "^4.7.0",
+    "@prisma/client": "^5.13.0",
     "dotenv": "^16.4.0",
+    "eslint": "^9.0.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "prettier": "^3.3.0",
     "prisma": "^5.13.0",
-    "@prisma/client": "^5.13.0"
+    "tsx": "^4.7.0",
+    "typescript": "^5.4.0",
+    "typescript-eslint": "^8.0.0"
   },
   "engines": {
     "node": ">=20.0.0"
