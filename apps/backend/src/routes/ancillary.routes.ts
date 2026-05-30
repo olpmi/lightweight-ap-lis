@@ -4,7 +4,7 @@ import { validateBody } from '../middleware/validate.middleware.js';
 import { createAncillaryOrdersBatchSchema, updateAncillaryOrderStatusSchema } from '@lis/shared';
 import { AncillaryService } from '../services/ancillary.service.js';
 
-const router = Router();
+const router: Router = Router();
 const service = new AncillaryService();
 
 // GET /api/ancillary/queue[?statuses=PULL_BLOCK,MICROTOMY&category=IHC&categories=IHC,SPECIAL_STAIN]
@@ -66,7 +66,7 @@ router.get('/orders/block-counts', requireAuth, async (req, res, next) => {
   }
 });
 
-// POST /api/ancillary/orders  — batch creation
+// POST /api/ancillary/orders  â€” batch creation
 router.post(
   '/orders',
   requireAuth,

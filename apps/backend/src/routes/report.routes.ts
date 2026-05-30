@@ -7,7 +7,7 @@ import { prisma } from '../lib/prisma.js';
 import fs from 'fs';
 import { AppError } from '../middleware/error.middleware.js';
 
-const router = Router();
+const router: Router = Router();
 const service = new ReportService();
 
 function parseReportId(raw: string): number {

@@ -4,7 +4,7 @@ import { requireAuth } from '../middleware/auth.middleware.js';
 import { validateBody } from '../middleware/validate.middleware.js';
 import { createBlocksSchema } from '@lis/shared';
 
-const router = Router();
+const router: Router = Router();
 const service = new BlockService();
 
 // POST /api/specimens/:specimenId/blocks

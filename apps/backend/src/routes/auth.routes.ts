@@ -4,7 +4,7 @@ import { AuthService } from '../services/auth.service.js';
 import { validateBody } from '../middleware/validate.middleware.js';
 import { loginSchema } from '@lis/shared';
 
-const router = Router();
+const router: Router = Router();
 const authService = new AuthService();
 
 // Rate-limit login attempts to slow password-spray / enumeration. The cap is

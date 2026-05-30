@@ -4,7 +4,7 @@ import { validateBody } from '../middleware/validate.middleware.js';
 import { createReportTemplateSchema, updateReportTemplateSchema, REPORT_TEMPLATE_TYPES, type ReportTemplateType } from '@lis/shared';
 import { ConfigReportTemplateService } from '../services/config.reportTemplate.service.js';
 
-const router = Router();
+const router: Router = Router();
 const service = new ConfigReportTemplateService();
 
 // GET /api/config/report-templates[?type=final|preliminary|addendum|revision]

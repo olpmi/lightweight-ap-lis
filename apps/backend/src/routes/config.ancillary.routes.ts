@@ -9,7 +9,7 @@ import {
 } from '@lis/shared';
 import { ConfigAncillaryService } from '../services/config.ancillary.service.js';
 
-const router = Router();
+const router: Router = Router();
 const service = new ConfigAncillaryService();
 
 // ---------------------------------------------------------------------------

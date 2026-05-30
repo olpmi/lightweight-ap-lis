@@ -8,7 +8,7 @@ import { getTemplateDefinition, listTemplateCatalog } from '@lis/shared/template
 import { getPatientSummaryDefinition } from '@lis/shared/patient-summaries/server';
 import { AppError } from '../middleware/error.middleware.js';
 
-const router = Router();
+const router: Router = Router();
 const reportService = new ReportService();
 
 function resolveLanguage(req: Request): AppLanguageCode {

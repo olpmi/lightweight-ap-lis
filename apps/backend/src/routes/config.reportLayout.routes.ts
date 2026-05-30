@@ -5,7 +5,7 @@ import { PdfLayoutService } from '../services/pdf.layout.service.js';
 import { validateBody } from '../middleware/validate.middleware.js';
 import { requireAuth } from '../middleware/auth.middleware.js';
 
-const router = Router();
+const router: Router = Router();
 const layoutService = new ConfigReportLayoutService();
 const pdfLayoutService = new PdfLayoutService();
 
@@ -58,7 +58,7 @@ router.put('/', validateBody(upsertSchema), async (req, res, next) => {
   }
 });
 
-// POST /api/config/report-layouts/:reportType/reset  — reset to built-in default template
+// POST /api/config/report-layouts/:reportType/reset  â€” reset to built-in default template
 router.post('/:reportType/reset', async (req, res, next) => {
   try {
     const { reportType } = req.params;
@@ -72,7 +72,7 @@ router.post('/:reportType/reset', async (req, res, next) => {
   }
 });
 
-// POST /api/config/report-layouts/:reportType/preview — render a sample PDF
+// POST /api/config/report-layouts/:reportType/preview â€” render a sample PDF
 router.post('/:reportType/preview', async (req, res, next) => {
   try {
     const { reportType } = req.params;

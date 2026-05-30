@@ -9,5 +9,6 @@
       "@lis/shared": ["../../packages/shared/dist/index"]
     }
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "exclude": ["src/tests/**", "src/**/*.test.ts"]
 }

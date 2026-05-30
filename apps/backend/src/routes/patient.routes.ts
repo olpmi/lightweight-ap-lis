@@ -4,7 +4,7 @@ import { requireAuth } from '../middleware/auth.middleware.js';
 import { z } from 'zod';
 import { validateBody } from '../middleware/validate.middleware.js';
 
-const router = Router();
+const router: Router = Router();
 const service = new PatientService();
 
 const createPatientSchema = z.object({
