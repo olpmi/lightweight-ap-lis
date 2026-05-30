@@ -222,7 +222,7 @@ export default function LoginPage() {
                     label={t('login_role')}
                     value={newForm.employeeRoleId}
                     onChange={(e) => setNewForm({ ...newForm, employeeRoleId: e.target.value as number })}
-                    inputProps={{ 'data-testid': 'new-employee-role' }}
+                    data-testid="new-employee-role"
                   >
                     {roles?.map((r) => (
                       <MenuItem key={r.employeeRoleId} value={r.employeeRoleId}>
