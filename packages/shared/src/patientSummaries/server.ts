@@ -154,7 +154,11 @@ function getSourceRecords(): PatientSummarySourceRecord[] {
 
     const family = relativePath.split('/')[0] ?? match[1] ?? relativePath;
     const sourceKey = `${relativeDir}/${match[1]}`;
-    const group = groupedFiles.get(sourceKey) ?? { relativeDir, family, files: {} };
+    const group = groupedFiles.get(sourceKey) ?? {
+      relativeDir,
+      family,
+      files: {} as Partial<Record<PatientSummaryLanguageCode, string>>,
+    };
     group.files[languageCode as PatientSummaryLanguageCode] = filePath;
     groupedFiles.set(sourceKey, group);
   }

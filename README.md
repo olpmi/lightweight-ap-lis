@@ -37,7 +37,7 @@ A lightweight **Anatomic Pathology Laboratory Information System** prototype imp
 ## Prerequisites
 
 - Node.js 20+
-- pnpm 10+ (`npm install -g pnpm`)
+- npm 10+ (ships with Node 20). pnpm 10+ also works — the workspace declares both `workspaces` (npm) and `pnpm-workspace.yaml`. The commands below use npm to match CI.
 - Docker (for containerized run) or PostgreSQL 16+ (for local dev)
 
 ## Quick start — Docker Compose
@@ -136,7 +136,7 @@ docker compose --env-file .env.production -f docker-compose.prod.yml down
 ### 1. Install dependencies
 
 ```bash
-pnpm install
+npm install
 ```
 
 ### 2. Set up environment variables
@@ -150,13 +150,13 @@ cp .env.development.example .env
 
 ```bash
 # Run migrations
-pnpm run db:migrate
+npm run db:migrate
 
 # Generate the Prisma client
-pnpm run db:generate
+npm run db:generate
 
 # Seed with demo data
-pnpm run db:seed
+npm run db:seed
 ```
 
 ### 4. Start development servers
@@ -165,10 +165,10 @@ In separate terminals:
 
 ```bash
 # Terminal 1 — backend (hot reload)
-pnpm run dev:backend
+npm run dev:backend
 
 # Terminal 2 — frontend (Vite HMR)
-pnpm run dev:frontend
+npm run dev:frontend
 ```
 
 Frontend: **http://localhost:5173**  
@@ -184,6 +184,8 @@ Backend: **http://localhost:3001**
 | `NODE_ENV` | Environment | `development` |
 | `CORS_ORIGIN` | Allowed CORS origin | `http://localhost:5173` |
 | `STORAGE_PATH` | Path for generated PDFs | `./storage` |
+
+The backend exposes an unauthenticated `GET /health` endpoint (`{ "status": "ok" }`) used by Docker healthchecks and by the Playwright global setup.
 
 ## Application workflows
 
@@ -207,6 +209,7 @@ Backend: **http://localhost:3001**
 - Open a case to enter a result (diagnosis, gross, comment)
 - Sign out the report — generates a report PDF
 - Reactivate a signed-out case to create an amendment/revision
+- Concurrent edits are guarded by optimistic locking: every save sends `expectedUpdatedAt` and a stale submission surfaces a `DRAFT_STALE` toast instead of overwriting another user's work
 
 ### Query (`/query`)
 - Search by Case ID or Patient ID
@@ -238,30 +241,69 @@ Specimen codes use Excel-style progression: A → Z → AA → AZ → BA → ...
 ## Running tests
 
 ```bash
-# All tests
-pnpm test
+# All tests (unit + integration + component)
+npm test
 
 # Backend unit + integration tests only
-pnpm run test:backend
+npm run test:backend
 
 # Frontend component tests only
-pnpm run test:frontend
-
-# Playwright E2E (requires running app)
-pnpm --filter @lis/frontend run test:e2e
+npm run test:frontend
 
 # Typecheck all packages
-pnpm run typecheck
+npm run typecheck
 ```
+
+### End-to-end tests (Playwright)
+
+The E2E suite assumes the seeded demo database — in particular the
+`asmith` Pathologist account and the queues populated by `prisma/seed.ts`.
+It expects a backend on `:3001` and a frontend on `:5173`.
+
+Quick local path:
+
+```bash
+# 1. Start the full stack (backend + frontend + Postgres + seed)
+docker compose -f docker-compose.yml up --build -d
+
+# 2. Run the suite
+npm run test:e2e
+```
+
+When running outside Docker the Playwright config will auto-start the
+Vite dev server, but you must start the backend yourself first
+(`npm run dev:backend`).
+
+Override the login user with `E2E_USER=<username>` if you change the
+seed. The HTML report is written to
+`apps/frontend/playwright-report/`; raw traces and videos for failed
+tests land in `apps/frontend/test-results/`.
+
+A Playwright global setup probes `GET /health` once and fails the whole
+run fast with a clear message if the backend is unreachable, instead of
+letting every test time out individually.
+
+### Backend integration tests
+
+`apps/backend/src/tests/integration/orderWorkflow.test.ts` covers the
+full login → create order → block → slide → draft → sign-out → query
+flow against a real Postgres. It is skipped unless `DATABASE_URL` and
+`SESSION_SECRET` are set.
+
+On native Windows the Prisma client can fail SCRAM auth against a
+dockerised Postgres exposed on `localhost`; if you hit
+`Authentication failed against database server at localhost`, run the
+test inside the backend container instead — see the comment at the top
+of the test file for the exact `docker run` command.
 
 ## Database commands
 
 ```bash
-pnpm run db:migrate        # Apply pending migrations (dev)
-pnpm run db:generate       # Re-generate Prisma client after schema changes
-pnpm run db:seed           # Seed the database
-pnpm run db:studio         # Open Prisma Studio
-pnpm run db:reset          # Reset and re-seed (destructive)
+npm run db:migrate         # Apply pending migrations (dev)
+npm run db:generate        # Re-generate Prisma client after schema changes
+npm run db:seed            # Seed the database
+npm run db:studio          # Open Prisma Studio
+npm run db:reset           # Reset and re-seed (destructive)
 ```
 
 ## PDF files
