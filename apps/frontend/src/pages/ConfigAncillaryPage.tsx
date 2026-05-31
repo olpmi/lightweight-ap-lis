@@ -111,7 +111,7 @@ function OrderableDialog({ open, onClose, initial, onSave, saving, error }: Orde
                   onChange={(e) => setIsActive(e.target.checked)}
                 />
               }
-              label="Active"
+              label={t('active')}
             />
           )}
         </Stack>
@@ -242,7 +242,7 @@ function PanelDialog({ open, onClose, initial, orderables, onSave, saving, error
           {initial && (
             <FormControlLabel
               control={<Switch checked={isActive} onChange={(e) => setIsActive(e.target.checked)} />}
-              label="Active"
+              label={t('active')}
             />
           )}
         </Stack>
@@ -501,7 +501,7 @@ export default function ConfigAncillaryPage() {
                             <Stack direction="row" alignItems="center" spacing={1}>
                               <Typography variant="body2">{o.name}</Typography>
                               {!o.isActive && (
-                                <Chip label="Inactive" size="small" variant="outlined" />
+                                <Chip label={t('inactive')} size="small" variant="outlined" />
                               )}
                             </Stack>
                           </TableCell>
@@ -549,7 +549,7 @@ export default function ConfigAncillaryPage() {
             <Table size="small" component={Paper} variant="outlined">
               <TableHead>
                 <TableRow sx={{ bgcolor: 'action.hover' }}>
-                  <TableCell sx={{ fontWeight: 700 }}>Name</TableCell>
+                  <TableCell sx={{ fontWeight: 700 }}>{t('name')}</TableCell>
                   <TableCell sx={{ fontWeight: 700 }}>{t('anc_category')}</TableCell>
                   <TableCell sx={{ fontWeight: 700 }}>{t('anc_tests')}</TableCell>
                   <TableCell align="right" sx={{ width: 80 }} />
@@ -562,7 +562,7 @@ export default function ConfigAncillaryPage() {
                       <Stack direction="row" alignItems="center" spacing={1}>
                         <Typography variant="body2">{panel.name}</Typography>
                         {!panel.isActive && (
-                          <Chip label="Inactive" size="small" variant="outlined" />
+                          <Chip label={t('inactive')} size="small" variant="outlined" />
                         )}
                       </Stack>
                     </TableCell>
@@ -650,7 +650,7 @@ export default function ConfigAncillaryPage() {
         maxWidth="xs"
         fullWidth
       >
-        <DialogTitle>Confirm Delete</DialogTitle>
+        <DialogTitle>{t('confirmDelete')}</DialogTitle>
         <DialogContent>
           <Typography>Are you sure you want to delete this item?</Typography>
         </DialogContent>

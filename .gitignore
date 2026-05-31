@@ -25,3 +25,12 @@ docker/postgres-data/
 # OS
 .DS_Store
 Thumbs.db
+
+# Playwright artifacts
+apps/frontend/demo-videos/
+apps/frontend/playwright-report/
+apps/frontend/test-results/
+apps/frontend/i18n-audit.json
+apps/frontend/cookies.txt
+cookies.txt
+e2e-debug*/

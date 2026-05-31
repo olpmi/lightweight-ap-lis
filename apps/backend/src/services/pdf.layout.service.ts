@@ -25,6 +25,8 @@ export interface ReportLayoutData {
   reactivationReason?: string | null;
   signedOutBy?: string | null;
   signedOutDate?: string | null;
+  /** When true, the document is rendered as an unsigned draft preview. */
+  isDraftPreview?: boolean;
 }
 
 // ---------------------------------------------------------------------------
@@ -109,7 +111,9 @@ export const DEFAULT_REPORT_HTML_TEMPLATE = `<!DOCTYPE html>
 <body>
   <div class="header-title">Anatomic Pathology Report</div>
 
-  {{#if isPrelim}}
+  {{#if isDraftPreview}}
+    <div class="header-type prelim">Draft Preview</div>
+  {{else if isPrelim}}
     <div class="header-type prelim">Preliminary Report</div>
   {{else if isAddendum}}
     <div class="header-type addendum">Addendum Report</div>
@@ -149,9 +153,14 @@ export const DEFAULT_REPORT_HTML_TEMPLATE = `<!DOCTYPE html>
   {{/if}}
 
   <div class="signoff">
-    <div class="field-row"><span class="field-label">Signed out by:</span><span class="field-value">{{signedOutBy}}</span></div>
-    {{#if signedOutDate}}
-      <div class="field-row"><span class="field-label">Signed out on:</span><span class="field-value">{{signedOutDate}}</span></div>
+    {{#if isDraftPreview}}
+      <div class="field-row"><span class="field-label">Pathologist (preview):</span><span class="field-value">{{signedOutBy}}</span></div>
+      <div class="watermark" style="color:#994d00;font-weight:bold;">*** DRAFT PREVIEW — NOT A SIGNED REPORT ***</div>
+    {{else}}
+      <div class="field-row"><span class="field-label">Signed out by:</span><span class="field-value">{{signedOutBy}}</span></div>
+      {{#if signedOutDate}}
+        <div class="field-row"><span class="field-label">Signed out on:</span><span class="field-value">{{signedOutDate}}</span></div>
+      {{/if}}
     {{/if}}
   </div>
 
@@ -202,6 +211,7 @@ export class PdfLayoutService {
       isAddendum:  data.reportType === 'addendum',
       isRevision:  data.reportType === 'revision',
       isFinal:     data.reportType === 'final',
+      isDraftPreview: data.isDraftPreview === true,
     };
 
     const template = Handlebars.compile(htmlTemplate);
