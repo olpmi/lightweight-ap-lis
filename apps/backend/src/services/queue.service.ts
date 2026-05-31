@@ -89,11 +89,26 @@ export class QueueService {
     pageSize: number,
     search = ''
   ): Promise<{ data: object[]; total: number; page: number; pageSize: number }> {
-    // Case enters Result only once at least one ancillary order (typically H&E) is DISTRIBUTED.
+    // Case enters Result once at least one block/ancillary order has been distributed.
+    // - H&E distribution updates block.heStatus = 'DISTRIBUTED'
+    // - Other ancillary tests (IHC/SPECIAL_STAIN/HE_LEVELS) update ancillaryOrder.status
     const hasMaterials = {
-      ancillaryOrders: {
-        some: { status: 'DISTRIBUTED' as const },
-      },
+      OR: [
+        {
+          specimens: {
+            some: {
+              blocks: {
+                some: { heStatus: 'DISTRIBUTED', discarded: false },
+              },
+            },
+          },
+        },
+        {
+          ancillaryOrders: {
+            some: { status: 'DISTRIBUTED' as const },
+          },
+        },
+      ],
     };
 
     // No final signed-out report
@@ -117,7 +132,7 @@ export class QueueService {
         }
       : {};
 
-    const where = { ...hasMaterials, ...notSignedOut, ...searchFilter };
+    const where = { AND: [hasMaterials, notSignedOut, searchFilter] };
 
     const [data, total] = await Promise.all([
       prisma.order.findMany({
@@ -141,34 +156,51 @@ export class QueueService {
 
   /**
    * Histology queue:
-   *   - has at least one block with no slides
-   *   - no final signed-out report
+   *   - filtered by block heStatus
+   *   - for active statuses (MICROTOMY / SLIDE_STAIN): no final signed-out report
    */
   async getHistologyQueue(
     page: number,
     pageSize: number,
-    search = ''
+    search = '',
+    heStatus = 'MICROTOMY',
+    since?: string
   ): Promise<{ data: object[]; total: number; page: number; pageSize: number }> {
-    const hasBlocksNeedingSlides = {
+    const blockFilter: { heStatus: string; discarded: boolean; updatedAt?: { gte: Date } } = {
+      heStatus,
+      discarded: false,
+    };
+
+    // Recency filter only applies to terminal statuses (matches the ancillary queue UX)
+    const isTerminal = heStatus === 'DISTRIBUTED' || heStatus === 'CANCELLED';
+    if (isTerminal && since) {
+      const sinceDate = new Date(since);
+      if (!Number.isNaN(sinceDate.getTime())) {
+        blockFilter.updatedAt = { gte: sinceDate };
+      }
+    }
+
+    const hasMatchingBlocks = {
       specimens: {
         some: {
           blocks: {
-            some: {
-              slides: { none: {} },
-            },
+            some: blockFilter,
           },
         },
       },
     };
 
-    const notSignedOut = {
-      reports: {
-        none: {
-          isFinal: true,
-          signedOutDatetime: { not: null },
-        },
-      },
-    };
+    const activeStatuses = ['MICROTOMY', 'SLIDE_STAIN'];
+    const notSignedOut = activeStatuses.includes(heStatus)
+      ? {
+          reports: {
+            none: {
+              isFinal: true,
+              signedOutDatetime: { not: null },
+            },
+          },
+        }
+      : {};
 
     const searchFilter = search
       ? {
@@ -181,7 +213,7 @@ export class QueueService {
         }
       : {};
 
-    const where = { ...hasBlocksNeedingSlides, ...notSignedOut, ...searchFilter };
+    const where = { ...hasMatchingBlocks, ...notSignedOut, ...searchFilter };
 
     const [data, total] = await Promise.all([
       prisma.order.findMany({
@@ -197,8 +229,8 @@ export class QueueService {
               bodySite: true,
               specimenType: true,
               blocks: {
-                where: { slides: { none: {} } },
-                include: { slides: true },
+                where: blockFilter,
+                include: { slides: { where: { discarded: false }, orderBy: { slideNumber: 'asc' } } },
                 orderBy: { blockNumber: 'asc' },
               },
             },

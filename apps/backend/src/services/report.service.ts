@@ -255,11 +255,8 @@ export class ReportService {
       where: { specimen: { orderId: report.orderId }, discarded: false },
       select: {
         blockId: true,
+        heStatus: true,
         _count: { select: { slides: { where: { discarded: false } } } },
-        ancillaryOrders: {
-          where: { orderable: { category: 'HE' } },
-          select: { status: true },
-        },
       },
     });
     if (blocks.length === 0) {
@@ -269,8 +266,7 @@ export class ReportService {
       if (b._count.slides === 0) {
         throw new AppError(400, 'WORKFLOW', `Cannot sign out: block ${b.blockId} has no slides`);
       }
-      const heOrders = b.ancillaryOrders;
-      if (heOrders.length === 0 || heOrders.some((o) => o.status !== 'DISTRIBUTED')) {
+      if (b.heStatus !== 'DISTRIBUTED') {
         throw new AppError(
           400,
           'WORKFLOW',

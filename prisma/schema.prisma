@@ -154,6 +154,13 @@ model Order {
   completedDate           DateTime? @map("completed_date")
   isReactivated           Boolean   @default(false) @map("is_reactivated")
   reactivatedFromReportId BigInt?   @map("reactivated_from_report_id")
+  // Manual workflow status:
+  //   PENDING      - default; case is moving through the lab
+  //   HOLD         - paused by pathologist (awaiting info, etc.)
+  //   COMPLETED    - sign-out reached (informational)
+  //   CANCELLED    - case withdrawn / no work to do
+  //   REACTIVATED  - amended after sign-out (mirrors isReactivated)
+  status                  String    @default("PENDING") @map("status") @db.VarChar(20)
   // Pessimistic edit lock (lease-based). Held by one user at a time while they
   // are on the result page. Cleared on release or when expiresAt elapses.
   editingEmployeeId       BigInt?   @map("editing_employee_id")
@@ -203,6 +210,7 @@ model Block {
   blockNumber     Int       @map("block_number")
   createdDatetime DateTime? @map("created_datetime")
   discarded       Boolean   @default(false) @map("discarded")
+  heStatus        String    @default("MICROTOMY") @map("he_status") @db.VarChar(20)
   updatedAt       DateTime  @updatedAt @map("updated_at")
 
   specimen        Specimen         @relation(fields: [specimenId], references: [specimenId], onDelete: Cascade)

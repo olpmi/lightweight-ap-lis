@@ -45,6 +45,8 @@ export const qk = {
   },
   histologyQueue: {
     all: ['histology-queue'] as const,
+    byParams: (page: number, search: string, status: string, since: string | undefined) =>
+      ['histology-queue', page, search, status, since] as const,
   },
   ancillaryQueue: {
     all: ['ancillary-queue'] as const,

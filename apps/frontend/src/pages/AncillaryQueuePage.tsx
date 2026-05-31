@@ -139,13 +139,6 @@ function SendoutGroupRows({ orderId, caseOrders, updateMutation, statusLabel, fm
                   {t('anc_markMaterialReturned')}
                 </Button>
               )}
-              {(order.status === 'PULL_MATERIAL' || order.status === 'MATERIAL_SENT') && (
-                <Button size="small" variant="outlined" color="error"
-                  onClick={() => updateMutation.mutate({ id: order.id, status: 'CANCELLED' })}
-                  disabled={updateMutation.isPending}>
-                  {t('anc_cancel')}
-                </Button>
-              )}
               {(order.status === 'MATERIAL_RETURNED' || order.status === 'CANCELLED') && (
                 <Button size="small" variant="outlined"
                   onClick={() => updateMutation.mutate({ id: order.id, status: 'PULL_MATERIAL' })}

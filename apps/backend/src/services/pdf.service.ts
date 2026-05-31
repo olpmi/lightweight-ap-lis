@@ -279,6 +279,80 @@ export class PdfService {
     return { fileName, storagePath };
   }
 
+  /**
+   * Render a draft preview PDF from arbitrary content — does NOT persist anything.
+   * The report is labelled DRAFT PREVIEW so it is clearly distinguished from finals.
+   */
+  async generatePreviewPdf(input: {
+    orderId: string;
+    diagnosis: string;
+    comment?: string;
+    gross?: string;
+    order: OrderForPdf;
+    pathologistName?: string;
+  }): Promise<Uint8Array> {
+    const pdfDoc = await PDFDocument.create();
+    const page = pdfDoc.addPage([PAGE_WIDTH, PAGE_HEIGHT]);
+    const boldFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
+    const regularFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
+
+    let y = PAGE_HEIGHT - MARGIN;
+
+    page.drawText('ANATOMIC PATHOLOGY REPORT', { x: MARGIN, y, font: boldFont, size: 14, color: rgb(0.1, 0.1, 0.5) });
+    y -= 20;
+    page.drawText('DRAFT PREVIEW', { x: MARGIN, y, font: boldFont, size: 12, color: rgb(0.6, 0.3, 0) });
+    y -= 20;
+    page.drawText(`Case: ${formatOrderIdDisplay(input.orderId)}`, { x: MARGIN, y, font: boldFont, size: 18 });
+    y -= 28;
+    page.drawLine({ start: { x: MARGIN, y }, end: { x: PAGE_WIDTH - MARGIN, y }, thickness: 1.5 });
+    y -= 16;
+
+    y = this.drawSection(page, 'PATIENT', y, boldFont);
+    y = this.drawField(page, 'Name', `${input.order.patient.lastName}, ${input.order.patient.firstName}`, y, boldFont, regularFont);
+    y = this.drawField(page, 'Patient ID', input.order.patient.patientId, y, boldFont, regularFont);
+    y = this.drawField(page, 'DOB', input.order.patient.dateOfBirth.toISOString().split('T')[0], y, boldFont, regularFont);
+    y = this.drawField(page, 'Clinician', `${input.order.doctor.lastName}, ${input.order.doctor.firstName}`, y, boldFont, regularFont);
+    y -= 12;
+
+    if (input.order.clinicalHistory) {
+      y = this.drawSection(page, 'CLINICAL HISTORY', y, boldFont);
+      y = this.drawWrappedText(page, input.order.clinicalHistory, y, regularFont);
+      y -= 8;
+    }
+
+    if (input.gross) {
+      y = this.drawSection(page, 'GROSS DESCRIPTION', y, boldFont);
+      y = this.drawWrappedText(page, input.gross, y, regularFont);
+      y -= 8;
+    }
+
+    y = this.drawSection(page, 'DIAGNOSIS', y, boldFont);
+    y = this.drawWrappedText(page, input.diagnosis || '(not yet entered)', y, boldFont);
+    y -= 12;
+
+    if (input.comment) {
+      y = this.drawSection(page, 'COMMENT', y, boldFont);
+      y = this.drawWrappedText(page, input.comment, y, regularFont);
+      y -= 8;
+    }
+
+    y -= 20;
+    page.drawLine({ start: { x: MARGIN, y }, end: { x: PAGE_WIDTH - MARGIN, y }, thickness: 0.5 });
+    y -= 14;
+    if (input.pathologistName) {
+      y = this.drawField(page, 'Pathologist', input.pathologistName, y, boldFont, regularFont);
+    }
+    page.drawText('*** THIS IS A DRAFT PREVIEW — NOT A SIGNED REPORT ***', {
+      x: MARGIN,
+      y: MARGIN,
+      font: boldFont,
+      size: 9,
+      color: rgb(0.6, 0.3, 0),
+    });
+
+    return pdfDoc.save();
+  }
+
   async renderPatientSummaryPdf(input: PatientSummaryPdfInput): Promise<{ fileName: string; pdfBytes: Uint8Array }> {
     const pdfDoc = await PDFDocument.create();
     const page = pdfDoc.addPage([PAGE_WIDTH, PAGE_HEIGHT]);

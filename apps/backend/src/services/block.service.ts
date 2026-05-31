@@ -4,6 +4,18 @@ import { AppError } from '../middleware/error.middleware.js';
 import { generateBlockId } from '../utils/idGenerator.js';
 
 export class BlockService {
+  async updateHeStatus(blockId: string, status: string): Promise<object> {
+    const VALID = ['MICROTOMY', 'SLIDE_STAIN', 'DISTRIBUTED', 'CANCELLED'];
+    if (!VALID.includes(status)) throw new AppError(400, 'BAD_REQUEST', 'Invalid heStatus');
+
+    const block = await prisma.block.findUnique({ where: { blockId } });
+    if (!block) throw new AppError(404, 'NOT_FOUND', `Block ${blockId} not found`);
+    if (block.discarded) throw new AppError(400, 'BLOCK_DISCARDED', `Block ${blockId} is discarded`);
+
+    const updated = await prisma.block.update({ where: { blockId }, data: { heStatus: status } });
+    return updated;
+  }
+
   async discardBlock(blockId: string): Promise<object> {
     const block = await prisma.block.findUnique({ where: { blockId } });
     if (!block) throw new AppError(404, 'NOT_FOUND', `Block ${blockId} not found`);

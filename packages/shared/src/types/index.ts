@@ -54,7 +54,7 @@ export interface ReportTemplate {
   type: ReportTemplateType;
 }
 
-export type OrderStatus = 'registered' | 'in_progress' | 'signed_out' | 'reactivated';
+export type CaseStatus = 'registered' | 'in_progress' | 'signed_out' | 'reactivated';
 
 export interface Order {
   orderId: string;
@@ -66,6 +66,7 @@ export interface Order {
   completedDate?: string | null;
   isReactivated: boolean;
   reactivatedFromReportId?: number | null;
+  status?: string; // OrderStatus: PENDING | HOLD | COMPLETED | CANCELLED | REACTIVATED
   patient?: Patient;
   doctor?: Doctor;
 }
@@ -85,7 +86,9 @@ export interface Block {
   specimenId: string;
   blockNumber: number;
   createdDatetime?: string | null;
+  updatedAt?: string;
   discarded: boolean;
+  heStatus: string;
 }
 
 export interface Slide {

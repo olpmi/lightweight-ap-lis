@@ -85,6 +85,7 @@ Report behavior:
 - pathologist_employee_id is the sign-out user
 - is_amendment supported
 - supersedes_report_id links report lineage
+- orders.status is one of PENDING | HOLD | COMPLETED | CANCELLED | REACTIVATED
 - orders.is_reactivated indicates reopened case
 - orders.reactivated_from_report_id points to prior report that triggered reactivation
 - reactivation should create a new draft version, not overwrite an old final report
@@ -152,6 +153,11 @@ Processing page:
   - immediately show generated IDs
   - view existing materials
 - also provide downloadable reference strips PDF
+- the H&E worklist (and other ancillary worklists) supports a recency filter
+  (1d / 7d / 30d / All) when viewing terminal statuses (DISTRIBUTED, CANCELLED)
+  so historical entries don’t accumulate forever in the default view
+- “Add 1 slide to all” on the ancillary worklist deduplicates by blockId, so a
+  panel of N tests on the same block produces a single new slide, not N
 
 Reference strips PDF:
 - downloadable
@@ -162,7 +168,8 @@ Reference strips PDF:
 Result page:
 - paginated queue
 - queue definition: materials available but not signed out
-- “materials available” = at least one block or slide
+- “materials available” = at least one block with heStatus=DISTRIBUTED, OR
+  at least one ancillary order on the case in DISTRIBUTED
 - row click opens case-specific result page
 - page should show order/patient/clinician/specimens/materials/prior reports
 - result form fields:
@@ -171,9 +178,16 @@ Result page:
   - template
   - gross
   - pathologist
+- “Edit Order” button on the result page lets a user set order.status to
+  PENDING / HOLD / CANCELLED while the case is open
+- “Preview PDF” button on the draft toolbar renders a draft report PDF from
+  the current (unsaved) form content; result is watermarked DRAFT PREVIEW and
+  is not persisted
 
 Sign-out behavior:
 - validate required result content
+- workflow guard: every non-discarded block on the case must have
+  block.heStatus === 'DISTRIBUTED' before final sign-out is allowed
 - persist/finalize report version
 - set signed_out_datetime
 - set pathologist_employee_id from logged-in employee
@@ -187,6 +201,8 @@ Reactivate / revise / addend:
 - new draft report version created
 - amendment/addendum workflow supported
 - version history visible in UI
+- on the H&E worklist, reactivating a DISTRIBUTED block returns block.heStatus
+  literally to MICROTOMY (no auto-promote based on existing slides)
 
 Query page:
 - search by order ID or patient ID

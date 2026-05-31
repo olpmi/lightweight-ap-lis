@@ -22,8 +22,12 @@ import {
   Link,
   Tabs,
   Tab,
+  FormControl,
+  FormControlLabel,
+  Radio,
+  RadioGroup,
 } from '@mui/material';
-import { Send, Refresh, PictureAsPdf, DragIndicator, Science, ExitToApp } from '@mui/icons-material';
+import { Send, Refresh, PictureAsPdf, DragIndicator, Science, ExitToApp, Edit } from '@mui/icons-material';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useParams, useNavigate } from 'react-router-dom';
 import { orderApi, reportApi, lookupApi, ancillaryApi } from '../api';
@@ -113,6 +117,9 @@ export default function ResultCasePage() {
   };
 
   const [tab, setTab] = useState<ResultTabId>('result-entry');
+  const [editStatusOpen, setEditStatusOpen] = useState(false);
+  const [statusDraft, setStatusDraft] = useState<'PENDING' | 'HOLD' | 'CANCELLED'>('PENDING');
+  const [previewPending, setPreviewPending] = useState(false);
   const [form, setForm] = useState({
     diagnosis: '',
     comment: '',
@@ -192,6 +199,21 @@ export default function ResultCasePage() {
       ),
   });
 
+  const orderStatusMutation = useMutation({
+    mutationFn: (status: 'PENDING' | 'HOLD' | 'CANCELLED') =>
+      orderApi.updateStatus(orderId!, status),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: qk.order.byId(orderId) });
+      setEditStatusOpen(false);
+      setSuccess(t('rc_orderStatusUpdated'));
+    },
+    onError: (err: unknown) =>
+      setError(
+        (err as { response?: { data?: { error?: { message?: string } } } })?.response?.data?.error
+          ?.message ?? t('errorGeneric'),
+      ),
+  });
+
   const { data: reportingTemplates = [] } = useQuery<TemplateCatalogEntry[]>({
     queryKey: qk.templateCatalog('reporting', lang),
     queryFn: () => lookupApi.templateCatalog({ kind: 'reporting', language: lang }),
@@ -218,10 +240,7 @@ export default function ResultCasePage() {
   const allBlocksHaveSlides = allBlocks.length === 0 || allBlocks.every((b) => (b.slides?.length ?? 0) > 0);
   const allHeAncillaryDistributed =
     allBlocks.length > 0 &&
-    allBlocks.every((b) => {
-      const he = b.ancillaryOrders ?? [];
-      return he.length > 0 && he.every((o) => o.status === 'DISTRIBUTED');
-    });
+    allBlocks.every((b) => b.heStatus === 'DISTRIBUTED');
   const canSignOut = Boolean(
     form.diagnosis.trim() && form.gross.trim() && allBlocksHaveSlides && allHeAncillaryDistributed,
   );
@@ -753,6 +772,7 @@ export default function ResultCasePage() {
     registeredDate: string;
     clinicalHistory?: string;
     isReactivated: boolean;
+    status?: import('@lis/shared').OrderStatus;
     patient: { lastName: string; firstName: string; patientId: string; dateOfBirth: string; sex: string };
     doctor: { lastName: string; firstName: string };
   } | undefined;
@@ -797,6 +817,28 @@ export default function ResultCasePage() {
               {isSignedOut && <Chip label={`${t('rc_signedOut')} v${latestFinal!.versionNumber}`} color="success" size="small" />}
               {latestDraft && <Chip label={`${t('rc_draft')} v${latestDraft.versionNumber}`} size="small" />}
               {order.caseType && <Chip label={tCaseType(order.caseType)} variant="outlined" size="small" />}
+              {order.status && order.status !== 'PENDING' && (
+                <Chip
+                  label={t(`rc_orderStatus_${order.status}` as Parameters<typeof t>[0])}
+                  color={order.status === 'HOLD' ? 'warning' : order.status === 'CANCELLED' ? 'error' : 'default'}
+                  size="small"
+                />
+              )}
+              <Button
+                size="small"
+                variant="outlined"
+                startIcon={<Edit />}
+                onClick={() => {
+                  const current = order.status;
+                  setStatusDraft(
+                    current === 'HOLD' || current === 'CANCELLED' ? current : 'PENDING'
+                  );
+                  setEditStatusOpen(true);
+                }}
+                disabled={isLockedByOther}
+              >
+                {t('rc_editOrder')}
+              </Button>
             </Box>
             <Typography variant="body1" fontWeight={600}>
               {order.patient.lastName}, {order.patient.firstName}
@@ -911,6 +953,31 @@ export default function ResultCasePage() {
                 )}
                 <Button
                   variant="outlined"
+                  size="small"
+                  startIcon={previewPending ? <CircularProgress size={14} /> : <PictureAsPdf />}
+                  disabled={previewPending || isLockedByOther}
+                  onClick={async () => {
+                    if (!orderId) return;
+                    setPreviewPending(true);
+                    try {
+                      await orderApi.previewReportPdf(orderId, {
+                        diagnosis: form.diagnosis,
+                        comment: form.comment,
+                        gross: form.gross,
+                        pathologistName: user?.userName,
+                      });
+                    } catch {
+                      setError(t('errorGeneric'));
+                    } finally {
+                      setPreviewPending(false);
+                    }
+                  }}
+                  data-testid="preview-report-pdf-btn"
+                >
+                  {t('rc_previewPdf')}
+                </Button>
+                <Button
+                  variant="outlined"
                   color="secondary"
                   disabled={!canSignOut || signPrelimMutation.isPending || isLockedByOther}
                   onClick={() => setSignPrelimDialogOpen(true)}
@@ -1017,7 +1084,7 @@ export default function ResultCasePage() {
       {/* ── Ancillary tab ──────────────────────────────────────────────────────── */}
       {tab === 'ancillary' && (
         <ResultAncillaryTab
-          ancillaryOrders={ancillaryOrders}
+          ancillaryOrders={ancillaryOrders.filter((o) => o.orderable?.category !== 'HE')}
           t={t as unknown as (key: string) => string}
           onOrderNew={() => {
             setAncillaryPreselectedBlock(undefined);
@@ -1136,6 +1203,33 @@ export default function ResultCasePage() {
       </Dialog>
 
       {/* Navigation guard dialog handled by NavigationGuardProvider */}
+
+      {/* Edit Order status dialog */}
+      <Dialog open={editStatusOpen} onClose={() => setEditStatusOpen(false)} maxWidth="xs" fullWidth>
+        <DialogTitle>{t('rc_editOrder')}</DialogTitle>
+        <DialogContent>
+          <FormControl>
+            <RadioGroup
+              value={statusDraft}
+              onChange={(e) => setStatusDraft(e.target.value as 'PENDING' | 'HOLD' | 'CANCELLED')}
+            >
+              <FormControlLabel value="PENDING" control={<Radio />} label={t('rc_orderStatus_PENDING')} />
+              <FormControlLabel value="HOLD" control={<Radio />} label={t('rc_orderStatus_HOLD')} />
+              <FormControlLabel value="CANCELLED" control={<Radio />} label={t('rc_orderStatus_CANCELLED')} />
+            </RadioGroup>
+          </FormControl>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setEditStatusOpen(false)}>{t('cancel')}</Button>
+          <Button
+            variant="contained"
+            disabled={orderStatusMutation.isPending}
+            onClick={() => orderStatusMutation.mutate(statusDraft)}
+          >
+            {orderStatusMutation.isPending ? <CircularProgress size={20} /> : t('save')}
+          </Button>
+        </DialogActions>
+      </Dialog>
 
       {/* Ancillary order dialog */}
       {ancillaryDialogOpen && (

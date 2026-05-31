@@ -144,24 +144,12 @@ describe.skipIf(!hasDb)('Order → sign-out workflow', () => {
     expect(slideRes.status).toBe(201);
     expect(slideRes.body.data).toHaveLength(1);
 
-    // 4b. Block creation auto-creates an HE ancillary order in MICROTOMY.
-    // The sign-out workflow guard requires every HE ancillary to be DISTRIBUTED,
-    // so advance it: MICROTOMY → SLIDE_STAIN → DISTRIBUTED.
-    const heOrders = await prisma.ancillaryOrder.findMany({
-      where: { blockId, orderable: { category: 'HE' } },
-      select: { id: true },
-    });
-    expect(heOrders.length).toBeGreaterThan(0);
-    for (const he of heOrders) {
-      const stain = await agent
-        .patch(`/api/ancillary/orders/${he.id}/status`)
-        .send({ status: 'SLIDE_STAIN' });
-      expect(stain.status).toBe(200);
-      const dist = await agent
-        .patch(`/api/ancillary/orders/${he.id}/status`)
-        .send({ status: 'DISTRIBUTED' });
-      expect(dist.status).toBe(200);
-    }
+    // 4b. Sign-out workflow guard requires block.heStatus === 'DISTRIBUTED'.
+    // Advance via the dedicated H&E status endpoint.
+    const heStatusRes = await agent
+      .patch(`/api/blocks/${blockId}/he-status`)
+      .send({ status: 'DISTRIBUTED' });
+    expect(heStatusRes.status).toBe(200);
 
     // 5. Result queue should now include the order (has materials, not signed out)
     const resultBefore = await agent.get('/api/orders/result-queue').query({

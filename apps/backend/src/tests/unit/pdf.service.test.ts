@@ -227,3 +227,40 @@ describe('PdfService.renderPatientSummaryPdf', () => {
     await assertWellFormedPdf(out.pdfBytes);
   });
 });
+
+describe('PdfService.generatePreviewPdf', () => {
+  it('returns structurally valid PDF bytes without writing to disk and includes the DRAFT PREVIEW marker', async () => {
+    const svc = new PdfService();
+    const before = fs.readdirSync(path.join(tmpDir, 'generated-pdfs')).length;
+
+    const bytes = await svc.generatePreviewPdf({
+      orderId: 'SU260000123',
+      diagnosis: 'Benign reactive changes.',
+      comment: 'No malignancy identified.',
+      gross: 'Single fragment 1.0 cm.',
+      order: fakeOrder,
+      pathologistName: 'House, Gregory',
+    });
+
+    await assertWellFormedPdf(bytes);
+
+    const after = fs.readdirSync(path.join(tmpDir, 'generated-pdfs')).length;
+    expect(after).toBe(before);
+
+    const text = await tryExtractText(bytes);
+    if (text !== null) {
+      expect(text).toMatch(/DRAFT PREVIEW/i);
+      expect(text).toMatch(/Benign reactive changes/);
+    }
+  });
+
+  it('renders a placeholder when diagnosis is empty', async () => {
+    const svc = new PdfService();
+    const bytes = await svc.generatePreviewPdf({
+      orderId: 'SU260000123',
+      diagnosis: '',
+      order: fakeOrder,
+    });
+    await assertWellFormedPdf(bytes);
+  });
+});
