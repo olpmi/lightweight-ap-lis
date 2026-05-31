@@ -53,6 +53,9 @@ export type AncillaryOrderStatus = (typeof ANCILLARY_ORDER_STATUSES)[number];
 export const HISTOLOGY_ORDER_STATUSES = ['PULL_BLOCK', 'MICROTOMY', 'SLIDE_STAIN', 'DISTRIBUTED', 'CANCELLED'] as const;
 export const SENDOUT_ORDER_STATUSES = ['PULL_MATERIAL', 'MATERIAL_SENT', 'MATERIAL_RETURNED', 'CANCELLED'] as const;
 
+export const ORDER_STATUSES = ['PENDING', 'HOLD', 'COMPLETED', 'CANCELLED', 'REACTIVATED'] as const;
+export type OrderStatus = (typeof ORDER_STATUSES)[number];
+
 export const CYTOLOGY_SITE_HIERARCHY: Record<string, readonly string[]> = {
   'GYN Cytology (Pap smears)': [],
   'Fine Needle Aspiration (FNA)': ['Lymph node', 'Thyroid', 'Breast', 'Salivary gland', 'Soft tissue'],

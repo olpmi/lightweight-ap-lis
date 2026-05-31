@@ -11,6 +11,16 @@ export class SlideService {
     if (slide.discarded) throw new AppError(400, 'ALREADY_DISCARDED', `Slide ${slideId} is already discarded`);
 
     await prisma.slide.update({ where: { slideId }, data: { discarded: true } });
+
+    // If all non-discarded slides are now gone, revert heStatus to MICROTOMY.
+    const remaining = await prisma.slide.count({ where: { blockId, discarded: false } });
+    if (remaining === 0) {
+      await prisma.block.updateMany({
+        where: { blockId, heStatus: 'SLIDE_STAIN' },
+        data: { heStatus: 'MICROTOMY' },
+      });
+    }
+
     return { slideId, discarded: true };
   }
 
@@ -48,6 +58,7 @@ export class SlideService {
             });
             created.push(slide);
           }
+
           return created;
         },
         { isolationLevel: Prisma.TransactionIsolationLevel.Serializable },

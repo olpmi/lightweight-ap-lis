@@ -176,10 +176,17 @@ export const orderApi = {
       .get<PaginatedResult<QueueOrder>>(`/orders/result-queue?page=${page}&pageSize=${pageSize}&search=${encodeURIComponent(search)}`)
       .then((r) => r.data),
 
-  histologyQueue: (page = 1, pageSize = 50, search = ''): Promise<PaginatedResult<HistologyQueueOrder>> =>
-    apiClient
-      .get<PaginatedResult<HistologyQueueOrder>>(`/orders/histology-queue?page=${page}&pageSize=${pageSize}&search=${encodeURIComponent(search)}`)
-      .then((r) => r.data),
+  histologyQueue: (page = 1, pageSize = 50, search = '', status = 'MICROTOMY', since?: string): Promise<PaginatedResult<HistologyQueueOrder>> => {
+    const qs = new URLSearchParams();
+    qs.set('page', String(page));
+    qs.set('pageSize', String(pageSize));
+    qs.set('search', search);
+    qs.set('heStatus', status);
+    if (since) qs.set('since', since);
+    return apiClient
+      .get<PaginatedResult<HistologyQueueOrder>>(`/orders/histology-queue?${qs.toString()}`)
+      .then((r) => r.data);
+  },
 
   materials: (orderId: string): Promise<{ data: OrderMaterials }> =>
     apiClient.get<{ data: OrderMaterials }>(`/orders/${orderId}/materials`).then((r) => r.data),
@@ -187,8 +194,28 @@ export const orderApi = {
   worksheetPdfUrl: (orderId: string) => `/api/orders/${orderId}/worksheet-pdf`,
   referenceStripsPdfUrl: (orderId: string) => `/api/orders/${orderId}/reference-strips-pdf`,
 
+  previewReportPdf: async (
+    orderId: string,
+    payload: { diagnosis: string; comment?: string; gross?: string; pathologistName?: string },
+  ): Promise<void> => {
+    const response = await apiClient.post<Blob>(
+      `/orders/${orderId}/preview-report-pdf`,
+      payload,
+      { responseType: 'blob' },
+    );
+    const url = URL.createObjectURL(new Blob([response.data], { type: 'application/pdf' }));
+    window.open(url, '_blank');
+    // Revoke after a short delay to free memory once the tab has had time to load.
+    setTimeout(() => URL.revokeObjectURL(url), 60_000);
+  },
+
   updateClinicalHistory: (orderId: string, clinicalHistory: string | null): Promise<{ data: Order }> =>
     apiClient.patch<{ data: Order }>(`/orders/${orderId}/clinical-history`, { clinicalHistory }).then((r) => r.data),
+
+  updateStatus: (orderId: string, status: string): Promise<{ success: boolean; data: { status: string } }> =>
+    apiClient
+      .patch<{ success: boolean; data: { status: string } }>(`/orders/${orderId}/status`, { status })
+      .then((r) => r.data),
 
   // --- Edit lock --------------------------------------------------------
   acquireLock: (orderId: string): Promise<OrderLockState> =>
@@ -230,6 +257,8 @@ export const blockApi = {
         opts?.silentConflict ? { headers: { 'x-silent-conflict': '1' } } : undefined,
       )
       .then((r) => r.data.data),
+  updateHeStatus: (blockId: string, status: string): Promise<Block> =>
+    apiClient.patch<{ data: Block }>(`/blocks/${blockId}/he-status`, { status }).then((r) => r.data.data),
   discardBlock: (blockId: string): Promise<void> =>
     apiClient.patch(`/blocks/${blockId}/discard`).then(() => undefined),
   discardSlide: (blockId: string, slideId: string): Promise<void> =>

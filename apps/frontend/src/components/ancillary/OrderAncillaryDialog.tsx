@@ -123,6 +123,23 @@ export default function OrderAncillaryDialog({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeBlockIds]);
 
+  // Auto-include H&E Levels for every active block whenever the user is on the
+  // HE_LEVELS tab and at least one block is selected. The dedicated checkbox UI
+  // was removed; presence of the tab + active blocks is itself the consent.
+  useEffect(() => {
+    if (!heLevelsOrderable || selectedCategory !== 'HE_LEVELS' || activeBlockIds.size === 0) return;
+    const id = heLevelsOrderable.id;
+    setOrderedItems((prev) => {
+      const missing = [...activeBlockIds].filter(
+        (blockId) => !prev.some((i) => i.blockId === blockId && i.orderableId === id),
+      );
+      if (missing.length === 0) return prev;
+      return [...prev, ...missing.map((blockId) => ({ blockId, orderableId: id, levelCount: levelCountDraft }))];
+    });
+  // levelCountDraft intentionally omitted: we don't want to add new rows when the user just changes the count.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeBlockIds, selectedCategory, heLevelsOrderable]);
+
   // --- Derived check states ---
 
   const testCheckState = useCallback(
@@ -138,11 +155,6 @@ export default function OrderAncillaryDialog({
       return 'unchecked';
     },
     [activeBlockIds, orderedItems],
-  );
-
-  const heCheckState = useMemo(
-    () => (heLevelsOrderable ? testCheckState(heLevelsOrderable.id) : ('unchecked' as const)),
-    [heLevelsOrderable, testCheckState],
   );
 
   const tabCount = (cat: AncillaryCategory) => {
@@ -188,26 +200,6 @@ export default function OrderAncillaryDialog({
               !prev.some((i) => i.blockId === blockId && i.orderableId === orderableId),
           )
           .map((blockId) => ({ blockId, orderableId }));
-        return [...prev, ...toAdd];
-      });
-    }
-  };
-
-  const toggleHe = () => {
-    if (!heLevelsOrderable || activeBlockIds.size === 0) return;
-    const id = heLevelsOrderable.id;
-    const allHave = [...activeBlockIds].every((blockId) =>
-      orderedItems.some((i) => i.blockId === blockId && i.orderableId === id),
-    );
-    if (allHave) {
-      setOrderedItems((prev) =>
-        prev.filter((i) => !(activeBlockIds.has(i.blockId) && i.orderableId === id)),
-      );
-    } else {
-      setOrderedItems((prev) => {
-        const toAdd = [...activeBlockIds]
-          .filter((blockId) => !prev.some((i) => i.blockId === blockId && i.orderableId === id))
-          .map((blockId) => ({ blockId, orderableId: id, levelCount: levelCountDraft }));
         return [...prev, ...toAdd];
       });
     }
@@ -432,31 +424,19 @@ export default function OrderAncillaryDialog({
           {/* H&E Levels */}
           {selectedCategory === 'HE_LEVELS' && !noMaterialActive && (
             <Stack spacing={1.5}>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={heCheckState === 'checked'}
-                    indeterminate={heCheckState === 'indeterminate'}
-                    onChange={toggleHe}
-                  />
-                }
-                label={t('anc_heInclude')}
+              <TextField
+                label={t('anc_levelCount')}
+                type="number"
+                size="small"
+                value={levelCountDraft}
+                onChange={(e) => {
+                  const n = Math.max(1, Math.min(20, parseInt(e.target.value, 10) || 1));
+                  setLevelCountDraft(n);
+                  setLevelCountForActive(n);
+                }}
+                inputProps={{ min: 1, max: 20 }}
+                sx={{ width: 160 }}
               />
-              {heCheckState !== 'unchecked' && (
-                <TextField
-                  label={t('anc_levelCount')}
-                  type="number"
-                  size="small"
-                  value={levelCountDraft}
-                  onChange={(e) => {
-                    const n = Math.max(1, Math.min(20, parseInt(e.target.value, 10) || 1));
-                    setLevelCountDraft(n);
-                    setLevelCountForActive(n);
-                  }}
-                  inputProps={{ min: 1, max: 20 }}
-                  sx={{ width: 160 }}
-                />
-              )}
               <TextField
                 label={t('anc_notes')}
                 size="small"

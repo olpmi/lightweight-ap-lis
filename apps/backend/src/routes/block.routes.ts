@@ -19,6 +19,16 @@ router.post('/:blockId/slides', requireAuth, validateBody(createSlidesSchema), a
   }
 });
 
+// PATCH /api/blocks/:blockId/he-status
+router.patch('/:blockId/he-status', requireAuth, async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const data = await blockService.updateHeStatus(req.params.blockId, req.body.status);
+    res.json({ data });
+  } catch (err) {
+    next(err);
+  }
+});
+
 // PATCH /api/blocks/:blockId/discard
 router.patch('/:blockId/discard', requireAuth, async (req: Request, res: Response, next: NextFunction) => {
   try {

@@ -37,7 +37,9 @@ router.get('/histology-queue', requireAuth, async (req: Request, res: Response, 
     const page = parseInt(String(req.query.page ?? '1'));
     const pageSize = parseInt(String(req.query.pageSize ?? '50'));
     const search = String(req.query.search ?? '');
-    const data = await queueService.getHistologyQueue(page, pageSize, search);
+    const heStatus = String(req.query.heStatus ?? 'MICROTOMY');
+    const since = req.query.since ? String(req.query.since) : undefined;
+    const data = await queueService.getHistologyQueue(page, pageSize, search, heStatus, since);
     res.json(data);
   } catch (err) {
     next(err);
@@ -102,6 +104,25 @@ router.patch('/:orderId/clinical-history', requireAuth, async (req: Request, res
       data: { clinicalHistory: clinicalHistory ?? null },
     });
     res.json({ success: true });
+  } catch (err) {
+    next(err);
+  }
+});
+
+// PATCH /api/orders/:orderId/status
+router.patch('/:orderId/status', requireAuth, async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { status } = req.body as { status?: string };
+    const VALID = ['PENDING', 'HOLD', 'COMPLETED', 'CANCELLED', 'REACTIVATED'];
+    if (!status || !VALID.includes(status)) {
+      res.status(400).json({ error: { code: 'BAD_REQUEST', message: 'Invalid status' } });
+      return;
+    }
+    const updated = await prisma.order.update({
+      where: { orderId: req.params.orderId },
+      data: { status },
+    });
+    res.json({ success: true, data: { status: updated.status } });
   } catch (err) {
     next(err);
   }
@@ -206,6 +227,41 @@ router.get('/:orderId/reference-strips-pdf', requireAuth, async (req: Request, r
     res.setHeader('Content-Type', 'application/pdf');
     res.setHeader('Content-Disposition', `attachment; filename="${fileName}"`);
     fs.createReadStream(storagePath).pipe(res);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// POST /api/orders/:orderId/preview-report-pdf
+// Body: { diagnosis, comment?, gross?, pathologistName? }
+// Returns the PDF bytes inline — no DB writes.
+router.post('/:orderId/preview-report-pdf', requireAuth, async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const order = await prisma.order.findUniqueOrThrow({
+      where: { orderId: req.params.orderId },
+      include: {
+        patient: true,
+        doctor: true,
+        specimens: { include: { bodySite: true, specimenType: true } },
+      },
+    });
+    const { diagnosis = '', comment, gross, pathologistName } = req.body as {
+      diagnosis?: string;
+      comment?: string;
+      gross?: string;
+      pathologistName?: string;
+    };
+    const pdfBytes = await pdfService.generatePreviewPdf({
+      orderId: order.orderId,
+      diagnosis,
+      comment,
+      gross,
+      order,
+      pathologistName,
+    });
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', `inline; filename="${order.orderId}-draft-preview.pdf"`);
+    res.send(Buffer.from(pdfBytes));
   } catch (err) {
     next(err);
   }

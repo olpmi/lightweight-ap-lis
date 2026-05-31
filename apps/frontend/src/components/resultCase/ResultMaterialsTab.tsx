@@ -10,7 +10,7 @@ import {
   Typography,
 } from '@mui/material';
 import { Biotech, ExpandMore } from '@mui/icons-material';
-import { formatMaterialIdDisplay, type AncillaryOrderStatus, type OrderMaterials } from '@lis/shared';
+import { formatMaterialIdDisplay, type OrderMaterials } from '@lis/shared';
 import type { TranslationFn } from './types';
 
 interface Props {
@@ -21,27 +21,21 @@ interface Props {
   onOrderAncillary: (blockId: string) => void;
 }
 
-type SlideStatus = 'MICROTOMY' | 'SLIDE_STAIN' | 'DISTRIBUTED';
+type SlideStatus = 'MICROTOMY' | 'SLIDE_STAIN' | 'DISTRIBUTED' | 'CANCELLED';
 
-const SLIDE_STATUS_COLOR: Record<SlideStatus, 'warning' | 'info' | 'success'> = {
+const SLIDE_STATUS_COLOR: Record<SlideStatus, 'warning' | 'info' | 'success' | 'error'> = {
   MICROTOMY: 'warning',
   SLIDE_STAIN: 'info',
   DISTRIBUTED: 'success',
+  CANCELLED: 'error',
 };
 
-function deriveSlideStatus(
-  ancillaryOrders: Array<{ status: AncillaryOrderStatus }> | undefined,
-): SlideStatus {
-  // Slide status mirrors the parent block's HE ancillary order (the histology
-  // workflow). The backend filters `ancillaryOrders` to category HE in
-  // queue.service.getOrderMaterials, and block creation auto-creates exactly
-  // one HE order per block, so we read the first non-cancelled entry.
-  const he = ancillaryOrders?.find((o) => o.status !== 'CANCELLED');
-  switch (he?.status) {
+function normalizeStatus(heStatus: string): SlideStatus {
+  switch (heStatus) {
     case 'SLIDE_STAIN':
-      return 'SLIDE_STAIN';
     case 'DISTRIBUTED':
-      return 'DISTRIBUTED';
+    case 'CANCELLED':
+      return heStatus;
     default:
       return 'MICROTOMY';
   }
@@ -71,7 +65,7 @@ export default function ResultMaterialsTab({
           </AccordionSummary>
           <AccordionDetails>
             {spec.blocks.map((block) => {
-              const slideStatus = deriveSlideStatus(block.ancillaryOrders);
+              const slideStatus = normalizeStatus(block.heStatus);
               const slideStatusLabel = t(`anc_status_${slideStatus}`);
               const slideStatusColor = SLIDE_STATUS_COLOR[slideStatus];
               return (

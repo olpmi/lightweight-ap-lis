@@ -70,7 +70,7 @@ describe.skipIf(!hasDb)('Concurrency / conflict paths', () => {
 
   /**
    * Build a fresh case ready for sign-out: 1 specimen → 1 block → 1 slide,
-   * with the auto-created HE ancillary advanced to DISTRIBUTED. Returns the
+   * with the block's heStatus advanced to DISTRIBUTED. Returns the
    * created reportId + its updatedAt so callers can exercise optimistic
    * locking. Patient + doctor rows are auto-created by the order service;
    * we capture the IDs so afterAll() can clean up.
@@ -114,19 +114,11 @@ describe.skipIf(!hasDb)('Concurrency / conflict paths', () => {
     const slideRes = await agent.post(`/api/blocks/${blockId}/slides`).send({ count: 1 });
     expect(slideRes.status).toBe(201);
 
-    // Block creation auto-creates an HE ancillary in MICROTOMY. Advance it to
-    // DISTRIBUTED so signOut's workflow guard passes.
-    const heOrders = await prisma.ancillaryOrder.findMany({
-      where: { blockId, orderable: { category: 'HE' } },
-      select: { id: true },
-    });
-    expect(heOrders.length).toBeGreaterThan(0);
-    for (const he of heOrders) {
-      const stain = await agent.patch(`/api/ancillary/orders/${he.id}/status`).send({ status: 'SLIDE_STAIN' });
-      expect(stain.status).toBe(200);
-      const dist = await agent.patch(`/api/ancillary/orders/${he.id}/status`).send({ status: 'DISTRIBUTED' });
-      expect(dist.status).toBe(200);
-    }
+    // Sign-out workflow guard requires block.heStatus === 'DISTRIBUTED'.
+    const heStatusRes = await agent
+      .patch(`/api/blocks/${blockId}/he-status`)
+      .send({ status: 'DISTRIBUTED' });
+    expect(heStatusRes.status).toBe(200);
 
     const draftRes = await agent.post(`/api/orders/${orderId}/reports/draft`).send({
       diagnosis: 'Diagnosis A.',

@@ -31,7 +31,8 @@ import {
 import { KeyboardArrowDown, KeyboardArrowRight, Search, Delete } from '@mui/icons-material';
 import { useQuery, useMutation, useQueryClient, keepPreviousData } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import { ancillaryApi, blockApi } from '../api';
+import { ancillaryApi, blockApi, orderApi } from '../api';
+import type { HistologyQueueOrder } from '../api';
 import { qk } from '../api/queryKeys';
 import { useLanguage } from '../hooks/useLanguage';
 import { type AncillaryOrderStatus, type AncillaryOrder, type AncillaryCategory } from '@lis/shared';
@@ -156,10 +157,6 @@ function HistGroupRowsImpl({
                 onClick={() => bulkAdvance(caseOrders)}>
                 {bulkNextLabel(caseOrders)}
               </Button>
-              <Button size="small" variant="outlined" color="error" disabled={bulkPending || updateMutation.isPending}
-                onClick={() => bulkCancel(caseOrders)}>
-                {t('anc_cancelAll')}
-              </Button>
             </Stack>
           )}
         </TableCell>
@@ -269,13 +266,6 @@ function HistGroupRowsImpl({
                   onClick={() => updateMutation.mutate({ id: order.id, status: 'DISTRIBUTED' })}
                   disabled={updateMutation.isPending}>
                   {t('anc_markDistributed')}
-                </Button>
-              )}
-              {(order.status === 'PULL_BLOCK' || order.status === 'MICROTOMY' || order.status === 'SLIDE_STAIN') && (
-                <Button size="small" variant="outlined" color="error"
-                  onClick={() => updateMutation.mutate({ id: order.id, status: 'CANCELLED' })}
-                  disabled={updateMutation.isPending}>
-                  {t('anc_cancel')}
                 </Button>
               )}
               {(order.status === 'DISTRIBUTED' || order.status === 'CANCELLED') && (
@@ -407,10 +397,18 @@ function AncillaryCaseTable({ category }: { category: AncillaryCategory }) {
   const bulkAddSlides = async (caseOrders: AncillaryOrder[]) => {
     const targets = caseOrders.filter((o) => o.status === 'MICROTOMY');
     if (targets.length === 0) return;
+    // Deduplicate by blockId so a panel with N tests on the same block
+    // only creates 1 slide per block, not N.
+    const seen = new Set<string>();
+    const deduped = targets.filter((o) => {
+      if (seen.has(o.blockId)) return false;
+      seen.add(o.blockId);
+      return true;
+    });
     setBulkPending(true);
     let failures = 0;
     try {
-      for (const o of targets) {
+      for (const o of deduped) {
         const count = slideCounts[o.blockId] ?? (o.levelCount ?? 1);
         try {
           await createSlidesWithRetry(o.blockId, count);
@@ -629,7 +627,384 @@ function AncillaryCaseTable({ category }: { category: AncillaryCategory }) {
   );
 }
 
-// ─── Main page ───────────────────────────────────────────────────────────────
+// ─── H&E worklist (block-creation driven, slide-status driven) ───────────────
+
+type HEStatus = 'MICROTOMY' | 'SLIDE_STAIN' | 'DISTRIBUTED' | 'CANCELLED';
+
+interface HECaseRowsProps {
+  order: HistologyQueueOrder;
+  statusFilter: HEStatus;
+  slideCounts: Record<string, number>;
+  setSlideCounts: React.Dispatch<React.SetStateAction<Record<string, number>>>;
+  createSlidesMutation: { mutate: (args: { blockId: string; count: number }) => void; mutateAsync: (args: { blockId: string; count: number }) => Promise<unknown>; isPending: boolean };
+  updateHeStatusMutation: { mutate: (args: { blockId: string; status: HEStatus }) => void; isPending: boolean };
+  navigate: ReturnType<typeof useNavigate>;
+  t: TFn;
+}
+
+function HECaseRowsImpl({
+  order,
+  statusFilter,
+  slideCounts,
+  setSlideCounts,
+  createSlidesMutation,
+  updateHeStatusMutation,
+  navigate,
+  t,
+}: HECaseRowsProps) {
+  const [open, setOpen] = useState(false);
+  const caseBlocks = order.specimens.flatMap((spec) =>
+    spec.blocks.map((block) => ({ block, spec })),
+  );
+  const patientName = `${order.patient.lastName}, ${order.patient.firstName}`;
+
+  const fmtDateTime = (iso: string | null | undefined) => {
+    if (!iso) return null;
+    return new Date(iso).toLocaleString(undefined, { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+  };
+
+  const bulkCut = async () => {
+    for (const { block } of caseBlocks) {
+      try {
+        await createSlidesMutation.mutateAsync({ blockId: block.blockId, count: slideCounts[block.blockId] ?? 1 });
+      } catch { /* individual failures handled by onError */ }
+    }
+  };
+
+  return (
+    <>
+      {/* Group header row */}
+      <TableRow
+        sx={{ bgcolor: 'action.hover', cursor: 'pointer', '&:hover': { bgcolor: 'action.selected' } }}
+        onClick={() => setOpen((v) => !v)}
+      >
+        <TableCell sx={{ py: 0.5 }}>
+          <IconButton size="small" tabIndex={-1}>
+            {open ? <KeyboardArrowDown fontSize="small" /> : <KeyboardArrowRight fontSize="small" />}
+          </IconButton>
+        </TableCell>
+        <TableCell colSpan={2} sx={{ py: 0.5 }}>
+          <Stack direction="row" spacing={1} alignItems="center">
+            <Chip
+              label={formatOrderIdDisplay(order.orderId)}
+              color="primary"
+              size="small"
+              sx={{ cursor: 'pointer' }}
+              onClick={(e) => { e.stopPropagation(); navigate(`/processing/${order.orderId}`); }}
+            />
+            <Typography variant="body2" fontWeight={600}>{patientName}</Typography>
+            <Chip label={`${caseBlocks.length}`} size="small" variant="outlined" />
+          </Stack>
+        </TableCell>
+        <TableCell />
+        <TableCell />
+        <TableCell align="right" sx={{ py: 0.5 }} onClick={(e) => e.stopPropagation()}>
+          {caseBlocks.length > 0 && (
+            <Stack direction="row" spacing={0.5} justifyContent="flex-end">
+              {statusFilter === 'MICROTOMY' && (
+                <>
+                  <Button size="small" variant="outlined" disabled={createSlidesMutation.isPending}
+                    onClick={bulkCut}>
+                    {t('anc_addSlidesToAll')}
+                  </Button>
+                  <Button size="small" variant="outlined" color="info" disabled={updateHeStatusMutation.isPending}
+                    onClick={() => caseBlocks.forEach(({ block }) =>
+                      updateHeStatusMutation.mutate({ blockId: block.blockId, status: 'SLIDE_STAIN' }))}>
+                    {t('anc_markSlideStain')}
+                  </Button>
+                </>
+              )}
+              {statusFilter === 'SLIDE_STAIN' && (
+                <Button size="small" variant="outlined" disabled={updateHeStatusMutation.isPending}
+                  onClick={() => caseBlocks.forEach(({ block }) =>
+                    updateHeStatusMutation.mutate({ blockId: block.blockId, status: 'DISTRIBUTED' }))}>
+                  {t('anc_markDistributed')}
+                </Button>
+              )}
+            </Stack>
+          )}
+        </TableCell>
+      </TableRow>
+
+      {/* Detail rows */}
+      {caseBlocks.map(({ block, spec }) => (
+        <TableRow key={block.blockId} sx={{ display: open ? undefined : 'none' }}>
+          <TableCell />
+          <TableCell>
+            <Chip label={formatMaterialIdDisplay(block.blockId)} size="small" variant="outlined" />
+          </TableCell>
+          <TableCell>
+            <Typography variant="body2">H&amp;E</Typography>
+            <Typography variant="caption" color="text.secondary">
+              {spec.bodySite?.bodySiteName ?? ''}
+              {spec.specimenType ? ` · ${spec.specimenType.specimenTypeName}` : ''}
+            </Typography>
+          </TableCell>
+          <TableCell>
+            <Chip
+              label={t(`anc_status_${block.heStatus}` as Parameters<typeof t>[0])}
+              color={HIST_STATUS_COLORS[block.heStatus as AncillaryOrderStatus]}
+              size="small"
+            />
+            <Typography variant="caption" display="block" color="text.secondary" mt={0.25}>
+              {fmtDateTime(block.updatedAt ?? block.createdDatetime)}
+            </Typography>
+          </TableCell>
+          {statusFilter === 'MICROTOMY' ? (
+            <TableCell>
+              <Stack direction="column" spacing={0.5}>
+                <Stack direction="row" spacing={0.5} alignItems="center" flexWrap="wrap">
+                  <Chip
+                    label={block.slides.length}
+                    size="small"
+                    color={block.slides.length > 0 ? 'success' : 'default'}
+                    variant={block.slides.length > 0 ? 'filled' : 'outlined'}
+                  />
+                  {block.slides.map((sl) => (
+                    <Chip key={sl.slideId} label={formatMaterialIdDisplay(sl.slideId)} size="small" variant="outlined" />
+                  ))}
+                </Stack>
+                <Stack direction="row" spacing={0.5} alignItems="center">
+                  <TextField
+                    type="number" size="small"
+                    value={slideCounts[block.blockId] ?? 1}
+                    onChange={(e) => setSlideCounts((prev) => ({ ...prev, [block.blockId]: Math.max(1, parseInt(e.target.value) || 1) }))}
+                    sx={{ width: 65 }} inputProps={{ min: 1, max: 50 }}
+                  />
+                  <Button size="small" variant="outlined" disabled={createSlidesMutation.isPending}
+                    onClick={() => createSlidesMutation.mutate({ blockId: block.blockId, count: slideCounts[block.blockId] ?? 1 })}>
+                    {t('hq_cutSlides')}
+                  </Button>
+                </Stack>
+              </Stack>
+            </TableCell>
+          ) : (
+            <TableCell>
+              <Stack direction="row" spacing={0.5} flexWrap="wrap" alignItems="center">
+                <Chip
+                  label={block.slides.length}
+                  size="small"
+                  color={block.slides.length > 0 ? 'success' : 'default'}
+                  variant={block.slides.length > 0 ? 'filled' : 'outlined'}
+                />
+                {block.slides.map((sl) => (
+                  <Chip key={sl.slideId} label={formatMaterialIdDisplay(sl.slideId)} size="small" variant="outlined" />
+                ))}
+              </Stack>
+            </TableCell>
+          )}
+          <TableCell align="right">
+            <Stack direction="row" spacing={0.5} justifyContent="flex-end">
+              {block.heStatus === 'MICROTOMY' && (
+                <Button size="small" variant="outlined" color="info"
+                  disabled={updateHeStatusMutation.isPending}
+                  onClick={() => updateHeStatusMutation.mutate({ blockId: block.blockId, status: 'SLIDE_STAIN' })}>
+                  {t('anc_markSlideStain')}
+                </Button>
+              )}
+              {block.heStatus === 'SLIDE_STAIN' && (
+                <Button size="small" variant="contained" color="success"
+                  disabled={updateHeStatusMutation.isPending}
+                  onClick={() => updateHeStatusMutation.mutate({ blockId: block.blockId, status: 'DISTRIBUTED' })}>
+                  {t('anc_markDistributed')}
+                </Button>
+              )}
+              {(block.heStatus === 'DISTRIBUTED' || block.heStatus === 'CANCELLED') && (
+                <Button size="small" variant="outlined"
+                  disabled={updateHeStatusMutation.isPending}
+                  onClick={() => updateHeStatusMutation.mutate({ blockId: block.blockId, status: 'MICROTOMY' })}>
+                  {t('anc_reactivate')}
+                </Button>
+              )}
+            </Stack>
+          </TableCell>
+        </TableRow>
+      ))}
+    </>
+  );
+}
+
+const HECaseRows = React.memo(HECaseRowsImpl, (prev, next) => {
+  if (
+    prev.order !== next.order ||
+    prev.statusFilter !== next.statusFilter ||
+    prev.createSlidesMutation.isPending !== next.createSlidesMutation.isPending ||
+    prev.updateHeStatusMutation.isPending !== next.updateHeStatusMutation.isPending ||
+    prev.t !== next.t
+  ) {
+    return false;
+  }
+  for (const spec of next.order.specimens) {
+    for (const block of spec.blocks) {
+      if (prev.slideCounts[block.blockId] !== next.slideCounts[block.blockId]) return false;
+    }
+  }
+  return true;
+});
+
+function HEWorklist() {
+  const { t } = useLanguage();
+  const navigate = useNavigate();
+  const qc = useQueryClient();
+  const [statusFilter, setStatusFilter] = useState<HEStatus>('MICROTOMY');
+  const [since, setSince] = useState<'1d' | '7d' | '30d' | ''>('7d');
+  const [search, setSearch] = useState('');
+  const [debouncedSearch, setDebouncedSearch] = useState('');
+  const [page, setPage] = useState(1);
+  const PAGE_SIZE = 20;
+  const [slideCounts, setSlideCounts] = useState<Record<string, number>>({});
+  const [actionError, setActionError] = useState<string | null>(null);
+
+  React.useEffect(() => {
+    const id = setTimeout(() => setDebouncedSearch(search), 300);
+    return () => clearTimeout(id);
+  }, [search]);
+
+  const showRecencyFilter = statusFilter === 'DISTRIBUTED' || statusFilter === 'CANCELLED';
+
+  const sinceDate = useMemo(() => {
+    if (!since || !showRecencyFilter) return undefined;
+    const d = new Date();
+    if (since === '1d') d.setDate(d.getDate() - 1);
+    else if (since === '7d') d.setDate(d.getDate() - 7);
+    else if (since === '30d') d.setDate(d.getDate() - 30);
+    return d.toISOString();
+  }, [since, showRecencyFilter]);
+
+  const { data: result, isLoading } = useQuery({
+    queryKey: qk.histologyQueue.byParams(page, debouncedSearch, statusFilter, sinceDate),
+    queryFn: () => orderApi.histologyQueue(page, PAGE_SIZE, debouncedSearch, statusFilter, sinceDate),
+    placeholderData: keepPreviousData,
+  });
+
+  const orders = (result?.data ?? []) as HistologyQueueOrder[];
+  const totalPages = Math.ceil((result?.total ?? 0) / PAGE_SIZE);
+
+  const createSlidesWithRetry = async (blockId: string, count: number) => {
+    try {
+      return await blockApi.createSlides(blockId, count, 'H&E', { silentConflict: true });
+    } catch (err) {
+      const status = (err as { response?: { status?: number } })?.response?.status;
+      if (status === 409) {
+        return await blockApi.createSlides(blockId, count, 'H&E', { silentConflict: true });
+      }
+      throw err;
+    }
+  };
+
+  const createSlidesMutation = useMutation({
+    mutationFn: ({ blockId, count }: { blockId: string; count: number }) =>
+      createSlidesWithRetry(blockId, count),
+    onSuccess: () => qc.invalidateQueries({ queryKey: qk.histologyQueue.all }),
+    onError: () => setActionError(t('errorGeneric')),
+  });
+
+  const updateHeStatusMutation = useMutation({
+    mutationFn: ({ blockId, status }: { blockId: string; status: HEStatus }) =>
+      blockApi.updateHeStatus(blockId, status),
+    onSuccess: () => qc.invalidateQueries({ queryKey: qk.histologyQueue.all }),
+    onError: () => setActionError(t('errorGeneric')),
+  });
+
+  return (
+    <>
+      {actionError && (
+        <Alert severity="error" sx={{ mb: 2 }} onClose={() => setActionError(null)}>
+          {actionError}
+        </Alert>
+      )}
+      <Paper variant="outlined" sx={{ p: 2, mb: 2 }}>
+        <Stack direction="row" spacing={2} flexWrap="wrap" alignItems="center">
+          <TextField
+            size="small"
+            placeholder={t('anc_searchPlaceholder')}
+            value={search}
+            onChange={(e) => { setSearch(e.target.value); setPage(1); }}
+            InputProps={{ startAdornment: <InputAdornment position="start"><Search fontSize="small" /></InputAdornment> }}
+            sx={{ width: 280 }}
+          />
+          <Typography variant="body2" fontWeight={600}>{t('anc_status')}:</Typography>
+          <ToggleButtonGroup
+            size="small" exclusive
+            value={statusFilter}
+            onChange={(_, v: HEStatus | null) => { if (v) { setStatusFilter(v); setPage(1); } }}
+          >
+            {(['MICROTOMY', 'SLIDE_STAIN', 'DISTRIBUTED', 'CANCELLED'] as HEStatus[]).map((s) => (
+              <ToggleButton key={s} value={s}>
+                {t(`anc_status_${s}` as Parameters<typeof t>[0])}
+              </ToggleButton>
+            ))}
+          </ToggleButtonGroup>
+          {showRecencyFilter && (
+            <FormControl size="small" sx={{ minWidth: 160 }}>
+              <InputLabel>{t('anc_since')}</InputLabel>
+              <Select
+                value={since}
+                label={t('anc_since')}
+                onChange={(e) => { setSince(e.target.value as '1d' | '7d' | '30d' | ''); setPage(1); }}
+              >
+                <MenuItem value="1d">{t('anc_since_1d')}</MenuItem>
+                <MenuItem value="7d">{t('anc_since_7d')}</MenuItem>
+                <MenuItem value="30d">{t('anc_since_30d')}</MenuItem>
+                <MenuItem value="">{t('anc_since_all')}</MenuItem>
+              </Select>
+            </FormControl>
+          )}
+        </Stack>
+      </Paper>
+
+      {isLoading ? (
+        <Box display="flex" justifyContent="center" mt={2}>
+          <CircularProgress />
+        </Box>
+      ) : orders.length === 0 ? (
+        <Typography color="text.secondary">{t('hq_noPendingCuts')}</Typography>
+      ) : (
+        <Table size="small" sx={{ tableLayout: 'fixed' }}>
+          <colgroup>
+            <col style={{ width: 32 }} />
+            <col style={{ width: '12%' }} />
+            <col style={{ width: '17%' }} />
+            <col style={{ width: '14%' }} />
+            <col style={{ width: '27%' }} />
+            <col />
+          </colgroup>
+          <TableHead>
+            <TableRow>
+              <TableCell />
+              <TableCell>{t('anc_blockLabel')}</TableCell>
+              <TableCell>Test</TableCell>
+              <TableCell>{t('anc_status')}</TableCell>
+              <TableCell>{t('pc_slides')}</TableCell>
+              <TableCell align="right">Actions</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {orders.map((order) => (
+              <HECaseRows
+                key={order.orderId}
+                order={order}
+                statusFilter={statusFilter}
+                slideCounts={slideCounts}
+                setSlideCounts={setSlideCounts}
+                createSlidesMutation={createSlidesMutation}
+                updateHeStatusMutation={updateHeStatusMutation}
+                navigate={navigate}
+                t={t}
+              />
+            ))}
+          </TableBody>
+        </Table>
+      )}
+      {totalPages > 1 && (
+        <Box display="flex" justifyContent="center" mt={2}>
+          <Pagination count={totalPages} page={page} onChange={(_, p) => setPage(p)} size="small" />
+        </Box>
+      )}
+    </>
+  );
+}
+
 
 export default function HistologyQueuePage() {
   const { t } = useLanguage();
@@ -652,7 +1027,7 @@ export default function HistologyQueuePage() {
         <Tab value="special_stain" label={t('anc_cat_SPECIAL_STAIN')} />
       </Tabs>
 
-      {activeTab === 'he' && <AncillaryCaseTable category="HE" />}
+      {activeTab === 'he' && <HEWorklist />}
       {activeTab === 'he_levels' && <AncillaryCaseTable category="HE_LEVELS" />}
       {activeTab === 'ihc' && <AncillaryCaseTable category="IHC" />}
       {activeTab === 'special_stain' && <AncillaryCaseTable category="SPECIAL_STAIN" />}
