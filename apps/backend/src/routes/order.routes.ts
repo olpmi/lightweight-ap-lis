@@ -2,10 +2,12 @@ import { Router, Request, Response, NextFunction } from 'express';
 import { OrderService } from '../services/order.service.js';
 import { QueueService } from '../services/queue.service.js';
 import { PdfService } from '../services/pdf.service.js';
+import { PdfLayoutService, DEFAULT_REPORT_HTML_TEMPLATE, type ReportLayoutData } from '../services/pdf.layout.service.js';
+import { ConfigReportLayoutService } from '../services/config.reportLayout.service.js';
 import { OrderLockService } from '../services/orderLock.service.js';
 import { requireAuth } from '../middleware/auth.middleware.js';
 import { validateBody } from '../middleware/validate.middleware.js';
-import { createOrderSchema, normalizeOrderId } from '@lis/shared';
+import { createOrderSchema, normalizeOrderId, formatOrderIdDisplay } from '@lis/shared';
 import { prisma } from '../lib/prisma.js';
 import fs from 'fs';
 import { GENERATED_PDFS_DIR } from '../utils/storageDirs.js';
@@ -15,6 +17,8 @@ const router: Router = Router();
 const orderService = new OrderService();
 const queueService = new QueueService();
 const pdfService = new PdfService();
+const pdfLayoutService = new PdfLayoutService();
+const layoutConfigService = new ConfigReportLayoutService();
 const lockService = new OrderLockService();
 
 // GET /api/orders/processing-queue
@@ -234,7 +238,9 @@ router.get('/:orderId/reference-strips-pdf', requireAuth, async (req: Request, r
 
 // POST /api/orders/:orderId/preview-report-pdf
 // Body: { diagnosis, comment?, gross?, pathologistName? }
-// Returns the PDF bytes inline — no DB writes.
+// Returns the PDF bytes inline — no DB writes. Renders using the same HTML
+// template as the signed preliminary/final reports so the preview matches
+// the layout authors see in the configured report layout.
 router.post('/:orderId/preview-report-pdf', requireAuth, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const order = await prisma.order.findUniqueOrThrow({
@@ -251,17 +257,49 @@ router.post('/:orderId/preview-report-pdf', requireAuth, async (req: Request, re
       gross?: string;
       pathologistName?: string;
     };
-    const pdfBytes = await pdfService.generatePreviewPdf({
-      orderId: order.orderId,
-      diagnosis,
-      comment,
-      gross,
-      order,
-      pathologistName,
+
+    // Use the active preliminary layout (falling back to default) so the
+    // preview is visually identical to the final/preliminary PDF.
+    const layout = await layoutConfigService.getLayout('preliminary');
+    const htmlTemplate = layout?.isActive ? layout.htmlTemplate : DEFAULT_REPORT_HTML_TEMPLATE;
+
+    // Use the latest signed report's version if any exists, otherwise 1.
+    const latestReport = await prisma.report.findFirst({
+      where: { orderId: order.orderId },
+      orderBy: { versionNumber: 'desc' },
+      select: { versionNumber: true },
     });
+    const previewVersion = (latestReport?.versionNumber ?? 0) + 1;
+
+    const layoutData: ReportLayoutData = {
+      reportType: 'preliminary',
+      caseId: formatOrderIdDisplay(order.orderId),
+      version: previewVersion,
+      institutionName: process.env.INSTITUTION_NAME ?? 'Anatomic Pathology Laboratory',
+      patient: {
+        patientId: order.patient.patientId,
+        firstName: order.patient.firstName,
+        lastName: order.patient.lastName,
+        dateOfBirth: order.patient.dateOfBirth.toISOString().slice(0, 10),
+        sex: order.patient.sex,
+      },
+      clinician: {
+        firstName: order.doctor.firstName,
+        lastName: order.doctor.lastName,
+      },
+      clinicalHistory: order.clinicalHistory,
+      gross: gross ?? null,
+      diagnosis: diagnosis || '(not yet entered)',
+      comment: comment ?? null,
+      signedOutBy: pathologistName ?? null,
+      signedOutDate: null,
+      isDraftPreview: true,
+    };
+
+    const pdfBuffer = await pdfLayoutService.renderToPdf(htmlTemplate, layoutData);
     res.setHeader('Content-Type', 'application/pdf');
     res.setHeader('Content-Disposition', `inline; filename="${order.orderId}-draft-preview.pdf"`);
-    res.send(Buffer.from(pdfBytes));
+    res.send(pdfBuffer);
   } catch (err) {
     next(err);
   }

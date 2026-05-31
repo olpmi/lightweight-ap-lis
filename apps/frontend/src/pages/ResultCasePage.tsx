@@ -870,7 +870,7 @@ export default function ResultCasePage() {
         <Tab value="materials" label={t('pc_materials')} />
         <Tab value="ancillary" label={t('rc_ancillaryTab')} />
         <Tab value="report-history" label={t('rc_reportHistory')} />
-        {hasPatientSummary && <Tab value="patient-summary" label="Patient Summary" />}
+        {hasPatientSummary && <Tab value="patient-summary" label={t('ps_title')} />}
       </Tabs>
 
       {/* â”€â”€ Result Entry tab â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}

@@ -123,22 +123,42 @@ export default function OrderAncillaryDialog({
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeBlockIds]);
 
-  // Auto-include H&E Levels for every active block whenever the user is on the
-  // HE_LEVELS tab and at least one block is selected. The dedicated checkbox UI
-  // was removed; presence of the tab + active blocks is itself the consent.
-  useEffect(() => {
-    if (!heLevelsOrderable || selectedCategory !== 'HE_LEVELS' || activeBlockIds.size === 0) return;
+  // H&E Levels are no longer auto-added; the user must explicitly click the
+  // "Add H&E Levels" button below to order them for the active block(s).
+
+  const heLevelsActiveCheckState = useMemo<'checked' | 'indeterminate' | 'unchecked'>(() => {
+    if (!heLevelsOrderable || activeBlockIds.size === 0) return 'unchecked';
+    let count = 0;
+    for (const blockId of activeBlockIds) {
+      if (orderedItems.some((i) => i.blockId === blockId && i.orderableId === heLevelsOrderable.id)) count++;
+    }
+    if (count === activeBlockIds.size) return 'checked';
+    if (count > 0) return 'indeterminate';
+    return 'unchecked';
+  }, [activeBlockIds, orderedItems, heLevelsOrderable]);
+
+  const toggleHELevelsForActive = () => {
+    if (!heLevelsOrderable || activeBlockIds.size === 0) return;
     const id = heLevelsOrderable.id;
-    setOrderedItems((prev) => {
-      const missing = [...activeBlockIds].filter(
-        (blockId) => !prev.some((i) => i.blockId === blockId && i.orderableId === id),
+    if (heLevelsActiveCheckState === 'checked') {
+      // Remove HE-level items for active blocks.
+      setOrderedItems((prev) =>
+        prev.filter((i) => !(activeBlockIds.has(i.blockId) && i.orderableId === id)),
       );
-      if (missing.length === 0) return prev;
-      return [...prev, ...missing.map((blockId) => ({ blockId, orderableId: id, levelCount: levelCountDraft }))];
-    });
-  // levelCountDraft intentionally omitted: we don't want to add new rows when the user just changes the count.
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeBlockIds, selectedCategory, heLevelsOrderable]);
+    } else {
+      // Add HE-level items for any active block missing one.
+      setOrderedItems((prev) => {
+        const missing = [...activeBlockIds].filter(
+          (blockId) => !prev.some((i) => i.blockId === blockId && i.orderableId === id),
+        );
+        if (missing.length === 0) return prev;
+        return [
+          ...prev,
+          ...missing.map((blockId) => ({ blockId, orderableId: id, levelCount: levelCountDraft })),
+        ];
+      });
+    }
+  };
 
   // --- Derived check states ---
 
@@ -279,7 +299,7 @@ export default function OrderAncillaryDialog({
       anchor="right"
       open={open}
       onClose={onClose}
-      PaperProps={{ sx: { width: { xs: '100%', sm: 640 }, display: 'flex', flexDirection: 'column' } }}
+      PaperProps={{ 'data-testid': 'anc-drawer', sx: { width: { xs: '100%', sm: 640 }, display: 'flex', flexDirection: 'column' } }}
     >
       {/* Header */}
       <Box
@@ -329,6 +349,7 @@ export default function OrderAncillaryDialog({
                       return (
                         <Chip
                           key={b.blockId}
+                          data-testid={`anc-block-chip-${b.blockId}`}
                           label={
                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                               <span>{formatMaterialIdDisplay(b.blockId)}</span>
@@ -377,6 +398,7 @@ export default function OrderAncillaryDialog({
                   <Tab
                     key={cat}
                     value={cat}
+                    data-testid={`anc-tab-${cat}`}
                     label={
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75 }}>
                         <span>{categoryLabel(cat)}</span>
@@ -424,6 +446,16 @@ export default function OrderAncillaryDialog({
           {/* H&E Levels */}
           {selectedCategory === 'HE_LEVELS' && !noMaterialActive && (
             <Stack spacing={1.5}>
+              <Button
+                variant={heLevelsActiveCheckState === 'checked' ? 'outlined' : 'contained'}
+                color={heLevelsActiveCheckState === 'checked' ? 'inherit' : 'primary'}
+                onClick={toggleHELevelsForActive}
+                sx={{ alignSelf: 'flex-start' }}
+              >
+                {heLevelsActiveCheckState === 'checked'
+                  ? t('anc_removeHELevels')
+                  : t('anc_addHELevels')}
+              </Button>
               <TextField
                 label={t('anc_levelCount')}
                 type="number"
@@ -436,6 +468,7 @@ export default function OrderAncillaryDialog({
                 }}
                 inputProps={{ min: 1, max: 20 }}
                 sx={{ width: 160 }}
+                disabled={heLevelsActiveCheckState !== 'checked'}
               />
               <TextField
                 label={t('anc_notes')}
@@ -484,6 +517,7 @@ export default function OrderAncillaryDialog({
                               <Button
                                 size="small"
                                 variant="outlined"
+                                data-testid={`anc-add-panel-${panel.id}`}
                                 onClick={() => addAllFromPanel(panelOrderableIds)}
                               >
                                 + {t('anc_panels')}
@@ -524,6 +558,7 @@ export default function OrderAncillaryDialog({
                         return (
                           <FormControlLabel
                             key={o.id}
+                            data-testid={`anc-test-${o.id}`}
                             control={
                               <Checkbox
                                 size="small"
@@ -652,6 +687,7 @@ export default function OrderAncillaryDialog({
       >
         <Button onClick={onClose}>{t('anc_cancel')}</Button>
         <Button
+          data-testid="anc-submit-btn"
           variant="contained"
           onClick={() => createMutation.mutate()}
           disabled={createMutation.isPending || orderedItems.length === 0}

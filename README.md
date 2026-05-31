@@ -11,7 +11,7 @@ A lightweight **Anatomic Pathology Laboratory Information System** prototype imp
 | Frontend | React Â· Vite Â· TypeScript Â· MUI v5 |
 | API data | TanStack Query (React Query) |
 | Validation | Zod (shared schemas) |
-| PDF generation | pdf-lib |
+| PDF generation | Handlebars + Puppeteer (HTML report layout) Â· pdf-lib (legacy) |
 | Session auth | express-session |
 | Testing | Vitest Â· React Testing Library Â· Playwright |
 | CI/CD | GitHub Actions |
@@ -24,6 +24,9 @@ A lightweight **Anatomic Pathology Laboratory Information System** prototype imp
   apps/
     backend/           Express API
     frontend/          React SPA
+                        src/tests/e2e/demo-lifecycle.spec.ts  Multi-language case-lifecycle demo recorder
+                        src/tests/e2e/i18n-audit.spec.ts      Translation-coverage probe
+                        demo-videos/                          Recorded .webm demos (one per language)
   packages/
     shared/            Shared TypeScript types, Zod schemas, ID helpers
   prisma/
@@ -282,6 +285,55 @@ tests land in `apps/frontend/test-results/`.
 A Playwright global setup probes `GET /health` once and fails the whole
 run fast with a clear message if the backend is unreachable, instead of
 letting every test time out individually.
+
+### Recorded demo walkthroughs (Playwright)
+
+The repo also ships a Playwright-driven **case lifecycle demo** that
+exercises a full surgical pathology case end-to-end â€” login, order
+entry, processing/grossing, histology H&E, ancillary ordering
+(IHC + molecular send-out), result entry with realistic CAP-style
+values, draft preview, preliminary sign-out, and final sign-out â€” and
+records one video per supported UI language. The demo doubles as
+documentation of the expected user flow and as a smoke test of the
+full stack.
+
+```bash
+# 1. Start the dev stack
+docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build -d
+
+# 2. Record all five language videos
+cd apps/frontend
+RUN_DEMO=1 npx playwright test \
+  --config=playwright.config.ts \
+  --project=chromium \
+  src/tests/e2e/demo-lifecycle.spec.ts \
+  --reporter=list
+```
+
+Output videos are written to `apps/frontend/demo-videos/<lang>.webm`
+(one each for `en`, `fr`, `sw`, `ar`, `ur`). The recorder injects a
+caption overlay describing each phase and a styled HTML preview that
+mirrors the Handlebars/puppeteer report layout used by the real
+preliminary and final PDFs (headless Chromium does not render PDFs
+in iframes, so the demo cannot use the PDF directly).
+
+A companion **i18n audit** spec (`src/tests/e2e/i18n-audit.spec.ts`)
+walks the same scenario in each non-English language and flags any
+visible English-looking text as a likely missing translation. It
+writes a JSON report to `apps/frontend/i18n-audit.json`:
+
+```bash
+cd apps/frontend
+RUN_I18N_AUDIT=1 npx playwright test \
+  --config=playwright.config.ts \
+  --project=chromium \
+  src/tests/e2e/i18n-audit.spec.ts \
+  --reporter=list
+```
+
+Both specs are gated behind the `RUN_DEMO` / `RUN_I18N_AUDIT`
+environment variables and are skipped during normal `pnpm test:e2e`
+runs.
 
 ### Backend integration tests
 

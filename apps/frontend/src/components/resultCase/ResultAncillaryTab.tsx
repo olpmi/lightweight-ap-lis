@@ -106,10 +106,10 @@ export default function ResultAncillaryTab({
               </colgroup>
               <TableHead>
                 <TableRow>
-                  <TableCell>Test</TableCell>
+                  <TableCell>{t('test')}</TableCell>
                   <TableCell>{t('anc_category')}</TableCell>
                   <TableCell>{t('anc_status')}</TableCell>
-                  <TableCell align="right">Actions</TableCell>
+                  <TableCell align="right">{t('actions')}</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>

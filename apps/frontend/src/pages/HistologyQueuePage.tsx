@@ -585,10 +585,10 @@ function AncillaryCaseTable({ category }: { category: AncillaryCategory }) {
             <TableRow>
               <TableCell />
               <TableCell>{t('anc_blockLabel')}</TableCell>
-              <TableCell>Test</TableCell>
+              <TableCell>{t('test')}</TableCell>
               <TableCell>{t('anc_status')}</TableCell>
               <TableCell>{t('pc_slides')}</TableCell>
-              <TableCell align="right">Actions</TableCell>
+              <TableCell align="right">{t('actions')}</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -652,6 +652,12 @@ function HECaseRowsImpl({
   navigate,
   t,
 }: HECaseRowsProps) {
+  const { tSite, tOrgan, tSpecimenType } = useLanguage();
+  const localizeBodySiteName = (name: string) => {
+    const organ = tOrgan(name);
+    if (organ !== name) return organ;
+    return tSite(name);
+  };
   const [open, setOpen] = useState(false);
   const caseBlocks = order.specimens.flatMap((spec) =>
     spec.blocks.map((block) => ({ block, spec })),
@@ -736,8 +742,8 @@ function HECaseRowsImpl({
           <TableCell>
             <Typography variant="body2">H&amp;E</Typography>
             <Typography variant="caption" color="text.secondary">
-              {spec.bodySite?.bodySiteName ?? ''}
-              {spec.specimenType ? ` · ${spec.specimenType.specimenTypeName}` : ''}
+              {spec.bodySite ? localizeBodySiteName(spec.bodySite.bodySiteName) : ''}
+              {spec.specimenType ? ` · ${tSpecimenType(spec.specimenType.specimenTypeName)}` : ''}
             </Typography>
           </TableCell>
           <TableCell>
