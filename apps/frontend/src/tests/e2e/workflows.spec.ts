@@ -150,6 +150,8 @@ test.describe('Result / Sign-out workflow', () => {
     const diagInput = page.getByTestId('diagnosis-input');
     await expect(diagInput).toBeVisible();
     await diagInput.fill('Test diagnosis for E2E');
+    const grossInput = page.getByTestId('gross-input');
+    await grossInput.fill('Single fragment 1.0 cm, entirely submitted.');
     await expect(page.getByTestId('sign-out-btn')).not.toBeDisabled();
   });
 });

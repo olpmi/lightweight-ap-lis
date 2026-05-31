@@ -693,6 +693,7 @@ async function main() {
             blockId,
             specimenId,
             blockNumber: b,
+            heStatus,
             createdDatetime: blockCreated,
           },
         });
