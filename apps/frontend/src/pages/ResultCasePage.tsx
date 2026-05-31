@@ -772,7 +772,7 @@ export default function ResultCasePage() {
     registeredDate: string;
     clinicalHistory?: string;
     isReactivated: boolean;
-    status?: import('@lis/shared').CaseStatus;
+    status?: import('@lis/shared').OrderStatus;
     patient: { lastName: string; firstName: string; patientId: string; dateOfBirth: string; sex: string };
     doctor: { lastName: string; firstName: string };
   } | undefined;
