@@ -253,7 +253,7 @@ export default function ResultCasePage() {
     ? (latestFinalGrossPayload?.templateKey ?? '')
     : form.grossTemplateKey;
 
-  const { data: patientSummaryDefinition, isLoading: isLoadingPatientSummaryDefinition } = useQuery<PatientSummaryDefinition>({
+  const { data: patientSummaryDefinition } = useQuery<PatientSummaryDefinition>({
     queryKey: qk.patientSummaryDefinition(activePatientSummaryTemplateId, patientSummaryLanguage),
     queryFn: () => lookupApi.patientSummaryDefinition(activePatientSummaryTemplateId, patientSummaryLanguage),
     enabled: Boolean(activePatientSummaryTemplateId),
@@ -364,10 +364,10 @@ export default function ResultCasePage() {
   }, [orderData]);
 
   React.useEffect(() => {
-    if (tab === 'patient-summary' && !activePatientSummaryTemplateId) {
+    if (tab === 'patient-summary' && !hasPatientSummary) {
       setTab('result-entry');
     }
-  }, [activePatientSummaryTemplateId, tab]);
+  }, [hasPatientSummary, tab]);
 
   // â”€â”€ Mutations â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
@@ -870,7 +870,7 @@ export default function ResultCasePage() {
         <Tab value="materials" label={t('pc_materials')} />
         <Tab value="ancillary" label={t('rc_ancillaryTab')} />
         <Tab value="report-history" label={t('rc_reportHistory')} />
-        {Boolean(activePatientSummaryTemplateId) && <Tab value="patient-summary" label={t('ps_title')} />}
+        {hasPatientSummary && <Tab value="patient-summary" label={t('ps_title')} />}
       </Tabs>
 
       {/* â”€â”€ Result Entry tab â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
@@ -1106,10 +1106,9 @@ export default function ResultCasePage() {
         />
       )}
 
-      {tab === 'patient-summary' && Boolean(activePatientSummaryTemplateId) && (
+      {tab === 'patient-summary' && resolvedPatientSummary && (
         <ResultPatientSummaryTab
           resolvedPatientSummary={resolvedPatientSummary}
-          isLoadingDefinition={isLoadingPatientSummaryDefinition}
           patientSummaryLanguage={patientSummaryLanguage}
           onChangeLanguage={setPatientSummaryLanguage}
           canOpenPdf={canOpenPatientSummaryPdf}

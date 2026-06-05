@@ -1,4 +1,4 @@
-import { Alert, Box, Button, CircularProgress, Paper, Stack, Typography } from '@mui/material';
+import { Alert, Box, Button, Paper, Stack, Typography } from '@mui/material';
 import { Download, PictureAsPdf } from '@mui/icons-material';
 import type {
   PatientSummaryLanguageCode,
@@ -7,8 +7,7 @@ import type {
 import { useLanguage } from '../../hooks/useLanguage';
 
 interface Props {
-  resolvedPatientSummary: ResolvedPatientSummary | null;
-  isLoadingDefinition: boolean;
+  resolvedPatientSummary: ResolvedPatientSummary;
   patientSummaryLanguage: PatientSummaryLanguageCode;
   onChangeLanguage: (lang: PatientSummaryLanguageCode) => void;
   canOpenPdf: boolean;
@@ -19,7 +18,6 @@ interface Props {
 
 export default function ResultPatientSummaryTab({
   resolvedPatientSummary,
-  isLoadingDefinition,
   patientSummaryLanguage,
   onChangeLanguage,
   canOpenPdf,
@@ -33,14 +31,10 @@ export default function ResultPatientSummaryTab({
       <Box display="flex" justifyContent="space-between" alignItems="flex-start" gap={2} flexWrap="wrap" mb={1.5}>
         <Box>
           <Typography variant="subtitle2" color="text.secondary">{t('ps_title')}</Typography>
-          {resolvedPatientSummary && (
-            <>
-              <Typography variant="caption" color="text.secondary" display="block">
-                {resolvedPatientSummary.professionalLabel}
-              </Typography>
-              <Typography variant="h6" fontWeight={700}>{resolvedPatientSummary.patientTitle}</Typography>
-            </>
-          )}
+          <Typography variant="caption" color="text.secondary" display="block">
+            {resolvedPatientSummary.professionalLabel}
+          </Typography>
+          <Typography variant="h6" fontWeight={700}>{resolvedPatientSummary.patientTitle}</Typography>
         </Box>
         <Stack direction="row" spacing={1} flexWrap="wrap">
           <Button
@@ -78,29 +72,21 @@ export default function ResultPatientSummaryTab({
         </Stack>
       </Box>
 
-      {isLoadingDefinition ? (
-        <Box display="flex" justifyContent="center" py={3}>
-          <CircularProgress size={24} />
+      <Stack spacing={1.5}>
+        <Box>
+          <Typography variant="overline" color="text.secondary">{t('ps_summary')}</Typography>
+          <Typography variant="body2">{resolvedPatientSummary.plainLanguageSummary}</Typography>
         </Box>
-      ) : !resolvedPatientSummary ? (
-        <Alert severity="info">{t('ps_fillDiagCategory')}</Alert>
-      ) : (
-        <Stack spacing={1.5}>
-          <Box>
-            <Typography variant="overline" color="text.secondary">{t('ps_summary')}</Typography>
-            <Typography variant="body2">{resolvedPatientSummary.plainLanguageSummary}</Typography>
-          </Box>
-          <Box>
-            <Typography variant="overline" color="text.secondary">{t('ps_whatThisMeans')}</Typography>
-            <Typography variant="body2">{resolvedPatientSummary.whatThisMeans}</Typography>
-          </Box>
-          <Box>
-            <Typography variant="overline" color="text.secondary">{t('ps_possibleNextSteps')}</Typography>
-            <Typography variant="body2">{resolvedPatientSummary.possibleNextSteps}</Typography>
-          </Box>
-          <Alert severity="info">{resolvedPatientSummary.safetyNote}</Alert>
-        </Stack>
-      )}
+        <Box>
+          <Typography variant="overline" color="text.secondary">{t('ps_whatThisMeans')}</Typography>
+          <Typography variant="body2">{resolvedPatientSummary.whatThisMeans}</Typography>
+        </Box>
+        <Box>
+          <Typography variant="overline" color="text.secondary">{t('ps_possibleNextSteps')}</Typography>
+          <Typography variant="body2">{resolvedPatientSummary.possibleNextSteps}</Typography>
+        </Box>
+        <Alert severity="info">{resolvedPatientSummary.safetyNote}</Alert>
+      </Stack>
     </Paper>
   );
 }
