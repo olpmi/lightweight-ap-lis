@@ -60,15 +60,15 @@ router.get('/:reportId/pdf', requireAuth, async (req: Request, res: Response, ne
   }
 });
 
-// GET /api/reports/:reportId/patient-summary.pdf?language=sw
+// GET /api/reports/:reportId/patient-summary.pdf?language=sw&download=1
 router.get('/:reportId/patient-summary.pdf', requireAuth, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const reportId = parseReportId(req.params.reportId);
     const language = resolveLanguage(req);
     const { fileName, pdfBytes } = await service.renderPatientSummaryPdf(reportId, language);
-
+    const disposition = req.query.download === '1' ? 'attachment' : 'inline';
     res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', `inline; filename="${fileName}"`);
+    res.setHeader('Content-Disposition', `${disposition}; filename="${fileName}"`);
     res.send(Buffer.from(pdfBytes));
   } catch (err) {
     next(err);

@@ -3,9 +3,9 @@ import { prisma } from '../lib/prisma.js';
 import { ReportService } from '../services/report.service.js';
 import { requireAuth } from '../middleware/auth.middleware.js';
 import { validateBody } from '../middleware/validate.middleware.js';
-import { APP_LANGUAGE_CODES, createDraftReportSchema, reactivateOrderSchema, type AppLanguageCode } from '@lis/shared';
+import { APP_LANGUAGE_CODES, createDraftReportSchema, reactivateOrderSchema, type AppLanguageCode, PATIENT_SUMMARY_LANGUAGE_CODES, resolvePatientSummary, type PatientSummaryLanguageCode } from '@lis/shared';
 import { getTemplateDefinition, listTemplateCatalog } from '@lis/shared/templates/server';
-import { getPatientSummaryDefinition } from '@lis/shared/patient-summaries/server';
+import { getPatientSummaryDefinition, listPatientSummaryCatalog } from '@lis/shared/patient-summaries/server';
 import { AppError } from '../middleware/error.middleware.js';
 
 const router: Router = Router();
@@ -107,6 +107,56 @@ router.get('/patient-summary-definition', async (req: Request, res: Response, ne
 
       throw error;
     }
+  } catch (err) {
+    next(err);
+  }
+});
+
+// GET /api/lookups/patient-summary-catalog?language=en
+router.get('/patient-summary-catalog', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const language = resolveLanguage(req);
+    const data = listPatientSummaryCatalog(language);
+    res.json({ data });
+  } catch (err) {
+    next(err);
+  }
+});
+
+// POST /api/lookups/patient-summary-resolve
+router.post('/patient-summary-resolve', requireAuth, async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { templateId, language, values } = req.body as {
+      templateId?: unknown;
+      language?: unknown;
+      values?: unknown;
+    };
+
+    if (typeof templateId !== 'string' || !templateId) {
+      throw new AppError(400, 'BAD_REQUEST', 'templateId is required');
+    }
+
+    const resolvedLanguage: PatientSummaryLanguageCode =
+      PATIENT_SUMMARY_LANGUAGE_CODES.includes(language as PatientSummaryLanguageCode)
+        ? (language as PatientSummaryLanguageCode)
+        : 'en';
+
+    if (typeof values !== 'object' || values === null || Array.isArray(values)) {
+      throw new AppError(400, 'BAD_REQUEST', 'values must be an object');
+    }
+
+    let definition;
+    try {
+      definition = getPatientSummaryDefinition(templateId, resolvedLanguage);
+    } catch (error) {
+      if (error instanceof Error && error.message.startsWith('Patient summary not found')) {
+        throw new AppError(404, 'NOT_FOUND', error.message);
+      }
+      throw error;
+    }
+
+    const data = resolvePatientSummary(definition, values as Record<string, string | string[]>);
+    res.json({ data: data ?? null });
   } catch (err) {
     next(err);
   }

@@ -253,7 +253,7 @@ export default function ResultCasePage() {
     ? (latestFinalGrossPayload?.templateKey ?? '')
     : form.grossTemplateKey;
 
-  const { data: patientSummaryDefinition } = useQuery<PatientSummaryDefinition>({
+  const { data: patientSummaryDefinition, isLoading: isLoadingPatientSummaryDefinition } = useQuery<PatientSummaryDefinition>({
     queryKey: qk.patientSummaryDefinition(activePatientSummaryTemplateId, patientSummaryLanguage),
     queryFn: () => lookupApi.patientSummaryDefinition(activePatientSummaryTemplateId, patientSummaryLanguage),
     enabled: Boolean(activePatientSummaryTemplateId),
@@ -364,10 +364,10 @@ export default function ResultCasePage() {
   }, [orderData]);
 
   React.useEffect(() => {
-    if (tab === 'patient-summary' && !hasPatientSummary) {
+    if (tab === 'patient-summary' && !activePatientSummaryTemplateId) {
       setTab('result-entry');
     }
-  }, [hasPatientSummary, tab]);
+  }, [activePatientSummaryTemplateId, tab]);
 
   // â”€â”€ Mutations â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
@@ -404,7 +404,7 @@ export default function ResultCasePage() {
       setError((err as { response?: { data?: { error?: { message?: string } } } })?.response?.data?.error?.message ?? t('errorGeneric')),
   });
 
-  const handleOpenPatientSummaryPdf = async () => {
+  const handleOpenPatientSummaryPdf = async (download = false) => {
     if (!resolvedPatientSummary) {
       return;
     }
@@ -423,11 +423,11 @@ export default function ResultCasePage() {
         throw new Error('Save the draft before opening the patient summary PDF.');
       }
 
-      window.open(
-        reportApi.patientSummaryPdfUrl(reportId, patientSummaryLanguage),
-        '_blank',
-        'noopener,noreferrer',
-      );
+      const url = download
+        ? reportApi.patientSummaryPdfDownloadUrl(reportId, patientSummaryLanguage)
+        : reportApi.patientSummaryPdfUrl(reportId, patientSummaryLanguage);
+
+      window.open(url, '_blank', 'noopener,noreferrer');
     } catch (err) {
       setError(
         (err as { response?: { data?: { error?: { message?: string } } } })?.response?.data?.error?.message
@@ -870,7 +870,7 @@ export default function ResultCasePage() {
         <Tab value="materials" label={t('pc_materials')} />
         <Tab value="ancillary" label={t('rc_ancillaryTab')} />
         <Tab value="report-history" label={t('rc_reportHistory')} />
-        {hasPatientSummary && <Tab value="patient-summary" label={t('ps_title')} />}
+        {Boolean(activePatientSummaryTemplateId) && <Tab value="patient-summary" label={t('ps_title')} />}
       </Tabs>
 
       {/* â”€â”€ Result Entry tab â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
@@ -1106,14 +1106,16 @@ export default function ResultCasePage() {
         />
       )}
 
-      {tab === 'patient-summary' && resolvedPatientSummary && (
+      {tab === 'patient-summary' && Boolean(activePatientSummaryTemplateId) && (
         <ResultPatientSummaryTab
           resolvedPatientSummary={resolvedPatientSummary}
+          isLoadingDefinition={isLoadingPatientSummaryDefinition}
           patientSummaryLanguage={patientSummaryLanguage}
           onChangeLanguage={setPatientSummaryLanguage}
           canOpenPdf={canOpenPatientSummaryPdf}
           pdfPending={saveDraftMutation.isPending}
-          onOpenPdf={() => { void handleOpenPatientSummaryPdf(); }}
+          onOpenPdf={() => { void handleOpenPatientSummaryPdf(false); }}
+          onDownloadPdf={() => { void handleOpenPatientSummaryPdf(true); }}
         />
       )}
 

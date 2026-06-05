@@ -13,10 +13,14 @@ import type {
   OrderWithDetails,
   PaginatedResult,
   Patient,
+  PatientSummaryCatalogEntry,
   PatientSummaryDefinition,
+  PatientSummaryLanguageCode,
+  PatientSummaryValues,
   Report,
   ReportTemplate,
   ReportTemplateType,
+  ResolvedPatientSummary,
   Slide,
   Specimen,
   SpecimenType,
@@ -122,6 +126,22 @@ export const lookupApi = {
       .get<{ data: PatientSummaryDefinition }>(`/lookups/patient-summary-definition?${query.toString()}`)
       .then((r) => r.data.data);
   },
+  patientSummaryCatalog: (language?: PatientSummaryLanguageCode): Promise<PatientSummaryCatalogEntry[]> => {
+    const query = new URLSearchParams();
+    if (language) query.set('language', language);
+    const suffix = query.toString() ? `?${query.toString()}` : '';
+    return apiClient
+      .get<{ data: PatientSummaryCatalogEntry[] }>(`/lookups/patient-summary-catalog${suffix}`)
+      .then((r) => r.data.data);
+  },
+  patientSummaryResolve: (
+    templateId: string,
+    language: PatientSummaryLanguageCode,
+    values: PatientSummaryValues,
+  ): Promise<ResolvedPatientSummary | null> =>
+    apiClient
+      .post<{ data: ResolvedPatientSummary | null }>('/lookups/patient-summary-resolve', { templateId, language, values })
+      .then((r) => r.data.data),
   employeeRoles: (): Promise<EmployeeRole[]> =>
     apiClient.get<{ data: EmployeeRole[] }>('/lookups/employee-roles').then((r) => r.data.data),
 };
@@ -286,6 +306,8 @@ export const reportApi = {
   pdfUrl: (reportId: number) => `/api/reports/${reportId}/pdf`,
   patientSummaryPdfUrl: (reportId: number, language: AppLanguageCode) =>
     `/api/reports/${reportId}/patient-summary.pdf?language=${encodeURIComponent(language)}`,
+  patientSummaryPdfDownloadUrl: (reportId: number, language: AppLanguageCode) =>
+    `/api/reports/${reportId}/patient-summary.pdf?language=${encodeURIComponent(language)}&download=1`,
 };
 
 export interface TemplateFilesResponse {

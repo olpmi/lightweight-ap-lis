@@ -536,6 +536,23 @@ const en = {
   anc_status_PULL_MATERIAL: 'Pull Material',
   anc_status_MATERIAL_SENT: 'Material Sent',
   anc_status_MATERIAL_RETURNED: 'Material Returned',
+  // --- Patient Summary UI ---
+  ps_professionalLabel: 'Clinical Finding',
+  ps_downloadPdf: 'Download PDF',
+  ps_fillDiagCategory: 'Complete the diagnostic category field to generate a patient summary.',
+  ps_noSummaryForTemplate: 'Patient summaries are not available for this report type.',
+  // --- Config: Patient Summaries admin ---
+  cfg_tabPatientSummaries: 'Patient Summaries',
+  ps_adminSystem: 'System',
+  ps_adminTriggerFields: 'Trigger Fields',
+  ps_adminRules: 'Rules',
+  ps_adminRuleCount: 'Rule Count',
+  ps_adminMatchCriteria: 'Match Criteria',
+  ps_adminTestValues: 'Test Values',
+  ps_adminTestMatch: 'Test Match',
+  ps_adminNoMatch: 'No rule matched the provided values.',
+  ps_adminSelectTemplate: 'Select a template to browse its rules',
+  ps_adminAvailableLanguages: 'Available Languages',
 } as const;
 
 const sw: Record<keyof typeof en, string> = {
@@ -1050,6 +1067,23 @@ const sw: Record<keyof typeof en, string> = {
   anc_status_PULL_MATERIAL: 'Toa Nyenzo',
   anc_status_MATERIAL_SENT: 'Nyenzo Imetumwa',
   anc_status_MATERIAL_RETURNED: 'Nyenzo Imerudishwa',
+  // --- Patient Summary UI ---
+  ps_professionalLabel: 'Matokeo ya Kliniki',
+  ps_downloadPdf: 'Pakua PDF',
+  ps_fillDiagCategory: 'Jaza sehemu ya uchunguzi wa kiafya ili kutengeneza muhtasari wa mgonjwa.',
+  ps_noSummaryForTemplate: 'Muhtasari wa mgonjwa haupatikani kwa aina hii ya ripoti.',
+  // --- Config: Patient Summaries admin ---
+  cfg_tabPatientSummaries: 'Muhtasari wa Wagonjwa',
+  ps_adminSystem: 'Mfumo',
+  ps_adminTriggerFields: 'Mashamba ya Kutambua',
+  ps_adminRules: 'Kanuni',
+  ps_adminRuleCount: 'Idadi ya Kanuni',
+  ps_adminMatchCriteria: 'Vigezo vya Kufanana',
+  ps_adminTestValues: 'Maadili ya Jaribio',
+  ps_adminTestMatch: 'Jaribio la Kufanana',
+  ps_adminNoMatch: 'Hakuna kanuni iliyofanana na maadili yaliyotolewa.',
+  ps_adminSelectTemplate: 'Chagua kiolezo ili kuona kanuni zake',
+  ps_adminAvailableLanguages: 'Lugha Zinazopatikana',
 };
 
 const fr: Record<keyof typeof en, string> = {
@@ -1564,6 +1598,23 @@ const fr: Record<keyof typeof en, string> = {
   anc_status_PULL_MATERIAL: 'Sortir le matériel',
   anc_status_MATERIAL_SENT: 'Matériel envoyé',
   anc_status_MATERIAL_RETURNED: 'Matériel retourné',
+  // --- Patient Summary UI ---
+  ps_professionalLabel: 'Constat clinique',
+  ps_downloadPdf: 'Télécharger PDF',
+  ps_fillDiagCategory: 'Remplissez le champ catégorie diagnostique pour générer un résumé patient.',
+  ps_noSummaryForTemplate: 'Les résumés patients ne sont pas disponibles pour ce type de rapport.',
+  // --- Config: Patient Summaries admin ---
+  cfg_tabPatientSummaries: 'Résumés Patients',
+  ps_adminSystem: 'Système',
+  ps_adminTriggerFields: 'Champs déclencheurs',
+  ps_adminRules: 'Règles',
+  ps_adminRuleCount: 'Nombre de règles',
+  ps_adminMatchCriteria: 'Critères de correspondance',
+  ps_adminTestValues: 'Valeurs de test',
+  ps_adminTestMatch: 'Tester la correspondance',
+  ps_adminNoMatch: 'Aucune règle ne correspond aux valeurs fournies.',
+  ps_adminSelectTemplate: 'Sélectionnez un modèle pour parcourir ses règles',
+  ps_adminAvailableLanguages: 'Langues disponibles',
 };
 
 const ar: Record<keyof typeof en, string> = {
@@ -2078,6 +2129,23 @@ const ar: Record<keyof typeof en, string> = {
   anc_status_PULL_MATERIAL: 'سحب المادة',
   anc_status_MATERIAL_SENT: 'تم إرسال المادة',
   anc_status_MATERIAL_RETURNED: 'تمت إعادة المادة',
+  // --- Patient Summary UI ---
+  ps_professionalLabel: 'النتيجة السريرية',
+  ps_downloadPdf: 'تحميل PDF',
+  ps_fillDiagCategory: 'أكمل حقل الفئة التشخيصية لإنشاء ملخص المريض.',
+  ps_noSummaryForTemplate: 'ملخصات المرضى غير متاحة لهذا النوع من التقارير.',
+  // --- Config: Patient Summaries admin ---
+  cfg_tabPatientSummaries: 'ملخصات المرضى',
+  ps_adminSystem: 'النظام',
+  ps_adminTriggerFields: 'حقول الإطلاق',
+  ps_adminRules: 'القواعد',
+  ps_adminRuleCount: 'عدد القواعد',
+  ps_adminMatchCriteria: 'معايير المطابقة',
+  ps_adminTestValues: 'قيم الاختبار',
+  ps_adminTestMatch: 'اختبار المطابقة',
+  ps_adminNoMatch: 'لا توجد قاعدة تطابق القيم المقدمة.',
+  ps_adminSelectTemplate: 'اختر قالباً لاستعراض قواعده',
+  ps_adminAvailableLanguages: 'اللغات المتاحة',
 };
 
 const ur: Record<keyof typeof en, string> = {
@@ -2592,6 +2660,23 @@ const ur: Record<keyof typeof en, string> = {
   anc_status_PULL_MATERIAL: 'مواد نکالیں',
   anc_status_MATERIAL_SENT: 'مواد بھیج دیا گیا',
   anc_status_MATERIAL_RETURNED: 'مواد واپس آ گیا',
+  // --- Patient Summary UI ---
+  ps_professionalLabel: 'طبی نتیجہ',
+  ps_downloadPdf: 'PDF ڈاؤن لوڈ کریں',
+  ps_fillDiagCategory: 'مریض کا خلاصہ بنانے کے لیے تشخیصی زمرہ کا خانہ پُر کریں۔',
+  ps_noSummaryForTemplate: 'اس رپورٹ کی قسم کے لیے مریض کا خلاصہ دستیاب نہیں ہے۔',
+  // --- Config: Patient Summaries admin ---
+  cfg_tabPatientSummaries: 'مریض کے خلاصے',
+  ps_adminSystem: 'نظام',
+  ps_adminTriggerFields: 'ٹرگر فیلڈز',
+  ps_adminRules: 'قواعد',
+  ps_adminRuleCount: 'قواعد کی تعداد',
+  ps_adminMatchCriteria: 'ملاپ کے معیار',
+  ps_adminTestValues: 'ٹیسٹ اقدار',
+  ps_adminTestMatch: 'ٹیسٹ ملاپ',
+  ps_adminNoMatch: 'فراہم کردہ اقدار سے کوئی قاعدہ مطابقت نہیں رکھتا۔',
+  ps_adminSelectTemplate: 'قواعد دیکھنے کے لیے ایک سانچہ منتخب کریں',
+  ps_adminAvailableLanguages: 'دستیاب زبانیں',
 };
 
 // ---------------------------------------------------------------------------
