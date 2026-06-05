@@ -404,7 +404,7 @@ export default function ResultCasePage() {
       setError((err as { response?: { data?: { error?: { message?: string } } } })?.response?.data?.error?.message ?? t('errorGeneric')),
   });
 
-  const handleOpenPatientSummaryPdf = async () => {
+  const handleOpenPatientSummaryPdf = async (download = false) => {
     if (!resolvedPatientSummary) {
       return;
     }
@@ -423,11 +423,11 @@ export default function ResultCasePage() {
         throw new Error('Save the draft before opening the patient summary PDF.');
       }
 
-      window.open(
-        reportApi.patientSummaryPdfUrl(reportId, patientSummaryLanguage),
-        '_blank',
-        'noopener,noreferrer',
-      );
+      const url = download
+        ? reportApi.patientSummaryPdfDownloadUrl(reportId, patientSummaryLanguage)
+        : reportApi.patientSummaryPdfUrl(reportId, patientSummaryLanguage);
+
+      window.open(url, '_blank', 'noopener,noreferrer');
     } catch (err) {
       setError(
         (err as { response?: { data?: { error?: { message?: string } } } })?.response?.data?.error?.message
@@ -1113,7 +1113,8 @@ export default function ResultCasePage() {
           onChangeLanguage={setPatientSummaryLanguage}
           canOpenPdf={canOpenPatientSummaryPdf}
           pdfPending={saveDraftMutation.isPending}
-          onOpenPdf={() => { void handleOpenPatientSummaryPdf(); }}
+          onOpenPdf={() => { void handleOpenPatientSummaryPdf(false); }}
+          onDownloadPdf={() => { void handleOpenPatientSummaryPdf(true); }}
         />
       )}
 

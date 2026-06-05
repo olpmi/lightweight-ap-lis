@@ -15,6 +15,7 @@ import ConfigTemplatesPage from './pages/ConfigTemplatesPage';
 import ConfigReportManagerPage from './pages/ConfigReportManagerPage';
 import AncillaryQueuePage from './pages/AncillaryQueuePage';
 import ConfigAncillaryPage from './pages/ConfigAncillaryPage';
+import ConfigPatientSummariesPage from './pages/ConfigPatientSummariesPage';
 import HistologyQueuePage from './pages/HistologyQueuePage';
 import HistologyCasePage from './pages/HistologyCasePage';
 
@@ -64,6 +65,7 @@ export default function App() {
                 <Route path="/config/reports" element={<ConfigReportManagerPage />} />
                 <Route path="/config/reports/:id" element={<ConfigReportManagerPage />} />
                 <Route path="/config/ancillary" element={<ConfigAncillaryPage />} />
+                <Route path="/config/patient-summaries" element={<ConfigPatientSummariesPage />} />
               </Routes>
             </AppShell>
           </RequireAuth>

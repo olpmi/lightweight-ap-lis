@@ -1,12 +1,10 @@
 import { Alert, Box, Button, Paper, Stack, Typography } from '@mui/material';
-import { PictureAsPdf } from '@mui/icons-material';
+import { Download, PictureAsPdf } from '@mui/icons-material';
 import type {
   PatientSummaryLanguageCode,
-  resolvePatientSummary,
+  ResolvedPatientSummary,
 } from '@lis/shared';
 import { useLanguage } from '../../hooks/useLanguage';
-
-type ResolvedPatientSummary = NonNullable<ReturnType<typeof resolvePatientSummary>>;
 
 interface Props {
   resolvedPatientSummary: ResolvedPatientSummary;
@@ -15,6 +13,7 @@ interface Props {
   canOpenPdf: boolean;
   pdfPending: boolean;
   onOpenPdf: () => void;
+  onDownloadPdf: () => void;
 }
 
 export default function ResultPatientSummaryTab({
@@ -24,6 +23,7 @@ export default function ResultPatientSummaryTab({
   canOpenPdf,
   pdfPending,
   onOpenPdf,
+  onDownloadPdf,
 }: Props) {
   const { t } = useLanguage();
   return (
@@ -31,6 +31,9 @@ export default function ResultPatientSummaryTab({
       <Box display="flex" justifyContent="space-between" alignItems="flex-start" gap={2} flexWrap="wrap" mb={1.5}>
         <Box>
           <Typography variant="subtitle2" color="text.secondary">{t('ps_title')}</Typography>
+          <Typography variant="caption" color="text.secondary" display="block">
+            {resolvedPatientSummary.professionalLabel}
+          </Typography>
           <Typography variant="h6" fontWeight={700}>{resolvedPatientSummary.patientTitle}</Typography>
         </Box>
         <Stack direction="row" spacing={1} flexWrap="wrap">
@@ -56,6 +59,15 @@ export default function ResultPatientSummaryTab({
             disabled={!canOpenPdf || pdfPending}
           >
             {t('ps_openPdf')}
+          </Button>
+          <Button
+            size="small"
+            variant="outlined"
+            startIcon={<Download />}
+            onClick={onDownloadPdf}
+            disabled={!canOpenPdf || pdfPending}
+          >
+            {t('ps_downloadPdf')}
           </Button>
         </Stack>
       </Box>

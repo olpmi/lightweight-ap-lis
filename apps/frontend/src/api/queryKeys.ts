@@ -96,6 +96,8 @@ export const qk = {
     templateId: string | undefined,
     lang: string,
   ) => ['patient-summary-definition', templateId, lang] as const,
+  patientSummaryCatalog: (lang?: string) =>
+    ['patient-summary-catalog', lang] as const,
   reportLayouts: ['report-layouts'] as const,
 
   // ----- Misc ----------------------------------------------------------------
