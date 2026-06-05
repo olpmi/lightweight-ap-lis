@@ -45,11 +45,11 @@ const DEMO_USER = process.env.DEMO_USER ?? 'asmith'; // Pathologist seed user
 const VIDEO_DIR = path.resolve(__dirname, '../../../demo-videos');
 const TMP_DIR = path.resolve(__dirname, '../../../demo-videos/.tmp');
 
-const VIEWPORT = { width: 1280, height: 720 };
+const VIEWPORT = { width: 1920, height: 1200 };
 // Slow enough that a viewer can clearly follow the cursor and see results.
 const PACE_MS = 1_100;
 const SHORT_PAUSE = 600;
-const LONG_PAUSE = 2_000;
+const LONG_PAUSE = 1_200;
 
 // Disable Playwright's parallelism — we run language scenarios serially.
 test.describe.configure({ mode: 'serial' });
@@ -765,9 +765,8 @@ async function stepCreateOrder(page: Page): Promise<string | null> {
     await step(`Specimen ${String.fromCharCode(65 + i)}: Organ=Colon`, async () => {
       const organ = page.locator('[role="combobox"][aria-haspopup="listbox"]').nth(baseIdx + 1);
       await organ.click();
-      // Localized organ_colon falls back to English "Colon" in fr/ar/ur and
-      // contains "Colon" in en/sw, so a substring match is universal.
-      await page.locator('ul[role="listbox"] li[role="option"]', { hasText: /Colon/i }).first().click({ timeout: 5_000 });
+      // en: "Colon"  sw: "Utumbo mpana"  fr: "Côlon"  ar: "القولون"  ur: "بڑی آنت"
+      await page.locator('ul[role="listbox"] li[role="option"]', { hasText: /Colon|Côlon|Utumbo mpana|القولون|بڑی آنت/i }).first().click({ timeout: 5_000 });
     });
 
     await step(`Specimen ${String.fromCharCode(65 + i)}: Type=Resection`, async () => {
@@ -775,7 +774,7 @@ async function stepCreateOrder(page: Page): Promise<string | null> {
       await type.click();
       // en/sw: "Resection"  fr: "Résection"  ar: "قطع جراحي"  ur: "ریسیکشن".
       await page.locator('ul[role="listbox"] li[role="option"]', {
-        hasText: /Resection|Résection|قطع|ریسیک/i,
+        hasText: /Resection|Résection|Ukataji|قطع|ریسیک/i,
       }).first().click({ timeout: 5_000 });
     });
 

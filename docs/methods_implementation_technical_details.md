@@ -1,0 +1,695 @@
+# Methods, Implementation, and Technical Details
+
+This document summarizes the implementation details of the lightweight AP LIS prototype that are likely to be needed when drafting the methods, system architecture, implementation, validation, and technical-details sections of an academic manuscript. It is based on the current repository state as of 2026-05-31.
+
+## 1. System Summary
+
+The system is a lightweight anatomic pathology laboratory information system (AP LIS) prototype implemented as a TypeScript monorepo. It supports case accessioning, specimen registration, material tracking, histology and ancillary workflows, report drafting and sign-out, PDF generation, query/search, and multilingual user interfaces.
+
+The implementation is intended as a functional pathology informatics prototype rather than as a certified production LIS or regulated medical device. Its design favors traceability of case materials, explicit workflow states, reproducible local deployment, and testable service-layer logic.
+
+## 2. Architecture Overview
+
+### 2.1 High-level architecture
+
+| Layer | Implementation |
+| --- | --- |
+| Frontend | React 18 single-page application built with Vite and TypeScript |
+| UI framework | MUI v5 |
+| Client state/data fetching | TanStack Query with Axios |
+| Backend | Node.js + Express + TypeScript |
+| Validation | Shared Zod schemas in a workspace package |
+| ORM and migrations | Prisma |
+| Database | PostgreSQL 16 |
+| Reporting/PDF | HTML-template-to-PDF rendering for configurable report layouts, plus `pdf-lib` for worksheet/reference-strip/fallback PDF generation |
+| Authentication | Session-based authentication using `express-session` |
+| Logging | `pino` + `pino-http` |
+| Testing | Vitest, React Testing Library, Supertest, Playwright |
+| Local orchestration | Docker Compose |
+| CI | GitHub Actions |
+
+### 2.2 Monorepo layout
+
+| Path | Role |
+| --- | --- |
+| `apps/backend` | Express API, services, PDF generation, middleware, tests |
+| `apps/frontend` | React SPA, pages, components, E2E tests |
+| `packages/shared` | Shared types, validation schemas, helper utilities, workflow state helpers |
+| `prisma` | Database schema, migrations, seed script |
+| `docker` | Dockerfiles and nginx configuration |
+| `.github/workflows` | Continuous integration pipeline |
+
+### 2.3 Runtime and toolchain versions
+
+Representative versions from the current repository include the following:
+
+- Node.js: `>=20.0.0`
+- Prisma / Prisma Client: `5.13.0`
+- Express: `4.19.2`
+- PostgreSQL container image: `postgres:16-alpine`
+- React: `18.2.0`
+- Vite: `5.2.6`
+- MUI: `5.15.15`
+- TanStack Query: `5.28.0`
+- Axios: `1.6.8`
+- Vitest: `1.6.0` in backend, `1.4.0` in frontend
+- Playwright: `1.43.1`
+- `pdf-lib`: `1.17.1`
+- `puppeteer-core`: `25.0.4`
+- `express-session`: `1.18.0`
+- `express-rate-limit`: `7.5.1`
+- `helmet`: `7.1.0`
+
+## 3. Backend Design
+
+### 3.1 API style
+
+The backend is an Express application organized around route modules and service classes. Routes are intentionally thin and delegate business logic to services such as:
+
+- `AuthService`
+- `EmployeeService`
+- `PatientService`
+- `DoctorService`
+- `OrderService`
+- `SpecimenService`
+- `BlockService`
+- `SlideService`
+- `ReportService`
+- `PdfService`
+- `QueueService`
+
+The API is JSON-based and mounted under `/api`. BigInt values are serialized to strings before JSON responses are emitted so that browser clients can consume them safely.
+
+### 3.2 Middleware and request handling
+
+The backend applies the following middleware behavior:
+
+- `helmet` for baseline HTTP hardening
+- CORS with credential support and an environment-configurable allowed origin
+- gzip compression via `compression`
+- JSON and URL-encoded body parsing, both capped at 2 MB
+- structured HTTP request logging via `pino-http`
+- session handling via `express-session`
+- `requireAuth` protection on authenticated routes
+- request-body validation via shared Zod schemas
+
+The application also sets `trust proxy = 1` so client IP addresses can be resolved correctly behind nginx or containerized reverse-proxy layers.
+
+### 3.3 Health and operations endpoints
+
+The backend exposes an unauthenticated `GET /health` endpoint returning `{ "status": "ok" }`. This is used by Docker health checks and by the Playwright global setup in automated tests.
+
+## 4. Frontend Design
+
+### 4.1 Client application structure
+
+The frontend is a protected single-page application using React Router and an authenticated shell layout. Primary pages currently include:
+
+- Login
+- Dashboard
+- Order Entry
+- Processing Queue
+- Processing Case
+- Result Queue
+- Result Case
+- Histology Queue
+- Histology Case
+- Ancillary Queue
+- Query
+- Configuration pages for templates, report layouts, and ancillary configuration
+
+### 4.2 Client-side state and networking
+
+Frontend API calls use an Axios client configured with:
+
+- relative base URL `/api`
+- `withCredentials: true` so browser session cookies are sent on each request
+- automatic redirect to `/login` on HTTP 401
+- global conflict broadcasting on HTTP 409, allowing the UI to surface stale-edit and concurrent-modification errors consistently
+
+TanStack Query is used for cached server-state management. The root query client currently uses a default query retry count of 1 and a default stale time of 30 seconds.
+
+### 4.3 UI framework
+
+The UI is implemented with MUI v5 and follows a desktop-oriented internal-application pattern using forms, tables, dialogs, chips, and queue pages rather than consumer-style workflows.
+
+## 5. Data Model and Persistence
+
+### 5.1 Core relational entities
+
+The Prisma schema defines the following central entities:
+
+- `Doctor`
+- `Patient`
+- `EmployeeRole`
+- `Employee`
+- `BodySite`
+- `SpecimenType`
+- `ReportTemplate`
+- `OrderSequenceYear`
+- `Order`
+- `Specimen`
+- `Block`
+- `Slide`
+- `Report`
+- `ReportFile`
+- `CustomTemplate`
+- `CustomTemplateTranslation`
+- `ReportLayout`
+- `AncillaryOrderable`
+- `AncillaryPanel`
+- `AncillaryPanelItem`
+- `AncillaryOrder`
+
+### 5.2 Core pathology relationships
+
+The data model is designed around the hierarchy:
+
+`Patient -> Order -> Specimen -> Block -> Slide`
+
+with reports and ancillary orders attached to an order, and report files attached to individual report versions.
+
+Important relationships include:
+
+- one patient to many orders
+- one doctor to many orders
+- one order to many specimens
+- one specimen to many blocks
+- one block to many slides
+- one order to many reports
+- one report to many report files
+- one order to many ancillary orders
+
+### 5.3 Workflow and configuration entities
+
+In addition to core specimen-tracking tables, the schema includes:
+
+- `ReportLayout` for HTML report layouts by report type
+- `CustomTemplate` and `CustomTemplateTranslation` for structured/synoptic template assets and translations
+- ancillary catalog tables (`AncillaryOrderable`, `AncillaryPanel`, `AncillaryPanelItem`) that define orderable tests and grouped panels
+
+### 5.4 Key uniqueness and indexing rules
+
+Several database constraints directly support traceability and concurrency:
+
+- `OrderSequenceYear` primary key on `(yearTwoDigit, prefix)` for accession numbering
+- `Specimen` unique key on `(orderId, specimenCode)`
+- `Block` unique key on `(specimenId, blockNumber)`
+- `Slide` unique key on `(blockId, slideNumber)`
+- `Report` unique key on `(orderId, versionNumber)`
+- composite `Report` index on `(orderId, isFinal, signedOutDatetime)` to support queue filtering for signed-out cases
+
+## 6. Identifier Generation and Material Traceability
+
+### 6.1 Accession/case identifiers
+
+Case identifiers are generated on the backend only. The current implementation uses:
+
+- prefix `SU` for non-cytology cases
+- prefix `CN` for cytology cases
+- 2-digit year component
+- 7-digit zero-padded sequence number
+
+Examples:
+
+- `SU260000001`
+- `CN260000001`
+
+The sequence is generated transactionally using the `OrderSequenceYear` table rather than by a naive `max + 1` query. This is the repository's primary concurrency-control mechanism for accession numbering.
+
+### 6.2 Specimen identifiers
+
+Specimen codes are generated using Excel-style alphabetic progression:
+
+- `A` through `Z`
+- then `AA`, `AB`, and so on
+
+Specimen identifiers follow the format:
+
+- `{orderId}-{specimenCode}`
+
+Example:
+
+- `SU260000001-A`
+
+### 6.3 Block identifiers
+
+Block identifiers follow the format:
+
+- `{orderId}-{specimenCode}{blockNumber}`
+
+Example:
+
+- `SU260000001-A1`
+
+### 6.4 Slide identifiers
+
+Slide identifiers follow the format:
+
+- `{blockId}-S{slideNumber}`
+
+Example:
+
+- `SU260000001-A1-S1`
+
+### 6.5 Patient and user identifiers
+
+The current prototype permits reuse of existing patient and employee records. When a new patient is created during order entry, the patient identifier is currently generated in the application layer as `P` plus the last 7 digits of `Date.now()`. This is acceptable for a prototype description but should be disclosed as a prototype-specific implementation choice rather than a production-grade master-patient-index strategy.
+
+## 7. Authentication, Session Management, and Security
+
+### 7.1 Authentication model
+
+The system currently uses passwordless session-based login. A user may either:
+
+- search for an existing employee by username, first name, or last name and log in as that employee, or
+- create a new employee record and immediately log in
+
+The session stores the authenticated employee's ID, username, role name, and default language.
+
+### 7.2 Employee roles
+
+Employees are linked to an `EmployeeRole`. The seed/configuration model supports role-based labels such as at least:
+
+- `Pathologist`
+- `Technologist`
+
+These roles are part of the data model and user interface. The current route registration primarily enforces authentication rather than a broad fine-grained authorization layer, so manuscript text should describe the current implementation carefully.
+
+### 7.3 Session cookie behavior
+
+Session cookies are configured as follows:
+
+- `httpOnly: true`
+- `secure: true` in production only
+- `sameSite: strict` in production and `lax` in development
+- maximum age: 8 hours
+
+### 7.4 Login throttling and basic hardening
+
+The login endpoint is rate-limited in production to 20 attempts per IP address per 15-minute window. Additional hardening includes CORS restrictions, body-size limits, security headers, and proxy-aware request handling.
+
+## 8. Core Workflow Implementation
+
+### 8.1 Login workflow
+
+The login page supports two modes:
+
+- search for an existing employee
+- create a new employee with first name, last name, username, role, and default language
+
+Successful login establishes a session and redirects the user into the authenticated application shell.
+
+### 8.2 Order-entry workflow
+
+Order entry supports both existing and newly created patients and clinicians. The order-creation payload includes:
+
+- case type
+- patient identifiers or new-patient demographics
+- doctor identifier or new-doctor name
+- registered date
+- clinical history
+- one or more specimens, each carrying body-site, specimen-type, and optional cold-ischemic-time data
+
+Order creation is performed transactionally. The backend creates the order record, generates the accession identifier, derives sequential specimen codes, and inserts the specimen rows.
+
+After successful order creation, the user interface shows the generated case identifier prominently and exposes a downloadable worksheet PDF.
+
+### 8.3 Cytology-specific material creation
+
+The current frontend contains additional cytology-specific inputs for smear count, ThinPrep count, and cell-block count. After a cytology order is created, the frontend immediately creates corresponding blocks and/or slides by calling the backend material APIs. This is an implementation detail worth documenting if the manuscript discusses cytology support.
+
+### 8.4 Processing and histology workflows
+
+The implementation currently contains both a general processing queue and a dedicated histology queue.
+
+The general processing queue excludes cases that already have a final signed-out report and, in the current backend implementation, also excludes cases that already have a non-empty gross description.
+
+The dedicated histology queue filters cases by block H&E status. Supported H&E statuses are:
+
+- `MICROTOMY`
+- `SLIDE_STAIN`
+- `DISTRIBUTED`
+- `CANCELLED`
+
+For terminal statuses (`DISTRIBUTED` and `CANCELLED`), the API accepts an optional recency filter so old completed items do not accumulate indefinitely in the default worklist view.
+
+The case-level histology workflow allows users to:
+
+- view specimens and existing materials
+- create additional blocks for a specimen
+- create additional slides for a block
+- update H&E status
+- discard blocks or slides
+- generate a reference-strips PDF for the case
+
+### 8.5 Block creation behavior
+
+Block creation is implemented in a serializable Prisma transaction. For each new block, the service:
+
+- determines the next block number for the specimen
+- generates the block ID from the order ID, specimen code, and next block number
+- inserts the block row
+- automatically creates an H&E ancillary order if an active H&E orderable is present in the ancillary catalog
+
+### 8.6 Slide creation behavior
+
+Slide creation is also implemented in a serializable transaction. For each new slide, the service:
+
+- determines the next slide number on the block
+- generates the slide ID from block ID and next slide number
+- inserts the slide row
+- defaults the slide type to `H&E` unless another slide type is specified
+
+If the last non-discarded slide on a block is discarded while the block is still at `SLIDE_STAIN`, the block status is reverted to `MICROTOMY`.
+
+### 8.7 Ancillary workflow
+
+Ancillary tests are modeled as explicit state machines shared between backend and frontend logic. The current state model includes two pipelines:
+
+- slide pipeline: `PULL_BLOCK -> MICROTOMY -> SLIDE_STAIN -> DISTRIBUTED`
+- material pipeline: `PULL_MATERIAL -> MATERIAL_SENT -> MATERIAL_RETURNED`
+
+`CANCELLED` is reachable from any non-terminal state. Terminal states are:
+
+- `DISTRIBUTED`
+- `MATERIAL_RETURNED`
+- `CANCELLED`
+
+Ancillary tests can be placed as individual orderables or grouped panels.
+
+### 8.8 Result-queue workflow
+
+The result queue includes cases meeting both of the following conditions:
+
+- at least one non-discarded block has H&E status `DISTRIBUTED`, or at least one ancillary order has status `DISTRIBUTED`
+- no final signed-out report exists for the case
+
+This queue design ties diagnostic work eligibility to actual material availability rather than merely to case registration.
+
+### 8.9 Report drafting and sign-out
+
+Reports are versioned per order. The service layer supports:
+
+- draft creation or update
+- preliminary sign-out
+- final sign-out
+- reactivation/amendment workflows
+- version history retrieval
+
+Draft creation uses the following logic:
+
+- if an editable draft already exists, update it
+- otherwise create a new draft with `versionNumber = latest + 1`
+
+Final sign-out requires all of the following:
+
+- the report exists
+- the report is not already final
+- the case has at least one block
+- every non-discarded block has at least one non-discarded slide
+- every non-discarded block has H&E status `DISTRIBUTED`
+
+Successful final sign-out:
+
+- updates the report content
+- stores the signing pathologist employee ID
+- sets `signedOutDatetime`
+- marks the report as final
+- updates the order `completedDate`
+- generates or attempts to generate a report PDF
+- stores report-file metadata in `ReportFile`
+
+### 8.10 Preliminary sign-out behavior
+
+Preliminary sign-out freezes the current draft as a preliminary report and, within the same serializable transaction, creates the next editable draft version. This allows the case to remain active while preserving a timestamped preliminary interpretation.
+
+### 8.11 Reactivation/amendment workflow
+
+Reactivation does not overwrite prior finalized reports. Instead, the service:
+
+- finds the latest final report
+- marks the order as reactivated
+- stores `reactivatedFromReportId`
+- clears the order `completedDate`
+- creates a new draft report version that supersedes the prior final report
+
+The reactivated draft can carry a reactivation type and reason, supporting amendment/addendum-style workflows.
+
+### 8.12 Query workflow
+
+The query API supports searching by order ID and patient ID. Query responses derive an `isSignedOut` flag from the presence of a final signed-out report.
+
+## 9. Report Rendering, PDF Generation, and File Storage
+
+### 9.1 PDF types currently generated
+
+The current implementation supports generation of:
+
+- worksheet PDFs at case creation
+- reference-strips PDFs for case materials
+- final report PDFs
+- preliminary report PDFs
+- patient-summary PDFs for supported structured reports
+- draft preview PDFs that are rendered inline and not persisted as report records
+
+### 9.2 Dual rendering approach
+
+Two PDF-generation approaches are used in the codebase:
+
+- `pdf-lib` for worksheet PDFs, reference-strip PDFs, and fallback report generation
+- configurable HTML-template-based rendering for report layouts, rendered to PDF via a Puppeteer-based backend service
+
+`ReportLayout` rows are stored in the database and keyed by report type. When an active layout exists, final and preliminary reports use that layout. If no active layout exists, the backend falls back to the programmatic `pdf-lib` implementation.
+
+### 9.3 Draft-preview behavior
+
+Draft preview does not write a report version to the database. Instead, it renders an inline PDF using the active preliminary layout and current unsaved form content so the preview matches the configured report-layout system.
+
+### 9.4 File persistence model
+
+Generated report metadata are stored in the `ReportFile` table, including:
+
+- report ID
+- file type
+- file name
+- MIME type
+- filesystem storage path
+- creation timestamp
+
+The actual PDF bytes are stored on the backend filesystem. In Docker deployments, this location is backed by a named volume mounted at the backend storage directory. This is an important manuscript detail because the current prototype uses filesystem-backed document persistence rather than object storage or PACS/VNA integration.
+
+## 10. Concurrency Control, Validation, and Error Handling
+
+### 10.1 Serializable database transactions
+
+Several write-critical workflows use Prisma transactions with serializable isolation, including:
+
+- block creation
+- slide creation
+- draft creation/versioning
+- final sign-out
+- preliminary sign-out
+- case reactivation
+
+This design reduces race conditions around sequence generation, version numbering, and concurrent edits.
+
+### 10.2 Optimistic locking for report edits
+
+Report draft update and sign-out APIs support an `expectedUpdatedAt` value. When provided, the backend includes the current report timestamp in the update condition. If another user modifies the draft first, the operation fails with a 409 conflict and a `DRAFT_STALE` error code rather than silently overwriting the other user's work.
+
+### 10.3 Conflict signaling to the frontend
+
+The frontend Axios layer emits a global browser event on HTTP 409 responses. A global conflict-toast component listens for these events and can refresh query data so the UI converges quickly after optimistic-lock or concurrent-update failures.
+
+### 10.4 Input validation
+
+The application uses shared Zod schemas for request validation across login, draft creation, sign-out, reactivation, and related workflows. This keeps API-level validation logic aligned between frontend and backend TypeScript code.
+
+### 10.5 Workflow guards
+
+Important server-side guards include:
+
+- rejecting final sign-out when blocks or slides are missing
+- rejecting final sign-out when H&E distribution is incomplete
+- rejecting invalid ancillary status transitions
+- rejecting duplicate usernames during employee creation
+- rejecting duplicate version/block/slide sequences via database uniqueness constraints
+
+## 11. Internationalization and Multilingual Support
+
+### 11.1 Supported UI languages
+
+The current UI supports the following language codes:
+
+- `en`
+- `fr`
+- `sw`
+- `ar`
+- `ur`
+
+These correspond to English, French, Swahili, Arabic, and Urdu.
+
+### 11.2 Implementation model
+
+Internationalization is implemented through a custom React `LanguageProvider` rather than a third-party i18n framework. The provider:
+
+- stores the selected language in `localStorage` under `ap_lis_lang`
+- exposes translation helpers for UI strings and controlled vocabularies
+- updates `document.documentElement.lang`
+- updates `document.documentElement.dir` for left-to-right or right-to-left layout behavior
+
+### 11.3 Translation helpers
+
+The language context exposes translation helpers not only for generic UI labels but also for data-model values that remain stored in English in the database, including:
+
+- body-site names
+- organ/site labels
+- specimen types
+- slide types
+- case types
+- sex labels
+- employee role names
+
+This allows storage-level stability while keeping the UI multilingual.
+
+### 11.4 Typography and script support
+
+The frontend loads script-appropriate fonts:
+
+- Roboto for default Latin-script presentation
+- Noto Naskh Arabic for Arabic
+- Noto Nastaliq Urdu for Urdu
+
+The active language updates the CSS custom property used for the application's font family.
+
+### 11.5 Structured-report and patient-summary language handling
+
+The backend can render patient-summary PDFs from supported structured reporting payloads in the requesting language or, when no explicit query parameter is supplied, in the authenticated employee's default language.
+
+## 12. Testing, Quality Assurance, and CI
+
+### 12.1 Test layers
+
+The repository uses multiple automated test layers:
+
+- backend unit tests with Vitest
+- backend integration tests with Vitest + Supertest + PostgreSQL
+- frontend component tests with Vitest + React Testing Library
+- end-to-end browser tests with Playwright
+
+### 12.2 Continuous integration
+
+The GitHub Actions pipeline performs:
+
+- path-based change detection
+- backend and frontend type checking
+- backend and frontend linting
+- backend tests against a PostgreSQL service container
+- frontend tests with coverage
+- Prisma schema-drift detection using migration diffs
+- Playwright end-to-end tests against built backend and frontend services
+
+The E2E workflow applies migrations, seeds the test database, builds both applications, serves the backend and the built frontend, waits for `/health` and the web UI to become reachable, installs Chromium, and then executes Playwright.
+
+### 12.3 Coverage and failure artifacts
+
+The CI pipeline uploads backend and frontend coverage artifacts. For E2E failures, trace/video artifacts are also retained for debugging.
+
+## 13. Reproducibility and Seed Data
+
+### 13.1 Seed strategy
+
+The repository includes a Prisma seed script that creates deterministic synthetic data using a seeded pseudo-random generator. The seed script is explicitly guarded against accidental production execution unless `ALLOW_PROD_SEED=1` is set.
+
+### 13.2 Synthetic dataset characteristics
+
+The seed script populates:
+
+- body-site lookup values
+- specimen-type lookup values
+- report-template examples
+- structured cytology examples
+- synthetic case/order data
+
+Repository documentation and code comments indicate that the development seed is intended to create approximately 300 synthetic orders/cases for demos and automated testing.
+
+### 13.3 Manuscript implication
+
+If the manuscript reports experiments performed on seeded/demo data rather than clinical data, that distinction should be stated explicitly. If clinical or retrospective data were used outside the seed script, those study-specific data-governance details need to be added separately by the authors.
+
+## 14. Deployment Model
+
+### 14.1 Local development deployment
+
+The default Docker Compose stack uses:
+
+- PostgreSQL 16 in a container
+- the backend service on port `3001`
+- the frontend served on port `5173`
+- automatic execution of `prisma migrate deploy`
+- automatic execution of the seed script in development
+
+An additional `docker-compose.dev.yml` overlay replaces the built frontend container with a Vite development server and bind-mounts the workspace for live reload.
+
+### 14.2 Production-style deployment
+
+The production compose stack differs mainly in database wiring:
+
+- no local PostgreSQL container
+- Google Cloud SQL is reached via a Cloud SQL Auth Proxy sidecar
+- backend startup runs `prisma migrate deploy`
+- production startup does not seed the database
+
+The built frontend is served by nginx, while the backend continues to expose the API on port `3001`.
+
+### 14.3 Environment configuration
+
+Key environment variables include at least:
+
+- `DATABASE_URL`
+- `SESSION_SECRET`
+- `PORT`
+- `NODE_ENV`
+- `CORS_ORIGIN`
+- `STORAGE_PATH`
+
+## 15. Observability and Operational Behavior
+
+The backend uses `pino` and `pino-http` for structured logging. Requests returning HTTP 500 or higher are logged at error level, while lower-severity requests are logged at debug level.
+
+The application includes an explicit health endpoint and logs PDF-generation failures after sign-out as warnings rather than rolling back the already-committed sign-out transaction. This design prioritizes clinical workflow continuity while still preserving a trail for audit and recovery.
+
+## 16. Important Prototype Limitations to Disclose in a Manuscript
+
+The following points should be disclosed or at least considered when converting this material into a paper:
+
+- The system is a lightweight prototype and not a validated commercial LIS.
+- Authentication is passwordless session-based login rather than enterprise identity management.
+- Files are stored on a local/container filesystem rather than in object storage, PACS, or enterprise document management.
+- New patient identifiers are currently generated in the application layer using a timestamp-derived prototype scheme.
+- The codebase emphasizes functional workflow correctness and testability; no dedicated load-testing or formal performance-benchmark suite was identified in the repository.
+- Queue semantics in older prose documents may differ from current code, so manuscript text should follow the implemented behavior described here.
+
+## 17. Study-specific Metadata the Authors Still Need to Add
+
+The repository can describe the software system, but a publishable manuscript will still need human-supplied study metadata such as:
+
+- institution(s), country, and practice setting
+- study design and evaluation period
+- whether data were synthetic, retrospective clinical, prospective clinical, or mixed
+- sample size and case mix
+- pathology subspecialties included
+- user roles participating in the evaluation
+- hosting infrastructure details used for the reported study instance
+- browser/client environment used during evaluation
+- exact software release tag or commit hash analyzed
+- ethics/IRB and privacy/de-identification statements, if applicable
+- outcome measures, error definitions, and statistical analysis methods
+- availability statement for source code, demo environment, or supplemental materials
+
+## 18. Suggested Condensed Manuscript Description
+
+One concise description that could be adapted for a journal methods section is:
+
+"We implemented a lightweight anatomic pathology laboratory information system as a TypeScript monorepo with a React/Vite/MUI frontend, an Express/Node.js backend, PostgreSQL persistence via Prisma, and shared Zod-validated data contracts. The system models the pathology workflow from case accessioning through specimen, block, and slide tracking; ancillary testing; draft, preliminary, and final report generation; and case query. Accession, specimen, block, slide, and report identifiers were generated server-side, with serializable database transactions and optimistic locking used to prevent versioning and concurrent-edit conflicts. Report layouts were configurable through database-stored HTML templates rendered to PDF, with `pdf-lib` used for worksheet and fallback report generation. The prototype was containerized with Docker Compose for local deployment and validated with automated unit, integration, component, and end-to-end tests executed in GitHub Actions." 
