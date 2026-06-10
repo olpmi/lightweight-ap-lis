@@ -3,6 +3,14 @@
 #
 # Each entry is reviewed and justified below.
 
+# CVE-2026-47429 — vitest UI server arbitrary file read
+# Affected package: vitest (node_modules copied into production image)
+# Justification: vitest is a test runner / devDependency. The vulnerability
+# requires the Vitest UI server to be actively running (`vitest --ui`). We
+# never run `vitest --ui` inside Docker containers; vitest is not invoked at
+# runtime. Not exploitable in this context.
+CVE-2026-47429
+
 # CVE-2024-24790 — golang stdlib net/netip: unexpected behavior for IPv4-mapped IPv6 addresses
 # Affected package: @esbuild/linux-x64 (Go binary compiled with Go <1.21.11 / <1.22.4)
 # Justification: esbuild is a JavaScript/TypeScript bundler; it makes no network calls

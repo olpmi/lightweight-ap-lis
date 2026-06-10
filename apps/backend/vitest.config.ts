@@ -4,9 +4,6 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'node',
-    // Restore threads pool (vitest 3.x default changed to forks; threads is
-    // more reliable for V8 coverage collection on Node 20 in CI).
-    pool: 'threads',
     include: ['src/tests/**/*.test.ts'],
     coverage: {
       provider: 'v8',
