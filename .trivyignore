@@ -1,0 +1,18 @@
+# Trivy vulnerability ignore list
+# Format: CVE-ID [expiry-date] [comment]
+#
+# Each entry is reviewed and justified below.
+
+# CVE-2024-24790 — golang stdlib net/netip: unexpected behavior for IPv4-mapped IPv6 addresses
+# Affected package: @esbuild/linux-x64 (Go binary compiled with Go <1.21.11 / <1.22.4)
+# Justification: esbuild is a JavaScript/TypeScript bundler; it makes no network calls
+# and does not use net/netip at runtime. Not exploitable in this context.
+# Resolution: will resolve automatically when esbuild releases a binary built with Go ≥1.22.4.
+CVE-2024-24790
+
+# CVE-2025-68121 — golang stdlib crypto/tls: incorrect cert validation during TLS session resumption
+# Affected package: @esbuild/linux-x64 (Go binary compiled with Go <1.24.13 / <1.25.7)
+# Justification: esbuild does not perform any TLS connections; it is a build-time
+# code transformation tool. Not exploitable in this context.
+# Resolution: will resolve automatically when esbuild releases a binary built with Go ≥1.25.7.
+CVE-2025-68121
