@@ -3,12 +3,16 @@ import { test, expect, Page } from '@playwright/test';
 // ─── Helpers ──────────────────────────────────────────────────────────────
 
 const DEFAULT_USER = process.env.E2E_USER ?? 'asmith';
+const DEFAULT_PASSWORD = process.env.E2E_PASSWORD ?? 'Pathology1!';
 
 async function loginAsExistingEmployee(page: Page, userName = DEFAULT_USER) {
   await page.goto('/login');
   await page.getByTestId('employee-search-input').fill(userName);
   await page.waitForSelector(`[data-testid="employee-option-${userName}"]`);
   await page.getByTestId(`employee-option-${userName}`).click();
+  // Password prompt appears after selecting an existing employee.
+  await page.getByTestId('login-password').fill(DEFAULT_PASSWORD);
+  await page.getByTestId('login-submit').click();
   // Different roles land on different pages (Pathologist -> /, others -> /order-entry).
   // Just wait for navigation away from /login.
   await page.waitForURL((url) => !url.pathname.startsWith('/login'));
@@ -34,6 +38,8 @@ test.describe('Authentication', () => {
     // MUI Select renders options as role="option"; using getByText would
     // also match the label, which can be ambiguous.
     await page.getByRole('option', { name: 'Technologist' }).click();
+    await page.getByTestId('new-employee-password').fill('NewEmployee1!');
+    await page.getByTestId('new-employee-confirm-password').fill('NewEmployee1!');
     await page.getByTestId('new-employee-submit').click();
     // Different roles land on different pages; just verify navigation
     // away from /login and that we are authenticated.
