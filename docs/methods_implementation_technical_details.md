@@ -1,6 +1,6 @@
 # Methods, Implementation, and Technical Details
 
-This document summarizes the implementation details of the lightweight AP LIS prototype that are likely to be needed when drafting the methods, system architecture, implementation, validation, and technical-details sections of an academic manuscript. It is based on the current repository state as of 2026-05-31.
+This document summarizes the implementation details of the lightweight AP LIS prototype that are likely to be needed when drafting the methods, system architecture, implementation, validation, and technical-details sections of an academic manuscript. It is based on the current repository state as of 2026-06-09.
 
 ## 1. System Summary
 
@@ -22,7 +22,7 @@ The implementation is intended as a functional pathology informatics prototype r
 | ORM and migrations | Prisma |
 | Database | PostgreSQL 16 |
 | Reporting/PDF | HTML-template-to-PDF rendering for configurable report layouts, plus `pdf-lib` for worksheet/reference-strip/fallback PDF generation |
-| Authentication | Session-based authentication using `express-session` |
+| Authentication | Password-based session authentication using `express-session` and `bcryptjs` |
 | Logging | `pino` + `pino-http` |
 | Testing | Vitest, React Testing Library, Supertest, Playwright |
 | Local orchestration | Docker Compose |
@@ -46,7 +46,9 @@ Representative versions from the current repository include the following:
 - Node.js: `>=20.0.0`
 - Prisma / Prisma Client: `5.13.0`
 - Express: `4.19.2`
-- PostgreSQL container image: `postgres:16-alpine`
+- PostgreSQL container image: `postgres:16` (Debian-based)
+- wal-g: `v3.0.8` (glibc build, optional GCS backup)
+- bcryptjs: `2.4.3`
 - React: `18.2.0`
 - Vite: `5.2.6`
 - MUI: `5.15.15`
@@ -260,10 +262,12 @@ The current prototype permits reuse of existing patient and employee records. Wh
 
 ### 7.1 Authentication model
 
-The system currently uses passwordless session-based login. A user may either:
+The system uses password-based session authentication. A user may either:
 
-- search for an existing employee by username, first name, or last name and log in as that employee, or
-- create a new employee record and immediately log in
+- search for an existing employee by username, first name, or last name, select the account, and enter their password, or
+- create a new employee record (providing first name, last name, username, role, password, and default language) and immediately log in
+
+Passwords are hashed with bcrypt at a cost factor of 12 using the `bcryptjs` library. The `password_hash` column on the `employee` table is nullable to allow existing accounts to be migrated gracefully; a login attempt for an account with no hash set returns a 401 with a message directing the user to an administrator.
 
 The session stores the authenticated employee's ID, username, role name, and default language.
 
@@ -281,7 +285,7 @@ These roles are part of the data model and user interface. The current route reg
 Session cookies are configured as follows:
 
 - `httpOnly: true`
-- `secure: true` in production only
+- `secure`: controlled by the `COOKIE_SECURE` environment variable (set to `true` only when the application is served over HTTPS; default `false` to prevent browsers from silently dropping cookies on plain-HTTP deployments)
 - `sameSite: strict` in production and `lax` in development
 - maximum age: 8 hours
 
@@ -295,8 +299,8 @@ The login endpoint is rate-limited in production to 20 attempts per IP address p
 
 The login page supports two modes:
 
-- search for an existing employee
-- create a new employee with first name, last name, username, role, and default language
+- search for an existing employee, then enter a password
+- create a new employee with first name, last name, username, role, password (minimum 8 characters with confirmation), and default language
 
 Successful login establishes a session and redirects the user into the authenticated application shell.
 
@@ -632,27 +636,43 @@ The default Docker Compose stack uses:
 
 An additional `docker-compose.dev.yml` overlay replaces the built frontend container with a Vite development server and bind-mounts the workspace for live reload.
 
-### 14.2 Production-style deployment
+### 14.2 Production deployment
 
-The production compose stack differs mainly in database wiring:
+The production compose stack (`docker-compose.prod.yml`) runs two local PostgreSQL 16 containers with streaming physical (WAL-based) replication:
 
-- no local PostgreSQL container
-- Google Cloud SQL is reached via a Cloud SQL Auth Proxy sidecar
-- backend startup runs `prisma migrate deploy`
-- production startup does not seed the database
+- `postgres_primary` — writable primary; backend writes here via `DATABASE_URL`
+- `postgres_standby` — hot standby; accepts read-only queries and can optionally be targeted via `DATABASE_URL_REPLICA`
 
-The built frontend is served by nginx, while the backend continues to expose the API on port `3001`.
+The standby is cloned from the primary on first start using `pg_basebackup -R -Xs`, which writes `standby.signal` and `primary_conninfo` so that PostgreSQL enters streaming-replication recovery mode automatically.
+
+WAL archiving is supported via `archive_command` calling a wrapper script that routes to either:
+- Google Cloud Storage (GCS) using wal-g v3.0.8, when `WALG_GCS_PREFIX` is set
+- a local `/wal-archive` Docker volume as a fallback, when GCS is not configured
+
+An optional `backup_cron` service (started with `--profile backup`) runs a scheduled base backup using `wal-g backup-push`, retaining the last 7 full backups.
+
+Backend startup runs `prisma migrate deploy` only — no seeding. All static reference/lookup data (employee roles, specimen types, body sites, ancillary orderables, ancillary panels and panel items) is inserted by a dedicated idempotent data migration (`20260609000000_seed_reference_data`) that uses `ON CONFLICT DO NOTHING`, so it is safe to apply repeatedly.
+
+The `COOKIE_SECURE` environment variable controls the session-cookie `Secure` flag and must be set to `true` only when the application is served over HTTPS.
 
 ### 14.3 Environment configuration
 
 Key environment variables include at least:
 
 - `DATABASE_URL`
+- `DATABASE_URL_REPLICA` (optional read-replica URL)
 - `SESSION_SECRET`
+- `COOKIE_SECURE`
 - `PORT`
 - `NODE_ENV`
 - `CORS_ORIGIN`
 - `STORAGE_PATH`
+
+Production-only variables:
+
+- `POSTGRES_USER`, `POSTGRES_PASSWORD`, `POSTGRES_DB`
+- `REPLICATION_PASSWORD`
+- `WALG_GCS_PREFIX`, `WALG_COMPRESSION_METHOD`, `GOOGLE_APPLICATION_CREDENTIALS`
 
 ## 15. Observability and Operational Behavior
 
@@ -665,7 +685,7 @@ The application includes an explicit health endpoint and logs PDF-generation fai
 The following points should be disclosed or at least considered when converting this material into a paper:
 
 - The system is a lightweight prototype and not a validated commercial LIS.
-- Authentication is passwordless session-based login rather than enterprise identity management.
+- Authentication uses password-based session login (bcrypt-hashed passwords) rather than enterprise identity management (e.g. SSO, LDAP, OAuth2).
 - Files are stored on a local/container filesystem rather than in object storage, PACS, or enterprise document management.
 - New patient identifiers are currently generated in the application layer using a timestamp-derived prototype scheme.
 - The codebase emphasizes functional workflow correctness and testability; no dedicated load-testing or formal performance-benchmark suite was identified in the repository.
@@ -692,4 +712,4 @@ The repository can describe the software system, but a publishable manuscript wi
 
 One concise description that could be adapted for a journal methods section is:
 
-"We implemented a lightweight anatomic pathology laboratory information system as a TypeScript monorepo with a React/Vite/MUI frontend, an Express/Node.js backend, PostgreSQL persistence via Prisma, and shared Zod-validated data contracts. The system models the pathology workflow from case accessioning through specimen, block, and slide tracking; ancillary testing; draft, preliminary, and final report generation; and case query. Accession, specimen, block, slide, and report identifiers were generated server-side, with serializable database transactions and optimistic locking used to prevent versioning and concurrent-edit conflicts. Report layouts were configurable through database-stored HTML templates rendered to PDF, with `pdf-lib` used for worksheet and fallback report generation. The prototype was containerized with Docker Compose for local deployment and validated with automated unit, integration, component, and end-to-end tests executed in GitHub Actions." 
+"We implemented a lightweight anatomic pathology laboratory information system as a TypeScript monorepo with a React/Vite/MUI frontend, an Express/Node.js backend, PostgreSQL persistence via Prisma, and shared Zod-validated data contracts. The system models the pathology workflow from case accessioning through specimen, block, and slide tracking; ancillary testing; draft, preliminary, and final report generation; and case query. Accession, specimen, block, slide, and report identifiers were generated server-side, with serializable database transactions and optimistic locking used to prevent versioning and concurrent-edit conflicts. Report layouts were configurable through database-stored HTML templates rendered to PDF, with `pdf-lib` used for worksheet and fallback report generation. Employee authentication used password-based session login with bcrypt-hashed credentials (cost factor 12). In production, the system ran on two locally containerized PostgreSQL 16 instances with streaming physical replication (primary and hot standby), with optional WAL archiving and scheduled base backups to Google Cloud Storage via wal-g. The prototype was containerized with Docker Compose for local deployment and validated with automated unit, integration, component, and end-to-end tests executed in GitHub Actions." 

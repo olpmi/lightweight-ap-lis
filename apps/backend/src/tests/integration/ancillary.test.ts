@@ -73,7 +73,7 @@ describe.skipIf(!hasDb)('Ancillary order pipelines', () => {
     bodySiteId = bodySite.bodySiteId;
 
     const login = await agent.post('/api/auth/login').send({
-      newEmployee: { userName, firstName: 'Anc', lastName: 'Tester', employeeRoleId: roleId },
+      newEmployee: { userName, firstName: 'Anc', lastName: 'Tester', employeeRoleId: roleId, password: 'Integration1!' },
     });
     expect(login.status).toBe(200);
     employeeId = Number(login.body.data.employeeId);

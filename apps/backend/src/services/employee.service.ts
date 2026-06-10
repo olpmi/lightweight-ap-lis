@@ -1,6 +1,9 @@
 import { prisma } from '../lib/prisma.js';
 import { AppError } from '../middleware/error.middleware.js';
 import { CreateEmployeeInput, AppLanguageCode } from '@lis/shared';
+import bcrypt from 'bcryptjs';
+
+const BCRYPT_ROUNDS = 12;
 
 export class EmployeeService {
   async search(query: string): Promise<object[]> {
@@ -35,6 +38,8 @@ export class EmployeeService {
     const role = await prisma.employeeRole.findUnique({ where: { employeeRoleId: data.employeeRoleId } });
     if (!role) throw new AppError(400, 'BAD_REQUEST', `Employee role ${data.employeeRoleId} not found`);
 
+    const passwordHash = await bcrypt.hash(data.password, BCRYPT_ROUNDS);
+
     return prisma.employee.create({
       data: {
         lastName: data.lastName,
@@ -42,6 +47,7 @@ export class EmployeeService {
         userName: data.userName,
         employeeRoleId: data.employeeRoleId,
         defaultLanguage: data.defaultLanguage ?? 'en',
+        passwordHash,
       },
       include: { employeeRole: true },
     });

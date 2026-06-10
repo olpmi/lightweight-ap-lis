@@ -83,7 +83,10 @@ export function createApp(): express.Application {
       saveUninitialized: false,
       cookie: {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
+        // Set COOKIE_SECURE=true only when the app is accessed over HTTPS.
+        // When running behind an nginx reverse-proxy without TLS termination,
+        // leave this false — browsers silently discard Secure cookies on HTTP.
+        secure: process.env.COOKIE_SECURE === 'true',
         maxAge: 8 * 60 * 60 * 1000, // 8 hours
         sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
       },

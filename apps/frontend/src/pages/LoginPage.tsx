@@ -21,8 +21,10 @@ import {
   Stack,
   ToggleButtonGroup,
   ToggleButton,
+  IconButton,
+  InputAdornment,
 } from '@mui/material';
-import { Person, Add, Translate } from '@mui/icons-material';
+import { Add, Translate, Visibility, VisibilityOff, ArrowBack } from '@mui/icons-material';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
@@ -39,6 +41,11 @@ export default function LoginPage() {
   const [mode, setMode] = useState<'search' | 'new'>('search');
   const [error, setError] = useState<string | null>(null);
 
+  // "Find employee" password step
+  const [selectedEmployee, setSelectedEmployee] = useState<Employee | null>(null);
+  const [loginPassword, setLoginPassword] = useState('');
+  const [showLoginPassword, setShowLoginPassword] = useState(false);
+
   // New employee form state
   const [newForm, setNewForm] = useState({
     firstName: '',
@@ -46,7 +53,10 @@ export default function LoginPage() {
     userName: '',
     employeeRoleId: '' as number | '',
     defaultLanguage: 'en' as Lang,
+    password: '',
+    confirmPassword: '',
   });
+  const [showNewPassword, setShowNewPassword] = useState(false);
 
   const { data: roles } = useQuery<EmployeeRole[]>({
     queryKey: qk.employeeRoles,
@@ -72,14 +82,29 @@ export default function LoginPage() {
 
   const handleSelectEmployee = (emp: Employee) => {
     setError(null);
-    loginMutation.mutate({ employeeId: Number(emp.employeeId) });
+    setLoginPassword('');
+    setSelectedEmployee(emp);
+  };
+
+  const handlePasswordLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    if (!loginPassword) {
+      setError(t('login_allFieldsRequired'));
+      return;
+    }
+    loginMutation.mutate({ employeeId: Number(selectedEmployee!.employeeId), password: loginPassword });
   };
 
   const handleNewEmployeeSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-    if (!newForm.firstName || !newForm.lastName || !newForm.userName || !newForm.employeeRoleId) {
+    if (!newForm.firstName || !newForm.lastName || !newForm.userName || !newForm.employeeRoleId || !newForm.password) {
       setError(t('login_allFieldsRequired'));
+      return;
+    }
+    if (newForm.password !== newForm.confirmPassword) {
+      setError(t('login_passwordMismatch'));
       return;
     }
     loginMutation.mutate({
@@ -89,8 +114,16 @@ export default function LoginPage() {
         userName: newForm.userName,
         employeeRoleId: Number(newForm.employeeRoleId),
         defaultLanguage: newForm.defaultLanguage,
+        password: newForm.password,
       },
     });
+  };
+
+  const handleModeChange = (newMode: 'search' | 'new') => {
+    setMode(newMode);
+    setSelectedEmployee(null);
+    setLoginPassword('');
+    setError(null);
   };
 
   return (
@@ -126,7 +159,7 @@ export default function LoginPage() {
             <Button
               variant={mode === 'search' ? 'contained' : 'outlined'}
               fullWidth
-              onClick={() => setMode('search')}
+              onClick={() => handleModeChange('search')}
               size="small"
             >
               {t('login_findEmployee')}
@@ -134,7 +167,7 @@ export default function LoginPage() {
             <Button
               variant={mode === 'new' ? 'contained' : 'outlined'}
               fullWidth
-              onClick={() => setMode('new')}
+              onClick={() => handleModeChange('new')}
               startIcon={<Add />}
               size="small"
             >
@@ -144,7 +177,7 @@ export default function LoginPage() {
 
           <Divider sx={{ mb: 2 }} />
 
-          {mode === 'search' && (
+          {mode === 'search' && !selectedEmployee && (
             <>
               <TextField
                 label={t('login_searchPlaceholder')}
@@ -184,6 +217,55 @@ export default function LoginPage() {
                 </Typography>
               )}
             </>
+          )}
+
+          {mode === 'search' && selectedEmployee && (
+            <Box component="form" onSubmit={handlePasswordLogin}>
+              <Stack spacing={2}>
+                <Stack direction="row" alignItems="center" spacing={1}>
+                  <IconButton size="small" onClick={() => { setSelectedEmployee(null); setError(null); }}>
+                    <ArrowBack fontSize="small" />
+                  </IconButton>
+                  <Box>
+                    <Typography variant="subtitle2" fontWeight={600}>
+                      {selectedEmployee.lastName}, {selectedEmployee.firstName}
+                    </Typography>
+                    <Typography variant="caption" color="text.secondary">
+                      {selectedEmployee.userName} — {tRole((selectedEmployee.employeeRole as { roleName?: string })?.roleName ?? '')}
+                    </Typography>
+                  </Box>
+                </Stack>
+                <TextField
+                  label={t('login_password')}
+                  type={showLoginPassword ? 'text' : 'password'}
+                  required
+                  autoFocus
+                  value={loginPassword}
+                  onChange={(e) => setLoginPassword(e.target.value)}
+                  fullWidth
+                  size="small"
+                  inputProps={{ 'data-testid': 'login-password' }}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton size="small" onClick={() => setShowLoginPassword((v) => !v)} edge="end">
+                          {showLoginPassword ? <VisibilityOff fontSize="small" /> : <Visibility fontSize="small" />}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+                <Button
+                  type="submit"
+                  variant="contained"
+                  fullWidth
+                  disabled={loginMutation.isPending}
+                  data-testid="login-submit"
+                >
+                  {loginMutation.isPending ? <CircularProgress size={20} /> : t('login_login')}
+                </Button>
+              </Stack>
+            </Box>
           )}
 
           {mode === 'new' && (
@@ -231,6 +313,36 @@ export default function LoginPage() {
                     ))}
                   </Select>
                 </FormControl>
+                <TextField
+                  label={t('login_password')}
+                  type={showNewPassword ? 'text' : 'password'}
+                  required
+                  value={newForm.password}
+                  onChange={(e) => setNewForm({ ...newForm, password: e.target.value })}
+                  fullWidth
+                  size="small"
+                  helperText={t('login_passwordHint')}
+                  inputProps={{ 'data-testid': 'new-employee-password' }}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton size="small" onClick={() => setShowNewPassword((v) => !v)} edge="end">
+                          {showNewPassword ? <VisibilityOff fontSize="small" /> : <Visibility fontSize="small" />}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+                <TextField
+                  label={t('login_confirmPassword')}
+                  type={showNewPassword ? 'text' : 'password'}
+                  required
+                  value={newForm.confirmPassword}
+                  onChange={(e) => setNewForm({ ...newForm, confirmPassword: e.target.value })}
+                  fullWidth
+                  size="small"
+                  inputProps={{ 'data-testid': 'new-employee-confirm-password' }}
+                />
                 <Box>
                   <Box display="flex" alignItems="center" gap={0.75} mb={0.75}>
                     <Translate sx={{ fontSize: 16, color: 'text.secondary' }} />

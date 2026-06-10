@@ -50,13 +50,13 @@ describe.skipIf(!hasDb)('Order edit-lock', () => {
     bodySiteId = bodySite.bodySiteId;
 
     const loginA = await agentA.post('/api/auth/login').send({
-      newEmployee: { userName: userA, firstName: 'Lock', lastName: 'A', employeeRoleId: roleId },
+      newEmployee: { userName: userA, firstName: 'Lock', lastName: 'A', employeeRoleId: roleId, password: 'Integration1!' },
     });
     expect(loginA.status).toBe(200);
     employeeAId = Number(loginA.body.data.employeeId);
 
     const loginB = await agentB.post('/api/auth/login').send({
-      newEmployee: { userName: userB, firstName: 'Lock', lastName: 'B', employeeRoleId: roleId },
+      newEmployee: { userName: userB, firstName: 'Lock', lastName: 'B', employeeRoleId: roleId, password: 'Integration1!' },
     });
     expect(loginB.status).toBe(200);
     employeeBId = Number(loginB.body.data.employeeId);

@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import bcrypt from 'bcryptjs';
 
 if (process.env.NODE_ENV === 'production') {
   // Defensive guard: this seed inserts ~300 synthetic orders and must never run in prod.
@@ -480,6 +481,11 @@ async function main() {
   console.log('  ✓ Employee roles');
 
   // 2. Employees
+  // SEED_PASSWORD is used by E2E tests (E2E_PASSWORD env var must match).
+  const seedPasswordHash = await bcrypt.hash(
+    process.env.SEED_PASSWORD ?? 'Pathology1!',
+    12,
+  );
   const employeeRecords: Array<{ employeeId: bigint; role: string }> = [];
   for (const emp of EMPLOYEES) {
     const record = await prisma.employee.upsert({
@@ -489,6 +495,7 @@ async function main() {
         firstName: emp.firstName,
         userName: emp.userName,
         employeeRoleId: roleRecords[emp.role],
+        passwordHash: seedPasswordHash,
       },
       update: {},
     });

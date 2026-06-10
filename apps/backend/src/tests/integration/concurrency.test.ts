@@ -61,6 +61,7 @@ describe.skipIf(!hasDb)('Concurrency / conflict paths', () => {
         firstName: 'Conflict',
         lastName: 'Tester',
         employeeRoleId: roleId,
+        password: 'Integration1!',
       },
     });
     expect(loginRes.status).toBe(200);

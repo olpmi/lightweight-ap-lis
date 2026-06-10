@@ -1,4 +1,4 @@
-﻿# Lightweight AP LIS
+# Lightweight AP LIS
 
 A lightweight **Anatomic Pathology Laboratory Information System** prototype implemented as a monorepo.
 
@@ -50,7 +50,7 @@ This repo ships **two Compose stacks**:
 | Stack | File(s) | Database | Use for |
 |---|---|---|---------|
 | **Development** (default) | `docker-compose.yml` (optionally `+ docker-compose.dev.yml` for Vite HMR) | Containerized PostgreSQL | Local development, demos, CI |
-| **Production** | `docker-compose.prod.yml` (standalone) | Google Cloud SQL via Cloud SQL Auth Proxy sidecar | Real deployments |
+| **Production** | `docker-compose.prod.yml` (standalone) | Local PostgreSQL primary + hot-standby replica | Real deployments |
 
 The two stacks share the same backend/frontend images and code. **The only difference is the database wiring** â€” dev runs Postgres in a container; prod connects to a managed Cloud SQL instance through an Auth Proxy sidecar. Bring one stack down before starting another so they do not compete for container names and ports.
 
@@ -100,30 +100,45 @@ To stop it:
 docker compose -f docker-compose.yml -f docker-compose.dev.yml down
 ```
 
-### Production stack (`docker-compose.prod.yml`)
+### Production stack (docker-compose.prod.yml)
 
-The prod stack replaces the local `postgres` service with a `cloudsql-proxy` sidecar that fronts your Cloud SQL instance using IAM authentication. Backend startup runs `prisma migrate deploy` only â€” **no `db push`, no seeding**.
+The prod stack runs **two local PostgreSQL 16 containers** with streaming (physical) replication:
+
+| Service | Role |
+|---|---|
+| `postgres_primary` | Writable primary — backend writes here |
+| `postgres_standby` | Hot standby (read replica) — accepts read-only queries; optionally used via `DATABASE_URL_REPLICA` |
+| `backend` | Node.js API; runs `prisma migrate deploy` on startup |
+| `frontend` | nginx serving the built React SPA |
+| `backup_cron` *(optional)* | Daily base backup to GCS via wal-g; started with `--profile backup` |
+
+Backend startup runs `prisma migrate deploy` only — **no `db push`, no seeding**.
+Reference lookup data (employee roles, specimen types, body sites, ancillary tests and panels) is inserted automatically by the `20260609000000_seed_reference_data` migration, which is idempotent.
 
 Prerequisites on the host:
 
-1. A Cloud SQL for PostgreSQL instance you can reach (note its `<project>:<region>:<instance>` connection name).
-2. A GCP service account with the `roles/cloudsql.client` role and a JSON key downloaded.
-3. Docker + Docker Compose v2.
+1. Docker + Docker Compose v2.
+2. A `.env.production` file (copy from `.env.production.example`).
 
 Setup:
 
 ```bash
 # 1. Configure environment
 cp .env.production.example .env.production
-# Edit .env.production â€” set DATABASE_URL, INSTANCE_CONNECTION_NAME,
-# SESSION_SECRET, CORS_ORIGIN.
+# Edit .env.production — set POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB,
+# REPLICATION_PASSWORD, SESSION_SECRET, CORS_ORIGIN, COOKIE_SECURE.
 
-# 2. Place the service-account key (the path is gitignored)
+# 2. (Optional — GCS backups only) Place the service-account key
 mkdir -p secrets
 cp /path/to/your-gcp-sa.json secrets/gcp-sa.json
+# Also set WALG_GCS_PREFIX in .env.production
 
-# 3. Build and start
+# 3. Build and start (without GCS backup)
 docker compose --env-file .env.production -f docker-compose.prod.yml up -d --build
+
+# 3b. Build and start (with GCS backup scheduler)
+docker compose --env-file .env.production -f docker-compose.prod.yml \
+  --profile backup up -d --build
 ```
 
 To stop it:
@@ -132,245 +147,25 @@ To stop it:
 docker compose --env-file .env.production -f docker-compose.prod.yml down
 ```
 
-> **Security:** never commit `.env.production` or anything in `secrets/` â€” both are listed in `.gitignore`.
-
-## Quick start â€” Local development
-
-### 1. Install dependencies
+#### Verify replication
 
 ```bash
-pnpm install
+# Check standby is connected and streaming
+docker exec lis-postgres-primary psql -U $POSTGRES_USER -d $POSTGRES_DB \
+  -c "SELECT client_addr, state, sync_state, replay_lag FROM pg_stat_replication;"
+
+# Confirm standby is in recovery mode
+docker exec lis-postgres-standby psql -U $POSTGRES_USER -d $POSTGRES_DB \
+  -c "SELECT pg_is_in_recovery();"
 ```
 
-### 2. Set up environment variables
+#### Manual failover (promote standby)
 
 ```bash
-cp .env.development.example .env
-# Edit .env â€” set DATABASE_URL and SESSION_SECRET
+docker exec lis-postgres-standby psql -U $POSTGRES_USER \
+  -c "SELECT pg_promote();"
+# Then update DATABASE_URL in .env.production → postgres_standby and restart backend.
 ```
 
-### 3. Set up the database
+> **Security:** never commit `.env.production` or anything in `secrets/` — both are listed in `.gitignore`.
 
-```bash
-# Run migrations
-pnpm db:migrate
-
-# Generate the Prisma client
-pnpm db:generate
-
-# Seed with demo data
-pnpm db:seed
-```
-
-### 4. Start development servers
-
-In separate terminals:
-
-```bash
-# Terminal 1 â€” backend (hot reload)
-pnpm dev:backend
-
-# Terminal 2 â€” frontend (Vite HMR)
-pnpm dev:frontend
-```
-
-Frontend: **http://localhost:5173**  
-Backend: **http://localhost:3001**
-
-## Environment variables
-
-| Variable | Description | Default |
-|---|---|---|
-| `DATABASE_URL` | PostgreSQL connection URL | â€” |
-| `SESSION_SECRET` | Express session secret (keep long and random) | â€” |
-| `PORT` | Backend port | `3001` |
-| `NODE_ENV` | Environment | `development` |
-| `CORS_ORIGIN` | Allowed CORS origin | `http://localhost:5173` |
-| `STORAGE_PATH` | Path for generated PDFs | `./storage` |
-
-The backend exposes an unauthenticated `GET /health` endpoint (`{ "status": "ok" }`) used by Docker healthchecks and by the Playwright global setup.
-
-## Application workflows
-
-### Login
-- Passwordless: search an existing employee or create a new one
-- Roles: `Pathologist`, `Technologist`
-
-### Order Entry (`/order-entry`)
-- Create a new case with patient, clinician, and specimens
-- Auto-generates a case ID (`SU{YY}{NNNNNNN}`)
-- Download a printable worksheet PDF immediately after creation
-
-### Processing (`/processing`)
-- Queue of registered cases without materials (default) or all non-signed-out
-- Open a case to create blocks and slides
-- All IDs generated by the backend
-- Download a reference strips PDF for labelling
-
-### Result (`/result`)
-- Queue of cases that have materials but no signed-out report
-- Open a case to enter a result (diagnosis, gross, comment)
-- Sign out the report â€” generates a report PDF
-- Reactivate a signed-out case to create an amendment/revision
-- Concurrent edits are guarded by optimistic locking: every save sends `expectedUpdatedAt` and a stale submission surfaces a `DRAFT_STALE` toast instead of overwriting another user's work
-
-### Query (`/query`)
-- Search by Case ID or Patient ID
-- Click any result to open the result page for that case
-
-## Case ID format
-
-```
-SU{YY}{NNNNNNN}
-  SU     â€” fixed prefix
-  YY     â€” 2-digit year (e.g. 25 for 2025)
-  NNNNNNN â€” 7-digit zero-padded sequence, resets each year
-
-Example: SU250000001
-```
-
-Sequence generation is concurrency-safe via a dedicated `order_sequence_year` table updated inside a database transaction.
-
-## Specimen, block, and slide ID formats
-
-| Entity | Format | Example |
-|---|---|---|
-| Specimen | `{orderId}-{code}` | `SU250000001-A` |
-| Block | `{orderId}-{specimenCode}{blockNumber}` | `SU250000001-A1` |
-| Slide | `{blockId}-S{slideNumber}` | `SU250000001-A1-S1` |
-
-Specimen codes use Excel-style progression: A â†’ Z â†’ AA â†’ AZ â†’ BA â†’ ...
-
-## Running tests
-
-```bash
-# All tests (unit + integration + component)
-pnpm test
-
-# Backend unit + integration tests only
-pnpm test:backend
-
-# Frontend component tests only
-pnpm test:frontend
-
-# Typecheck all packages
-pnpm typecheck
-```
-
-### End-to-end tests (Playwright)
-
-The E2E suite assumes the seeded demo database â€” in particular the
-`asmith` Pathologist account and the queues populated by `prisma/seed.ts`.
-It expects a backend on `:3001` and a frontend on `:5173`.
-
-Quick local path:
-
-```bash
-# 1. Start the full stack (backend + frontend + Postgres + seed)
-docker compose -f docker-compose.yml up --build -d
-
-# 2. Run the suite
-pnpm test:e2e
-```
-
-When running outside Docker the Playwright config will auto-start the
-Vite dev server, but you must start the backend yourself first
-(`pnpm dev:backend`).
-
-Override the login user with `E2E_USER=<username>` if you change the
-seed. The HTML report is written to
-`apps/frontend/playwright-report/`; raw traces and videos for failed
-tests land in `apps/frontend/test-results/`.
-
-A Playwright global setup probes `GET /health` once and fails the whole
-run fast with a clear message if the backend is unreachable, instead of
-letting every test time out individually.
-
-### Recorded demo walkthroughs (Playwright)
-
-The repo also ships a Playwright-driven **case lifecycle demo** that
-exercises a full surgical pathology case end-to-end â€” login, order
-entry, processing/grossing, histology H&E, ancillary ordering
-(IHC + molecular send-out), result entry with realistic CAP-style
-values, draft preview, preliminary sign-out, and final sign-out â€” and
-records one video per supported UI language. The demo doubles as
-documentation of the expected user flow and as a smoke test of the
-full stack.
-
-```bash
-# 1. Start the dev stack
-docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build -d
-
-# 2. Record all five language videos
-cd apps/frontend
-RUN_DEMO=1 npx playwright test \
-  --config=playwright.config.ts \
-  --project=chromium \
-  src/tests/e2e/demo-lifecycle.spec.ts \
-  --reporter=list
-```
-
-Output videos are written to `apps/frontend/demo-videos/<lang>.webm`
-(one each for `en`, `fr`, `sw`, `ar`, `ur`). The recorder injects a
-caption overlay describing each phase and a styled HTML preview that
-mirrors the Handlebars/puppeteer report layout used by the real
-preliminary and final PDFs (headless Chromium does not render PDFs
-in iframes, so the demo cannot use the PDF directly).
-
-A companion **i18n audit** spec (`src/tests/e2e/i18n-audit.spec.ts`)
-walks the same scenario in each non-English language and flags any
-visible English-looking text as a likely missing translation. It
-writes a JSON report to `apps/frontend/i18n-audit.json`:
-
-```bash
-cd apps/frontend
-RUN_I18N_AUDIT=1 npx playwright test \
-  --config=playwright.config.ts \
-  --project=chromium \
-  src/tests/e2e/i18n-audit.spec.ts \
-  --reporter=list
-```
-
-Both specs are gated behind the `RUN_DEMO` / `RUN_I18N_AUDIT`
-environment variables and are skipped during normal `pnpm test:e2e`
-runs.
-
-### Backend integration tests
-
-`apps/backend/src/tests/integration/orderWorkflow.test.ts` covers the
-full login â†’ create order â†’ block â†’ slide â†’ draft â†’ sign-out â†’ query
-flow against a real Postgres. It is skipped unless `DATABASE_URL` and
-`SESSION_SECRET` are set.
-
-On native Windows the Prisma client can fail SCRAM auth against a
-dockerised Postgres exposed on `localhost`; if you hit
-`Authentication failed against database server at localhost`, run the
-test inside the backend container instead â€” see the comment at the top
-of the test file for the exact `docker run` command.
-
-## Database commands
-
-```bash
-pnpm db:migrate         # Apply pending migrations (dev)
-pnpm db:generate        # Re-generate Prisma client after schema changes
-pnpm db:seed            # Seed the database
-pnpm db:studio          # Open Prisma Studio
-pnpm db:reset           # Reset and re-seed (destructive)
-```
-
-## PDF files
-
-Generated PDFs are stored in `apps/backend/storage/`:
-
-| Directory | Contents |
-|---|---|
-| `generated-pdfs/` | Worksheet PDFs, reference strip PDFs, report PDFs |
-| `report-files/` | Reserved for future use |
-
-PDF files are gitignored. In Docker, they are persisted via a named volume.
-
-## Notes
-
-- Authentication is **passwordless** and intended for prototype/demo use only
-- Storage is filesystem-based; the `report_file` schema is forward-compatible with S3/blob storage
-- Report sign-out is **immutable**: once signed, reports cannot be edited. Use Reactivate to amend
