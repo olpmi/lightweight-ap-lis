@@ -1,0 +1,4 @@
+# Crontab for the backup_cron container (Debian cron, /etc/cron.d/).
+# Default: run a full base backup daily at 02:00 UTC.
+# Adjust the schedule here and rebuild the image.
+0 2 * * * root /scripts/backup-cron.sh >> /var/log/wal-g-backup.log 2>&1

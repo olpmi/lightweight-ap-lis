@@ -63,6 +63,7 @@ describe.skipIf(!hasDb)('Order → sign-out workflow', () => {
         firstName: 'Workflow',
         lastName: 'Tester',
         employeeRoleId: roleId,
+        password: 'Integration1!',
       },
     });
     expect(loginRes.status).toBe(200);

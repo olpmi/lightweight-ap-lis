@@ -16,6 +16,7 @@ export const createEmployeeSchema = z.object({
     .regex(/^[a-zA-Z0-9._-]+$/, 'Username may only contain letters, numbers, dots, hyphens, underscores'),
   employeeRoleId: z.number().int().positive('Employee role is required'),
   defaultLanguage: appLanguageSchema.default('en').optional(),
+  password: z.string().min(8, 'Password must be at least 8 characters'),
 });
 
 export const updateEmployeeLanguageSchema = z.object({
@@ -25,10 +26,12 @@ export const updateEmployeeLanguageSchema = z.object({
 export const loginSchema = z.union([
   z.object({
     employeeId: z.number().int().positive(),
+    password: z.string().min(1, 'Password is required'),
     newEmployee: z.undefined().optional(),
   }),
   z.object({
     employeeId: z.undefined().optional(),
+    password: z.undefined().optional(),
     newEmployee: createEmployeeSchema,
   }),
 ]);

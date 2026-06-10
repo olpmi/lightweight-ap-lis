@@ -167,6 +167,7 @@ export interface CreateSlideDto {
 
 export interface LoginDto {
   employeeId?: number;
+  password?: string;
   newEmployee?: CreateEmployeeDto;
 }
 
@@ -176,6 +177,7 @@ export interface CreateEmployeeDto {
   userName: string;
   employeeRoleId: number;
   defaultLanguage?: AppLanguageCode;
+  password: string;
 }
 
 export interface CreateDraftReportDto {

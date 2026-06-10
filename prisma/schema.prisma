@@ -94,6 +94,7 @@ model Employee {
   employeeRoleId  Int          @map("employee_role_id")
   employeeRole    EmployeeRole @relation(fields: [employeeRoleId], references: [employeeRoleId])
   defaultLanguage AppLanguage  @default(en) @map("default_language")
+  passwordHash    String?      @map("password_hash") @db.VarChar(255)
 
   reports         Report[]
   ancillaryOrders AncillaryOrder[]

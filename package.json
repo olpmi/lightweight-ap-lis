@@ -19,6 +19,9 @@
     "db:studio": "prisma studio --schema=prisma/schema.prisma",
     "db:reset": "prisma migrate reset --schema=prisma/schema.prisma"
   },
+  "dependencies": {
+    "bcryptjs": "^2.4.3"
+  },
   "devDependencies": {
     "@eslint/js": "^9.0.0",
     "@prisma/client": "^5.13.0",
