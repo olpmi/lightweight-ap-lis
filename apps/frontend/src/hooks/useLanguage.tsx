@@ -83,6 +83,11 @@ const en = {
   login_allFieldsRequired: 'All fields are required for a new employee',
   login_failed: 'Login failed. Please try again.',
   login_defaultLanguage: 'Default Language',
+  login_password: 'Password',
+  login_confirmPassword: 'Confirm Password',
+  login_passwordHint: 'Minimum 8 characters',
+  login_passwordMismatch: 'Passwords do not match',
+  login_login: 'Login',
   input_keyboardLayoutHint: 'To type Arabic or Urdu text, switch your keyboard layout. Changing the app language does not change your keyboard alphabet.',
 
   // Dashboard
@@ -612,6 +617,11 @@ const sw: Record<keyof typeof en, string> = {
   login_allFieldsRequired: 'Sehemu zote zinahitajika kwa mfanyakazi mpya',
   login_failed: 'Kuingia kumeshindwa. Tafadhali jaribu tena.',
   login_defaultLanguage: 'Lugha ya Msingi',
+  login_password: 'Nywila',
+  login_confirmPassword: 'Thibitisha Nywila',
+  login_passwordHint: 'Angalau herufi 8',
+  login_passwordMismatch: 'Nywila hazilingani',
+  login_login: 'Ingia',
   input_keyboardLayoutHint: 'Ili kuandika maandishi ya Kiarabu au Kiurdu, badili mpangilio wa kibodi yako. Kubadili lugha ya programu hakubadili alfabeti ya kibodi.',
 
   // Dashboard
@@ -1143,6 +1153,11 @@ const fr: Record<keyof typeof en, string> = {
   login_allFieldsRequired: 'Tous les champs sont requis pour un nouvel employé',
   login_failed: 'Échec de la connexion. Veuillez réessayer.',
   login_defaultLanguage: 'Langue par défaut',
+  login_password: 'Mot de passe',
+  login_confirmPassword: 'Confirmer le mot de passe',
+  login_passwordHint: '8 caractères minimum',
+  login_passwordMismatch: 'Les mots de passe ne correspondent pas',
+  login_login: 'Se connecter',
   input_keyboardLayoutHint: 'Pour saisir du texte en arabe ou en ourdou, changez la disposition de votre clavier. Changer la langue de l’application ne modifie pas l’alphabet du clavier.',
 
   // Dashboard
@@ -1674,6 +1689,11 @@ const ar: Record<keyof typeof en, string> = {
   login_allFieldsRequired: 'جميع الحقول مطلوبة للموظف الجديد',
   login_failed: 'فشل تسجيل الدخول. يرجى المحاولة مرة أخرى.',
   login_defaultLanguage: 'اللغة الافتراضية',
+  login_password: 'كلمة المرور',
+  login_confirmPassword: 'تأكيد كلمة المرور',
+  login_passwordHint: '٨ أحرف على الأقل',
+  login_passwordMismatch: 'كلمتا المرور غير متطابقتين',
+  login_login: 'تسجيل الدخول',
   input_keyboardLayoutHint: 'لإدخال نص عربي أو أردي، بدّل تخطيط لوحة المفاتيح. تغيير لغة التطبيق لا يغيّر أبجدية لوحة المفاتيح.',
 
   // Dashboard
@@ -2205,6 +2225,11 @@ const ur: Record<keyof typeof en, string> = {
   login_allFieldsRequired: 'نئے ملازم کے لیے تمام خانے ضروری ہیں',
   login_failed: 'لاگ اِن ناکام ہو گیا۔ دوبارہ کوشش کریں۔',
   login_defaultLanguage: 'ڈیفالٹ زبان',
+  login_password: 'پاس ورڈ',
+  login_confirmPassword: 'پاس ورڈ کی تصدیق کریں',
+  login_passwordHint: 'کم از کم ۸ حروف',
+  login_passwordMismatch: 'پاس ورڈ مماثل نہیں ہیں',
+  login_login: 'لاگ اِن',
   input_keyboardLayoutHint: 'عربی یا اردو متن لکھنے کے لیے اپنی کی بورڈ لے آؤٹ تبدیل کریں۔ ایپ کی زبان بدلنے سے کی بورڈ کا حروف تہجی نہیں بدلتا۔',
 
   // Dashboard
