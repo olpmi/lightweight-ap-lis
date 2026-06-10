@@ -4,6 +4,9 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'node',
+    // Restore threads pool (vitest 3.x default changed to forks; threads is
+    // more reliable for V8 coverage collection on Node 20 in CI).
+    pool: 'threads',
     include: ['src/tests/**/*.test.ts'],
     coverage: {
       provider: 'v8',
@@ -18,7 +21,13 @@ export default defineConfig({
         branches: 55,
       },
       include: ['src/**/*.ts'],
-      exclude: ['src/tests/**', 'src/**/*.test.ts', 'src/server.ts'],
+      exclude: [
+        'src/tests/**',
+        'src/**/*.test.ts',
+        'src/server.ts',
+        // Stub for Phase 2 — no call sites yet, so 0% coverage.
+        'src/lib/prismaReplica.ts',
+      ],
     },
   },
 });
