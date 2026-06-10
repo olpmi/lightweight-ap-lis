@@ -41,6 +41,9 @@ export default function LoginPage() {
   const [mode, setMode] = useState<'search' | 'new'>('search');
   const [error, setError] = useState<string | null>(null);
 
+  // Password auth is only active when VITE_PASSWORD_AUTH=true (production builds).
+  const passwordAuthEnabled = import.meta.env.VITE_PASSWORD_AUTH === 'true';
+
   // "Find employee" password step
   const [selectedEmployee, setSelectedEmployee] = useState<Employee | null>(null);
   const [loginPassword, setLoginPassword] = useState('');
@@ -83,6 +86,11 @@ export default function LoginPage() {
   const handleSelectEmployee = (emp: Employee) => {
     setError(null);
     setLoginPassword('');
+    // In dev (password auth disabled) log in immediately on employee selection.
+    if (!passwordAuthEnabled) {
+      loginMutation.mutate({ employeeId: Number(emp.employeeId) });
+      return;
+    }
     setSelectedEmployee(emp);
   };
 
@@ -99,13 +107,19 @@ export default function LoginPage() {
   const handleNewEmployeeSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-    if (!newForm.firstName || !newForm.lastName || !newForm.userName || !newForm.employeeRoleId || !newForm.password) {
+    if (!newForm.firstName || !newForm.lastName || !newForm.userName || !newForm.employeeRoleId) {
       setError(t('login_allFieldsRequired'));
       return;
     }
-    if (newForm.password !== newForm.confirmPassword) {
-      setError(t('login_passwordMismatch'));
-      return;
+    if (passwordAuthEnabled) {
+      if (!newForm.password) {
+        setError(t('login_allFieldsRequired'));
+        return;
+      }
+      if (newForm.password !== newForm.confirmPassword) {
+        setError(t('login_passwordMismatch'));
+        return;
+      }
     }
     loginMutation.mutate({
       newEmployee: {
@@ -114,7 +128,7 @@ export default function LoginPage() {
         userName: newForm.userName,
         employeeRoleId: Number(newForm.employeeRoleId),
         defaultLanguage: newForm.defaultLanguage,
-        password: newForm.password,
+        ...(passwordAuthEnabled && newForm.password ? { password: newForm.password } : {}),
       },
     });
   };
@@ -235,26 +249,28 @@ export default function LoginPage() {
                     </Typography>
                   </Box>
                 </Stack>
-                <TextField
-                  label={t('login_password')}
-                  type={showLoginPassword ? 'text' : 'password'}
-                  required
-                  autoFocus
-                  value={loginPassword}
-                  onChange={(e) => setLoginPassword(e.target.value)}
-                  fullWidth
-                  size="small"
-                  inputProps={{ 'data-testid': 'login-password' }}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton size="small" onClick={() => setShowLoginPassword((v) => !v)} edge="end">
-                          {showLoginPassword ? <VisibilityOff fontSize="small" /> : <Visibility fontSize="small" />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-                />
+                {passwordAuthEnabled && (
+                  <TextField
+                    label={t('login_password')}
+                    type={showLoginPassword ? 'text' : 'password'}
+                    required
+                    autoFocus
+                    value={loginPassword}
+                    onChange={(e) => setLoginPassword(e.target.value)}
+                    fullWidth
+                    size="small"
+                    inputProps={{ 'data-testid': 'login-password' }}
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <IconButton size="small" onClick={() => setShowLoginPassword((v) => !v)} edge="end">
+                            {showLoginPassword ? <VisibilityOff fontSize="small" /> : <Visibility fontSize="small" />}
+                          </IconButton>
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                )}
                 <Button
                   type="submit"
                   variant="contained"
@@ -313,36 +329,40 @@ export default function LoginPage() {
                     ))}
                   </Select>
                 </FormControl>
-                <TextField
-                  label={t('login_password')}
-                  type={showNewPassword ? 'text' : 'password'}
-                  required
-                  value={newForm.password}
-                  onChange={(e) => setNewForm({ ...newForm, password: e.target.value })}
-                  fullWidth
-                  size="small"
-                  helperText={t('login_passwordHint')}
-                  inputProps={{ 'data-testid': 'new-employee-password' }}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton size="small" onClick={() => setShowNewPassword((v) => !v)} edge="end">
-                          {showNewPassword ? <VisibilityOff fontSize="small" /> : <Visibility fontSize="small" />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-                <TextField
-                  label={t('login_confirmPassword')}
-                  type={showNewPassword ? 'text' : 'password'}
-                  required
-                  value={newForm.confirmPassword}
-                  onChange={(e) => setNewForm({ ...newForm, confirmPassword: e.target.value })}
-                  fullWidth
-                  size="small"
-                  inputProps={{ 'data-testid': 'new-employee-confirm-password' }}
-                />
+                {passwordAuthEnabled && (
+                  <>
+                    <TextField
+                      label={t('login_password')}
+                      type={showNewPassword ? 'text' : 'password'}
+                      required
+                      value={newForm.password}
+                      onChange={(e) => setNewForm({ ...newForm, password: e.target.value })}
+                      fullWidth
+                      size="small"
+                      helperText={t('login_passwordHint')}
+                      inputProps={{ 'data-testid': 'new-employee-password' }}
+                      InputProps={{
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <IconButton size="small" onClick={() => setShowNewPassword((v) => !v)} edge="end">
+                              {showNewPassword ? <VisibilityOff fontSize="small" /> : <Visibility fontSize="small" />}
+                            </IconButton>
+                          </InputAdornment>
+                        ),
+                      }}
+                    />
+                    <TextField
+                      label={t('login_confirmPassword')}
+                      type={showNewPassword ? 'text' : 'password'}
+                      required
+                      value={newForm.confirmPassword}
+                      onChange={(e) => setNewForm({ ...newForm, confirmPassword: e.target.value })}
+                      fullWidth
+                      size="small"
+                      inputProps={{ 'data-testid': 'new-employee-confirm-password' }}
+                    />
+                  </>
+                )}
                 <Box>
                   <Box display="flex" alignItems="center" gap={0.75} mb={0.75}>
                     <Translate sx={{ fontSize: 16, color: 'text.secondary' }} />

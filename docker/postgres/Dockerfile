@@ -39,4 +39,6 @@ COPY primary-init.sh /docker-entrypoint-initdb.d/primary-init.sh
 COPY crontab /etc/cron.d/wal-g-backup
 
 RUN chmod +x /scripts/*.sh /docker-entrypoint-initdb.d/primary-init.sh \
-    && chmod 0644 /etc/cron.d/wal-g-backup
+    && chmod 0644 /etc/cron.d/wal-g-backup \
+    # Strip Windows CRLF line endings that break bash shebangs.
+    && sed -i 's/\r//' /scripts/*.sh /docker-entrypoint-initdb.d/primary-init.sh

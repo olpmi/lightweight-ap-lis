@@ -1,5 +1,5 @@
 # Build stage
-FROM node:20-alpine AS builder
+FROM node:22-alpine AS builder
 
 # Enable pnpm via corepack
 RUN corepack enable && corepack prepare pnpm@11 --activate
@@ -17,6 +17,11 @@ COPY . .
 
 # Build shared
 RUN pnpm --filter @lis/shared build
+
+# VITE_PASSWORD_AUTH is baked into the bundle at build time.
+# Pass --build-arg VITE_PASSWORD_AUTH=true when building production images.
+ARG VITE_PASSWORD_AUTH=false
+ENV VITE_PASSWORD_AUTH=${VITE_PASSWORD_AUTH}
 
 # Build frontend
 RUN pnpm --filter @lis/frontend build
