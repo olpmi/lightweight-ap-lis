@@ -169,3 +169,36 @@ docker exec lis-postgres-standby psql -U $POSTGRES_USER \
 
 > **Security:** never commit `.env.production` or anything in `secrets/` — both are listed in `.gitignore`.
 
+## Branch structure
+
+| Branch | Purpose |
+|---|---|
+| `dev` | Integration branch — all development work lands here. CI runs on every push and pull request. |
+| `main` | Release branch — always reflects a production-ready state. Updated only by merging `dev → main` after CI is green. |
+
+**Never commit directly to `main`.** All changes go through `dev` first. This prevents `main`'s package.json and lockfile drifting out of sync, which breaks `pnpm install --frozen-lockfile` in CI for both branches.
+
+### Environment-driven behaviour
+
+The backend and frontend **images are identical** in both stacks. Runtime and build-time environment variables switch behaviour between dev and prod:
+
+| Variable | Dev value | Prod value | Effect |
+|---|---|---|---|
+| `NODE_ENV` | `development` | `production` | Enables bcrypt password verification in the backend |
+| `VITE_PASSWORD_AUTH` | *(unset)* | `true` (build arg) | Shows the password field in the login UI |
+
+In dev, login is passwordless (any registered employee username works). In prod, `NODE_ENV=production` enforces bcrypt checks and the login UI exposes the password field via `VITE_PASSWORD_AUTH=true`.
+
+### Promotion workflow
+
+```
+feature branch → dev (CI: lint, unit tests, e2e, Prisma drift check)
+                      ↓  all green
+                    main  (production deploy)
+```
+
+1. Work on a feature branch or directly on `dev`.
+2. Open a PR targeting `dev`; CI must pass.
+3. When ready to release, open a PR `dev → main`; merge once CI is green.
+4. Deploy from `main` using `docker-compose.prod.yml`.
+
