@@ -1,0 +1,181 @@
+{
+  "template_id": "gastric_tumor_resection_gross_v1",
+  "domain": "anatomic_pathology",
+  "lang": "pt",
+  "title": "Ressecção de tumor gástrico",
+
+  "specimen": {
+    "label": "Espécime",
+    "fields": {
+      "type_of_resection": {
+        "label": "Tipo de ressecção",
+        "type": "select",
+        "options": [
+          "Esofago-gastrectomia",
+          "Gastrectomia total",
+          "Gastrectomia subtotal, proximal",
+          "Gastrectomia subtotal, distal",
+          "Outro"
+        ],
+        "value": "",
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" }
+      },
+      "stomach_greater_curvature_mm": {
+        "label": "Estômago, grande curvatura (mm)",
+        "type": "number",
+        "value": ""
+      },
+      "stomach_lesser_curvature_mm": {
+        "label": "Estômago, pequena curvatura (mm)",
+        "type": "number",
+        "value": ""
+      },
+      "esophagus_mm": {
+        "label": "Esófago (mm)",
+        "type": "number",
+        "value": ""
+      },
+      "duodenum_mm": {
+        "label": "Duodeno (mm)",
+        "type": "number",
+        "value": ""
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "macroscopic_tumor_site": {
+        "label": "Local macroscópico do tumor",
+        "type": "multi_select",
+        "options": [
+          "Cardia",
+          "Fundo",
+          "Corpo",
+          "Antro",
+          "Piloro",
+          "Pequena curvatura",
+          "Grande curvatura",
+          "Parede anterior",
+          "Parede posterior"
+        ],
+        "value": []
+      },
+      "morphologic_classification": {
+        "label": "Classificação morfológica",
+        "type": "select",
+        "options": [
+          "Tipo 0-I (Protruso)",
+          "Tipo 0-IIa (Elevado)",
+          "Tipo 0-IIb (Plano)",
+          "Tipo 0-IIc (Deprimido)",
+          "Tipo 0-III (Escavado)",
+          "Tipo I (Polipoide)",
+          "Tipo II (Fungoide)",
+          "Tipo III (Ulcerado)",
+          "Tipo IV (Infiltrativo)"
+        ],
+        "value": ""
+      },
+      "tumor_dimensions_mm": {
+        "label": "Dimensões do tumor (mm)",
+        "type": "measurement_3d",
+        "value": ""
+      },
+      "distance_to_proximal_margin_mm": {
+        "label": "Distância à margem proximal (mm)",
+        "type": "number",
+        "value": ""
+      },
+      "distance_to_distal_margin_mm": {
+        "label": "Distância à margem distal (mm)",
+        "type": "number",
+        "value": ""
+      },
+      "distance_to_lesser_curvature_margin_mm": {
+        "label": "Distância à margem da pequena curvatura (mm)",
+        "type": "number",
+        "value": ""
+      },
+      "distance_to_greater_curvature_margin_mm": {
+        "label": "Distância à margem da grande curvatura (mm)",
+        "type": "number",
+        "value": ""
+      }
+    }
+  },
+
+  "lymph_nodes": {
+    "label": "Gânglios linfáticos",
+    "fields": {
+      "number_identified": {
+        "label": "Número identificado",
+        "type": "integer",
+        "value": ""
+      },
+      "size_range_min_mm": {
+        "label": "Tamanho mínimo do intervalo (mm)",
+        "type": "number",
+        "value": ""
+      },
+      "size_range_max_mm": {
+        "label": "Tamanho máximo do intervalo (mm)",
+        "type": "number",
+        "value": ""
+      }
+    }
+  },
+
+  "block_identification_key": {
+    "label": "Chave de identificação de blocos",
+    "fields": {
+      "tumor_representative_sections": {
+        "label": "Tumor (cortes representativos)",
+        "type": "text",
+        "value": ""
+      },
+      "proximal_margin": {
+        "label": "Margem proximal",
+        "type": "text",
+        "value": ""
+      },
+      "distal_margin": {
+        "label": "Margem distal",
+        "type": "text",
+        "value": ""
+      },
+      "circumferential_non_peritonealised_margin": {
+        "label": "Margem circunferencial / não peritonealizada",
+        "type": "text",
+        "value": ""
+      },
+      "non_neoplastic_stomach": {
+        "label": "Estômago não neoplásico",
+        "type": "text",
+        "value": ""
+      },
+      "lymph_nodes": {
+        "label": "Gânglios linfáticos",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "grossing": {
+    "label": "Exame macroscópico",
+    "fields": {
+      "grossed_by": {
+        "label": "Exame macroscópico realizado por (iniciais)",
+        "type": "text",
+        "value": ""
+      },
+      "date": {
+        "label": "Data",
+        "type": "date",
+        "value": ""
+      }
+    }
+  }
+}

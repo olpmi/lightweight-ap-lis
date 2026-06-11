@@ -1,0 +1,196 @@
+{
+  "template_id": "lung_tumor_biopsy_v1",
+  "domain": "anatomic_pathology",
+  "lang": "pt",
+  "title": "Tumor do pulmão, Biópsia",
+  "protocol_posting_date": "September 2025",
+  "standards": ["AJCC 9"],
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "histologic_type": {
+        "label": "Tipo histológico",
+        "type": "select",
+        "options": [
+          "Adenocarcinoma lepídico invasivo",
+          "Adenocarcinoma acinar invasivo",
+          "Adenocarcinoma papilar invasivo",
+          "Adenocarcinoma micropapilar invasivo",
+          "Adenocarcinoma sólido invasivo",
+          "Adenocarcinoma mucinoso invasivo",
+          "Adenocarcinoma misto invasivo mucinoso e não mucinoso",
+          "Adenocarcinoma colóide",
+          "Adenocarcinoma fetal",
+          "Adenocarcinoma de tipo entérico",
+          "Carcinoma de células escamosas in situ (CCEIS)",
+          "Carcinoma de células escamosas invasivo, queratinizante",
+          "Carcinoma de células escamosas invasivo, não queratinizante",
+          "Carcinoma de células escamosas invasivo, basaloide",
+          "Carcinoma linfoepitelial",
+          "Carcinoma de grandes células",
+          "Carcinoma adenoescamoso",
+          "Carcinoma pleomórfico",
+          "Tumor carcinoide, SOE / Tumor neuroendócrino, SOE",
+          "Carcinoma de pequenas células",
+          "Carcinoma combinado de pequenas células (carcinoma de pequenas células e componente não-pequenas células)",
+          "Carcinoma neuroendócrino de grandes células",
+          "Carcinoma neuroendócrino de grandes células combinado (LCNEC e outro componente não-pequenas células)",
+          "Carcinoma, tipo não determinável",
+          "Carcinoma não-pequenas células, subtipo não determinável",
+          "Outro tipo histológico não listado",
+          "Sem tumor viável presente"
+        ],
+        "value": "",
+        "combined_small_cell_non_small_cell_component_specify": {
+          "label": "Componente combinado de pequenas células / não-pequenas células (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "combined_large_cell_neuroendocrine_other_component_specify": {
+          "label": "Componente combinado de LCNEC / outro componente (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "carcinoma_type_cannot_be_determined_specify": {
+          "label": "Tipo de carcinoma não determinável (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "non_small_cell_subtype_cannot_be_determined_specify": {
+          "label": "Subtipo de carcinoma não-pequenas células não determinável (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "other_histologic_type_specify": {
+          "label": "Outro tipo histológico (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "no_viable_tumor_present_explain": {
+          "label": "Sem tumor viável presente (explicar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "histologic_patterns": {
+        "label": "Padrões histológicos (aplicável apenas a adenocarcinomas não mucinosos)",
+        "type": "multi_select",
+        "options": [
+          "Não aplicável",
+          "Acinar",
+          "Papilar",
+          "Lepídico",
+          "Sólido",
+          "Micropapilar",
+          "Glândulas complexas (cribriforme e glândulas fundidas)",
+          "Outro"
+        ],
+        "value": []
+      },
+      "histologic_grade": {
+        "label": "Grau histológico",
+        "note": "Os padrões de alto grau no adenocarcinoma não mucinoso invasivo incluem os padrões sólido, micropapilar, cribriforme e glândulas fundidas.",
+        "type": "select",
+        "options": [
+          "G1, bem diferenciado (inclui adenocarcinoma lepídico invasivo com menos de 20% de padrão de alto grau; tumor carcinoide típico)",
+          "G2, moderadamente diferenciado (inclui adenocarcinoma acinar e papilar invasivo com menos de 20% de padrão de alto grau; tumor carcinoide atípico)",
+          "G3, pouco diferenciado (inclui adenocarcinoma não mucinoso invasivo com igual ou superior a 20% de padrão de alto grau)",
+          "G4, indiferenciado (inclui carcinoma de pequenas células; carcinoma de grandes células)",
+          "Outro",
+          "GX, não é possível avaliar",
+          "Não aplicável"
+        ],
+        "value": "",
+        "other_specify": {
+          "label": "Outro (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_assessed_specify": {
+          "label": "Não é possível avaliar (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "not_applicable_specify": {
+          "label": "Não aplicável (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "lymphovascular_invasion": {
+        "label": "Invasão linfática e/ou vascular",
+        "fields": {
+          "status": {
+            "label": "Invasão linfática e/ou vascular",
+            "type": "select",
+            "options": ["Não identificada", "Presente", "Não é possível determinar"],
+            "value": "",
+            "cannot_be_determined_specify": {
+              "label": "Não é possível determinar (especificar)",
+              "type": "text",
+              "value": ""
+            }
+          },
+          "subtypes": {
+            "label": "Subtipo(s) de invasão",
+            "type": "multi_select",
+            "options": [
+              "Invasão linfática presente",
+              "Invasão arterial presente",
+              "Invasão venosa presente",
+              "Outro"
+            ],
+            "value": [],
+            "other_specify": {
+              "label": "Outro (especificar)",
+              "type": "text",
+              "value": ""
+            }
+          }
+        }
+      }
+    }
+  },
+  "additional_findings": {
+    "label": "Achados adicionais",
+    "fields": {
+      "findings": {
+        "label": "Achados adicionais",
+        "type": "multi_select",
+        "options": [
+          "Nenhum identificado",
+          "Hiperplasia adenomatosa atípica",
+          "Displasia escamosa",
+          "Hiperplasia neuroendócrina difusa",
+          "Alterações do local de biópsia",
+          "Inflamação granulomatosa",
+          "Alterações pós-obstrutivas",
+          "Fibrose",
+          "Enfisema",
+          "Outro"
+        ],
+        "value": []
+      },
+      "atypical_adenomatous_hyperplasia_specify": {
+        "label": "Hiperplasia adenomatosa atípica (especificar)",
+        "type": "text",
+        "value": ""
+      },
+      "granulomatous_inflammation_specify": {
+        "label": "Inflamação granulomatosa (especificar se necrotizante ou não necrotizante, se discernível)",
+        "type": "text",
+        "value": ""
+      },
+      "fibrosis_specify_pattern": {
+        "label": "Fibrose (especificar o padrão se discernível)",
+        "type": "text",
+        "value": ""
+      },
+      "other_specify": {
+        "label": "Outro (especificar)",
+        "type": "text",
+        "value": ""
+      }
+    }
+  }
+}

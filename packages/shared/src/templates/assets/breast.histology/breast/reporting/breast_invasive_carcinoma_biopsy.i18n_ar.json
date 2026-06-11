@@ -15,7 +15,7 @@
         "options": ["خزعة بالإبرة", "شفط بإبرة دقيقة", "أخرى", "غير محدد"],
         "type": "select",
         "value": "",
-        "other_specify": ""
+        "other_specify": "أخرى (حدد)"
       },
       "laterality": {
         "label": "جهة العينة",
@@ -42,7 +42,11 @@
         ],
         "type": "multi_select",
         "value": [],
-        "clock_position_specify": ""
+        "clock_position_specify": {
+          "label": "موضع عقارب الساعة (حدد)",
+          "type": "text",
+          "value": ""
+        }
       },
       "histologic_type": {
         "label": "النوع النسيجي",
@@ -71,8 +75,12 @@
         "type": "select",
         "value": "",
         "features_specify": "",
-        "cannot_be_determined_specify": "",
-        "other_specify": ""
+        "cannot_be_determined_specify": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": "أخرى (حدد)"
       },
       "histologic_grade": {
         "label": "الدرجة النسيجية (درجة نوتنغهام النسيجية)",
@@ -93,7 +101,11 @@
             ],
             "type": "select",
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": {
+              "label": "لا يمكن التحديد (حدد)",
+              "type": "text",
+              "value": ""
+            }
           },
           "nuclear_pleomorphism": {
             "label": "تفاوت الأشكال النووي",
@@ -105,7 +117,11 @@
             ],
             "type": "select",
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": {
+              "label": "لا يمكن التحديد (حدد)",
+              "type": "text",
+              "value": ""
+            }
           },
           "mitotic_rate": {
             "label": "معدل الانقسام الميتوزي",
@@ -113,7 +129,11 @@
             "reference_note": "انظر الجدول 1 في بروتوكول CAP.",
             "type": "select",
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": {
+              "label": "لا يمكن التحديد (حدد)",
+              "type": "text",
+              "value": ""
+            }
           },
           "overall_grade": {
             "label": "الدرجة الإجمالية",
@@ -125,7 +145,11 @@
             ],
             "type": "select",
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": {
+              "label": "لا يمكن التحديد (حدد)",
+              "type": "text",
+              "value": ""
+            }
           }
         }
       },
@@ -174,7 +198,7 @@
         ],
         "type": "multi_select",
         "value": [],
-        "other_specify": ""
+        "other_specify": "أخرى (حدد)"
       },
       "nuclear_grade": {
         "label": "الدرجة النووية",
@@ -187,8 +211,12 @@
         ],
         "type": "select",
         "value": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": ""
+        "other_specify": "أخرى (حدد)",
+        "cannot_be_determined_specify": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        }
       },
       "necrosis": {
         "label": "النخر",
@@ -202,8 +230,12 @@
         ],
         "type": "select",
         "value": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": ""
+        "other_specify": "أخرى (حدد)",
+        "cannot_be_determined_specify": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        }
       }
     }
   },
@@ -215,7 +247,11 @@
         "options": ["غير مُشخَّص", "موجود", "لا يمكن تحديده"],
         "type": "select",
         "value": "",
-        "cannot_be_determined_specify": ""
+        "cannot_be_determined_specify": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        }
       }
     }
   },
@@ -233,7 +269,7 @@
         ],
         "type": "multi_select",
         "value": [],
-        "other_specify": ""
+        "other_specify": "أخرى (حدد)"
       }
     }
   },

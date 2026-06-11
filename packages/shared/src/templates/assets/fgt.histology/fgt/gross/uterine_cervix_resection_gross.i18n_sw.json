@@ -29,8 +29,12 @@
           "Omentektomia",
           "Nyingine"
         ],
-        "pelvic_exenteration_specify_included_organs": "",
-        "other_specify": ""
+        "pelvic_exenteration_specify_included_organs": {
+          "label": "Uondoaji wa viungo vya nyonga (taja viungo vilivyojumuishwa)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": { "label": "Nyingine (taja)", "type": "text", "value": "" }
       },
       "hysterectomy_type": {
         "label": "Aina ya upasuaji wa kuondoa mfuko wa uzazi",
@@ -43,7 +47,7 @@
           "Nyingine",
           "Haijabainishwa"
         ],
-        "other_specify": ""
+        "other_specify": { "label": "Nyingine (taja)", "type": "text", "value": "" }
       }
     }
   },
@@ -60,7 +64,7 @@
           "Nyingine",
           "Haijabainishwa"
         ],
-        "other_specify": ""
+        "other_specify": { "label": "Nyingine (taja)", "type": "text", "value": "" }
       },
       "tumor_size": {
         "label": "Ukubwa wa uvimbe",
@@ -188,14 +192,14 @@
     }
   },
   "grossing": {
-    "label": "Uchunguzi wa makroskopia (grossing)",
+    "label": "Uchunguzi wa macho",
     "fields": {
       "grossed_by": {
-        "label": "Uchunguzi wa makroskopia ulifanywa na"
+        "label": "Imefanyiwa uchunguzi wa macho na (herufi za kwanza)",
+        "type": "text",
+        "value": ""
       },
-      "date": {
-        "label": "Tarehe"
-      }
+      "date": { "label": "Tarehe", "type": "date", "value": "" }
     }
   }
 }

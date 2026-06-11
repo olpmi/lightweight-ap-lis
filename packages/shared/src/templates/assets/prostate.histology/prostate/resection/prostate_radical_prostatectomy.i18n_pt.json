@@ -1,0 +1,857 @@
+{
+  "template_id": "prostate_radical_prostatectomy_v1",
+  "domain": "anatomic_pathology",
+  "lang": "pt",
+  "title": "Próstata: Prostatectomia radical",
+  "protocol_posting_date": "September 2023",
+  "standards": ["AJCC-UICC 8"],
+  "specimen": {
+    "label": "Espécime",
+    "fields": {
+      "procedure": {
+        "label": "Procedimento",
+        "type": "select",
+        "options": ["Prostatectomia radical", "Outro", "Não especificado"],
+        "value": "",
+        "radical_prostatectomy_specify": {
+          "label": "Prostatectomia radical (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": {
+          "label": "Outro (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "prostate_weight_g": {
+        "label": "Peso da próstata (g)",
+        "type": "number",
+        "value": ""
+      },
+      "prostate_size_cm": {
+        "label": "Tamanho da próstata (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "additional_prostate_dimensions_cm": {
+        "label": "Dimensões adicionais da próstata (cm)",
+        "type": "measurement_2d",
+        "value": ""
+      }
+    }
+  },
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "histologic_type": {
+        "label": "Tipo histológico",
+        "fields": {
+          "category": {
+            "label": "Categoria",
+            "type": "select",
+            "options": [
+              "Glandular",
+              "Escamoso",
+              "Neuroendócrino",
+              "Outro tipo histológico não listado",
+              "Carcinoma, tipo não determinável"
+            ],
+            "value": ""
+          },
+          "type": {
+            "label": "Tipo histológico",
+            "type": "select",
+            "options": [
+              "Adenocarcinoma acinar, convencional (usual)",
+              "Adenocarcinoma acinar, tipo células em anel de sinete",
+              "Adenocarcinoma acinar, célula gigante pleomórfica",
+              "Adenocarcinoma acinar, sarcomatoide",
+              "Adenocarcinoma acinar, semelhante a neoplasia intraepitelial prostática",
+              "Carcinoma intraductal",
+              "Adenocarcinoma ductal",
+              "Carcinoma adenoescamoso",
+              "Carcinoma de células escamosas",
+              "Carcinoma de células basais (adenoide cístico)",
+              "Adenocarcinoma com diferenciação neuroendócrina",
+              "Tumor neuroendócrino bem diferenciado",
+              "Carcinoma neuroendócrino de pequenas células",
+              "Carcinoma neuroendócrino de grandes células",
+              "Outro tipo histológico não listado",
+              "Carcinoma, tipo não determinável"
+            ],
+            "value": "",
+            "other_specify": {
+              "label": "Outro (especificar)",
+              "type": "text",
+              "value": ""
+            },
+            "cannot_be_determined_specify": {
+              "label": "Não é possível determinar (especificar)",
+              "type": "text",
+              "value": ""
+            }
+          },
+          "comment": {
+            "label": "Comentário sobre o tipo histológico",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "histologic_grade": {
+        "label": "Grau histológico",
+        "fields": {
+          "grade_group": {
+            "label": "Grau",
+            "type": "select",
+            "options": [
+              "Grupo de grau 1 (Pontuação de Gleason 3 + 3 = 6)",
+              "Grupo de grau 2 (Pontuação de Gleason 3 + 4 = 7)",
+              "Grupo de grau 3 (Pontuação de Gleason 4 + 3 = 7)",
+              "Grupo de grau 4 (Pontuação de Gleason 4 + 4 = 8)",
+              "Grupo de grau 4 (Pontuação de Gleason 3 + 5 = 8)",
+              "Grupo de grau 4 (Pontuação de Gleason 5 + 3 = 8)",
+              "Grupo de grau 5 (Pontuação de Gleason 4 + 5 = 9)",
+              "Grupo de grau 5 (Pontuação de Gleason 5 + 4 = 9)",
+              "Grupo de grau 5 (Pontuação de Gleason 5 + 5 = 10)",
+              "Não é possível avaliar",
+              "Não aplicável"
+            ],
+            "value": "",
+            "cannot_be_assessed_specify": {
+              "label": "Não é possível avaliar (especificar)",
+              "type": "text",
+              "value": ""
+            },
+            "not_applicable_specify": {
+              "label": "Não aplicável (especificar)",
+              "type": "text",
+              "value": ""
+            }
+          },
+          "minor_tertiary_pattern_5_for_group_2": {
+            "label": "Padrão terciário minor 5 para o grupo de grau 2",
+            "type": "select",
+            "options": ["Não aplicável / não identificado", "Presente"],
+            "value": ""
+          },
+          "pattern_4_percentage_for_group_2": {
+            "label": "Percentagem do padrão 4 para o grupo de grau 2",
+            "type": "select",
+            "options": [
+              "Igual ou inferior a 5%",
+              "6 - 10%",
+              "11 - 20%",
+              "21 - 30%",
+              "31 - 40%",
+              "Superior a 40%"
+            ],
+            "value": ""
+          },
+          "minor_tertiary_pattern_5_for_group_3": {
+            "label": "Padrão terciário minor 5 para o grupo de grau 3",
+            "type": "select",
+            "options": ["Não aplicável / não identificado", "Presente"],
+            "value": ""
+          },
+          "pattern_4_percentage_for_group_3": {
+            "label": "Percentagem do padrão 4 para o grupo de grau 3",
+            "type": "select",
+            "options": ["Inferior a 61%", "61 - 70%", "71 - 80%", "81 - 90%", "Superior a 90%"],
+            "value": ""
+          },
+          "pattern_4_percentage_if_greater_than_7": {
+            "label": "Percentagem do padrão 4 se pontuação de Gleason superior a 7",
+            "type": "number",
+            "value": ""
+          },
+          "pattern_5_percentage_if_greater_than_7": {
+            "label": "Percentagem do padrão 5 se pontuação de Gleason superior a 7",
+            "type": "number",
+            "value": ""
+          }
+        }
+      },
+      "intraductal_carcinoma": {
+        "label": "Carcinoma intraductal (CID)",
+        "fields": {
+          "status": {
+            "label": "CID",
+            "type": "select",
+            "options": ["Não identificado", "Presente"],
+            "value": ""
+          },
+          "incorporated_into_grade": {
+            "label": "CID incorporado no grau",
+            "type": "select",
+            "options": ["Sim", "Não", "Não é possível determinar"],
+            "value": ""
+          }
+        }
+      },
+      "cribriform_glands": {
+        "label": "Glândulas cribiformes",
+        "fields": {
+          "status": {
+            "label": "Glândulas cribiformes",
+            "type": "select",
+            "options": [
+              "Não aplicável",
+              "Não identificadas",
+              "Presentes",
+              "Não é possível determinar"
+            ],
+            "value": "",
+            "cannot_be_determined_explain": {
+              "label": "Não é possível determinar (explicar)",
+              "type": "text",
+              "value": ""
+            }
+          }
+        }
+      },
+      "treatment_effect": {
+        "label": "Efeito do tratamento",
+        "fields": {
+          "effects": {
+            "label": "Efeito do tratamento",
+            "type": "multi_select",
+            "options": [
+              "Sem terapia pré-cirúrgica conhecida",
+              "Não identificado",
+              "Efeito de radioterapia presente",
+              "Efeito de terapia hormonal presente",
+              "Efeito(s) de outra(s) terapia(s) presente(s)",
+              "Não é possível determinar"
+            ],
+            "value": []
+          },
+          "radiation_therapy_effect_specify": {
+            "label": "Efeito de radioterapia presente (especificar)",
+            "type": "text",
+            "value": ""
+          },
+          "hormonal_therapy_effect_specify": {
+            "label": "Efeito de terapia hormonal presente (especificar)",
+            "type": "text",
+            "value": ""
+          },
+          "other_therapy_effects_specify": {
+            "label": "Efeito(s) de outra(s) terapia(s) presente(s) (especificar)",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_specify": {
+            "label": "Não é possível determinar (especificar)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      }
+    }
+  },
+  "tumor_quantitation": {
+    "label": "Quantificação do tumor",
+    "fields": {
+      "quantitation_methods": {
+        "label": "Métodos de quantificação do tumor",
+        "type": "multi_select",
+        "options": ["Por percentagem", "Por dimensão"],
+        "value": []
+      },
+      "estimated_percentage_of_prostate_involved": {
+        "label": "Percentagem estimada da próstata envolvida por tumor",
+        "type": "select",
+        "options": [
+          "Inferior a 1%",
+          "1 - 5%",
+          "6 - 10%",
+          "11 - 20%",
+          "21 - 30%",
+          "31 - 40%",
+          "41 - 50%",
+          "51 - 60%",
+          "61 - 70%",
+          "71 - 80%",
+          "81 - 90%",
+          "Superior a 90%",
+          "Não é possível determinar"
+        ],
+        "value": "",
+        "cannot_be_determined_explain": {
+          "label": "Não é possível determinar (explicar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "dominant_nodule_greatest_dimension_mm": {
+        "label": "Maior dimensão do nódulo dominante (mm)",
+        "type": "number",
+        "value": ""
+      },
+      "dominant_nodule_additional_dimensions_mm": {
+        "label": "Dimensões adicionais do nódulo dominante (mm)",
+        "type": "measurement_2d",
+        "value": ""
+      },
+      "dominant_nodule_location": {
+        "label": "Localização do nódulo dominante",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+  "extension_and_invasion": {
+    "label": "Extensão e invasão",
+    "fields": {
+      "extraprostatic_extension": {
+        "label": "Extensão extraprostática (EEP)",
+        "fields": {
+          "status": {
+            "label": "Extensão extraprostática",
+            "type": "select",
+            "options": [
+              "Não identificada",
+              "Presente, focal",
+              "Presente, não focal",
+              "Não é possível determinar"
+            ],
+            "value": "",
+            "cannot_be_determined_specify": {
+              "label": "Não é possível determinar (especificar)",
+              "type": "text",
+              "value": ""
+            }
+          },
+          "locations": {
+            "label": "Localização da extensão extraprostática",
+            "type": "multi_select",
+            "options": [
+              "Ápex direito",
+              "Colo vesical direito",
+              "Anterior direito",
+              "Lateral direito",
+              "Posterolateral direito (feixe neurovascular)",
+              "Posterior direito",
+              "Ápex esquerdo",
+              "Colo vesical esquerdo",
+              "Anterior esquerdo",
+              "Lateral esquerdo",
+              "Posterolateral esquerdo (feixe neurovascular)",
+              "Posterior esquerdo",
+              "Outro",
+              "Não é possível determinar"
+            ],
+            "value": [],
+            "other_specify": {
+              "label": "Outro (especificar)",
+              "type": "text",
+              "value": ""
+            },
+            "cannot_be_determined_specify": {
+              "label": "Não é possível determinar (especificar)",
+              "type": "text",
+              "value": ""
+            }
+          }
+        }
+      },
+      "urinary_bladder_neck_invasion": {
+        "label": "Invasão do colo vesical",
+        "type": "select",
+        "options": ["Não identificada", "Presente", "Não é possível determinar"],
+        "value": "",
+        "cannot_be_determined_specify": {
+          "label": "Não é possível determinar (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "seminal_vesicle_invasion": {
+        "label": "Invasão da vesícula seminal",
+        "type": "select",
+        "options": [
+          "Não identificada",
+          "Presente, direita",
+          "Presente, esquerda",
+          "Presente, bilateral",
+          "Presente, lateralidade não determinável",
+          "Sem vesícula seminal presente"
+        ],
+        "value": ""
+      },
+      "lymphovascular_invasion": {
+        "label": "Invasão linfática e/ou vascular",
+        "type": "select",
+        "options": ["Não identificada", "Presente", "Não é possível determinar"],
+        "value": "",
+        "cannot_be_determined_explain": {
+          "label": "Não é possível determinar (explicar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "perineural_invasion": {
+        "label": "Invasão perineural",
+        "type": "select",
+        "options": ["Não identificada", "Presente"],
+        "value": "",
+        "present_specify": {
+          "label": "Presente (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      }
+    }
+  },
+  "margins": {
+    "label": "Margens",
+    "fields": {
+      "margin_status": {
+        "label": "Estado das margens",
+        "type": "select",
+        "options": [
+          "Não é possível avaliar",
+          "Todas as margens negativas para carcinoma invasivo",
+          "Carcinoma invasivo presente na margem"
+        ],
+        "value": "",
+        "cannot_be_assessed_specify": {
+          "label": "Não é possível avaliar (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "linear_length_of_margin_involved": {
+        "label": "Comprimento linear da(s) margem(ns) envolvida(s) por carcinoma",
+        "fields": {
+          "length_type": {
+            "label": "Tipo de comprimento",
+            "type": "select",
+            "options": [
+              "Especificar comprimento exacto em milímetros (mm)",
+              "Inferior a 3 mm (limitado)",
+              "Igual ou superior a 3 mm (não limitado)",
+              "Não é possível determinar"
+            ],
+            "value": "",
+            "cannot_be_determined_explain": {
+              "label": "Não é possível determinar (explicar)",
+              "type": "text",
+              "value": ""
+            }
+          },
+          "length_mm": {
+            "label": "Comprimento (mm)",
+            "type": "number",
+            "value": ""
+          }
+        }
+      },
+      "focality_of_margin_involvement": {
+        "label": "Focalidade do envolvimento da margem",
+        "type": "select",
+        "options": ["Unifocal", "Multifocal"],
+        "value": ""
+      },
+      "margins_involved_by_invasive_carcinoma": {
+        "label": "Margem(ns) envolvida(s) por carcinoma invasivo",
+        "type": "multi_select",
+        "options": [
+          "Ápex direito",
+          "Colo vesical direito",
+          "Anterior direito",
+          "Lateral direito",
+          "Posterolateral direito (feixe neurovascular)",
+          "Posterior direito",
+          "Ápex esquerdo",
+          "Colo vesical esquerdo",
+          "Anterior esquerdo",
+          "Lateral esquerdo",
+          "Posterolateral esquerdo (feixe neurovascular)",
+          "Posterior esquerdo",
+          "Não é possível determinar"
+        ],
+        "value": [],
+        "cannot_be_determined_specify": {
+          "label": "Não é possível determinar (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "margin_involvement_in_area_of_epe": {
+        "label": "Envolvimento da margem por carcinoma invasivo em área de EEP",
+        "fields": {
+          "status": {
+            "label": "Envolvimento da margem em área de EEP",
+            "type": "select",
+            "options": ["Não identificado", "Presente"],
+            "value": ""
+          },
+          "margins_involved": {
+            "label": "Margem(ns) envolvida(s) por carcinoma invasivo em área de EEP",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "gleason_pattern_at_margin": {
+        "label": "Padrão de Gleason na(s) margem(ns) envolvida(s) por carcinoma",
+        "type": "multi_select",
+        "options": ["Padrão 3", "Padrão 4", "Padrão 5"],
+        "value": []
+      },
+      "margin_comment": {
+        "label": "Comentário sobre as margens",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+  "regional_lymph_nodes": {
+    "label": "Gânglios linfáticos regionais",
+    "fields": {
+      "regional_lymph_node_status": {
+        "label": "Estado dos gânglios linfáticos regionais",
+        "type": "select",
+        "options": [
+          "Não aplicável (nenhum gânglio linfático regional submetido ou encontrado)",
+          "Gânglios linfáticos regionais presentes",
+          "Todos os gânglios linfáticos regionais negativos para tumor",
+          "Tumor presente em gânglio(s) linfático(s) regional(is)"
+        ],
+        "value": ""
+      },
+      "number_of_lymph_nodes_with_tumor": {
+        "label": "Número de gânglios linfáticos com tumor",
+        "fields": {
+          "count_type": {
+            "label": "Tipo de contagem",
+            "type": "select",
+            "options": ["Número exacto", "Pelo menos", "Outro", "Não é possível determinar"],
+            "value": ""
+          },
+          "count_value": {
+            "label": "Contagem",
+            "type": "integer",
+            "value": ""
+          },
+          "other_specify": {
+            "label": "Outro (especificar)",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_explain": {
+            "label": "Não é possível determinar (explicar)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "nodal_sites_with_tumor": {
+        "label": "Local(is) ganglionar(es) com tumor",
+        "type": "repeatable_group",
+        "item_label": "Local ganglionar com tumor",
+        "fields": {
+          "site": {
+            "label": "Local ganglionar",
+            "type": "select",
+            "options": [
+              "Hipogástrico",
+              "Obturador",
+              "Ilíaco interno",
+              "Ilíaco externo",
+              "Ilíaco, SOE",
+              "Pélvico, SOE",
+              "Sagrado lateral",
+              "Pré-sagrado",
+              "Promontório",
+              "Sagrado, SOE",
+              "Outro"
+            ],
+            "value": "",
+            "site_specify": {
+              "label": "Local (especificar)",
+              "type": "text",
+              "value": ""
+            }
+          },
+          "site_detail": {
+            "label": "Detalhe do local",
+            "type": "text",
+            "value": ""
+          },
+          "laterality": {
+            "label": "Lateralidade",
+            "type": "multi_select",
+            "options": ["Direito", "Esquerdo", "Não é possível determinar"],
+            "value": [],
+            "cannot_be_determined_specify": {
+              "label": "Não é possível determinar (especificar)",
+              "type": "text",
+              "value": ""
+            }
+          }
+        }
+      },
+      "size_of_largest_nodal_metastatic_deposit": {
+        "label": "Tamanho do maior depósito metastático ganglionar",
+        "fields": {
+          "size_type": {
+            "label": "Tipo de tamanho",
+            "type": "select",
+            "options": [
+              "Tamanho exacto",
+              "Pelo menos",
+              "Superior a",
+              "Inferior a",
+              "Outro",
+              "Não é possível determinar"
+            ],
+            "value": ""
+          },
+          "size_cm": {
+            "label": "Tamanho (cm)",
+            "type": "number",
+            "value": ""
+          },
+          "other_specify": {
+            "label": "Outro (especificar)",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_explain": {
+            "label": "Não é possível determinar (explicar)",
+            "type": "text",
+            "value": ""
+          },
+          "site": {
+            "label": "Local do gânglio com maior depósito metastático",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "size_of_largest_lymph_node_with_tumor": {
+        "label": "Tamanho do maior gânglio linfático com tumor",
+        "fields": {
+          "size_type": {
+            "label": "Tipo de tamanho",
+            "type": "select",
+            "options": [
+              "Tamanho exacto",
+              "Pelo menos",
+              "Superior a",
+              "Inferior a",
+              "Outro",
+              "Não é possível determinar"
+            ],
+            "value": ""
+          },
+          "size_cm": {
+            "label": "Tamanho (cm)",
+            "type": "number",
+            "value": ""
+          },
+          "other_specify": {
+            "label": "Outro (especificar)",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_explain": {
+            "label": "Não é possível determinar (explicar)",
+            "type": "text",
+            "value": ""
+          },
+          "site": {
+            "label": "Maior gânglio linfático com tumor (especificar local)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "extranodal_extension": {
+        "label": "Extensão extranodal",
+        "fields": {
+          "status": {
+            "label": "Extensão extranodal",
+            "type": "select",
+            "options": ["Não identificada", "Presente", "Não é possível determinar", "Outro"],
+            "value": ""
+          },
+          "cannot_be_determined_specify": {
+            "label": "Não é possível determinar (especificar)",
+            "type": "text",
+            "value": ""
+          },
+          "other_specify": {
+            "label": "Outro (especificar)",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_explain": {
+            "label": "Não é possível determinar (explicar)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "number_of_lymph_nodes_examined": {
+        "label": "Número de gânglios linfáticos examinados",
+        "fields": {
+          "count_type": {
+            "label": "Tipo de contagem",
+            "type": "select",
+            "options": ["Número exacto", "Pelo menos", "Outro", "Não é possível determinar"],
+            "value": ""
+          },
+          "count_value": {
+            "label": "Contagem",
+            "type": "integer",
+            "value": ""
+          },
+          "other_specify": {
+            "label": "Outro (especificar)",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_explain": {
+            "label": "Não é possível determinar (explicar)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "regional_lymph_node_comment": {
+        "label": "Comentário sobre os gânglios linfáticos regionais",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+  "distant_metastasis": {
+    "label": "Metástases à distância",
+    "fields": {
+      "sites_involved": {
+        "label": "Local(is) à distância envolvido(s)",
+        "type": "multi_select",
+        "options": [
+          "Não aplicável",
+          "Gânglio(s) linfático(s) não regional(is)",
+          "Osso",
+          "Outro",
+          "Não é possível determinar"
+        ],
+        "value": [],
+        "nonregional_lymph_nodes_specify": {
+          "label": "Gânglios não regionais (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "bone_specify": {
+          "label": "Osso (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": {
+          "label": "Outro (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_specify": {
+          "label": "Não é possível determinar (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      }
+    }
+  },
+  "ptnm_classification": {
+    "label": "Classificação pTNM (AJCC 8ª Edição)",
+    "note": "A notificação das categorias pT, pN e, quando aplicável, pM baseia-se nas informações disponíveis para o patologista no momento da emissão do relatório. Conforme a 8ª Edição do AJCC, cabe ao médico responsável estabelecer o estadiamento patológico final com base em todas as informações pertinentes.",
+    "fields": {
+      "modified_classification": {
+        "label": "Classificação modificada",
+        "type": "multi_select",
+        "options": ["Não aplicável", "y (pós-terapia neoadjuvante)", "r (recidiva)"],
+        "value": []
+      },
+      "pT_category": {
+        "label": "Categoria pT",
+        "type": "select",
+        "options": [
+          "pT2: Confinado ao órgão",
+          "pT3a: Extensão extraprostática ou invasão microscópica do colo vesical",
+          "pT3b: Tumor invade a(s) vesícula(s) seminal(is)",
+          "pT3 (subcategoria não determinável)",
+          "pT4: Tumor fixo ou que invade estruturas adjacentes que não as vesículas seminais"
+        ],
+        "value": ""
+      },
+      "T_suffix": {
+        "label": "Sufixo T",
+        "type": "select",
+        "options": ["Não aplicável", "(m) tumores primários síncronos múltiplos num único órgão"],
+        "value": ""
+      },
+      "pN_category": {
+        "label": "Categoria pN",
+        "type": "select",
+        "options": [
+          "pN não atribuído (nenhum gânglio submetido ou encontrado)",
+          "pN não atribuído (não é possível determinar com base nas informações patológicas disponíveis)",
+          "pN0: Sem gânglios regionais positivos",
+          "pN1: Metástase em gânglios regionais"
+        ],
+        "value": ""
+      },
+      "pM_category": {
+        "label": "Categoria pM",
+        "type": "select",
+        "options": [
+          "Não aplicável — pM não pode ser determinado a partir do(s) espécime(s) submetido(s)",
+          "pM1a: Gânglio(s) linfático(s) não regional(is)",
+          "pM1b: Osso(s)",
+          "pM1c: Outro(s) local(is) com ou sem doença óssea",
+          "pM1 (subcategoria não determinável)"
+        ],
+        "value": ""
+      }
+    }
+  },
+  "additional_findings": {
+    "label": "Achados adicionais",
+    "fields": {
+      "findings": {
+        "label": "Achados adicionais",
+        "type": "multi_select",
+        "options": [
+          "Nenhum identificado",
+          "Proliferação intraductal atípica (PIA)",
+          "Neoplasia intraepitelial prostática de alto grau (NIP)",
+          "Hiperplasia adenomatosa atípica (adenose)",
+          "Hiperplasia nodular prostática",
+          "Inflamação",
+          "Outro"
+        ],
+        "value": []
+      },
+      "pin_specify": {
+        "label": "Neoplasia intraepitelial prostática de alto grau (NIP) (especificar)",
+        "type": "text",
+        "value": ""
+      },
+      "inflammation_specify_type": {
+        "label": "Inflamação (especificar o tipo)",
+        "type": "text",
+        "value": ""
+      },
+      "other_specify": {
+        "label": "Outro (especificar)",
+        "type": "text",
+        "value": ""
+      }
+    }
+  }
+}

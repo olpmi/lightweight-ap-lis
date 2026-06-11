@@ -15,7 +15,7 @@
         "type": "select",
         "options": ["پہلے کسی علاج کا علم نہیں", "پہلا علاج دیا گیا", "غیر متعین"],
         "value": "",
-        "prior_treatment_specify": ""
+        "prior_treatment_specify": { "label": "العلاج السابق (حدد)", "type": "text", "value": "" }
       }
     }
   },
@@ -45,14 +45,14 @@
           "دیگر"
         ],
         "value": "",
-        "other_specify": ""
+        "other_specify": "دیگر (وضاحت کریں)"
       },
       "adequacy": {
         "label": "نمونے کی کفایت",
         "type": "select",
         "options": ["کافی", "کم از کم معیار"],
         "value": "",
-        "suboptimal_explain": ""
+        "suboptimal_explain": "معیار سے کم (وضاحت کریں)"
       }
     }
   },
@@ -74,14 +74,14 @@
         "type": "select",
         "options": ["شناخت نہیں ہوئی", "موجود", "متعین نہیں کیا جا سکتا"],
         "value": "",
-        "cannot_be_determined_specify": ""
+        "cannot_be_determined_specify": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
       },
       "perineural_invasion": {
         "label": "پیری نیورل رسوخ",
         "type": "select",
         "options": ["شناخت نہیں ہوئی", "موجود", "متعین نہیں کیا جا سکتا"],
         "value": "",
-        "cannot_be_determined_specify": ""
+        "cannot_be_determined_specify": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
       },
       "additional_pathologic_findings": {
         "label": "اضافی پیتھولوجیکل مشاہدات",

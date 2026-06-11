@@ -1,0 +1,262 @@
+{
+  "template_id": "small_bowel_resection_gross_v1",
+  "domain": "anatomic_pathology",
+  "lang": "pt",
+  "title": "Ressecção do intestino delgado para tumor",
+  "procedure_type": {
+    "label": "Tipo de procedimento",
+    "type": "select",
+    "options": [
+      "Ressecção segmentar do intestino delgado",
+      "Ressecção ileocecal",
+      "Hemicolectomia direita com íleon terminal",
+      "Ressecção do intestino delgado com mesentério",
+      "Outro"
+    ],
+    "value": "",
+    "other_specify": {
+      "label": "Outro (especificar)",
+      "type": "text",
+      "value": ""
+    }
+  },
+  "orientation_provided": {
+    "label": "Orientação fornecida",
+    "type": "select",
+    "options": ["Sim", "Não"],
+    "value": ""
+  },
+  "specimen_dimensions": {
+    "label": "Dimensões do intestino delgado (cm)",
+    "fields": {
+      "small_bowel_length_cm": {
+        "label": "Comprimento do intestino delgado (cm)",
+        "type": "number",
+        "value": ""
+      }
+    }
+  },
+  "tumor_present": {
+    "label": "Tumor presente",
+    "type": "select",
+    "options": ["Sim", "Não identificado macroscopicamente"],
+    "value": ""
+  },
+  "tumor_focality": {
+    "label": "Focalidade do tumor",
+    "type": "select",
+    "options": ["Unifocal", "Multifocal"],
+    "value": ""
+  },
+  "tumor_location": {
+    "label": "Localização do tumor",
+    "type": "select",
+    "options": ["Duodeno", "Jejuno", "Íleo", "Íleo terminal", "Região periampular", "Outro"],
+    "value": "",
+    "other_specify": {
+      "label": "Outra localização (especificar)",
+      "type": "text",
+      "value": ""
+    }
+  },
+  "distance_to_margins_cm": {
+    "label": "Distância do tumor às margens (cm)",
+    "fields": {
+      "proximal": {
+        "label": "Margem proximal",
+        "type": "number",
+        "value": ""
+      },
+      "distal": {
+        "label": "Margem distal",
+        "type": "number",
+        "value": ""
+      },
+      "mesenteric": {
+        "label": "Margem mesentérica",
+        "type": "number",
+        "value": ""
+      }
+    }
+  },
+  "tumor_dimensions_cm": {
+    "label": "Dimensões do tumor (cm)",
+    "type": "measurement_3d",
+    "value": ""
+  },
+  "tumor_configuration": {
+    "label": "Configuração do tumor",
+    "type": "multi_select",
+    "options": [
+      "Polipoide",
+      "Exofítico",
+      "Fungoide",
+      "Ulcerado",
+      "Anular",
+      "Infiltrativo",
+      "Circunferencial",
+      "Nodular",
+      "Outro"
+    ],
+    "value": [],
+    "other_specify": {
+      "label": "Outra configuração (especificar)",
+      "type": "text",
+      "value": ""
+    }
+  },
+  "tumor_consistency": {
+    "label": "Consistência do tumor",
+    "type": "select",
+    "options": ["Firme", "Mole", "Friável", "Gelatinoso", "Fibrótico", "Outro"],
+    "value": "",
+    "other_specify": {
+      "label": "Outra consistência (especificar)",
+      "type": "text",
+      "value": ""
+    }
+  },
+  "necrosis": {
+    "label": "Necrose",
+    "type": "select",
+    "options": ["Presente", "Ausente"],
+    "value": ""
+  },
+  "hemorrhage": {
+    "label": "Hemorragia",
+    "type": "select",
+    "options": ["Presente", "Ausente"],
+    "value": ""
+  },
+  "perforation": {
+    "label": "Perfuração",
+    "type": "select",
+    "options": ["Presente", "Ausente"],
+    "value": ""
+  },
+  "associated_obstruction": {
+    "label": "Obstrução associada",
+    "type": "select",
+    "options": ["Presente", "Ausente"],
+    "value": ""
+  },
+  "stricture_formation": {
+    "label": "Formação de estenose",
+    "type": "select",
+    "options": ["Presente", "Ausente"],
+    "value": ""
+  },
+  "tumor_extent": {
+    "label": "Extensão do tumor",
+    "type": "select",
+    "options": [
+      "Invade apenas a mucosa",
+      "Invade a submucosa",
+      "Invade a muscularis propria",
+      "Invade a subserosa",
+      "Invade a serosa",
+      "Invade a gordura mesentérica",
+      "Invade estruturas adjacentes"
+    ],
+    "value": "",
+    "adjacent_structures_specify": {
+      "label": "Estruturas adjacentes (especificar)",
+      "type": "text",
+      "value": ""
+    }
+  },
+  "background_mucosa": {
+    "label": "Aspecto da mucosa do intestino delgado de fundo",
+    "type": "multi_select",
+    "options": [
+      "Normal",
+      "Ulcerada",
+      "Polipose",
+      "Alteração isquémica",
+      "Efeito de radioterapia",
+      "Aderências",
+      "Outro"
+    ],
+    "value": [],
+    "other_specify": {
+      "label": "Outro (especificar)",
+      "type": "text",
+      "value": ""
+    }
+  },
+  "lymph_nodes": {
+    "label": "Gânglios linfáticos regionais",
+    "fields": {
+      "number_identified": {
+        "label": "Número identificado",
+        "type": "integer",
+        "value": ""
+      },
+      "size_range_mm": {
+        "label": "Intervalo de tamanhos (mm)",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+  "other_macroscopic_findings": {
+    "label": "Outros achados macroscópicos relevantes",
+    "type": "text",
+    "value": ""
+  },
+  "block_identification_key": {
+    "label": "Chave de identificação de blocos",
+    "fields": {
+      "tumor": {
+        "label": "Tumor",
+        "type": "text",
+        "value": ""
+      },
+      "proximal_margin": {
+        "label": "Margem proximal",
+        "type": "text",
+        "value": ""
+      },
+      "distal_margin": {
+        "label": "Margem distal",
+        "type": "text",
+        "value": ""
+      },
+      "mesenteric_margin": {
+        "label": "Margem mesentérica",
+        "type": "text",
+        "value": ""
+      },
+      "non_neoplastic_small_bowel": {
+        "label": "Intestino delgado não neoplásico",
+        "type": "text",
+        "value": ""
+      },
+      "lymph_nodes": {
+        "label": "Gânglios linfáticos",
+        "type": "text",
+        "value": ""
+      },
+      "additional_sections": {
+        "label": "Cortes adicionais",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+  "grossing": {
+    "label": "Exame macroscópico",
+    "fields": {
+      "grossed_by": {
+        "label": "Exame macroscópico realizado por (iniciais)",
+        "type": "text",
+        "value": ""
+      },
+      "date": {
+        "label": "Data",
+        "type": "date",
+        "value": ""
+      }
+    }
+  }
+}

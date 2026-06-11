@@ -26,7 +26,7 @@
         "type": "select",
         "options": ["تم", "لم يتم", "غير معروف"],
         "value": "",
-        "lymph_nodes_sampled": ""
+        "lymph_nodes_sampled": { "label": "العقد اللمفاوية المأخوذة", "type": "text", "value": "" }
       }
     }
   },
@@ -121,7 +121,11 @@
         "type": "select",
         "options": ["غير مُشخَّص", "موجود", "لا يمكن التحديد"],
         "value": "",
-        "cannot_be_determined_specify": ""
+        "cannot_be_determined_specify": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        }
       },
       "treatment_effect": {
         "label": "تأثير العلاج",

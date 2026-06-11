@@ -15,7 +15,7 @@
         "type": "select",
         "options": ["لا يوجد علاج سابق معروف", "أُعطي علاج سابق", "غير محدد"],
         "value": "",
-        "prior_treatment_specify": ""
+        "prior_treatment_specify": { "label": "العلاج السابق (حدد)", "type": "text", "value": "" }
       }
     }
   },
@@ -45,14 +45,14 @@
           "أخرى"
         ],
         "value": "",
-        "other_specify": ""
+        "other_specify": { "label": "أخرى (حدد)", "type": "text", "value": "" }
       },
       "adequacy": {
         "label": "كفاية العينة",
         "type": "select",
         "options": ["كافية", "دون المستوى الأمثل"],
         "value": "",
-        "suboptimal_explain": ""
+        "suboptimal_explain": "دون المستوى الأمثل، يرجى شرح السبب"
       }
     }
   },
@@ -74,14 +74,22 @@
         "type": "select",
         "options": ["غير مُشخَّص", "موجود", "لا يمكن التحديد"],
         "value": "",
-        "cannot_be_determined_specify": ""
+        "cannot_be_determined_specify": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        }
       },
       "perineural_invasion": {
         "label": "الغزو حول العصبي",
         "type": "select",
         "options": ["غير مُشخَّص", "موجود", "لا يمكن التحديد"],
         "value": "",
-        "cannot_be_determined_specify": ""
+        "cannot_be_determined_specify": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        }
       },
       "additional_pathologic_findings": {
         "label": "النتائج المرضية الإضافية",

@@ -1,0 +1,206 @@
+{
+  "templateId": "cervical_cytology_pap_smear_bethesda",
+  "version": "1.0",
+  "language": "pt",
+  "category": "cytology",
+  "system": "Bethesda System",
+  "title": "Modelo de relatório de citologia cervical (Papanicolaou) — Sistema de Bethesda",
+  "sections": [
+    {
+      "id": "specimen",
+      "title": "Espécime",
+      "fields": [
+        {
+          "id": "specimen_type",
+          "type": "select",
+          "label": "Citologia cervical (selecionar a opção apropriada)",
+          "options": [
+            { "code": "conventional_smear", "label": "Esfregaço convencional" },
+            { "code": "liquid_based_cytology", "label": "Citologia em meio líquido" }
+          ]
+        },
+        {
+          "id": "source",
+          "type": "select",
+          "label": "Origem",
+          "options": [
+            { "code": "cervix", "label": "Colo do útero" },
+            { "code": "ectocervix", "label": "Ectocérvice" },
+            { "code": "endocervix", "label": "Endocérvice" },
+            { "code": "vaginal_cuff", "label": "Cúpula vaginal" },
+            { "code": "other", "label": "Outro" }
+          ]
+        },
+        {
+          "id": "hpv_test_submitted_available",
+          "type": "select",
+          "label": "Teste de HPV submetido / disponível",
+          "options": [
+            { "code": "yes", "label": "Sim" },
+            { "code": "no", "label": "Não" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "specimen_adequacy",
+      "title": "Adequação da espécime",
+      "fields": [
+        {
+          "id": "adequacy_status",
+          "type": "select",
+          "label": "Adequação da espécime",
+          "options": [
+            { "code": "satisfactory_for_evaluation", "label": "Satisfatória para avaliação" },
+            {
+              "code": "unsatisfactory_scant_cellularity",
+              "label": "Insatisfatória para avaliação — celularidade escassa"
+            },
+            {
+              "code": "unsatisfactory_obscuring_blood_inflammation",
+              "label": "Insatisfatória para avaliação — sangue / inflamação obscurecedores"
+            },
+            {
+              "code": "unsatisfactory_poor_preservation",
+              "label": "Insatisfatória para avaliação — má preservação"
+            },
+            {
+              "code": "unsatisfactory_other",
+              "label": "Insatisfatória para avaliação — outro motivo"
+            }
+          ]
+        },
+        {
+          "id": "satisfactory_but_limited_by",
+          "type": "multiselect",
+          "label": "Satisfatória, porém limitada por",
+          "options": [
+            { "code": "obscuring_blood", "label": "Sangue obscurecedor" },
+            { "code": "inflammation", "label": "Inflamação" },
+            { "code": "low_squamous_cellularity", "label": "Baixa celularidade escamosa" },
+            { "code": "poor_fixation", "label": "Má fixação" }
+          ]
+        },
+        {
+          "id": "transformation_zone_component",
+          "type": "select",
+          "label": "Componente endocervical / zona de transformação",
+          "options": [
+            { "code": "present", "label": "Presente" },
+            { "code": "absent", "label": "Ausente" },
+            { "code": "not_applicable", "label": "Não aplicável" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "interpretation_result",
+      "title": "Interpretação / Resultado (selecionar a opção apropriada)",
+      "fields": [
+        {
+          "id": "interpretation_result",
+          "type": "select",
+          "label": "Interpretação / Resultado",
+          "options": [
+            {
+              "code": "nilm_within_normal_limits",
+              "label": "Negativo para lesão intraepitelial ou malignidade: dentro dos limites normais"
+            },
+            {
+              "code": "nilm_reactive_inflammation",
+              "label": "Negativo para lesão intraepitelial ou malignidade, com alterações celulares reativas associadas à inflamação"
+            },
+            {
+              "code": "nilm_reactive_radiation_iud_atrophy",
+              "label": "Negativo para lesão intraepitelial ou malignidade, com alterações celulares reativas associadas a radiação / DIU / atrofia"
+            },
+            {
+              "code": "organism_trichomonas_vaginalis",
+              "label": "Negativo para lesão intraepitelial ou malignidade, com organismos identificados: Trichomonas vaginalis"
+            },
+            {
+              "code": "organism_candida_spp",
+              "label": "Negativo para lesão intraepitelial ou malignidade, com organismos identificados: organismos fúngicos morfologicamente compatíveis com Candida spp."
+            },
+            {
+              "code": "organism_bacterial_vaginosis",
+              "label": "Negativo para lesão intraepitelial ou malignidade, com organismos identificados: alteração da flora sugestiva de vaginose bacteriana"
+            },
+            {
+              "code": "organism_actinomyces_spp",
+              "label": "Negativo para lesão intraepitelial ou malignidade, com organismos identificados: bactérias morfologicamente compatíveis com Actinomyces spp."
+            },
+            {
+              "code": "organism_herpes_simplex_virus",
+              "label": "Negativo para lesão intraepitelial ou malignidade, com organismos identificados: alterações pelo vírus herpes simples"
+            },
+            {
+              "code": "nilm_endometrial_cells",
+              "label": "Negativo para lesão intraepitelial ou malignidade, células endometriais presentes (em mulher com ≥45 anos)"
+            },
+            {
+              "code": "asc_us",
+              "label": "ASC-US (Células escamosas atípicas de significado indeterminado)"
+            },
+            {
+              "code": "asc_h",
+              "label": "ASC-H (Células escamosas atípicas, não se pode excluir HSIL)"
+            },
+            { "code": "lsil", "label": "LSIL (Lesão intraepitelial escamosa de baixo grau)" },
+            { "code": "hsil", "label": "HSIL (Lesão intraepitelial escamosa de alto grau)" },
+            {
+              "code": "hsil_suspicious_for_invasion",
+              "label": "HSIL com características suspeitas de invasão"
+            },
+            { "code": "squamous_cell_carcinoma", "label": "Carcinoma de células escamosas" },
+            { "code": "agc_endocervical_nos", "label": "Células endocervicais atípicas, SOE" },
+            {
+              "code": "agc_endocervical_favor_neoplastic",
+              "label": "Células endocervicais atípicas, sugestivas de neoplasia"
+            },
+            { "code": "agc_endometrial_nos", "label": "Células endometriais atípicas, SOE" },
+            {
+              "code": "agc_endometrial_favor_neoplastic",
+              "label": "Células endometriais atípicas, sugestivas de neoplasia"
+            },
+            { "code": "agc_nos", "label": "Células glandulares atípicas, SOE" },
+            {
+              "code": "agc_favor_neoplastic",
+              "label": "Células glandulares atípicas, sugestivas de neoplasia"
+            },
+            { "code": "ais", "label": "Adenocarcinoma endocervical in situ (AIS)" },
+            { "code": "adenocarcinoma", "label": "Adenocarcinoma" },
+            { "code": "other_malignant_neoplasm", "label": "Outra neoplasia maligna" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ancillary_testing",
+      "title": "Testes complementares (se realizados)",
+      "fields": [
+        {
+          "id": "high_risk_hpv",
+          "type": "select",
+          "label": "HPV de alto risco",
+          "options": [
+            { "code": "positive", "label": "Positivo" },
+            { "code": "negative", "label": "Negativo" },
+            { "code": "pending", "label": "Pendente" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "comment_recommendation",
+      "title": "Comentário / Recomendação",
+      "fields": [
+        {
+          "id": "comment_recommendation",
+          "type": "textarea",
+          "label": "Comentário / Recomendação"
+        }
+      ]
+    }
+  ]
+}

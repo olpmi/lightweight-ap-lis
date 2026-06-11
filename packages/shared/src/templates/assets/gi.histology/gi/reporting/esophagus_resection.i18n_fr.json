@@ -19,7 +19,7 @@
           "Non précisé"
         ],
         "value": "",
-        "other_specify": ""
+        "other_specify": { "label": "Autre (précisez)", "type": "text", "value": "" }
       }
     }
   },
@@ -87,7 +87,7 @@
           "Carcinome, type indéterminable"
         ],
         "value": "",
-        "comment": ""
+        "comment": { "label": "Commentaire", "type": "text", "value": "" }
       },
       "histologic_grade": {
         "label": "Grade histologique",

@@ -17,7 +17,7 @@
         ],
         "type": "select",
         "value": "",
-        "other_specify": ""
+        "other_specify": "Nyingine (taja)"
       },
       "laterality": {
         "label": "Upande wa sampuli",
@@ -44,7 +44,7 @@
         ],
         "type": "multi_select",
         "value": [],
-        "clock_position_specify": ""
+        "clock_position_specify": { "label": "Nafasi ya saa (taja)", "type": "text", "value": "" }
       },
       "histologic_type": {
         "label": "Aina ya histolojia",
@@ -73,8 +73,12 @@
         "type": "select",
         "value": "",
         "features_specify": "",
-        "cannot_be_determined_specify": "",
-        "other_specify": ""
+        "cannot_be_determined_specify": {
+          "label": "Haiwezi kuamuliwa (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": "Nyingine (taja)"
       },
       "histologic_grade": {
         "label": "Daraja la histolojia (alama ya histolojia ya Nottingham)",
@@ -98,7 +102,11 @@
             ],
             "type": "select",
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": {
+              "label": "Haiwezi kuamuliwa (taja)",
+              "type": "text",
+              "value": ""
+            }
           },
           "nuclear_pleomorphism": {
             "label": "Pleomofizimu ya nyuklia",
@@ -110,7 +118,11 @@
             ],
             "type": "select",
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": {
+              "label": "Haiwezi kuamuliwa (taja)",
+              "type": "text",
+              "value": ""
+            }
           },
           "mitotic_rate": {
             "label": "Kiwango cha mitosi",
@@ -118,7 +130,11 @@
             "reference_note": "Tazama Jedwali la 1 katika Itifaki ya CAP.",
             "type": "select",
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": {
+              "label": "Haiwezi kuamuliwa (taja)",
+              "type": "text",
+              "value": ""
+            }
           },
           "overall_grade": {
             "label": "Daraja la jumla",
@@ -130,7 +146,11 @@
             ],
             "type": "select",
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": {
+              "label": "Haiwezi kuamuliwa (taja)",
+              "type": "text",
+              "value": ""
+            }
           }
         }
       },
@@ -197,7 +217,11 @@
         "type": "select",
         "value": "",
         "other_specify": "",
-        "cannot_be_determined_specify": ""
+        "cannot_be_determined_specify": {
+          "label": "Haiwezi kuamuliwa (taja)",
+          "type": "text",
+          "value": ""
+        }
       },
       "necrosis": {
         "label": "Nekrosisi",
@@ -212,7 +236,11 @@
         "type": "select",
         "value": "",
         "other_specify": "",
-        "cannot_be_determined_specify": ""
+        "cannot_be_determined_specify": {
+          "label": "Haiwezi kuamuliwa (taja)",
+          "type": "text",
+          "value": ""
+        }
       }
     }
   },
@@ -224,7 +252,11 @@
         "options": ["Haijaonekana", "Upo", "Haiwezi kubainishwa"],
         "type": "select",
         "value": "",
-        "cannot_be_determined_specify": ""
+        "cannot_be_determined_specify": {
+          "label": "Haiwezi kuamuliwa (taja)",
+          "type": "text",
+          "value": ""
+        }
       }
     }
   },
@@ -242,7 +274,7 @@
         ],
         "type": "multi_select",
         "value": [],
-        "other_specify": ""
+        "other_specify": { "label": "Nyingine (taja)", "type": "text", "value": "" }
       }
     }
   },

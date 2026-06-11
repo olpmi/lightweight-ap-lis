@@ -16,7 +16,7 @@
           "Haijabainishwa"
         ],
         "value": "",
-        "prior_treatment_specify": ""
+        "prior_treatment_specify": "Matibabu ya awali (taja)"
       }
     }
   },
@@ -46,14 +46,14 @@
           "Nyingine"
         ],
         "value": "",
-        "other_specify": ""
+        "other_specify": "Nyingine (taja)"
       },
       "adequacy": {
         "label": "Ubora wa sampuli",
         "type": "select",
         "options": ["Inatosha", "Chini ya kiwango bora"],
         "value": "",
-        "suboptimal_explain": ""
+        "suboptimal_explain": "Chini ya kiwango bora, eleza"
       }
     }
   },
@@ -75,14 +75,14 @@
         "type": "select",
         "options": ["Haujaonekana", "Upo", "Haiwezi kuamuliwa"],
         "value": "",
-        "cannot_be_determined_specify": ""
+        "cannot_be_determined_specify": "Haiwezi kuamuliwa, fafanua"
       },
       "perineural_invasion": {
         "label": "Uvamizi wa perinerali",
         "type": "select",
         "options": ["Haujaonekana", "Upo", "Haiwezi kuamuliwa"],
         "value": "",
-        "cannot_be_determined_specify": ""
+        "cannot_be_determined_specify": "Haiwezi kuamuliwa, fafanua"
       },
       "additional_pathologic_findings": {
         "label": "Matokeo ya ziada ya kipatholojia",

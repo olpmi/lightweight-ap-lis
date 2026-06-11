@@ -13,8 +13,16 @@
         "type": "select",
         "options": ["Prostatectomie radicale", "Autre", "Non précisé"],
         "value": "",
-        "radical_prostatectomy_specify": "",
-        "other_specify": ""
+        "radical_prostatectomy_specify": {
+          "label": "Prostatectomie radicale (préciser le type)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": {
+          "label": "Autre (préciser)",
+          "type": "text",
+          "value": ""
+        }
       },
       "prostate_weight_g": {
         "label": "Poids de la prostate (g)",
@@ -73,8 +81,16 @@
               "Carcinome, type indéterminable"
             ],
             "value": "",
-            "other_specify": "",
-            "cannot_be_determined_specify": ""
+            "other_specify": {
+              "label": "Autre préciser",
+              "type": "text",
+              "value": ""
+            },
+            "cannot_be_determined_specify": {
+              "label": "Carcinome, type indéterminable (préciser)",
+              "type": "text",
+              "value": ""
+            }
           },
           "comment": {
             "label": "Commentaire sur le type histologique",
@@ -103,8 +119,16 @@
               "Non applicable"
             ],
             "value": "",
-            "cannot_be_assessed_specify": "",
-            "not_applicable_specify": ""
+            "cannot_be_assessed_specify": {
+              "label": "Ne peut pas être évalué (expliquer)",
+              "type": "text",
+              "value": ""
+            },
+            "not_applicable_specify": {
+              "label": "Non applicable (expliquer)",
+              "type": "text",
+              "value": ""
+            }
           },
           "minor_tertiary_pattern_5_for_group_2": {
             "label": "Patron tertiaire mineur 5 pour le groupe de grade 2",
@@ -180,7 +204,11 @@
             "type": "select",
             "options": ["Non applicable", "Non identifié", "Présent", "Ne peut pas être déterminé"],
             "value": "",
-            "cannot_be_determined_explain": ""
+            "cannot_be_determined_explain": {
+              "label": "Ne peut pas être déterminé (expliquer)",
+              "type": "text",
+              "value": ""
+            }
           }
         }
       },
@@ -252,7 +280,11 @@
           "Ne peut pas être déterminé"
         ],
         "value": "",
-        "cannot_be_determined_explain": ""
+        "cannot_be_determined_explain": {
+          "label": "Ne peut pas être déterminé (expliquer)",
+          "type": "text",
+          "value": ""
+        }
       },
       "dominant_nodule_greatest_dimension_mm": {
         "label": "Plus grande dimension du nodule dominant (mm)",
@@ -287,7 +319,11 @@
               "Ne peut pas être déterminé"
             ],
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": {
+              "label": "Ne peut pas être déterminé (préciser)",
+              "type": "text",
+              "value": ""
+            }
           },
           "locations": {
             "label": "Localisation de l'extension extraprostatique",
@@ -309,8 +345,16 @@
               "Ne peut pas être déterminé"
             ],
             "value": [],
-            "other_specify": "",
-            "cannot_be_determined_specify": ""
+            "other_specify": {
+              "label": "Autre (préciser)",
+              "type": "text",
+              "value": ""
+            },
+            "cannot_be_determined_specify": {
+              "label": "Ne peut pas être déterminé (préciser)",
+              "type": "text",
+              "value": ""
+            }
           }
         }
       },
@@ -319,7 +363,11 @@
         "type": "select",
         "options": ["Non identifié", "Présent", "Ne peut pas être déterminé"],
         "value": "",
-        "cannot_be_determined_specify": ""
+        "cannot_be_determined_specify": {
+          "label": "Ne peut pas être déterminé (préciser)",
+          "type": "text",
+          "value": ""
+        }
       },
       "seminal_vesicle_invasion": {
         "label": "Invasion des vésicules séminales",
@@ -339,14 +387,18 @@
         "type": "select",
         "options": ["Non identifié", "Présent", "Ne peut pas être déterminé"],
         "value": "",
-        "cannot_be_determined_explain": ""
+        "cannot_be_determined_explain": {
+          "label": "Ne peut pas être déterminé (expliquer)",
+          "type": "text",
+          "value": ""
+        }
       },
       "perineural_invasion": {
         "label": "Invasion périnerveuse",
         "type": "select",
         "options": ["Non identifié", "Présent"],
         "value": "",
-        "present_specify": ""
+        "present_specify": { "label": "Présent (préciser)", "type": "text", "value": "" }
       }
     }
   },
@@ -362,7 +414,11 @@
           "Carcinome invasif présent à la marge"
         ],
         "value": "",
-        "cannot_be_assessed_specify": ""
+        "cannot_be_assessed_specify": {
+          "label": "Ne peut pas être évalué (préciser)",
+          "type": "text",
+          "value": ""
+        }
       },
       "linear_length_of_margin_involved": {
         "label": "Longueur linéaire de la/des marge(s) atteinte(s) par le carcinome",
@@ -377,7 +433,11 @@
               "Ne peut pas être déterminé"
             ],
             "value": "",
-            "cannot_be_determined_explain": ""
+            "cannot_be_determined_explain": {
+              "label": "Ne peut pas être déterminé (expliquer)",
+              "type": "text",
+              "value": ""
+            }
           },
           "length_mm": {
             "label": "Longueur (mm)",
@@ -411,7 +471,11 @@
           "Ne peut pas être déterminé"
         ],
         "value": [],
-        "cannot_be_determined_specify": ""
+        "cannot_be_determined_specify": {
+          "label": "Ne peut pas être déterminé (préciser)",
+          "type": "text",
+          "value": ""
+        }
       },
       "margin_involvement_in_area_of_epe": {
         "label": "Atteinte de la marge par un carcinome invasif dans une zone d'EPE",
@@ -516,7 +580,11 @@
             "type": "multi_select",
             "options": ["Droit", "Gauche", "Ne peut pas être déterminé"],
             "value": [],
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": {
+              "label": "Ne peut pas être déterminé (préciser)",
+              "type": "text",
+              "value": ""
+            }
           }
         }
       },
@@ -669,10 +737,10 @@
           "Ne peut pas être déterminé"
         ],
         "value": [],
-        "nonregional_lymph_nodes_specify": "",
-        "bone_specify": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": ""
+        "nonregional_lymph_nodes_specify": "Ganglion(s) lymphatique(s) non régional(aux) (préciser le site)",
+        "bone_specify": "Os (préciser)",
+        "other_specify": "Autre (préciser)",
+        "cannot_be_determined_specify": "Ne peut pas être déterminé (préciser)"
       }
     }
   },

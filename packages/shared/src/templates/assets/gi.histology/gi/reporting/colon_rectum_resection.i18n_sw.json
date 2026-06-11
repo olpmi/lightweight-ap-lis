@@ -23,14 +23,18 @@
           "Haijabainishwa"
         ],
         "value": "",
-        "other_specify": ""
+        "other_specify": { "label": "Nyingine (taja)", "type": "text", "value": "" }
       },
       "macroscopic_mesorectum": {
         "label": "Tathmini ya makroskopiki ya mesorektamu",
         "type": "select",
         "options": ["Haihusiki", "Kamili", "Karibu kamili", "Haujakamilika", "Haiwezi kuamuliwa"],
         "value": "",
-        "cannot_be_determined_specify": ""
+        "cannot_be_determined_specify": {
+          "label": "Haiwezi kuamuliwa, (eleza)",
+          "type": "text",
+          "value": ""
+        }
       }
     }
   },
@@ -89,8 +93,8 @@
           "Karsinoma, aina haiwezi kubainishwa"
         ],
         "value": "",
-        "specify_components": "",
-        "comment": ""
+        "specify_components": { "label": "Taja vipengele", "type": "text", "value": "" },
+        "comment": { "label": "Maoni", "type": "text", "value": "" }
       },
       "histologic_grade": {
         "label": "Daraja la kihistolojia",
@@ -105,9 +109,13 @@
           "Haihusiki"
         ],
         "value": "",
-        "other_specify": "",
-        "cannot_be_assessed_specify": "",
-        "not_applicable_specify": ""
+        "other_specify": { "label": "Nyingine (taja)", "type": "text", "value": "" },
+        "cannot_be_assessed_specify": {
+          "label": "Haiwezi kutathminiwa, (eleza)",
+          "type": "text",
+          "value": ""
+        },
+        "not_applicable_specify": { "label": "Haihusiki, (eleza)", "type": "text", "value": "" }
       },
       "tumor_size": {
         "label": "Ukubwa wa uvimbe",
@@ -134,7 +142,7 @@
         "type": "select",
         "options": ["Haihusiki", "Ipo"],
         "value": "",
-        "present_specify": ""
+        "present_specify": "Ipo (taja)"
       },
       "tumor_extent": {
         "label": "Kiwango cha uvimbe",
@@ -151,8 +159,16 @@
           "Hakuna ushahidi wa uvimbe wa msingi"
         ],
         "value": "",
-        "adjacent_structure_specify": "",
-        "cannot_be_determined_specify": ""
+        "adjacent_structure_specify": {
+          "label": "Muundo wa jirani (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_specify": {
+          "label": "Haiwezi kuamuliwa, (eleza)",
+          "type": "text",
+          "value": ""
+        }
       },
       "submucosal_invasion": {
         "label": "Uvamizi wa submukosa (kwa uvimbe wa pT1 pekee)",
@@ -174,8 +190,12 @@
               "Haiwezi kuamuliwa"
             ],
             "value": "",
-            "exact_depth_mm": "",
-            "cannot_be_determined_specify": ""
+            "exact_depth_mm": { "label": "Kina halisi (mm)", "type": "text", "value": "" },
+            "cannot_be_determined_specify": {
+              "label": "Haiwezi kuamuliwa, (eleza)",
+              "type": "text",
+              "value": ""
+            }
           },
           "extent": {
             "label": "Upeo wa uvamizi wa submukosa",
@@ -246,7 +266,7 @@
           "Nyingine"
         ],
         "value": "",
-        "other_specify": ""
+        "other_specify": { "label": "Nyingine (taja)", "type": "text", "value": "" }
       },
       "treatment_effect": {
         "label": "Athari ya matibabu",
@@ -470,7 +490,7 @@
           "Nyingine"
         ],
         "value": [],
-        "other_specify": ""
+        "other_specify": { "label": "Nyingine (taja)", "type": "text", "value": "" }
       }
     }
   },

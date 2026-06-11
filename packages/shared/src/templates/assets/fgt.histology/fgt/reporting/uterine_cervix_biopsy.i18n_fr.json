@@ -37,9 +37,9 @@
           "Carcinome, type ne pouvant être déterminé"
         ],
         "value": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": "",
-        "comment": ""
+        "other_specify": "Autre type (préciser)",
+        "cannot_be_determined_specify": "Ne peut être déterminé (préciser)",
+        "comment": "Commentaire"
       },
       "histologic_grade": {
         "label": "Grade histologique",
@@ -52,16 +52,16 @@
           "Sans objet"
         ],
         "value": "",
-        "cannot_be_assessed_specify": "",
-        "not_applicable_specify": ""
+        "cannot_be_assessed_specify": "Ne peut être évalué (préciser)",
+        "not_applicable_specify": "Sans objet (préciser)"
       },
       "lymphovascular_invasion": {
         "label": "Invasion lymphatique et / ou vasculaire",
         "type": "select",
         "options": ["Non identifiée", "Présente", "Équivoque", "Ne peut pas être déterminée"],
         "value": "",
-        "equivocal_explain": "",
-        "cannot_be_determined_specify": ""
+        "equivocal_explain": "Équivoque (préciser)",
+        "cannot_be_determined_specify": "Ne peut pas être déterminée (préciser)"
       }
     }
   },
@@ -80,7 +80,7 @@
           "Autre"
         ],
         "value": [],
-        "other_specify": ""
+        "other_specify": "Autre (préciser)"
       }
     }
   }

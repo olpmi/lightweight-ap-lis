@@ -26,14 +26,18 @@
           "غیر متعین"
         ],
         "value": "",
-        "other_specify": ""
+        "other_specify": { "label": "دیگر (وضاحت کریں)", "type": "text", "value": "" }
       },
       "macroscopic_mesorectum": {
         "label": "میزوریکٹم کا میکروسکوپک جائزہ",
         "type": "select",
         "options": ["قابل اطلاق نہیں", "مکمل", "تقریباً مکمل", "نامکمل", "متعین نہیں کیا جا سکتا"],
         "value": "",
-        "cannot_be_determined_specify": ""
+        "cannot_be_determined_specify": {
+          "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        }
       }
     }
   },
@@ -92,8 +96,8 @@
           "کارسینوما، قسم متعین نہیں کی جا سکتی"
         ],
         "value": "",
-        "specify_components": "",
-        "comment": ""
+        "specify_components": { "label": "اجزاء بیان کریں", "type": "text", "value": "" },
+        "comment": { "label": "تبصرہ", "type": "text", "value": "" }
       },
       "histologic_grade": {
         "label": "ہسٹولوجیکل گریڈ",
@@ -108,9 +112,13 @@
           "قابل اطلاق نہیں"
         ],
         "value": "",
-        "other_specify": "",
+        "other_specify": { "label": "دیگر (وضاحت کریں)", "type": "text", "value": "" },
         "cannot_be_assessed_specify": "",
-        "not_applicable_specify": ""
+        "not_applicable_specify": {
+          "label": "قابل اطلاق نہیں (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        }
       },
       "tumor_size": {
         "label": "رسولی کا سائز",
@@ -137,7 +145,7 @@
         "type": "select",
         "options": ["قابل اطلاق نہیں", "موجود"],
         "value": "",
-        "present_specify": ""
+        "present_specify": { "label": "موجود (وضاحت کریں)", "type": "text", "value": "" }
       },
       "tumor_extent": {
         "label": "رسولی کا پھیلاؤ",
@@ -154,8 +162,16 @@
           "پرائمری رسولی کا کوئی ثبوت نہیں"
         ],
         "value": "",
-        "adjacent_structure_specify": "",
-        "cannot_be_determined_specify": ""
+        "adjacent_structure_specify": {
+          "label": "ملحق ساخت (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_specify": {
+          "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        }
       },
       "submucosal_invasion": {
         "label": "سب میوکوسل رسوخ (صرف pT1 رسولیوں کے لیے)",
@@ -177,8 +193,12 @@
               "متعین نہیں کیا جا سکتا"
             ],
             "value": "",
-            "exact_depth_mm": "",
-            "cannot_be_determined_specify": ""
+            "exact_depth_mm": { "label": "درست گہرائی (ملی میٹر)", "type": "text", "value": "" },
+            "cannot_be_determined_specify": {
+              "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+              "type": "text",
+              "value": ""
+            }
           },
           "extent": {
             "label": "سب میوکوسل رسوخ کی وسعت",
@@ -244,7 +264,7 @@
           "دیگر"
         ],
         "value": "",
-        "other_specify": ""
+        "other_specify": { "label": "دیگر (وضاحت کریں)", "type": "text", "value": "" }
       },
       "treatment_effect": {
         "label": "علاج کا اثر",
@@ -465,7 +485,7 @@
           "دیگر"
         ],
         "value": [],
-        "other_specify": ""
+        "other_specify": { "label": "دیگر (وضاحت کریں)", "type": "text", "value": "" }
       }
     }
   },

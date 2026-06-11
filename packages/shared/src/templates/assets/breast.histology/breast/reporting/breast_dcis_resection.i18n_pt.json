@@ -1,0 +1,508 @@
+{
+  "template_id": "breast_dcis_resection_v1",
+  "domain": "anatomic_pathology",
+  "lang": "pt",
+  "title": "Mama — CDIS, Ressecção",
+  "protocol_posting_date": "June 2021",
+  "standards": ["AJCC-UICC 8"],
+
+  "specimen": {
+    "label": "Espécime",
+    "fields": {
+      "procedure": {
+        "label": "Procedimento",
+        "type": "select",
+        "options": [
+          "Excisão (inferior à mastectomia total)",
+          "Mastectomia total (incluindo mastectomia com preservação de mamilo e de pele)",
+          "Outro",
+          "Não especificado"
+        ],
+        "value": "",
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" }
+      },
+      "laterality": {
+        "label": "Lateralidade da espécime",
+        "type": "select",
+        "options": ["Direita", "Esquerda", "Não especificada"],
+        "value": ""
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "tumor_site": {
+        "label": "Local do tumor",
+        "type": "multi_select",
+        "options": [
+          "Quadrante superior externo",
+          "Quadrante inferior externo",
+          "Quadrante superior interno",
+          "Quadrante inferior interno",
+          "Central",
+          "Mamilo",
+          "Não especificado"
+        ],
+        "value": []
+      },
+      "histologic_type": {
+        "label": "Tipo histológico",
+        "type": "select",
+        "options": [
+          "Carcinoma ductal in situ",
+          "Doença de Paget",
+          "Carcinoma papilífero encapsulado sem carcinoma invasivo",
+          "Carcinoma papilífero sólido sem carcinoma invasivo"
+        ],
+        "value": ""
+      },
+      "size_extent_of_dcis": {
+        "label": "Tamanho (extensão) do CDIS",
+        "note": "O tamanho (extensão) do CDIS é uma estimativa do volume de tecido mamário ocupado pelo CDIS, com base na avaliação macroscópica e microscópica.",
+        "fields": {
+          "size_type": {
+            "label": "Tamanho (extensão) do CDIS",
+            "type": "select",
+            "options": [
+              "Tamanho (extensão) estimado do CDIS é de pelo menos (mm)",
+              "Não pode ser determinado"
+            ],
+            "value": ""
+          },
+          "size_mm": { "label": "Tamanho estimado (mm)", "type": "number", "value": "" },
+          "additional_dimensions_mm": {
+            "label": "Dimensões adicionais (mm)",
+            "type": "measurement_2d",
+            "value": ""
+          },
+          "cannot_be_determined_specify": {
+            "label": "Não pode ser determinado (especificar)",
+            "type": "text",
+            "value": ""
+          },
+          "number_of_blocks_with_dcis": {
+            "label": "Número de blocos com CDIS",
+            "type": "integer",
+            "value": ""
+          },
+          "number_of_blocks_examined": {
+            "label": "Número de blocos examinados",
+            "type": "integer",
+            "value": ""
+          }
+        }
+      },
+      "architectural_patterns": {
+        "label": "Padrões arquiteturais",
+        "type": "multi_select",
+        "options": [
+          "Comedoniano",
+          "Doença de Paget (CDIS com envolvimento da pele do mamilo)",
+          "Cribriforme",
+          "Micropapilar",
+          "Papilar",
+          "Sólido",
+          "Outro"
+        ],
+        "value": [],
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" }
+      },
+      "nuclear_grade": {
+        "label": "Grau nuclear",
+        "type": "select",
+        "options": ["Grau I (baixo)", "Grau II (intermediário)", "Grau III (alto)"],
+        "value": ""
+      },
+      "necrosis": {
+        "label": "Necrose",
+        "type": "select",
+        "options": [
+          "Não identificada",
+          "Presente, focal (pequenos focos ou necrose de células isoladas)",
+          "Presente, central (necrose comedoniana expansiva)"
+        ],
+        "value": ""
+      },
+      "microcalcifications": {
+        "label": "Microcalcificações",
+        "type": "multi_select",
+        "options": [
+          "Não identificadas",
+          "Presentes no CDIS",
+          "Presentes em tecido não neoplásico",
+          "Outro"
+        ],
+        "value": [],
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" }
+      }
+    }
+  },
+
+  "margins": {
+    "label": "Margens",
+    "fields": {
+      "margin_status": {
+        "label": "Estado das margens",
+        "note": "Para margens não comprometidas, a(s) margem(ns) mais próxima(s) deve(m) ser especificada(s) se a distância do CDIS à margem for inferior a 2 mm.",
+        "type": "select",
+        "options": [
+          "Todas as margens negativas para CDIS",
+          "CDIS presente na margem",
+          "Não aplicável (ausência de CDIS na espécime)"
+        ],
+        "value": ""
+      },
+      "distance_from_dcis_to_closest_margin": {
+        "label": "Distância do CDIS à margem mais próxima",
+        "fields": {
+          "distance_type": {
+            "label": "Tipo de distância",
+            "type": "select",
+            "options": [
+              "Distância exata",
+              "Menor que",
+              "Maior que",
+              "Outro",
+              "Não pode ser determinado"
+            ],
+            "value": ""
+          },
+          "distance_mm": { "label": "Distância (mm)", "type": "number", "value": "" },
+          "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" },
+          "cannot_be_determined_explain": {
+            "label": "Não pode ser determinado (explicar)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "closest_margins_to_dcis": {
+        "label": "Margem(ns) mais próxima(s) ao CDIS",
+        "type": "multi_select",
+        "options": [
+          "Não aplicável",
+          "Anterior",
+          "Posterior",
+          "Superior",
+          "Inferior",
+          "Medial",
+          "Lateral",
+          "Outro",
+          "Não pode ser determinado"
+        ],
+        "value": [],
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" },
+        "cannot_be_determined_explain": {
+          "label": "Não pode ser determinado (explicar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "margins_involved_by_dcis": {
+        "label": "Margem(ns) comprometida(s) por CDIS",
+        "type": "repeatable_group",
+        "item_label": "Margem comprometida por CDIS",
+        "fields": {
+          "margin": {
+            "label": "Margem",
+            "type": "select",
+            "options": [
+              "Anterior",
+              "Posterior",
+              "Superior",
+              "Inferior",
+              "Medial",
+              "Lateral",
+              "Outro",
+              "Não pode ser determinado"
+            ],
+            "value": ""
+          },
+          "extent": { "label": "Extensão, se possível", "type": "text", "value": "" },
+          "other_specify": {
+            "label": "Outro (especificar margem(ns) e, se possível, extensão)",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_explain": {
+            "label": "Não pode ser determinado (explicar)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      }
+    }
+  },
+
+  "regional_lymph_nodes": {
+    "label": "Gânglios linfáticos regionais",
+    "fields": {
+      "regional_lymph_node_status": {
+        "label": "Estado dos gânglios linfáticos regionais",
+        "type": "select",
+        "options": [
+          "Não aplicável (nenhum gânglio linfático regional submetido ou encontrado)",
+          "Gânglios linfáticos regionais presentes",
+          "Todos os gânglios linfáticos regionais negativos para tumor",
+          "Tumor presente em gânglio(s) linfático(s) regional(is)"
+        ],
+        "value": ""
+      },
+      "number_with_macrometastases": {
+        "label": "Número de gânglios linfáticos com macrometástases",
+        "fields": {
+          "count_type": {
+            "label": "Tipo de contagem",
+            "type": "select",
+            "options": ["Número exato", "Pelo menos", "Outro", "Não pode ser determinado"],
+            "value": ""
+          },
+          "count_value": { "label": "Contagem", "type": "integer", "value": "" },
+          "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" },
+          "cannot_be_determined_explain": {
+            "label": "Não pode ser determinado (explicar)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "number_with_micrometastases": {
+        "label": "Número de gânglios linfáticos com micrometástases",
+        "fields": {
+          "count_type": {
+            "label": "Tipo de contagem",
+            "type": "select",
+            "options": ["Número exato", "Pelo menos", "Outro", "Não pode ser determinado"],
+            "value": ""
+          },
+          "count_value": { "label": "Contagem", "type": "integer", "value": "" },
+          "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" },
+          "cannot_be_determined_explain": {
+            "label": "Não pode ser determinado (explicar)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "number_with_isolated_tumor_cells": {
+        "label": "Número de gânglios linfáticos com células tumorais isoladas",
+        "fields": {
+          "count_type": {
+            "label": "Tipo de contagem",
+            "type": "select",
+            "options": [
+              "Não aplicável",
+              "Número exato",
+              "Pelo menos",
+              "Outro",
+              "Não pode ser determinado"
+            ],
+            "value": ""
+          },
+          "count_value": { "label": "Contagem", "type": "integer", "value": "" },
+          "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" },
+          "cannot_be_determined_explain": {
+            "label": "Não pode ser determinado (explicar)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "size_of_largest_nodal_metastatic_deposit": {
+        "label": "Tamanho do maior depósito metastático ganglionar",
+        "fields": {
+          "size_type": {
+            "label": "Tipo de tamanho",
+            "type": "select",
+            "options": [
+              "Tamanho exato",
+              "Menor que",
+              "Maior que",
+              "Outro",
+              "Não pode ser determinado"
+            ],
+            "value": ""
+          },
+          "size_mm": { "label": "Tamanho (mm)", "type": "number", "value": "" },
+          "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" },
+          "cannot_be_determined_explain": {
+            "label": "Não pode ser determinado (explicar)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "extranodal_extension": {
+        "label": "Extensão extranodal",
+        "type": "select",
+        "options": [
+          "Não identificada",
+          "Presente, 2 mm ou menos",
+          "Presente, maior que 2 mm",
+          "Presente",
+          "Não pode ser determinado",
+          "Outro"
+        ],
+        "value": "",
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" },
+        "cannot_be_determined_explain": {
+          "label": "Não pode ser determinado (explicar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "total_number_examined": {
+        "label": "Número total de gânglios linfáticos examinados (sentinela e não sentinela)",
+        "fields": {
+          "count_type": {
+            "label": "Tipo de contagem",
+            "type": "select",
+            "options": ["Número exato", "Pelo menos", "Outro", "Não pode ser determinado"],
+            "value": ""
+          },
+          "count_value": { "label": "Contagem", "type": "integer", "value": "" },
+          "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" },
+          "cannot_be_determined_explain": {
+            "label": "Não pode ser determinado (explicar)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "number_of_sentinel_nodes_examined": {
+        "label": "Número de gânglios linfáticos sentinela examinados",
+        "fields": {
+          "count_type": {
+            "label": "Tipo de contagem",
+            "type": "select",
+            "options": [
+              "Não aplicável",
+              "Número exato",
+              "Pelo menos",
+              "Outro",
+              "Não pode ser determinado"
+            ],
+            "value": ""
+          },
+          "count_value": { "label": "Contagem", "type": "integer", "value": "" },
+          "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" },
+          "cannot_be_determined_explain": {
+            "label": "Não pode ser determinado (explicar)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "comment": {
+        "label": "Comentário sobre os gânglios linfáticos regionais",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "distant_metastasis": {
+    "label": "Metástases à distância",
+    "fields": {
+      "sites_involved": {
+        "label": "Local(is) à distância comprometido(s)",
+        "type": "multi_select",
+        "options": [
+          "Não aplicável",
+          "Gânglio(s) linfático(s) não regional(is)",
+          "Pulmão",
+          "Fígado",
+          "Osso",
+          "Cérebro",
+          "Outro",
+          "Não pode ser determinado"
+        ],
+        "value": [],
+        "non_regional_lymph_nodes_specify": {
+          "label": "Gânglios linfáticos não regionais (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "lung_specify": { "label": "Pulmão (especificar)", "type": "text", "value": "" },
+        "liver_specify": { "label": "Fígado (especificar)", "type": "text", "value": "" },
+        "bone_specify": { "label": "Osso (especificar)", "type": "text", "value": "" },
+        "brain_specify": { "label": "Cérebro (especificar)", "type": "text", "value": "" },
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "Não pode ser determinado (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      }
+    }
+  },
+
+  "pathologic_stage": {
+    "label": "Classificação do estadiamento patológico (pTNM, AJCC 8ª Edição)",
+    "note": "A notificação das categorias pT, pN e, quando aplicável, pM baseia-se nas informações disponíveis para o patologista no momento da emissão do relatório.",
+    "fields": {
+      "tnm_descriptors": {
+        "label": "Descritores TNM",
+        "type": "select",
+        "options": ["Não aplicável", "r (recidiva)"],
+        "value": ""
+      },
+      "pT_category": {
+        "label": "Categoria pT",
+        "type": "select",
+        "options": [
+          "pTis (CDIS): Carcinoma ductal in situ",
+          "pTis (Paget): Doença de Paget do mamilo NÃO associada a carcinoma invasivo e/ou CDIS no parênquima mamário subjacente"
+        ],
+        "value": ""
+      },
+      "regional_lymph_nodes_modifier": {
+        "label": "Modificador dos gânglios linfáticos regionais",
+        "type": "multi_select",
+        "options": [
+          "Não aplicável",
+          "(sn): Gânglio(s) linfático(s) sentinela avaliado(s)",
+          "(f): Metástase nodal confirmada por punção aspirativa por agulha fina ou biópsia por agulha grossa"
+        ],
+        "value": []
+      },
+      "pN_category": {
+        "label": "Categoria pN",
+        "type": "select",
+        "options": [
+          "pN não atribuído (nenhum gânglio linfático submetido ou encontrado)",
+          "pN não atribuído (não pode ser determinado com base nas informações patológicas disponíveis)",
+          "pN0: Nenhuma metástase em gânglio linfático regional identificada ou apenas CTIs",
+          "pN0 (i+): Apenas CTIs em gânglio(s) linfático(s) regional(is)",
+          "pN0 (mol+): Achados moleculares positivos por RT-PCR; nenhuma CTI detectada",
+          "pN1mi: Micrometástases",
+          "pN1a: Metástases em 1-3 gânglios linfáticos axilares, pelo menos uma metástase maior que 2,0 mm",
+          "pN1b: Metástases em gânglios linfáticos sentinela da cadeia mamária interna ipsilateral, excluindo CTIs",
+          "pN1c: pN1a e pN1b combinados",
+          "pN2a: Metástases em 4-9 gânglios linfáticos axilares, pelo menos um depósito tumoral maior que 2,0 mm",
+          "pN2b: Metástases em gânglios linfáticos da mamária interna detectados clinicamente com gânglios linfáticos axilares negativos ao exame patológico",
+          "pN3a: Metástases em 10 ou mais gânglios linfáticos axilares ou metástases em gânglios linfáticos infraclaviculares",
+          "pN3b: pN1a ou pN2a na presença de cN2b, ou pN2a na presença de pN1b",
+          "pN3c: Metástases em gânglios linfáticos supraclaviculares ipsilaterais"
+        ],
+        "value": ""
+      },
+      "pM_category": {
+        "label": "Categoria pM",
+        "type": "select",
+        "options": [
+          "Não aplicável — pM não pode ser determinado a partir da(s) espécime(s) submetida(s)",
+          "pM1: Metástases comprovadas histologicamente maiores que 0,2 mm"
+        ],
+        "value": ""
+      },
+      "previous_case_number": {
+        "label": "Especificar número do caso (se proveniente de procedimento anterior)",
+        "type": "text",
+        "value": ""
+      }
+    }
+  }
+}

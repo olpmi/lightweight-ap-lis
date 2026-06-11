@@ -44,12 +44,36 @@
           "لا يوجد ورم قابل للحياة"
         ],
         "value": "",
-        "combined_small_cell_non_small_cell_component_specify": "",
-        "combined_large_cell_neuroendocrine_other_component_specify": "",
-        "carcinoma_type_cannot_be_determined_specify": "",
-        "non_small_cell_subtype_cannot_be_determined_specify": "",
-        "other_histologic_type_specify": "",
-        "no_viable_tumor_present_explain": ""
+        "combined_small_cell_non_small_cell_component_specify": {
+          "label": "مكوّن الخلايا الصغيرة / غير الصغيرة المشترك (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "combined_large_cell_neuroendocrine_other_component_specify": {
+          "label": "مكوّن سرطان العصبية الصماء كبير الخلايا المشترك / المكوّن الآخر (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "carcinoma_type_cannot_be_determined_specify": {
+          "label": "لا يمكن تحديد نوع السرطانة (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "non_small_cell_subtype_cannot_be_determined_specify": {
+          "label": "لا يمكن تحديد النمط الفرعي لسرطانة غير صغيرة الخلايا (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "other_histologic_type_specify": {
+          "label": "نوع نسيجي آخر (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "no_viable_tumor_present_explain": {
+          "label": "لا يوجد ورم قابل للحياة (اشرح)",
+          "type": "text",
+          "value": ""
+        }
       },
       "histologic_patterns": {
         "label": "الأنماط النسيجية (تنطبق على السرطانات الغدية غير المخاطية فقط)",
@@ -80,9 +104,9 @@
           "غير قابل للتطبيق"
         ],
         "value": "",
-        "other_specify": "",
-        "cannot_be_assessed_specify": "",
-        "not_applicable_specify": ""
+        "other_specify": "أخرى (حدد)",
+        "cannot_be_assessed_specify": "لا يمكن التقييم (حدد)",
+        "not_applicable_specify": "غير قابل للتطبيق (حدد)"
       },
       "lymphovascular_invasion": {
         "label": "الغزو اللمفي و / أو الوعائي",
@@ -92,7 +116,7 @@
             "type": "select",
             "options": ["غير مُشخَّص", "موجود", "لا يمكن التحديد"],
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": "لا يمكن التحديد (حدد)"
           },
           "subtypes": {
             "label": "نوع أو أنواع الغزو",
@@ -104,7 +128,7 @@
               "أخرى"
             ],
             "value": [],
-            "other_specify": ""
+            "other_specify": "أخرى (حدد)"
           }
         }
       }

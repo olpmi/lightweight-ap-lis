@@ -81,7 +81,7 @@
           "Marquage membranaire incomplet, faible ou à peine perceptible, dans moins de ou égal à 10 % des cellules tumorales (0+ / avec marquage membranaire)",
           "Autre"
         ],
-        "other_specify": "",
+        "other_specify": "Autre (préciser)",
         "type": "select",
         "value": ""
       },
@@ -91,7 +91,7 @@
           "Marquage membranaire incomplet, faible ou à peine perceptible, dans plus de 10 % des cellules tumorales",
           "Autre"
         ],
-        "other_specify": "",
+        "other_specify": "Autre (préciser)",
         "type": "select",
         "value": ""
       },
@@ -104,7 +104,7 @@
           "Marquage cytoplasmique abondant masquant l'évaluation de l'intensité du marquage membranaire",
           "Autre"
         ],
-        "other_specify": "",
+        "other_specify": "Autre (préciser)",
         "type": "select",
         "value": ""
       },
@@ -114,7 +114,7 @@
           "Marquage membranaire circonférentiel complet, intense, et dans plus de 10 % des cellules tumorales",
           "Autre"
         ],
-        "other_specify": "",
+        "other_specify": "Autre (préciser)",
         "type": "select",
         "value": ""
       }

@@ -1,0 +1,142 @@
+{
+  "template_id": "breast_dcis_biopsy_v1",
+  "domain": "anatomic_pathology",
+  "lang": "pt",
+  "title": "Mama — CDIS, Biópsia",
+  "protocol_posting_date": "June 2021",
+
+  "specimen": {
+    "label": "Espécime",
+    "fields": {
+      "procedure": {
+        "label": "Procedimento",
+        "type": "select",
+        "options": [
+          "Biópsia por agulha",
+          "Punção aspirativa por agulha fina",
+          "Outro",
+          "Não especificado"
+        ],
+        "value": "",
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" }
+      },
+      "laterality": {
+        "label": "Lateralidade da espécime",
+        "type": "select",
+        "options": ["Direita", "Esquerda", "Não especificada"],
+        "value": ""
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "tumor_site": {
+        "label": "Local do tumor",
+        "type": "multi_select",
+        "options": [
+          "Quadrante superior externo",
+          "Quadrante inferior externo",
+          "Quadrante superior interno",
+          "Quadrante inferior interno",
+          "Central",
+          "Mamilo",
+          "Posição no quadrante horário",
+          "Não especificado"
+        ],
+        "value": [],
+        "clock_position_specify": {
+          "label": "Posição no quadrante horário (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "histologic_type": {
+        "label": "Tipo histológico",
+        "type": "select",
+        "options": [
+          "Carcinoma ductal in situ (CDIS)",
+          "Doença de Paget",
+          "Carcinoma papilífero encapsulado sem carcinoma invasivo",
+          "Carcinoma papilífero sólido sem carcinoma invasivo"
+        ],
+        "value": ""
+      },
+      "architectural_patterns": {
+        "label": "Padrões arquiteturais",
+        "type": "multi_select",
+        "options": [
+          "Comedoniano",
+          "Doença de Paget (CDIS com envolvimento da pele do mamilo)",
+          "Cribriforme",
+          "Micropapilar",
+          "Papilar",
+          "Sólido",
+          "Outro"
+        ],
+        "value": [],
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" }
+      },
+      "nuclear_grade": {
+        "label": "Grau nuclear",
+        "type": "select",
+        "options": [
+          "Grau I (baixo)",
+          "Grau II (intermediário)",
+          "Grau III (alto)",
+          "Outro",
+          "Não pode ser determinado"
+        ],
+        "value": "",
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "Não pode ser determinado (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "necrosis": {
+        "label": "Necrose",
+        "type": "select",
+        "options": [
+          "Não identificada",
+          "Presente, focal (pequenos focos ou necrose de células isoladas)",
+          "Presente, central (necrose comedoniana expansiva)",
+          "Outro",
+          "Não pode ser determinado"
+        ],
+        "value": "",
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "Não pode ser determinado (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "microcalcifications": {
+        "label": "Microcalcificações",
+        "type": "multi_select",
+        "options": [
+          "Não identificadas",
+          "Presentes no CDIS",
+          "Presentes em tecido não neoplásico",
+          "Outro"
+        ],
+        "value": [],
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" }
+      }
+    }
+  },
+
+  "additional_findings": {
+    "label": "Achados adicionais",
+    "fields": {
+      "findings": {
+        "label": "Achados adicionais",
+        "type": "text",
+        "value": ""
+      }
+    }
+  }
+}

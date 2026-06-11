@@ -286,26 +286,28 @@
   "block_key": {
     "label": "Clé d'attribution des blocs",
     "fields": {
-      "nipple": {},
-      "tumor": {},
-      "surrounding_breast": {},
-      "margins": {},
-      "lymph_nodes": {}
+      "nipple": { "label": "Mamelon", "type": "text", "value": "" },
+      "tumor": { "label": "Tumeur", "type": "text", "value": "" },
+      "surrounding_breast": { "label": "Tissu mammaire environnant", "type": "text", "value": "" },
+      "medial margin": { "label": "Marge médiale", "type": "text", "value": "" },
+      "lateral margin": { "label": "Marge latérale", "type": "text", "value": "" },
+      "Superior margin": { "label": "Marge supérieure", "type": "text", "value": "" },
+      "Inferior margin": { "label": "Marge inférieure", "type": "text", "value": "" },
+      "Posterior margin": { "label": "Marge postérieure", "type": "text", "value": "" },
+      "Anterior margin": { "label": "Marge antérieure", "type": "text", "value": "" },
+      "lymph_nodes": { "label": "Ganglions lymphatiques", "type": "text", "value": "" }
     }
   },
+
   "grossing": {
     "label": "Macroscopie",
     "fields": {
       "grossed_by": {
-        "label": "Macroscopie réalisée par",
+        "label": "Examiné macroscopiquement par (initiales)",
         "type": "text",
         "value": ""
       },
-      "date": {
-        "label": "Date",
-        "type": "date",
-        "value": ""
-      }
+      "date": { "label": "Date", "type": "date", "value": "" }
     }
   }
 }

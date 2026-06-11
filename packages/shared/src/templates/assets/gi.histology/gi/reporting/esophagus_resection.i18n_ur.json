@@ -22,7 +22,7 @@
           "غیر متعین"
         ],
         "value": "",
-        "other_specify": ""
+        "other_specify": { "label": "دیگر (وضاحت کریں)", "type": "text", "value": "" }
       }
     }
   },
@@ -90,7 +90,7 @@
           "کارسینوما، قسم متعین نہیں کی جا سکتی"
         ],
         "value": "",
-        "comment": ""
+        "comment": { "label": "تبصرہ", "type": "text", "value": "" }
       },
       "histologic_grade": {
         "label": "ہسٹولوجیکل گریڈ",
@@ -130,15 +130,14 @@
         "label": "شامل ہونے والی قریبی ساختیں",
         "type": "multi_select",
         "options": [
-          "Pleura",
-          "Pericardium",
-          "Azygos vein",
-          "Diaphragm",
-          "Peritoneum",
-          "Aorta",
-          "Vertebral body",
-          "Airway",
-          "دیگر"
+          "پلورا",
+          "پیریکارڈیم",
+          "ایزیگوس ورید",
+          "ڈایافرام",
+          "پیریٹونیم",
+          "شہ رگ (aorta)",
+          "کشیرکا جسم",
+          "ہوائی نالی"
         ],
         "value": []
       },

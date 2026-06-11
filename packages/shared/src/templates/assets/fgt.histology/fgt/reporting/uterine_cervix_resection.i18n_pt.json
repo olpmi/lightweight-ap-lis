@@ -1,0 +1,313 @@
+{
+  "template_id": "uterine_cervix_resection_v1",
+  "domain": "anatomic_pathology",
+  "protocol_posting_date": "March 2023",
+  "lang": "pt",
+  "standards": ["FIGO Cancer Report 2018", "AJCC-UICC 9"],
+  "title": "Ressecção do colo do útero",
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "histologic_type": {
+        "label": "Tipo histológico",
+        "type": "select",
+        "options": [
+          "Carcinoma de células escamosas, associado ao HPV",
+          "Carcinoma de células escamosas, independente do HPV",
+          "Carcinoma de células escamosas, SOE",
+          "Adenocarcinoma, SOE",
+          "Adenocarcinoma, associado ao HPV",
+          "Adenocarcinoma, independente do HPV, SOE",
+          "Adenocarcinoma, independente do HPV, tipo gástrico",
+          "Adenocarcinoma, independente do HPV, tipo de células claras",
+          "Adenocarcinoma, independente do HPV, tipo mesonéfrico",
+          "Adenocarcinoma endometrioide, SOE",
+          "Carcinossarcoma",
+          "Carcinoma adenoescamoso",
+          "Carcinoma adenoide basal",
+          "Carcinoma mucoepidermoide",
+          "Carcinoma, não classificável",
+          "Tumor neuroendócrino, SOE",
+          "Tumor neuroendócrino grau 1",
+          "Tumor neuroendócrino grau 2",
+          "Carcinoma neuroendócrino de pequenas células, alto grau",
+          "Carcinoma neuroendócrino de grandes células, alto grau",
+          "Carcinoma neuroendócrino, SOE",
+          "Carcinoma misto neuroendócrino e não neuroendócrino",
+          "Outro",
+          "Não é possível determinar"
+        ],
+        "value": ""
+      },
+      "histologic_grade": {
+        "label": "Grau histológico",
+        "type": "select",
+        "options": [
+          "G1, bem diferenciado",
+          "G2, moderadamente diferenciado",
+          "G3, pouco diferenciado",
+          "GX, não é possível avaliar",
+          "Não aplicável"
+        ],
+        "value": ""
+      },
+      "stromal_invasion_depth": {
+        "label": "Profundidade de invasão estromal",
+        "type": "select",
+        "options": [
+          "Especificar em mm",
+          "Não superior a 3 mm",
+          "Superior a 3 mm mas não superior a 5 mm",
+          "Superior a 5 mm",
+          "Não é possível determinar"
+        ],
+        "value": ""
+      },
+      "stromal_invasion_extent": {
+        "label": "Extensão da profundidade de invasão estromal",
+        "type": "select",
+        "options": [
+          "Terço superficial",
+          "Terço médio",
+          "Terço profundo",
+          "Não é possível determinar"
+        ],
+        "value": ""
+      },
+      "horizontal_extent": {
+        "label": "Extensão horizontal da invasão estromal",
+        "type": "text",
+        "value": ""
+      },
+      "silva_system": {
+        "label": "Sistema de Silva para invasão",
+        "type": "select",
+        "options": ["Não aplicável", "Padrão A", "Padrão B", "Padrão C"],
+        "value": ""
+      },
+      "other_tissue_involvement": {
+        "label": "Envolvimento de outros tecidos / órgãos",
+        "type": "multi_select",
+        "options": [
+          "Não aplicável",
+          "Não identificado",
+          "Paramétrio",
+          "Vagina, dois terços superiores",
+          "Vagina, terço inferior",
+          "Parede pélvica",
+          "Parede da bexiga",
+          "Mucosa vesical",
+          "Parede rectal",
+          "Mucosa intestinal",
+          "Outro",
+          "Não é possível determinar"
+        ],
+        "value": []
+      },
+      "lymphovascular_invasion": {
+        "label": "Invasão linfática e/ou vascular",
+        "type": "select",
+        "options": ["Não identificada", "Presente", "Equívoco", "Não é possível determinar"],
+        "value": ""
+      }
+    }
+  },
+  "margins": {
+    "label": "Margens",
+    "fields": {
+      "margin_status_invasive": {
+        "label": "Estado das margens para carcinoma invasivo",
+        "type": "select",
+        "options": [
+          "Todas as margens negativas",
+          "Carcinoma invasivo presente na margem",
+          "Não aplicável"
+        ],
+        "value": ""
+      },
+      "closest_margin": {
+        "label": "Margem(ns) mais próxima(s)",
+        "type": "multi_select",
+        "options": [
+          "Ectocervical",
+          "Radial / circunferencial",
+          "Endocervical / segmento uterino inferior",
+          "Cúpula vaginal",
+          "Outro",
+          "Não é possível determinar"
+        ],
+        "value": []
+      },
+      "distance_to_margin": {
+        "label": "Distância do carcinoma invasivo à margem mais próxima",
+        "type": "text",
+        "value": ""
+      },
+      "hsil_ais_margin_status": {
+        "label": "Estado das margens para HSIL / AIS",
+        "type": "multi_select",
+        "options": [
+          "Todas as margens negativas",
+          "HSIL presente na margem",
+          "AIS presente na margem",
+          "Não aplicável"
+        ],
+        "value": []
+      }
+    }
+  },
+  "regional_lymph_nodes": {
+    "label": "Gânglios linfáticos regionais",
+    "fields": {
+      "status": {
+        "label": "Estado dos gânglios linfáticos regionais",
+        "type": "select",
+        "options": [
+          "Não aplicável",
+          "Gânglios linfáticos regionais presentes",
+          "Todos negativos",
+          "Tumor presente em gânglio(s) pélvico(s)",
+          "Tumor presente em gânglio(s) para-aórtico(s)"
+        ],
+        "value": ""
+      },
+      "pelvic_nodes_examined": {
+        "label": "Total de gânglios pélvicos examinados",
+        "type": "text",
+        "value": ""
+      },
+      "para_aortic_nodes_examined": {
+        "label": "Total de gânglios para-aórticos examinados",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+  "distant_metastasis": {
+    "label": "Metástases à distância",
+    "fields": {
+      "sites": {
+        "label": "Local(is) à distância envolvido(s)",
+        "type": "multi_select",
+        "options": [
+          "Não aplicável",
+          "Serosa uterina",
+          "Anexos",
+          "Gânglio(s) inguinal(is)",
+          "Omento",
+          "Peritoneu extrapélvico",
+          "Pulmão",
+          "Fígado",
+          "Osso",
+          "Outro",
+          "Não é possível determinar"
+        ],
+        "value": []
+      }
+    }
+  },
+  "pathologic_stage": {
+    "label": "Classificação do estadiamento patológico",
+    "fields": {
+      "pT_category": {
+        "label": "Categoria pT",
+        "type": "select",
+        "options": [
+          "pT não atribuído (não é possível determinar com base nas informações patológicas disponíveis)",
+          "pT0: Sem evidência de tumor primário",
+          "pT1: Carcinoma estritamente confinado ao colo do útero (a extensão ao corpo uterino deve ser ignorada)",
+          "pT1a: Carcinoma invasivo diagnosticado apenas por microscopia, com profundidade máxima de invasão igual ou inferior a 5 mm",
+          "pT1a1: Invasão estromal medida igual ou inferior a 3 mm de profundidade",
+          "pT1a2: Invasão estromal medida superior a 3 mm e igual ou inferior a 5 mm de profundidade",
+          "pT1a (subcategoria não determinável)",
+          "pT1b: Carcinoma invasivo com invasão mais profunda medida superior a 5 mm; lesão limitada ao colo do útero, tamanho medido pelo maior diâmetro tumoral",
+          "pT1b1: Carcinoma invasivo com profundidade de invasão estromal superior a 5 mm e maior dimensão igual ou inferior a 2 cm",
+          "pT1b2: Carcinoma invasivo superior a 2 cm e igual ou inferior a 4 cm na maior dimensão",
+          "pT1b3: Carcinoma invasivo superior a 4 cm na maior dimensão",
+          "pT1b (subcategoria não determinável)",
+          "pT1 (subcategoria não determinável)",
+          "pT2: Carcinoma invade além do útero, mas não se estende ao terço inferior da vagina nem à parede pélvica",
+          "pT2a: Envolvimento limitado aos dois terços superiores da vagina sem invasão parametrial",
+          "pT2a1: Carcinoma invasivo igual ou inferior a 4 cm na maior dimensão",
+          "pT2a2: Carcinoma invasivo superior a 4 cm na maior dimensão",
+          "pT2a (subcategoria não determinável)",
+          "pT2b: Com invasão parametrial mas sem atingir a parede pélvica",
+          "pT2 (subcategoria não determinável)",
+          "pT3: Carcinoma envolve o terço inferior da vagina e/ou estende-se à parede pélvica e/ou provoca hidronefrose ou rim não funcionante",
+          "pT3a: Carcinoma envolve o terço inferior da vagina, sem extensão à parede pélvica",
+          "pT3b: Extensão à parede pélvica e/ou hidronefrose ou rim não funcionante (salvo se de causa conhecida diferente)",
+          "pT3 (subcategoria não determinável)",
+          "pT4: Carcinoma envolveu a mucosa da bexiga ou do recto confirmado por biópsia, ou estendeu-se a órgãos adjacentes"
+        ],
+        "value": ""
+      },
+      "pN_category": {
+        "label": "Categoria pN",
+        "type": "select",
+        "options": [
+          "pN não atribuído (nenhum gânglio submetido ou encontrado)",
+          "pN não atribuído (não é possível determinar com base nas informações patológicas disponíveis)",
+          "pN0: Sem metástase em gânglio linfático regional",
+          "pN0(i+): Células tumorais isoladas em gânglio(s) linfático(s) regional(is), igual ou inferior a 0,2 mm, ou células isoladas ou aglomerados não excedendo 200 células numa única secção transversal ganglionar",
+          "pN1: Metástase em gânglio linfático regional apenas em gânglios pélvicos",
+          "pN1mi: Metástase em gânglio linfático regional (superior a 0,2 mm mas igual ou inferior a 2,0 mm) em gânglios pélvicos",
+          "pN1a: Metástase em gânglio linfático regional (diâmetro superior a 2,0 mm) em gânglios pélvicos",
+          "pN1 (subcategoria não determinável)",
+          "pN2: Metástase em gânglio linfático regional em gânglios para-aórticos, com ou sem gânglios pélvicos positivos",
+          "pN2mi: Metástase em gânglios para-aórticos (superior a 0,2 mm mas igual ou inferior a 2,0 mm), com ou sem gânglios pélvicos positivos",
+          "pN2a: Metástase em gânglios para-aórticos (diâmetro superior a 2,0 mm), com ou sem gânglios pélvicos positivos",
+          "pN2 (subcategoria não determinável)"
+        ],
+        "value": ""
+      },
+      "pM_category": {
+        "label": "Categoria pM",
+        "type": "select",
+        "options": [
+          "Não aplicável — pM não pode ser determinado a partir do(s) espécime(s) submetido(s)",
+          "pM1: Metástase à distância (inclui metástase em gânglios inguinais, doença intraperitoneal, pulmão, fígado ou osso; exclui metástase em gânglios pélvicos ou para-aórticos, ou na vagina)"
+        ],
+        "value": ""
+      },
+      "figo_stage": {
+        "label": "Estadiamento FIGO",
+        "type": "select",
+        "options": [
+          "IA1: Carcinoma invasivo diagnosticado apenas por microscopia; invasão estromal igual ou inferior a 3 mm de profundidade",
+          "IA2: Carcinoma invasivo diagnosticado apenas por microscopia; invasão estromal superior a 3 mm e igual ou inferior a 5 mm de profundidade",
+          "IB1: Carcinoma invasivo com invasão mais profunda superior a 5 mm (superior a IA); lesão limitada ao colo do útero; igual ou inferior a 2 cm na maior dimensão",
+          "IB2: Carcinoma invasivo com invasão mais profunda superior a 5 mm (superior a IA); lesão limitada ao colo do útero; superior a 2 cm e igual ou inferior a 4 cm na maior dimensão",
+          "IB3: Carcinoma invasivo com invasão mais profunda superior a 5 mm (superior a IA); lesão limitada ao colo do útero; superior a 4 cm na maior dimensão",
+          "IIA1: Carcinoma com envolvimento dos dois terços superiores da vagina sem invasão parametrial; igual ou inferior a 4 cm na maior dimensão",
+          "IIA2: Carcinoma com envolvimento dos dois terços superiores da vagina sem invasão parametrial; superior a 4 cm na maior dimensão",
+          "IIB: Carcinoma com invasão parametrial mas sem atingir a parede pélvica",
+          "IIIA: Carcinoma com envolvimento do terço inferior da vagina, sem extensão à parede pélvica",
+          "IIIB: Carcinoma com extensão à parede pélvica e/ou hidronefrose ou rim não funcionante (salvo se de causa conhecida diferente)",
+          "IIIC1: Apenas metástase em gânglios pélvicos",
+          "IIIC2: Metástase em gânglios para-aórticos, com ou sem metástase em gânglios pélvicos",
+          "IVA: Carcinoma invadindo a mucosa da bexiga ou do recto e/ou extensão além da pelve verdadeira (edema bolhoso não permite classificar um caso em estadio IVA)",
+          "IVB: Metástase à distância (incluindo disseminação peritoneal ou envolvimento de gânglios supraclaviculares, mediastínicos ou distantes; pulmão; fígado; ou osso)"
+        ],
+        "value": ""
+      }
+    }
+  },
+  "additional_findings": {
+    "label": "Achados adicionais",
+    "fields": {
+      "findings": {
+        "label": "Achados adicionais",
+        "type": "multi_select",
+        "options": [
+          "Nenhum identificado",
+          "Lesão intraepitelial escamosa de baixo grau (NIC 1)",
+          "Lesão intraepitelial escamosa de alto grau (NIC 2 ou 3)",
+          "Adenocarcinoma endocervical in situ",
+          "Inflamação",
+          "Outro"
+        ],
+        "value": []
+      }
+    }
+  }
+}

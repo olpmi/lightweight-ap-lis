@@ -1,0 +1,826 @@
+{
+  "template_id": "endometrium_resection_v1",
+  "domain": "anatomic_pathology",
+  "protocol_posting_date": "December 2024",
+  "lang": "pt",
+  "title": "Endométrio",
+  "specimen": {
+    "label": "Espécime",
+    "fields": {
+      "procedure": {
+        "label": "Procedimento",
+        "type": "multi_select",
+        "options": [
+          "Histerectomia total",
+          "Histerectomia supracervical",
+          "Histerectomia radical",
+          "Histerectomia",
+          "Salpingo-ooforectomia bilateral",
+          "Salpingo-ooforectomia direita",
+          "Salpingo-ooforectomia esquerda",
+          "Salpingo-ooforectomia, lado não especificado",
+          "Ooforectomia direita",
+          "Ooforectomia esquerda",
+          "Ooforectomia, lado não especificado",
+          "Salpingectomia bilateral",
+          "Salpingectomia direita",
+          "Salpingectomia esquerda",
+          "Salpingectomia, lado não especificado",
+          "Ressecção da cúpula vaginal",
+          "Omentectomia",
+          "Biópsia(s) peritoneal(is)",
+          "Lavado peritoneal / pélvico",
+          "Outro"
+        ],
+        "value": [],
+        "other_specify": {
+          "label": "Outro (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "specimen_integrity": {
+        "label": "Integridade do espécime",
+        "type": "select",
+        "options": ["Intacto", "Aberto", "Morcelado", "Outro"],
+        "value": "",
+        "other_specify": {
+          "label": "Outro (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      }
+    }
+  },
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "tumor_size": {
+        "label": "Tamanho do tumor",
+        "fields": {
+          "size_type": {
+            "label": "Tipo de tamanho do tumor",
+            "type": "select",
+            "options": [
+              "Maior dimensão macroscópica (se massa presente)",
+              "Maior dimensão microscópica (se sem massa)",
+              "Não é possível determinar"
+            ],
+            "value": ""
+          },
+          "greatest_dimension_cm": {
+            "label": "Maior dimensão (cm)",
+            "type": "number",
+            "value": ""
+          },
+          "additional_dimensions_cm": {
+            "label": "Dimensões adicionais (cm)",
+            "type": "measurement_2d",
+            "value": ""
+          },
+          "cannot_be_determined_explain": {
+            "label": "Não é possível determinar (explicar)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "histologic_type": {
+        "label": "Tipo histológico",
+        "type": "select",
+        "options": [
+          "Carcinoma endometrioide",
+          "Carcinoma seroso",
+          "Carcinoma de células claras",
+          "Carcinoma desdiferenciado",
+          "Carcinoma indiferenciado",
+          "Carcinossarcoma",
+          "Adenocarcinoma mesonéfrico-like",
+          "Carcinoma de células escamosas",
+          "Carcinoma de tipo gástrico (gastrointestinal)",
+          "Carcinoma misto",
+          "Carcinoma neuroendócrino de pequenas células",
+          "Carcinoma neuroendócrino de grandes células",
+          "Outro tipo histológico não listado"
+        ],
+        "value": "",
+        "mixed_carcinoma_specify": {
+          "label": "Carcinoma misto (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": {
+          "label": "Outro (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "histologic_grade": {
+        "label": "Grau histológico",
+        "note": "A classificação FIGO aplica-se apenas a carcinomas endometrioides. Todos os outros subtipos são considerados de alto grau.",
+        "type": "select",
+        "options": [
+          "Grau FIGO 1 (carcinoma endometrioide)",
+          "Grau FIGO 2 (carcinoma endometrioide)",
+          "Grau FIGO 3 (carcinoma endometrioide)",
+          "Alto grau (carcinoma não endometrioide)",
+          "Outro",
+          "Não é possível avaliar"
+        ],
+        "value": "",
+        "other_specify": {
+          "label": "Outro (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_assessed_explain": {
+          "label": "Não é possível avaliar (explicar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "myometrial_invasion": {
+        "label": "Invasão miometrial",
+        "fields": {
+          "status": {
+            "label": "Invasão miometrial",
+            "type": "select",
+            "options": [
+              "Não aplicável",
+              "Não identificada",
+              "Presente, metade interna (inferior a 50%)",
+              "Presente, metade externa (igual ou superior a 50%)",
+              "Não é possível determinar"
+            ],
+            "value": ""
+          },
+          "percentage": {
+            "label": "Especificar percentagem",
+            "type": "number",
+            "value": ""
+          },
+          "comment": {
+            "label": "Comentário sobre a invasão miometrial",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_explain": {
+            "label": "Não é possível determinar (explicar)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "adenomyosis": {
+        "label": "Adenomiose",
+        "type": "select",
+        "options": [
+          "Não identificada",
+          "Presente, não envolvida por carcinoma",
+          "Presente, envolvida por carcinoma",
+          "Não é possível determinar"
+        ],
+        "value": "",
+        "cannot_be_determined_specify": {
+          "label": "Não é possível determinar (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "uterine_serosal_involvement": {
+        "label": "Envolvimento da serosa uterina",
+        "type": "select",
+        "options": ["Não identificado", "Presente", "Não é possível determinar"],
+        "value": "",
+        "cannot_be_determined_explain": {
+          "label": "Não é possível determinar (explicar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "lower_uterine_segment_involvement": {
+        "label": "Envolvimento do segmento uterino inferior",
+        "type": "select",
+        "options": [
+          "Não identificado",
+          "Presente, sem invasão miometrial",
+          "Presente, com invasão miometrial",
+          "Não é possível determinar"
+        ],
+        "value": "",
+        "cannot_be_determined_explain": {
+          "label": "Não é possível determinar (explicar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "cervical_involvement": {
+        "label": "Envolvimento cervical",
+        "fields": {
+          "status": {
+            "label": "Envolvimento cervical",
+            "type": "select",
+            "options": [
+              "Não é possível avaliar (histerectomia supracervical)",
+              "Não identificado",
+              "Invasão do estroma cervical",
+              "Apenas envolvimento das glândulas endocervicais",
+              "Não é possível determinar"
+            ],
+            "value": ""
+          },
+          "percentage_of_cervical_wall_involved": {
+            "label": "Percentagem da parede cervical envolvida",
+            "type": "number",
+            "value": ""
+          },
+          "cannot_be_determined_explain": {
+            "label": "Não é possível determinar (explicar)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "other_tissue_organ_involvement": {
+        "label": "Envolvimento de outros tecidos / órgãos",
+        "type": "multi_select",
+        "options": [
+          "Não aplicável (nenhum outro tecido / órgão submetido)",
+          "Não identificado (outros tecidos / órgãos submetidos e não envolvidos)",
+          "Ovário direito",
+          "Ovário esquerdo",
+          "Ovário (lado não especificado)",
+          "Trompa de Falópio direita",
+          "Trompa de Falópio esquerda",
+          "Trompa de Falópio (lado não especificado)",
+          "Vagina",
+          "Paramétrio direito",
+          "Paramétrio esquerdo",
+          "Paramétrio (lado não especificado)",
+          "Parede pélvica",
+          "Parede da bexiga sem envolvimento mucoso",
+          "Parede da bexiga com envolvimento mucoso",
+          "Parede intestinal sem envolvimento mucoso",
+          "Parede intestinal com envolvimento mucoso",
+          "Outros órgãos / tecidos",
+          "Não é possível determinar"
+        ],
+        "value": [],
+        "other_specify": {
+          "label": "Outro (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_explain": {
+          "label": "Não é possível determinar (explicar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "peritoneal_pelvic_washings": {
+        "label": "Lavados peritoneais / pélvicos / líquido ascítico",
+        "type": "select",
+        "options": [
+          "Não submetido",
+          "Negativo para células malignas",
+          "Células malignas presentes",
+          "Atípico",
+          "Suspeito de malignidade",
+          "Resultados pendentes"
+        ],
+        "value": "",
+        "atypical_explain": {
+          "label": "Atípico (explicar)",
+          "type": "text",
+          "value": ""
+        },
+        "suspicious_explain": {
+          "label": "Suspeito (explicar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "lymphovascular_invasion": {
+        "label": "Invasão linfática e/ou vascular",
+        "note": "Registar o número máximo de focos de ILV presentes na lâmina com o maior número de focos.",
+        "fields": {
+          "status": {
+            "label": "Invasão linfática e/ou vascular",
+            "type": "select",
+            "options": ["Não identificada", "Presente", "Não é possível determinar"],
+            "value": ""
+          },
+          "extent": {
+            "label": "Extensão da ILV",
+            "type": "select",
+            "options": ["Igual ou inferior a 4 focos", "Igual ou superior a 5 focos"],
+            "value": ""
+          },
+          "number_of_foci": {
+            "label": "Especificar número de focos",
+            "type": "integer",
+            "value": ""
+          },
+          "cannot_be_determined_explain": {
+            "label": "Não é possível determinar (explicar)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "tumor_comment": {
+        "label": "Comentário sobre o tumor",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+  "margins": {
+    "label": "Margens",
+    "fields": {
+      "margin_status": {
+        "label": "Estado das margens",
+        "note": "Obrigatório apenas se o colo do útero e/ou o paramétrio / paracérvice estiver envolvido por carcinoma.",
+        "type": "select",
+        "options": [
+          "Não aplicável",
+          "Todas as margens negativas para carcinoma",
+          "Carcinoma presente na margem"
+        ],
+        "value": ""
+      },
+      "closest_margins_to_carcinoma": {
+        "label": "Margem(ns) mais próxima(s) ao carcinoma",
+        "type": "multi_select",
+        "options": [
+          "Ectocervical",
+          "Cúpula vaginal",
+          "Parametrial",
+          "Paracervical",
+          "Outro",
+          "Não é possível determinar"
+        ],
+        "value": [],
+        "ectocervical_specify": {
+          "label": "Ectocervical (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "vaginal_cuff_specify": {
+          "label": "Cúpula vaginal (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "parametrial_specify": {
+          "label": "Parametrial (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "paracervical_specify": {
+          "label": "Paracervical (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": {
+          "label": "Outro (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_specify": {
+          "label": "Não é possível determinar (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "distance_from_carcinoma_to_closest_margin": {
+        "label": "Distância do carcinoma à margem mais próxima",
+        "fields": {
+          "distance_type": {
+            "label": "Tipo de distância",
+            "type": "select",
+            "options": [
+              "Distância exacta",
+              "Pelo menos",
+              "Menos de",
+              "Menos de 1 mm",
+              "Não é possível determinar"
+            ],
+            "value": ""
+          },
+          "distance_cm": {
+            "label": "Distância (cm)",
+            "type": "number",
+            "value": ""
+          },
+          "cannot_be_determined_specify": {
+            "label": "Não é possível determinar",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "margins_involved_by_carcinoma": {
+        "label": "Margem(ns) envolvida(s) por carcinoma",
+        "type": "multi_select",
+        "options": [
+          "Ectocervical",
+          "Cúpula vaginal",
+          "Parametrial",
+          "Paracervical",
+          "Outro",
+          "Não é possível determinar"
+        ],
+        "value": [],
+        "ectocervical_specify": {
+          "label": "Ectocervical (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "vaginal_cuff_specify": {
+          "label": "Cúpula vaginal (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "parametrial_specify": {
+          "label": "Parametrial (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "paracervical_specify": {
+          "label": "Paracervical (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": {
+          "label": "Outro (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_specify": {
+          "label": "Não é possível determinar (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_explain": {
+          "label": "Não é possível determinar (explicar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "margin_comment": {
+        "label": "Comentário sobre as margens",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+  "regional_lymph_nodes": {
+    "label": "Gânglios linfáticos regionais",
+    "fields": {
+      "regional_lymph_node_status": {
+        "label": "Estado dos gânglios linfáticos regionais",
+        "type": "select",
+        "options": [
+          "Não aplicável (nenhum gânglio linfático regional submetido ou encontrado)",
+          "Gânglios linfáticos regionais presentes",
+          "Todos os gânglios linfáticos regionais negativos para células tumorais",
+          "Tumor presente em gânglio(s) pélvico(s)",
+          "Tumor presente em gânglio(s) para-aórtico(s)"
+        ],
+        "value": ""
+      },
+      "pelvic_nodes": {
+        "label": "Gânglios linfáticos pélvicos",
+        "fields": {
+          "macrometastasis_total": {
+            "label": "Número total de gânglios pélvicos com macrometástase",
+            "type": "text",
+            "value": ""
+          },
+          "macrometastasis_sentinel": {
+            "label": "Número de gânglios sentinela pélvicos com macrometástase",
+            "type": "text",
+            "value": ""
+          },
+          "micrometastasis_total": {
+            "label": "Número total de gânglios pélvicos com micrometástase",
+            "type": "text",
+            "value": ""
+          },
+          "micrometastasis_sentinel": {
+            "label": "Número de gânglios sentinela pélvicos com micrometástase",
+            "type": "text",
+            "value": ""
+          },
+          "itc_total": {
+            "label": "Número total de gânglios pélvicos com células tumorais isoladas",
+            "type": "text",
+            "value": ""
+          },
+          "itc_sentinel": {
+            "label": "Número de gânglios sentinela pélvicos com células tumorais isoladas",
+            "type": "text",
+            "value": ""
+          },
+          "laterality_with_tumor": {
+            "label": "Lateralidade do(s) gânglio(s) pélvico(s) com tumor",
+            "type": "multi_select",
+            "options": [
+              "Sentinela direito",
+              "Não sentinela direito",
+              "Sentinela esquerdo",
+              "Não sentinela esquerdo",
+              "Não é possível determinar"
+            ],
+            "value": [],
+            "cannot_be_determined_specify": {
+              "label": "Não é possível determinar (especificar)",
+              "type": "text",
+              "value": ""
+            }
+          },
+          "largest_metastatic_deposit_size_mm": {
+            "label": "Tamanho do maior depósito metastático ganglionar pélvico",
+            "type": "text",
+            "value": ""
+          },
+          "total_examined": {
+            "label": "Número total de gânglios pélvicos examinados",
+            "type": "text",
+            "value": ""
+          },
+          "sentinel_examined": {
+            "label": "Número de gânglios sentinela pélvicos examinados",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "para_aortic_nodes": {
+        "label": "Gânglios linfáticos para-aórticos",
+        "fields": {
+          "macrometastasis_total": {
+            "label": "Número total de gânglios para-aórticos com macrometástase",
+            "type": "text",
+            "value": ""
+          },
+          "macrometastasis_sentinel": {
+            "label": "Número de gânglios sentinela para-aórticos com macrometástase",
+            "type": "text",
+            "value": ""
+          },
+          "micrometastasis_total": {
+            "label": "Número total de gânglios para-aórticos com micrometástase",
+            "type": "text",
+            "value": ""
+          },
+          "micrometastasis_sentinel": {
+            "label": "Número de gânglios sentinela para-aórticos com micrometástase",
+            "type": "text",
+            "value": ""
+          },
+          "itc_total": {
+            "label": "Número total de gânglios para-aórticos com células tumorais isoladas",
+            "type": "text",
+            "value": ""
+          },
+          "itc_sentinel": {
+            "label": "Número de gânglios sentinela para-aórticos com células tumorais isoladas",
+            "type": "text",
+            "value": ""
+          },
+          "laterality_with_tumor": {
+            "label": "Lateralidade do(s) gânglio(s) para-aórtico(s) com tumor",
+            "type": "multi_select",
+            "options": [
+              "Sentinela direito",
+              "Não sentinela direito",
+              "Sentinela esquerdo",
+              "Não sentinela esquerdo",
+              "Não é possível determinar"
+            ],
+            "value": [],
+            "cannot_be_determined_specify": {
+              "label": "Não é possível determinar (especificar)",
+              "type": "text",
+              "value": ""
+            }
+          },
+          "largest_metastatic_deposit_size_mm": {
+            "label": "Tamanho do maior depósito metastático ganglionar para-aórtico",
+            "type": "text",
+            "value": ""
+          },
+          "total_examined": {
+            "label": "Número total de gânglios para-aórticos examinados",
+            "type": "text",
+            "value": ""
+          },
+          "sentinel_examined": {
+            "label": "Número de gânglios sentinela para-aórticos examinados",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "regional_lymph_node_comment": {
+        "label": "Comentário sobre os gânglios linfáticos regionais",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+  "distant_metastasis": {
+    "label": "Metástases à distância",
+    "fields": {
+      "sites_involved": {
+        "label": "Local(is) à distância envolvido(s)",
+        "type": "multi_select",
+        "options": [
+          "Não aplicável",
+          "Omento",
+          "Peritoneu extrapélvico",
+          "Gânglio(s) inguinal(is)",
+          "Pulmão",
+          "Fígado",
+          "Osso",
+          "Outro",
+          "Não é possível determinar"
+        ],
+        "value": [],
+        "omentum_specify": {
+          "label": "Omento (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "extrapelvic_peritoneum_specify": {
+          "label": "Peritoneu extrapélvico (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "inguinal_lymph_nodes_specify": {
+          "label": "Gânglios inguinais (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "lung_specify": {
+          "label": "Pulmão (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "liver_specify": {
+          "label": "Fígado (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "bone_specify": {
+          "label": "Osso (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": {
+          "label": "Outro (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_specify": {
+          "label": "Não é possível determinar (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      }
+    }
+  },
+  "ptnm_classification": {
+    "label": "Classificação pTNM (AJCC 8ª Edição)",
+    "fields": {
+      "modified_classification": {
+        "label": "Classificação modificada",
+        "type": "multi_select",
+        "options": ["Não aplicável", "y (pós-terapia neoadjuvante)", "r (recidiva)"],
+        "value": []
+      },
+      "pT_category": {
+        "label": "Categoria pT",
+        "type": "select",
+        "options": [
+          "pT não atribuído",
+          "pT0: Sem evidência de tumor primário",
+          "pT1a: Tumor limitado ao endométrio ou com invasão inferior a metade do miométrio",
+          "pT1b: Tumor com invasão de metade ou mais do miométrio",
+          "pT1: Tumor confinado ao corpo uterino, SOE (subcategoria não determinável)",
+          "pT2: Tumor invade o tecido conjuntivo estromal do colo do útero, mas não se estende além do útero (não inclui envolvimento glandular endocervical)",
+          "pT3a: Tumor envolve a serosa e/ou os anexos (extensão directa ou metástase)",
+          "pT3b: Envolvimento vaginal (extensão directa ou metástase) ou envolvimento parametrial",
+          "pT3: Tumor estende-se além do útero, SOE (subcategoria não determinável)",
+          "pT4: Tumor invade a mucosa vesical e/ou a mucosa intestinal (edema bolhoso não é suficiente para classificar um tumor como pT4)"
+        ],
+        "value": ""
+      },
+      "T_suffix": {
+        "label": "Sufixo T",
+        "type": "select",
+        "options": ["Não aplicável", "(m) tumores primários síncronos múltiplos num único órgão"],
+        "value": ""
+      },
+      "pN_category": {
+        "label": "Categoria pN",
+        "type": "select",
+        "options": [
+          "pN não atribuído (nenhum gânglio submetido ou encontrado)",
+          "pN não atribuído (não é possível determinar com base nas informações patológicas disponíveis)",
+          "pN0: Sem metástase em gânglio linfático regional",
+          "pN0(i+): Células tumorais isoladas em gânglio(s) linfático(s) regional(is) não superiores a 0,2 mm",
+          "pN1mi: Micrometástase em gânglio linfático regional (superior a 0,2 mm mas não superior a 2,0 mm)",
+          "pN1a: Macrometástase em gânglio linfático regional em gânglios pélvicos (superior a 2,0 mm)",
+          "pN1: Metástase em gânglio linfático regional em gânglios pélvicos (subcategoria não determinável)",
+          "pN2mi: Micrometástase em gânglio linfático regional (superior a 0,2 mm mas não superior a 2,0 mm) em gânglios para-aórticos, com ou sem gânglios pélvicos positivos",
+          "pN2a: Macrometástase em gânglio linfático regional (superior a 2,0 mm) em gânglios para-aórticos, com ou sem gânglios pélvicos positivos",
+          "pN2: Metástase em gânglio linfático regional em gânglios para-aórticos (subcategoria não determinável)"
+        ],
+        "value": ""
+      },
+      "N_suffix": {
+        "label": "Sufixo N",
+        "type": "multi_select",
+        "options": [
+          "Não aplicável",
+          "(sn) Procedimento com gânglio sentinela",
+          "(f) PAF ou biópsia por agulha grossa"
+        ],
+        "value": []
+      },
+      "pM_category": {
+        "label": "Categoria pM",
+        "type": "select",
+        "options": [
+          "Não aplicável — pM não pode ser determinado a partir do(s) espécime(s) submetido(s)",
+          "pM1: Metástase à distância (inclui gânglios inguinais e doença intraperitoneal, ou pulmão, fígado ou osso). Exclui metástase em gânglios linfáticos pélvicos ou para-aórticos, vagina, serosa uterina ou anexos"
+        ],
+        "value": ""
+      }
+    }
+  },
+  "figo_stage": {
+    "label": "Estadiamento FIGO",
+    "fields": {
+      "figo_2023": {
+        "label": "Estadiamento FIGO (Estadiamento 2023 para Cancro do Endométrio)",
+        "type": "select",
+        "options": [
+          "I: Tumor confinado ao corpo uterino e ao ovário",
+          "IA: Doença limitada ao endométrio OU tipo histológico não agressivo (ex. endometrioide de baixo grau) com invasão miometrial inferior a 50% sem ILV ou com ILV focal OU doença de prognóstico favorável",
+          "IA1: Tipo histológico não agressivo limitado a um pólipo endometrial OU confinado ao endométrio",
+          "IA2: Tipos histológicos não agressivos com invasão miometrial inferior a 50% sem ILV ou com ILV focal",
+          "IA3: Carcinomas endometrioides de baixo grau limitados ao útero e ao ovário",
+          "IAm (POLEmut): Carcinoma do endométrio com mutação POLE, confinado ao corpo uterino ou com extensão cervical, independentemente do grau de ILV ou do tipo histológico",
+          "IB: Tipos histológicos não agressivos com invasão miometrial igual ou superior a 50% sem ILV ou com ILV focal",
+          "IC: Tipos histológicos agressivos confinados a um pólipo ou confinados ao endométrio",
+          "II: Invasão do estroma cervical sem extensão extra-uterina OU ILV substancial OU tipos histológicos agressivos com invasão miometrial",
+          "IIA: Invasão do estroma cervical por tipos histológicos não agressivos",
+          "IIB: ILV substancial em tipos histológicos não agressivos",
+          "IIC: Tipos histológicos agressivos com qualquer envolvimento miometrial",
+          "IICm (p53abn): Carcinoma do endométrio com p53 anormal, confinado ao corpo uterino com qualquer invasão miometrial, com ou sem invasão cervical, independentemente do grau de ILV ou do tipo histológico",
+          "III: Extensão local e/ou regional do tumor de qualquer subtipo histológico",
+          "IIIA: Invasão da serosa uterina, dos anexos ou de ambos, por extensão directa ou metástase",
+          "IIIA1: Extensão ao ovário ou à trompa de Falópio (salvo se cumprir critérios para estadio IA3)",
+          "IIIA2: Envolvimento do compartimento sub-seroso do útero ou extensão através da serosa uterina",
+          "IIIB: Metástase ou extensão directa à vagina e/ou paramétrios ou ao peritoneu pélvico",
+          "IIIB1: Metástase ou extensão directa à vagina e/ou paramétrios",
+          "IIIB2: Metástase ao peritoneu pélvico",
+          "IIIC: Metástase em gânglios pélvicos ou para-aórticos ou ambos",
+          "IIIC1: Metástase em gânglios pélvicos",
+          "IIIC1i: Micrometástase (em gânglios pélvicos)",
+          "IIIC1ii: Macrometástase (em gânglios pélvicos)",
+          "IIIC2: Metástase em gânglios para-aórticos até aos vasos renais, com ou sem gânglios pélvicos positivos",
+          "IIIC2i: Micrometástase em gânglios para-aórticos até aos vasos renais, com ou sem gânglios pélvicos positivos",
+          "IIIC2ii: Macrometástase em gânglios para-aórticos até aos vasos renais, com ou sem gânglios pélvicos positivos",
+          "IVA: Invasão da mucosa vesical e/ou da mucosa intestinal",
+          "IVB: Metástase peritoneal além da pelve (metástase peritoneal abdominal)",
+          "IVC: Metástase à distância, incluindo metástase em quaisquer gânglios linfáticos extra- ou intra-abdominais acima dos vasos renais, pulmão, fígado, cérebro ou osso"
+        ],
+        "value": ""
+      }
+    }
+  },
+  "additional_findings": {
+    "label": "Achados adicionais",
+    "fields": {
+      "findings": {
+        "label": "Achados adicionais",
+        "type": "multi_select",
+        "options": [
+          "Nenhum identificado",
+          "Hiperplasia atípica / neoplasia intraepitelial endometrioide (EIN)",
+          "Outro"
+        ],
+        "value": [],
+        "other_specify": {
+          "label": "Outro (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      }
+    }
+  }
+}

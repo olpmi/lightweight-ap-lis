@@ -1,0 +1,107 @@
+{
+  "template_id": "uterine_cervix_biopsy_v1",
+  "domain": "anatomic_pathology",
+  "lang": "pt",
+  "title": "Colo do útero, Biópsia",
+  "protocol_posting_date": "March 2023",
+
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "histologic_type": {
+        "label": "Tipo histológico",
+        "type": "select",
+        "options": [
+          "Carcinoma de células escamosas, associado ao HPV",
+          "Carcinoma de células escamosas, independente do HPV",
+          "Carcinoma de células escamosas, SOE",
+          "Adenocarcinoma, SOE",
+          "Adenocarcinoma, associado ao HPV",
+          "Adenocarcinoma, independente do HPV, SOE",
+          "Adenocarcinoma, independente do HPV, tipo gástrico",
+          "Adenocarcinoma, independente do HPV, tipo de células claras",
+          "Adenocarcinoma, independente do HPV, tipo mesonéfrico",
+          "Adenocarcinoma endometrioide, SOE",
+          "Carcinossarcoma",
+          "Carcinoma adenoescamoso",
+          "Carcinoma adenoide basal",
+          "Carcinoma mucoepidermoide",
+          "Carcinoma, não classificável (carcinoma indiferenciado)",
+          "Tumor neuroendócrino, SOE",
+          "Tumor neuroendócrino, grau 1",
+          "Tumor neuroendócrino, grau 2",
+          "Carcinoma neuroendócrino de pequenas células, alto grau",
+          "Carcinoma neuroendócrino de grandes células, alto grau",
+          "Carcinoma neuroendócrino, SOE",
+          "Carcinoma misto neuroendócrino e não neuroendócrino",
+          "Outro tipo histológico não listado",
+          "Carcinoma, tipo não determinável"
+        ],
+        "value": "",
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "Não é possível determinar (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "comment": { "label": "Comentário", "type": "text", "value": "" }
+      },
+
+      "histologic_grade": {
+        "label": "Grau histológico",
+        "type": "select",
+        "options": [
+          "G1, bem diferenciado",
+          "G2, moderadamente diferenciado",
+          "G3, pouco diferenciado",
+          "GX, não é possível avaliar",
+          "Não aplicável"
+        ],
+        "value": "",
+        "cannot_be_assessed_specify": {
+          "label": "Não é possível avaliar (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "not_applicable_specify": {
+          "label": "Não aplicável (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+
+      "lymphovascular_invasion": {
+        "label": "Invasão linfática e/ou vascular",
+        "type": "select",
+        "options": ["Não identificada", "Presente", "Equívoco", "Não é possível determinar"],
+        "value": "",
+        "equivocal_explain": { "label": "Equívoco (explicar)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "Não é possível determinar (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      }
+    }
+  },
+
+  "additional_findings": {
+    "label": "Achados adicionais",
+    "fields": {
+      "findings": {
+        "label": "Achados adicionais",
+        "type": "multi_select",
+        "options": [
+          "Nenhum identificado",
+          "Lesão intraepitelial escamosa de baixo grau (NIC 1)",
+          "Lesão intraepitelial escamosa de alto grau (NIC 2 ou 3)",
+          "Adenocarcinoma endocervical in situ",
+          "Inflamação",
+          "Outro"
+        ],
+        "value": [],
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" }
+      }
+    }
+  }
+}

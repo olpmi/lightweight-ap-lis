@@ -1,0 +1,270 @@
+{
+  "template_id": "esophagus_resection_gross_v1",
+  "domain": "anatomic_pathology",
+  "lang": "ur",
+  "ui": {
+    "direction": "rtl"
+  },
+  "title": "رسولی کے لیے مری کا آپریشن (ظاہری معائنہ کا نمونہ)",
+  "procedure_type": {
+    "label": "طریقۂ کار کی قسم",
+    "type": "select",
+    "options": [
+      "مری کا مکمل اخراج",
+      "مری کا جزوی اخراج",
+      "ٹرانس-ہائٹل مری کا اخراج",
+      "مری اور معدے کا اخراج",
+      "دیگر"
+    ],
+    "value": "",
+    "other_specify": {
+      "label": "دیگر (وضاحت کریں)",
+      "type": "text",
+      "value": ""
+    }
+  },
+  "orientation_provided": {
+    "label": "سمت بندی فراہم کی گئی",
+    "type": "select",
+    "options": ["ہاں", "نہیں"],
+    "value": ""
+  },
+  "specimen_dimensions": {
+    "label": "نمونے کی پیمائش",
+    "fields": {
+      "esophagus_length_cm": {
+        "label": "مری کی لمبائی (سینٹی میٹر)",
+        "type": "number",
+        "value": ""
+      },
+      "gastric_component_length_cm": {
+        "label": "معدے کے حصے کی لمبائی (سینٹی میٹر)",
+        "type": "number",
+        "value": ""
+      },
+      "gastric_component_max_width_cm": {
+        "label": "معدے کے حصے کی زیادہ سے زیادہ چوڑائی (سینٹی میٹر)",
+        "type": "number",
+        "value": ""
+      }
+    }
+  },
+  "tumor_present": {
+    "label": "رسولی موجود ہے",
+    "type": "select",
+    "options": ["ہاں", "ظاہری معائنے میں نظر نہیں آئی"],
+    "value": ""
+  },
+  "tumor_location": {
+    "label": "رسولی کا مقام",
+    "type": "select",
+    "options": [
+      "گردنی مری",
+      "اوپری سینوی مری",
+      "درمیانی سینوی مری",
+      "نچلی سینوی مری",
+      "معدی-مری جنکشن (GEJ)"
+    ],
+    "value": ""
+  },
+  "distance_to_margins_cm": {
+    "label": "رسولی سے حاشیوں تک فاصلہ (سینٹی میٹر)",
+    "fields": {
+      "proximal": {
+        "label": "قریبی حاشیہ",
+        "type": "number",
+        "value": ""
+      },
+      "distal": {
+        "label": "دوری حاشیہ",
+        "type": "number",
+        "value": ""
+      },
+      "radial_adventitial": {
+        "label": "شعاعی / بیرونی غلاف حاشیہ",
+        "type": "number",
+        "value": ""
+      }
+    }
+  },
+  "tumor_involves_gej": {
+    "label": "رسولی GEJ کو متاثر کرتی ہے",
+    "type": "select",
+    "options": ["ہاں", "نہیں"],
+    "value": ""
+  },
+  "tumor_dimensions_cm": {
+    "label": "رسولی کی پیمائش (سینٹی میٹر)",
+    "type": "measurement_3d",
+    "value": ""
+  },
+  "tumor_configuration": {
+    "label": "رسولی کی ساخت",
+    "type": "multi_select",
+    "options": ["بیرونی نمو", "فنگس نما", "السر دار", "رسوخی", "محیطی", "پولیپ نما", "چپٹی"],
+    "value": []
+  },
+  "tumor_consistency": {
+    "label": "رسولی کی ساخت / کثافت",
+    "type": "select",
+    "options": ["سخت", "نرم", "ٹوٹنے والی", "دیگر"],
+    "value": "",
+    "other_specify": {
+      "label": "دیگر (وضاحت کریں)",
+      "type": "text",
+      "value": ""
+    }
+  },
+  "tumor_necrosis": {
+    "label": "رسولی میں نیکروسس",
+    "type": "select",
+    "options": ["موجود", "غیر موجود"],
+    "value": ""
+  },
+  "hemorrhage": {
+    "label": "خون بہنا",
+    "type": "select",
+    "options": ["موجود", "غیر موجود"],
+    "value": ""
+  },
+  "tumor_extent": {
+    "label": "رسولی کا پھیلاؤ",
+    "type": "select",
+    "options": [
+      "صرف میوکوسا میں رسوخ",
+      "سب میوکوسا میں رسوخ",
+      "مسکولاریس پروپریا میں رسوخ",
+      "ایڈونٹیشیا میں رسوخ",
+      "ملحق ساخت میں رسوخ"
+    ],
+    "value": "",
+    "adjacent_structures_specify": {
+      "label": "ملحق ساخت (وضاحت کریں)",
+      "type": "text",
+      "value": ""
+    }
+  },
+  "background_esophageal_mucosa": {
+    "label": "پس منظر کی مری کی میوکوسا کا منظر",
+    "type": "multi_select",
+    "options": [
+      "معمول کے مطابق",
+      "بیریٹ مری",
+      "السر",
+      "تنگی",
+      "ڈسپلازیا",
+      "ریڈی ایشن کی تبدیلیاں",
+      "دیگر"
+    ],
+    "value": [],
+    "other_specify": {
+      "label": "دیگر (وضاحت کریں)",
+      "type": "text",
+      "value": ""
+    }
+  },
+  "previous_neoadjuvant_therapy": {
+    "label": "پہلے سے نیوایڈجوانٹ تھراپی",
+    "type": "select",
+    "options": ["ہاں", "نہیں", "معلوم نہیں"],
+    "value": ""
+  },
+  "gross_treatment_response": {
+    "label": "علاج کے ردعمل کا ظاہری ثبوت",
+    "type": "select",
+    "options": [
+      "قابل اطلاق نہیں",
+      "کوئی نہیں",
+      "جزوی",
+      "نمایاں",
+      "مکمل ردعمل (کوئی ظاہری رسولی نہیں)"
+    ],
+    "value": ""
+  },
+  "tumor_bed_size_cm": {
+    "label": "رسولی کے بستر کا سائز (سینٹی میٹر)، اگر قابل اطلاق ہو",
+    "type": "text",
+    "value": ""
+  },
+  "fibrosis": {
+    "label": "فائبروسس",
+    "type": "select",
+    "options": ["موجود", "غیر موجود"],
+    "value": ""
+  },
+  "lymph_nodes": {
+    "label": "علاقائی لمف نوڈز",
+    "fields": {
+      "number_identified": {
+        "label": "شناخت شدہ تعداد",
+        "type": "integer",
+        "value": ""
+      },
+      "size_range_mm": {
+        "label": "سائز کی حد (ملی میٹر)",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+  "other_macroscopic_findings": {
+    "label": "دیگر متعلقہ ظاہری معائنے کے نتائج",
+    "type": "text",
+    "value": ""
+  },
+  "block_identification_key": {
+    "label": "بلاک شناخت کلید",
+    "fields": {
+      "tumor": {
+        "label": "رسولی",
+        "type": "text",
+        "value": ""
+      },
+      "proximal_margin": {
+        "label": "قریبی حاشیہ",
+        "type": "text",
+        "value": ""
+      },
+      "distal_margin": {
+        "label": "دوری حاشیہ",
+        "type": "text",
+        "value": ""
+      },
+      "radial_adventitial_margin": {
+        "label": "شعاعی / بیرونی غلاف حاشیہ",
+        "type": "text",
+        "value": ""
+      },
+      "non_neoplastic_esophagus": {
+        "label": "غیر رسولی مری",
+        "type": "text",
+        "value": ""
+      },
+      "lymph_nodes": {
+        "label": "لمف نوڈز",
+        "type": "text",
+        "value": ""
+      },
+      "additional_sections": {
+        "label": "اضافی حصے",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+  "grossing": {
+    "label": "ظاہری معائنہ",
+    "fields": {
+      "grossed_by": {
+        "label": "ظاہری معائنہ کرنے والا/والی (ابتدائی حروف)",
+        "type": "text",
+        "value": ""
+      },
+      "date": {
+        "label": "تاریخ",
+        "type": "date",
+        "value": ""
+      }
+    }
+  }
+}

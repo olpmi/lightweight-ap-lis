@@ -37,8 +37,8 @@
           "Karsinoma, aina haiwezi kubainishwa"
         ],
         "value": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": "",
+        "other_specify": "Nyingine (taja)",
+        "cannot_be_determined_specify": "Haiwezi kubainishwa (taja)",
         "comment": ""
       },
       "histologic_grade": {
@@ -52,16 +52,16 @@
           "Haihusiki"
         ],
         "value": "",
-        "cannot_be_assessed_specify": "",
-        "not_applicable_specify": ""
+        "cannot_be_assessed_specify": "Haiwezi kutathminiwa (taja)",
+        "not_applicable_specify": "Haihusiki (taja)"
       },
       "lymphovascular_invasion": {
         "label": "Uvamizi wa limfatiki na / au mishipa ya damu",
         "type": "select",
         "options": ["Haijaonekana", "Ipo", "Haisadikishi", "Haiwezi kuamuliwa"],
         "value": "",
-        "equivocal_explain": "",
-        "cannot_be_determined_specify": ""
+        "equivocal_explain": "Haisadikishi (taja)",
+        "cannot_be_determined_specify": "Haiwezi kuamuliwa (taja)"
       }
     }
   },
@@ -80,7 +80,7 @@
           "Nyingine"
         ],
         "value": [],
-        "other_specify": ""
+        "other_specify": "Nyingine (taja)"
       }
     }
   }

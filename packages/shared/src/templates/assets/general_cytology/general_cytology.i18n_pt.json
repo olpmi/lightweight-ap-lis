@@ -1,0 +1,191 @@
+{
+  "templateId": "general_cytology",
+  "templateName": "Modelo de laudo de citologia geral",
+  "language": "pt",
+  "sections": [
+    {
+      "id": "specimen",
+      "title": "Espécime",
+      "fields": [
+        {
+          "id": "specimen_type",
+          "label": "Tipo",
+          "type": "select",
+          "options": [
+            "PAF",
+            "Citologia esfoliativa",
+            "Escovado",
+            "Lavado",
+            "Fluido corporal",
+            "Outro"
+          ]
+        },
+        {
+          "id": "site",
+          "label": "Local",
+          "type": "text"
+        },
+        {
+          "id": "laterality",
+          "label": "Lateralidade (se aplicável)",
+          "type": "select",
+          "options": ["Direito", "Esquerdo", "Bilateral", "Linha média"]
+        },
+        {
+          "id": "procedure_guidance",
+          "label": "Orientação do procedimento",
+          "type": "select",
+          "options": ["Palpação", "Ecografia", "TC", "Endoscópica", "Outro"]
+        }
+      ]
+    },
+    {
+      "id": "sample_adequacy",
+      "title": "Adequação da amostra",
+      "fields": [
+        {
+          "id": "adequacy_status",
+          "label": "Adequação da amostra",
+          "type": "select",
+          "options": [
+            "Satisfatória para avaliação",
+            "Celularidade limitada mas adequada",
+            "Insatisfatória / não diagnóstica"
+          ]
+        },
+        {
+          "id": "unsatisfactory_reason",
+          "label": "Motivo (se insatisfatória)",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "preparation_methods",
+      "title": "Métodos de preparação",
+      "fields": [
+        {
+          "id": "preparation_methods_used",
+          "label": "Métodos de preparação",
+          "type": "multiselect",
+          "options": ["Esfregaços convencionais", "Preparação em meio líquido", "Citocentrifugação"]
+        },
+        {
+          "id": "cell_block_prepared",
+          "label": "Bloco celular preparado",
+          "type": "select",
+          "options": ["Sim", "Não"]
+        },
+        {
+          "id": "preparation_other",
+          "label": "Outro",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "microscopic_description",
+      "title": "Descrição microscópica",
+      "fields": [
+        {
+          "id": "microscopic_description_text",
+          "label": "Descrição microscópica (texto livre)",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "id": "diagnostic_category",
+      "title": "Categoria diagnóstica",
+      "fields": [
+        {
+          "id": "diagnostic_category",
+          "label": "Categoria diagnóstica",
+          "type": "select",
+          "options": [
+            "Não diagnóstico / Insatisfatório",
+            "Negativo para malignidade / Benigno",
+            "Células atípicas presentes",
+            "Suspeito de malignidade",
+            "Positivo para malignidade",
+            "Neoplasia presente (benigna / baixo grau / maligna)",
+            "Outro"
+          ]
+        },
+        {
+          "id": "diagnostic_category_other",
+          "label": "Outro",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "favor_diagnosis",
+      "title": "Se positivo / suspeito / neoplásico, considerar",
+      "fields": [
+        {
+          "id": "favor_diagnosis_options",
+          "label": "Se positivo / suspeito / neoplásico, considerar",
+          "type": "multiselect",
+          "options": [
+            "Carcinoma",
+            "Adenocarcinoma",
+            "Carcinoma de células escamosas",
+            "Neoplasia neuroendócrina",
+            "Linfoma / neoplasia hematolinfoide",
+            "Melanoma",
+            "Sarcoma",
+            "Outro"
+          ]
+        },
+        {
+          "id": "favor_diagnosis_other",
+          "label": "Outro",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "ancillary_studies",
+      "title": "Estudos complementares (se realizados)",
+      "fields": [
+        {
+          "id": "cell_block_findings",
+          "label": "Resultados do bloco celular",
+          "type": "text"
+        },
+        {
+          "id": "immunocytochemistry",
+          "label": "Imuno-citoquímica",
+          "type": "text"
+        },
+        {
+          "id": "flow_cytometry",
+          "label": "Citometria de fluxo",
+          "type": "text"
+        },
+        {
+          "id": "microbiology_stains_cultures",
+          "label": "Colorações / culturas microbiológicas",
+          "type": "text"
+        },
+        {
+          "id": "molecular_studies",
+          "label": "Estudos moleculares",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "comment_recommendation",
+      "title": "Comentário / Recomendação",
+      "fields": [
+        {
+          "id": "comment_text",
+          "label": "Comentário / Recomendação",
+          "type": "textarea"
+        }
+      ]
+    }
+  ]
+}

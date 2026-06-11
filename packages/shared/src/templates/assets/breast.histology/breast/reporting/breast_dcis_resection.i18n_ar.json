@@ -19,7 +19,7 @@
           "أخرى",
           "غير محدد"
         ],
-        "other_specify": "",
+        "other_specify": "أخرى (حدد)",
         "type": "select",
         "value": ""
       },
@@ -107,7 +107,7 @@
           "صلب",
           "أخرى"
         ],
-        "other_specify": "",
+        "other_specify": "أخرى (حدد)",
         "type": "multi_select",
         "value": []
       },
@@ -130,7 +130,7 @@
       "microcalcifications": {
         "label": "التكلسات الدقيقة",
         "options": ["غير موجودة", "موجودة في DCIS", "موجودة في نسيج غير ورمي", "أخرى"],
-        "other_specify": "",
+        "other_specify": "أخرى (حدد)",
         "type": "multi_select",
         "value": []
       }
@@ -189,8 +189,12 @@
           "أخرى",
           "لا يمكن التحديد"
         ],
-        "other_specify": "",
-        "cannot_be_determined_explain": "",
+        "other_specify": "أخرى (حدد)",
+        "cannot_be_determined_specify": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        },
         "type": "multi_select",
         "value": []
       },
@@ -429,15 +433,21 @@
           "أخرى",
           "لا يمكن التحديد"
         ],
-        "non_regional_lymph_nodes_specify": "",
-        "lung_specify": "",
-        "liver_specify": "",
-        "bone_specify": "",
-        "brain_specify": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": "",
-        "type": "multi_select",
-        "value": []
+        "non_regional_lymph_nodes_specify": {
+          "label": "العقد اللمفاوية غير الإقليمية (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "lung_specify": { "label": "الرئة (حدد)", "type": "text", "value": "" },
+        "liver_specify": { "label": "الكبد (حدد)", "type": "text", "value": "" },
+        "bone_specify": { "label": "العظام (حدد)", "type": "text", "value": "" },
+        "brain_specify": { "label": "الدماغ (حدد)", "type": "text", "value": "" },
+        "other_specify": { "label": "أخرى (حدد)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        }
       }
     }
   },

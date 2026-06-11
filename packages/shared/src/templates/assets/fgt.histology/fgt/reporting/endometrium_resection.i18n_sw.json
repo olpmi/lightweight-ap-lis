@@ -31,12 +31,20 @@
           "Uoshaji wa peritonemu / nyonga",
           "Nyingine"
         ],
-        "other_specify": ""
+        "other_specify": {
+          "label": "Nyingine (taja)",
+          "type": "text",
+          "value": ""
+        }
       },
       "specimen_integrity": {
         "label": "Uadilifu wa sampuli",
         "options": ["Nzima", "Imefunguliwa", "Imegawanywa vipandevipande", "Nyingine"],
-        "other_specify": ""
+        "other_specify": {
+          "label": "Nyingine (taja)",
+          "type": "text",
+          "value": ""
+        }
       }
     }
   },
@@ -82,8 +90,16 @@
           "Karsinoma ya neuroendocrine ya seli kubwa",
           "Aina nyingine ya histolojia ambayo haijaorodheshwa"
         ],
-        "mixed_carcinoma_specify": "",
-        "other_specify": ""
+        "mixed_carcinoma_specify": {
+          "label": "Karsinoma mchanganyiko (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": {
+          "label": "Nyingine (taja)",
+          "type": "text",
+          "value": ""
+        }
       },
       "histologic_grade": {
         "label": "Daraja la histolojia",
@@ -96,8 +112,16 @@
           "Nyingine",
           "Haiwezi kutathminiwa"
         ],
-        "other_specify": "",
-        "cannot_be_assessed_explain": ""
+        "other_specify": {
+          "label": "Nyingine (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_assessed_explain": {
+          "label": "Haiwezi kutathminiwa (eleza)",
+          "type": "text",
+          "value": ""
+        }
       },
       "myometrial_invasion": {
         "label": "Uvamizi wa myometriamu",
@@ -131,12 +155,20 @@
           "Ipo, imehusishwa na karsinoma",
           "Haiwezi kuamuliwa"
         ],
-        "cannot_be_determined_specify": ""
+        "cannot_be_determined_specify": {
+          "label": "Haiwezi kuamuliwa (eleza)",
+          "type": "text",
+          "value": ""
+        }
       },
       "uterine_serosal_involvement": {
         "label": "Ushiriki wa serosa ya mfuko wa uzazi",
         "options": ["Haijaonekana", "Upo", "Haiwezi kuamuliwa"],
-        "cannot_be_determined_explain": ""
+        "cannot_be_determined_explain": {
+          "label": "Haiwezi kuamuliwa (eleza)",
+          "type": "text",
+          "value": ""
+        }
       },
       "lower_uterine_segment_involvement": {
         "label": "Ushiriki wa sehemu ya chini ya mfuko wa uzazi",
@@ -146,7 +178,11 @@
           "Upo, wenye uvamizi wa myometriamu",
           "Haiwezi kuamuliwa"
         ],
-        "cannot_be_determined_explain": ""
+        "cannot_be_determined_explain": {
+          "label": "Haiwezi kuamuliwa (eleza)",
+          "type": "text",
+          "value": ""
+        }
       },
       "cervical_involvement": {
         "label": "Ushiriki wa mlango wa mfuko wa uzazi",
@@ -192,8 +228,16 @@
           "Viungo / tishu nyingine",
           "Haiwezi kuamuliwa"
         ],
-        "other_specify": "",
-        "cannot_be_determined_explain": ""
+        "other_specify": {
+          "label": "Nyingine (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_explain": {
+          "label": "Haiwezi kuamuliwa (eleza)",
+          "type": "text",
+          "value": ""
+        }
       },
       "peritoneal_pelvic_washings": {
         "label": "Uoshaji wa peritonemu / nyonga / maji ya ascites",
@@ -205,8 +249,16 @@
           "Inatia shaka kwa saratani",
           "Matokeo yanasubiriwa"
         ],
-        "atypical_explain": "",
-        "suspicious_explain": ""
+        "atypical_explain": {
+          "label": "Atipiki (eleza)",
+          "type": "text",
+          "value": ""
+        },
+        "suspicious_explain": {
+          "label": "Inayoshukuru (eleza)",
+          "type": "text",
+          "value": ""
+        }
       },
       "lymphovascular_invasion": {
         "label": "Uvamizi wa limfatiki na / au mishipa ya damu",
@@ -251,296 +303,324 @@
           "Nyingine",
           "Haiwezi kuamuliwa"
         ],
-        "ectocervical_specify": "",
-        "vaginal_cuff_specify": "",
-        "parametrial_specify": "",
-        "paracervical_specify": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": ""
-      },
-      "distance_from_carcinoma_to_closest_margin": {
-        "label": "Umbali kutoka karsinoma hadi mpaka ulio karibu zaidi",
-        "fields": {
-          "distance_type": {
-            "label": "Aina ya umbali",
-            "options": [
-              "Umbali halisi",
-              "Angalau",
-              "Chini ya",
-              "Chini ya mm 1",
-              "Haiwezi kuamuliwa"
-            ]
-          },
-          "distance_cm": {
-            "label": "Umbali (cm)"
-          },
+        "ectocervical_specify": { "label": "Ektosevikali (taja)", "type": "text", "value": "" },
+        "vaginal_cuff_specify": { "label": "Mkono wa uke (taja)", "type": "text", "value": "" },
+        "parametrial_specify": { "label": "Parametriamu (taja)", "type": "text", "value": "" },
+        "paracervical_specify": { "label": "Parasevikali (taja)", "type": "text", "value": "" },
+        "other_specify": { "label": "Nyingine (taja)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "Haiwezi kuamuliwa (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "distance_from_carcinoma_to_closest_margin": {
+          "label": "Umbali kutoka karsinoma hadi mpaka ulio karibu zaidi",
+          "fields": {
+            "distance_type": {
+              "label": "Aina ya umbali",
+              "options": [
+                "Umbali halisi",
+                "Angalau",
+                "Chini ya",
+                "Chini ya mm 1",
+                "Haiwezi kuamuliwa"
+              ]
+            },
+            "distance_cm": {
+              "label": "Umbali (cm)"
+            },
+            "cannot_be_determined_specify": {
+              "label": "Haiwezi kuamuliwa"
+            }
+          }
+        },
+        "margins_involved_by_carcinoma": {
+          "label": "Mpaka/mipaka iliyohusishwa na karsinoma (chagua yote yanayohusika)",
+          "options": [
+            "Ektosevikali",
+            "Kisiki cha uke",
+            "Parametriamu",
+            "Parasevikali",
+            "Nyingine",
+            "Haiwezi kuamuliwa"
+          ],
+          "ectocervical_specify": { "label": "Ektosevikali (taja)", "type": "text", "value": "" },
+          "vaginal_cuff_specify": { "label": "Mkono wa uke (taja)", "type": "text", "value": "" },
+          "parametrial_specify": { "label": "Parametriamu (taja)", "type": "text", "value": "" },
+          "paracervical_specify": { "label": "Parasevikali (taja)", "type": "text", "value": "" },
+          "other_specify": { "label": "Nyingine (taja)", "type": "text", "value": "" },
           "cannot_be_determined_specify": {
-            "label": "Haiwezi kuamuliwa"
+            "label": "Haiwezi kuamuliwa (taja)",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_explain": {
+            "label": "Haiwezi kuamuliwa (eleza)",
+            "type": "text",
+            "value": ""
+          }
+        },
+        "margin_comment": {
+          "label": "Maoni ya mipaka"
+        }
+      }
+    },
+    "regional_lymph_nodes": {
+      "label": "Nodi za limfu za eneo",
+      "fields": {
+        "regional_lymph_node_status": {
+          "label": "Hali ya nodi za limfu za eneo",
+          "options": [
+            "Haihusiki (hakuna nodi za limfu za eneo zilizowasilishwa au kupatikana)",
+            "Nodi za limfu za eneo zipo",
+            "Nodi zote za eneo hasi kwa seli za uvimbe",
+            "Uvimbe upo katika nodi za limfu za nyonga",
+            "Uvimbe upo katika nodi za limfu za para-aortiki"
+          ]
+        },
+        "pelvic_nodes": {
+          "label": "Nodi za limfu za nyonga",
+          "fields": {
+            "macrometastasis_total": {
+              "label": "Jumla ya idadi ya nodi za nyonga zenye makrometastasi (zaidi ya mm 2) (sentinel na zisizo sentinel)"
+            },
+            "macrometastasis_sentinel": {
+              "label": "Idadi ya nodi sentinel za nyonga zenye makrometastasi"
+            },
+            "micrometastasis_total": {
+              "label": "Jumla ya idadi ya nodi za nyonga zenye mikrometastasi (zaidi ya mm 0.2 hadi mm 2 na / au zaidi ya seli 200) (sentinel na zisizo sentinel)"
+            },
+            "micrometastasis_sentinel": {
+              "label": "Idadi ya nodi sentinel za nyonga zenye mikrometastasi"
+            },
+            "itc_total": {
+              "label": "Jumla ya idadi ya nodi za nyonga zenye seli za uvimbe zilizotengwa (≤ mm 0.2 au makundi ≤ seli 200)"
+            },
+            "itc_sentinel": {
+              "label": "Idadi ya nodi sentinel za nyonga zenye seli za uvimbe zilizotengwa"
+            },
+            "laterality_with_tumor": {
+              "label": "Upande wa nodi za nyonga zenye uvimbe (chagua yote yanayohusika)",
+              "options": [
+                "Sentinel ya kulia",
+                "Isiyo sentinel ya kulia",
+                "Sentinel ya kushoto",
+                "Isiyo sentinel ya kushoto",
+                "Haiwezi kuamuliwa"
+              ],
+              "cannot_be_determined_specify": "Haiwezi kuamuliwa (eleza)"
+            },
+            "largest_metastatic_deposit_size_mm": {
+              "label": "Ukubwa wa metastasi kubwa zaidi katika nodi za nyonga"
+            },
+            "total_examined": {
+              "label": "Jumla ya idadi ya nodi za nyonga zilizochunguzwa (sentinel na zisizo sentinel)"
+            },
+            "sentinel_examined": {
+              "label": "Idadi ya nodi sentinel za nyonga zilizochunguzwa (inahitajika tu ikiwa inatumika)"
+            }
+          }
+        },
+        "para_aortic_nodes": {
+          "label": "Nodi za para-aortiki",
+          "fields": {
+            "macrometastasis_total": {
+              "label": "Jumla ya idadi ya nodi za para-aortiki zenye makrometastasi (zaidi ya mm 2) (sentinel na zisizo sentinel)"
+            },
+            "macrometastasis_sentinel": {
+              "label": "Idadi ya nodi sentinel za para-aortiki zenye makrometastasi"
+            },
+            "micrometastasis_total": {
+              "label": "Jumla ya idadi ya nodi za para-aortiki zenye mikrometastasi (zaidi ya mm 0.2 hadi mm 2 na / au zaidi ya seli 200) (sentinel na zisizo sentinel)"
+            },
+            "micrometastasis_sentinel": {
+              "label": "Idadi ya nodi sentinel za para-aortiki zenye mikrometastasi"
+            },
+            "itc_total": {
+              "label": "Jumla ya idadi ya nodi za para-aortiki zenye seli za uvimbe zilizotengwa (≤ mm 0.2 au makundi ≤ seli 200)"
+            },
+            "itc_sentinel": {
+              "label": "Idadi ya nodi sentinel za para-aortiki zenye seli za uvimbe zilizotengwa"
+            },
+            "laterality_with_tumor": {
+              "label": "Upande wa nodi za para-aortiki zenye uvimbe (chagua yote yanayohusika)",
+              "options": [
+                "Sentinel ya kulia",
+                "Isiyo sentinel ya kulia",
+                "Sentinel ya kushoto",
+                "Isiyo sentinel ya kushoto",
+                "Haiwezi kuamuliwa"
+              ],
+              "cannot_be_determined_specify": "Haiwezi kuamuliwa (eleza)"
+            },
+            "largest_metastatic_deposit_size_mm": {
+              "label": "Ukubwa wa metastasi kubwa zaidi katika nodi za para-aortiki"
+            },
+            "total_examined": {
+              "label": "Jumla ya idadi ya nodi za para-aortiki zilizochunguzwa (sentinel na zisizo sentinel)"
+            },
+            "sentinel_examined": {
+              "label": "Idadi ya nodi sentinel za para-aortiki zilizochunguzwa (inahitajika tu ikiwa inatumika)"
+            }
+          }
+        },
+        "regional_lymph_node_comment": {
+          "label": "Maoni ya nodi za limfu za eneo"
+        }
+      }
+    },
+    "distant_metastasis": {
+      "label": "Metastasi za mbali",
+      "fields": {
+        "sites_involved": {
+          "label": "Maeneo ya mbali yaliyohusika, ikiwa yapo (chagua yote yanayohusika)",
+          "options": [
+            "Haihusiki",
+            "Omentamu",
+            "Peritonemu nje ya nyonga",
+            "Nodi za limfu za kinena",
+            "Pafu",
+            "Ini",
+            "Mfupa",
+            "Nyingine",
+            "Haiwezi kuamuliwa"
+          ],
+          "omentum_specify": { "label": "Omentamu (taja)", "type": "text", "value": "" },
+          "extrapelvic_peritoneum_specify": {
+            "label": "Peritonemu nje ya nyonga (taja)",
+            "type": "text",
+            "value": ""
+          },
+          "inguinal_lymph_nodes_specify": {
+            "label": "Nodi za limfu za kinena (taja)",
+            "type": "text",
+            "value": ""
+          },
+          "lung_specify": { "label": "Mapafu (taja)", "type": "text", "value": "" },
+          "liver_specify": { "label": "Ini (taja)", "type": "text", "value": "" },
+          "bone_specify": { "label": "Mfupa (taja)", "type": "text", "value": "" },
+          "other_specify": { "label": "Nyingine (taja)", "type": "text", "value": "" },
+          "cannot_be_determined_specify": {
+            "label": "Haiwezi kuamuliwa (taja)",
+            "type": "text",
+            "value": ""
           }
         }
-      },
-      "margins_involved_by_carcinoma": {
-        "label": "Mpaka/mipaka iliyohusishwa na karsinoma (chagua yote yanayohusika)",
-        "options": [
-          "Ektosevikali",
-          "Kisiki cha uke",
-          "Parametriamu",
-          "Parasevikali",
-          "Nyingine",
-          "Haiwezi kuamuliwa"
-        ],
-        "ectocervical_specify": "",
-        "vaginal_cuff_specify": "",
-        "parametrial_specify": "",
-        "paracervical_specify": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": "",
-        "cannot_be_determined_explain": ""
-      },
-      "margin_comment": {
-        "label": "Maoni ya mipaka"
       }
-    }
-  },
-  "regional_lymph_nodes": {
-    "label": "Nodi za limfu za eneo",
-    "fields": {
-      "regional_lymph_node_status": {
-        "label": "Hali ya nodi za limfu za eneo",
-        "options": [
-          "Haihusiki (hakuna nodi za limfu za eneo zilizowasilishwa au kupatikana)",
-          "Nodi za limfu za eneo zipo",
-          "Nodi zote za eneo hasi kwa seli za uvimbe",
-          "Uvimbe upo katika nodi za limfu za nyonga",
-          "Uvimbe upo katika nodi za limfu za para-aortiki"
-        ]
-      },
-      "pelvic_nodes": {
-        "label": "Nodi za limfu za nyonga",
-        "fields": {
-          "macrometastasis_total": {
-            "label": "Jumla ya idadi ya nodi za nyonga zenye makrometastasi (zaidi ya mm 2) (sentinel na zisizo sentinel)"
-          },
-          "macrometastasis_sentinel": {
-            "label": "Idadi ya nodi sentinel za nyonga zenye makrometastasi"
-          },
-          "micrometastasis_total": {
-            "label": "Jumla ya idadi ya nodi za nyonga zenye mikrometastasi (zaidi ya mm 0.2 hadi mm 2 na / au zaidi ya seli 200) (sentinel na zisizo sentinel)"
-          },
-          "micrometastasis_sentinel": {
-            "label": "Idadi ya nodi sentinel za nyonga zenye mikrometastasi"
-          },
-          "itc_total": {
-            "label": "Jumla ya idadi ya nodi za nyonga zenye seli za uvimbe zilizotengwa (≤ mm 0.2 au makundi ≤ seli 200)"
-          },
-          "itc_sentinel": {
-            "label": "Idadi ya nodi sentinel za nyonga zenye seli za uvimbe zilizotengwa"
-          },
-          "laterality_with_tumor": {
-            "label": "Upande wa nodi za nyonga zenye uvimbe (chagua yote yanayohusika)",
-            "options": [
-              "Sentinel ya kulia",
-              "Isiyo sentinel ya kulia",
-              "Sentinel ya kushoto",
-              "Isiyo sentinel ya kushoto",
-              "Haiwezi kuamuliwa"
-            ],
-            "cannot_be_determined_specify": ""
-          },
-          "largest_metastatic_deposit_size_mm": {
-            "label": "Ukubwa wa metastasi kubwa zaidi katika nodi za nyonga"
-          },
-          "total_examined": {
-            "label": "Jumla ya idadi ya nodi za nyonga zilizochunguzwa (sentinel na zisizo sentinel)"
-          },
-          "sentinel_examined": {
-            "label": "Idadi ya nodi sentinel za nyonga zilizochunguzwa (inahitajika tu ikiwa inatumika)"
-          }
+    },
+    "ptnm_classification": {
+      "label": "Uainishaji wa pTNM (AJCC Toleo la 8)",
+      "fields": {
+        "modified_classification": {
+          "label": "Uainishaji uliorekebishwa",
+          "options": ["Haihusiki", "y (baada ya tiba ya neoadjuvant)", "r (kurudi tena)"]
+        },
+        "pT_category": {
+          "label": "Kundi la pT",
+          "options": [
+            "pT haijapewa",
+            "pT0: Hakuna ushahidi wa uvimbe wa msingi",
+            "pT1a: Uvimbe umefungwa kwenye endometriamu au unaingia chini ya nusu ya myometriamu",
+            "pT1b: Uvimbe unaingia nusu au zaidi ya myometriamu",
+            "pT1: Uvimbe umefungwa kwenye mwili wa mfuko wa uzazi, NOS (kikundi kidogo haiwezi kuamuliwa)",
+            "pT2: Uvimbe unaingia katika stroma ya mlango wa mfuko wa uzazi bila kupanuka nje ya mfuko wa uzazi (haujumuishi uhusika wa tezi za endoseviksi)",
+            "pT3a: Uvimbe unahusika kwenye serosa na/au viungo vya pembeni (upanuzi wa moja kwa moja au metastasi)",
+            "pT3b: Uhusika wa uke (upanuzi wa moja kwa moja au metastasi) au uhusika wa parametriamu",
+            "pT3: Uvimbe unaenea nje ya mfuko wa uzazi, NOS (kikundi kidogo haiwezi kuamuliwa)",
+            "pT4: Uvimbe unaingia kwenye mukosa ya kibofu na/au utumbo (uvimbe wa malengelenge hautooshi kuainisha uvimbe kama pT4)"
+          ]
+        },
+        "T_suffix": {
+          "label": "Kiambishi cha T",
+          "options": [
+            "Haihusiki",
+            "(m) uvimbe mwingi wa msingi unaotokea wakati mmoja katika kiungo kimoja"
+          ]
+        },
+        "pN_category": {
+          "label": "Kundi la pN",
+          "options": [
+            "pN haijapewa (hakuna nodi zilizowasilishwa au kupatikana)",
+            "pN haijapewa (haiwezi kuamuliwa kulingana na taarifa za kipatholojia zinazopatikana)",
+            "pN0: Hakuna metastasi ya nodi za limfu za eneo",
+            "pN0(i+): Seli za uvimbe zilizotengwa kwenye nodi za limfu za eneo ≤ mm 0.2",
+            "pN1mi: Mikrometastasi ya nodi za limfu za eneo (> mm 0.2, ≤ mm 2.0)",
+            "pN1a: Makrometastasi ya nodi za limfu za nyonga (> mm 2.0)",
+            "pN1: Metastasi ya nodi za limfu za nyonga (kikundi kidogo haiwezi kuamuliwa)",
+            "pN2mi: Mikrometastasi (> mm 0.2, ≤ mm 2.0) kwenye nodi za para-aortiki pamoja au bila nodi za nyonga zilizo chanya",
+            "pN2a: Makrometastasi (> mm 2.0) kwenye nodi za para-aortiki pamoja au bila nodi za nyonga zilizo chanya",
+            "pN2: Metastasi ya nodi za para-aortiki (kikundi kidogo haiwezi kuamuliwa)"
+          ]
+        },
+        "N_suffix": {
+          "label": "Kiambishi cha N",
+          "options": [
+            "Haihusiki",
+            "(sn) utaratibu wa nodi sentinel",
+            "(f) FNA au biopsi ya sindano"
+          ]
+        },
+        "pM_category": {
+          "label": "Kundi la pM",
+          "options": [
+            "Haihusiki — pM haiwezi kuamuliwa kutoka kwa sampuli zilizowasilishwa",
+            "pM1: Metastasi ya mbali (inajumuisha nodi za limfu za kinena na ugonjwa wa ndani ya peritonemu au mapafu, ini, au mfupa). Haijumuishi metastasi kwenye nodi za nyonga au para-aortiki, uke, serosa ya mfuko wa uzazi, au viungo vya pembeni"
+          ]
         }
-      },
-      "para_aortic_nodes": {
-        "label": "Nodi za para-aortiki",
-        "fields": {
-          "macrometastasis_total": {
-            "label": "Jumla ya idadi ya nodi za para-aortiki zenye makrometastasi (zaidi ya mm 2) (sentinel na zisizo sentinel)"
-          },
-          "macrometastasis_sentinel": {
-            "label": "Idadi ya nodi sentinel za para-aortiki zenye makrometastasi"
-          },
-          "micrometastasis_total": {
-            "label": "Jumla ya idadi ya nodi za para-aortiki zenye mikrometastasi (zaidi ya mm 0.2 hadi mm 2 na / au zaidi ya seli 200) (sentinel na zisizo sentinel)"
-          },
-          "micrometastasis_sentinel": {
-            "label": "Idadi ya nodi sentinel za para-aortiki zenye mikrometastasi"
-          },
-          "itc_total": {
-            "label": "Jumla ya idadi ya nodi za para-aortiki zenye seli za uvimbe zilizotengwa (≤ mm 0.2 au makundi ≤ seli 200)"
-          },
-          "itc_sentinel": {
-            "label": "Idadi ya nodi sentinel za para-aortiki zenye seli za uvimbe zilizotengwa"
-          },
-          "laterality_with_tumor": {
-            "label": "Upande wa nodi za para-aortiki zenye uvimbe (chagua yote yanayohusika)",
-            "options": [
-              "Sentinel ya kulia",
-              "Isiyo sentinel ya kulia",
-              "Sentinel ya kushoto",
-              "Isiyo sentinel ya kushoto",
-              "Haiwezi kuamuliwa"
-            ],
-            "cannot_be_determined_specify": ""
-          },
-          "largest_metastatic_deposit_size_mm": {
-            "label": "Ukubwa wa metastasi kubwa zaidi katika nodi za para-aortiki"
-          },
-          "total_examined": {
-            "label": "Jumla ya idadi ya nodi za para-aortiki zilizochunguzwa (sentinel na zisizo sentinel)"
-          },
-          "sentinel_examined": {
-            "label": "Idadi ya nodi sentinel za para-aortiki zilizochunguzwa (inahitajika tu ikiwa inatumika)"
-          }
+      }
+    },
+    "figo_stage": {
+      "label": "Hatua ya FIGO",
+      "fields": {
+        "figo_2023": {
+          "label": "Hatua ya FIGO (Upangaji wa 2023 wa Saratani ya Endometriamu)",
+          "options": [
+            "I: Umefungwa kwenye mwili wa mfuko wa uzazi na ovari",
+            "IA: Ugonjwa umefungwa kwenye endometriamu AU aina isiyo kali ya histolojia (endometrioid ya daraja la chini) yenye uvamizi wa chini ya nusu ya myometriamu bila LVSI au na LVSI ya focal, au ugonjwa wa ubashiri mzuri",
+            "IA1: Aina isiyo kali ya histolojia iliyofungwa kwenye polypu ya endometriamu AU kwenye endometriamu",
+            "IA2: Aina zisizo kali za histolojia zinazohusisha chini ya nusu ya myometriamu bila LVSI au na LVSI ya focal",
+            "IA3: Karsinoma za endometrioid za daraja la chini zilizofungwa kwenye mfuko wa uzazi na ovari",
+            "IAm (POLEmut): Karsinoma ya endometriamu yenye mabadiliko ya POLE, imefungwa kwenye mwili wa mfuko wa uzazi au ina uenezi wa mlango wa mfuko wa uzazi, bila kujali kiwango cha LVSI au aina ya histolojia",
+            "IB: Aina zisizo kali za histolojia zenye uvamizi wa nusu au zaidi ya myometriamu, bila LVSI au na LVSI ya focal",
+            "IC: Aina kali za histolojia zilizofungwa kwenye polypu au endometriamu",
+            "II: Uvamizi wa stroma ya mlango wa mfuko wa uzazi bila kuenea nje ya mfuko wa uzazi AU LVSI kubwa AU aina kali za histolojia zenye uvamizi wa myometriamu",
+            "IIA: Uvamizi wa stroma ya mlango wa mfuko wa uzazi wa aina zisizo kali za histolojia",
+            "IIB: LVSI kubwa ya aina zisizo kali za histolojia",
+            "IIC: Aina kali za histolojia zenye uhusika wowote wa myometriamu",
+            "IICm (p53abn): Karsinoma ya endometriamu yenye p53 isiyo ya kawaida, imefungwa kwenye mwili wa mfuko wa uzazi ikiwa na uvamizi wowote wa myometriamu, bila kujali kiwango cha LVSI au aina ya histolojia",
+            "III: Kuenea kwa ndani na/au kikanda kwa uvimbe wa aina yoyote ya histolojia",
+            "IIIA: Uvamizi wa serosa ya mfuko wa uzazi, viungo vya pembeni, au vyote viwili kwa kuenea moja kwa moja au metastasi",
+            "IIIA1: Kuenea kwenye ovari au mrija wa fallopian (isipokuwa inapokidhi vigezo vya hatua IA3)",
+            "IIIA2: Uhusika wa subserosa ya mfuko wa uzazi au kuenea kupitia serosa ya mfuko wa uzazi",
+            "IIIB: Metastasi au kuenea moja kwa moja kwenye uke na/au parametriamu au peritonemu ya nyonga",
+            "IIIB1: Metastasi au kuenea moja kwa moja kwenye uke na/au parametriamu",
+            "IIIB2: Metastasi kwenye peritonemu ya nyonga",
+            "IIIC: Metastasi kwenye nodi za nyonga au para-aortiki au zote mbili",
+            "IIIC1: Metastasi kwenye nodi za nyonga",
+            "IIIC1i: Mikrometastasi (kwenye nodi za nyonga)",
+            "IIIC1ii: Makrometastasi (kwenye nodi za nyonga)",
+            "IIIC2: Metastasi kwenye nodi za para-aortiki hadi mishipa ya figo, pamoja au bila metastasi kwenye nodi za nyonga",
+            "IIIC2i: Mikrometastasi kwenye nodi za para-aortiki hadi mishipa ya figo, pamoja au bila metastasi kwenye nodi za nyonga",
+            "IIIC2ii: Makrometastasi kwenye nodi za para-aortiki hadi mishipa ya figo, pamoja au bila metastasi kwenye nodi za nyonga",
+            "IVA: Uvamizi wa mukosa ya kibofu na/au mukosa ya utumbo",
+            "IVB: Metastasi ya peritonemu ya tumbo nje ya nyonga",
+            "IVC: Metastasi ya mbali, ikijumuisha nodi za limfu juu ya mishipa ya figo, mapafu, ini, ubongo au mfupa"
+          ]
         }
-      },
-      "regional_lymph_node_comment": {
-        "label": "Maoni ya nodi za limfu za eneo"
       }
-    }
-  },
-  "distant_metastasis": {
-    "label": "Metastasi za mbali",
-    "fields": {
-      "sites_involved": {
-        "label": "Maeneo ya mbali yaliyohusika, ikiwa yapo (chagua yote yanayohusika)",
-        "options": [
-          "Haihusiki",
-          "Omentamu",
-          "Peritonemu nje ya nyonga",
-          "Nodi za limfu za kinena",
-          "Pafu",
-          "Ini",
-          "Mfupa",
-          "Nyingine",
-          "Haiwezi kuamuliwa"
-        ],
-        "omentum_specify": "",
-        "extrapelvic_peritoneum_specify": "",
-        "inguinal_lymph_nodes_specify": "",
-        "lung_specify": "",
-        "liver_specify": "",
-        "bone_specify": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": ""
-      }
-    }
-  },
-  "ptnm_classification": {
-    "label": "Uainishaji wa pTNM (AJCC Toleo la 8)",
-    "fields": {
-      "modified_classification": {
-        "label": "Uainishaji uliorekebishwa",
-        "options": ["Haihusiki", "y (baada ya tiba ya neoadjuvant)", "r (kurudi tena)"]
-      },
-      "pT_category": {
-        "label": "Kundi la pT",
-        "options": [
-          "pT haijapewa",
-          "pT0: Hakuna ushahidi wa uvimbe wa msingi",
-          "pT1a: Uvimbe umefungwa kwenye endometriamu au unaingia chini ya nusu ya myometriamu",
-          "pT1b: Uvimbe unaingia nusu au zaidi ya myometriamu",
-          "pT1: Uvimbe umefungwa kwenye mwili wa mfuko wa uzazi, NOS (kikundi kidogo haiwezi kuamuliwa)",
-          "pT2: Uvimbe unaingia katika stroma ya mlango wa mfuko wa uzazi bila kupanuka nje ya mfuko wa uzazi (haujumuishi uhusika wa tezi za endoseviksi)",
-          "pT3a: Uvimbe unahusika kwenye serosa na/au viungo vya pembeni (upanuzi wa moja kwa moja au metastasi)",
-          "pT3b: Uhusika wa uke (upanuzi wa moja kwa moja au metastasi) au uhusika wa parametriamu",
-          "pT3: Uvimbe unaenea nje ya mfuko wa uzazi, NOS (kikundi kidogo haiwezi kuamuliwa)",
-          "pT4: Uvimbe unaingia kwenye mukosa ya kibofu na/au utumbo (uvimbe wa malengelenge hautooshi kuainisha uvimbe kama pT4)"
-        ]
-      },
-      "T_suffix": {
-        "label": "Kiambishi cha T",
-        "options": [
-          "Haihusiki",
-          "(m) uvimbe mwingi wa msingi unaotokea wakati mmoja katika kiungo kimoja"
-        ]
-      },
-      "pN_category": {
-        "label": "Kundi la pN",
-        "options": [
-          "pN haijapewa (hakuna nodi zilizowasilishwa au kupatikana)",
-          "pN haijapewa (haiwezi kuamuliwa kulingana na taarifa za kipatholojia zinazopatikana)",
-          "pN0: Hakuna metastasi ya nodi za limfu za eneo",
-          "pN0(i+): Seli za uvimbe zilizotengwa kwenye nodi za limfu za eneo ≤ mm 0.2",
-          "pN1mi: Mikrometastasi ya nodi za limfu za eneo (> mm 0.2, ≤ mm 2.0)",
-          "pN1a: Makrometastasi ya nodi za limfu za nyonga (> mm 2.0)",
-          "pN1: Metastasi ya nodi za limfu za nyonga (kikundi kidogo haiwezi kuamuliwa)",
-          "pN2mi: Mikrometastasi (> mm 0.2, ≤ mm 2.0) kwenye nodi za para-aortiki pamoja au bila nodi za nyonga zilizo chanya",
-          "pN2a: Makrometastasi (> mm 2.0) kwenye nodi za para-aortiki pamoja au bila nodi za nyonga zilizo chanya",
-          "pN2: Metastasi ya nodi za para-aortiki (kikundi kidogo haiwezi kuamuliwa)"
-        ]
-      },
-      "N_suffix": {
-        "label": "Kiambishi cha N",
-        "options": ["Haihusiki", "(sn) utaratibu wa nodi sentinel", "(f) FNA au biopsi ya sindano"]
-      },
-      "pM_category": {
-        "label": "Kundi la pM",
-        "options": [
-          "Haihusiki — pM haiwezi kuamuliwa kutoka kwa sampuli zilizowasilishwa",
-          "pM1: Metastasi ya mbali (inajumuisha nodi za limfu za kinena na ugonjwa wa ndani ya peritonemu au mapafu, ini, au mfupa). Haijumuishi metastasi kwenye nodi za nyonga au para-aortiki, uke, serosa ya mfuko wa uzazi, au viungo vya pembeni"
-        ]
-      }
-    }
-  },
-  "figo_stage": {
-    "label": "Hatua ya FIGO",
-    "fields": {
-      "figo_2023": {
-        "label": "Hatua ya FIGO (Upangaji wa 2023 wa Saratani ya Endometriamu)",
-        "options": [
-          "I: Umefungwa kwenye mwili wa mfuko wa uzazi na ovari",
-          "IA: Ugonjwa umefungwa kwenye endometriamu AU aina isiyo kali ya histolojia (endometrioid ya daraja la chini) yenye uvamizi wa chini ya nusu ya myometriamu bila LVSI au na LVSI ya focal, au ugonjwa wa ubashiri mzuri",
-          "IA1: Aina isiyo kali ya histolojia iliyofungwa kwenye polypu ya endometriamu AU kwenye endometriamu",
-          "IA2: Aina zisizo kali za histolojia zinazohusisha chini ya nusu ya myometriamu bila LVSI au na LVSI ya focal",
-          "IA3: Karsinoma za endometrioid za daraja la chini zilizofungwa kwenye mfuko wa uzazi na ovari",
-          "IAm (POLEmut): Karsinoma ya endometriamu yenye mabadiliko ya POLE, imefungwa kwenye mwili wa mfuko wa uzazi au ina uenezi wa mlango wa mfuko wa uzazi, bila kujali kiwango cha LVSI au aina ya histolojia",
-          "IB: Aina zisizo kali za histolojia zenye uvamizi wa nusu au zaidi ya myometriamu, bila LVSI au na LVSI ya focal",
-          "IC: Aina kali za histolojia zilizofungwa kwenye polypu au endometriamu",
-          "II: Uvamizi wa stroma ya mlango wa mfuko wa uzazi bila kuenea nje ya mfuko wa uzazi AU LVSI kubwa AU aina kali za histolojia zenye uvamizi wa myometriamu",
-          "IIA: Uvamizi wa stroma ya mlango wa mfuko wa uzazi wa aina zisizo kali za histolojia",
-          "IIB: LVSI kubwa ya aina zisizo kali za histolojia",
-          "IIC: Aina kali za histolojia zenye uhusika wowote wa myometriamu",
-          "IICm (p53abn): Karsinoma ya endometriamu yenye p53 isiyo ya kawaida, imefungwa kwenye mwili wa mfuko wa uzazi ikiwa na uvamizi wowote wa myometriamu, bila kujali kiwango cha LVSI au aina ya histolojia",
-          "III: Kuenea kwa ndani na/au kikanda kwa uvimbe wa aina yoyote ya histolojia",
-          "IIIA: Uvamizi wa serosa ya mfuko wa uzazi, viungo vya pembeni, au vyote viwili kwa kuenea moja kwa moja au metastasi",
-          "IIIA1: Kuenea kwenye ovari au mrija wa fallopian (isipokuwa inapokidhi vigezo vya hatua IA3)",
-          "IIIA2: Uhusika wa subserosa ya mfuko wa uzazi au kuenea kupitia serosa ya mfuko wa uzazi",
-          "IIIB: Metastasi au kuenea moja kwa moja kwenye uke na/au parametriamu au peritonemu ya nyonga",
-          "IIIB1: Metastasi au kuenea moja kwa moja kwenye uke na/au parametriamu",
-          "IIIB2: Metastasi kwenye peritonemu ya nyonga",
-          "IIIC: Metastasi kwenye nodi za nyonga au para-aortiki au zote mbili",
-          "IIIC1: Metastasi kwenye nodi za nyonga",
-          "IIIC1i: Mikrometastasi (kwenye nodi za nyonga)",
-          "IIIC1ii: Makrometastasi (kwenye nodi za nyonga)",
-          "IIIC2: Metastasi kwenye nodi za para-aortiki hadi mishipa ya figo, pamoja au bila metastasi kwenye nodi za nyonga",
-          "IIIC2i: Mikrometastasi kwenye nodi za para-aortiki hadi mishipa ya figo, pamoja au bila metastasi kwenye nodi za nyonga",
-          "IIIC2ii: Makrometastasi kwenye nodi za para-aortiki hadi mishipa ya figo, pamoja au bila metastasi kwenye nodi za nyonga",
-          "IVA: Uvamizi wa mukosa ya kibofu na/au mukosa ya utumbo",
-          "IVB: Metastasi ya peritonemu ya tumbo nje ya nyonga",
-          "IVC: Metastasi ya mbali, ikijumuisha nodi za limfu juu ya mishipa ya figo, mapafu, ini, ubongo au mfupa"
-        ]
-      }
-    }
-  },
-  "additional_findings": {
-    "label": "Matokeo ya ziada",
-    "fields": {
-      "findings": {
-        "label": "Matokeo ya ziada (chagua yote yanayohusika)",
-        "options": [
-          "Hakuna yaliyopatikana",
-          "Hyperplasia isiyo ya kawaida / neoplasia ya ndani ya epitheliamu ya endometrioid (EIN)",
-          "Nyingine"
-        ],
-        "other_specify": ""
+    },
+    "additional_findings": {
+      "label": "Matokeo ya ziada",
+      "fields": {
+        "findings": {
+          "label": "Matokeo ya ziada (chagua yote yanayohusika)",
+          "options": [
+            "Hakuna yaliyopatikana",
+            "Hyperplasia isiyo ya kawaida / neoplasia ya ndani ya epitheliamu ya endometrioid (EIN)",
+            "Nyingine"
+          ],
+          "other_specify": { "label": "Nyingine (taja)", "type": "text", "value": "" }
+        }
       }
     }
   }

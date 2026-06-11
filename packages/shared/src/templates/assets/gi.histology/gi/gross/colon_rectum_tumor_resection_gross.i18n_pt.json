@@ -1,0 +1,217 @@
+{
+  "template_id": "colon_rectum_resection_gross_tumor_v1",
+  "domain": "anatomic_pathology",
+  "lang": "pt",
+  "title": "Ressecção do cólon e recto para tumor",
+
+  "specimen": {
+    "label": "Espécime",
+    "fields": {
+      "procedure_type": {
+        "label": "Tipo de procedimento (conforme indicado pelo clínico)",
+        "type": "text",
+        "value": ""
+      },
+      "specimen_length_mm": {
+        "label": "Comprimento do espécime (mm)",
+        "type": "number",
+        "value": ""
+      },
+      "anatomical_components_included": {
+        "label": "Componentes anatómicos incluídos (com dimensão)",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "tumor_perforation": {
+        "label": "Perfuração tumoral",
+        "type": "select",
+        "options": ["Ausente", "Presente"],
+        "value": ""
+      },
+      "tumor_dimensions_mm": {
+        "label": "Dimensões do tumor (mm)",
+        "type": "measurement_3d",
+        "value": ""
+      },
+      "tumor_site": {
+        "label": "Local do tumor",
+        "type": "select",
+        "options": [
+          "Cego",
+          "Cólon ascendente",
+          "Ângulo hepático",
+          "Cólon transverso",
+          "Ângulo esplénico",
+          "Cólon descendente",
+          "Cólon sigmoide",
+          "Cólon rectossigmoide",
+          "Recto"
+        ],
+        "value": ""
+      },
+      "invades_peritoneal_surface": {
+        "label": "Tumor invade a superfície peritoneal",
+        "type": "select",
+        "options": ["Sim", "Não"],
+        "value": ""
+      },
+      "forms_discrete_serosal_nodules": {
+        "label": "Tumor forma nódulos serosos discretos",
+        "type": "select",
+        "options": ["Sim", "Não"],
+        "value": ""
+      }
+    }
+  },
+
+  "margins": {
+    "label": "Margens",
+    "fields": {
+      "distance_to_proximal_margin_mm": {
+        "label": "Distância à margem proximal (mm)",
+        "type": "number",
+        "value": ""
+      },
+      "distance_to_distal_margin_mm": {
+        "label": "Distância à margem distal (mm)",
+        "type": "number",
+        "value": ""
+      },
+      "distance_to_circumferential_margin_mm": {
+        "label": "Distância à margem circunferencial não peritonealizada (mm)",
+        "type": "number",
+        "value": ""
+      }
+    }
+  },
+
+  "rectal_tumor_only": {
+    "label": "Apenas para tumores do recto",
+    "fields": {
+      "mesorectum_intactness": {
+        "label": "Integridade do mesorecto",
+        "type": "select",
+        "options": ["Incompleto (Grau 1)", "Quase completo (Grau 2)", "Completo (Grau 3)"],
+        "value": ""
+      },
+      "relationship_to_anterior_peritoneal_reflection": {
+        "label": "Relação do tumor com a reflexão peritoneal anterior",
+        "type": "select",
+        "options": ["Inteiramente acima", "A cavalo", "Inteiramente abaixo"],
+        "value": ""
+      },
+      "distance_from_dentate_line_mm": {
+        "label": "Distância à linha dentada (mm) se ressecção abdominoperineal",
+        "type": "number",
+        "value": ""
+      }
+    }
+  },
+
+  "polyps": {
+    "label": "Pólipos",
+    "fields": {
+      "status": {
+        "label": "Pólipos",
+        "type": "select",
+        "options": ["Ausentes", "Presentes"],
+        "value": ""
+      },
+      "if_present_details": {
+        "label": "Se presentes, registar número, intervalo de tamanhos e aspecto macroscópico",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "lymph_nodes": {
+    "label": "Gânglios linfáticos",
+    "fields": {
+      "number_identified": {
+        "label": "Número identificado",
+        "type": "integer",
+        "value": ""
+      },
+      "size_range_mm": {
+        "label": "Intervalo de tamanhos (mm)",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "other_findings": {
+    "label": "Outros achados macroscópicos relevantes",
+    "fields": {
+      "findings": {
+        "label": "Outros achados macroscópicos relevantes",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "block_identification_key": {
+    "label": "Chave de identificação de blocos",
+    "fields": {
+      "tumor": {
+        "label": "Tumor",
+        "type": "text",
+        "value": ""
+      },
+      "proximal_margin": {
+        "label": "Margem proximal",
+        "type": "text",
+        "value": ""
+      },
+      "distal_margin": {
+        "label": "Margem distal",
+        "type": "text",
+        "value": ""
+      },
+      "circumferential_margin": {
+        "label": "Margem circunferencial",
+        "type": "text",
+        "value": ""
+      },
+      "non_neoplastic_colon": {
+        "label": "Cólon não neoplásico",
+        "type": "text",
+        "value": ""
+      },
+      "lymph_nodes": {
+        "label": "Gânglios linfáticos",
+        "type": "text",
+        "value": ""
+      },
+      "additional_sections": {
+        "label": "Cortes adicionais",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "grossing": {
+    "label": "Exame macroscópico",
+    "fields": {
+      "grossed_by_initials": {
+        "label": "Exame macroscópico realizado por (iniciais)",
+        "type": "text",
+        "value": ""
+      },
+      "date": {
+        "label": "Data",
+        "type": "date",
+        "value": ""
+      }
+    }
+  }
+}

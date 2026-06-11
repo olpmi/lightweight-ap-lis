@@ -88,7 +88,7 @@
           "Haijabainishwa"
         ],
         "value": "",
-        "location_specify": ""
+        "location_specify": "Mahali (taja)"
       },
       "histologic_type": {
         "label": "Aina ya kihistolojia",
@@ -127,8 +127,8 @@
               "Karsinoma, aina haiwezi kubainishwa"
             ],
             "value": "",
-            "other_specify": "",
-            "cannot_be_determined_specify": ""
+            "other_specify": "Nyingine (taja)",
+            "cannot_be_determined_specify": "Haiwezi kuelezwa (taja)"
           },
           "comment": {
             "label": "Maoni kuhusu aina ya kihistolojia",
@@ -145,8 +145,8 @@
             "type": "select",
             "options": ["Haihusiki", "Haiwezi kutathminiwa", "Inaweza kutathminiwa"],
             "value": "",
-            "not_applicable_specify": "",
-            "cannot_be_assessed_specify": ""
+            "not_applicable_specify": "Haihusiki (taja)",
+            "cannot_be_assessed_specify": "Haiwezi kutathminiwa (taja)"
           },
           "tumor_microfocus": {
             "label": "Microfocus ya uvimbe",
@@ -223,7 +223,7 @@
             "type": "select",
             "options": ["Ndiyo", "Hapana", "Haiwezi kuamuliwa"],
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": "Haiwezi kuamuliwa (taja)"
           }
         }
       },
@@ -235,9 +235,9 @@
             "type": "select",
             "options": ["Haihusiki", "Hazijaonekana", "Zipo", "Haisadikishi", "Haiwezi kuamuliwa"],
             "value": "",
-            "present_specify": "",
-            "equivocal_explain": "",
-            "cannot_be_determined_explain": ""
+            "present_specify": "Zipo (taja)",
+            "equivocal_explain": "Haisadikishi (taja)",
+            "cannot_be_determined_explain": "Haiwezi kuamuliwa (taja)"
           }
         }
       },
@@ -287,14 +287,14 @@
               "Haiwezi kuamuliwa"
             ],
             "value": "",
-            "cannot_be_determined_explain": ""
+            "cannot_be_determined_explain": "Haiwezi kuamuliwa (taja)"
           },
           "length_of_prostatic_tissue_involved": {
             "label": "Urefu wa tishu ya prostate iliyoathiriwa na uvimbe",
             "type": "select",
             "options": ["Taja kwa milimita (mm)", "Chini ya mm 1"],
             "value": "",
-            "length_mm": ""
+            "length_mm": "Urefu kwa milimita (mm)"
           }
         }
       },
@@ -303,24 +303,24 @@
         "type": "select",
         "options": ["Haujaonekana", "Upo", "Haisadikishi", "Haiwezi kuamuliwa"],
         "value": "",
-        "equivocal_explain": "",
-        "cannot_be_determined_explain": ""
+        "equivocal_explain": "Haisadikishi (taja)",
+        "cannot_be_determined_explain": "Haiwezi kuamuliwa (taja)"
       },
       "seminal_vesicle_or_ejaculatory_duct_invasion": {
         "label": "Uvamizi wa seminal vesicle / ejaculatory duct",
         "type": "select",
         "options": ["Haujaonekana", "Upo", "Haisadikishi", "Haiwezi kuamuliwa"],
         "value": "",
-        "equivocal_explain": "",
-        "cannot_be_determined_explain": ""
+        "equivocal_explain": "Haisadikishi (taja)",
+        "cannot_be_determined_explain": "Haiwezi kuamuliwa (taja)"
       },
       "lymphovascular_invasion": {
         "label": "Uvamizi wa limfatiki na / au mishipa ya damu",
         "type": "select",
         "options": ["Haujaonekana", "Upo", "Haisadikishi", "Haiwezi kuamuliwa"],
         "value": "",
-        "equivocal_explain": "",
-        "cannot_be_determined_specify": ""
+        "equivocal_explain": "Haisadikishi (taja)",
+        "cannot_be_determined_specify": "Haiwezi kuamuliwa (taja)"
       },
       "perineural_invasion": {
         "label": "Uvamizi wa perinerali",

@@ -2,7 +2,7 @@
   "templateId": "cervical_cytology_pap_smear_bethesda",
   "version": "1.0",
   "language": "sw",
-  "title": "Kiolezo cha ripoti ya saitolojia ya shingo ya kizazi (pap smear) (mfumo wa Bethesda)",
+  "title": "Kiolezo cha ripoti ya sitolojia ya shingo ya kizazi (pap smear) (mfumo wa Bethesda)",
   "common": {
     "yes": "Ndiyo",
     "no": "Hapana",
@@ -15,10 +15,10 @@
       "title": "Sampuli",
       "fields": {
         "specimen_type": {
-          "label": "Saitolojia ya shingo ya kizazi (chagua kinachofaa)",
+          "label": "Sitolojia ya shingo ya kizazi (chagua kinachofaa)",
           "options": {
             "conventional_smear": "Smear ya kawaida",
-            "liquid_based_cytology": "Saitolojia ya msingi wa kimiminika"
+            "liquid_based_cytology": "Sitolojia ya msingi wa kimiminika"
           }
         },
         "source": {

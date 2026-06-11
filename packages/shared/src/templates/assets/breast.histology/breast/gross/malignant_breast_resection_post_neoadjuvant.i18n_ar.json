@@ -321,26 +321,27 @@
   "block_key": {
     "label": "مفتاح توزيع الكتل",
     "fields": {
-      "nipple": {},
-      "tumor": {},
-      "surrounding_breast": {},
-      "margins": {},
-      "lymph_nodes": {}
+      "nipple": { "label": "الحلمة", "type": "text", "value": "" },
+      "tumor": { "label": "الورم", "type": "text", "value": "" },
+      "surrounding_breast": { "label": "نسيج الثدي المحيط", "type": "text", "value": "" },
+      "medial margin": { "label": "الهامش الأنسي", "type": "text", "value": "" },
+      "lateral margin": { "label": "الهامش الوحشي", "type": "text", "value": "" },
+      "Superior margin": { "label": "الهامش العلوي", "type": "text", "value": "" },
+      "Inferior margin": { "label": "الهامش السفلي", "type": "text", "value": "" },
+      "Posterior margin": { "label": "الهامش الخلفي", "type": "text", "value": "" },
+      "Anterior margin": { "label": "الهامش الأمامي", "type": "text", "value": "" },
+      "lymph_nodes": { "label": "العقد اللمفاوية", "type": "text", "value": "" }
     }
   },
   "grossing": {
     "label": "الفحص العياني",
     "fields": {
       "grossed_by": {
-        "label": "أُجري الفحص العياني بواسطة",
+        "label": "أُجري الفحص العياني بواسطة (الأحرف الأولى)",
         "type": "text",
         "value": ""
       },
-      "date": {
-        "label": "التاريخ",
-        "type": "date",
-        "value": ""
-      }
+      "date": { "label": "التاريخ", "type": "date", "value": "" }
     }
   }
 }

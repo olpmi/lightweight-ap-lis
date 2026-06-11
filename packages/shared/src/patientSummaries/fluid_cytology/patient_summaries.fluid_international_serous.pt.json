@@ -1,0 +1,50 @@
+{
+  "templateId": "fluid_cytology_international_system_serous_fluid",
+  "summaryType": "rule_based_patient_facing_summary",
+  "version": "1.0",
+  "language": "pt",
+  "system": "Sistema Internacional para Relatório de Citopatologia de Fluidos Serosos",
+  "triggerField": "diagnostic_category",
+  "summaries": {
+    "isrsfc_i_non_diagnostic": {
+      "professionalLabel": "Categoria I: Não diagnóstico (ND)",
+      "patientTitle": "A amostra de fluido não foi suficiente para um diagnóstico claro",
+      "plainLanguageSummary": "A amostra de fluido não continha células suficientes ou a qualidade da amostra era limitada, pelo que não foi possível estabelecer um diagnóstico claro.",
+      "whatThisMeans": "Isto não significa que foi encontrado cancro. Significa que a amostra não foi adequada para fornecer uma resposta fiável.",
+      "possibleNextSteps": "O seu médico poderá recomendar nova colheita de amostra ou outros exames, dependendo dos seus sintomas, imagem e historial clínico.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, imagem e resultados anteriores quando relevante."
+    },
+    "isrsfc_ii_negative_for_malignancy": {
+      "professionalLabel": "Categoria II: Negativo para malignidade (NFM)",
+      "patientTitle": "Sem células cancerosas observadas na amostra de fluido",
+      "plainLanguageSummary": "A amostra de fluido não mostrou células cancerosas.",
+      "whatThisMeans": "Este é um resultado tranquilizador, mas a causa da acumulação de fluido ainda necessita de ser interpretada juntamente com os seus achados clínicos.",
+      "possibleNextSteps": "O seu médico poderá continuar a investigar ou tratar causas não oncológicas, tais como infecção, inflamação, doenças cardíacas, hepáticas, renais ou outras condições médicas.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, imagem e resultados anteriores quando relevante."
+    },
+    "isrsfc_iii_aus": {
+      "professionalLabel": "Categoria III: Atipia de significado indeterminado (AUS)",
+      "patientTitle": "Algumas células invulgares observadas",
+      "plainLanguageSummary": "A amostra de fluido mostra algumas células com aspecto invulgar, mas os achados não são suficientes para diagnosticar cancro.",
+      "whatThisMeans": "Este é um resultado indeterminado. Poderá ser necessária uma avaliação adicional, especialmente se houver preocupação clínica ou nos exames de imagem.",
+      "possibleNextSteps": "O seu médico poderá recomendar repetição dos testes do fluido, estudos de bloco celular, revisão de imagem ou biópsia de tecido, dependendo da situação.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, imagem e resultados anteriores quando relevante."
+    },
+    "isrsfc_iv_suspicious_for_malignancy": {
+      "professionalLabel": "Categoria IV: Suspeito de malignidade (SFM)",
+      "patientTitle": "Células suspeitas observadas na amostra de fluido",
+      "plainLanguageSummary": "A amostra de fluido mostra células suspeitas de cancro, mas os achados podem não ser suficientemente completos para um diagnóstico definitivo.",
+      "whatThisMeans": "Existe uma preocupação significativa e habitualmente é necessária uma avaliação adicional.",
+      "possibleNextSteps": "O seu médico poderá recomendar exames adicionais, biópsia de tecido, exames de imagem ou encaminhamento para especialista.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, imagem e resultados anteriores quando relevante."
+    },
+    "isrsfc_v_malignant": {
+      "professionalLabel": "Categoria V: Maligno (MAL)",
+      "patientTitle": "Células cancerosas identificadas na amostra de fluido",
+      "plainLanguageSummary": "A amostra de fluido mostra células malignas, ou seja, foram identificadas células cancerosas.",
+      "whatThisMeans": "Este resultado pode indicar que existe cancro na cavidade corporal de onde o fluido foi recolhido ou que esta está envolvida.",
+      "possibleNextSteps": "O seu médico interpretará este resultado com o seu historial e imagem e poderá providenciar exames adicionais ou planeamento do tratamento.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, imagem e resultados anteriores quando relevante."
+    }
+  }
+}

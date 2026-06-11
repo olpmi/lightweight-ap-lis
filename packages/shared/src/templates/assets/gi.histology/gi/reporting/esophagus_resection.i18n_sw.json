@@ -19,7 +19,7 @@
           "Haijabainishwa"
         ],
         "value": "",
-        "other_specify": ""
+        "other_specify": { "label": "Nyingine (taja)", "type": "text", "value": "" }
       }
     }
   },
@@ -87,7 +87,7 @@
           "Karsinoma, aina haiwezi kubainishwa"
         ],
         "value": "",
-        "comment": ""
+        "comment": { "label": "Maoni", "type": "text", "value": "" }
       },
       "histologic_grade": {
         "label": "Daraja la kihistolojia",

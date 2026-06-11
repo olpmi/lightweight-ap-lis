@@ -321,26 +321,28 @@
   "block_key": {
     "label": "بلاک الاٹمنٹ کلید",
     "fields": {
-      "nipple": {},
-      "tumor": {},
-      "surrounding_breast": {},
-      "margins": {},
-      "lymph_nodes": {}
+      "nipple": { "label": "نپل", "type": "text", "value": "" },
+      "tumor": { "label": "رسولی", "type": "text", "value": "" },
+      "surrounding_breast": { "label": "ارد گرد کی چھاتی کا ٹشو", "type": "text", "value": "" },
+      "medial margin": { "label": "میڈیئل حاشیہ", "type": "text", "value": "" },
+      "lateral margin": { "label": "لیٹرل حاشیہ", "type": "text", "value": "" },
+      "Superior margin": { "label": "اوپری حاشیہ", "type": "text", "value": "" },
+      "Inferior margin": { "label": "زیریں حاشیہ", "type": "text", "value": "" },
+      "Posterior margin": { "label": "پچھلا حاشیہ", "type": "text", "value": "" },
+      "Anterior margin": { "label": "اگلا حاشیہ", "type": "text", "value": "" },
+      "lymph_nodes": { "label": "لمف نوڈز", "type": "text", "value": "" }
     }
   },
+
   "grossing": {
-    "label": "عیانی معائنہ (گراسنگ)",
+    "label": "ظاہری معائنہ",
     "fields": {
       "grossed_by": {
-        "label": "گراس کیا گیا بذریعہ",
+        "label": "ظاہری معائنہ کرنے والا/والی (ابتدائی حروف)",
         "type": "text",
         "value": ""
       },
-      "date": {
-        "label": "تاریخ",
-        "type": "date",
-        "value": ""
-      }
+      "date": { "label": "تاریخ", "type": "date", "value": "" }
     }
   }
 }

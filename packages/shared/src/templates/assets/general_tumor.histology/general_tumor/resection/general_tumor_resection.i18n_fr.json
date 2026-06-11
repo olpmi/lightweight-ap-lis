@@ -23,7 +23,7 @@
         "type": "select",
         "options": ["Effectué", "Non effectué", "Inconnu"],
         "value": "",
-        "lymph_nodes_sampled": ""
+        "lymph_nodes_sampled": "Ganglions prélevés (préciser)"
       }
     }
   },
@@ -118,7 +118,7 @@
         "type": "select",
         "options": ["Non identifiée", "Présente", "Ne peut pas être déterminée"],
         "value": "",
-        "cannot_be_determined_specify": ""
+        "cannot_be_determined_specify": "Ne peut pas être déterminée (expliquer)"
       },
       "treatment_effect": {
         "label": "Effet du traitement",

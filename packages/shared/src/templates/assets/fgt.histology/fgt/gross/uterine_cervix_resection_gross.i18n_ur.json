@@ -32,8 +32,12 @@
           "اومینٹیکٹومی",
           "دیگر"
         ],
-        "pelvic_exenteration_specify_included_organs": "",
-        "other_specify": ""
+        "pelvic_exenteration_specify_included_organs": {
+          "label": "پیلوک ایکسینٹریشن (شامل اعضاء وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": { "label": "دیگر (وضاحت کریں)", "type": "text", "value": "" }
       },
       "hysterectomy_type": {
         "label": "ہسٹریکٹومی کی قسم",
@@ -46,7 +50,7 @@
           "دیگر",
           "غیر متعین"
         ],
-        "other_specify": ""
+        "other_specify": { "label": "دیگر (وضاحت کریں)", "type": "text", "value": "" }
       }
     }
   },
@@ -63,7 +67,7 @@
           "دیگر",
           "غیر متعین"
         ],
-        "other_specify": ""
+        "other_specify": { "label": "دیگر (وضاحت کریں)", "type": "text", "value": "" }
       },
       "tumor_size": {
         "label": "رسولی کا سائز",

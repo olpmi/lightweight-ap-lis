@@ -17,7 +17,7 @@
         ],
         "type": "select",
         "value": "",
-        "other_specify": ""
+        "other_specify": "Nyingine (taja)"
       },
       "laterality": {
         "label": "Upande wa sampuli",
@@ -44,7 +44,7 @@
         ],
         "type": "multi_select",
         "value": [],
-        "clock_position_specify": ""
+        "clock_position_specify": { "label": "Nafasi ya saa (taja)", "type": "text", "value": "" }
       },
       "histologic_type": {
         "label": "Aina ya histolojia",
@@ -70,7 +70,7 @@
         ],
         "type": "multi_select",
         "value": [],
-        "other_specify": ""
+        "other_specify": "Nyingine (taja)"
       },
       "nuclear_grade": {
         "label": "Daraja la nyuklia",
@@ -83,8 +83,8 @@
         ],
         "type": "select",
         "value": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": ""
+        "other_specify": "Nyingine (taja)",
+        "cannot_be_determined_specify": "Haiwezi kuamuliwa (taja)"
       },
       "necrosis": {
         "label": "Nekrosisi",
@@ -97,8 +97,8 @@
         ],
         "type": "select",
         "value": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": ""
+        "other_specify": "Nyingine (taja)",
+        "cannot_be_determined_specify": "Haiwezi kuamuliwa (taja)"
       },
       "microcalcifications": {
         "label": "Mikrokalsifikesheni",
@@ -110,7 +110,7 @@
         ],
         "type": "multi_select",
         "value": [],
-        "other_specify": ""
+        "other_specify": "Nyingine (taja)"
       }
     }
   },

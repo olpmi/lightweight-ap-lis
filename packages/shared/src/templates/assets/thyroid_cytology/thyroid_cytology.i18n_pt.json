@@ -1,0 +1,99 @@
+{
+  "templateId": "thyroid_cytology_bethesda_3rd_edition",
+  "templateName": "Modelo de laudo de citologia da tiróide (3ª Edição do Sistema de Bethesda)",
+  "language": "pt",
+  "sections": [
+    {
+      "id": "specimen",
+      "title": "Espécime",
+      "fields": [
+        {
+          "id": "thyroid_fna_site",
+          "label": "PAF da tiróide (seleccionar a opção apropriada)",
+          "type": "select",
+          "options": ["Direito", "Esquerdo", "Istmo"]
+        },
+        {
+          "id": "nodule_size_cm",
+          "label": "Tamanho do nódulo (cm)",
+          "type": "text"
+        },
+        {
+          "id": "ultrasound_features",
+          "label": "Características ecográficas (se fornecidas)",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "adequacy",
+      "title": "Adequação",
+      "fields": [
+        {
+          "id": "adequacy_status",
+          "label": "Adequação",
+          "type": "select",
+          "options": ["Satisfatório para avaliação", "Insatisfatório / não diagnóstico"]
+        }
+      ]
+    },
+    {
+      "id": "bethesda_category",
+      "title": "Categoria de Bethesda",
+      "fields": [
+        {
+          "id": "bethesda_category",
+          "label": "Categoria de Bethesda",
+          "type": "select",
+          "options": [
+            "I. Não diagnóstico / Insatisfatório",
+            "II. Benigno",
+            "III. Atipia de significado indeterminado (AUS)",
+            "IV. Neoplasia folicular / Suspeito de neoplasia folicular",
+            "V. Suspeito de malignidade",
+            "VI. Maligno"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "microscopic_description",
+      "title": "Descrição microscópica",
+      "fields": [
+        {
+          "id": "microscopic_description_text",
+          "label": "Descrição microscópica (texto livre)",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "id": "recommended_management",
+      "title": "Conduta recomendada",
+      "fields": [
+        {
+          "id": "recommended_management_options",
+          "label": "Conduta recomendada (seleccionar a opção apropriada)",
+          "type": "multiselect",
+          "options": [
+            "Seguimento clínico / radiológico",
+            "Repetição da PAF",
+            "Testes moleculares (se disponíveis)",
+            "Consulta cirúrgica / lobectomia / tiroidectomia"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "comment",
+      "title": "Comentário",
+      "fields": [
+        {
+          "id": "comment_text",
+          "label": "Comentário",
+          "type": "textarea"
+        }
+      ]
+    }
+  ]
+}

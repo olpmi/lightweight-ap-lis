@@ -16,7 +16,7 @@
           "Nyingine",
           "Haijabainishwa"
         ],
-        "other_specify": "",
+        "other_specify": "Nyingine (taja)",
         "type": "select",
         "value": ""
       },
@@ -104,7 +104,7 @@
           "Solid",
           "Nyingine"
         ],
-        "other_specify": "",
+        "other_specify": "Nyingine (taja)",
         "type": "multi_select",
         "value": []
       },
@@ -132,7 +132,7 @@
           "Zipo katika tishu isiyo ya neoplasia",
           "Nyingine"
         ],
-        "other_specify": "",
+        "other_specify": "Nyingine (taja)",
         "type": "multi_select",
         "value": []
       }
@@ -192,7 +192,11 @@
           "Haiwezi kuamuliwa"
         ],
         "other_specify": "",
-        "cannot_be_determined_explain": "",
+        "cannot_be_determined_explain": {
+          "label": "Haiwezi kuamuliwa (eleza)",
+          "type": "text",
+          "value": ""
+        },
         "type": "multi_select",
         "value": []
       },
@@ -440,16 +444,24 @@
           "Nyingine",
           "Haiwezi kuamuliwa"
         ],
-        "non_regional_lymph_nodes_specify": "",
-        "lung_specify": "",
-        "liver_specify": "",
-        "bone_specify": "",
-        "brain_specify": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": "",
-        "type": "multi_select",
-        "value": []
-      }
+        "non_regional_lymph_nodes_specify": {
+          "label": "Nodi za limfu zisizo za kikanda (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "lung_specify": { "label": "Mapafu (taja)", "type": "text", "value": "" },
+        "liver_specify": { "label": "Ini (taja)", "type": "text", "value": "" },
+        "bone_specify": { "label": "Mfupa (taja)", "type": "text", "value": "" },
+        "brain_specify": { "label": "Ubongo (taja)", "type": "text", "value": "" },
+        "other_specify": { "label": "Nyingine (taja)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "Haiwezi kuamuliwa (taja)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "type": "multi_select",
+      "value": []
     }
   },
   "pathologic_stage": {

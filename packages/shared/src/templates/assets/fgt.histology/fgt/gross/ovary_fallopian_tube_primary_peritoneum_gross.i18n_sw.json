@@ -33,7 +33,7 @@
           "Pleurocentesis (majimaji ya pleura)",
           "Nyingine"
         ],
-        "other_specify": ""
+        "other_specify": "Nyingine (taja)"
       },
       "hysterectomy_type": {
         "label": "Aina ya upasuaji wa kuondoa mfuko wa uzazi",
@@ -46,15 +46,17 @@
           "Nyingine",
           "Haijabainishwa"
         ],
-        "other_specify": ""
+        "other_specify": "Nyingine (taja)"
       },
       "specimen_integrity_note": {
-        "label": "Kumbuka kuhusu uadilifu wa sampuli"
-      },
-      "specimen_integrity_applicability": {
-        "label": "Uhusu wa uadilifu wa sampuli",
-        "options": ["Haihusiki"]
+        "label": "Kumbuka kuhusu uadilifu wa sampuli",
+        "type": "text",
+        "value": "Kwa uvimbe wa msingi wa ovari: ikiwa ovari yenye uvimbe wa msingi imetolewa bila kuharibika ndani ya mfuko wa laparoskopia na kupasuka ndani ya mfuko na daktari wa upasuaji bila kumwagika kwenye cavity ya peritonemu, uadilifu wa sampuli uandikwe kama 'kapsuli iko salama' pamoja na maoni yanayoeleza hili katika ripoti. Kwa uvimbe wa msingi wa peritonemu kwa wanawake waliofanyiwa salpingo-oforektomia awali, chagua 'haihusiki'."
       }
+    },
+    "specimen_integrity_applicability": {
+      "label": "Uhusu wa uadilifu wa sampuli",
+      "options": ["Haihusiki"]
     }
   },
   "ovarian_integrity": {
@@ -66,7 +68,7 @@
       "right_ovary_integrity": {
         "label": "Uadilifu wa ovari ya kulia",
         "options": ["Kapsuli haijapasuka", "Kapsuli imepasuka", "Imevunjikavunjika", "Nyingine"],
-        "other_specify": ""
+        "other_specify": "Nyingine (taja)"
       },
       "right_ovary_time_of_rupture": {
         "label": "Wakati wa kupasuka – ovari ya kulia",
@@ -107,7 +109,7 @@
       "right_fallopian_tube_integrity": {
         "label": "Uadilifu wa mrija wa fallopian wa kulia",
         "options": ["Serosa haijapasuka", "Serosa imepasuka", "Imevunjikavunjika", "Nyingine"],
-        "other_specify": ""
+        "other_specify": "Nyingine (taja)"
       },
       "left_fallopian_tube_present": {
         "label": "Mrija wa fallopian wa kushoto"
@@ -115,7 +117,7 @@
       "left_fallopian_tube_integrity": {
         "label": "Uadilifu wa mrija wa fallopian wa kushoto",
         "options": ["Serosa haijapasuka", "Serosa imepasuka", "Imevunjikavunjika", "Nyingine"],
-        "other_specify": ""
+        "other_specify": "Nyingine (taja)"
       },
       "fallopian_tube_laterality_not_specified_present": {
         "label": "Mrija wa fallopian, upande haujabainishwa"
@@ -123,7 +125,7 @@
       "fallopian_tube_laterality_not_specified_integrity": {
         "label": "Uadilifu wa mrija wa fallopian (upande haujabainishwa)",
         "options": ["Serosa haijapasuka", "Serosa imepasuka", "Imevunjikavunjika", "Nyingine"],
-        "other_specify": ""
+        "other_specify": "Nyingine (taja)"
       }
     }
   },
@@ -133,7 +135,7 @@
       "status": {
         "label": "Uadilifu wa mfuko wa uzazi",
         "options": ["Nzima", "Umefunguliwa", "Umegawanywa vipandevipande", "Nyingine"],
-        "other_specify": ""
+        "other_specify": "Nyingine (taja)"
       }
     }
   },
@@ -176,14 +178,14 @@
     }
   },
   "grossing": {
-    "label": "Uchunguzi wa makroskopia (grossing)",
+    "label": "Uchunguzi wa macho",
     "fields": {
       "grossed_by": {
-        "label": "Uchunguzi wa makroskopia ulifanywa na"
+        "label": "Imefanyiwa uchunguzi wa macho na (herufi za kwanza)",
+        "type": "text",
+        "value": ""
       },
-      "date": {
-        "label": "Tarehe"
-      }
+      "date": { "label": "Tarehe", "type": "date", "value": "" }
     }
   }
 }

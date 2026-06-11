@@ -22,7 +22,7 @@
           "غير محدد"
         ],
         "value": "",
-        "other_specify": ""
+        "other_specify": { "label": "أخرى (حدد)", "type": "text", "value": "" }
       }
     }
   },
@@ -90,7 +90,7 @@
           "سرطانة، لا يمكن تحديد النوع"
         ],
         "value": "",
-        "comment": ""
+        "comment": { "label": "تعليق", "type": "text", "value": "" }
       },
       "histologic_grade": {
         "label": "الدرجة النسيجية",

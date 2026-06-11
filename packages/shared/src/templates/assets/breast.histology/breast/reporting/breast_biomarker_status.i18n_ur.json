@@ -79,7 +79,7 @@
           "membrane staining نامکمل ہو اور نہایت ہلکی یا بمشکل محسوس ہو، اور ٹیومر خلیات کے 10% یا اس سے کم میں ہو (0+ / membrane staining کے ساتھ)",
           "دیگر"
         ],
-        "other_specify": "",
+        "other_specify": "دیگر (وضاحت کریں)",
         "type": "select",
         "value": ""
       },
@@ -89,7 +89,7 @@
           "نامکمل membrane staining جو ہلکی یا بمشکل محسوس ہو، اور ٹیومر خلیات کے 10% سے زیادہ میں ہو",
           "دیگر"
         ],
-        "other_specify": "",
+        "other_specify": "دیگر (وضاحت کریں)",
         "type": "select",
         "value": ""
       },
@@ -102,7 +102,7 @@
           "سائٹوپلازم میں بہت زیادہ staining موجود ہو جو membrane stain intensity کے جائزے کو ڈھانپ دے",
           "دیگر"
         ],
-        "other_specify": "",
+        "other_specify": "دیگر (وضاحت کریں)",
         "type": "select",
         "value": ""
       },
@@ -112,7 +112,7 @@
           "circumferential membrane staining جو مکمل، شدید ہو، اور ٹیومر خلیات کے 10% سے زیادہ میں ہو",
           "دیگر"
         ],
-        "other_specify": "",
+        "other_specify": "دیگر (وضاحت کریں)",
         "type": "select",
         "value": ""
       }

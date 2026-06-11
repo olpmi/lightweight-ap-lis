@@ -23,7 +23,7 @@
         "type": "select",
         "options": ["Umefanywa", "Haujafanywa", "Haijulikani"],
         "value": "",
-        "lymph_nodes_sampled": ""
+        "lymph_nodes_sampled": "Sampuli za tezi za limfu (taja)"
       }
     }
   },
@@ -118,7 +118,7 @@
         "type": "select",
         "options": ["Haujaonekana", "Upo", "Haiwezi kuamuliwa"],
         "value": "",
-        "cannot_be_determined_specify": ""
+        "cannot_be_determined_specify": "Haiwezi kuamuliwa (eleza)"
       },
       "treatment_effect": {
         "label": "Athari ya matibabu",

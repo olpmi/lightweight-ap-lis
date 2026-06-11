@@ -26,7 +26,11 @@
         "type": "select",
         "options": ["کی گئی", "نہیں کی گئی", "معلوم نہیں"],
         "value": "",
-        "lymph_nodes_sampled": ""
+        "lymph_nodes_sampled": {
+          "label": "نمونے کے لیے لیے گئے لمف نوڈز",
+          "type": "text",
+          "value": ""
+        }
       }
     }
   },
@@ -121,7 +125,11 @@
         "type": "select",
         "options": ["شناخت نہیں ہوئی", "موجود", "متعین نہیں کیا جا سکتا"],
         "value": "",
-        "cannot_be_determined_specify": ""
+        "cannot_be_determined_specify": {
+          "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        }
       },
       "treatment_effect": {
         "label": "علاج کا اثر",

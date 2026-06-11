@@ -40,9 +40,9 @@
           "کارسینوما، قسم متعین نہیں کی جا سکتی"
         ],
         "value": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": "",
-        "comment": ""
+        "other_specify": "دیگر (تفصیل)",
+        "cannot_be_determined_specify": "متعین نہیں کیا جا سکتا (تفصیل)",
+        "comment": "تبصرہ"
       },
       "histologic_grade": {
         "label": "ہسٹولوجیکل گریڈ",
@@ -55,16 +55,16 @@
           "قابل اطلاق نہیں"
         ],
         "value": "",
-        "cannot_be_assessed_specify": "",
-        "not_applicable_specify": ""
+        "cannot_be_assessed_specify": "تشخیص نہیں کی جا سکتی (تفصیل)",
+        "not_applicable_specify": "قابل اطلاق نہیں (تفصیل)"
       },
       "lymphovascular_invasion": {
         "label": "لمفاتی اور / یا عروقی رسوخ",
         "type": "select",
         "options": ["شناخت نہیں ہوئی", "موجود", "مبہم", "متعین نہیں کیا جا سکتا"],
         "value": "",
-        "equivocal_explain": "",
-        "cannot_be_determined_specify": ""
+        "equivocal_explain": "مبہم (تفصیل)",
+        "cannot_be_determined_specify": "متعین نہیں کیا جا سکتا (تفصیل)"
       }
     }
   },
@@ -83,7 +83,7 @@
           "دیگر"
         ],
         "value": [],
-        "other_specify": ""
+        "other_specify": "دیگر (تفصیل)"
       }
     }
   }

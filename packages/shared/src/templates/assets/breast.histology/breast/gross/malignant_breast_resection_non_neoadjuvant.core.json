@@ -163,13 +163,7 @@
       "abnormal_features": {
         "label": "Abnormal features",
         "type": "multi_select",
-        "options": [
-          "Paget’s disease",
-          "Scaling crust",
-          "Retracted",
-          "Fixed to tumor",
-          "Other"
-        ]
+        "options": ["Paget’s disease", "Scaling crust", "Retracted", "Fixed to tumor", "Other"]
       }
     }
   },
@@ -247,7 +241,12 @@
       "nipple": {},
       "tumor": {},
       "surrounding_breast": {},
-      "margins": {},
+      "medial margin": {},
+      "lateral margin": {},
+      "Superior margin": {},
+      "Inferior margin": {},
+      "Posterior margin": {},
+      "Anterior margin": {},
       "lymph_nodes": {}
     }
   },
@@ -256,7 +255,7 @@
     "label": "Grossing",
     "fields": {
       "grossed_by": { "label": "Grossed by", "type": "text", "value": "" },
-      "date":       { "label": "Date",        "type": "date", "value": "" }
+      "date": { "label": "Date", "type": "date", "value": "" }
     }
   }
 }

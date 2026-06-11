@@ -1,0 +1,305 @@
+{
+  "template_id": "breast_invasive_carcinoma_biopsy_v1",
+  "domain": "anatomic_pathology",
+  "lang": "pt",
+  "title": "Mama — Carcinoma Invasivo, Biópsia",
+  "protocol_posting_date": "March 2023",
+
+  "specimen": {
+    "label": "Espécime",
+    "fields": {
+      "procedure": {
+        "label": "Procedimento",
+        "type": "select",
+        "options": [
+          "Biópsia por agulha",
+          "Punção aspirativa por agulha fina",
+          "Outro",
+          "Não especificado"
+        ],
+        "value": "",
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" }
+      },
+      "laterality": {
+        "label": "Lateralidade da espécime",
+        "type": "select",
+        "options": ["Direita", "Esquerda", "Não especificada"],
+        "value": ""
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "tumor_site": {
+        "label": "Local do tumor",
+        "type": "multi_select",
+        "options": [
+          "Quadrante superior externo",
+          "Quadrante inferior externo",
+          "Quadrante superior interno",
+          "Quadrante inferior interno",
+          "Central",
+          "Mamilo",
+          "Posição no quadrante horário",
+          "Não especificado"
+        ],
+        "value": [],
+        "clock_position_specify": {
+          "label": "Posição no quadrante horário (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+
+      "histologic_type": {
+        "label": "Tipo histológico",
+        "type": "select",
+        "options": [
+          "Sem carcinoma invasivo residual",
+          "Carcinoma invasivo sem tipo especial (ductal)",
+          "Carcinoma microinvasivo",
+          "Carcinoma lobular invasivo",
+          "Carcinoma invasivo com características mistas ductais e lobulares",
+          "Carcinoma invasivo com características de",
+          "Carcinoma tubular",
+          "Carcinoma cribriforme invasivo",
+          "Carcinoma mucinoso",
+          "Carcinoma micropapilar invasivo",
+          "Adenocarcinoma apócrino",
+          "Carcinoma metaplásico",
+          "Carcinoma papilífero encapsulado com invasão",
+          "Carcinoma papilífero sólido com invasão",
+          "Adenocarcinoma papilar intraductal com invasão",
+          "Carcinoma adenoide cístico",
+          "Tumor neuroendócrino",
+          "Carcinoma neuroendócrino",
+          "Carcinoma invasivo, tipo não pode ser determinado",
+          "Outro tipo histológico não listado"
+        ],
+        "value": "",
+        "features_specify": {
+          "label": "Características (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_specify": {
+          "label": "Não pode ser determinado (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" }
+      },
+
+      "histologic_grade": {
+        "label": "Grau histológico (Pontuação Histológica de Nottingham)",
+        "fields": {
+          "applicability": {
+            "label": "Aplicabilidade",
+            "type": "select",
+            "options": [
+              "Não aplicável (sem carcinoma residual ou apenas microinvasão)",
+              "Pontuação de Nottingham"
+            ],
+            "value": ""
+          },
+          "glandular_tubular_differentiation": {
+            "label": "Diferenciação glandular (acinar) / tubular",
+            "type": "select",
+            "options": [
+              "Pontuação 1 (mais de 75% da área tumoral com formação de estruturas glandulares / tubulares)",
+              "Pontuação 2 (10% a 75% da área tumoral com formação de estruturas glandulares / tubulares)",
+              "Pontuação 3 (menos de 10% da área tumoral com formação de estruturas glandulares / tubulares)",
+              "Pontuação não pode ser determinada"
+            ],
+            "value": "",
+            "cannot_be_determined_specify": {
+              "label": "Não pode ser determinado (especificar)",
+              "type": "text",
+              "value": ""
+            }
+          },
+          "nuclear_pleomorphism": {
+            "label": "Pleomorfismo nuclear",
+            "type": "select",
+            "options": [
+              "Pontuação 1 (núcleos pequenos com pouco aumento de tamanho em comparação com células epiteliais mamárias normais, contornos regulares, cromatina nuclear uniforme, pouca variação de tamanho)",
+              "Pontuação 2 (células maiores que o normal com núcleos vesiculares abertos, nucléolos visíveis e variabilidade moderada no tamanho e forma)",
+              "Pontuação 3 (núcleos vesiculares, frequentemente com nucléolos proeminentes, apresentando acentuada variação no tamanho e forma, ocasionalmente com formas muito grandes e bizarras)",
+              "Pontuação não pode ser determinada"
+            ],
+            "value": "",
+            "cannot_be_determined_specify": {
+              "label": "Não pode ser determinado (especificar)",
+              "type": "text",
+              "value": ""
+            }
+          },
+          "mitotic_rate": {
+            "label": "Taxa mitótica",
+            "type": "select",
+            "options": [
+              "Pontuação 1",
+              "Pontuação 2",
+              "Pontuação 3",
+              "Pontuação não pode ser determinada"
+            ],
+            "value": "",
+            "cannot_be_determined_specify": {
+              "label": "Não pode ser determinado (especificar)",
+              "type": "text",
+              "value": ""
+            },
+            "reference_note": "Ver Tabela 1 no Protocolo CAP."
+          },
+          "overall_grade": {
+            "label": "Grau geral",
+            "type": "select",
+            "options": [
+              "Grau 1 (pontuações 3, 4 ou 5)",
+              "Grau 2 (pontuações 6 ou 7)",
+              "Grau 3 (pontuações 8 ou 9)",
+              "Pontuação não pode ser determinada"
+            ],
+            "value": "",
+            "cannot_be_determined_specify": {
+              "label": "Não pode ser determinado (especificar)",
+              "type": "text",
+              "value": ""
+            }
+          }
+        }
+      },
+
+      "largest_invasive_focus": {
+        "label": "Maior foco invasivo nesta espécime de biópsia limitada",
+        "fields": {
+          "measurement_type": {
+            "label": "Tipo de medição",
+            "type": "select",
+            "options": [
+              "Medição exata em milímetros (mm)",
+              "Pelo menos em milímetros (mm)",
+              "Não pode ser determinado"
+            ],
+            "value": ""
+          },
+          "measurement_mm": { "label": "Medição (mm)", "type": "number", "value": "" },
+          "cannot_be_determined_specify": {
+            "label": "Não pode ser determinado (explicar)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      }
+    }
+  },
+
+  "dcis": {
+    "label": "Carcinoma ductal in situ (CDIS)",
+    "fields": {
+      "presence": {
+        "label": "Presença de CDIS",
+        "type": "select",
+        "options": ["Não identificado", "Presente"],
+        "value": ""
+      },
+      "architectural_patterns": {
+        "label": "Padrões arquiteturais",
+        "type": "multi_select",
+        "options": [
+          "Comedoniano",
+          "Doença de Paget (CDIS com envolvimento da pele do mamilo)",
+          "Cribriforme",
+          "Micropapilar",
+          "Papilar",
+          "Sólido",
+          "Outro"
+        ],
+        "value": [],
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" }
+      },
+      "nuclear_grade": {
+        "label": "Grau nuclear",
+        "type": "select",
+        "options": [
+          "Grau I (baixo)",
+          "Grau II (intermediário)",
+          "Grau III (alto)",
+          "Outro",
+          "Não pode ser determinado"
+        ],
+        "value": "",
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "Não pode ser determinado (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "necrosis": {
+        "label": "Necrose",
+        "type": "select",
+        "options": [
+          "Não identificada",
+          "Presente, focal (pequenos focos ou necrose de células isoladas)",
+          "Presente, central (necrose comedoniana expansiva)",
+          "Outro",
+          "Não pode ser determinado",
+          "Não pode ser excluído"
+        ],
+        "value": "",
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "Não pode ser determinado (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      }
+    }
+  },
+
+  "lymphovascular_invasion": {
+    "label": "Invasão linfática e/ou vascular",
+    "fields": {
+      "status": {
+        "label": "Invasão linfática e/ou vascular",
+        "type": "select",
+        "options": ["Não identificada", "Presente", "Não pode ser determinado"],
+        "value": "",
+        "cannot_be_determined_specify": {
+          "label": "Não pode ser determinado (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      }
+    }
+  },
+
+  "microcalcifications": {
+    "label": "Microcalcificações",
+    "fields": {
+      "status": {
+        "label": "Microcalcificações",
+        "type": "multi_select",
+        "options": [
+          "Não identificadas",
+          "Presentes no CDIS",
+          "Presentes no carcinoma invasivo",
+          "Presentes em tecido não neoplásico",
+          "Outro"
+        ],
+        "value": [],
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" }
+      }
+    }
+  },
+
+  "additional_findings": {
+    "label": "Achados adicionais",
+    "fields": {
+      "findings": { "label": "Achados adicionais", "type": "text", "value": "" }
+    }
+  }
+}

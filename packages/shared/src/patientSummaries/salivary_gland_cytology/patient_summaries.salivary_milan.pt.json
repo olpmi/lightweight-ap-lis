@@ -1,0 +1,66 @@
+{
+  "templateId": "salivary_gland_cytology_milan",
+  "summaryType": "rule_based_patient_facing_summary",
+  "version": "1.0",
+  "language": "pt",
+  "system": "Sistema de Milão para Relatório de Citopatologia das Glândulas Salivares",
+  "triggerField": "milan_category",
+  "summaries": {
+    "milan_i_non_diagnostic": {
+      "professionalLabel": "Categoria de Milão I: Não diagnóstico",
+      "patientTitle": "A amostra não foi suficiente para um diagnóstico claro",
+      "plainLanguageSummary": "A amostra da glândula salivar não continha material suficiente para um diagnóstico claro.",
+      "whatThisMeans": "Isto não significa que foi encontrado cancro. Significa que a amostra não foi adequada para fornecer uma resposta fiável.",
+      "possibleNextSteps": "O seu médico poderá recomendar nova colheita de amostra, revisão de imagem ou avaliação adicional, dependendo do nódulo e dos achados clínicos.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, imagem e resultados anteriores quando relevante."
+    },
+    "milan_ii_non_neoplastic": {
+      "professionalLabel": "Categoria de Milão II: Não neoplásico",
+      "patientTitle": "Nenhum tumor identificado",
+      "plainLanguageSummary": "A amostra mostra alterações não tumorais, como alterações inflamatórias ou reativas benignas.",
+      "whatThisMeans": "Este resultado não mostra um tumor da glândula salivar na amostra examinada.",
+      "possibleNextSteps": "O seu médico poderá recomendar seguimento clínico ou por imagem, especialmente se o inchaço persistir ou se alterar.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, imagem e resultados anteriores quando relevante."
+    },
+    "milan_iii_aus": {
+      "professionalLabel": "Categoria de Milão III: Atipia de significado indeterminado (AUS)",
+      "patientTitle": "Algumas células ligeiramente invulgares observadas",
+      "plainLanguageSummary": "A amostra mostra algumas células com aspecto invulgar, mas os achados não são suficientes para classificar claramente a lesão.",
+      "whatThisMeans": "Este é um resultado indeterminado. Pode dever-se a alterações benignas, mas poderá ser necessária uma avaliação adicional.",
+      "possibleNextSteps": "O seu médico poderá recomendar repetição da PAF, correlação com imagem ou consulta especializada.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, imagem e resultados anteriores quando relevante."
+    },
+    "milan_iva_benign_neoplasm": {
+      "professionalLabel": "Categoria de Milão IVa: Neoplasia benigna",
+      "patientTitle": "Tumor benigno da glândula salivar",
+      "plainLanguageSummary": "A amostra é mais compatível com um tumor benigno, não canceroso, da glândula salivar.",
+      "whatThisMeans": "Os tumores benignos não são cancro, mas alguns podem continuar a crescer ou requerer remoção, dependendo do tipo, tamanho e sintomas.",
+      "possibleNextSteps": "O seu médico poderá recomendar consulta cirúrgica, seguimento por imagem ou remoção, dependendo da situação clínica.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, imagem e resultados anteriores quando relevante."
+    },
+    "milan_ivb_sump": {
+      "professionalLabel": "Categoria de Milão IVb: Neoplasia da glândula salivar de potencial maligno incerto (SUMP)",
+      "patientTitle": "Tumor da glândula salivar com comportamento incerto",
+      "plainLanguageSummary": "A amostra mostra um tumor da glândula salivar, mas a citologia isolada não permite determinar com confiança se é benigno ou maligno.",
+      "whatThisMeans": "Habitualmente é necessária uma avaliação adicional para compreender a natureza exacta do tumor.",
+      "possibleNextSteps": "O seu médico poderá recomendar consulta cirúrgica, excisão ou testes adicionais, se disponíveis.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, imagem e resultados anteriores quando relevante."
+    },
+    "milan_v_suspicious_for_malignancy": {
+      "professionalLabel": "Categoria de Milão V: Suspeito de malignidade",
+      "patientTitle": "Resultado suspeito da glândula salivar",
+      "plainLanguageSummary": "A amostra mostra alterações suspeitas de cancro, mas podem não ser suficientes para um diagnóstico definitivo.",
+      "whatThisMeans": "Existe uma preocupação significativa e habitualmente é necessária uma avaliação adicional.",
+      "possibleNextSteps": "O seu médico poderá recomendar consulta cirúrgica, nova colheita de amostra, exames de imagem ou outros testes.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, imagem e resultados anteriores quando relevante."
+    },
+    "milan_vi_malignant": {
+      "professionalLabel": "Categoria de Milão VI: Maligno",
+      "patientTitle": "Células cancerosas identificadas na amostra da glândula salivar",
+      "plainLanguageSummary": "A amostra mostra células malignas, ou seja, foram identificadas células cancerosas.",
+      "whatThisMeans": "Este resultado requer habitualmente avaliação especializada e planeamento do tratamento.",
+      "possibleNextSteps": "O seu médico providenciará provavelmente encaminhamento, exames de imagem, cirurgia ou outro planeamento do tratamento, dependendo do tipo e extensão do cancro.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, imagem e resultados anteriores quando relevante."
+    }
+  }
+}

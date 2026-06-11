@@ -1,0 +1,154 @@
+{
+  "templateId": "fluid_cytology_international_serous_fluid",
+  "templateName": "Modelo de laudo de citologia de fluidos (Sistema Internacional para Relato de Citologia de Fluidos Serosos)",
+  "language": "pt",
+  "sections": [
+    {
+      "id": "specimen",
+      "title": "Espécime",
+      "fields": [
+        {
+          "id": "fluid_type",
+          "label": "Tipo de fluido (seleccionar a opção apropriada)",
+          "type": "select",
+          "options": ["Pleural", "Peritoneal", "Ascítico", "Pericárdico", "Outro"]
+        },
+        {
+          "id": "laterality",
+          "label": "Lateralidade (se aplicável)",
+          "type": "select",
+          "options": ["Direito", "Esquerdo", "Bilateral"]
+        },
+        {
+          "id": "volume_received_ml",
+          "label": "Volume recebido (mL)",
+          "type": "text"
+        },
+        {
+          "id": "appearance",
+          "label": "Aspecto",
+          "type": "select",
+          "options": ["Límpido", "Citrino", "Hemorrágico", "Turvo", "Outro"]
+        }
+      ]
+    },
+    {
+      "id": "preparation_methods",
+      "title": "Métodos de preparação",
+      "fields": [
+        {
+          "id": "preparation_methods_used",
+          "label": "Métodos de preparação",
+          "type": "multiselect",
+          "options": ["Esfregaço convencional", "Citocentrifugação", "Preparação em meio líquido"]
+        },
+        {
+          "id": "cell_block_prepared",
+          "label": "Bloco celular preparado",
+          "type": "select",
+          "options": ["Sim", "Não"]
+        }
+      ]
+    },
+    {
+      "id": "adequacy",
+      "title": "Adequação",
+      "fields": [
+        {
+          "id": "adequacy_status",
+          "label": "Adequação",
+          "type": "select",
+          "options": [
+            "Satisfatório para avaliação",
+            "Limitado / celularidade escassa",
+            "Insatisfatório"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "diagnostic_category",
+      "title": "Categoria diagnóstica",
+      "fields": [
+        {
+          "id": "diagnostic_category",
+          "label": "Categoria diagnóstica",
+          "type": "select",
+          "options": [
+            "I. Não diagnóstico (ND)",
+            "II. Negativo para malignidade (NFM)",
+            "III. Atipia de significado indeterminado (AUS)",
+            "IV. Suspeito de malignidade (SFM)",
+            "V. Maligno (MAL)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "microscopic_description",
+      "title": "Descrição microscópica",
+      "fields": [
+        {
+          "id": "microscopic_description_brief",
+          "label": "Descrição microscópica (breve)",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "id": "malignant_suspicious_favor",
+      "title": "Se maligno / suspeito, considerar",
+      "fields": [
+        {
+          "id": "favor_diagnosis",
+          "label": "Se maligno / suspeito, considerar",
+          "type": "multiselect",
+          "options": [
+            "Adenocarcinoma metastático",
+            "Mesotelioma",
+            "Neoplasia hematolinfoide",
+            "Carcinoma pouco diferenciado",
+            "Outro"
+          ]
+        },
+        {
+          "id": "favor_other",
+          "label": "Outro",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "ancillary_studies",
+      "title": "Estudos complementares (se realizados)",
+      "fields": [
+        {
+          "id": "cell_block_immunocytochemistry",
+          "label": "Imuno-citoquímica em bloco celular",
+          "type": "text"
+        },
+        {
+          "id": "flow_cytometry",
+          "label": "Citometria de fluxo",
+          "type": "text"
+        },
+        {
+          "id": "molecular_studies",
+          "label": "Estudos moleculares",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "comment",
+      "title": "Comentário",
+      "fields": [
+        {
+          "id": "comment_text",
+          "label": "Comentário",
+          "type": "textarea"
+        }
+      ]
+    }
+  ]
+}

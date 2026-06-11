@@ -29,20 +29,72 @@
           "پرائمری پیریٹونیئم",
           "دیگر"
         ],
-        "right_ovary_specify": "",
-        "left_ovary_specify": "",
-        "bilateral_ovaries_specify": "",
-        "ovary_laterality_cannot_be_determined_explain": "",
-        "right_fallopian_tube_specify": "",
-        "left_fallopian_tube_specify": "",
-        "bilateral_fallopian_tubes_specify": "",
-        "fallopian_tube_laterality_cannot_be_determined_explain": "",
-        "right_tubo_ovarian_specify": "",
-        "left_tubo_ovarian_specify": "",
-        "bilateral_tubo_ovarian_specify": "",
-        "tubo_ovarian_laterality_cannot_be_determined_explain": "",
-        "primary_peritoneum_specify": "",
-        "other_specify": ""
+        "right_ovary_specify": {
+          "label": "دائیں بیضہ دانی (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "left_ovary_specify": {
+          "label": "بائیں بیضہ دانی (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "bilateral_ovaries_specify": {
+          "label": "دونوں بیضہ دانیاں (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "ovary_laterality_cannot_be_determined_explain": {
+          "label": "بیضہ دانی کی جانب متعین نہیں کی جا سکتی (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "right_fallopian_tube_specify": {
+          "label": "دائیں فیلوپین ٹیوب (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "left_fallopian_tube_specify": {
+          "label": "بائیں فیلوپین ٹیوب (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "bilateral_fallopian_tubes_specify": {
+          "label": "دونوں فیلوپین ٹیوبیں (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "fallopian_tube_laterality_cannot_be_determined_explain": {
+          "label": "فیلوپین ٹیوب کی جانب متعین نہیں کی جا سکتی (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "right_tubo_ovarian_specify": {
+          "label": "دائیں tubo-ovarian ساخت (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "left_tubo_ovarian_specify": {
+          "label": "بائیں tubo-ovarian ساخت (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "bilateral_tubo_ovarian_specify": {
+          "label": "دونوں جانب tubo-ovarian ساخت (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "tubo_ovarian_laterality_cannot_be_determined_explain": {
+          "label": "tubo-ovarian ساخت کی جانب متعین نہیں کی جا سکتی (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "primary_peritoneum_specify": {
+          "label": "بنیادی پیریٹونیم (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": { "label": "دیگر (وضاحت کریں)", "type": "text", "value": "" }
       },
       "tumor_size": {
         "label": "رسولی کا سائز",
@@ -118,14 +170,46 @@
           "ڈیسموپلاسٹک چھوٹی گول سیل رسولی",
           "دیگر غیر فہرست شدہ ہسٹولوجیکل قسم"
         ],
-        "mixed_epithelial_borderline_tumor_specify": "",
-        "mixed_carcinoma_specify": "",
-        "other_sex_cord_stromal_tumor_specify": "",
-        "teratoma_with_malignant_transformation_specify": "",
-        "malignant_struma_ovarii_specify": "",
-        "mixed_malignant_germ_cell_tumor_specify": "",
-        "other_histologic_type_specify": "",
-        "comment": ""
+        "mixed_epithelial_borderline_tumor_specify": {
+          "label": "مخلوط اپیتھیلیل بارڈر لائن رسولی (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "mixed_carcinoma_specify": {
+          "label": "مخلوط کارسینوما (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "other_sex_cord_stromal_tumor_specify": {
+          "label": "دیگر جنسی کورڈ اسٹروما رسولی (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "teratoma_with_malignant_transformation_specify": {
+          "label": "ٹیراٹوما جس میں خبیث تبدیلی ہوئی (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "malignant_struma_ovarii_specify": {
+          "label": "خبیث اسٹروما اوواری (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "mixed_malignant_germ_cell_tumor_specify": {
+          "label": "مخلوط خبیث جرم سیل رسولی (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "other_histologic_type_specify": {
+          "label": "دیگر غیر فہرست شدہ ہسٹولوجیکل قسم (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "comment": {
+          "label": "تبصرے",
+          "type": "text",
+          "value": ""
+        }
       },
       "histologic_grade": {
         "label": "ہسٹولوجیکل گریڈ",
@@ -186,7 +270,11 @@
           "موجود",
           "متعین نہیں کیا جا سکتا"
         ],
-        "cannot_be_determined_explain": ""
+        "cannot_be_determined_explain": {
+          "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        }
       },
       "fallopian_tube_surface_involvement": {
         "label": "فیلوپین ٹیوب کی سطح کی شمولیت",
@@ -199,7 +287,11 @@
           "موجود",
           "متعین نہیں کیا جا سکتا"
         ],
-        "cannot_be_determined_explain": ""
+        "cannot_be_determined_explain": {
+          "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        }
       },
       "implants": {
         "label": "امپلانٹس",
@@ -211,7 +303,11 @@
           "موجود",
           "غیر متعین"
         ],
-        "present_specify_sites": ""
+        "present_specify_sites": {
+          "label": "موجود ہونے والے مقامات (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        }
       },
       "other_tissue_organ_involvement": {
         "label": "دیگر بافت / اعضا کی شمولیت",
@@ -232,8 +328,16 @@
           "دیگر اعضا / بافتیں",
           "متعین نہیں کیا جا سکتا"
         ],
-        "other_organs_tissue_specify": "",
-        "cannot_be_determined_explain": ""
+        "other_organs_tissue_specify": {
+          "label": "دیگر اعضا / بافتیں (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_explain": {
+          "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        }
       },
       "largest_extrapelvic_peritoneal_focus": {
         "label": "سب سے بڑا پیلوس سے باہر پیریٹونیل فوکس",
@@ -244,9 +348,21 @@
           "میکروسکوپک (2 سم سے زیادہ)",
           "متعین نہیں کیا جا سکتا"
         ],
-        "macroscopic_2cm_or_less_specify_site": "",
-        "macroscopic_greater_than_2cm_specify_site": "",
-        "cannot_be_determined_explain": ""
+        "macroscopic_2cm_or_less_specify_site": {
+          "label": "مائیکروسکوپک (2 سم یا کم) (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "macroscopic_greater_than_2cm_specify_site": {
+          "label": "مائیکروسکوپک (2 سم سے زیادہ) (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_explain": {
+          "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        }
       },
       "peritoneal_ascitic_fluid_involvement": {
         "label": "پیریٹونیل / ایسائٹک فلوئڈ کی شمولیت",
@@ -264,7 +380,11 @@
         "atypical_explain": "",
         "other_specify": "",
         "suspicious_explain": "",
-        "cannot_be_determined_explain": ""
+        "cannot_be_determined_explain": {
+          "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        }
       },
       "chemotherapy_response_score": {
         "label": "کیموتھیراپی رسپانس اسکور (CRS)",
@@ -277,7 +397,11 @@
           "CRS3 (نمایاں ردعمل، بقایا کینسر نہیں یا کم سے کم)",
           "متعین نہیں کیا جا سکتا"
         ],
-        "cannot_be_determined_specify": ""
+        "cannot_be_determined_specify": {
+          "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        }
       },
       "tumor_comment": {
         "label": "رسولی پر تبصرہ"
@@ -317,14 +441,34 @@
           "دیگر",
           "متعین نہیں کیا جا سکتا"
         ],
-        "right_pelvic_specify": "",
-        "left_pelvic_specify": "",
-        "pelvic_nos_specify": "",
-        "right_para_aortic_specify": "",
-        "left_para_aortic_specify": "",
-        "para_aortic_nos_specify": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": ""
+        "right_pelvic_specify": {
+          "label": "دائیں پیلوک (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "left_pelvic_specify": { "label": "بائیں پیلوک (وضاحت کریں)", "type": "text", "value": "" },
+        "pelvic_nos_specify": { "label": "پیلوک، NOS (وضاحت کریں)", "type": "text", "value": "" },
+        "right_para_aortic_specify": {
+          "label": "دائیں پیرا-اورٹک (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "left_para_aortic_specify": {
+          "label": "بائیں پیرا-اورٹک (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "para_aortic_nos_specify": {
+          "label": "پیرا-اورٹک، NOS (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": { "label": "دیگر (وضاحت کریں)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        }
       },
       "size_of_largest_nodal_metastatic_deposit": {
         "label": "سب سے بڑے نوڈل میٹاسٹیٹک ڈپازٹ کا سائز",
@@ -363,15 +507,34 @@
           "دیگر",
           "متعین نہیں کیا جا سکتا"
         ],
-        "right_pelvic_specify": "",
-        "left_pelvic_specify": "",
-        "pelvic_nos_specify": "",
-        "right_para_aortic_specify": "",
-        "left_para_aortic_specify": "",
-        "para_aortic_nos_specify": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": "",
-        "cannot_be_determined_explain": ""
+        "right_pelvic_specify": {
+          "label": "دائیں پیلوک (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "left_pelvic_specify": { "label": "بائیں پیلوک (وضاحت کریں)", "type": "text", "value": "" },
+        "pelvic_nos_specify": { "label": "پیلوک، NOS (وضاحت کریں)", "type": "text", "value": "" },
+        "right_para_aortic_specify": {
+          "label": "دائیں پیرا-اورٹک (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "left_para_aortic_specify": {
+          "label": "بائیں پیرا-اورٹک (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "para_aortic_nos_specify": {
+          "label": "پیرا-اورٹک، NOS (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": { "label": "دیگر (وضاحت کریں)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        }
       },
       "number_of_lymph_nodes_examined": {
         "label": "معائنہ کیے گئے لمف نوڈز کی تعداد"
@@ -388,14 +551,34 @@
           "دیگر",
           "متعین نہیں کیا جا سکتا"
         ],
-        "right_pelvic_specify": "",
-        "left_pelvic_specify": "",
-        "pelvic_nos_specify": "",
-        "right_para_aortic_specify": "",
-        "left_para_aortic_specify": "",
-        "para_aortic_nos_specify": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": ""
+        "right_pelvic_specify": {
+          "label": "دائیں پیلوک (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "left_pelvic_specify": { "label": "بائیں پیلوک (وضاحت کریں)", "type": "text", "value": "" },
+        "pelvic_nos_specify": { "label": "پیلوک، NOS (وضاحت کریں)", "type": "text", "value": "" },
+        "right_para_aortic_specify": {
+          "label": "دائیں پیرا-اورٹک (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "left_para_aortic_specify": {
+          "label": "بائیں پیرا-اورٹک (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "para_aortic_nos_specify": {
+          "label": "پیرا-اورٹک، NOS (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": { "label": "دیگر (وضاحت کریں)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        }
       },
       "regional_lymph_node_comment": {
         "label": "علاقائی لمف نوڈز پر تبصرہ"
@@ -418,14 +601,42 @@
           "دیگر",
           "متعین نہیں کیا جا سکتا"
         ],
-        "pleural_effusion_specify": "",
-        "liver_parenchyma_specify": "",
-        "splenic_parenchyma_specify": "",
-        "extra_abdominal_organs_specify": "",
-        "inguinal_lymph_nodes_specify": "",
-        "transmural_involvement_specify": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": ""
+        "pleural_effusion_specify": {
+          "label": "pleural effusion (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "liver_parenchyma_specify": {
+          "label": "جگر کا parenchyma (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "splenic_parenchyma_specify": {
+          "label": "تلی کا parenchyma (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "extra_abdominal_organs_specify": {
+          "label": "پیٹ سے باہر کے اعضاء (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "inguinal_lymph_nodes_specify": {
+          "label": "انگوئنل لمف نوڈز (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "transmural_involvement_specify": {
+          "label": "transmural شمولیت (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": { "label": "دیگر (وضاحت کریں)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        }
       }
     }
   },

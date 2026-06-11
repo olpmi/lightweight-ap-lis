@@ -16,8 +16,12 @@
         "type": "select",
         "options": ["استئصال جذري للبروستاتا", "أخرى", "غير محدد"],
         "value": "",
-        "radical_prostatectomy_specify": "",
-        "other_specify": ""
+        "radical_prostatectomy_specify": {
+          "label": "استئصال جذري للبروستاتا (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": "أخرى (حدد)"
       },
       "prostate_weight_g": {
         "label": "وزن البروستاتا (g)",
@@ -76,8 +80,12 @@
               "سرطان، لا يمكن تحديد النوع"
             ],
             "value": "",
-            "other_specify": "",
-            "cannot_be_determined_specify": ""
+            "other_specify": "أخرى (حدد)",
+            "cannot_be_determined_specify": {
+              "label": "لا يمكن التحديد (حدد)",
+              "type": "text",
+              "value": ""
+            }
           },
           "comment": {
             "label": "تعليق على النوع النسيجي",
@@ -106,8 +114,16 @@
               "غير قابل للتطبيق"
             ],
             "value": "",
-            "cannot_be_assessed_specify": "",
-            "not_applicable_specify": ""
+            "cannot_be_assessed_specify": {
+              "label": "لا يمكن تقييمه (حدد)",
+              "type": "text",
+              "value": ""
+            },
+            "not_applicable_specify": {
+              "label": "غير قابل للتطبيق (حدد)",
+              "type": "text",
+              "value": ""
+            }
           },
           "minor_tertiary_pattern_5_for_group_2": {
             "label": "النمط الثالثي الصغير 5 لمجموعة الدرجة 2",
@@ -177,7 +193,11 @@
             "type": "select",
             "options": ["غير قابل للتطبيق", "غير مُشخَّص", "موجودة", "لا يمكن التحديد"],
             "value": "",
-            "cannot_be_determined_explain": ""
+            "cannot_be_determined_explain": {
+              "label": "لا يمكن التحديد (اشرح)",
+              "type": "text",
+              "value": ""
+            }
           }
         }
       },
@@ -249,7 +269,11 @@
           "لا يمكن التحديد"
         ],
         "value": "",
-        "cannot_be_determined_explain": ""
+        "cannot_be_determined_explain": {
+          "label": "لا يمكن التحديد (اشرح)",
+          "type": "text",
+          "value": ""
+        }
       },
       "dominant_nodule_greatest_dimension_mm": {
         "label": "أكبر بُعد للعقدة السائدة (مم)",
@@ -279,7 +303,11 @@
             "type": "select",
             "options": ["غير مُشخَّص", "موجود، بؤري", "موجود، غير بؤري", "لا يمكن التحديد"],
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_explain": {
+              "label": "لا يمكن التحديد (اشرح)",
+              "type": "text",
+              "value": ""
+            }
           },
           "locations": {
             "label": "موضع الامتداد خارج البروستاتا",
@@ -301,8 +329,12 @@
               "لا يمكن التحديد"
             ],
             "value": [],
-            "other_specify": "",
-            "cannot_be_determined_specify": ""
+            "other_specify": { "label": "أخرى (حدد)", "type": "text", "value": "" },
+            "cannot_be_determined_specify": {
+              "label": "لا يمكن التحديد (حدد)",
+              "type": "text",
+              "value": ""
+            }
           }
         }
       },
@@ -311,7 +343,11 @@
         "type": "select",
         "options": ["غير مُشخَّص", "موجود", "لا يمكن التحديد"],
         "value": "",
-        "cannot_be_determined_specify": ""
+        "cannot_be_determined_specify": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        }
       },
       "seminal_vesicle_invasion": {
         "label": "غزو الحويصلة المنوية",
@@ -331,14 +367,18 @@
         "type": "select",
         "options": ["غير مُشخَّص", "موجود", "لا يمكن التحديد"],
         "value": "",
-        "cannot_be_determined_explain": ""
+        "cannot_be_determined_explain": {
+          "label": "لا يمكن التحديد (اشرح)",
+          "type": "text",
+          "value": ""
+        }
       },
       "perineural_invasion": {
         "label": "الغزو حول العصبي",
         "type": "select",
         "options": ["غير مُشخَّص", "موجود"],
         "value": "",
-        "present_specify": ""
+        "present_specify": { "label": "موجود (حدد)", "type": "text", "value": "" }
       }
     }
   },
@@ -354,7 +394,11 @@
           "السرطان الغازي موجود عند الهامش"
         ],
         "value": "",
-        "cannot_be_assessed_specify": ""
+        "cannot_be_assessed_specify": {
+          "label": "لا يمكن التقييم (حدد)",
+          "type": "text",
+          "value": ""
+        }
       },
       "linear_length_of_margin_involved": {
         "label": "الطول الخطي للهامش أو الهوامش المصابة بالسرطان",
@@ -369,7 +413,11 @@
               "لا يمكن التحديد"
             ],
             "value": "",
-            "cannot_be_determined_explain": ""
+            "cannot_be_determined_explain": {
+              "label": "لا يمكن التحديد (اشرح)",
+              "type": "text",
+              "value": ""
+            }
           },
           "length_mm": {
             "label": "الطول (مم)",
@@ -403,7 +451,11 @@
           "لا يمكن التحديد"
         ],
         "value": [],
-        "cannot_be_determined_specify": ""
+        "cannot_be_determined_specify": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        }
       },
       "margin_involvement_in_area_of_epe": {
         "label": "إصابة الهامش بالسرطان الغازي في منطقة الامتداد خارج البروستاتا",
@@ -496,7 +548,7 @@
               "أخرى"
             ],
             "value": "",
-            "site_specify": ""
+            "site_specify": { "label": "الموضع (حدد)", "type": "text", "value": "" }
           },
           "site_detail": {
             "label": "تفاصيل الموضع",
@@ -508,7 +560,11 @@
             "type": "multi_select",
             "options": ["يمين", "يسار", "لا يمكن التحديد"],
             "value": [],
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": {
+              "label": "لا يمكن التحديد (حدد)",
+              "type": "text",
+              "value": ""
+            }
           }
         }
       },
@@ -647,10 +703,18 @@
           "لا يمكن التحديد"
         ],
         "value": [],
-        "nonregional_lymph_nodes_specify": "",
-        "bone_specify": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": ""
+        "nonregional_lymph_nodes_specify": {
+          "label": "العقد اللمفاوية غير الإقليمية (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "bone_specify": { "label": "العظام (حدد)", "type": "text", "value": "" },
+        "other_specify": { "label": "أخرى (حدد)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        }
       }
     }
   },

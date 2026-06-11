@@ -16,7 +16,7 @@
           "Autre",
           "Non précisé"
         ],
-        "other_specify": "",
+        "other_specify": "Autre (préciser)",
         "type": "select",
         "value": ""
       },
@@ -107,7 +107,7 @@
           "Solide",
           "Autre"
         ],
-        "other_specify": "",
+        "other_specify": "Autre (préciser)",
         "type": "multi_select",
         "value": []
       },
@@ -135,7 +135,7 @@
           "Présentes dans le tissu non néoplasique",
           "Autre"
         ],
-        "other_specify": "",
+        "other_specify": "Autre (préciser)",
         "type": "multi_select",
         "value": []
       }
@@ -200,8 +200,8 @@
           "Autre",
           "Ne peut pas être déterminée"
         ],
-        "other_specify": "",
-        "cannot_be_determined_explain": "",
+        "other_specify": "Autre (préciser)",
+        "cannot_be_determined_explain": "Ne peut pas être déterminée (expliquer)",
         "type": "multi_select",
         "value": []
       },
@@ -384,7 +384,7 @@
           "Ne peut pas être déterminée",
           "Autre"
         ],
-        "other_specify": "",
+        "other_specify": "Autre (préciser)",
         "cannot_be_determined_explain": "",
         "type": "select",
         "value": ""
@@ -467,16 +467,24 @@
           "Autre",
           "Ne peut pas être déterminé"
         ],
-        "non_regional_lymph_nodes_specify": "",
-        "lung_specify": "",
-        "liver_specify": "",
-        "bone_specify": "",
-        "brain_specify": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": "",
-        "type": "multi_select",
-        "value": []
-      }
+        "non_regional_lymph_nodes_specify": {
+          "label": "Ganglions lymphatiques non régionaux (préciser)",
+          "type": "text",
+          "value": ""
+        },
+        "lung_specify": { "label": "Poumon (préciser)", "type": "text", "value": "" },
+        "liver_specify": { "label": "Foie (préciser)", "type": "text", "value": "" },
+        "bone_specify": { "label": "Os (préciser)", "type": "text", "value": "" },
+        "brain_specify": { "label": "Cerveau (préciser)", "type": "text", "value": "" },
+        "other_specify": { "label": "Autre (préciser)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "Ne peut pas être déterminé (préciser)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "type": "multi_select",
+      "value": []
     }
   },
   "pathologic_stage": {

@@ -31,12 +31,12 @@
           "Lavage péritonéal / pelvien",
           "Autre"
         ],
-        "other_specify": ""
+        "other_specify": "Autre (préciser)"
       },
       "specimen_integrity": {
         "label": "Intégrité du prélèvement",
         "options": ["Intact", "Ouvert", "Morcelé", "Autre"],
-        "other_specify": ""
+        "other_specify": "Autre (préciser)"
       }
     }
   },
@@ -82,8 +82,8 @@
           "Carcinome neuroendocrine à grandes cellules",
           "Autre type histologique non listé"
         ],
-        "mixed_carcinoma_specify": "",
-        "other_specify": ""
+        "mixed_carcinoma_specify": "Carcinome mixte (préciser)",
+        "other_specify": "Autre (préciser)"
       },
       "histologic_grade": {
         "label": "Grade histologique",
@@ -96,8 +96,8 @@
           "Autre",
           "Ne peut être évalué"
         ],
-        "other_specify": "",
-        "cannot_be_assessed_explain": ""
+        "other_specify": "Autre (préciser)",
+        "cannot_be_assessed_explain": "Ne peut être évalué (expliquer)"
       },
       "myometrial_invasion": {
         "label": "Invasion myométriale",
@@ -131,7 +131,7 @@
           "Présente, atteinte par le carcinome",
           "Ne peut être déterminée"
         ],
-        "cannot_be_determined_specify": ""
+        "cannot_be_determined_specify": "Ne peut être déterminée (expliquer)"
       },
       "uterine_serosal_involvement": {
         "label": "Atteinte de la séreuse utérine",
@@ -146,7 +146,7 @@
           "Présente, myoinvasive",
           "Ne peut être déterminée"
         ],
-        "cannot_be_determined_explain": ""
+        "cannot_be_determined_explain": "Ne peut être déterminée (expliquer)"
       },
       "cervical_involvement": {
         "label": "Atteinte cervicale",
@@ -192,8 +192,8 @@
           "Autres organes / tissus",
           "Ne peut être déterminée"
         ],
-        "other_specify": "",
-        "cannot_be_determined_explain": ""
+        "other_specify": "Autre (préciser)",
+        "cannot_be_determined_explain": "Ne peut être déterminée (expliquer)"
       },
       "peritoneal_pelvic_washings": {
         "label": "Lavage péritonéal / pelvien / liquide d'ascite",
@@ -205,8 +205,8 @@
           "Suspect de malignité",
           "Résultats en attente"
         ],
-        "atypical_explain": "",
-        "suspicious_explain": ""
+        "atypical_explain": "Atypique (expliquer)",
+        "suspicious_explain": "Suspect de malignité (expliquer)"
       },
       "lymphovascular_invasion": {
         "label": "Invasion lymphatique et / ou vasculaire",
@@ -255,12 +255,25 @@
           "Autre",
           "Ne peut être déterminée"
         ],
-        "ectocervical_specify": "",
-        "vaginal_cuff_specify": "",
-        "parametrial_specify": "",
-        "paracervical_specify": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": ""
+        "ectocervical_specify": { "label": "Exocervical (préciser)", "type": "text", "value": "" },
+        "vaginal_cuff_specify": {
+          "label": "Manchon vaginal (préciser)",
+          "type": "text",
+          "value": ""
+        },
+        "parametrial_specify": { "label": "Paramétrial (préciser)", "type": "text", "value": "" },
+        "paracervical_specify": { "label": "Paracervical (préciser)", "type": "text", "value": "" },
+        "other_specify": { "label": "Autre (préciser)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "Ne peut pas être déterminé (préciser)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_explain": {
+          "label": "Ne peut pas être déterminé (expliquer)",
+          "type": "text",
+          "value": ""
+        }
       },
       "distance_from_carcinoma_to_closest_margin": {
         "label": "Distance du carcinome à la marge la plus proche",
@@ -293,13 +306,25 @@
           "Autre",
           "Ne peut être déterminée"
         ],
-        "ectocervical_specify": "",
-        "vaginal_cuff_specify": "",
-        "parametrial_specify": "",
-        "paracervical_specify": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": "",
-        "cannot_be_determined_explain": ""
+        "ectocervical_specify": { "label": "Exocervical (préciser)", "type": "text", "value": "" },
+        "vaginal_cuff_specify": {
+          "label": "Manchon vaginal (préciser)",
+          "type": "text",
+          "value": ""
+        },
+        "parametrial_specify": { "label": "Paramétrial (préciser)", "type": "text", "value": "" },
+        "paracervical_specify": { "label": "Paracervical (préciser)", "type": "text", "value": "" },
+        "other_specify": { "label": "Autre (préciser)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "Ne peut pas être déterminé (préciser)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_explain": {
+          "label": "Ne peut pas être déterminé (expliquer)",
+          "type": "text",
+          "value": ""
+        }
       },
       "margin_comment": {
         "label": "Commentaire sur les marges"
@@ -349,7 +374,11 @@
               "Non sentinelle gauche",
               "Ne peut être déterminée"
             ],
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": {
+              "label": "Ne peut être déterminée (préciser)",
+              "type": "text",
+              "value": ""
+            }
           },
           "largest_metastatic_deposit_size_mm": {
             "label": "Taille du plus grand dépôt métastatique ganglionnaire pelvien"
@@ -392,7 +421,11 @@
               "Non sentinelle gauche",
               "Ne peut être déterminée"
             ],
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": {
+              "label": "Ne peut être déterminée (préciser)",
+              "type": "text",
+              "value": ""
+            }
           },
           "largest_metastatic_deposit_size_mm": {
             "label": "Taille du plus grand dépôt métastatique ganglionnaire para-aortique"
@@ -426,14 +459,26 @@
           "Autre",
           "Ne peut être déterminée"
         ],
-        "omentum_specify": "",
-        "extrapelvic_peritoneum_specify": "",
-        "inguinal_lymph_nodes_specify": "",
-        "lung_specify": "",
-        "liver_specify": "",
-        "bone_specify": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": ""
+        "omentum_specify": { "label": "Grand épiploon (préciser)", "type": "text", "value": "" },
+        "extrapelvic_peritoneum_specify": {
+          "label": "Péritoine extrapelvien (préciser)",
+          "type": "text",
+          "value": ""
+        },
+        "inguinal_lymph_nodes_specify": {
+          "label": "Ganglions lymphatiques inguinaux (préciser)",
+          "type": "text",
+          "value": ""
+        },
+        "lung_specify": { "label": "Poumon (préciser)", "type": "text", "value": "" },
+        "liver_specify": { "label": "Foie (préciser)", "type": "text", "value": "" },
+        "bone_specify": { "label": "Os (préciser)", "type": "text", "value": "" },
+        "other_specify": { "label": "Autre (préciser)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "Ne peut pas être déterminé (préciser)",
+          "type": "text",
+          "value": ""
+        }
       }
     }
   },
@@ -545,7 +590,11 @@
           "Hyperplasie atypique / néoplasie intraépithéliale endométrioïde (NIE)",
           "Autre"
         ],
-        "other_specify": ""
+        "other_specify": {
+          "label": "Autre (préciser)",
+          "type": "text",
+          "value": ""
+        }
       }
     }
   }

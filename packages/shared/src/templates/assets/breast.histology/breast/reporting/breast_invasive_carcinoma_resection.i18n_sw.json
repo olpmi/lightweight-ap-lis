@@ -18,7 +18,7 @@
         ],
         "type": "select",
         "value": "",
-        "other_specify": ""
+        "other_specify": "Nyingine (taja)"
       },
       "laterality": {
         "label": "Upande wa sampuli",
@@ -45,7 +45,7 @@
         ],
         "type": "multi_select",
         "value": [],
-        "clock_position_specify": ""
+        "clock_position_specify": { "label": "Nafasi ya saa (taja)", "type": "text", "value": "" }
       },
       "histologic_type": {
         "label": "Aina ya histolojia",
@@ -74,8 +74,8 @@
         "type": "select",
         "value": "",
         "features_specify": "",
-        "cannot_be_determined_specify": "",
-        "other_specify": "",
+        "cannot_be_determined_specify": "Haiwezi kuamuliwa (taja)",
+        "other_specify": "Nyingine (taja)",
         "comment": ""
       },
       "histologic_grade": {
@@ -101,7 +101,7 @@
             ],
             "type": "select",
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": "Haiwezi kuamuliwa (taja)"
           },
           "nuclear_pleomorphism": {
             "label": "Pleomofizimu ya nyuklia",
@@ -114,7 +114,7 @@
             ],
             "type": "select",
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": "Haiwezi kuamuliwa (taja)"
           },
           "mitotic_rate": {
             "label": "Kiwango cha mitosisi",
@@ -128,7 +128,7 @@
             "reference_note": "Tazama Jedwali 1 katika dokezo D",
             "type": "select",
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": "Haiwezi kuamuliwa (taja)"
           },
           "overall_grade": {
             "label": "Daraja la jumla",
@@ -141,7 +141,7 @@
             ],
             "type": "select",
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": "Haiwezi kuamuliwa (taja)"
           }
         }
       },
@@ -368,7 +368,7 @@
             "options": ["Haijaonekana", "Upo", "Haiwezi kuamuliwa"],
             "type": "select",
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": "Haiwezi kuamuliwa (taja)"
           },
           "extent": {
             "label": "Upeo wa uvamizi wa lymphovascular",
@@ -386,7 +386,7 @@
         "options": ["Hakuna ngozi", "Haijaonekana", "Upo", "Haiwezi kuamuliwa"],
         "type": "select",
         "value": "",
-        "cannot_be_determined_specify": ""
+        "cannot_be_determined_specify": "Haiwezi kuamuliwa (taja)"
       },
       "microcalcifications": {
         "label": "Mikrokalsifikesheni",
@@ -399,7 +399,7 @@
         ],
         "type": "multi_select",
         "value": [],
-        "other_specify": ""
+        "other_specify": "Nyingine (taja)"
       }
     }
   },
@@ -643,8 +643,8 @@
             ],
             "type": "multi_select",
             "value": [],
-            "other_specify": "",
-            "cannot_be_determined_explain": ""
+            "other_specify": "Nyingine (taja)",
+            "cannot_be_determined_explain": "Haiwezi kuamuliwa (eleza)"
           },
           "margins_involved": {
             "label": "Mpaka(mipaka) ulioathiriwa na DCIS",
@@ -715,8 +715,8 @@
             "type": "integer",
             "value": ""
           },
-          "other_specify": "",
-          "cannot_be_determined_explain": ""
+          "other_specify": "Nyingine (taja)",
+          "cannot_be_determined_explain": "Haiwezi kuamuliwa (eleza)"
         }
       },
       "number_with_micrometastases": {
@@ -733,8 +733,8 @@
             "type": "integer",
             "value": ""
           },
-          "other_specify": "",
-          "cannot_be_determined_explain": ""
+          "other_specify": "Nyingine (taja)",
+          "cannot_be_determined_explain": "Haiwezi kuamuliwa (eleza)"
         }
       },
       "number_with_isolated_tumor_cells": {
@@ -751,8 +751,8 @@
             "type": "integer",
             "value": ""
           },
-          "other_specify": "",
-          "cannot_be_determined_explain": ""
+          "other_specify": "Nyingine (taja)",
+          "cannot_be_determined_explain": "Haiwezi kuamuliwa (eleza)"
         }
       },
       "size_of_largest_nodal_metastatic_deposit": {
@@ -769,8 +769,8 @@
             "type": "number",
             "value": ""
           },
-          "other_specify": "",
-          "cannot_be_determined_explain": ""
+          "other_specify": "Nyingine (taja)",
+          "cannot_be_determined_explain": "Haiwezi kuamuliwa (eleza)"
         }
       },
       "extranodal_extension": {
@@ -825,8 +825,8 @@
             "type": "integer",
             "value": ""
           },
-          "other_specify": "",
-          "cannot_be_determined_explain": ""
+          "other_specify": "Nyingine (taja)",
+          "cannot_be_determined_explain": "Haiwezi kuamuliwa (eleza)"
         }
       },
       "number_of_sentinel_nodes_examined": {
@@ -843,8 +843,8 @@
             "type": "integer",
             "value": ""
           },
-          "other_specify": "",
-          "cannot_be_determined_explain": ""
+          "other_specify": "Nyingine (taja)",
+          "cannot_be_determined_explain": "Haiwezi kuamuliwa (eleza)"
         }
       },
       "comment": {
@@ -871,13 +871,13 @@
         ],
         "type": "multi_select",
         "value": [],
-        "non_regional_lymph_nodes_specify": "",
-        "lung_specify": "",
-        "liver_specify": "",
-        "bone_specify": "",
-        "brain_specify": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": ""
+        "non_regional_lymph_nodes_specify": "Taja nodi za limfu zisizo za eneo",
+        "lung_specify": "Pafu (taja)",
+        "liver_specify": "Ini (taja)",
+        "bone_specify": "Mfupa (taja)",
+        "brain_specify": "Ubongo (taja)",
+        "other_specify": "Nyingine (taja)",
+        "cannot_be_determined_specify": "Haiwezi kuamuliwa (eleza) "
       }
     }
   },

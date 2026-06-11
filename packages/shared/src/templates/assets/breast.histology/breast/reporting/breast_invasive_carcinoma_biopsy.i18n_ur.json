@@ -15,7 +15,7 @@
         "options": ["نیڈل بایوپسی", "فائن نیڈل ایسپیریشن", "دیگر", "غیر متعین"],
         "type": "select",
         "value": "",
-        "other_specify": ""
+        "other_specify": "دیگر (وضاحت کریں)"
       },
       "laterality": {
         "label": "نمونے کی جانب",
@@ -42,7 +42,11 @@
         ],
         "type": "multi_select",
         "value": [],
-        "clock_position_specify": ""
+        "clock_position_specify": {
+          "label": "گھڑی کی سمت (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        }
       },
       "histologic_type": {
         "label": "ہسٹولوجک قسم",
@@ -71,8 +75,12 @@
         "type": "select",
         "value": "",
         "features_specify": "",
-        "cannot_be_determined_specify": "",
-        "other_specify": ""
+        "cannot_be_determined_specify": {
+          "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": "دیگر (وضاحت کریں)"
       },
       "histologic_grade": {
         "label": "ہسٹولوجک گریڈ (ناٹنگھم ہسٹولوجک اسکور)",
@@ -96,7 +104,11 @@
             ],
             "type": "select",
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": {
+              "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+              "type": "text",
+              "value": ""
+            }
           },
           "nuclear_pleomorphism": {
             "label": "نیوکلیئر پلیومارفزم",
@@ -108,7 +120,11 @@
             ],
             "type": "select",
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": {
+              "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+              "type": "text",
+              "value": ""
+            }
           },
           "mitotic_rate": {
             "label": "مائٹوٹک ریٹ",
@@ -128,7 +144,11 @@
             ],
             "type": "select",
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": {
+              "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+              "type": "text",
+              "value": ""
+            }
           }
         }
       },
@@ -181,7 +201,7 @@
         ],
         "type": "multi_select",
         "value": [],
-        "other_specify": ""
+        "other_specify": "دیگر (وضاحت کریں)"
       },
       "nuclear_grade": {
         "label": "نیوکلیئر گریڈ",
@@ -194,8 +214,12 @@
         ],
         "type": "select",
         "value": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": ""
+        "other_specify": "دیگر (وضاحت کریں)",
+        "cannot_be_determined_specify": {
+          "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        }
       },
       "necrosis": {
         "label": "نیکروسس",
@@ -209,8 +233,12 @@
         ],
         "type": "select",
         "value": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": ""
+        "other_specify": "دیگر (وضاحت کریں)",
+        "cannot_be_determined_specify": {
+          "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        }
       }
     }
   },
@@ -222,7 +250,11 @@
         "options": ["شناخت نہیں ہوئی", "موجود", "متعین نہیں کیا جا سکتا"],
         "type": "select",
         "value": "",
-        "cannot_be_determined_specify": ""
+        "cannot_be_determined_specify": {
+          "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        }
       }
     }
   },
@@ -240,7 +272,7 @@
         ],
         "type": "multi_select",
         "value": [],
-        "other_specify": ""
+        "other_specify": "دیگر (وضاحت کریں)"
       }
     }
   },

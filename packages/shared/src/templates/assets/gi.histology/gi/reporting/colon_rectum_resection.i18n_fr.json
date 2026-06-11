@@ -23,7 +23,7 @@
           "Non précisé"
         ],
         "value": "",
-        "other_specify": ""
+        "other_specify": "Autre, préciser"
       },
       "macroscopic_mesorectum": {
         "label": "Évaluation macroscopique du mésorectum",
@@ -36,7 +36,7 @@
           "Ne peut pas être déterminé"
         ],
         "value": "",
-        "cannot_be_determined_specify": ""
+        "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
       }
     }
   },
@@ -95,8 +95,8 @@
           "Carcinome, type indéterminable"
         ],
         "value": "",
-        "specify_components": "",
-        "comment": ""
+        "specify_components": { "label": "Préciser les composants", "type": "text", "value": "" },
+        "comment": { "label": "Commentaire", "type": "text", "value": "" }
       },
       "histologic_grade": {
         "label": "Grade histologique",
@@ -111,9 +111,17 @@
           "Non applicable"
         ],
         "value": "",
-        "other_specify": "",
-        "cannot_be_assessed_specify": "",
-        "not_applicable_specify": ""
+        "other_specify": { "label": "Autre, préciser", "type": "text", "value": "" },
+        "cannot_be_assessed_specify": {
+          "label": "Ne peut pas être évalué, préciser",
+          "type": "text",
+          "value": ""
+        },
+        "not_applicable_specify": {
+          "label": "Non applicable, préciser",
+          "type": "text",
+          "value": ""
+        }
       },
       "tumor_size": {
         "label": "Taille tumorale",
@@ -140,7 +148,7 @@
         "type": "select",
         "options": ["Non applicable", "Présent"],
         "value": "",
-        "present_specify": ""
+        "present_specify": { "label": "Présent, (préciser)", "type": "text", "value": "" }
       },
       "tumor_extent": {
         "label": "Extension tumorale",
@@ -157,8 +165,8 @@
           "Aucune preuve de tumeur primitive"
         ],
         "value": "",
-        "adjacent_structure_specify": "",
-        "cannot_be_determined_specify": ""
+        "adjacent_structure_specify": "Structure adjacente, préciser",
+        "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
       },
       "submucosal_invasion": {
         "label": "Invasion sous-muqueuse (pour les tumeurs pT1 uniquement)",
@@ -180,8 +188,8 @@
               "Ne peut pas être déterminée"
             ],
             "value": "",
-            "exact_depth_mm": "",
-            "cannot_be_determined_specify": ""
+            "exact_depth_mm": "Profondeur exacte (mm)",
+            "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
           },
           "extent": {
             "label": "Étendue de l'invasion sous-muqueuse",
@@ -252,7 +260,7 @@
           "Autre"
         ],
         "value": "",
-        "other_specify": ""
+        "other_specify": "Autre, préciser"
       },
       "treatment_effect": {
         "label": "Effet du traitement",
@@ -476,7 +484,7 @@
           "Autre"
         ],
         "value": [],
-        "other_specify": ""
+        "other_specify": "Autre, préciser"
       }
     }
   },

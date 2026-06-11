@@ -88,7 +88,7 @@
           "Non précisé"
         ],
         "value": "",
-        "location_specify": ""
+        "location_specify": { "label": "Localisation (préciser)", "type": "text", "value": "" }
       },
       "histologic_type": {
         "label": "Type histologique",
@@ -127,8 +127,12 @@
               "Carcinome, type indéterminable"
             ],
             "value": "",
-            "other_specify": "",
-            "cannot_be_determined_specify": ""
+            "other_specify": { "label": "Autre (préciser)", "type": "text", "value": "" },
+            "cannot_be_determined_specify": {
+              "label": "Ne peut pas être déterminé (préciser)",
+              "type": "text",
+              "value": ""
+            }
           },
           "comment": {
             "label": "Commentaire sur le type histologique",
@@ -145,8 +149,16 @@
             "type": "select",
             "options": ["Non applicable", "Ne peut pas être évalué", "Évaluable"],
             "value": "",
-            "not_applicable_specify": "",
-            "cannot_be_assessed_specify": ""
+            "not_applicable_specify": {
+              "label": "Non applicable (préciser)",
+              "type": "text",
+              "value": ""
+            },
+            "cannot_be_assessed_specify": {
+              "label": "Ne peut pas être évalué (préciser)",
+              "type": "text",
+              "value": ""
+            }
           },
           "tumor_microfocus": {
             "label": "Microfoyer tumoral",
@@ -223,7 +235,11 @@
             "type": "select",
             "options": ["Oui", "Non", "Ne peut pas être déterminé"],
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": {
+              "label": "Ne peut pas être déterminé (préciser)",
+              "type": "text",
+              "value": ""
+            }
           }
         }
       },
@@ -241,9 +257,13 @@
               "Ne peut pas être déterminé"
             ],
             "value": "",
-            "present_specify": "",
-            "equivocal_explain": "",
-            "cannot_be_determined_explain": ""
+            "present_specify": { "label": "Présentes (préciser)", "type": "text", "value": "" },
+            "equivocal_explain": { "label": "Equivoque (préciser)", "type": "text", "value": "" },
+            "cannot_be_determined_explain": {
+              "label": "Ne peut pas être déterminé (préciser)",
+              "type": "text",
+              "value": ""
+            }
           }
         }
       },
@@ -293,7 +313,11 @@
               "Ne peut pas être déterminé"
             ],
             "value": "",
-            "cannot_be_determined_explain": ""
+            "cannot_be_determined_explain": {
+              "label": "Ne peut pas être déterminé (préciser)",
+              "type": "text",
+              "value": ""
+            }
           },
           "length_of_prostatic_tissue_involved": {
             "label": "Longueur du tissu prostatique envahi par la tumeur",
@@ -309,24 +333,36 @@
         "type": "select",
         "options": ["Non identifiée", "Présente", "Équivoque", "Ne peut pas être déterminée"],
         "value": "",
-        "equivocal_explain": "",
-        "cannot_be_determined_explain": ""
+        "equivocal_explain": { "label": "Équivoque (préciser)", "type": "text", "value": "" },
+        "cannot_be_determined_explain": {
+          "label": "Ne peut pas être déterminé (préciser)",
+          "type": "text",
+          "value": ""
+        }
       },
       "seminal_vesicle_or_ejaculatory_duct_invasion": {
         "label": "Invasion des vésicules séminales / des canaux éjaculateurs",
         "type": "select",
         "options": ["Non identifiée", "Présente", "Équivoque", "Ne peut pas être déterminée"],
         "value": "",
-        "equivocal_explain": "",
-        "cannot_be_determined_explain": ""
+        "equivocal_explain": { "label": "Équivoque (préciser)", "type": "text", "value": "" },
+        "cannot_be_determined_explain": {
+          "label": "Ne peut pas être déterminé (préciser)",
+          "type": "text",
+          "value": ""
+        }
       },
       "lymphovascular_invasion": {
         "label": "Invasion lymphatique et / ou vasculaire",
         "type": "select",
         "options": ["Non identifiée", "Présente", "Équivoque", "Ne peut pas être déterminée"],
         "value": "",
-        "equivocal_explain": "",
-        "cannot_be_determined_specify": ""
+        "equivocal_explain": { "label": "Équivoque (préciser)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "Ne peut pas être déterminé (préciser)",
+          "type": "text",
+          "value": ""
+        }
       },
       "perineural_invasion": {
         "label": "Invasion périnerveuse",

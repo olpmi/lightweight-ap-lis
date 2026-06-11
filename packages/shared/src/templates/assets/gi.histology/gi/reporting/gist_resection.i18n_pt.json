@@ -1,0 +1,309 @@
+{
+  "template_id": "gist_resection_v1",
+  "domain": "anatomic_pathology",
+  "protocol_posting_date": "December 2022",
+  "lang": "pt",
+  "standards": ["AJCC-UICC 8"],
+  "title": "Tumor do estroma gastrointestinal (GIST): Ressecção",
+  "clinical": {
+    "label": "Clínico",
+    "fields": {
+      "preresection_treatment": {
+        "label": "Tratamento pré-ressecção",
+        "type": "multi_select",
+        "options": [
+          "Sem terapia pré-ressecção conhecida",
+          "Biópsia ou cirurgia prévia",
+          "Terapia sistémica realizada",
+          "Terapia realizada, tipo não especificado",
+          "Não especificado"
+        ],
+        "value": []
+      }
+    }
+  },
+  "specimen": {
+    "label": "Espécime",
+    "fields": {
+      "procedure": {
+        "label": "Procedimento",
+        "type": "select",
+        "options": ["Excisão local", "Ressecção", "Metastasectomia", "Outro", "Não especificado"],
+        "value": ""
+      }
+    }
+  },
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "tumor_focality": {
+        "label": "Focalidade do tumor",
+        "type": "select",
+        "options": ["Unifocal", "Multifocal"],
+        "value": ""
+      },
+      "number_of_tumors": {
+        "label": "Número de tumores",
+        "type": "text",
+        "value": ""
+      },
+      "sizes_of_tumors": {
+        "label": "Tamanhos dos tumores",
+        "type": "text",
+        "value": ""
+      },
+      "multiple_primary_sites": {
+        "label": "Locais primários múltiplos",
+        "type": "select",
+        "options": ["Não aplicável", "Presente"],
+        "value": ""
+      },
+      "tumor_site": {
+        "label": "Local do tumor",
+        "type": "multi_select",
+        "options": [
+          "Esófago",
+          "Junção gastroesofágica",
+          "Estômago",
+          "Duodeno",
+          "Jejuno",
+          "Íleo",
+          "Divertículo de Meckel",
+          "Intestino delgado, SOE",
+          "Apêndice",
+          "Válvula ileocecal",
+          "Cego",
+          "Cólon ascendente",
+          "Ângulo hepático",
+          "Cólon transverso",
+          "Ângulo esplénico",
+          "Cólon descendente",
+          "Cólon sigmoide",
+          "Junção rectossigmoideia",
+          "Recto",
+          "Intestino grosso, SOE",
+          "Retroperitoneu",
+          "Peritoneu / abdómen",
+          "Outro",
+          "Não é possível determinar",
+          "Não especificado"
+        ],
+        "value": []
+      },
+      "histologic_type": {
+        "label": "Tipo histológico",
+        "type": "select",
+        "options": ["Tipo de células fusiformes", "Tipo epitelioide", "Misto", "Outro"],
+        "value": ""
+      },
+      "tumor_size": {
+        "label": "Tamanho do tumor (estimativa clínico-radiológica)",
+        "type": "text",
+        "value": ""
+      },
+      "mitotic_rate": {
+        "label": "Taxa mitótica por 5 mm²",
+        "type": "text",
+        "value": ""
+      },
+      "histologic_grade": {
+        "label": "Grau histológico",
+        "type": "select",
+        "options": [
+          "G1, baixo grau (≤5 por 5 mm²)",
+          "G2, alto grau (>5 por 5 mm²)",
+          "Outro",
+          "GX, não é possível avaliar"
+        ],
+        "value": ""
+      },
+      "necrosis": {
+        "label": "Necrose",
+        "type": "select",
+        "options": ["Não identificada", "Presente"],
+        "value": ""
+      },
+      "extent_of_necrosis": {
+        "label": "Extensão da necrose",
+        "type": "text",
+        "value": ""
+      },
+      "treatment_effect": {
+        "label": "Efeito do tratamento",
+        "type": "select",
+        "options": ["Sem terapia pré-cirúrgica conhecida", "Não identificado", "Presente"],
+        "value": ""
+      },
+      "percentage_viable_tumor": {
+        "label": "Percentagem de tumor viável",
+        "type": "text",
+        "value": ""
+      },
+      "risk_assessment": {
+        "label": "Avaliação do risco",
+        "type": "select",
+        "options": [
+          "Nenhum",
+          "Risco muito baixo",
+          "Risco baixo",
+          "Risco moderado",
+          "Risco elevado",
+          "Claramente maligno / metastático",
+          "Não é possível determinar"
+        ],
+        "value": ""
+      },
+      "tumor_comment": {
+        "label": "Comentário sobre o tumor",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+  "margins": {
+    "label": "Margens",
+    "fields": {
+      "margin_status": {
+        "label": "Estado das margens",
+        "type": "select",
+        "options": [
+          "Todas as margens negativas para GIST",
+          "GIST presente na margem",
+          "Não aplicável"
+        ],
+        "value": ""
+      },
+      "closest_margins": {
+        "label": "Margem(ns) mais próxima(s)",
+        "type": "multi_select",
+        "options": [
+          "Proximal",
+          "Distal",
+          "Omental (radial)",
+          "Mucosa",
+          "Profunda",
+          "Outro",
+          "Não é possível determinar"
+        ],
+        "value": []
+      },
+      "distance_to_closest_margin": {
+        "label": "Distância do GIST à margem mais próxima",
+        "type": "text",
+        "value": ""
+      },
+      "margins_involved": {
+        "label": "Margem(ns) envolvida(s) pelo GIST",
+        "type": "multi_select",
+        "options": [
+          "Proximal",
+          "Distal",
+          "Omental (radial)",
+          "Mucosa",
+          "Profunda",
+          "Outro",
+          "Não é possível determinar"
+        ],
+        "value": []
+      }
+    }
+  },
+  "regional_lymph_nodes": {
+    "label": "Gânglios linfáticos regionais",
+    "fields": {
+      "status": {
+        "label": "Estado dos gânglios linfáticos regionais",
+        "type": "select",
+        "options": [
+          "Não aplicável",
+          "Gânglios linfáticos regionais presentes",
+          "Todos negativos para tumor",
+          "Tumor presente em gânglio(s) linfático(s) regional(is)"
+        ],
+        "value": ""
+      },
+      "number_with_tumor": {
+        "label": "Número de gânglios linfáticos com tumor",
+        "type": "text",
+        "value": ""
+      },
+      "number_examined": {
+        "label": "Número de gânglios linfáticos examinados",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+  "distant_metastasis": {
+    "label": "Metástases à distância",
+    "fields": {
+      "sites": {
+        "label": "Local(is) à distância envolvido(s)",
+        "type": "multi_select",
+        "options": ["Não aplicável", "Fígado", "Outro", "Não é possível determinar"],
+        "value": []
+      }
+    }
+  },
+  "ptnm": {
+    "label": "Classificação pTNM (AJCC 8ª Edição)",
+    "note": "A notificação das categorias pT, pN e, quando aplicável, pM baseia-se nas informações disponíveis para o patologista no momento da emissão do relatório. Conforme o AJCC (Capítulo 1, 8ª Ed.), cabe ao médico responsável estabelecer o estadiamento patológico final com base em todas as informações pertinentes, incluindo, mas não se limitando a, este relatório de anatomia patológica.",
+    "fields": {
+      "modified_classification": {
+        "label": "Classificação modificada",
+        "type": "multi_select",
+        "options": ["Não aplicável", "y (pós-terapia neoadjuvante)", "r (recidiva)"],
+        "value": []
+      },
+      "pT_category": {
+        "label": "Categoria pT",
+        "type": "select",
+        "options": [
+          "pT não atribuído (não é possível determinar com base nas informações patológicas disponíveis)",
+          "pT0: Sem evidência de tumor primário",
+          "pT1: Tumor igual ou inferior a 2 cm",
+          "pT2: Tumor superior a 2 cm mas não superior a 5 cm",
+          "pT3: Tumor superior a 5 cm mas não superior a 10 cm",
+          "pT4: Tumor superior a 10 cm na maior dimensão"
+        ],
+        "value": ""
+      },
+      "T_suffix": {
+        "label": "Sufixo T",
+        "type": "select",
+        "options": ["Não aplicável", "(m) tumores primários síncronos múltiplos"],
+        "value": ""
+      },
+      "pN_category": {
+        "label": "Categoria pN",
+        "type": "select",
+        "options": [
+          "pN não atribuído (nenhum gânglio submetido ou encontrado)",
+          "pN não atribuído (não é possível determinar com base nas informações patológicas disponíveis)",
+          "pN0: Sem metástase em gânglio linfático regional",
+          "pN1: Metástase em gânglio linfático regional"
+        ],
+        "value": ""
+      },
+      "pM_category": {
+        "label": "Categoria pM",
+        "type": "select",
+        "options": [
+          "Não aplicável — pM não pode ser determinado a partir do(s) espécime(s) submetido(s)",
+          "pM1: Metástase à distância"
+        ],
+        "value": ""
+      }
+    }
+  },
+  "additional_findings": {
+    "label": "Achados adicionais",
+    "fields": {
+      "findings": {
+        "label": "Achados adicionais",
+        "type": "text",
+        "value": ""
+      }
+    }
+  }
+}

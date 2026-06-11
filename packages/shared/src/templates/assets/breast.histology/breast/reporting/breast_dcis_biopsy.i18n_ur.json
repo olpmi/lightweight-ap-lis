@@ -15,7 +15,7 @@
         "options": ["نیڈل بایوپسی", "فائن نیڈل ایسپیریشن", "دیگر", "غیر متعین"],
         "type": "select",
         "value": "",
-        "other_specify": ""
+        "other_specify": "دیگر (وضاحت کریں)"
       },
       "laterality": {
         "label": "نمونے کی جانب",
@@ -42,7 +42,11 @@
         ],
         "type": "multi_select",
         "value": [],
-        "clock_position_specify": ""
+        "clock_position_specify": {
+          "label": "گھڑی کی پوزیشن (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        }
       },
       "histologic_type": {
         "label": "ہسٹولوجک قسم",
@@ -68,7 +72,7 @@
         ],
         "type": "multi_select",
         "value": [],
-        "other_specify": ""
+        "other_specify": "دیگر (وضاحت کریں)"
       },
       "nuclear_grade": {
         "label": "نیوکلیئر گریڈ",
@@ -81,8 +85,12 @@
         ],
         "type": "select",
         "value": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": ""
+        "other_specify": "دیگر (وضاحت کریں)",
+        "cannot_be_determined_specify": {
+          "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        }
       },
       "necrosis": {
         "label": "نیکروسس",
@@ -95,15 +103,23 @@
         ],
         "type": "select",
         "value": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": ""
+        "other_specify": "دیگر (وضاحت کریں)",
+        "cannot_be_determined_specify": {
+          "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        }
       },
       "microcalcifications": {
         "label": "مائیکروکیلسیفیکیشنز",
         "options": ["شناخت نہیں ہوئیں", "DCIS میں موجود", "غیر نیوپلاسٹک ٹشو میں موجود", "دیگر"],
         "type": "multi_select",
         "value": [],
-        "other_specify": ""
+        "other_specify": {
+          "label": "دیگر (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        }
       }
     }
   },

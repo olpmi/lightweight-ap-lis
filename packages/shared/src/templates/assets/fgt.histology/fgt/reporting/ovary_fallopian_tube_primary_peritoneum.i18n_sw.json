@@ -26,20 +26,64 @@
           "Peritonemu ya msingi",
           "Nyingine"
         ],
-        "right_ovary_specify": "",
-        "left_ovary_specify": "",
-        "bilateral_ovaries_specify": "",
-        "ovary_laterality_cannot_be_determined_explain": "",
-        "right_fallopian_tube_specify": "",
-        "left_fallopian_tube_specify": "",
-        "bilateral_fallopian_tubes_specify": "",
-        "fallopian_tube_laterality_cannot_be_determined_explain": "",
-        "right_tubo_ovarian_specify": "",
-        "left_tubo_ovarian_specify": "",
-        "bilateral_tubo_ovarian_specify": "",
-        "tubo_ovarian_laterality_cannot_be_determined_explain": "",
-        "primary_peritoneum_specify": "",
-        "other_specify": ""
+        "right_ovary_specify": { "label": "Ovari ya kulia (taja)", "type": "text", "value": "" },
+        "left_ovary_specify": { "label": "Ovari ya kushoto (taja)", "type": "text", "value": "" },
+        "bilateral_ovaries_specify": {
+          "label": "Ovari zote mbili (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "ovary_laterality_cannot_be_determined_explain": {
+          "label": "Upande wa ovari hauwezi kuamuliwa (eleza)",
+          "type": "text",
+          "value": ""
+        },
+        "right_fallopian_tube_specify": {
+          "label": "Mrija wa fallopian wa kulia (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "left_fallopian_tube_specify": {
+          "label": "Mrija wa fallopian wa kushoto (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "bilateral_fallopian_tubes_specify": {
+          "label": "Mirija ya fallopian yote miwili (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "fallopian_tube_laterality_cannot_be_determined_explain": {
+          "label": "Upande wa mrija wa fallopian hauwezi kuamuliwa (eleza)",
+          "type": "text",
+          "value": ""
+        },
+        "right_tubo_ovarian_specify": {
+          "label": "Muundo wa tubo-ovarian wa kulia (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "left_tubo_ovarian_specify": {
+          "label": "Muundo wa tubo-ovarian wa kushoto (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "bilateral_tubo_ovarian_specify": {
+          "label": "Muundo wa tubo-ovarian wa pande zote (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "tubo_ovarian_laterality_cannot_be_determined_explain": {
+          "label": "Upande wa muundo wa tubo-ovarian hauwezi kuamuliwa (eleza)",
+          "type": "text",
+          "value": ""
+        },
+        "primary_peritoneum_specify": {
+          "label": "Peritonemu ya msingi (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": { "label": "Nyingine (taja)", "type": "text", "value": "" }
       },
       "tumor_size": {
         "label": "Ukubwa wa uvimbe",
@@ -115,14 +159,42 @@
           "Uvimbe wa seli ndogo za duara wa desmoplastic",
           "Aina nyingine ya histolojia isiyoorodheshwa"
         ],
-        "mixed_epithelial_borderline_tumor_specify": "",
-        "mixed_carcinoma_specify": "",
-        "other_sex_cord_stromal_tumor_specify": "",
-        "teratoma_with_malignant_transformation_specify": "",
-        "malignant_struma_ovarii_specify": "",
-        "mixed_malignant_germ_cell_tumor_specify": "",
-        "other_histologic_type_specify": "",
-        "comment": ""
+        "mixed_epithelial_borderline_tumor_specify": {
+          "label": "Uvimbe wa mpakani wa epitheliamu, aina ya border-line (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "mixed_carcinoma_specify": {
+          "label": "Karsinoma mchanganyiko (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "other_sex_cord_stromal_tumor_specify": {
+          "label": "Uvimbe nyingine ya sex cord stromal (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "teratoma_with_malignant_transformation_specify": {
+          "label": "Teratoma yenye mabadiliko mabaya (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "malignant_struma_ovarii_specify": {
+          "label": "Struma ovarii mbaya (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "mixed_malignant_germ_cell_tumor_specify": {
+          "label": "Uvimbe mchanganyiko wa seli za kifuko cha yai (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "other_histologic_type_specify": {
+          "label": "Aina nyingine ya histolojia isiyoorodheshwa (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "comment": { "label": "Maoni", "type": "text", "value": "" }
       },
       "histologic_grade": {
         "label": "Daraja la histolojia",
@@ -183,7 +255,11 @@
           "Upo",
           "Haiwezi kuamuliwa"
         ],
-        "cannot_be_determined_explain": ""
+        "cannot_be_determined_explain": {
+          "label": "Haiwezi kuamuliwa (eleza)",
+          "type": "text",
+          "value": ""
+        }
       },
       "fallopian_tube_surface_involvement": {
         "label": "Ushiriki wa uso wa mrija wa fallopian",
@@ -196,13 +272,17 @@
           "Upo",
           "Haiwezi kuamuliwa"
         ],
-        "cannot_be_determined_explain": ""
+        "cannot_be_determined_explain": {
+          "label": "Haiwezi kuamuliwa (eleza)",
+          "type": "text",
+          "value": ""
+        }
       },
       "implants": {
         "label": "Implanti",
         "note": "Inahitajika tu kwa uvimbe wa mpakani wa serous / seromucinous wa hatua ya juu.",
         "options": ["Haihusiki", "Haikuchukuliwa sampuli", "Haijaonekana", "Ipo", "Haijulikani"],
-        "present_specify_sites": ""
+        "present_specify_sites": { "label": "Ipo (taja vikundi)", "type": "text", "value": "" }
       },
       "other_tissue_organ_involvement": {
         "label": "Ushiriki wa tishu / kiungo kingine",
@@ -223,8 +303,16 @@
           "Viungo / tishu nyingine",
           "Haiwezi kuamuliwa"
         ],
-        "other_organs_tissue_specify": "",
-        "cannot_be_determined_explain": ""
+        "other_organs_tissue_specify": {
+          "label": "Kiungo / tishu nyingine (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_explain": {
+          "label": "Haiwezi kuamuliwa (eleza)",
+          "type": "text",
+          "value": ""
+        }
       },
       "largest_extrapelvic_peritoneal_focus": {
         "label": "Lengo kubwa zaidi la peritonemu nje ya nyonga",
@@ -235,9 +323,21 @@
           "La makroskopiki (zaidi ya sm 2)",
           "Haiwezi kuamuliwa"
         ],
-        "macroscopic_2cm_or_less_specify_site": "",
-        "macroscopic_greater_than_2cm_specify_site": "",
-        "cannot_be_determined_explain": ""
+        "macroscopic_2cm_or_less_specify_site": {
+          "label": "La makroskopiki (sm 2 au chini) (taja eneo)",
+          "type": "text",
+          "value": ""
+        },
+        "macroscopic_greater_than_2cm_specify_site": {
+          "label": "La makroskopiki (zaidi ya sm 2) (taja eneo)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_explain": {
+          "label": "Haiwezi kuamuliwa (eleza)",
+          "type": "text",
+          "value": ""
+        }
       },
       "peritoneal_ascitic_fluid_involvement": {
         "label": "Ushiriki wa maji ya peritonemu / ascites",
@@ -252,10 +352,14 @@
           "Haiwezi kuamuliwa",
           "Matokeo yanasubiriwa"
         ],
-        "atypical_explain": "",
-        "other_specify": "",
-        "suspicious_explain": "",
-        "cannot_be_determined_explain": ""
+        "atypical_explain": { "label": "Atipiki (eleza)", "type": "text", "value": "" },
+        "other_specify": { "label": "Nyingine (taja)", "type": "text", "value": "" },
+        "suspicious_explain": { "label": "Inatia shaka (eleza)", "type": "text", "value": "" },
+        "cannot_be_determined_explain": {
+          "label": "Haiwezi kuamuliwa (eleza)",
+          "type": "text",
+          "value": ""
+        }
       },
       "chemotherapy_response_score": {
         "label": "Alama ya majibu ya chemotherapy (CRS)",
@@ -268,7 +372,11 @@
           "CRS3 (jibu kubwa bila saratani iliyobaki au kidogo sana)",
           "Haiwezi kuamuliwa"
         ],
-        "cannot_be_determined_specify": ""
+        "cannot_be_determined_specify": {
+          "label": "Haiwezi kuamuliwa (taja)",
+          "type": "text",
+          "value": ""
+        }
       },
       "tumor_comment": {
         "label": "Maoni ya uvimbe"
@@ -308,14 +416,34 @@
           "Nyingine",
           "Haiwezi kuamuliwa"
         ],
-        "right_pelvic_specify": "",
-        "left_pelvic_specify": "",
-        "pelvic_nos_specify": "",
-        "right_para_aortic_specify": "",
-        "left_para_aortic_specify": "",
-        "para_aortic_nos_specify": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": ""
+        "right_pelvic_specify": { "label": "Pelviki ya kulia (taja)", "type": "text", "value": "" },
+        "left_pelvic_specify": {
+          "label": "Pelviki ya kushoto (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "pelvic_nos_specify": { "label": "Pelviki, NOS (taja)", "type": "text", "value": "" },
+        "right_para_aortic_specify": {
+          "label": "Para-aortiki ya kulia (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "left_para_aortic_specify": {
+          "label": "Para-aortiki ya kushoto (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "para_aortic_nos_specify": {
+          "label": "Para-aortiki, NOS (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": { "label": "Nyingine (taja)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "Haiwezi kuamuliwa (taja)",
+          "type": "text",
+          "value": ""
+        }
       },
       "size_of_largest_nodal_metastatic_deposit": {
         "label": "Ukubwa wa amana kubwa zaidi ya metastasi ya nodi",
@@ -354,15 +482,39 @@
           "Nyingine",
           "Haiwezi kuamuliwa"
         ],
-        "right_pelvic_specify": "",
-        "left_pelvic_specify": "",
-        "pelvic_nos_specify": "",
-        "right_para_aortic_specify": "",
-        "left_para_aortic_specify": "",
-        "para_aortic_nos_specify": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": "",
-        "cannot_be_determined_explain": ""
+        "right_pelvic_specify": { "label": "Pelviki ya kulia (taja)", "type": "text", "value": "" },
+        "left_pelvic_specify": {
+          "label": "Pelviki ya kushoto (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "pelvic_nos_specify": { "label": "Pelviki, NOS (taja)", "type": "text", "value": "" },
+        "right_para_aortic_specify": {
+          "label": "Para-aortiki ya kulia (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "left_para_aortic_specify": {
+          "label": "Para-aortiki ya kushoto (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "para_aortic_nos_specify": {
+          "label": "Para-aortiki, NOS (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": { "label": "Nyingine (taja)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "Haiwezi kuamuliwa (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_explain": {
+          "label": "Haiwezi kuamuliwa (eleza)",
+          "type": "text",
+          "value": ""
+        }
       },
       "number_of_lymph_nodes_examined": {
         "label": "Idadi ya nodi za limfu zilizochunguzwa"
@@ -379,14 +531,34 @@
           "Nyingine",
           "Haiwezi kuamuliwa"
         ],
-        "right_pelvic_specify": "",
-        "left_pelvic_specify": "",
-        "pelvic_nos_specify": "",
-        "right_para_aortic_specify": "",
-        "left_para_aortic_specify": "",
-        "para_aortic_nos_specify": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": ""
+        "right_pelvic_specify": { "label": "Pelviki ya kulia (taja)", "type": "text", "value": "" },
+        "left_pelvic_specify": {
+          "label": "Pelviki ya kushoto (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "pelvic_nos_specify": { "label": "Pelviki, NOS (taja)", "type": "text", "value": "" },
+        "right_para_aortic_specify": {
+          "label": "Para-aortiki ya kulia (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "left_para_aortic_specify": {
+          "label": "Para-aortiki ya kushoto (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "para_aortic_nos_specify": {
+          "label": "Para-aortiki, NOS (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": { "label": "Nyingine (taja)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "Haiwezi kuamuliwa (taja)",
+          "type": "text",
+          "value": ""
+        }
       },
       "regional_lymph_node_comment": {
         "label": "Maoni ya nodi za limfu za eneo"
@@ -409,14 +581,42 @@
           "Nyingine",
           "Haiwezi kuamuliwa"
         ],
-        "pleural_effusion_specify": "",
-        "liver_parenchyma_specify": "",
-        "splenic_parenchyma_specify": "",
-        "extra_abdominal_organs_specify": "",
-        "inguinal_lymph_nodes_specify": "",
-        "transmural_involvement_specify": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": ""
+        "pleural_effusion_specify": {
+          "label": "Maji ya pleura (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "liver_parenchyma_specify": {
+          "label": "Parenkimu ya ini (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "splenic_parenchyma_specify": {
+          "label": "Parenkimu ya wengu (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "extra_abdominal_organs_specify": {
+          "label": "Kiungo/viungo vya nje ya tumbo (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "inguinal_lymph_nodes_specify": {
+          "label": "Nodi za limfu za kinena (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "transmural_involvement_specify": {
+          "label": "Uhusika wa transmuralisi (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": { "label": "Nyingine (taja)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "Haiwezi kuamuliwa (taja)",
+          "type": "text",
+          "value": ""
+        }
       }
     }
   },

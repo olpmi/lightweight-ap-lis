@@ -13,8 +13,8 @@
         "type": "select",
         "options": ["Uondoaji kamili wa tezi dume", "Nyingine", "Haijabainishwa"],
         "value": "",
-        "radical_prostatectomy_specify": "",
-        "other_specify": ""
+        "radical_prostatectomy_specify": "Uondoaji kamili wa tezi dume",
+        "other_specify": "Nyingine (taja)"
       },
       "prostate_weight_g": {
         "label": "Uzito wa tezi dume (g)",
@@ -73,8 +73,8 @@
               "Karsinoma, aina haiwezi kubainishwa"
             ],
             "value": "",
-            "other_specify": "",
-            "cannot_be_determined_specify": ""
+            "other_specify": "Nyingine (taja)",
+            "cannot_be_determined_specify": "Haiwezi kuamuliwa (eleza)"
           },
           "comment": {
             "label": "Maoni kuhusu aina ya kihistolojia",
@@ -103,8 +103,8 @@
               "Haihusiki"
             ],
             "value": "",
-            "cannot_be_assessed_specify": "",
-            "not_applicable_specify": ""
+            "cannot_be_assessed_specify": "Haiwezi kutathminiwa (eleza)",
+            "not_applicable_specify": "Haihusiki (eleza)"
           },
           "minor_tertiary_pattern_5_for_group_2": {
             "label": "Mchoro mdogo wa tatu 5 kwa kikundi cha daraja 2",
@@ -174,7 +174,7 @@
             "type": "select",
             "options": ["Haihusiki", "Haijaonekana", "Ipo", "Haiwezi kuamuliwa"],
             "value": "",
-            "cannot_be_determined_explain": ""
+            "cannot_be_determined_explain": "Haiwezi kuamuliwa (eleza)"
           }
         }
       },
@@ -246,7 +246,7 @@
           "Haiwezi kuamuliwa"
         ],
         "value": "",
-        "cannot_be_determined_explain": ""
+        "cannot_be_determined_explain": "Haiwezi kuamuliwa (eleza)"
       },
       "dominant_nodule_greatest_dimension_mm": {
         "label": "Kipimo kikubwa zaidi cha nodule kuu (mm)",
@@ -281,7 +281,7 @@
               "Haiwezi kuamuliwa"
             ],
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": "Haiwezi kuamuliwa (eleza)"
           },
           "locations": {
             "label": "Mahali pa ueneaji nje ya tezi dume",
@@ -303,8 +303,8 @@
               "Haiwezi kuamuliwa"
             ],
             "value": [],
-            "other_specify": "",
-            "cannot_be_determined_specify": ""
+            "other_specify": "Nyingine (taja)",
+            "cannot_be_determined_specify": "Haiwezi kuamuliwa (eleza)"
           }
         }
       },
@@ -313,7 +313,7 @@
         "type": "select",
         "options": ["Haijaonekana", "Ipo", "Haiwezi kuamuliwa"],
         "value": "",
-        "cannot_be_determined_specify": ""
+        "cannot_be_determined_specify": "Haiwezi kuamuliwa (eleza)"
       },
       "seminal_vesicle_invasion": {
         "label": "Uvamizi wa vesicles za shahawa",
@@ -333,14 +333,14 @@
         "type": "select",
         "options": ["Haijaonekana", "Ipo", "Haiwezi kuamuliwa"],
         "value": "",
-        "cannot_be_determined_explain": ""
+        "cannot_be_determined_explain": "Haiwezi kuamuliwa (eleza)"
       },
       "perineural_invasion": {
         "label": "Uvamizi wa perinerali",
         "type": "select",
         "options": ["Haijaonekana", "Ipo"],
         "value": "",
-        "present_specify": ""
+        "present_specify": "Ipo (taja)"
       }
     }
   },
@@ -356,7 +356,7 @@
           "Karsinoma vamizi ipo kwenye mpaka"
         ],
         "value": "",
-        "cannot_be_assessed_specify": ""
+        "cannot_be_assessed_specify": "Haiwezi kutathminiwa (eleza)"
       },
       "linear_length_of_margin_involved": {
         "label": "Urefu wa mstari wa mipaka iliyohusika na karsinoma",
@@ -371,7 +371,7 @@
               "Haiwezi kuamuliwa"
             ],
             "value": "",
-            "cannot_be_determined_explain": ""
+            "cannot_be_determined_explain": "Haiwezi kuamuliwa (eleza)"
           },
           "length_mm": {
             "label": "Urefu (mm)",
@@ -405,7 +405,7 @@
           "Haiwezi kuamuliwa"
         ],
         "value": [],
-        "cannot_be_determined_specify": ""
+        "cannot_be_determined_specify": "Haiwezi kuamuliwa (eleza)"
       },
       "margin_involvement_in_area_of_epe": {
         "label": "Uhusika wa mpaka na karsinoma vamizi katika eneo la EPE",
@@ -510,7 +510,7 @@
             "type": "multi_select",
             "options": ["Kulia", "Kushoto", "Haiwezi kuamuliwa"],
             "value": [],
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": "Haiwezi kuamuliwa (eleza)"
           }
         }
       },
@@ -663,10 +663,10 @@
           "Haiwezi kuamuliwa"
         ],
         "value": [],
-        "nonregional_lymph_nodes_specify": "",
-        "bone_specify": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": ""
+        "nonregional_lymph_nodes_specify": "Nodi za limfu zisizo za eneo husika (taja)",
+        "bone_specify": "Mfupa (taja)",
+        "other_specify": "Nyingine (taja)",
+        "cannot_be_determined_specify": "Haiwezi kuamuliwa (eleza)"
       }
     }
   },

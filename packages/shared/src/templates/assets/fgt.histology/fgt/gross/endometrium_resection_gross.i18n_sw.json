@@ -2,7 +2,7 @@
   "template_id": "endometrium_resection_gross_v1",
   "domain": "anatomic_pathology",
   "lang": "sw",
-  "title": "Sampuli ya upasuaji wa endometriamu (kiolezo cha makroskopia)",
+  "title": "Sampuli ya upasuaji wa endometriamu",
   "specimen": {
     "label": "Sampuli",
     "fields": {
@@ -273,14 +273,14 @@
     }
   },
   "grossing": {
-    "label": "Uchunguzi wa makroskopia (grossing)",
+    "label": "Uchunguzi wa macho",
     "fields": {
       "grossed_by": {
-        "label": "Uchunguzi wa makroskopia ulifanywa na"
+        "label": "Imefanyiwa uchunguzi wa macho na (herufi za kwanza)",
+        "type": "text",
+        "value": ""
       },
-      "date": {
-        "label": "Tarehe"
-      }
+      "date": { "label": "Tarehe", "type": "date", "value": "" }
     }
   }
 }

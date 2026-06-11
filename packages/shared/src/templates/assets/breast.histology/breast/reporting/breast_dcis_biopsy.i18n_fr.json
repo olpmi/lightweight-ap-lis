@@ -17,7 +17,7 @@
         ],
         "type": "select",
         "value": "",
-        "other_specify": ""
+        "other_specify": "Autre (préciser)"
       },
       "laterality": {
         "label": "Latéralité du prélèvement",
@@ -44,7 +44,11 @@
         ],
         "type": "multi_select",
         "value": [],
-        "clock_position_specify": ""
+        "clock_position_specify": {
+          "label": "Position en cadran horaire (préciser)",
+          "type": "text",
+          "value": ""
+        }
       },
       "histologic_type": {
         "label": "Type histologique",
@@ -70,7 +74,7 @@
         ],
         "type": "multi_select",
         "value": [],
-        "other_specify": ""
+        "other_specify": { "label": "Autre (préciser)", "type": "text", "value": "" }
       },
       "nuclear_grade": {
         "label": "Grade nucléaire",
@@ -83,8 +87,12 @@
         ],
         "type": "select",
         "value": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": ""
+        "other_specify": { "label": "Autre (préciser)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "Ne peut pas être déterminé (préciser)",
+          "type": "text",
+          "value": ""
+        }
       },
       "necrosis": {
         "label": "Nécrose",
@@ -97,8 +105,12 @@
         ],
         "type": "select",
         "value": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": ""
+        "other_specify": { "label": "Autre (préciser)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "Ne peut pas être déterminé (préciser)",
+          "type": "text",
+          "value": ""
+        }
       },
       "microcalcifications": {
         "label": "Microcalcifications",
@@ -110,7 +122,7 @@
         ],
         "type": "multi_select",
         "value": [],
-        "other_specify": ""
+        "other_specify": "Autre (préciser)"
       }
     }
   },

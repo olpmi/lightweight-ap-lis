@@ -1,0 +1,275 @@
+{
+  "template_id": "esophagus_resection_gross_v1",
+  "domain": "anatomic_pathology",
+  "lang": "en",
+  "title": "Esophagectomy for Tumor",
+  "procedure_type": {
+    "label": "Procedure Type",
+    "type": "select",
+    "options": [
+      "Total esophagectomy",
+      "Subtotal esophagectomy",
+      "Trans-hiatal esophagectomy",
+      "Esophagogastrectomy",
+      "Other"
+    ],
+    "value": "",
+    "other_specify": {
+      "label": "Other (specify)",
+      "type": "text",
+      "value": ""
+    }
+  },
+  "orientation_provided": {
+    "label": "Orientation Provided",
+    "type": "select",
+    "options": ["Yes", "No"],
+    "value": ""
+  },
+  "specimen_dimensions": {
+    "label": "Specimen Dimensions",
+    "fields": {
+      "esophagus_length_cm": {
+        "label": "Length of esophagus (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "gastric_component_length_cm": {
+        "label": "Gastric component length (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "gastric_component_max_width_cm": {
+        "label": "Gastric component maximum width (cm)",
+        "type": "number",
+        "value": ""
+      }
+    }
+  },
+  "tumor_present": {
+    "label": "Tumor present",
+    "type": "select",
+    "options": ["Yes", "Not grossly identified"],
+    "value": ""
+  },
+  "tumor_location": {
+    "label": "Tumor Location",
+    "type": "select",
+    "options": [
+      "Cervical esophagus",
+      "Upper thoracic esophagus",
+      "Middle thoracic esophagus",
+      "Lower thoracic esophagus",
+      "Gastroesophageal junction (GEJ)"
+    ],
+    "value": ""
+  },
+  "distance_to_margins_cm": {
+    "label": "Distance of tumor to margins (cm)",
+    "fields": {
+      "proximal": {
+        "label": "Proximal",
+        "type": "number",
+        "value": ""
+      },
+      "distal": {
+        "label": "Distal",
+        "type": "number",
+        "value": ""
+      },
+      "radial_adventitial": {
+        "label": "Radial / Adventitial",
+        "type": "number",
+        "value": ""
+      }
+    }
+  },
+  "tumor_involves_gej": {
+    "label": "Tumor involves GEJ",
+    "type": "select",
+    "options": ["Yes", "No"],
+    "value": ""
+  },
+  "tumor_dimensions_cm": {
+    "label": "Tumor Dimensions (cm)",
+    "type": "measurement_3d",
+    "value": ""
+  },
+  "tumor_configuration": {
+    "label": "Tumor Configuration",
+    "type": "multi_select",
+    "options": [
+      "Exophytic",
+      "Fungating",
+      "Ulcerated",
+      "Infiltrative",
+      "Circumferential",
+      "Polypoid",
+      "Flat"
+    ],
+    "value": []
+  },
+  "tumor_consistency": {
+    "label": "Tumor Consistency",
+    "type": "select",
+    "options": ["Firm", "Soft", "Friable", "Other"],
+    "value": "",
+    "other_specify": {
+      "label": "Other (specify)",
+      "type": "text",
+      "value": ""
+    }
+  },
+  "tumor_necrosis": {
+    "label": "Tumor Necrosis",
+    "type": "select",
+    "options": ["Present", "Absent"],
+    "value": ""
+  },
+  "hemorrhage": {
+    "label": "Hemorrhage",
+    "type": "select",
+    "options": ["Present", "Absent"],
+    "value": ""
+  },
+  "tumor_extent": {
+    "label": "Tumor extent",
+    "type": "select",
+    "options": [
+      "Invades the mucosa only",
+      "Invades the submucosa",
+      "Invades the muscularis propria",
+      "Invades the adventitia",
+      "Invades adjacent structures"
+    ],
+    "value": "",
+    "adjacent_structures_specify": {
+      "label": "Adjacent structures (specify)",
+      "type": "text",
+      "value": ""
+    }
+  },
+  "background_esophageal_mucosa": {
+    "label": "Appearance of Background Esophageal Mucosa",
+    "type": "multi_select",
+    "options": [
+      "Unremarkable",
+      "Barrett esophagus",
+      "Ulceration",
+      "Stricture",
+      "Dysplasia",
+      "Radiation changes",
+      "Other"
+    ],
+    "value": [],
+    "other_specify": {
+      "label": "Other (specify)",
+      "type": "text",
+      "value": ""
+    }
+  },
+  "previous_neoadjuvant_therapy": {
+    "label": "Previous Neoadjuvant Therapy",
+    "type": "select",
+    "options": ["Yes", "No", "Unknown"],
+    "value": ""
+  },
+  "gross_treatment_response": {
+    "label": "Gross evidence of treatment response",
+    "type": "select",
+    "options": [
+      "Not applicable",
+      "None",
+      "Partial",
+      "Marked",
+      "Complete response (no gross tumor)"
+    ],
+    "value": ""
+  },
+  "tumor_bed_size_cm": {
+    "label": "Tumor bed size (cm), if applicable",
+    "type": "text",
+    "value": ""
+  },
+  "fibrosis": {
+    "label": "Fibrosis",
+    "type": "select",
+    "options": ["Present", "Absent"],
+    "value": ""
+  },
+  "lymph_nodes": {
+    "label": "Regional Lymph Nodes",
+    "fields": {
+      "number_identified": {
+        "label": "Number Identified",
+        "type": "integer",
+        "value": ""
+      },
+      "size_range_mm": {
+        "label": "Size Range (mm)",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+  "other_macroscopic_findings": {
+    "label": "Other Relevant Macroscopic Findings",
+    "type": "text",
+    "value": ""
+  },
+  "block_identification_key": {
+    "label": "Block Identification Key",
+    "fields": {
+      "tumor": {
+        "label": "Tumor",
+        "type": "text",
+        "value": ""
+      },
+      "proximal_margin": {
+        "label": "Proximal Margin",
+        "type": "text",
+        "value": ""
+      },
+      "distal_margin": {
+        "label": "Distal Margin",
+        "type": "text",
+        "value": ""
+      },
+      "radial_adventitial_margin": {
+        "label": "Radial / Adventitial Margin",
+        "type": "text",
+        "value": ""
+      },
+      "non_neoplastic_esophagus": {
+        "label": "Non-neoplastic Esophagus",
+        "type": "text",
+        "value": ""
+      },
+      "lymph_nodes": {
+        "label": "Lymph Nodes",
+        "type": "text",
+        "value": ""
+      },
+      "additional_sections": {
+        "label": "Additional Sections",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+  "grossing": {
+    "label": "Grossing",
+    "fields": {
+      "grossed_by": {
+        "label": "Grossed By (Initials)",
+        "type": "text",
+        "value": ""
+      },
+      "date": {
+        "label": "Date",
+        "type": "date",
+        "value": ""
+      }
+    }
+  }
+}

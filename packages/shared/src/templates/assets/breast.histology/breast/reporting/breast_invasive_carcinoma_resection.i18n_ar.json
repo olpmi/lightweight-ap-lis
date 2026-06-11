@@ -21,7 +21,7 @@
         ],
         "type": "select",
         "value": "",
-        "other_specify": ""
+        "other_specify": "أخرى (حدد)"
       },
       "laterality": {
         "label": "جهة العينة",
@@ -48,7 +48,11 @@
         ],
         "type": "multi_select",
         "value": [],
-        "clock_position_specify": ""
+        "clock_position_specify": {
+          "label": "موضع عقارب الساعة (حدد)",
+          "type": "text",
+          "value": ""
+        }
       },
       "histologic_type": {
         "label": "النوع النسيجي",
@@ -77,8 +81,12 @@
         "type": "select",
         "value": "",
         "features_specify": "",
-        "cannot_be_determined_specify": "",
-        "other_specify": "",
+        "cannot_be_determined_specify": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": { "label": "أخرى (حدد)", "type": "text", "value": "" },
         "comment": ""
       },
       "histologic_grade": {
@@ -101,7 +109,11 @@
             ],
             "type": "select",
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": {
+              "label": "لا يمكن التحديد (حدد)",
+              "type": "text",
+              "value": ""
+            }
           },
           "nuclear_pleomorphism": {
             "label": "تعدد الأشكال النووية",
@@ -114,7 +126,11 @@
             ],
             "type": "select",
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": {
+              "label": "لا يمكن التحديد (حدد)",
+              "type": "text",
+              "value": ""
+            }
           },
           "mitotic_rate": {
             "label": "معدل الانقسام",
@@ -128,7 +144,11 @@
             "reference_note": "انظر الجدول 1 في الملاحظة D",
             "type": "select",
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": {
+              "label": "لا يمكن التحديد (حدد)",
+              "type": "text",
+              "value": ""
+            }
           },
           "overall_grade": {
             "label": "الدرجة الإجمالية",
@@ -141,7 +161,11 @@
             ],
             "type": "select",
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": {
+              "label": "لا يمكن التحديد (حدد)",
+              "type": "text",
+              "value": ""
+            }
           }
         }
       },
@@ -362,7 +386,11 @@
             "options": ["غير مُشخَّص", "موجود", "لا يمكن تحديده"],
             "type": "select",
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": {
+              "label": "لا يمكن التحديد (حدد)",
+              "type": "text",
+              "value": ""
+            }
           },
           "extent": {
             "label": "مدى الغزو اللمفي الوعائي",
@@ -377,7 +405,11 @@
         "options": ["لا يوجد جلد", "غير مُشخَّص", "موجود", "لا يمكن تحديده"],
         "type": "select",
         "value": "",
-        "cannot_be_determined_specify": ""
+        "cannot_be_determined_specify": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        }
       },
       "microcalcifications": {
         "label": "التكلسات الدقيقة",
@@ -686,7 +718,11 @@
             "value": ""
           },
           "other_specify": "",
-          "cannot_be_determined_explain": ""
+          "cannot_be_determined_specify": {
+            "label": "لا يمكن التحديد (حدد)",
+            "type": "text",
+            "value": ""
+          }
         }
       },
       "number_with_micrometastases": {
@@ -704,7 +740,11 @@
             "value": ""
           },
           "other_specify": "",
-          "cannot_be_determined_explain": ""
+          "cannot_be_determined_explain": {
+            "label": "لا يمكن التحديد (اشرح)",
+            "type": "text",
+            "value": ""
+          }
         }
       },
       "number_with_isolated_tumor_cells": {
@@ -722,7 +762,11 @@
             "value": ""
           },
           "other_specify": "",
-          "cannot_be_determined_explain": ""
+          "cannot_be_determined_explain": {
+            "label": "لا يمكن التحديد (اشرح)",
+            "type": "text",
+            "value": ""
+          }
         }
       },
       "size_of_largest_nodal_metastatic_deposit": {
@@ -740,7 +784,11 @@
             "value": ""
           },
           "other_specify": "",
-          "cannot_be_determined_explain": ""
+          "cannot_be_determined_explain": {
+            "label": "لا يمكن التحديد (اشرح)",
+            "type": "text",
+            "value": ""
+          }
         }
       },
       "extranodal_extension": {
@@ -796,7 +844,11 @@
             "value": ""
           },
           "other_specify": "",
-          "cannot_be_determined_explain": ""
+          "cannot_be_determined_explain": {
+            "label": "لا يمكن التحديد (اشرح)",
+            "type": "text",
+            "value": ""
+          }
         }
       },
       "number_of_sentinel_nodes_examined": {
@@ -814,7 +866,11 @@
             "value": ""
           },
           "other_specify": "",
-          "cannot_be_determined_explain": ""
+          "cannot_be_determined_explain": {
+            "label": "لا يمكن التحديد (اشرح)",
+            "type": "text",
+            "value": ""
+          }
         }
       },
       "comment": {
@@ -842,12 +898,16 @@
         "type": "multi_select",
         "value": [],
         "non_regional_lymph_nodes_specify": "",
-        "lung_specify": "",
-        "liver_specify": "",
-        "bone_specify": "",
-        "brain_specify": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": ""
+        "lung_specify": "الرئة (حدد)",
+        "liver_specify": "الكبد (حدد)",
+        "bone_specify": "العظم (حدد)",
+        "brain_specify": "الدماغ (حدد)",
+        "other_specify": "أخرى (حدد)",
+        "cannot_be_determined_specify": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        }
       }
     }
   },

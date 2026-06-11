@@ -48,7 +48,11 @@
         ],
         "type": "multi_select",
         "value": [],
-        "clock_position_specify": ""
+        "clock_position_specify": {
+          "label": "گھڑی کی سمت (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        }
       },
       "histologic_type": {
         "label": "ہسٹولوجیکل قسم",
@@ -77,7 +81,11 @@
         "type": "select",
         "value": "",
         "features_specify": "",
-        "cannot_be_determined_specify": "",
+        "cannot_be_determined_specify": {
+          "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
         "other_specify": "",
         "comment": ""
       },
@@ -104,7 +112,11 @@
             ],
             "type": "select",
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": {
+              "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+              "type": "text",
+              "value": ""
+            }
           },
           "nuclear_pleomorphism": {
             "label": "نیوکلیئر پلیومورفزم",
@@ -117,7 +129,11 @@
             ],
             "type": "select",
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": {
+              "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+              "type": "text",
+              "value": ""
+            }
           },
           "mitotic_rate": {
             "label": "مائٹوٹک شرح",
@@ -131,7 +147,11 @@
             "reference_note": "نوٹ D میں جدول 1 دیکھیں",
             "type": "select",
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": {
+              "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+              "type": "text",
+              "value": ""
+            }
           },
           "overall_grade": {
             "label": "مجموعی گریڈ",
@@ -144,7 +164,11 @@
             ],
             "type": "select",
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": {
+              "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+              "type": "text",
+              "value": ""
+            }
           }
         }
       },
@@ -383,7 +407,11 @@
         "options": ["کوئی جلد نہیں", "شناخت نہیں ہوئی", "موجود", "متعین نہیں کیا جا سکتا"],
         "type": "select",
         "value": "",
-        "cannot_be_determined_specify": ""
+        "cannot_be_determined_specify": {
+          "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        }
       },
       "microcalcifications": {
         "label": "مائیکروکیلسیفیکیشنز",
@@ -700,8 +728,12 @@
             "type": "integer",
             "value": ""
           },
-          "other_specify": "",
-          "cannot_be_determined_explain": ""
+          "other_specify": { "label": "دیگر (وضاحت کریں)", "type": "text", "value": "" },
+          "cannot_be_determined_specify": {
+            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+            "type": "text",
+            "value": ""
+          }
         }
       },
       "number_with_micrometastases": {
@@ -719,7 +751,11 @@
             "value": ""
           },
           "other_specify": "",
-          "cannot_be_determined_explain": ""
+          "cannot_be_determined_explain": {
+            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+            "type": "text",
+            "value": ""
+          }
         }
       },
       "number_with_isolated_tumor_cells": {
@@ -742,8 +778,12 @@
             "type": "integer",
             "value": ""
           },
-          "other_specify": "",
-          "cannot_be_determined_explain": ""
+          "other_specify": { "label": "دیگر (وضاحت کریں)", "type": "text", "value": "" },
+          "cannot_be_determined_explain": {
+            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+            "type": "text",
+            "value": ""
+          }
         }
       },
       "size_of_largest_nodal_metastatic_deposit": {
@@ -760,8 +800,12 @@
             "type": "number",
             "value": ""
           },
-          "other_specify": "",
-          "cannot_be_determined_explain": ""
+          "other_specify": { "label": "دیگر (وضاحت کریں)", "type": "text", "value": "" },
+          "cannot_be_determined_explain": {
+            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+            "type": "text",
+            "value": ""
+          }
         }
       },
       "extranodal_extension": {
@@ -816,8 +860,12 @@
             "type": "integer",
             "value": ""
           },
-          "other_specify": "",
-          "cannot_be_determined_explain": ""
+          "other_specify": { "label": "دیگر (وضاحت کریں)", "type": "text", "value": "" },
+          "cannot_be_determined_explain": {
+            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+            "type": "text",
+            "value": ""
+          }
         }
       },
       "number_of_sentinel_nodes_examined": {
@@ -840,8 +888,12 @@
             "type": "integer",
             "value": ""
           },
-          "other_specify": "",
-          "cannot_be_determined_explain": ""
+          "other_specify": { "label": "دیگر (وضاحت کریں)", "type": "text", "value": "" },
+          "cannot_be_determined_explain": {
+            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+            "type": "text",
+            "value": ""
+          }
         }
       },
       "comment": {
@@ -868,13 +920,21 @@
         ],
         "type": "multi_select",
         "value": [],
-        "non_regional_lymph_nodes_specify": "",
-        "lung_specify": "",
-        "liver_specify": "",
-        "bone_specify": "",
-        "brain_specify": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": ""
+        "non_regional_lymph_nodes_specify": {
+          "label": "غیر علاقائی لمف نوڈز (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        },
+        "lung_specify": { "label": "پھیپھڑا (وضاحت کریں)", "type": "text", "value": "" },
+        "liver_specify": { "label": "جگر (وضاحت کریں)", "type": "text", "value": "" },
+        "bone_specify": { "label": "ہڈی (وضاحت کریں)", "type": "text", "value": "" },
+        "brain_specify": { "label": "دماغ (وضاحت کریں)", "type": "text", "value": "" },
+        "other_specify": { "label": "دیگر (وضاحت کریں)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        }
       }
     }
   },

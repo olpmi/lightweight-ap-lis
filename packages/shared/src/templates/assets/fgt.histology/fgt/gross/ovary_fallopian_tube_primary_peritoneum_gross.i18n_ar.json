@@ -36,7 +36,7 @@
           "بزل جنبي (سائل جنبي)",
           "أخرى"
         ],
-        "other_specify": ""
+        "other_specify": "أخرى (حدد)"
       },
       "hysterectomy_type": {
         "label": "نوع استئصال الرحم",
@@ -49,17 +49,20 @@
           "أخرى",
           "غير محدد"
         ],
-        "other_specify": ""
+        "other_specify": "أخرى (حدد)"
       },
       "specimen_integrity_note": {
-        "label": "ملاحظة سلامة العينة"
-      },
-      "specimen_integrity_applicability": {
-        "label": "انطباقية سلامة العينة",
-        "options": ["غير منطبق"]
+        "label": "ملاحظة سلامة العينة",
+        "type": "text",
+        "value": "بالنسبة لأورام المبيض الأولية: إذا أُخرج المبيض المحتوي على الورم الأولي سليماً داخل كيس منظار ثم فُتح داخل الكيس من قِبَل الجراح دون انسكاب في تجويف الصفاق، يجب تصنيف سلامة العينة على أنها 'المحفظة سليمة' مع إضافة تعليق يوضح ذلك في التقرير. بالنسبة لأورام الصفاق الأولية لدى النساء اللواتي خضعن لاستئصال سابق للبوق والمبيض، اختاري 'غير قابل للتطبيق'."
       }
+    },
+    "specimen_integrity_applicability": {
+      "label": "انطباقية سلامة العينة",
+      "options": ["غير منطبق"]
     }
   },
+
   "ovarian_integrity": {
     "label": "سلامة المبيض",
     "fields": {
@@ -69,7 +72,7 @@
       "right_ovary_integrity": {
         "label": "سلامة المبيض الأيمن",
         "options": ["المحفظة سليمة", "المحفظة ممزقة", "مجزأ", "أخرى"],
-        "other_specify": ""
+        "other_specify": "أخرى (حدد)"
       },
       "right_ovary_time_of_rupture": {
         "label": "وقت التمزق – المبيض الأيمن",
@@ -81,7 +84,7 @@
       "left_ovary_integrity": {
         "label": "سلامة المبيض الأيسر",
         "options": ["المحفظة سليمة", "المحفظة ممزقة", "مجزأ", "أخرى"],
-        "other_specify": ""
+        "other_specify": "أخرى (حدد)"
       },
       "left_ovary_time_of_rupture": {
         "label": "وقت التمزق – المبيض الأيسر",
@@ -93,7 +96,7 @@
       "ovary_laterality_not_specified_integrity": {
         "label": "سلامة المبيض (الجهة غير محددة)",
         "options": ["المحفظة سليمة", "المحفظة ممزقة", "مجزأ", "أخرى"],
-        "other_specify": ""
+        "other_specify": "أخرى (حدد)"
       },
       "ovary_laterality_not_specified_time_of_rupture": {
         "label": "وقت التمزق (الجهة غير محددة)",
@@ -110,7 +113,7 @@
       "right_fallopian_tube_integrity": {
         "label": "سلامة قناة فالوب اليمنى",
         "options": ["المصلية سليمة", "المصلية ممزقة", "مجزأ", "أخرى"],
-        "other_specify": ""
+        "other_specify": "أخرى (حدد)"
       },
       "left_fallopian_tube_present": {
         "label": "قناة فالوب اليسرى"
@@ -118,7 +121,7 @@
       "left_fallopian_tube_integrity": {
         "label": "سلامة قناة فالوب اليسرى",
         "options": ["المصلية سليمة", "المصلية ممزقة", "مجزأ", "أخرى"],
-        "other_specify": ""
+        "other_specify": "أخرى (حدد)"
       },
       "fallopian_tube_laterality_not_specified_present": {
         "label": "قناة فالوب، الجهة غير محددة"
@@ -126,7 +129,7 @@
       "fallopian_tube_laterality_not_specified_integrity": {
         "label": "سلامة قناة فالوب (الجهة غير محددة)",
         "options": ["المصلية سليمة", "المصلية ممزقة", "مجزأ", "أخرى"],
-        "other_specify": ""
+        "other_specify": "أخرى (حدد)"
       }
     }
   },
@@ -136,7 +139,7 @@
       "status": {
         "label": "سلامة الرحم",
         "options": ["سليم", "مفتوح", "مُجزَّأ بالتقطيع", "أخرى"],
-        "other_specify": ""
+        "other_specify": "أخرى (حدد)"
       }
     }
   },

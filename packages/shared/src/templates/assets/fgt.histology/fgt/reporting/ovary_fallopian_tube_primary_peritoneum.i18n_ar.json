@@ -29,20 +29,64 @@
           "الصفاق الأولي",
           "أخرى"
         ],
-        "right_ovary_specify": "",
-        "left_ovary_specify": "",
-        "bilateral_ovaries_specify": "",
-        "ovary_laterality_cannot_be_determined_explain": "",
-        "right_fallopian_tube_specify": "",
-        "left_fallopian_tube_specify": "",
-        "bilateral_fallopian_tubes_specify": "",
-        "fallopian_tube_laterality_cannot_be_determined_explain": "",
-        "right_tubo_ovarian_specify": "",
-        "left_tubo_ovarian_specify": "",
-        "bilateral_tubo_ovarian_specify": "",
-        "tubo_ovarian_laterality_cannot_be_determined_explain": "",
-        "primary_peritoneum_specify": "",
-        "other_specify": ""
+        "right_ovary_specify": { "label": "المبيض الأيمن (حدد)", "type": "text", "value": "" },
+        "left_ovary_specify": { "label": "المبيض الأيسر (حدد)", "type": "text", "value": "" },
+        "bilateral_ovaries_specify": {
+          "label": "المبيضان (ثنائي) (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "ovary_laterality_cannot_be_determined_explain": {
+          "label": "لا يمكن تحديد جهة المبيض (اشرح)",
+          "type": "text",
+          "value": ""
+        },
+        "right_fallopian_tube_specify": {
+          "label": "قناة فالوب اليمنى (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "left_fallopian_tube_specify": {
+          "label": "قناة فالوب اليسرى (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "bilateral_fallopian_tubes_specify": {
+          "label": "قناتا فالوب (ثنائي) (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "fallopian_tube_laterality_cannot_be_determined_explain": {
+          "label": "لا يمكن تحديد جهة قناة فالوب (اشرح)",
+          "type": "text",
+          "value": ""
+        },
+        "right_tubo_ovarian_specify": {
+          "label": "البنية البوقية المبيضية اليمنى (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "left_tubo_ovarian_specify": {
+          "label": "البنية البوقية المبيضية اليسرى (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "bilateral_tubo_ovarian_specify": {
+          "label": "البنية البوقية المبيضية (ثنائي) (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "tubo_ovarian_laterality_cannot_be_determined_explain": {
+          "label": "لا يمكن تحديد جهة البنية البوقية المبيضية (اشرح)",
+          "type": "text",
+          "value": ""
+        },
+        "primary_peritoneum_specify": {
+          "label": "الصفاق الأولي (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": { "label": "أخرى (حدد)", "type": "text", "value": "" }
       },
       "tumor_size": {
         "label": "حجم الورم",
@@ -118,14 +162,38 @@
           "ورم دسمي صغير مستدير الخلايا",
           "نوع نسيجي آخر غير مُدرج"
         ],
-        "mixed_epithelial_borderline_tumor_specify": "",
-        "mixed_carcinoma_specify": "",
-        "other_sex_cord_stromal_tumor_specify": "",
-        "teratoma_with_malignant_transformation_specify": "",
-        "malignant_struma_ovarii_specify": "",
-        "mixed_malignant_germ_cell_tumor_specify": "",
-        "other_histologic_type_specify": "",
-        "comment": ""
+        "mixed_epithelial_borderline_tumor_specify": {
+          "label": "ورم حدّي ظهاري مختلط (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "mixed_carcinoma_specify": { "label": "سرطانة مختلطة (حدد)", "type": "text", "value": "" },
+        "other_sex_cord_stromal_tumor_specify": {
+          "label": "ورم حبل جنسي سدوي آخر (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "teratoma_with_malignant_transformation_specify": {
+          "label": "ورم مسخي مع تحول خبيث (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "malignant_struma_ovarii_specify": {
+          "label": "الدرقية المبيضية الخبيثة (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "mixed_malignant_germ_cell_tumor_specify": {
+          "label": "ورم خبيث مختلط من الخلايا الجرثومية (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "other_histologic_type_specify": {
+          "label": "نوع نسيجي آخر (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "comment": { "label": "تعليق", "type": "text", "value": "" }
       },
       "histologic_grade": {
         "label": "الدرجة النسيجية",
@@ -186,7 +254,11 @@
           "موجود",
           "لا يمكن التحديد"
         ],
-        "cannot_be_determined_explain": ""
+        "cannot_be_determined_explain": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        }
       },
       "fallopian_tube_surface_involvement": {
         "label": "إصابة سطح قناة فالوب",
@@ -199,13 +271,17 @@
           "موجود",
           "لا يمكن التحديد"
         ],
-        "cannot_be_determined_explain": ""
+        "cannot_be_determined_explain": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        }
       },
       "implants": {
         "label": "الزرعات",
         "note": "مطلوبة فقط للأورام الحدودية المصلية / المصلية المخاطية المتقدمة.",
         "options": ["غير قابل للتطبيق", "لم تُأخذ عينة", "غير مُشخَّص", "موجود", "غير محدد"],
-        "present_specify_sites": ""
+        "present_specify_sites": { "label": "موجود (حدد المواضع)", "type": "text", "value": "" }
       },
       "other_tissue_organ_involvement": {
         "label": "إصابة أنسجة / أعضاء أخرى",
@@ -226,8 +302,16 @@
           "أعضاء / أنسجة أخرى",
           "لا يمكن التحديد"
         ],
-        "other_organs_tissue_specify": "",
-        "cannot_be_determined_explain": ""
+        "other_organs_tissue_specify": {
+          "label": "أعضاء / أنسجة أخرى (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_explain": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        }
       },
       "largest_extrapelvic_peritoneal_focus": {
         "label": "أكبر بؤرة صفاقية خارج الحوض",
@@ -238,9 +322,21 @@
           "ماكروسكوبي (أكبر من 2 سم)",
           "لا يمكن التحديد"
         ],
-        "macroscopic_2cm_or_less_specify_site": "",
-        "macroscopic_greater_than_2cm_specify_site": "",
-        "cannot_be_determined_explain": ""
+        "macroscopic_2cm_or_less_specify_site": {
+          "label": "ماكروسكوبي (2 سم أو أقل) (حدد الموقع)",
+          "type": "text",
+          "value": ""
+        },
+        "macroscopic_greater_than_2cm_specify_site": {
+          "label": "ماكروسكوبي (أكبر من 2 سم) (حدد الموقع)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_explain": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        }
       },
       "peritoneal_ascitic_fluid_involvement": {
         "label": "إصابة الغسالة الصفاقية / سائل الاستسقاء",
@@ -255,10 +351,14 @@
           "لا يمكن التحديد",
           "النتائج قيد الانتظار"
         ],
-        "atypical_explain": "",
-        "other_specify": "",
-        "suspicious_explain": "",
-        "cannot_be_determined_explain": ""
+        "atypical_explain": { "label": "غير نمطي (حدد)", "type": "text", "value": "" },
+        "other_specify": { "label": "أخرى (حدد)", "type": "text", "value": "" },
+        "suspicious_explain": { "label": "مشتبه (حدد)", "type": "text", "value": "" },
+        "cannot_be_determined_explain": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        }
       },
       "chemotherapy_response_score": {
         "label": "نقاط استجابة العلاج الكيماوي (CRS)",
@@ -271,7 +371,11 @@
           "CRS3 (استجابة واضحة مع لا سرطان متبقٍ أو ضئيل)",
           "لا يمكن التحديد"
         ],
-        "cannot_be_determined_specify": ""
+        "cannot_be_determined_specify": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        }
       },
       "tumor_comment": {
         "label": "تعليق على الورم"
@@ -311,14 +415,30 @@
           "أخرى",
           "لا يمكن التحديد"
         ],
-        "right_pelvic_specify": "",
-        "left_pelvic_specify": "",
-        "pelvic_nos_specify": "",
-        "right_para_aortic_specify": "",
-        "left_para_aortic_specify": "",
-        "para_aortic_nos_specify": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": ""
+        "right_pelvic_specify": { "label": "الحوضي الأيمن (حدد)", "type": "text", "value": "" },
+        "left_pelvic_specify": { "label": "الحوضي الأيسر (حدد)", "type": "text", "value": "" },
+        "pelvic_nos_specify": { "label": "الحوضي، NOS (حدد)", "type": "text", "value": "" },
+        "right_para_aortic_specify": {
+          "label": "المجاور للأبهر الأيمن (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "left_para_aortic_specify": {
+          "label": "المجاور للأبهر الأيسر (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "para_aortic_nos_specify": {
+          "label": "المجاور للأبهر، NOS (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": { "label": "أخرى (حدد)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        }
       },
       "size_of_largest_nodal_metastatic_deposit": {
         "label": "حجم أكبر ترسب نقائلي في العقد",
@@ -350,15 +470,30 @@
           "أخرى",
           "لا يمكن التحديد"
         ],
-        "right_pelvic_specify": "",
-        "left_pelvic_specify": "",
-        "pelvic_nos_specify": "",
-        "right_para_aortic_specify": "",
-        "left_para_aortic_specify": "",
-        "para_aortic_nos_specify": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": "",
-        "cannot_be_determined_explain": ""
+        "right_pelvic_specify": { "label": "الحوضي الأيمن (حدد)", "type": "text", "value": "" },
+        "left_pelvic_specify": { "label": "الحوضي الأيسر (حدد)", "type": "text", "value": "" },
+        "pelvic_nos_specify": { "label": "الحوضي، NOS (حدد)", "type": "text", "value": "" },
+        "right_para_aortic_specify": {
+          "label": "المجاور للأبهر الأيمن (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "left_para_aortic_specify": {
+          "label": "المجاور للأبهر الأيسر (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "para_aortic_nos_specify": {
+          "label": "المجاور للأبهر، NOS (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": { "label": "أخرى (حدد)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        }
       },
       "number_of_lymph_nodes_examined": {
         "label": "عدد العقد اللمفاوية المفحوصة"
@@ -375,14 +510,30 @@
           "أخرى",
           "لا يمكن التحديد"
         ],
-        "right_pelvic_specify": "",
-        "left_pelvic_specify": "",
-        "pelvic_nos_specify": "",
-        "right_para_aortic_specify": "",
-        "left_para_aortic_specify": "",
-        "para_aortic_nos_specify": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": ""
+        "right_pelvic_specify": { "label": "الحوضي الأيمن (حدد)", "type": "text", "value": "" },
+        "left_pelvic_specify": { "label": "الحوضي الأيسر (حدد)", "type": "text", "value": "" },
+        "pelvic_nos_specify": { "label": "الحوضي، NOS (حدد)", "type": "text", "value": "" },
+        "right_para_aortic_specify": {
+          "label": "المجاور للأبهر الأيمن (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "left_para_aortic_specify": {
+          "label": "المجاور للأبهر الأيسر (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "para_aortic_nos_specify": {
+          "label": "المجاور للأبهر، NOS (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": { "label": "أخرى (حدد)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        }
       },
       "regional_lymph_node_comment": {
         "label": "تعليق على العقد اللمفاوية الإقليمية"
@@ -405,14 +556,34 @@
           "أخرى",
           "لا يمكن التحديد"
         ],
-        "pleural_effusion_specify": "",
-        "liver_parenchyma_specify": "",
-        "splenic_parenchyma_specify": "",
-        "extra_abdominal_organs_specify": "",
-        "inguinal_lymph_nodes_specify": "",
-        "transmural_involvement_specify": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": ""
+        "pleural_effusion_specify": {
+          "label": "الانصباب الجنبي (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "liver_parenchyma_specify": { "label": "حمة الكبد (حدد)", "type": "text", "value": "" },
+        "splenic_parenchyma_specify": { "label": "حمة الطحال (حدد)", "type": "text", "value": "" },
+        "extra_abdominal_organs_specify": {
+          "label": "الأعضاء خارج البطن (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "inguinal_lymph_nodes_specify": {
+          "label": "العقد اللمفاوية الأربية (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "transmural_involvement_specify": {
+          "label": "الإصابة عبر الجدار (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": { "label": "أخرى (حدد)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        }
       }
     }
   },

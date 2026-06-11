@@ -91,7 +91,7 @@
           "غیر متعین"
         ],
         "value": "",
-        "location_specify": ""
+        "location_specify": { "label": "مقام (وضاحت کریں)", "type": "text", "value": "" }
       },
       "histologic_type": {
         "label": "ہسٹولوجیکل قسم",
@@ -130,8 +130,12 @@
               "کارسینوما، قسم متعین نہیں کی جا سکتی"
             ],
             "value": "",
-            "other_specify": "",
-            "cannot_be_determined_specify": ""
+            "other_specify": { "label": "دیگر (وضاحت کریں)", "type": "text", "value": "" },
+            "cannot_be_determined_specify": {
+              "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+              "type": "text",
+              "value": ""
+            }
           },
           "comment": {
             "label": "ہسٹولوجیکل قسم پر تبصرہ",
@@ -148,8 +152,8 @@
             "type": "select",
             "options": ["قابل اطلاق نہیں", "جانچا نہیں جا سکتا", "جانچا جا سکتا ہے"],
             "value": "",
-            "not_applicable_specify": "",
-            "cannot_be_assessed_specify": ""
+            "not_applicable_specify": "قابل اطلاق نہیں (وضاحت کریں)",
+            "cannot_be_assessed_specify": "جانچا نہیں جا سکتا (وضاحت کریں)"
           },
           "tumor_microfocus": {
             "label": "رسولی مائیکروفوکس",
@@ -226,7 +230,7 @@
             "type": "select",
             "options": ["ہاں", "نہیں", "متعین نہیں کیا جا سکتا"],
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
           }
         }
       },
@@ -244,9 +248,9 @@
               "متعین نہیں کیا جا سکتا"
             ],
             "value": "",
-            "present_specify": "",
-            "equivocal_explain": "",
-            "cannot_be_determined_explain": ""
+            "present_specify": { "label": "موجود (وضاحت کریں)", "type": "text", "value": "" },
+            "equivocal_explain": "مشکوک (وضاحت کریں)",
+            "cannot_be_determined_specify": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
           }
         }
       },
@@ -258,14 +262,14 @@
             "type": "select",
             "options": ["تعداد درج کریں", "متعین نہیں کیا جا سکتا"],
             "value": "",
-            "number": ""
+            "number": { "label": "تعداد درج کریں", "type": "text", "value": "" }
           },
           "number_of_positive_cores": {
             "label": "مثبت کورز کی تعداد",
             "type": "select",
             "options": ["تعداد درج کریں", "متعین نہیں کیا جا سکتا"],
             "value": "",
-            "number": ""
+            "number": { "label": "تعداد درج کریں", "type": "text", "value": "" }
           },
           "tumor_measurement_technique": {
             "label": "رسولی پیمائش کی تکنیک",
@@ -296,14 +300,14 @@
               "متعین نہیں کیا جا سکتا"
             ],
             "value": "",
-            "cannot_be_determined_explain": ""
+            "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
           },
           "length_of_prostatic_tissue_involved": {
             "label": "رسولی سے متاثرہ پروسٹیٹک ٹشو کی لمبائی",
             "type": "select",
             "options": ["ملی میٹر (mm) میں درج کریں", "1 ملی میٹر سے کم"],
             "value": "",
-            "length_mm": ""
+            "length_mm": "لمبائی درج کریں"
           }
         }
       },
@@ -312,24 +316,24 @@
         "type": "select",
         "options": ["شناخت نہیں ہوئی", "موجود", "مبہم", "متعین نہیں کیا جا سکتا"],
         "value": "",
-        "equivocal_explain": "",
-        "cannot_be_determined_explain": ""
+        "equivocal_explain": "مشکوک (وضاحت کریں)",
+        "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
       },
       "seminal_vesicle_or_ejaculatory_duct_invasion": {
         "label": "سیمنل ویسیکل / ایجیکیولیٹری ڈکٹ رسوخ",
         "type": "select",
         "options": ["شناخت نہیں ہوئی", "موجود", "مبہم", "متعین نہیں کیا جا سکتا"],
         "value": "",
-        "equivocal_explain": "",
-        "cannot_be_determined_explain": ""
+        "equivocal_explain": "مشکوک (وضاحت کریں)",
+        "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
       },
       "lymphovascular_invasion": {
         "label": "لمفاتی و / یا عروقی رسوخ",
         "type": "select",
         "options": ["شناخت نہیں ہوئی", "موجود", "مبہم", "متعین نہیں کیا جا سکتا"],
         "value": "",
-        "equivocal_explain": "",
-        "cannot_be_determined_specify": ""
+        "equivocal_explain": "مشکوک (وضاحت کریں)",
+        "cannot_be_determined_specify": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
       },
       "perineural_invasion": {
         "label": "پیری نیورل رسوخ",

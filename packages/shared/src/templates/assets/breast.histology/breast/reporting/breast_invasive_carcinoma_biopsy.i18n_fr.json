@@ -17,7 +17,7 @@
         ],
         "type": "select",
         "value": "",
-        "other_specify": ""
+        "other_specify": "Autre (préciser)"
       },
       "laterality": {
         "label": "Latéralité du prélèvement",
@@ -44,7 +44,11 @@
         ],
         "type": "multi_select",
         "value": [],
-        "clock_position_specify": ""
+        "clock_position_specify": {
+          "label": "Position en cadran horaire (préciser)",
+          "type": "text",
+          "value": ""
+        }
       },
       "histologic_type": {
         "label": "Type histologique",
@@ -73,8 +77,8 @@
         "type": "select",
         "value": "",
         "features_specify": "",
-        "cannot_be_determined_specify": "",
-        "other_specify": ""
+        "cannot_be_determined_specify": "Ne peut pas être déterminé (expliquer)",
+        "other_specify": "Autre (préciser)"
       },
       "histologic_grade": {
         "label": "Grade histologique (score histologique de Nottingham)",
@@ -98,7 +102,7 @@
             ],
             "type": "select",
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": "Ne peut pas être déterminé (expliquer)"
           },
           "nuclear_pleomorphism": {
             "label": "Pléomorphisme nucléaire",
@@ -110,7 +114,7 @@
             ],
             "type": "select",
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": "Ne peut pas être déterminé (expliquer)"
           },
           "mitotic_rate": {
             "label": "Taux mitotique",
@@ -118,7 +122,7 @@
             "reference_note": "Voir le tableau 1 du protocole CAP.",
             "type": "select",
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": "Ne peut pas être déterminé (expliquer)"
           },
           "overall_grade": {
             "label": "Grade global",
@@ -130,7 +134,7 @@
             ],
             "type": "select",
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": "Ne peut pas être déterminé (expliquer)"
           }
         }
       },
@@ -183,7 +187,7 @@
         ],
         "type": "multi_select",
         "value": [],
-        "other_specify": ""
+        "other_specify": "Autre (préciser)"
       },
       "nuclear_grade": {
         "label": "Grade nucléaire",
@@ -196,8 +200,8 @@
         ],
         "type": "select",
         "value": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": ""
+        "other_specify": "Autre (préciser)",
+        "cannot_be_determined_specify": "Ne peut pas être déterminé (expliquer)"
       },
       "necrosis": {
         "label": "Nécrose",
@@ -211,8 +215,8 @@
         ],
         "type": "select",
         "value": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": ""
+        "other_specify": "Autre (préciser)",
+        "cannot_be_determined_specify": "Ne peut pas être déterminé (expliquer)"
       }
     }
   },
@@ -224,7 +228,7 @@
         "options": ["Non identifiée", "Présente", "Ne peut pas être déterminée"],
         "type": "select",
         "value": "",
-        "cannot_be_determined_specify": ""
+        "cannot_be_determined_specify": "Ne peut pas être déterminé (expliquer)"
       }
     }
   },
@@ -242,7 +246,7 @@
         ],
         "type": "multi_select",
         "value": [],
-        "other_specify": ""
+        "other_specify": "Autre (préciser)"
       }
     }
   },

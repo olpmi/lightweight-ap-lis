@@ -16,7 +16,7 @@
           "Non précisé"
         ],
         "value": "",
-        "prior_treatment_specify": ""
+        "prior_treatment_specify": "Traitement antérieur administré, préciser"
       }
     }
   },
@@ -46,14 +46,14 @@
           "Autre"
         ],
         "value": "",
-        "other_specify": ""
+        "other_specify": "Autre, préciser"
       },
       "adequacy": {
         "label": "Adéquation du prélèvement",
         "type": "select",
         "options": ["Adéquat", "Sous-optimal"],
         "value": "",
-        "suboptimal_explain": ""
+        "suboptimal_explain": "Sous-optimal, expliquer"
       }
     }
   },
@@ -75,14 +75,14 @@
         "type": "select",
         "options": ["Non identifiée", "Présente", "Ne peut pas être déterminée"],
         "value": "",
-        "cannot_be_determined_specify": ""
+        "cannot_be_determined_specify": "Ne peut pas être déterminée, préciser"
       },
       "perineural_invasion": {
         "label": "Invasion périnerveuse",
         "type": "select",
         "options": ["Non identifiée", "Présente", "Ne peut pas être déterminée"],
         "value": "",
-        "cannot_be_determined_specify": ""
+        "cannot_be_determined_specify": "Ne peut pas être déterminée, préciser"
       },
       "additional_pathologic_findings": {
         "label": "Résultats pathologiques supplémentaires",

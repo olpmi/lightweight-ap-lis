@@ -324,26 +324,28 @@
   "block_key": {
     "label": "Mwongozo wa vizuizi vya tishu",
     "fields": {
-      "nipple": {},
-      "tumor": {},
-      "surrounding_breast": {},
-      "margins": {},
-      "lymph_nodes": {}
+      "nipple": { "label": "Chuchu", "type": "text", "value": "" },
+      "tumor": { "label": "Uvimbe", "type": "text", "value": "" },
+      "surrounding_breast": { "label": "Tishu za titi zinazozunguka", "type": "text", "value": "" },
+      "medial margin": { "label": "Mpaka wa kati", "type": "text", "value": "" },
+      "lateral margin": { "label": "Mpaka wa pembeni", "type": "text", "value": "" },
+      "Superior margin": { "label": "Mpaka wa juu", "type": "text", "value": "" },
+      "Inferior margin": { "label": "Mpaka wa chini", "type": "text", "value": "" },
+      "Posterior margin": { "label": "Mpaka wa nyuma", "type": "text", "value": "" },
+      "Anterior margin": { "label": "Mpaka wa mbele", "type": "text", "value": "" },
+      "lymph_nodes": { "label": "Nodi za limfu", "type": "text", "value": "" }
     }
   },
+
   "grossing": {
-    "label": "Uchunguzi wa makroskopia",
+    "label": "Uchunguzi wa macho",
     "fields": {
       "grossed_by": {
-        "label": "Imefanyiwa uchunguzi wa makroskopia na",
+        "label": "Imefanyiwa uchunguzi wa macho na (herufi za kwanza)",
         "type": "text",
         "value": ""
       },
-      "date": {
-        "label": "Tarehe",
-        "type": "date",
-        "value": ""
-      }
+      "date": { "label": "Tarehe", "type": "date", "value": "" }
     }
   }
 }

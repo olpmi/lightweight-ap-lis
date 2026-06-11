@@ -76,7 +76,7 @@
         "value": "",
         "other_specify": "Nyingine, taja",
         "cannot_be_assessed_specify": "Haiwezi kutathminiwa, taja",
-        "not_applicable_specify": ""
+        "not_applicable_specify": "Haihusiki, taja"
       },
       "lymphovascular_invasion": {
         "label": "Uvamizi wa limfatiki na / au mishipa ya damu",
@@ -86,7 +86,7 @@
             "type": "select",
             "options": ["Haijaonekana", "Ipo", "Haiwezi kuamuliwa"],
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
           },
           "subtypes": {
             "label": "Aina ndogo za uvamizi",

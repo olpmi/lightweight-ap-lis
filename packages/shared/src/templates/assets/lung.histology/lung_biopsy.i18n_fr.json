@@ -41,12 +41,36 @@
           "Aucune tumeur viable présente"
         ],
         "value": "",
-        "combined_small_cell_non_small_cell_component_specify": "",
-        "combined_large_cell_neuroendocrine_other_component_specify": "",
-        "carcinoma_type_cannot_be_determined_specify": "",
-        "non_small_cell_subtype_cannot_be_determined_specify": "",
-        "other_histologic_type_specify": "",
-        "no_viable_tumor_present_explain": ""
+        "combined_small_cell_non_small_cell_component_specify": {
+          "label": "Composante combinée à petites cellules / non à petites cellules (préciser)",
+          "type": "text",
+          "value": ""
+        },
+        "combined_large_cell_neuroendocrine_other_component_specify": {
+          "label": "Composante combinée neuroendocrine à grandes cellules / autre composante (préciser)",
+          "type": "text",
+          "value": ""
+        },
+        "carcinoma_type_cannot_be_determined_specify": {
+          "label": "Type de carcinome indéterminable (préciser)",
+          "type": "text",
+          "value": ""
+        },
+        "non_small_cell_subtype_cannot_be_determined_specify": {
+          "label": "Sous-type de carcinome non à petites cellules indéterminable (préciser)",
+          "type": "text",
+          "value": ""
+        },
+        "other_histologic_type_specify": {
+          "label": "Autre type histologique (préciser)",
+          "type": "text",
+          "value": ""
+        },
+        "no_viable_tumor_present_explain": {
+          "label": "Aucune tumeur viable présente (expliquer)",
+          "type": "text",
+          "value": ""
+        }
       },
       "histologic_patterns": {
         "label": "Patterns histologiques (applicables aux adénocarcinomes non mucineux uniquement)",
@@ -77,9 +101,9 @@
           "Non applicable"
         ],
         "value": "",
-        "other_specify": "",
-        "cannot_be_assessed_specify": "",
-        "not_applicable_specify": ""
+        "other_specify": "Autre (préciser)",
+        "cannot_be_assessed_specify": "Ne peut pas être évalué (préciser)",
+        "not_applicable_specify": "Non applicable (préciser)"
       },
       "lymphovascular_invasion": {
         "label": "Invasion lymphatique et / ou vasculaire",
@@ -89,7 +113,7 @@
             "type": "select",
             "options": ["Non identifiée", "Présente", "Ne peut pas être déterminée"],
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": "Ne peut pas être déterminée (préciser)"
           },
           "subtypes": {
             "label": "Sous-type(s) d'invasion",
@@ -101,7 +125,7 @@
               "Autre"
             ],
             "value": [],
-            "other_specify": ""
+            "other_specify": "Autre (préciser)"
           }
         }
       }

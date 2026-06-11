@@ -1,0 +1,202 @@
+{
+  "templateId": "cervical_cytology_pap_smear_bethesda",
+  "summaryType": "rule_based_patient_facing_summary",
+  "version": "1.0",
+  "language": "pt",
+  "system": "Sistema de Bethesda para Relatório de Citologia Cervical",
+  "triggerField": "interpretation_result",
+  "summaries": {
+    "cervical_unsatisfactory_scant_cellularity": {
+      "professionalLabel": "Insatisfatório para avaliação — celularidade escassa",
+      "patientTitle": "O esfregaço de Papanicolaou não tinha células suficientes",
+      "plainLanguageSummary": "O esfregaço de Papanicolaou não pôde ser totalmente avaliado porque havia poucas células na amostra.",
+      "whatThisMeans": "Isto não significa que foi encontrado cancro ou lesão pré-cancerosa. Significa que a amostra não foi adequada para fornecer um resultado fiável.",
+      "possibleNextSteps": "O seu médico poderá recomendar a repetição do esfregaço de Papanicolaou, dependendo do seu historial de rastreio e situação clínica.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, resultados de HPV, resultados anteriores de Papanicolaou e as directrizes actuais de rastreio cervical."
+    },
+    "cervical_unsatisfactory_obscuring_blood_inflammation": {
+      "professionalLabel": "Insatisfatório para avaliação — sangue / inflamação obscurecedores",
+      "patientTitle": "O esfregaço de Papanicolaou foi obscurecido por sangue ou inflamação",
+      "plainLanguageSummary": "O esfregaço de Papanicolaou não pôde ser totalmente avaliado porque o sangue ou a inflamação dificultaram a análise das células.",
+      "whatThisMeans": "Isto não significa que foi encontrado cancro ou lesão pré-cancerosa. Significa que a qualidade da amostra era limitada.",
+      "possibleNextSteps": "O seu médico poderá recomendar o tratamento de infecção ou inflamação, se presentes, e depois repetir o esfregaço se necessário.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, resultados de HPV, resultados anteriores de Papanicolaou e as directrizes actuais de rastreio cervical."
+    },
+    "cervical_unsatisfactory_poor_preservation": {
+      "professionalLabel": "Insatisfatório para avaliação — má preservação",
+      "patientTitle": "O esfregaço de Papanicolaou estava mal preservado",
+      "plainLanguageSummary": "O esfregaço de Papanicolaou não pôde ser totalmente avaliado porque as células não estavam bem preservadas.",
+      "whatThisMeans": "Isto não significa que foi encontrado cancro ou lesão pré-cancerosa. Significa que a amostra não era adequada para uma interpretação fiável.",
+      "possibleNextSteps": "O seu médico poderá recomendar a repetição do esfregaço de Papanicolaou.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, resultados de HPV, resultados anteriores de Papanicolaou e as directrizes actuais de rastreio cervical."
+    },
+    "cervical_unsatisfactory_other": {
+      "professionalLabel": "Insatisfatório para avaliação — outro motivo",
+      "patientTitle": "O esfregaço de Papanicolaou não foi adequado para diagnóstico",
+      "plainLanguageSummary": "O esfregaço de Papanicolaou não pôde ser totalmente avaliado por outro motivo relacionado com a amostra.",
+      "whatThisMeans": "Isto não significa que foi encontrado cancro ou lesão pré-cancerosa. Significa que a amostra não foi adequada para fornecer um resultado fiável.",
+      "possibleNextSteps": "O seu médico explicará o motivo e poderá recomendar a repetição do esfregaço de Papanicolaou.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, resultados de HPV, resultados anteriores de Papanicolaou e as directrizes actuais de rastreio cervical."
+    },
+    "cervical_satisfactory_limited_obscuring_blood": {
+      "professionalLabel": "Satisfatório, mas limitado por sangue obscurecedor",
+      "patientTitle": "O esfregaço de Papanicolaou foi adequado, mas parcialmente limitado por sangue",
+      "plainLanguageSummary": "O esfregaço de Papanicolaou pôde ser avaliado, mas algumas áreas foram mais difíceis de analisar devido ao sangue.",
+      "whatThisMeans": "Pode ainda ser emitido um resultado, mas o seu médico interpretá-lo-á tendo esta limitação em conta.",
+      "possibleNextSteps": "O seguimento depende da interpretação final, do resultado de HPV, dos sintomas e do historial de rastreio.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, resultados de HPV, resultados anteriores de Papanicolaou e as directrizes actuais de rastreio cervical."
+    },
+    "cervical_satisfactory_limited_inflammation": {
+      "professionalLabel": "Satisfatório, mas limitado por inflamação",
+      "patientTitle": "O esfregaço de Papanicolaou foi adequado, mas parcialmente limitado por inflamação",
+      "plainLanguageSummary": "O esfregaço de Papanicolaou pôde ser avaliado, mas a inflamação dificultou a análise de algumas células.",
+      "whatThisMeans": "A inflamação pode ocorrer por muitas razões e não é o mesmo que cancro.",
+      "possibleNextSteps": "O seu médico poderá considerar os sintomas, pesquisa de infecção, tratamento se necessário ou seguimento de rotina, dependendo do resultado final.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, resultados de HPV, resultados anteriores de Papanicolaou e as directrizes actuais de rastreio cervical."
+    },
+    "cervical_satisfactory_limited_low_squamous_cellularity": {
+      "professionalLabel": "Satisfatório, mas limitado por baixa celularidade escamosa",
+      "patientTitle": "O esfregaço de Papanicolaou foi adequado, mas tinha menos células escamosas do que o ideal",
+      "plainLanguageSummary": "O esfregaço de Papanicolaou pôde ser avaliado, mas o número de células escamosas era inferior ao ideal.",
+      "whatThisMeans": "Pode ainda ser emitido um resultado, mas a amostra tinha uma limitação.",
+      "possibleNextSteps": "O seu médico interpretará este resultado juntamente com o resultado final, o estado de HPV e o seu historial de rastreio.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, resultados de HPV, resultados anteriores de Papanicolaou e as directrizes actuais de rastreio cervical."
+    },
+    "cervical_satisfactory_limited_poor_fixation": {
+      "professionalLabel": "Satisfatório, mas limitado por má fixação",
+      "patientTitle": "O esfregaço de Papanicolaou foi adequado, mas parcialmente limitado pela fixação",
+      "plainLanguageSummary": "O esfregaço de Papanicolaou pôde ser avaliado, mas algumas células não estavam preservadas tão bem quanto o ideal.",
+      "whatThisMeans": "Pode ainda ser emitido um resultado, mas a amostra tinha uma limitação técnica.",
+      "possibleNextSteps": "O seu médico decidirá se é necessário algum seguimento com base na interpretação final e no contexto clínico.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, resultados de HPV, resultados anteriores de Papanicolaou e as directrizes actuais de rastreio cervical."
+    },
+    "cervical_nilm_within_normal_limits": {
+      "professionalLabel": "Negativo para lesão intraepitelial ou malignidade: dentro dos limites normais",
+      "patientTitle": "Sem cancro nem alterações pré-cancerosas observados",
+      "plainLanguageSummary": "O seu esfregaço de Papanicolaou está dentro dos limites normais e não mostra cancro nem alterações pré-cancerosas.",
+      "whatThisMeans": "Este é geralmente um resultado tranquilizador.",
+      "possibleNextSteps": "O seu médico aconselhará rastreio de rotina ou seguimento com base na sua idade, resultado de HPV e historial de rastreio.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, resultados de HPV, resultados anteriores de Papanicolaou e as directrizes actuais de rastreio cervical."
+    },
+    "cervical_nilm_reactive_inflammation": {
+      "professionalLabel": "Negativo para lesão intraepitelial ou malignidade, com alterações celulares reativas associadas à inflamação",
+      "patientTitle": "Sem cancro nem alterações pré-cancerosas; alterações relacionadas com inflamação presentes",
+      "plainLanguageSummary": "O seu esfregaço de Papanicolaou não mostra cancro nem alterações pré-cancerosas. Estão presentes algumas alterações celulares relacionadas com inflamação.",
+      "whatThisMeans": "As alterações relacionadas com inflamação são comuns e não são o mesmo que cancro.",
+      "possibleNextSteps": "O seu médico poderá perguntar sobre sintomas, considerar pesquisa ou tratamento de infecção se necessário, e aconselhar rastreio de rotina ou seguimento.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, resultados de HPV, resultados anteriores de Papanicolaou e as directrizes actuais de rastreio cervical."
+    },
+    "cervical_nilm_reactive_radiation_iud_atrophy": {
+      "professionalLabel": "Negativo para lesão intraepitelial ou malignidade, com alterações celulares reativas associadas a radiação / DIU / atrofia",
+      "patientTitle": "Sem cancro nem alterações pré-cancerosas; alterações reativas presentes",
+      "plainLanguageSummary": "O seu esfregaço de Papanicolaou não mostra cancro nem alterações pré-cancerosas. Estão presentes algumas alterações celulares reativas, que podem estar relacionadas com radioterapia prévia, dispositivo intrauterino ou atrofia.",
+      "whatThisMeans": "Estas alterações são interpretadas no contexto do seu historial médico e não são o mesmo que cancro.",
+      "possibleNextSteps": "O seu médico correlacionará este resultado com o seu historial, sintomas, resultado de HPV e plano de rastreio.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, resultados de HPV, resultados anteriores de Papanicolaou e as directrizes actuais de rastreio cervical."
+    },
+    "cervical_organism_trichomonas_vaginalis": {
+      "professionalLabel": "Organismos identificados: Trichomonas vaginalis",
+      "patientTitle": "Organismos de Trichomonas observados",
+      "plainLanguageSummary": "O esfregaço de Papanicolaou mostra organismos compatíveis com Trichomonas vaginalis.",
+      "whatThisMeans": "A tricomoníase é uma infecção que pode afectar a vagina e o colo do útero. Deve ser interpretada com os sintomas e testes clínicos quando necessário.",
+      "possibleNextSteps": "O seu médico poderá recomendar testes confirmatórios, tratamento e gestão do parceiro de acordo com as directrizes clínicas.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, resultados de HPV, resultados anteriores de Papanicolaou e as directrizes actuais de rastreio cervical."
+    },
+    "cervical_organism_candida": {
+      "professionalLabel": "Organismos identificados: organismos fúngicos morfologicamente compatíveis com Candida spp.",
+      "patientTitle": "Organismos fúngicos do tipo Candida observados",
+      "plainLanguageSummary": "O esfregaço de Papanicolaou mostra organismos fúngicos com aspecto de Candida.",
+      "whatThisMeans": "A Candida pode estar associada a infecção por fungos (candidíase), mas o tratamento depende da presença de sintomas.",
+      "possibleNextSteps": "O seu médico poderá perguntar sobre comichão, corrimento ou irritação e decidir se é necessário tratamento.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, resultados de HPV, resultados anteriores de Papanicolaou e as directrizes actuais de rastreio cervical."
+    },
+    "cervical_organism_bacterial_vaginosis": {
+      "professionalLabel": "Organismos identificados: alteração da flora sugestiva de vaginose bacteriana",
+      "patientTitle": "Alterações sugestivas de vaginose bacteriana",
+      "plainLanguageSummary": "O esfregaço de Papanicolaou mostra uma alteração nas bactérias vaginais que pode sugerir vaginose bacteriana.",
+      "whatThisMeans": "A vaginose bacteriana é uma alteração comum da flora vaginal e não é cancro.",
+      "possibleNextSteps": "O seu médico poderá perguntar sobre sintomas e decidir se são necessários testes ou tratamento.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, resultados de HPV, resultados anteriores de Papanicolaou e as directrizes actuais de rastreio cervical."
+    },
+    "cervical_organism_actinomyces": {
+      "professionalLabel": "Organismos identificados: bactérias morfologicamente compatíveis com Actinomyces spp.",
+      "patientTitle": "Bactérias do tipo Actinomyces observadas",
+      "plainLanguageSummary": "O esfregaço de Papanicolaou mostra bactérias com aspecto de Actinomyces.",
+      "whatThisMeans": "Organismos do tipo Actinomyces podem ser observados, especialmente em algumas pessoas com dispositivo intrauterino. A importância depende dos sintomas e dos achados clínicos.",
+      "possibleNextSteps": "O seu médico interpretará este resultado com o seu historial e poderá recomendar seguimento ou tratamento apenas se clinicamente indicado.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, resultados de HPV, resultados anteriores de Papanicolaou e as directrizes actuais de rastreio cervical."
+    },
+    "cervical_organism_herpes_simplex_virus": {
+      "professionalLabel": "Organismos identificados: alterações pelo vírus herpes simples",
+      "patientTitle": "Alterações sugestivas de vírus herpes observadas",
+      "plainLanguageSummary": "O esfregaço de Papanicolaou mostra alterações celulares que podem estar associadas ao vírus herpes simples.",
+      "whatThisMeans": "Este achado deve ser interpretado juntamente com os sintomas e, se necessário, testes clínicos específicos.",
+      "possibleNextSteps": "O seu médico poderá perguntar sobre úlceras, dor ou outros sintomas e poderá recomendar testes confirmatórios ou tratamento.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, resultados de HPV, resultados anteriores de Papanicolaou e as directrizes actuais de rastreio cervical."
+    },
+    "cervical_ascus": {
+      "professionalLabel": "ASC-US (Células escamosas atípicas de significado indeterminado)",
+      "patientTitle": "Pequenas alterações celulares observadas",
+      "plainLanguageSummary": "O seu esfregaço de Papanicolaou mostra pequenas alterações nas células escamosas, mas as alterações não são específicas.",
+      "whatThisMeans": "O ASC-US é comum. Pode estar relacionado com HPV, inflamação, reparação ou outras alterações benignas.",
+      "possibleNextSteps": "O seu médico utilizará o seu resultado de HPV, a sua idade e o historial de rastreio para decidir se é necessário repetir o teste ou realizar colposcopia.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, resultados de HPV, resultados anteriores de Papanicolaou e as directrizes actuais de rastreio cervical."
+    },
+    "cervical_asc_h": {
+      "professionalLabel": "ASC-H (Células escamosas atípicas, não se pode excluir HSIL)",
+      "patientTitle": "Células anormais observadas; não é possível excluir alterações de alto grau",
+      "plainLanguageSummary": "O seu esfregaço de Papanicolaou mostra células escamosas anormais e não é possível excluir uma alteração pré-cancerosa de grau mais elevado.",
+      "whatThisMeans": "Este resultado necessita de seguimento cuidadoso porque pode estar associado a um risco mais elevado de lesão pré-cancerosa cervical significativa.",
+      "possibleNextSteps": "O seu médico poderá recomendar colposcopia ou avaliação adicional de acordo com as directrizes de rastreio.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, resultados de HPV, resultados anteriores de Papanicolaou e as directrizes actuais de rastreio cervical."
+    },
+    "cervical_lsil": {
+      "professionalLabel": "LSIL (Lesão intraepitelial escamosa de baixo grau)",
+      "patientTitle": "Alterações celulares cervicais de baixo grau",
+      "plainLanguageSummary": "O seu esfregaço de Papanicolaou mostra alterações de baixo grau nas células escamosas do colo do útero.",
+      "whatThisMeans": "O LSIL está frequentemente relacionado com infecção por HPV. Em muitas pessoas, as alterações de baixo grau podem melhorar ao longo do tempo, mas o seguimento é importante.",
+      "possibleNextSteps": "O seu médico utilizará a sua idade, o resultado de HPV e o historial de rastreio para decidir se é necessário repetir o teste ou realizar colposcopia.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, resultados de HPV, resultados anteriores de Papanicolaou e as directrizes actuais de rastreio cervical."
+    },
+    "cervical_hsil": {
+      "professionalLabel": "HSIL (Lesão intraepitelial escamosa de alto grau)",
+      "patientTitle": "Alterações celulares cervicais de alto grau",
+      "plainLanguageSummary": "O seu esfregaço de Papanicolaou mostra células anormais de alto grau.",
+      "whatThisMeans": "O HSIL não é o mesmo que cancro, mas pode representar uma alteração pré-cancerosa com maior probabilidade de progressão se não for avaliada e tratada.",
+      "possibleNextSteps": "O seu médico recomendará habitualmente colposcopia e tratamento adicional de acordo com as directrizes de rastreio cervical.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, resultados de HPV, resultados anteriores de Papanicolaou e as directrizes actuais de rastreio cervical."
+    },
+    "cervical_squamous_cell_carcinoma": {
+      "professionalLabel": "Carcinoma de células escamosas",
+      "patientTitle": "Células cancerosas identificadas no esfregaço de Papanicolaou",
+      "plainLanguageSummary": "O esfregaço de Papanicolaou mostra células escamosas malignas, ou seja, foram identificadas células cancerosas.",
+      "whatThisMeans": "Este resultado requer avaliação clínica urgente e confirmação com exame e biópsia adequados se necessário.",
+      "possibleNextSteps": "O seu médico providenciará encaminhamento para especialista, colposcopia, biópsia, exames de imagem ou planeamento do tratamento conforme apropriado.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, resultados de HPV, resultados anteriores de Papanicolaou e as directrizes actuais de rastreio cervical."
+    },
+    "cervical_agc": {
+      "professionalLabel": "Células glandulares atípicas (AGC)",
+      "patientTitle": "Células glandulares anormais observadas",
+      "plainLanguageSummary": "O seu esfregaço de Papanicolaou mostra células glandulares anormais.",
+      "whatThisMeans": "As células glandulares provêm do canal cervical ou por vezes do útero. Este resultado necessita de avaliação adicional porque a causa pode variar entre alterações benignas e lesão pré-cancerosa ou cancro.",
+      "possibleNextSteps": "O seu médico poderá recomendar colposcopia, amostragem endocervical, avaliação endometrial, testes de HPV ou outro seguimento dependendo da sua idade e historial clínico.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, resultados de HPV, resultados anteriores de Papanicolaou e as directrizes actuais de rastreio cervical."
+    },
+    "cervical_ais": {
+      "professionalLabel": "Adenocarcinoma endocervical in situ (AIS)",
+      "patientTitle": "Alteração pré-cancerosa glandular de alto grau",
+      "plainLanguageSummary": "O esfregaço de Papanicolaou mostra alterações compatíveis com adenocarcinoma in situ, uma condição glandular pré-cancerosa de alto grau do colo do útero.",
+      "whatThisMeans": "O AIS não é cancro invasivo, mas é uma condição pré-cancerosa grave que necessita de avaliação especializada urgente.",
+      "possibleNextSteps": "O seu médico recomendará habitualmente colposcopia, biópsia ou avaliação excisional e tratamento especializado.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, resultados de HPV, resultados anteriores de Papanicolaou e as directrizes actuais de rastreio cervical."
+    },
+    "cervical_adenocarcinoma": {
+      "professionalLabel": "Adenocarcinoma",
+      "patientTitle": "Células cancerosas glandulares identificadas",
+      "plainLanguageSummary": "O esfregaço de Papanicolaou mostra células glandulares malignas, ou seja, foram identificadas células de adenocarcinoma.",
+      "whatThisMeans": "Este resultado requer avaliação clínica urgente para determinar o local e a extensão da doença.",
+      "possibleNextSteps": "O seu médico providenciará encaminhamento para especialista e outros exames, tais como colposcopia, biópsia, exames de imagem ou outras investigações conforme apropriado.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, resultados de HPV, resultados anteriores de Papanicolaou e as directrizes actuais de rastreio cervical."
+    }
+  }
+}

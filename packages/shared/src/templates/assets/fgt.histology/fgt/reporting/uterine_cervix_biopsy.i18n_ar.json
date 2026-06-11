@@ -40,8 +40,16 @@
           "سرطان، لا يمكن تحديد النوع"
         ],
         "value": "",
-        "other_specify": "",
-        "cannot_be_determined_specify": "",
+        "other_specify": {
+          "label": "نوع آخر (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_specify": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        },
         "comment": ""
       },
       "histologic_grade": {
@@ -55,16 +63,32 @@
           "غير قابل للتطبيق"
         ],
         "value": "",
-        "cannot_be_assessed_specify": "",
-        "not_applicable_specify": ""
+        "cannot_be_assessed_specify": {
+          "label": "لا يمكن تقييمه (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "not_applicable_specify": {
+          "label": "غير قابل للتطبيق (حدد)",
+          "type": "text",
+          "value": ""
+        }
       },
       "lymphovascular_invasion": {
         "label": "الغزو اللمفي و / أو الوعائي",
         "type": "select",
         "options": ["غير مُشخَّص", "موجود", "غامض", "لا يمكن التحديد"],
         "value": "",
-        "equivocal_explain": "",
-        "cannot_be_determined_specify": ""
+        "equivocal_explain": {
+          "label": "غامض (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_specify": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        }
       }
     }
   },
@@ -83,7 +107,11 @@
           "أخرى"
         ],
         "value": [],
-        "other_specify": ""
+        "other_specify": {
+          "label": "نوع آخر (حدد)",
+          "type": "text",
+          "value": ""
+        }
       }
     }
   }

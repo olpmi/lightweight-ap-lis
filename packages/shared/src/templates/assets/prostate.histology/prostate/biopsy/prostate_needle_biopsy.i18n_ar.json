@@ -91,7 +91,7 @@
           "غير محدد"
         ],
         "value": "",
-        "location_specify": ""
+        "location_specify": { "label": "الموضع (حدد)", "type": "text", "value": "" }
       },
       "histologic_type": {
         "label": "النوع النسيجي",
@@ -130,8 +130,8 @@
               "سرطان، لا يمكن تحديد النوع"
             ],
             "value": "",
-            "other_specify": "",
-            "cannot_be_determined_specify": ""
+            "other_specify": "أخرى (حدد)",
+            "cannot_be_determined_specify": "لا يمكن تحديد النوع (حدد)"
           },
           "comment": {
             "label": "تعليق على النوع النسيجي",
@@ -148,8 +148,16 @@
             "type": "select",
             "options": ["غير قابل للتطبيق", "لا يمكن تقييمه", "قابل للتقييم"],
             "value": "",
-            "not_applicable_specify": "",
-            "cannot_be_assessed_specify": ""
+            "not_applicable_specify": {
+              "label": "غير قابل للتطبيق (حدد)",
+              "type": "text",
+              "value": ""
+            },
+            "cannot_be_assessed_specify": {
+              "label": "لا يمكن تقييمه (حدد)",
+              "type": "text",
+              "value": ""
+            }
           },
           "tumor_microfocus": {
             "label": "بؤرة ورمية مجهرية",
@@ -226,7 +234,7 @@
             "type": "select",
             "options": ["نعم", "لا", "لا يمكن التحديد"],
             "value": "",
-            "cannot_be_determined_specify": ""
+            "cannot_be_determined_specify": "لا يمكن تحديد النوع (حدد)"
           }
         }
       },
@@ -238,9 +246,13 @@
             "type": "select",
             "options": ["غير قابل للتطبيق", "غير مُشخَّص", "موجودة", "ملتبسة", "لا يمكن التحديد"],
             "value": "",
-            "present_specify": "",
-            "equivocal_explain": "",
-            "cannot_be_determined_explain": ""
+            "present_specify": "موجودة (حدد)",
+            "equivocal_explain": "ملتبسة (حدد)",
+            "cannot_be_determined_explain": {
+              "label": "لا يمكن التحديد (اشرح)",
+              "type": "text",
+              "value": ""
+            }
           }
         }
       },
@@ -290,7 +302,7 @@
               "لا يمكن التحديد"
             ],
             "value": "",
-            "cannot_be_determined_explain": ""
+            "cannot_be_determined_explain": "لا يمكن التحديد (حدد)"
           },
           "length_of_prostatic_tissue_involved": {
             "label": "طول نسيج البروستاتا المتأثر بالورم",
@@ -306,24 +318,36 @@
         "type": "select",
         "options": ["غير مُشخَّص", "موجود", "ملتبس", "لا يمكن التحديد"],
         "value": "",
-        "equivocal_explain": "",
-        "cannot_be_determined_explain": ""
+        "equivocal_explain": { "label": "مشكوك فيه (حدد)", "type": "text", "value": "" },
+        "cannot_be_determined_explain": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        }
       },
       "seminal_vesicle_or_ejaculatory_duct_invasion": {
         "label": "غزو الحويصلة المنوية / القناة الدافقة",
         "type": "select",
         "options": ["غير مُشخَّص", "موجود", "ملتبس", "لا يمكن التحديد"],
         "value": "",
-        "equivocal_explain": "",
-        "cannot_be_determined_explain": ""
+        "equivocal_explain": { "label": "مشكوك فيه (حدد)", "type": "text", "value": "" },
+        "cannot_be_determined_explain": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        }
       },
       "lymphovascular_invasion": {
         "label": "الغزو اللمفي و / أو الوعائي",
         "type": "select",
         "options": ["غير مُشخَّص", "موجود", "ملتبس", "لا يمكن التحديد"],
         "value": "",
-        "equivocal_explain": "",
-        "cannot_be_determined_specify": ""
+        "equivocal_explain": { "label": "مشكوك فيه (حدد)", "type": "text", "value": "" },
+        "cannot_be_determined_explain": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        }
       },
       "perineural_invasion": {
         "label": "الغزو حول العصبي",

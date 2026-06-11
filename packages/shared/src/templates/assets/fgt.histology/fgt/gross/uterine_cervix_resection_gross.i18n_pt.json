@@ -1,0 +1,216 @@
+{
+  "template_id": "uterine_cervix_resection_gross_v1",
+  "domain": "anatomic_pathology",
+  "lang": "pt",
+  "title": "Ressecção do colo do útero",
+
+  "specimen": {
+    "label": "Espécime",
+    "fields": {
+      "procedure": {
+        "label": "Procedimento",
+        "type": "multi_select",
+        "options": [
+          "Traquelectomia",
+          "Histerectomia total e salpingo-ooforectomia bilateral",
+          "Histerectomia radical",
+          "Histerectomia simples",
+          "Exenteração pélvica",
+          "Salpingo-ooforectomia bilateral",
+          "Salpingo-ooforectomia direita",
+          "Salpingo-ooforectomia esquerda",
+          "Salpingo-ooforectomia, lado não especificado",
+          "Ooforectomia direita",
+          "Ooforectomia esquerda",
+          "Ooforectomia, lado não especificado",
+          "Salpingectomia bilateral",
+          "Salpingectomia direita",
+          "Salpingectomia esquerda",
+          "Salpingectomia, lado não especificado",
+          "Ressecção da cúpula vaginal",
+          "Omentectomia",
+          "Outro"
+        ],
+        "value": [],
+        "pelvic_exenteration_specify_included_organs": {
+          "label": "Exenteração pélvica (especificar os órgãos incluídos)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" }
+      },
+      "hysterectomy_type": {
+        "label": "Tipo de histerectomia",
+        "type": "select",
+        "options": [
+          "Abdominal",
+          "Vaginal",
+          "Vaginal assistida por laparoscopia",
+          "Laparoscópica",
+          "Laparoscópica assistida por robótica",
+          "Outro",
+          "Não especificado"
+        ],
+        "value": "",
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" }
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "tumor_site": {
+        "label": "Local do tumor",
+        "type": "multi_select",
+        "options": [
+          "Quadrante superior esquerdo (anterior) (12 às 3 horas)",
+          "Quadrante inferior esquerdo (posterior) (3 às 6 horas)",
+          "Quadrante inferior direito (posterior) (6 às 9 horas)",
+          "Quadrante superior direito (anterior) (9 às 12 horas)",
+          "Outro",
+          "Não especificado"
+        ],
+        "value": [],
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" }
+      },
+      "tumor_size": {
+        "label": "Tamanho do tumor",
+        "fields": {
+          "size_type": {
+            "label": "Tamanho do tumor",
+            "type": "select",
+            "options": ["Maior dimensão em centímetros (cm)", "Não é possível determinar"],
+            "value": ""
+          },
+          "greatest_dimension_cm": {
+            "label": "Maior dimensão (cm)",
+            "type": "number",
+            "value": ""
+          },
+          "additional_dimensions_cm": {
+            "label": "Dimensões adicionais (cm)",
+            "type": "measurement_2d",
+            "value": ""
+          },
+          "cannot_be_determined_explain": {
+            "label": "Não é possível determinar (explicar)",
+            "type": "text",
+            "value": ""
+          },
+          "note": {
+            "label": "Nota sobre o tamanho do tumor",
+            "type": "text",
+            "value": "De acordo com o Manual de Estadiamento AJCC, o tamanho do tumor é registado em centímetros. Todas as dimensões são importantes; consultar a definição de carcinoma escamoso superficialmente invasivo em T1a1 / IA1."
+          }
+        }
+      },
+      "depth_of_invasion_cm": {
+        "label": "Profundidade de invasão do estroma (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "horizontal_extent_cm": { "label": "Extensão horizontal (cm)", "type": "number", "value": "" }
+    }
+  },
+
+  "margins": {
+    "label": "Margens",
+    "fields": {
+      "ectocervical_margin_cm": {
+        "label": "Distância à margem ectocervical (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "endocervical_margin_cm": {
+        "label": "Distância à margem endocervical (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "parametrial_margin_cm": {
+        "label": "Distância à margem parametrial (cm)",
+        "type": "number",
+        "value": ""
+      }
+    }
+  },
+
+  "parametrial_involvement": {
+    "label": "Envolvimento parametrial",
+    "fields": {
+      "status": {
+        "label": "Envolvimento parametrial",
+        "type": "select",
+        "options": ["Ausente", "Presente"],
+        "value": ""
+      },
+      "laterality": {
+        "label": "Lateralidade parametrial",
+        "type": "multi_select",
+        "options": ["Direito", "Esquerdo", "Bilateral"],
+        "value": []
+      }
+    }
+  },
+
+  "vaginal_cuff_involvement": {
+    "label": "Envolvimento da cúpula vaginal",
+    "fields": {
+      "status": {
+        "label": "Envolvimento da cúpula vaginal",
+        "type": "select",
+        "options": ["Ausente", "Presente"],
+        "value": ""
+      }
+    }
+  },
+
+  "lymph_nodes": {
+    "label": "Gânglios linfáticos",
+    "fields": {
+      "status": {
+        "label": "Gânglios linfáticos",
+        "type": "select",
+        "options": ["Presentes", "Ausentes"],
+        "value": ""
+      },
+      "total_number_of_nodes": {
+        "label": "Número total de gânglios",
+        "type": "integer",
+        "value": ""
+      },
+      "size_range": { "label": "Intervalo de tamanhos", "type": "text", "value": "" }
+    }
+  },
+
+  "block_allocation_key": {
+    "label": "Chave de alocação de blocos",
+    "fields": {
+      "tumor": { "label": "Tumor", "type": "text", "value": "" },
+      "endocervical_margin": { "label": "Margem endocervical", "type": "text", "value": "" },
+      "ectocervical_margin": { "label": "Margem ectocervical", "type": "text", "value": "" },
+      "right_parametrium": { "label": "Paramétrio direito", "type": "text", "value": "" },
+      "left_parametrium": { "label": "Paramétrio esquerdo", "type": "text", "value": "" },
+      "vaginal_cuff_margin": { "label": "Margem da cúpula vaginal", "type": "text", "value": "" },
+      "endometrium": { "label": "Endométrio", "type": "text", "value": "" },
+      "myometrium": { "label": "Miométrio", "type": "text", "value": "" },
+      "right_ovary": { "label": "Ovário direito", "type": "text", "value": "" },
+      "left_ovary": { "label": "Ovário esquerdo", "type": "text", "value": "" },
+      "right_fallopian_tube": { "label": "Trompa de Falópio direita", "type": "text", "value": "" },
+      "left_fallopian_tube": { "label": "Trompa de Falópio esquerda", "type": "text", "value": "" },
+      "lymph_nodes": { "label": "Gânglios linfáticos", "type": "text", "value": "" }
+    }
+  },
+
+  "grossing": {
+    "label": "Exame macroscópico",
+    "fields": {
+      "grossed_by": {
+        "label": "Exame macroscópico realizado por (iniciais)",
+        "type": "text",
+        "value": ""
+      },
+      "date": { "label": "Data", "type": "date", "value": "" }
+    }
+  }
+}

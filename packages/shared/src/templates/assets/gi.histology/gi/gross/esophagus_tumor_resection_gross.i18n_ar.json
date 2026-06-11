@@ -1,0 +1,256 @@
+{
+  "template_id": "esophagus_resection_gross_v1",
+  "domain": "anatomic_pathology",
+  "lang": "ar",
+  "ui": {
+    "direction": "rtl"
+  },
+  "title": "استئصال المريء للورم (نموذج الفحص العياني)",
+  "procedure_type": {
+    "label": "نوع الإجراء",
+    "type": "select",
+    "options": [
+      "استئصال كامل للمريء",
+      "استئصال جزئي للمريء",
+      "استئصال المريء عبر الفتحة الهوائية",
+      "استئصال المريء والمعدة",
+      "أخرى"
+    ],
+    "value": "",
+    "other_specify": {
+      "label": "أخرى (حدد)",
+      "type": "text",
+      "value": ""
+    }
+  },
+  "orientation_provided": {
+    "label": "تم تحديد الاتجاه",
+    "type": "select",
+    "options": ["نعم", "لا"],
+    "value": ""
+  },
+  "specimen_dimensions": {
+    "label": "أبعاد العينة",
+    "fields": {
+      "esophagus_length_cm": {
+        "label": "طول المريء (سم)",
+        "type": "number",
+        "value": ""
+      },
+      "gastric_component_length_cm": {
+        "label": "طول الجزء المعدي (سم)",
+        "type": "number",
+        "value": ""
+      },
+      "gastric_component_max_width_cm": {
+        "label": "أقصى عرض للجزء المعدي (سم)",
+        "type": "number",
+        "value": ""
+      }
+    }
+  },
+  "tumor_present": {
+    "label": "وجود الورم",
+    "type": "select",
+    "options": ["نعم", "غير مرئي عيانياً"],
+    "value": ""
+  },
+  "tumor_location": {
+    "label": "موضع الورم",
+    "type": "select",
+    "options": [
+      "المريء العنقي",
+      "المريء الصدري العلوي",
+      "المريء الصدري الأوسط",
+      "المريء الصدري السفلي",
+      "الوصل المعدي المريئي (WMM)"
+    ],
+    "value": ""
+  },
+  "distance_to_margins_cm": {
+    "label": "المسافة من الورم إلى الهوامش (سم)",
+    "fields": {
+      "proximal": {
+        "label": "الهامش القريب",
+        "type": "number",
+        "value": ""
+      },
+      "distal": {
+        "label": "الهامش البعيد",
+        "type": "number",
+        "value": ""
+      },
+      "radial_adventitial": {
+        "label": "الهامش الشعاعي / الغلاف الخارجي",
+        "type": "number",
+        "value": ""
+      }
+    }
+  },
+  "tumor_involves_gej": {
+    "label": "الورم يشمل الوصل المعدي المريئي",
+    "type": "select",
+    "options": ["نعم", "لا"],
+    "value": ""
+  },
+  "tumor_dimensions_cm": {
+    "label": "أبعاد الورم (سم)",
+    "type": "measurement_3d",
+    "value": ""
+  },
+  "tumor_configuration": {
+    "label": "شكل الورم",
+    "type": "multi_select",
+    "options": ["خارجي النمو", "فطري", "متقرح", "تسللي", "محيطي", "عنيقي", "مسطح"],
+    "value": []
+  },
+  "tumor_consistency": {
+    "label": "قوام الورم",
+    "type": "select",
+    "options": ["صلب", "طري", "هش", "أخرى"],
+    "value": "",
+    "other_specify": {
+      "label": "أخرى (حدد)",
+      "type": "text",
+      "value": ""
+    }
+  },
+  "tumor_necrosis": {
+    "label": "نخر الورم",
+    "type": "select",
+    "options": ["موجود", "غير موجود"],
+    "value": ""
+  },
+  "hemorrhage": {
+    "label": "نزيف",
+    "type": "select",
+    "options": ["موجود", "غير موجود"],
+    "value": ""
+  },
+  "tumor_extent": {
+    "label": "امتداد الورم",
+    "type": "select",
+    "options": [
+      "يغزو الغشاء المخاطي فقط",
+      "يغزو تحت المخاطية",
+      "يغزو العضلة الخاصة",
+      "يغزو الغلاف الخارجي",
+      "يغزو البنى المجاورة"
+    ],
+    "value": "",
+    "adjacent_structures_specify": {
+      "label": "البنى المجاورة (حدد)",
+      "type": "text",
+      "value": ""
+    }
+  },
+  "background_esophageal_mucosa": {
+    "label": "مظهر الغشاء المخاطي للمريء الخلفي",
+    "type": "multi_select",
+    "options": ["طبيعي", "مريء باريت", "تقرح", "تضيق", "خلل التنسج", "تغيرات إشعاعية", "أخرى"],
+    "value": [],
+    "other_specify": {
+      "label": "أخرى (حدد)",
+      "type": "text",
+      "value": ""
+    }
+  },
+  "previous_neoadjuvant_therapy": {
+    "label": "علاج مساعد أولي سابق",
+    "type": "select",
+    "options": ["نعم", "لا", "غير معروف"],
+    "value": ""
+  },
+  "gross_treatment_response": {
+    "label": "الدليل العياني على الاستجابة للعلاج",
+    "type": "select",
+    "options": ["غير قابل للتطبيق", "لا يوجد", "جزئي", "واضح", "استجابة كاملة (لا يوجد ورم عياني)"],
+    "value": ""
+  },
+  "tumor_bed_size_cm": {
+    "label": "حجم سرير الورم (سم)، إن وجد",
+    "type": "text",
+    "value": ""
+  },
+  "fibrosis": {
+    "label": "تليف",
+    "type": "select",
+    "options": ["موجود", "غير موجود"],
+    "value": ""
+  },
+  "lymph_nodes": {
+    "label": "العقد اللمفاوية الإقليمية",
+    "fields": {
+      "number_identified": {
+        "label": "العدد المُحدَّد",
+        "type": "integer",
+        "value": ""
+      },
+      "size_range_mm": {
+        "label": "مدى الحجم (مم)",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+  "other_macroscopic_findings": {
+    "label": "موجودات مجهرية عيانية أخرى ذات صلة",
+    "type": "text",
+    "value": ""
+  },
+  "block_identification_key": {
+    "label": "مفتاح تعريف الكتل",
+    "fields": {
+      "tumor": {
+        "label": "الورم",
+        "type": "text",
+        "value": ""
+      },
+      "proximal_margin": {
+        "label": "الهامش القريب",
+        "type": "text",
+        "value": ""
+      },
+      "distal_margin": {
+        "label": "الهامش البعيد",
+        "type": "text",
+        "value": ""
+      },
+      "radial_adventitial_margin": {
+        "label": "الهامش الشعاعي / الغلاف الخارجي",
+        "type": "text",
+        "value": ""
+      },
+      "non_neoplastic_esophagus": {
+        "label": "المريء غير الورمي",
+        "type": "text",
+        "value": ""
+      },
+      "lymph_nodes": {
+        "label": "العقد اللمفاوية",
+        "type": "text",
+        "value": ""
+      },
+      "additional_sections": {
+        "label": "مقاطع إضافية",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+  "grossing": {
+    "label": "الفحص العياني",
+    "fields": {
+      "grossed_by": {
+        "label": "أُجري الفحص العياني بواسطة (الأحرف الأولى)",
+        "type": "text",
+        "value": ""
+      },
+      "date": {
+        "label": "التاريخ",
+        "type": "date",
+        "value": ""
+      }
+    }
+  }
+}
