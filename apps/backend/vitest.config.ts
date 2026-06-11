@@ -18,7 +18,13 @@ export default defineConfig({
         branches: 55,
       },
       include: ['src/**/*.ts'],
-      exclude: ['src/tests/**', 'src/**/*.test.ts', 'src/server.ts'],
+      exclude: [
+        'src/tests/**',
+        'src/**/*.test.ts',
+        'src/server.ts',
+        // Stub for Phase 2 — no call sites yet, so 0% coverage.
+        'src/lib/prismaReplica.ts',
+      ],
     },
   },
 });

@@ -1,6 +1,8 @@
 packages:
   - 'apps/*'
   - 'packages/*'
+# pnpm v11 replaced `onlyBuiltDependencies` with the `allowBuilds` map.
+# These packages have install/build scripts we trust and want to run.
 allowBuilds:
   '@prisma/client': true
   '@prisma/engines': true

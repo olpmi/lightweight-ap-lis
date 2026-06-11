@@ -1,8 +1,8 @@
 # Build stage
-FROM node:20-alpine AS builder
+FROM node:22-alpine AS builder
 
 # Enable pnpm via corepack
-RUN corepack enable && corepack prepare pnpm@9 --activate
+RUN corepack enable && corepack prepare pnpm@11 --activate
 
 WORKDIR /app
 
@@ -28,7 +28,7 @@ RUN ./node_modules/.bin/prisma generate --schema=prisma/schema.prisma
 RUN pnpm --filter @lis/backend build
 
 # Production stage
-FROM node:20-alpine AS runtime
+FROM node:22-alpine AS runtime
 
 RUN apk add --no-cache openssl chromium font-noto ttf-freefont
 

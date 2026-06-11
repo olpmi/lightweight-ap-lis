@@ -152,6 +152,8 @@ services:
     build:
       context: .
       dockerfile: docker/frontend.Dockerfile
+      args:
+        VITE_PASSWORD_AUTH: 'true'
     container_name: lis-frontend
     restart: unless-stopped
     depends_on:

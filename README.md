@@ -39,8 +39,8 @@ A lightweight **Anatomic Pathology Laboratory Information System** prototype imp
 
 ## Prerequisites
 
-- Node.js 20+
-- pnpm 9+ (`corepack enable && corepack prepare pnpm@9 --activate`). The repo is a pnpm workspace (`pnpm-workspace.yaml`) and CI runs the pnpm-lock.yaml under `pnpm install --frozen-lockfile`.
+- Node.js 22+
+- pnpm 11+ (`corepack enable && corepack prepare pnpm@11 --activate`). The repo is a pnpm workspace (`pnpm-workspace.yaml`) and CI runs the pnpm-lock.yaml under `pnpm install --frozen-lockfile`.
 - Docker (for containerized run) or PostgreSQL 16+ (for local dev)
 
 ## Quick start â€” Docker Compose

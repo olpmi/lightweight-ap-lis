@@ -263,9 +263,12 @@ jobs:
         env:
           DATABASE_URL: postgresql://lis_user:lis_password@localhost:5432/lis_e2e
           SESSION_SECRET: test-ci-e2e-secret
+          NODE_ENV: production
 
       - name: Build frontend
         run: pnpm --filter @lis/frontend build
+        env:
+          VITE_PASSWORD_AUTH: 'true'
 
       - name: Serve built frontend on :5173
         run: pnpm --filter @lis/frontend exec vite preview --host 0.0.0.0 --port 5173 --strictPort &

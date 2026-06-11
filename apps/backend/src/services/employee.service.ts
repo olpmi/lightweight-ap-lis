@@ -38,7 +38,8 @@ export class EmployeeService {
     const role = await prisma.employeeRole.findUnique({ where: { employeeRoleId: data.employeeRoleId } });
     if (!role) throw new AppError(400, 'BAD_REQUEST', `Employee role ${data.employeeRoleId} not found`);
 
-    const passwordHash = await bcrypt.hash(data.password, BCRYPT_ROUNDS);
+    // Hash the password when provided; omit in dev/demo where password auth is skipped.
+    const passwordHash = data.password ? await bcrypt.hash(data.password, BCRYPT_ROUNDS) : undefined;
 
     return prisma.employee.create({
       data: {
@@ -47,7 +48,7 @@ export class EmployeeService {
         userName: data.userName,
         employeeRoleId: data.employeeRoleId,
         defaultLanguage: data.defaultLanguage ?? 'en',
-        passwordHash,
+        ...(passwordHash ? { passwordHash } : {}),
       },
       include: { employeeRole: true },
     });
