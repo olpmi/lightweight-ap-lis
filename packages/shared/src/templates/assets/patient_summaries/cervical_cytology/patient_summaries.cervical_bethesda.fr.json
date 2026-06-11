@@ -1,0 +1,202 @@
+{
+  "templateId": "cervical_cytology_pap_smear_bethesda",
+  "summaryType": "rule_based_patient_facing_summary",
+  "version": "1.0",
+  "language": "fr",
+  "system": "Système de Bethesda pour le compte rendu de la cytologie cervico-utérine",
+  "triggerField": "interpretation_result",
+  "summaries": {
+    "cervical_unsatisfactory_scant_cellularity": {
+      "professionalLabel": "Non satisfaisant pour évaluation - cellularité insuffisante",
+      "patientTitle": "Le frottis cervico-utérin ne contenait pas assez de cellules",
+      "plainLanguageSummary": "Le frottis cervico-utérin n'a pas pu être pleinement évalué car le nombre de cellules dans l'échantillon était trop faible.",
+      "whatThisMeans": "Cela ne signifie pas qu'un cancer ou une lésion précancéreuse a été détecté. Cela signifie simplement que l'échantillon n'était pas suffisamment adéquat pour fournir un résultat fiable.",
+      "possibleNextSteps": "Votre médecin pourra recommander de répéter le frottis cervico-utérin en fonction de votre historique de dépistage et de votre situation clinique.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, des résultats HPV, de vos frottis précédents et des recommandations actuelles en matière de dépistage cervical."
+    },
+    "cervical_unsatisfactory_obscuring_blood_inflammation": {
+      "professionalLabel": "Non satisfaisant pour évaluation - masquage par le sang ou l'inflammation",
+      "patientTitle": "Le frottis cervico-utérin était masqué par du sang ou une inflammation",
+      "plainLanguageSummary": "Le frottis cervico-utérin n'a pas pu être pleinement évalué car la présence de sang ou d'une inflammation rendait les cellules difficiles à analyser.",
+      "whatThisMeans": "Cela ne signifie pas qu'un cancer ou une lésion précancéreuse a été détecté. Cela signifie que la qualité de l'échantillon était limitée.",
+      "possibleNextSteps": "Votre médecin pourra recommander de traiter une infection ou une inflammation si elles sont présentes, puis de répéter le frottis cervico-utérin si nécessaire.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, des résultats HPV, de vos frottis précédents et des recommandations actuelles en matière de dépistage cervical."
+    },
+    "cervical_unsatisfactory_poor_preservation": {
+      "professionalLabel": "Non satisfaisant pour évaluation - mauvaise conservation",
+      "patientTitle": "Le frottis cervico-utérin était mal conservé",
+      "plainLanguageSummary": "Le frottis cervico-utérin n'a pas pu être pleinement évalué car les cellules n'étaient pas bien conservées.",
+      "whatThisMeans": "Cela ne signifie pas qu'un cancer ou une lésion précancéreuse a été détecté. Cela signifie que l'échantillon n'était pas adapté à une interprétation fiable.",
+      "possibleNextSteps": "Votre médecin pourra recommander de répéter le frottis cervico-utérin.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, des résultats HPV, de vos frottis précédents et des recommandations actuelles en matière de dépistage cervical."
+    },
+    "cervical_unsatisfactory_other": {
+      "professionalLabel": "Non satisfaisant pour évaluation - autre raison",
+      "patientTitle": "Le frottis cervico-utérin n'était pas adéquat pour le diagnostic",
+      "plainLanguageSummary": "Le frottis cervico-utérin n'a pas pu être pleinement évalué pour une autre raison liée à l'échantillon.",
+      "whatThisMeans": "Cela ne signifie pas qu'un cancer ou une lésion précancéreuse a été détecté. Cela signifie que l'échantillon n'était pas suffisamment adéquat pour fournir un résultat fiable.",
+      "possibleNextSteps": "Votre médecin vous expliquera la raison et pourra recommander de répéter le frottis cervico-utérin.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, des résultats HPV, de vos frottis précédents et des recommandations actuelles en matière de dépistage cervical."
+    },
+    "cervical_satisfactory_limited_obscuring_blood": {
+      "professionalLabel": "Satisfaisant mais limité par la présence de sang masquant",
+      "patientTitle": "Le frottis cervico-utérin était adéquat mais partiellement limité par la présence de sang",
+      "plainLanguageSummary": "Le frottis cervico-utérin a pu être évalué, mais certaines zones étaient plus difficiles à analyser en raison de la présence de sang.",
+      "whatThisMeans": "Un résultat peut tout de même être émis, mais votre médecin l'interprétera en tenant compte de cette limitation.",
+      "possibleNextSteps": "Le suivi dépendra de l'interprétation finale, du résultat HPV, des symptômes et de l'historique de dépistage.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, des résultats HPV, de vos frottis précédents et des recommandations actuelles en matière de dépistage cervical."
+    },
+    "cervical_satisfactory_limited_inflammation": {
+      "professionalLabel": "Satisfaisant mais limité par l'inflammation",
+      "patientTitle": "Le frottis cervico-utérin était adéquat mais partiellement limité par une inflammation",
+      "plainLanguageSummary": "Le frottis cervico-utérin a pu être évalué, mais une inflammation rendait certaines cellules plus difficiles à analyser.",
+      "whatThisMeans": "L'inflammation peut survenir pour de nombreuses raisons et n'est pas synonyme de cancer.",
+      "possibleNextSteps": "Votre médecin pourra tenir compte des symptômes, envisager des tests d'infection, un traitement si nécessaire, ou un suivi de routine en fonction du résultat final.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, des résultats HPV, de vos frottis précédents et des recommandations actuelles en matière de dépistage cervical."
+    },
+    "cervical_satisfactory_limited_low_squamous_cellularity": {
+      "professionalLabel": "Satisfaisant mais limité par une cellularité malpighienne faible",
+      "patientTitle": "Le frottis cervico-utérin était adéquat mais contenait moins de cellules malpighiennes qu'idéal",
+      "plainLanguageSummary": "Le frottis cervico-utérin a pu être évalué, mais le nombre de cellules malpighiennes était inférieur à l'idéal.",
+      "whatThisMeans": "Un résultat peut tout de même être émis, mais l'échantillon présentait une limitation.",
+      "possibleNextSteps": "Votre médecin interprétera cela en tenant compte du résultat final, du statut HPV et de votre historique de dépistage.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, des résultats HPV, de vos frottis précédents et des recommandations actuelles en matière de dépistage cervical."
+    },
+    "cervical_satisfactory_limited_poor_fixation": {
+      "professionalLabel": "Satisfaisant mais limité par une mauvaise fixation",
+      "patientTitle": "Le frottis cervico-utérin était adéquat mais partiellement limité par la fixation",
+      "plainLanguageSummary": "Le frottis cervico-utérin a pu être évalué, mais certaines cellules n'étaient pas conservées de manière optimale.",
+      "whatThisMeans": "Un résultat peut tout de même être émis, mais l'échantillon présentait une limitation technique.",
+      "possibleNextSteps": "Votre médecin déterminera si un suivi est nécessaire en fonction de l'interprétation finale et du contexte clinique.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, des résultats HPV, de vos frottis précédents et des recommandations actuelles en matière de dépistage cervical."
+    },
+    "cervical_nilm_within_normal_limits": {
+      "professionalLabel": "Négatif pour lésion intraépithéliale ou malignité : dans les limites normales",
+      "patientTitle": "Aucun cancer ni lésion précancéreuse n'a été détecté",
+      "plainLanguageSummary": "Votre frottis cervico-utérin est dans les limites normales et ne montre ni cancer ni lésion précancéreuse.",
+      "whatThisMeans": "Il s'agit généralement d'un résultat rassurant.",
+      "possibleNextSteps": "Votre médecin vous conseillera concernant le dépistage de routine ou le suivi en fonction de votre âge, de votre résultat HPV et de votre historique de dépistage.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, des résultats HPV, de vos frottis précédents et des recommandations actuelles en matière de dépistage cervical."
+    },
+    "cervical_nilm_reactive_inflammation": {
+      "professionalLabel": "Négatif pour lésion intraépithéliale ou malignité, avec modifications réactionnelles associées à une inflammation",
+      "patientTitle": "Aucun cancer ni lésion précancéreuse n'a été détecté ; modifications liées à l'inflammation présentes",
+      "plainLanguageSummary": "Votre frottis cervico-utérin ne montre ni cancer ni lésion précancéreuse. Certaines modifications cellulaires liées à l'inflammation sont présentes.",
+      "whatThisMeans": "Les modifications liées à l'inflammation sont fréquentes et ne sont pas synonymes de cancer.",
+      "possibleNextSteps": "Votre médecin pourra s'enquérir de vos symptômes, envisager des tests d'infection ou un traitement si nécessaire, et vous conseiller un dépistage de routine ou un suivi.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, des résultats HPV, de vos frottis précédents et des recommandations actuelles en matière de dépistage cervical."
+    },
+    "cervical_nilm_reactive_radiation_iud_atrophy": {
+      "professionalLabel": "Négatif pour lésion intraépithéliale ou malignité, avec modifications réactionnelles (radiothérapie, stérilet ou atrophie)",
+      "patientTitle": "Aucun cancer ni lésion précancéreuse n'a été détecté ; modifications réactionnelles présentes",
+      "plainLanguageSummary": "Votre frottis cervico-utérin ne montre ni cancer ni lésion précancéreuse. Certaines modifications cellulaires réactionnelles sont présentes, pouvant être liées à une radiothérapie antérieure, à un stérilet ou à une atrophie.",
+      "whatThisMeans": "Ces modifications sont interprétées dans le contexte de vos antécédents médicaux et ne sont pas synonymes de cancer.",
+      "possibleNextSteps": "Votre médecin les mettra en corrélation avec vos antécédents, vos symptômes, votre résultat HPV et votre programme de dépistage.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, des résultats HPV, de vos frottis précédents et des recommandations actuelles en matière de dépistage cervical."
+    },
+    "cervical_organism_trichomonas_vaginalis": {
+      "professionalLabel": "Micro-organismes identifiés : Trichomonas vaginalis",
+      "patientTitle": "Des Trichomonas ont été observés",
+      "plainLanguageSummary": "Le frottis cervico-utérin montre des organismes évocateurs de Trichomonas vaginalis.",
+      "whatThisMeans": "Le Trichomonas est une infection sexuellement transmissible qui peut affecter le vagin et le col de l'utérus.",
+      "possibleNextSteps": "Votre médecin pourra recommander un traitement et la prise en charge du partenaire.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, des résultats HPV, de vos frottis précédents et des recommandations actuelles en matière de dépistage cervical."
+    },
+    "cervical_organism_candida": {
+      "professionalLabel": "Micro-organismes identifiés : organismes fongiques évocateurs de Candida spp.",
+      "patientTitle": "Des levures de type Candida ont été observées",
+      "plainLanguageSummary": "Le frottis cervico-utérin montre des organismes fongiques ressemblant à Candida.",
+      "whatThisMeans": "Candida peut être associé à une infection mycosique, mais le traitement dépend de la présence de symptômes.",
+      "possibleNextSteps": "Votre médecin pourra s'enquérir de démangeaisons, de pertes ou d'irritations et décider si un traitement est nécessaire.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, des résultats HPV, de vos frottis précédents et des recommandations actuelles en matière de dépistage cervical."
+    },
+    "cervical_organism_bacterial_vaginosis": {
+      "professionalLabel": "Micro-organismes identifiés : modification de la flore évocatrice d'une vaginose bactérienne",
+      "patientTitle": "Des modifications évocatrices d'une vaginose bactérienne ont été observées",
+      "plainLanguageSummary": "Le frottis cervico-utérin montre une modification des bactéries vaginales pouvant évoquer une vaginose bactérienne.",
+      "whatThisMeans": "La vaginose bactérienne est une modification fréquente de la flore vaginale et n'est pas un cancer.",
+      "possibleNextSteps": "Votre médecin pourra s'enquérir de vos symptômes et décider si des tests ou un traitement sont nécessaires.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, des résultats HPV, de vos frottis précédents et des recommandations actuelles en matière de dépistage cervical."
+    },
+    "cervical_organism_actinomyces": {
+      "professionalLabel": "Micro-organismes identifiés : bactéries évocatrices d'Actinomyces spp.",
+      "patientTitle": "Des bactéries de type Actinomyces ont été observées",
+      "plainLanguageSummary": "Le frottis cervico-utérin montre des bactéries ressemblant à Actinomyces.",
+      "whatThisMeans": "Des organismes de type Actinomyces peuvent être observés, notamment chez les personnes porteuses d'un stérilet.",
+      "possibleNextSteps": "Votre médecin interprétera cela en tenant compte de vos antécédents et de vos symptômes.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, des résultats HPV, de vos frottis précédents et des recommandations actuelles en matière de dépistage cervical."
+    },
+    "cervical_organism_herpes_simplex_virus": {
+      "professionalLabel": "Micro-organismes identifiés : modifications évocatrices du virus herpès simplex",
+      "patientTitle": "Des modifications évocatrices du virus herpès ont été observées",
+      "plainLanguageSummary": "Le frottis cervico-utérin montre des modifications cellulaires pouvant être associées au virus herpès simplex.",
+      "whatThisMeans": "Ce résultat doit être interprété en tenant compte des symptômes et, si nécessaire, de tests cliniques spécifiques.",
+      "possibleNextSteps": "Votre médecin pourra recommander des tests de confirmation ou un traitement.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, des résultats HPV, de vos frottis précédents et des recommandations actuelles en matière de dépistage cervical."
+    },
+    "cervical_ascus": {
+      "professionalLabel": "ASC-US (Cellules malpighiennes atypiques de signification indéterminée)",
+      "patientTitle": "De légères cellules anormales ont été observées",
+      "plainLanguageSummary": "Votre frottis cervico-utérin montre de légères modifications des cellules malpighiennes, mais ces modifications ne sont pas spécifiques.",
+      "whatThisMeans": "L'ASC-US est fréquent. Il peut être lié au HPV, à une inflammation ou à d'autres modifications bénignes.",
+      "possibleNextSteps": "Votre médecin utilisera votre résultat HPV, votre âge et votre historique pour décider si un nouveau test ou une colposcopie est nécessaire.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, des résultats HPV, de vos frottis précédents et des recommandations actuelles en matière de dépistage cervical."
+    },
+    "cervical_asc_h": {
+      "professionalLabel": "ASC-H (Cellules malpighiennes atypiques ne permettant pas d'exclure une lésion de haut grade)",
+      "patientTitle": "Des cellules anormales ont été observées ; une lésion de haut grade ne peut être exclue",
+      "plainLanguageSummary": "Votre frottis cervico-utérin montre des cellules malpighiennes anormales, et une lésion précancéreuse de haut grade ne peut être exclue.",
+      "whatThisMeans": "Ce résultat nécessite un suivi attentif car il peut être associé à un risque plus élevé de lésion précancéreuse.",
+      "possibleNextSteps": "Votre médecin pourra recommander une colposcopie ou une évaluation complémentaire.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, des résultats HPV, de vos frottis précédents et des recommandations actuelles en matière de dépistage cervical."
+    },
+    "cervical_lsil": {
+      "professionalLabel": "LSIL (Lésion malpighienne intraépithéliale de bas grade)",
+      "patientTitle": "Modifications cellulaires cervicales de bas grade",
+      "plainLanguageSummary": "Votre frottis cervico-utérin montre des modifications de bas grade des cellules malpighiennes.",
+      "whatThisMeans": "La LSIL est souvent liée au HPV. Chez de nombreuses personnes, ces modifications peuvent régresser spontanément, mais un suivi est important.",
+      "possibleNextSteps": "Votre médecin utilisera votre âge, votre résultat HPV et votre historique pour décider du suivi approprié.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, des résultats HPV, de vos frottis précédents et des recommandations actuelles en matière de dépistage cervical."
+    },
+    "cervical_hsil": {
+      "professionalLabel": "HSIL (Lésion malpighienne intraépithéliale de haut grade)",
+      "patientTitle": "Modifications cellulaires cervicales de haut grade",
+      "plainLanguageSummary": "Votre frottis cervico-utérin montre des cellules anormales de haut grade.",
+      "whatThisMeans": "La HSIL n'est pas un cancer invasif, mais elle représente une lésion précancéreuse qui nécessite une prise en charge spécialisée.",
+      "possibleNextSteps": "Votre médecin recommandera généralement une colposcopie et une prise en charge complémentaire.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, des résultats HPV, de vos frottis précédents et des recommandations actuelles en matière de dépistage cervical."
+    },
+    "cervical_squamous_cell_carcinoma": {
+      "professionalLabel": "Carcinome épidermoïde",
+      "patientTitle": "Des cellules cancéreuses ont été identifiées dans le frottis cervical",
+      "plainLanguageSummary": "Le frottis cervico-utérin montre des cellules malpighiennes malignes, ce qui signifie que des cellules cancéreuses ont été identifiées.",
+      "whatThisMeans": "Ce résultat nécessite une évaluation clinique urgente et une confirmation par biopsie.",
+      "possibleNextSteps": "Votre médecin organisera une orientation vers un spécialiste, une colposcopie, une biopsie et une planification du traitement.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, des résultats HPV, de vos frottis précédents et des recommandations actuelles en matière de dépistage cervical."
+    },
+    "cervical_agc": {
+      "professionalLabel": "Cellules glandulaires atypiques (AGC)",
+      "patientTitle": "Des cellules glandulaires anormales ont été observées",
+      "plainLanguageSummary": "Votre frottis cervico-utérin montre des cellules glandulaires anormales.",
+      "whatThisMeans": "Ce résultat nécessite une évaluation complémentaire car la cause peut aller de modifications bénignes à un précancer ou un cancer.",
+      "possibleNextSteps": "Votre médecin pourra recommander une colposcopie, un prélèvement endocervical, une évaluation endométriale ou d'autres examens.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, des résultats HPV, de vos frottis précédents et des recommandations actuelles en matière de dépistage cervical."
+    },
+    "cervical_ais": {
+      "professionalLabel": "Adénocarcinome endocervical in situ (AIS)",
+      "patientTitle": "Lésion précancéreuse glandulaire de haut grade",
+      "plainLanguageSummary": "Le frottis cervico-utérin montre des modifications compatibles avec un adénocarcinome in situ.",
+      "whatThisMeans": "L'AIS est une lésion précancéreuse sérieuse qui nécessite une évaluation spécialisée rapide.",
+      "possibleNextSteps": "Votre médecin recommandera généralement une colposcopie, une biopsie ou une exérèse.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, des résultats HPV, de vos frottis précédents et des recommandations actuelles en matière de dépistage cervical."
+    },
+    "cervical_adenocarcinoma": {
+      "professionalLabel": "Adénocarcinome",
+      "patientTitle": "Des cellules cancéreuses glandulaires ont été identifiées",
+      "plainLanguageSummary": "Le frottis cervico-utérin montre des cellules glandulaires malignes.",
+      "whatThisMeans": "Ce résultat nécessite une évaluation clinique urgente afin de déterminer le siège et l'étendue de la maladie.",
+      "possibleNextSteps": "Votre médecin organisera une orientation vers un spécialiste et des examens complémentaires.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, des résultats HPV, de vos frottis précédents et des recommandations actuelles en matière de dépistage cervical."
+    }
+  }
+}

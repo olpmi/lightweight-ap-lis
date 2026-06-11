@@ -1,6 +1,9 @@
 {
+  "templateId": "thyroid_cytology_bethesda_3rd_edition",
   "templateName": "تھائیرائڈ سائٹولوجی رپورٹنگ ٹیمپلیٹ (تیسرا ایڈیشن بیتھیسڈا سسٹم)",
   "language": "ur",
+  "direction": "rtl",
+  "rtl": true,
   "sections": {
     "specimen": "نمونہ",
     "adequacy": "کفایت",

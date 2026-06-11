@@ -1,0 +1,58 @@
+{
+  "templateId": "thyroid_cytology_bethesda_3rd_edition",
+  "summaryType": "rule_based_patient_facing_summary",
+  "version": "1.0",
+  "language": "en",
+  "system": "Bethesda System for Reporting Thyroid Cytopathology, 3rd Edition",
+  "triggerField": "bethesda_category",
+  "summaries": {
+    "bethesda_i_non_diagnostic_unsatisfactory": {
+      "professionalLabel": "Bethesda Category I: Non-diagnostic / Unsatisfactory",
+      "patientTitle": "The sample was not enough for a clear diagnosis",
+      "plainLanguageSummary": "The thyroid sample did not contain enough useful cells, or the sample quality was limited, so a clear diagnosis could not be made.",
+      "whatThisMeans": "This does not mean cancer was found. It means the sample was not adequate enough to give a reliable answer.",
+      "possibleNextSteps": "Your doctor may recommend repeating the fine needle aspiration, often with ultrasound guidance, depending on the ultrasound appearance and clinical concern.",
+      "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
+    },
+    "bethesda_ii_benign": {
+      "professionalLabel": "Bethesda Category II: Benign",
+      "patientTitle": "Benign thyroid result",
+      "plainLanguageSummary": "The thyroid sample shows benign, non-cancerous cells.",
+      "whatThisMeans": "This is generally a reassuring result. It does not show features of thyroid cancer in the sample examined.",
+      "possibleNextSteps": "Your doctor may recommend routine follow-up, ultrasound monitoring, or no further immediate action depending on the size and appearance of the nodule.",
+      "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
+    },
+    "bethesda_iii_aus": {
+      "professionalLabel": "Bethesda Category III: Atypia of Undetermined Significance (AUS)",
+      "patientTitle": "Mildly atypical thyroid cells",
+      "plainLanguageSummary": "The thyroid sample shows some cells that look mildly unusual, but the findings are not enough to diagnose cancer or a definite tumor.",
+      "whatThisMeans": "This is an indeterminate result. Many cases are not cancer, but further assessment may be needed.",
+      "possibleNextSteps": "Your doctor may recommend repeat sampling, ultrasound follow-up, molecular testing if available, or referral for specialist review.",
+      "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
+    },
+    "bethesda_iv_follicular_neoplasm_suspicious_for_follicular_neoplasm": {
+      "professionalLabel": "Bethesda Category IV: Follicular Neoplasm / Suspicious for Follicular Neoplasm",
+      "patientTitle": "Possible follicular thyroid tumor",
+      "plainLanguageSummary": "The thyroid sample shows a pattern that may represent a follicular thyroid tumor.",
+      "whatThisMeans": "Cytology alone often cannot reliably tell whether this type of thyroid tumor is benign or malignant because that may require examination of the whole nodule capsule and blood vessels.",
+      "possibleNextSteps": "Your doctor may recommend surgical consultation, molecular testing if available, or removal of part of the thyroid depending on the full clinical picture.",
+      "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
+    },
+    "bethesda_v_suspicious_for_malignancy": {
+      "professionalLabel": "Bethesda Category V: Suspicious for Malignancy",
+      "patientTitle": "Suspicious thyroid result",
+      "plainLanguageSummary": "The thyroid sample shows changes that are suspicious for cancer, but the findings may not be complete enough for a definite diagnosis.",
+      "whatThisMeans": "There is significant concern, and further evaluation is usually needed.",
+      "possibleNextSteps": "Your doctor may recommend surgical consultation, further testing, or additional workup depending on the ultrasound findings and your clinical situation.",
+      "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
+    },
+    "bethesda_vi_malignant": {
+      "professionalLabel": "Bethesda Category VI: Malignant",
+      "patientTitle": "Cancer cells identified in the thyroid sample",
+      "plainLanguageSummary": "The thyroid sample shows malignant cells, meaning cancer cells were identified.",
+      "whatThisMeans": "This result usually requires specialist management. The exact treatment depends on the type of thyroid cancer and your overall clinical findings.",
+      "possibleNextSteps": "Your doctor will likely refer you for surgical or specialist evaluation and may request additional tests to guide treatment.",
+      "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
+    }
+  }
+}

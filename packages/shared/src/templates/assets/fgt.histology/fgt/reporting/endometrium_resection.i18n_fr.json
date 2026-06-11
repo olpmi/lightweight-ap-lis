@@ -1,9 +1,11 @@
 {
   "template_id": "endometrium_resection_v1",
+  "domain": "anatomic_pathology",
+  "protocol_posting_date": "December 2024",
   "lang": "fr",
-  "title": "MODÈLE DE COMPTE RENDU_ENDOMÈTRE",
+  "title": "Modèle de compte rendu – Endomètre",
   "specimen": {
-    "label": "SPÉCIMEN",
+    "label": "Prélèvement",
     "fields": {
       "procedure": {
         "label": "Procédure (sélectionner toutes les réponses applicables)",
@@ -23,29 +25,46 @@
           "Salpingectomie droite",
           "Salpingectomie gauche",
           "Salpingectomie, côté non précisé",
-          "Résection du dôme vaginal",
+          "Résection du manchon vaginal",
           "Omentectomie",
           "Biopsie(s) péritonéale(s)",
           "Lavage péritonéal / pelvien",
-          "Autre (préciser) : _________________"
+          "Autre"
         ],
-        "other_specify": "Autre, préciser"
+        "other_specify": ""
       },
       "specimen_integrity": {
-        "label": "Intégrité du spécimen",
-        "options": [
-          "Intact",
-          "Ouvert",
-          "Morcelé",
-          "Autre (préciser) : _________________"
-        ],
-        "other_specify": "Autre, préciser"
+        "label": "Intégrité du prélèvement",
+        "options": ["Intact", "Ouvert", "Morcelé", "Autre"],
+        "other_specify": ""
       }
     }
   },
   "tumor": {
-    "label": "TUMEUR",
+    "label": "Tumeur",
     "fields": {
+      "tumor_size": {
+        "label": "Taille tumorale",
+        "fields": {
+          "size_type": {
+            "label": "Type de taille tumorale",
+            "options": [
+              "Plus grande dimension macroscopique (si masse)",
+              "Plus grande dimension microscopique (si absence de masse)",
+              "Ne peut pas être déterminée"
+            ]
+          },
+          "greatest_dimension_cm": {
+            "label": "Plus grande dimension (cm)"
+          },
+          "additional_dimensions_cm": {
+            "label": "Dimensions supplémentaires (cm)"
+          },
+          "cannot_be_determined_explain": {
+            "label": "Ne peut pas être déterminée (expliquer)"
+          }
+        }
+      },
       "histologic_type": {
         "label": "Type histologique",
         "options": [
@@ -58,49 +77,39 @@
           "Adénocarcinome de type mésonéphrique",
           "Carcinome épidermoïde",
           "Carcinome de type gastrique (gastro-intestinal)",
-          "Carcinome mixte (préciser les types et pourcentages) : _________________",
+          "Carcinome mixte",
           "Carcinome neuroendocrine à petites cellules",
           "Carcinome neuroendocrine à grandes cellules",
-          "Autre type histologique non listé (préciser) : _________________"
+          "Autre type histologique non listé"
         ],
-        "mixed_carcinoma_specify": "Carcinome mixte, préciser",
-        "other_specify": "Autre, préciser"
+        "mixed_carcinoma_specify": "",
+        "other_specify": ""
       },
       "histologic_grade": {
         "label": "Grade histologique",
+        "note": "Le grading FIGO s'applique uniquement aux carcinomes endométrioïdes. Tous les autres sous-types sont considérés de haut grade.",
         "options": [
           "FIGO grade 1 (carcinome endométrioïde)",
           "FIGO grade 2 (carcinome endométrioïde)",
           "FIGO grade 3 (carcinome endométrioïde)",
           "Haut grade (carcinome non endométrioïde)",
-          "Autre (préciser) : _________________",
-          "Ne peut être évalué (expliquer) : _________________"
+          "Autre",
+          "Ne peut être évalué"
         ],
-        "other_specify": "Autre, préciser",
-        "cannot_be_assessed_explain": "cannot be assessed explain"
+        "other_specify": "",
+        "cannot_be_assessed_explain": ""
       },
       "myometrial_invasion": {
-        "label": "Invasion myométriale (requise uniquement si applicable)",
-        "options": [
-          "Non applicable",
-          "Non identifié",
-          "Présente, moitié interne (moins de 50 %)",
-          "Préciser le pourcentage : _________________ %",
-          "Commentaire sur l’invasion myométriale : _________________",
-          "Présente, moitié externe (50 % ou plus)",
-          "Préciser le pourcentage : _________________ %",
-          "Commentaire sur l’invasion myométriale : _________________",
-          "Ne peut être déterminé (expliquer) : _________________"
-        ],
+        "label": "Invasion myométriale",
         "fields": {
           "status": {
             "label": "Invasion du myomètre",
             "options": [
               "Non applicable",
-              "Non identifié",
-              "Present, inner half (less than 50%)",
-              "Present, outer half (greater than or equal to 50%)",
-              "Ne peut pas être déterminé"
+              "Non identifiée",
+              "Présente, moitié interne (moins de 50 %)",
+              "Présente, moitié externe (50 % ou plus)",
+              "Ne peut pas être déterminée"
             ]
           },
           "percentage": {
@@ -110,75 +119,61 @@
             "label": "Commentaire sur l'invasion du myomètre"
           },
           "cannot_be_determined_explain": {
-            "label": "Ne peut pas être déterminé (expliquer)"
+            "label": "Ne peut pas être déterminée (expliquer)"
           }
         }
       },
       "adenomyosis": {
         "label": "Adénomyose",
         "options": [
-          "Non identifié",
+          "Non identifiée",
           "Présente, non atteinte par le carcinome",
           "Présente, atteinte par le carcinome",
-          "Ne peut être déterminé : _________________"
+          "Ne peut être déterminée"
         ],
-        "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
+        "cannot_be_determined_specify": ""
       },
       "uterine_serosal_involvement": {
         "label": "Atteinte de la séreuse utérine",
-        "options": [
-          "Non identifié",
-          "Présent",
-          "Ne peut être déterminé (expliquer) : _________________"
-        ],
-        "cannot_be_determined_explain": "Ne peut pas être déterminé, expliquer"
+        "options": ["Non identifiée", "Présente", "Ne peut être déterminée"],
+        "cannot_be_determined_explain": ""
       },
       "lower_uterine_segment_involvement": {
         "label": "Atteinte du segment utérin inférieur",
         "options": [
-          "Non identifié",
+          "Non identifiée",
           "Présente, non myoinvasive",
           "Présente, myoinvasive",
-          "Ne peut être déterminé (expliquer) : _________________"
+          "Ne peut être déterminée"
         ],
-        "cannot_be_determined_explain": "Ne peut pas être déterminé, expliquer"
+        "cannot_be_determined_explain": ""
       },
       "cervical_involvement": {
         "label": "Atteinte cervicale",
-        "options": [
-          "Ne peut être évaluée (hystérectomie supracervicale)",
-          "Non identifié",
-          "Invasion du stroma cervical",
-          "Pourcentage de la paroi cervicale atteinte",
-          "Préciser le pourcentage : _________________ %",
-          "Ne peut être déterminé (expliquer) : _________________",
-          "Atteinte glandulaire endocervicale uniquement",
-          "Ne peut être déterminé (expliquer) : _________________"
-        ],
         "fields": {
           "status": {
             "label": "Atteinte cervicale",
             "options": [
-              "Cannot be assessed (supracervical hysterectomy)",
-              "Non identifié",
-              "Cervical stromal invasion",
-              "Endocervical glandular involvement only",
-              "Ne peut pas être déterminé"
+              "Ne peut être évaluée (hystérectomie supracervicale)",
+              "Non identifiée",
+              "Invasion du stroma cervical",
+              "Atteinte glandulaire endocervicale uniquement",
+              "Ne peut pas être déterminée"
             ]
           },
           "percentage_of_cervical_wall_involved": {
             "label": "Pourcentage de la paroi cervicale atteinte"
           },
           "cannot_be_determined_explain": {
-            "label": "Ne peut pas être déterminé (expliquer)"
+            "label": "Ne peut pas être déterminée (expliquer)"
           }
         }
       },
       "other_tissue_organ_involvement": {
-        "label": "Atteinte d’autres tissus / organes (sélectionner toutes les réponses applicables)",
+        "label": "Atteinte d'autres tissus / organes (sélectionner toutes les réponses applicables)",
         "options": [
           "Non applicable (aucun autre tissu / organe soumis)",
-          "Non identifié (autres tissus / organes soumis et non atteints)",
+          "Non identifiée (autres tissus / organes soumis et non atteints)",
           "Ovaire droit",
           "Ovaire gauche",
           "Ovaire (côté non précisé)",
@@ -186,259 +181,178 @@
           "Trompe de Fallope gauche",
           "Trompe de Fallope (côté non précisé)",
           "Vagin",
-          "Paramètre droit",
-          "Paramètre gauche",
-          "Paramètre (côté non précisé)",
+          "Paramètre utérin droit",
+          "Paramètre utérin gauche",
+          "Paramètre utérin (côté non précisé)",
           "Paroi pelvienne",
           "Paroi vésicale sans atteinte muqueuse",
           "Paroi vésicale avec atteinte muqueuse",
           "Paroi intestinale sans atteinte muqueuse",
           "Paroi intestinale avec atteinte muqueuse",
-          "Autres organes / tissus (préciser) : _________________",
-          "Ne peut être déterminé (expliquer) : _________________"
+          "Autres organes / tissus",
+          "Ne peut être déterminée"
         ],
-        "other_specify": "Autre, préciser",
-        "cannot_be_determined_explain": "Ne peut pas être déterminé, expliquer"
-      },
-      "tumor_size": {
-        "label": "Taille tumorale",
-        "options": [
-          "Plus grande dimension macroscopique (si masse) en centimètres (cm) : _________________ cm",
-          "Dimension supplémentaire en centimètres (cm) : ____ x ____ cm",
-          "Plus grande dimension microscopique (si absence de masse) en centimètres (cm) : _________________ cm",
-          "Dimension supplémentaire en centimètres (cm) : ____ x ____ cm",
-          "Ne peut être déterminé (expliquer) : _________________"
-        ],
-        "fields": {
-          "size_type": {
-            "label": "Type de taille tumorale",
-            "options": [
-              "Greatest gross dimension (if mass)",
-              "Greatest microscopic dimension (if no mass)",
-              "Ne peut pas être déterminé"
-            ]
-          },
-          "greatest_dimension_cm": {
-            "label": "Plus grande dimension (cm)"
-          },
-          "additional_dimensions_cm": {
-            "label": "Dimensions supplémentaires (cm)"
-          },
-          "cannot_be_determined_explain": {
-            "label": "Ne peut pas être déterminé (expliquer)"
-          }
-        }
+        "other_specify": "",
+        "cannot_be_determined_explain": ""
       },
       "peritoneal_pelvic_washings": {
-        "label": "Lavage péritonéal / pelvien / liquide d’ascite",
+        "label": "Lavage péritonéal / pelvien / liquide d'ascite",
         "options": [
           "Non soumis",
           "Négatif pour cellules malignes",
           "Cellules malignes présentes",
-          "Atypique (expliquer) : _________________",
-          "Suspect de malignité (expliquer) : _________________",
+          "Atypique",
+          "Suspect de malignité",
           "Résultats en attente"
         ],
-        "atypical_explain": "Atypique, expliquer",
-        "suspicious_explain": "Suspect, expliquer"
+        "atypical_explain": "",
+        "suspicious_explain": ""
       },
       "lymphovascular_invasion": {
         "label": "Invasion lymphatique et / ou vasculaire",
-        "options": [
-          "Non identifié",
-          "Présent",
-          "Inférieur ou égal à 4 foyers",
-          "Préciser le nombre de foyers : _________________",
-          "Supérieur ou égal à 5 foyers",
-          "Ne peut être déterminé (expliquer) : _________________"
-        ],
+        "note": "Reporter le nombre maximal de foyers d'ILV présents sur la lame avec le plus grand nombre de foyers.",
         "fields": {
           "status": {
-            "label": "Invasion lymphatique et/ou vasculaire",
-            "options": [
-              "Non identifié",
-              "Présent",
-              "Ne peut pas être déterminé"
-            ]
+            "label": "Invasion lymphatique et / ou vasculaire",
+            "options": ["Non identifiée", "Présente", "Ne peut pas être déterminée"]
           },
           "extent": {
             "label": "Étendue de l'ILV",
-            "options": [
-              "Inférieur ou égal à 4 foyers",
-              "Supérieur ou égal à 5 foyers"
-            ]
+            "options": ["Inférieure ou égale à 4 foyers", "Supérieure ou égale à 5 foyers"]
           },
           "number_of_foci": {
             "label": "Préciser le nombre de foyers"
           },
           "cannot_be_determined_explain": {
-            "label": "Ne peut pas être déterminé (expliquer)"
+            "label": "Ne peut pas être déterminée (expliquer)"
           }
         }
       },
-      "tumor_comment": {}
+      "tumor_comment": {
+        "label": "Commentaire sur la tumeur"
+      }
     }
   },
   "margins": {
-    "label": "MARGES",
+    "label": "Marges",
     "fields": {
+      "margin_status": {
+        "label": "Statut des marges",
+        "note": "Requis uniquement si le col et / ou le paramètre / paracol est atteint par le carcinome.",
+        "options": [
+          "Non applicable",
+          "Toutes les marges négatives pour le carcinome",
+          "Carcinome présent à la marge"
+        ]
+      },
       "closest_margins_to_carcinoma": {
         "label": "Marge(s) la/les plus proche(s) du carcinome (sélectionner toutes les réponses applicables)",
         "options": [
-          "Ectocervicale (préciser la localisation, si possible) : _________________",
-          "Dôme vaginal (préciser la localisation, si possible) : _________________",
-          "Paramétriale (préciser la localisation, si possible) : _________________",
-          "Paracervicale (préciser la localisation, si possible) : _________________",
-          "Autre (préciser) : _________________",
-          "Ne peut être déterminé : _________________"
+          "Ectocervicale",
+          "Manchon vaginal",
+          "Paramétriale",
+          "Paracervicale",
+          "Autre",
+          "Ne peut être déterminée"
         ],
-        "ectocervical_specify": "ectocervical specify",
-        "vaginal_cuff_specify": "vaginal cuff specify",
-        "parametrial_specify": "parametrial specify",
-        "paracervical_specify": "paracervical specify",
-        "other_specify": "Autre, préciser",
-        "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
-      },
-      "margin_status": {
-        "label": "Statut des marges (requis uniquement si le col et / ou le paramètre / paracol est atteint par le carcinome)",
-        "options": [
-          "Non applicable",
-          "Toutes les marges sont négatives pour le carcinome"
-        ]
+        "ectocervical_specify": "",
+        "vaginal_cuff_specify": "",
+        "parametrial_specify": "",
+        "paracervical_specify": "",
+        "other_specify": "",
+        "cannot_be_determined_specify": ""
       },
       "distance_from_carcinoma_to_closest_margin": {
         "label": "Distance du carcinome à la marge la plus proche",
-        "options": [
-          "Distance exacte : _________________ mm",
-          "Au moins : _________________",
-          "Inférieur à : _________________",
-          "Inférieur à 1 mm",
-          "Ne peut être déterminé : _________________"
-        ],
         "fields": {
           "distance_type": {
             "label": "Type de distance",
             "options": [
-              "Exact distance",
+              "Distance exacte",
               "Au moins",
-              "Inférieur à",
-              "Less than 1 mm",
-              "Ne peut pas être déterminé"
+              "Inférieure à",
+              "Inférieure à 1 mm",
+              "Ne peut pas être déterminée"
             ]
           },
-          "distance_mm": {
-            "label": "Distance (mm)"
+          "distance_cm": {
+            "label": "Distance (cm)"
           },
           "cannot_be_determined_specify": {
-            "label": "Ne peut pas être déterminé"
+            "label": "Ne peut pas être déterminée"
           }
         }
       },
       "margins_involved_by_carcinoma": {
         "label": "Marge(s) atteinte(s) par le carcinome (sélectionner toutes les réponses applicables)",
         "options": [
-          "Ectocervicale (préciser la localisation, si possible) : _________________",
-          "Dôme vaginal (préciser la localisation, si possible) : _________________",
-          "Paramétriale (préciser la localisation, si possible) : _________________",
-          "Paracervicale (préciser la localisation, si possible) : _________________",
-          "Autre (préciser) : _________________",
-          "Ne peut être déterminé : _________________",
-          "Ne peut être déterminé (expliquer) : _________________"
+          "Ectocervicale",
+          "Manchon vaginal",
+          "Paramétriale",
+          "Paracervicale",
+          "Autre",
+          "Ne peut être déterminée"
         ],
-        "ectocervical_specify": "ectocervical specify",
-        "vaginal_cuff_specify": "vaginal cuff specify",
-        "parametrial_specify": "parametrial specify",
-        "paracervical_specify": "paracervical specify",
-        "other_specify": "Autre, préciser",
-        "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser",
-        "cannot_be_determined_explain": "Ne peut pas être déterminé, expliquer"
+        "ectocervical_specify": "",
+        "vaginal_cuff_specify": "",
+        "parametrial_specify": "",
+        "paracervical_specify": "",
+        "other_specify": "",
+        "cannot_be_determined_specify": "",
+        "cannot_be_determined_explain": ""
       },
-      "margin_comment": {}
+      "margin_comment": {
+        "label": "Commentaire sur les marges"
+      }
     }
   },
   "regional_lymph_nodes": {
-    "label": "GANGLIONS LYMPHATIQUES RÉGIONAUX",
+    "label": "Ganglions lymphatiques régionaux",
     "fields": {
       "regional_lymph_node_status": {
         "label": "Statut des ganglions lymphatiques régionaux",
         "options": [
           "Non applicable (aucun ganglion régional soumis ou retrouvé)",
           "Ganglions lymphatiques régionaux présents",
-          "Tous les ganglions régionaux sont négatifs pour les cellules tumorales",
-          "Tumeur présente dans les ganglions pelviens"
+          "Tous les ganglions régionaux négatifs pour les cellules tumorales",
+          "Tumeur présente dans les ganglions pelviens",
+          "Tumeur présente dans les ganglions para-aortiques"
         ]
       },
       "pelvic_nodes": {
         "label": "Ganglions pelviens",
         "fields": {
           "macrometastasis_total": {
-            "label": "Nombre total de ganglions pelviens avec macrométastase (supérieure à 2 mm) (sentinelles et non sentinelles)",
-            "options": [
-              "Nombre exact : _________________",
-              "Au moins : _________________",
-              "Ne peut être déterminé (expliquer) : _________________"
-            ]
+            "label": "Nombre total de ganglions pelviens avec macrométastase (> 2 mm) (sentinelles et non sentinelles)"
           },
           "macrometastasis_sentinel": {
-            "label": "Nombre de ganglions sentinelles pelviens avec macrométastase",
-            "options": [
-              "Nombre exact : _________________",
-              "Au moins : _________________",
-              "Ne peut être déterminé (expliquer) : _________________"
-            ]
+            "label": "Nombre de ganglions sentinelles pelviens avec macrométastase"
           },
           "micrometastasis_total": {
-            "label": "Nombre total de ganglions pelviens avec micrométastase (supérieure à 0,2 mm jusqu’à 2 mm et / ou plus de 200 cellules) (sentinelles et non sentinelles)",
-            "options": [
-              "Nombre exact : _________________",
-              "Au moins : _________________",
-              "Ne peut être déterminé (expliquer) : _________________"
-            ]
+            "label": "Nombre total de ganglions pelviens avec micrométastase (> 0,2 mm à 2 mm et / ou > 200 cellules) (sentinelles et non sentinelles)"
           },
           "micrometastasis_sentinel": {
-            "label": "Nombre de ganglions sentinelles pelviens avec micrométastase",
-            "options": [
-              "Nombre exact : _________________",
-              "Au moins : _________________",
-              "Ne peut être déterminé (expliquer) : _________________"
-            ]
+            "label": "Nombre de ganglions sentinelles pelviens avec micrométastase"
+          },
+          "itc_total": {
+            "label": "Nombre total de ganglions pelviens avec cellules tumorales isolées (≤ 0,2 mm ou amas ≤ 200 cellules)"
+          },
+          "itc_sentinel": {
+            "label": "Nombre de ganglions sentinelles pelviens avec cellules tumorales isolées"
           },
           "laterality_with_tumor": {
             "label": "Latéralité des ganglions pelviens avec tumeur (sélectionner toutes les réponses applicables)",
             "options": [
-              "Sentinelle droit : _________________",
-              "Non sentinelle droit : _________________",
-              "Sentinelle gauche : _________________",
-              "Non sentinelle gauche : _________________",
-              "Ne peut être déterminé : _________________"
+              "Sentinelle droit",
+              "Non sentinelle droit",
+              "Sentinelle gauche",
+              "Non sentinelle gauche",
+              "Ne peut être déterminée"
             ],
-            "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
-          },
-          "itc_total": {
-            "label": "Nombre total de ganglions pelviens avec cellules tumorales isolées (inférieures ou égales à 0,2 mm, ou amas de cellules inférieurs ou égaux à 200 cellules)",
-            "options": [
-              "Non applicable",
-              "Nombre exact : _________________",
-              "Au moins : _________________",
-              "Ne peut être déterminé (expliquer) : _________________"
-            ]
-          },
-          "itc_sentinel": {
-            "label": "Nombre de ganglions sentinelles pelviens avec cellules tumorales isolées",
-            "options": [
-              "Nombre exact : _________________",
-              "Au moins : _________________",
-              "Ne peut être déterminé (expliquer) : _________________"
-            ]
+            "cannot_be_determined_specify": ""
           },
           "largest_metastatic_deposit_size_mm": {
-            "label": "Taille du plus grand dépôt métastatique ganglionnaire pelviens",
-            "options": [
-              "Préciser la taille exacte : _________________ mm",
-              "Inférieur à : _________________",
-              "Supérieur à : _________________",
-              "Ne peut être déterminé (expliquer) : _________________"
-            ]
+            "label": "Taille du plus grand dépôt métastatique ganglionnaire pelvien"
           },
           "total_examined": {
             "label": "Nombre total de ganglions pelviens examinés (sentinelles et non sentinelles)"
@@ -452,73 +366,36 @@
         "label": "Ganglions para-aortiques",
         "fields": {
           "macrometastasis_total": {
-            "label": "Nombre total de ganglions para-aortiques avec macrométastase (supérieure à 2 mm) (sentinelles et non sentinelles)",
-            "options": [
-              "Nombre exact : _________________",
-              "Au moins : _________________",
-              "Ne peut être déterminé (expliquer) : _________________"
-            ]
+            "label": "Nombre total de ganglions para-aortiques avec macrométastase (> 2 mm) (sentinelles et non sentinelles)"
           },
           "macrometastasis_sentinel": {
-            "label": "Nombre de ganglions sentinelles para-aortiques avec macrométastase",
-            "options": [
-              "Nombre exact : _________________",
-              "Au moins : _________________",
-              "Ne peut être déterminé (expliquer) : _________________"
-            ]
+            "label": "Nombre de ganglions sentinelles para-aortiques avec macrométastase"
           },
           "micrometastasis_total": {
-            "label": "Nombre total de ganglions para-aortiques avec micrométastase (supérieure à 0,2 mm jusqu’à 2 mm et / ou plus de 200 cellules) (sentinelles et non sentinelles)",
-            "options": [
-              "Nombre exact : _________________",
-              "Au moins : _________________",
-              "Ne peut être déterminé (expliquer) : _________________"
-            ]
+            "label": "Nombre total de ganglions para-aortiques avec micrométastase (> 0,2 mm à 2 mm et / ou > 200 cellules) (sentinelles et non sentinelles)"
           },
           "micrometastasis_sentinel": {
-            "label": "Nombre de ganglions sentinelles para-aortiques avec micrométastase",
-            "options": [
-              "Nombre exact : _________________",
-              "Au moins : _________________",
-              "Ne peut être déterminé (expliquer) : _________________"
-            ]
+            "label": "Nombre de ganglions sentinelles para-aortiques avec micrométastase"
+          },
+          "itc_total": {
+            "label": "Nombre total de ganglions para-aortiques avec cellules tumorales isolées (≤ 0,2 mm ou amas ≤ 200 cellules)"
+          },
+          "itc_sentinel": {
+            "label": "Nombre de ganglions sentinelles para-aortiques avec cellules tumorales isolées"
           },
           "laterality_with_tumor": {
             "label": "Latéralité des ganglions para-aortiques avec tumeur (sélectionner toutes les réponses applicables)",
             "options": [
-              "Sentinelle droit : _________________",
-              "Non sentinelle droit : _________________",
-              "Sentinelle gauche : _________________",
-              "Non sentinelle gauche : _________________",
-              "Ne peut être déterminé : _________________"
+              "Sentinelle droit",
+              "Non sentinelle droit",
+              "Sentinelle gauche",
+              "Non sentinelle gauche",
+              "Ne peut être déterminée"
             ],
-            "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
-          },
-          "itc_total": {
-            "label": "Nombre total de ganglions para-aortiques avec cellules tumorales isolées (inférieures ou égales à 0,2 mm, ou amas de cellules inférieurs ou égaux à 200 cellules)",
-            "options": [
-              "Non applicable",
-              "Nombre exact : _________________",
-              "Au moins : _________________",
-              "Ne peut être déterminé (expliquer) : _________________"
-            ]
-          },
-          "itc_sentinel": {
-            "label": "Nombre de ganglions sentinelles para-aortiques avec cellules tumorales isolées",
-            "options": [
-              "Nombre exact : _________________",
-              "Au moins : _________________",
-              "Ne peut être déterminé (expliquer) : _________________"
-            ]
+            "cannot_be_determined_specify": ""
           },
           "largest_metastatic_deposit_size_mm": {
-            "label": "Taille du plus grand dépôt métastatique ganglionnaire para-aortiques",
-            "options": [
-              "Préciser la taille exacte : _________________ mm",
-              "Inférieur à : _________________",
-              "Supérieur à : _________________",
-              "Ne peut être déterminé (expliquer) : _________________"
-            ]
+            "label": "Taille du plus grand dépôt métastatique ganglionnaire para-aortique"
           },
           "total_examined": {
             "label": "Nombre total de ganglions para-aortiques examinés (sentinelles et non sentinelles)"
@@ -528,113 +405,148 @@
           }
         }
       },
-      "regional_lymph_node_comment": {}
+      "regional_lymph_node_comment": {
+        "label": "Commentaire sur les ganglions lymphatiques régionaux"
+      }
     }
   },
   "distant_metastasis": {
-    "label": "MÉTASTASES À DISTANCE",
+    "label": "Métastases à distance",
     "fields": {
       "sites_involved": {
-        "label": "Site(s) distant(s) atteint(s), le cas échéant (sélectionner toutes les réponses applicables)",
+        "label": "Site(s) à distance atteint(s), le cas échéant (sélectionner toutes les réponses applicables)",
         "options": [
           "Non applicable",
-          "Omentum : _________________",
-          "Péritoine extra-pelvien : _________________",
-          "Ganglion(s) inguinal(aux) : _________________",
-          "Poumon : _________________",
-          "Foie : _________________",
-          "Os : _________________",
-          "Autre (préciser) : _________________",
-          "Ne peut être déterminé : _________________"
+          "Grand épiploon",
+          "Péritoine extra-pelvien",
+          "Ganglion(s) inguinal(aux)",
+          "Poumon",
+          "Foie",
+          "Os",
+          "Autre",
+          "Ne peut être déterminée"
         ],
-        "omentum_specify": "omentum specify",
-        "extrapelvic_peritoneum_specify": "extrapelvic peritoneum specify",
-        "inguinal_lymph_nodes_specify": "Ganglions inguinaux, préciser",
-        "lung_specify": "lung specify",
-        "liver_specify": "liver specify",
-        "bone_specify": "Os, préciser",
-        "other_specify": "Autre, préciser",
-        "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
+        "omentum_specify": "",
+        "extrapelvic_peritoneum_specify": "",
+        "inguinal_lymph_nodes_specify": "",
+        "lung_specify": "",
+        "liver_specify": "",
+        "bone_specify": "",
+        "other_specify": "",
+        "cannot_be_determined_specify": ""
+      }
+    }
+  },
+  "ptnm_classification": {
+    "label": "Classification pTNM (AJCC 8e édition)",
+    "fields": {
+      "modified_classification": {
+        "label": "Classification modifiée",
+        "options": ["Sans objet", "y (après thérapie néoadjuvante)", "r (récidive)"]
+      },
+      "pT_category": {
+        "label": "Catégorie pT",
+        "options": [
+          "pT non attribué",
+          "pT0 : Pas de signe de tumeur primitive",
+          "pT1a : Tumeur limitée à l'endomètre ou envahissant moins de la moitié du myomètre",
+          "pT1b : Tumeur envahissant la moitié ou plus du myomètre",
+          "pT1 : Tumeur limitée au corps utérin, SAI (sous-catégorie indéterminable)",
+          "pT2 : Tumeur envahissant le stroma cervical sans extension au-delà de l'utérus (n'inclut pas l'atteinte glandulaire endocervicale)",
+          "pT3a : Tumeur atteignant la séreuse et/ou les annexes (extension directe ou métastase)",
+          "pT3b : Atteinte vaginale (extension directe ou métastase) ou atteinte paramétriale",
+          "pT3 : Tumeur s'étendant au-delà de l'utérus, SAI (sous-catégorie indéterminable)",
+          "pT4 : Tumeur envahissant la muqueuse vésicale et/ou intestinale (l'œdème bulleux est insuffisant pour classer en pT4)"
+        ]
+      },
+      "T_suffix": {
+        "label": "Suffixe T",
+        "options": ["Sans objet", "(m) tumeurs primitives multiples synchrones dans un seul organe"]
+      },
+      "pN_category": {
+        "label": "Catégorie pN",
+        "options": [
+          "pN non attribué (aucun ganglion soumis ou retrouvé)",
+          "pN non attribué (ne peut pas être déterminé sur la base des informations pathologiques disponibles)",
+          "pN0 : Pas de métastase ganglionnaire régionale",
+          "pN0(i+) : Cellules tumorales isolées dans les ganglions régionaux ≤ 0,2 mm",
+          "pN1mi : Micrométastase ganglionnaire régionale (> 0,2 mm et ≤ 2,0 mm)",
+          "pN1a : Macrométastase ganglionnaire régionale aux ganglions pelviens (> 2,0 mm)",
+          "pN1 : Métastase ganglionnaire régionale aux ganglions pelviens (sous-catégorie indéterminable)",
+          "pN2mi : Micrométastase ganglionnaire régionale (> 0,2 mm et ≤ 2,0 mm) aux ganglions para-aortiques avec ou sans ganglions pelviens positifs",
+          "pN2a : Macrométastase ganglionnaire régionale (> 2,0 mm) aux ganglions para-aortiques avec ou sans ganglions pelviens positifs",
+          "pN2 : Métastase ganglionnaire régionale aux ganglions para-aortiques (sous-catégorie indéterminable)"
+        ]
+      },
+      "N_suffix": {
+        "label": "Suffixe N",
+        "options": [
+          "Sans objet",
+          "(sn) procédure ganglion sentinelle",
+          "(f) cytoponction à l'aiguille fine ou biopsie carottière"
+        ]
+      },
+      "pM_category": {
+        "label": "Catégorie pM",
+        "options": [
+          "Non applicable — pM ne peut pas être déterminé à partir du (des) prélèvement(s) soumis",
+          "pM1 : Métastase à distance (comprend les ganglions inguinaux et la maladie intrapéritonéale ou pulmonaire, hépatique ou osseuse). Exclut les métastases aux ganglions pelviens ou para-aortiques, au vagin, à la séreuse utérine ou aux annexes"
+        ]
       }
     }
   },
   "figo_stage": {
-    "label": "STADE FIGO",
+    "label": "Stade FIGO",
     "fields": {
-      "figo_2009_2018": {
-        "label": "Stade FIGO (stadification FIGO 2009 / rapport FIGO Cancer 2018)",
-        "options": [
-          "I : Tumeur limitée au corps utérin",
-          "IA : Absence d’invasion ou invasion de moins de la moitié du myomètre",
-          "IB : Invasion égale ou supérieure à la moitié du myomètre",
-          "II : La tumeur envahit le stroma cervical, sans extension au-delà de l’utérus",
-          "III : Extension locale et / ou régionale de la tumeur",
-          "IIIA : La tumeur envahit la séreuse du corps utérin et / ou les annexes",
-          "IIIB : Atteinte vaginale et / ou paramétriale",
-          "IIIC : Métastases aux ganglions pelviens et / ou para-aortiques",
-          "IIIC1 : Ganglions pelviens positifs",
-          "IIIC2 : Ganglions para-aortiques positifs avec ou sans ganglions pelviens positifs",
-          "IV : La tumeur envahit la muqueuse vésicale et / ou intestinale, et / ou présente des métastases à distance",
-          "IVA : Invasion tumorale de la muqueuse vésicale et / ou intestinale",
-          "L’atteinte des structures séreuses pelviennes est classée stade IIIA, tandis que l’atteinte de l’omentum et du péritoine abdominal est considérée comme maladie IVB.",
-          "IVB : Métastase à distance, incluant les métastases intra-abdominales et / ou les ganglions inguinaux"
-        ]
-      },
       "figo_2023": {
-        "label": "Stade FIGO (stadification 2023 du cancer de l’endomètre)",
+        "label": "Stade FIGO (stadification 2023 du cancer de l'endomètre)",
         "options": [
-          "I : Limité au corps utérin et à l’ovaire",
-          "IA : Maladie limitée à l’endomètre OU type histologique non agressif, c.-à-d. endométrioïde de bas grade, avec invasion de moins de la moitié du myomètre sans LVSI ou avec LVSI focal OU maladie de bon pronostic",
-          "IA1 : Type histologique non agressif limité à un polype endométrial OU confiné à l’endomètre",
-          "IA2 : Types histologiques non agressifs atteignant moins de la moitié du myomètre sans LVSI ou avec LVSI focal",
-          "IA3 : Carcinomes endométrioïdes de bas grade limités à l’utérus et à l’ovaire",
+          "I : Limité au corps utérin et à l'ovaire",
+          "IA : Maladie limitée à l'endomètre OU type histologique non agressif (endométrioïde de bas grade) avec invasion de moins de la moitié du myomètre sans LVSI ou avec LVSI focale, ou maladie de bon pronostic",
+          "IA1 : Type histologique non agressif limité à un polype endométrial OU confiné à l'endomètre",
+          "IA2 : Types histologiques non agressifs atteignant moins de la moitié du myomètre sans LVSI ou avec LVSI focale",
+          "IA3 : Carcinomes endométrioïdes de bas grade limités à l'utérus et à l'ovaire",
           "IAm (POLEmut) : Carcinome endométrial muté POLE, limité au corps utérin ou avec extension cervicale, quel que soit le degré de LVSI ou le type histologique",
-          "IB : Types histologiques non agressifs avec invasion de la moitié ou plus du myomètre, sans LVSI ou avec LVSI focal",
-          "IC : Types histologiques agressifs limités à un polype ou confinés à l’endomètre",
-          "II : Invasion du stroma cervical sans extension extra-utérine OU LVSI substantiel OU types histologiques agressifs avec invasion myométriale",
+          "IB : Types histologiques non agressifs avec invasion de la moitié ou plus du myomètre, sans LVSI ou avec LVSI focale",
+          "IC : Types histologiques agressifs limités à un polype ou confinés à l'endomètre",
+          "II : Invasion du stroma cervical sans extension extra-utérine OU LVSI substantielle OU types histologiques agressifs avec invasion myométriale",
           "IIA : Invasion du stroma cervical par des types histologiques non agressifs",
-          "IIB : LVSI substantiel des types histologiques non agressifs",
+          "IIB : LVSI substantielle dans les types histologiques non agressifs",
           "IIC : Types histologiques agressifs avec toute atteinte myométriale",
           "IICm (p53abn) : Carcinome endométrial avec p53 anormal, limité au corps utérin avec toute invasion myométriale, avec ou sans invasion cervicale, quel que soit le degré de LVSI ou le type histologique",
-          "III : Extension locale et / ou régionale de la tumeur, quel que soit le sous-type histologique",
+          "III : Extension locale et/ou régionale de la tumeur, quel que soit le sous-type histologique",
           "IIIA : Invasion de la séreuse utérine, des annexes ou des deux par extension directe ou métastase",
-          "IIIA1 : Extension à l’ovaire ou à la trompe de Fallope (sauf si les critères du stade IA3 sont remplis)",
+          "IIIA1 : Extension à l'ovaire ou à la trompe de Fallope (sauf si les critères du stade IA3 sont remplis)",
           "IIIA2 : Atteinte de la sous-séreuse utérine ou extension à travers la séreuse utérine",
-          "IIIB : Métastase ou extension directe au vagin et / ou aux paramètres ou au péritoine pelvien",
-          "IIIB1 : Métastase ou extension directe au vagin et / ou aux paramètres",
+          "IIIB : Métastase ou extension directe au vagin et/ou aux paramètres ou au péritoine pelvien",
+          "IIIB1 : Métastase ou extension directe au vagin et/ou aux paramètres",
           "IIIB2 : Métastase au péritoine pelvien",
           "IIIC : Métastase aux ganglions pelviens ou para-aortiques ou les deux",
           "IIIC1 : Métastase aux ganglions pelviens",
           "IIIC1i : Micrométastase (aux ganglions pelviens)",
           "IIIC1ii : Macrométastase (aux ganglions pelviens)",
-          "IIIC2 : Métastase aux ganglions para-aortiques jusqu’aux vaisseaux rénaux, avec ou sans métastase aux ganglions pelviens",
-          "IIIC2i : Micrométastase aux ganglions para-aortiques jusqu’aux vaisseaux rénaux, avec ou sans métastase aux ganglions pelviens",
-          "IIIC2ii : Macrométastase aux ganglions para-aortiques jusqu’aux vaisseaux rénaux, avec ou sans métastase aux ganglions pelviens",
-          "IV : Extension à la muqueuse vésicale et / ou intestinale et / ou métastase à distance",
-          "IVA : Invasion de la muqueuse vésicale et / ou intestinale",
+          "IIIC2 : Métastase aux ganglions para-aortiques jusqu'aux vaisseaux rénaux, avec ou sans métastase aux ganglions pelviens",
+          "IIIC2i : Micrométastase aux ganglions para-aortiques jusqu'aux vaisseaux rénaux, avec ou sans métastase aux ganglions pelviens",
+          "IIIC2ii : Macrométastase aux ganglions para-aortiques jusqu'aux vaisseaux rénaux, avec ou sans métastase aux ganglions pelviens",
+          "IVA : Invasion de la muqueuse vésicale et/ou intestinale",
           "IVB : Métastase péritonéale abdominale au-delà du pelvis",
-          "IVC : Métastase à distance, incluant les métastases à tout ganglion extra- ou intra-abdominal au-dessus des vaisseaux rénaux, aux poumons, au foie, au cerveau ou aux os"
+          "IVC : Métastase à distance, incluant les ganglions au-dessus des vaisseaux rénaux, aux poumons, au foie, au cerveau ou aux os"
         ]
       }
     }
   },
   "additional_findings": {
-    "label": "CONSTATATIONS SUPPLÉMENTAIRES",
+    "label": "Constatations supplémentaires",
     "fields": {
       "findings": {
         "label": "Constatations supplémentaires (sélectionner toutes les réponses applicables)",
-        "other_specify": "Autre, préciser"
+        "options": [
+          "Aucune identifiée",
+          "Hyperplasie atypique / néoplasie intraépithéliale endométrioïde (NIE)",
+          "Autre"
+        ],
+        "other_specify": ""
       }
-    }
-  },
-  "ptnm_classification": {
-    "fields": {
-      "modified_classification": {},
-      "pT_category": {},
-      "T_suffix": {},
-      "pN_category": {},
-      "N_suffix": {},
-      "pM_category": {}
     }
   }
 }

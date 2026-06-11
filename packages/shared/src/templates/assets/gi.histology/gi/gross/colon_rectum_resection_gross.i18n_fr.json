@@ -1,13 +1,16 @@
 {
-  "title": "Résection du côlon et du rectum (Modèle macroscopique)",
+  "template_id": "colon_rectum_resection_gross_tumor_v1",
+  "domain": "anatomic_pathology",
+  "lang": "fr",
+  "title": "Résection du côlon et du rectum (modèle macroscopique)",
   "specimen": {
-    "label": "Spécimen",
+    "label": "Prélèvement",
     "fields": {
       "procedure_type": {
         "label": "Type de procédure (tel qu'indiqué par le clinicien)"
       },
       "specimen_length_mm": {
-        "label": "Longueur du spécimen (mm)"
+        "label": "Longueur du prélèvement (mm)"
       },
       "anatomical_components_included": {
         "label": "Composants anatomiques inclus (avec dimensions)"
@@ -19,10 +22,7 @@
     "fields": {
       "tumor_perforation": {
         "label": "Perforation tumorale",
-        "options": [
-          "Absente",
-          "Présente"
-        ]
+        "options": ["Absente", "Présente"]
       },
       "tumor_dimensions_mm": {
         "label": "Dimensions de la tumeur (mm)"
@@ -43,17 +43,11 @@
       },
       "invades_peritoneal_surface": {
         "label": "La tumeur envahit la surface péritonéale",
-        "options": [
-          "Oui",
-          "Non"
-        ]
+        "options": ["Oui", "Non"]
       },
       "forms_discrete_serosal_nodules": {
         "label": "La tumeur forme des nodules séreux distincts",
-        "options": [
-          "Oui",
-          "Non"
-        ]
+        "options": ["Oui", "Non"]
       }
     }
   },
@@ -61,13 +55,13 @@
     "label": "Marges",
     "fields": {
       "distance_to_proximal_margin_mm": {
-        "label": "Distance de la marge proximale (mm)"
+        "label": "Distance à la marge proximale (mm)"
       },
       "distance_to_distal_margin_mm": {
-        "label": "Distance de la marge distale (mm)"
+        "label": "Distance à la marge distale (mm)"
       },
       "distance_to_circumferential_margin_mm": {
-        "label": "Distance de la marge circonférentielle non péritonisée (mm)"
+        "label": "Distance à la marge circonférentielle non péritonisée (mm)"
       }
     }
   },
@@ -76,22 +70,14 @@
     "fields": {
       "mesorectum_intactness": {
         "label": "Intégrité du mésorectum",
-        "options": [
-          "Incomplète (Grade 1)",
-          "Presque complète (Grade 2)",
-          "Complète (Grade 3)"
-        ]
+        "options": ["Incomplète (Grade 1)", "Presque complète (Grade 2)", "Complète (Grade 3)"]
       },
       "relationship_to_anterior_peritoneal_reflection": {
         "label": "Relation de la tumeur avec la réflexion péritonéale antérieure",
-        "options": [
-          "Entièrement au-dessus",
-          "À cheval",
-          "Entièrement au-dessous"
-        ]
+        "options": ["Entièrement au-dessus", "À cheval", "Entièrement au-dessous"]
       },
       "distance_from_dentate_line_mm": {
-        "label": "Distance de la ligne pectinée (mm)"
+        "label": "Distance à la ligne pectinée (mm) en cas d'amputation abdomino-périnéale"
       }
     }
   },
@@ -100,10 +86,7 @@
     "fields": {
       "status": {
         "label": "Polypes",
-        "options": [
-          "Absente",
-          "Présente"
-        ]
+        "options": ["Absent", "Présent"]
       },
       "if_present_details": {
         "label": "Si présents (indiquer le nombre, la plage de tailles et l'aspect macroscopique)"
@@ -159,7 +142,7 @@
     "label": "Macroscopie",
     "fields": {
       "grossed_by_initials": {
-        "label": "Examiné macroscopiquement par"
+        "label": "Examiné macroscopiquement par (initiales)"
       },
       "date": {
         "label": "Date"

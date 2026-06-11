@@ -1,4 +1,5 @@
 {
+  "templateId": "thyroid_cytology_bethesda_3rd_edition",
   "templateName": "قالب تقرير سيتولوجيا الغدة الدرقية (نظام بيثيسدا، الطبعة الثالثة)",
   "language": "ar",
   "direction": "rtl",
@@ -14,7 +15,7 @@
   "fields": {
     "thyroid_fna_site": "شفط الغدة الدرقية بالإبرة الدقيقة (اختر المناسب)",
     "nodule_size_cm": "حجم العقيدة (سم)",
-    "ultrasound_features": "خصائص الألتراساوند (إن وُجدت)",
+    "ultrasound_features": "خصائص الموجات فوق الصوتية (إن وُجدت)",
     "adequacy_status": "الكفاية",
     "bethesda_category": "فئة بيثيسدا",
     "microscopic_description_text": "الوصف المجهري (نص حر)",

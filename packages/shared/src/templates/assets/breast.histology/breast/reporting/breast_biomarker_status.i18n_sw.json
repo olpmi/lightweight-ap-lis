@@ -1,5 +1,6 @@
 {
   "template_id": "breast_biomarker_status_v1",
+  "domain": "anatomic_pathology",
   "lang": "sw",
   "title": "Hali ya Biomaka za Saratani ya Titi",
   "er_status": {
@@ -8,7 +9,7 @@
       "percentage_nuclear_positivity": {
         "label": "Asilimia ya seli zenye chanya ya nyuklia",
         "options": [
-          "Less than 1%",
+          "Chini ya 1%",
           "1-10%",
           "11-20%",
           "21-30%",
@@ -19,10 +20,14 @@
           "71-80%",
           "81-90%",
           "91-100%"
-        ]
+        ],
+        "type": "select",
+        "value": ""
       },
       "average_intensity": {
-        "label": "Wastani wa ukali wa uchukuaji rangi"
+        "label": "Wastani wa ukali wa uchukuaji rangi",
+        "type": "text",
+        "value": ""
       }
     }
   },
@@ -32,7 +37,7 @@
       "percentage_nuclear_positivity": {
         "label": "Asilimia ya seli zenye chanya ya nyuklia",
         "options": [
-          "Less than 1%",
+          "Chini ya 1%",
           "1-10%",
           "11-20%",
           "21-30%",
@@ -43,10 +48,14 @@
           "71-80%",
           "81-90%",
           "91-100%"
-        ]
+        ],
+        "type": "select",
+        "value": ""
       },
       "average_intensity": {
-        "label": "Wastani wa ukali wa uchukuaji rangi"
+        "label": "Wastani wa ukali wa uchukuaji rangi",
+        "type": "text",
+        "value": ""
       }
     }
   },
@@ -59,9 +68,11 @@
         "options": [
           "Hasi (Alama 0)",
           "Hasi (Alama 1+)",
-          "Tafsiri si dhahiri (Alama 2+)",
+          "Isiyo na uhakika (Alama 2+)",
           "Chanya (Alama 3+)"
-        ]
+        ],
+        "type": "select",
+        "value": ""
       },
       "score_0_pattern": {
         "label": "Muundo wa alama 0",
@@ -70,7 +81,9 @@
           "Uchukuaji rangi wa membrani usiokamilika, hafifu au unaoonekana kwa shida, katika chini ya au sawa na 10% ya seli za uvimbe (0+ / wenye uchukuaji rangi wa membrani)",
           "Nyingine"
         ],
-        "other_specify": "Eleza nyingine"
+        "other_specify": "",
+        "type": "select",
+        "value": ""
       },
       "score_1_pattern": {
         "label": "Muundo wa alama 1+",
@@ -78,7 +91,9 @@
           "Uchukuaji rangi wa membrani usiokamilika, hafifu au unaoonekana kwa shida, katika zaidi ya 10% ya seli za uvimbe",
           "Nyingine"
         ],
-        "other_specify": "Eleza nyingine"
+        "other_specify": "",
+        "type": "select",
+        "value": ""
       },
       "score_2_pattern": {
         "label": "Muundo wa alama 2+",
@@ -89,7 +104,9 @@
           "Uchukuaji rangi mwingi wa saitoplazimu upo, ukificha tathmini ya ukali wa uchukuaji rangi wa membrani",
           "Nyingine"
         ],
-        "other_specify": "Eleza nyingine"
+        "other_specify": "",
+        "type": "select",
+        "value": ""
       },
       "score_3_pattern": {
         "label": "Muundo wa alama 3+",
@@ -97,17 +114,19 @@
           "Uchukuaji rangi wa membrani wa mviringo, kamili, mkali, na katika zaidi ya 10% ya seli za uvimbe",
           "Nyingine"
         ],
-        "other_specify": "Eleza nyingine"
+        "other_specify": "",
+        "type": "select",
+        "value": ""
       }
     }
   },
   "ki67_status": {
-    "label": "Kielezo cha Uzalishaji Ki-67",
+    "label": "Kielezo cha Uenezaji wa Seli Ki-67",
     "fields": {
       "value": {
-        "label": "Kielezo cha uzalishaji Ki-67",
+        "label": "Kielezo cha uenezaji wa seli Ki-67",
         "options": [
-          "Less than 1%",
+          "Chini ya 1%",
           "1-10%",
           "11-20%",
           "21-30%",
@@ -118,7 +137,9 @@
           "71-80%",
           "81-90%",
           "91-100%"
-        ]
+        ],
+        "type": "select",
+        "value": ""
       }
     }
   },
@@ -126,29 +147,40 @@
     "label": "Mbinu",
     "fields": {
       "block_numbers": {
-        "label": "Upimaji ulifanywa kwenye namba ya block"
+        "label": "Upimaji ulifanywa kwenye namba ya block",
+        "type": "text",
+        "value": ""
       },
       "er_primary_antibody": {
-        "label": "Kipokezi cha Estrojeni: Kingamwili ya msingi"
+        "label": "Kipokezi cha Estrojeni: Kingamwili ya msingi",
+        "type": "text",
+        "value": ""
       },
       "pgr_primary_antibody": {
-        "label": "Kipokezi cha Progesteroni: Kingamwili ya msingi"
+        "label": "Kipokezi cha Progesteroni: Kingamwili ya msingi",
+        "type": "text",
+        "value": ""
       },
       "er_pgr_reporting_guideline": {
-        "label": "Utoaji wa taarifa wa ER na PgR"
+        "label": "Utoaji wa taarifa wa ER na PgR",
+        "type": "fixed_text",
+        "value": "ASCO/CAP 2020 Guideline"
       },
       "her2_primary_antibody": {
-        "label": "HER2 (kwa immunohistokemia): Kingamwili ya msingi"
+        "label": "HER2 (kwa immunohistokemia): Kingamwili ya msingi",
+        "type": "text",
+        "value": ""
       },
       "her2_reporting_guideline": {
-        "label": "Utoaji wa taarifa wa upimaji wa HER2 kwa immunohistokemia (IHC)"
+        "label": "Utoaji wa taarifa wa upimaji wa HER2 kwa immunohistokemia (IHC)",
+        "type": "fixed_text",
+        "value": "ASCO/CAP 2025 Guideline"
       },
       "ki67_primary_antibody": {
-        "label": "Kielezo cha Ki-67: Kingamwili ya msingi"
+        "label": "Kielezo cha Ki-67: Kingamwili ya msingi",
+        "type": "fixed_text",
+        "value": "MIB-1"
       }
     }
-  },
-  "domain": {
-    "fields": {}
   }
 }

@@ -1,18 +1,21 @@
 {
   "template_id": "general_tumor_biopsy_v1",
+  "domain": "anatomic_pathology",
+  "protocol_posting_date": "June 2021",
   "lang": "ur",
-  "title": "جنرل ٹیومر بایوپسی",
+  "ui": {
+    "direction": "rtl"
+  },
+  "title": "جنرل رسولی بایوپسی",
   "clinical": {
     "label": "کلینیکل",
     "fields": {
       "treatment_history": {
         "label": "علاج کی سابقہ تاریخ",
-        "options": [
-          "پہلے کسی علاج کا علم نہیں",
-          "پہلا علاج دیا گیا",
-          "واضح نہیں"
-        ],
-        "prior_treatment_specify": "پچھلا علاج، وضاحت کریں"
+        "type": "select",
+        "options": ["پہلے کسی علاج کا علم نہیں", "پہلا علاج دیا گیا", "غیر متعین"],
+        "value": "",
+        "prior_treatment_specify": ""
       }
     }
   },
@@ -20,68 +23,70 @@
     "label": "نمونہ",
     "fields": {
       "site": {
-        "label": "نمونے کی جگہ"
+        "label": "نمونے کا مقام",
+        "type": "text",
+        "value": ""
       },
       "laterality": {
         "label": "نمونے کی جانب",
-        "options": [
-          "دائیں",
-          "بائیں",
-          "واضح نہیں",
-          "قابل اطلاق نہیں"
-        ]
+        "type": "select",
+        "options": ["دائیں", "بائیں", "غیر متعین", "قابل اطلاق نہیں"],
+        "value": ""
       },
       "procedure": {
         "label": "طریقۂ کار",
+        "type": "select",
         "options": [
           "نیڈل بایوپسی",
           "انسیژنل بایوپسی",
-          "ایکسسیژنل بایوپسی",
+          "ایکسیژنل بایوپسی",
           "فائن نیڈل ایسپیریشن",
           "بایوپسی، مزید وضاحت کے بغیر",
           "دیگر"
         ],
-        "other_specify": "دیگر، وضاحت کریں"
+        "value": "",
+        "other_specify": ""
       },
       "adequacy": {
         "label": "نمونے کی کفایت",
-        "options": [
-          "کافی",
-          "کم معیار"
-        ],
-        "suboptimal_explain": "بہترین سے کم، وضاحت کریں"
+        "type": "select",
+        "options": ["کافی", "کم از کم معیار"],
+        "value": "",
+        "suboptimal_explain": ""
       }
     }
   },
   "tumor": {
-    "label": "ٹیومر",
+    "label": "رسولی",
     "fields": {
       "histologic_type": {
-        "label": "ہسٹولوجک قسم"
+        "label": "ہسٹولوجیکل قسم",
+        "type": "text",
+        "value": ""
       },
       "histologic_grade": {
-        "label": "ہسٹولوجک گریڈ"
+        "label": "ہسٹولوجیکل گریڈ",
+        "type": "text",
+        "value": ""
       },
       "lymphovascular_invasion": {
-        "label": "لیمفوویسکیولر اِنویژن",
-        "options": [
-          "شناخت نہیں ہوئی",
-          "موجود",
-          "متعین نہیں کیا جا سکتا"
-        ],
-        "cannot_be_determined_specify": "متعین نہیں کیا جا سکتا، وضاحت کریں"
+        "label": "لمفاتی و عروقی رسوخ",
+        "type": "select",
+        "options": ["شناخت نہیں ہوئی", "موجود", "متعین نہیں کیا جا سکتا"],
+        "value": "",
+        "cannot_be_determined_specify": ""
       },
       "perineural_invasion": {
-        "label": "پیری نیورل اِنویژن",
-        "options": [
-          "شناخت نہیں ہوئی",
-          "موجود",
-          "متعین نہیں کیا جا سکتا"
-        ],
-        "cannot_be_determined_specify": "متعین نہیں کیا جا سکتا، وضاحت کریں"
+        "label": "پیری نیورل رسوخ",
+        "type": "select",
+        "options": ["شناخت نہیں ہوئی", "موجود", "متعین نہیں کیا جا سکتا"],
+        "value": "",
+        "cannot_be_determined_specify": ""
       },
       "additional_pathologic_findings": {
-        "label": "اضافی پیتھولوجک مشاہدات"
+        "label": "اضافی پیتھولوجیکل مشاہدات",
+        "type": "text",
+        "value": ""
       }
     }
   }

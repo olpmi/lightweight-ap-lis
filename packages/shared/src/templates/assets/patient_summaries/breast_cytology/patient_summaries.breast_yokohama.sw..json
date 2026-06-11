@@ -1,0 +1,50 @@
+{
+  "templateId": "breast_cytology_yokohama",
+  "summaryType": "rule_based_patient_facing_summary",
+  "version": "1.0",
+  "language": "sw",
+  "system": "Mfumo wa Yokohama wa Kuripoti Saitopatholojia ya FNA ya Matiti",
+  "triggerField": "diagnostic_category_yokohama",
+  "summaries": {
+    "yokohama_i_insufficient_inadequate": {
+      "professionalLabel": "Kategoria I: Haitoshi / Haifai kwa utambuzi",
+      "patientTitle": "Sampuli ya titi haikutosha kutoa majibu ya uhakika",
+      "plainLanguageSummary": "Sampuli ya titi haikuwa na seli za kutosha zinazofaa, au ubora wa sampuli ulikuwa na upungufu, hivyo utambuzi wa uhakika haukuweza kufanywa.",
+      "whatThisMeans": "Hii haimaanishi kuwa saratani imepatikana. Inamaanisha kuwa sampuli haikutosha kutoa jibu la kuaminika.",
+      "possibleNextSteps": "Daktari wako anaweza kupendekeza kurudia FNA, core biopsy, kupitia vipimo vya picha, au tathmini zaidi kulingana na uvimbe wa titi na matokeo ya picha.",
+      "safetyNote": "Muhtasari huu ni kwa ajili ya kuelewa matokeo kwa ujumla tu. Tafadhali jadili ripoti kamili na daktari wako, ambaye ataifasiri pamoja na dalili zako, uchunguzi wa kliniki, vipimo vya picha, na matokeo ya awali inapohusika."
+    },
+    "yokohama_ii_benign": {
+      "professionalLabel": "Kategoria II: Isiyo ya saratani",
+      "patientTitle": "Matokeo ya titi yasiyo ya saratani",
+      "plainLanguageSummary": "Sampuli ya titi inaonyesha seli zisizo za saratani.",
+      "whatThisMeans": "Kwa ujumla, haya ni matokeo ya kutuliza wasiwasi, lakini matokeo ya titi kwa kawaida hufasiriwa pamoja na uchunguzi wa kliniki na vipimo vya picha.",
+      "possibleNextSteps": "Daktari wako atalinganisha matokeo haya na picha za titi na uchunguzi wa mwili. Ufuatiliaji, kurudia sampuli, au core biopsy bado vinaweza kupendekezwa kama matokeo hayalingani.",
+      "safetyNote": "Muhtasari huu ni kwa ajili ya kuelewa matokeo kwa ujumla tu. Tafadhali jadili ripoti kamili na daktari wako, ambaye ataifasiri pamoja na dalili zako, uchunguzi wa kliniki, vipimo vya picha, na matokeo ya awali inapohusika."
+    },
+    "yokohama_iii_atypical": {
+      "professionalLabel": "Kategoria III: Seli zisizo za kawaida",
+      "patientTitle": "Baadhi ya seli za titi zisizo za kawaida zimeonekana",
+      "plainLanguageSummary": "Sampuli ya titi inaonyesha baadhi ya seli zinazoonekana tofauti, lakini matokeo hayatoshi kutambua saratani.",
+      "whatThisMeans": "Haya ni matokeo yasiyo ya uhakika. Tathmini zaidi inaweza kuhitajika ili kuondoa uwezekano wa kidonda muhimu zaidi.",
+      "possibleNextSteps": "Daktari wako anaweza kupendekeza core biopsy, kurudia sampuli, kulinganisha na vipimo vya picha, au mapitio katika kliniki maalum ya matiti.",
+      "safetyNote": "Muhtasari huu ni kwa ajili ya kuelewa matokeo kwa ujumla tu. Tafadhali jadili ripoti kamili na daktari wako, ambaye ataifasiri pamoja na dalili zako, uchunguzi wa kliniki, vipimo vya picha, na matokeo ya awali inapohusika."
+    },
+    "yokohama_iv_suspicious_for_malignancy": {
+      "professionalLabel": "Kategoria IV: Inayoshukiwa kuwa saratani",
+      "patientTitle": "Matokeo ya titi yanayotia shaka",
+      "plainLanguageSummary": "Sampuli ya titi inaonyesha mabadiliko yanayoshukiwa kuwa saratani, lakini huenda hayatoshi kutoa utambuzi wa mwisho.",
+      "whatThisMeans": "Kuna wasiwasi mkubwa, na mara nyingi tathmini zaidi huhitajika.",
+      "possibleNextSteps": "Daktari wako kwa kawaida atapendekeza core biopsy, kulinganisha na vipimo vya picha, na tathmini ya mtaalamu wa matiti.",
+      "safetyNote": "Muhtasari huu ni kwa ajili ya kuelewa matokeo kwa ujumla tu. Tafadhali jadili ripoti kamili na daktari wako, ambaye ataifasiri pamoja na dalili zako, uchunguzi wa kliniki, vipimo vya picha, na matokeo ya awali inapohusika."
+    },
+    "yokohama_v_malignant": {
+      "professionalLabel": "Kategoria V: Saratani",
+      "patientTitle": "Seli za saratani zimeonekana kwenye sampuli ya titi",
+      "plainLanguageSummary": "Sampuli ya titi inaonyesha seli za saratani.",
+      "whatThisMeans": "Matokeo haya kwa kawaida huhitaji tathmini ya mtaalamu wa saratani ya matiti na kupanga matibabu.",
+      "possibleNextSteps": "Daktari wako atapanga kulinganisha matokeo na vipimo vya picha, uwezekano wa core biopsy au vipimo vya biomarker, na rufaa kwa timu ya huduma ya saratani ya matiti.",
+      "safetyNote": "Muhtasari huu ni kwa ajili ya kuelewa matokeo kwa ujumla tu. Tafadhali jadili ripoti kamili na daktari wako, ambaye ataifasiri pamoja na dalili zako, uchunguzi wa kliniki, vipimo vya picha, na matokeo ya awali inapohusika."
+    }
+  }
+}

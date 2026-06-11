@@ -1,7 +1,7 @@
 {
   "template_id": "ovary_fallopian_tube_primary_peritoneum_gross_v1",
   "domain": "anatomic_pathology",
-  "title": "Ovary or Fallopian Tube or Primary Peritoneum (Gross Template)",
+  "title": "Ovary or Fallopian Tube or Primary Peritoneum",
 
   "specimen": {
     "label": "Specimen",
@@ -80,12 +80,7 @@
       "right_ovary_integrity": {
         "label": "Right ovary integrity",
         "type": "select",
-        "options": [
-          "Capsule intact",
-          "Capsule ruptured",
-          "Fragmented",
-          "Other"
-        ],
+        "options": ["Capsule intact", "Capsule ruptured", "Fragmented", "Other"],
         "value": "",
         "other_specify": ""
       },
@@ -104,12 +99,7 @@
       "left_ovary_integrity": {
         "label": "Left ovary integrity",
         "type": "select",
-        "options": [
-          "Capsule intact",
-          "Capsule ruptured",
-          "Fragmented",
-          "Other"
-        ],
+        "options": ["Capsule intact", "Capsule ruptured", "Fragmented", "Other"],
         "value": "",
         "other_specify": ""
       },
@@ -128,12 +118,7 @@
       "ovary_laterality_not_specified_integrity": {
         "label": "Ovary integrity",
         "type": "select",
-        "options": [
-          "Capsule intact",
-          "Capsule ruptured",
-          "Fragmented",
-          "Other"
-        ],
+        "options": ["Capsule intact", "Capsule ruptured", "Fragmented", "Other"],
         "value": "",
         "other_specify": ""
       },

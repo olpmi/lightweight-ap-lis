@@ -1,24 +1,38 @@
 {
   "template_id": "malignant_breast_resection_non_neoadjuvant_v1",
+  "domain": "anatomic_pathology",
   "lang": "ur",
+  "ui": {
+    "direction": "rtl"
+  },
   "title": "بدخیم بریسٹ ریسیکشن (نیواڈجوانٹ کے بغیر)",
   "clinical_case_summary": {
     "label": "کلینیکل خلاصہ",
     "fields": {
       "tumor_characteristics": {
-        "label": "ٹیومر کی خصوصیات"
+        "label": "ٹیومر کی خصوصیات",
+        "type": "text",
+        "value": ""
       },
       "site": {
-        "label": "مقام"
+        "label": "مقام",
+        "type": "text",
+        "value": ""
       },
       "focality": {
-        "label": "فوکلٹی"
+        "label": "فوکلٹی",
+        "type": "text",
+        "value": ""
       },
       "dimensions": {
-        "label": "ابعاد (ملی میٹر)"
+        "label": "ابعاد (ملی میٹر)",
+        "type": "measurement_3d",
+        "value": ""
       },
       "baseline_biomarker": {
-        "label": "بنیادی ٹیومر بایومارکر"
+        "label": "بنیادی ٹیومر بایومارکر",
+        "type": "text",
+        "value": ""
       }
     }
   },
@@ -27,22 +41,21 @@
     "fields": {
       "intraoperative_consult": {
         "label": "دورانِ جراحی مشاورت کی گئی",
-        "options": [
-          "ہاں",
-          "نہیں"
-        ],
-        "reason": "وجہ"
+        "options": ["ہاں", "نہیں"],
+        "reason": "وجہ",
+        "type": "select",
+        "value": ""
       },
       "weight": {
-        "label": "نمونے کا وزن (گرام)"
+        "label": "نمونے کا وزن (گرام)",
+        "type": "number",
+        "value": ""
       },
       "laterality": {
         "label": "سمت",
-        "options": [
-          "بائیں",
-          "دائیں",
-          "غیر متعین"
-        ]
+        "options": ["بائیں", "دائیں", "غیر متعین"],
+        "type": "select",
+        "value": ""
       },
       "type": {
         "label": "نمونے کی قسم",
@@ -54,7 +67,9 @@
           "لمپیکٹومی (وسیع مقامی اخراج)",
           "کواڈرینٹیکٹومی (سگمنٹل ریسیکشن)",
           "آنکوپلاسٹک بریسٹ کنزروِنگ سرجری"
-        ]
+        ],
+        "type": "select",
+        "value": ""
       }
     }
   },
@@ -62,25 +77,37 @@
     "label": "لمفی نوڈز",
     "fields": {
       "present": {
-        "label": "لمفی نوڈز موجود ہیں"
+        "label": "لمفی نوڈز موجود ہیں",
+        "type": "boolean",
+        "value": ""
       },
       "sentinel": {
         "label": "سینٹینل لمفی نوڈز",
         "fields": {
           "site": {
-            "label": "مقام"
+            "label": "مقام",
+            "type": "text",
+            "value": ""
           },
           "radioactive_count": {
-            "label": "ریڈیوایکٹو گنتی"
+            "label": "ریڈیوایکٹو گنتی",
+            "type": "text",
+            "value": ""
           },
           "dye_uptake": {
-            "label": "رنگ کا جذب"
+            "label": "رنگ کا جذب",
+            "type": "boolean",
+            "value": ""
           },
           "number": {
-            "label": "تعداد"
+            "label": "تعداد",
+            "type": "integer",
+            "value": ""
           },
           "dimensions": {
-            "label": "ہر نوڈ کی پیمائش"
+            "label": "ہر نوڈ کی پیمائش",
+            "type": "text",
+            "value": ""
           }
         }
       },
@@ -88,10 +115,14 @@
         "label": "غیر سینٹینل لمفی نوڈز",
         "fields": {
           "total_number": {
-            "label": "نوڈز کی کل تعداد"
+            "label": "نوڈز کی کل تعداد",
+            "type": "integer",
+            "value": ""
           },
           "size_range": {
-            "label": "سائز کی حد"
+            "label": "سائز کی حد",
+            "type": "text",
+            "value": ""
           }
         }
       }
@@ -101,13 +132,19 @@
     "label": "چھاتی کی پیمائش",
     "fields": {
       "medial_lateral": {
-        "label": "میڈیئل تا لیٹرل لمبائی"
+        "label": "میڈیئل تا لیٹرل لمبائی",
+        "type": "measurement",
+        "value": ""
       },
       "superior_inferior": {
-        "label": "سپیریئر تا انفیریئر لمبائی"
+        "label": "سپیریئر تا انفیریئر لمبائی",
+        "type": "measurement",
+        "value": ""
       },
       "anterior_posterior": {
-        "label": "اینٹیریئر تا پوسٹیریئر لمبائی"
+        "label": "اینٹیریئر تا پوسٹیریئر لمبائی",
+        "type": "measurement",
+        "value": ""
       }
     }
   },
@@ -115,21 +152,26 @@
     "label": "جلد",
     "fields": {
       "present": {
-        "label": "جلد موجود ہے"
+        "label": "جلد موجود ہے",
+        "type": "boolean",
+        "value": ""
       },
       "dimensions": {
-        "label": "جلد کی پیمائش"
+        "label": "جلد کی پیمائش",
+        "type": "text",
+        "value": ""
       },
       "abnormalities": {
         "label": "جلد کی بے قاعدگیاں",
         "options": [
-          "زخم",
+          "السر (زخم)",
           "پہلے کی جراحی کا نشان",
           "سرخی",
           ">30% شمولیت",
           "سیٹلائٹ جلدی گلٹیاں",
           "دیگر"
-        ]
+        ],
+        "type": "multi_select"
       }
     }
   },
@@ -137,24 +179,19 @@
     "label": "نپل",
     "fields": {
       "present": {
-        "label": "نپل موجود ہے"
+        "label": "نپل موجود ہے",
+        "type": "boolean",
+        "value": ""
       },
       "description": {
         "label": "نپل کی تفصیل",
-        "options": [
-          "نارمل",
-          "غیر نارمل"
-        ]
+        "options": ["نارمل", "غیر نارمل"],
+        "type": "select"
       },
       "abnormal_features": {
         "label": "غیر معمولی خصوصیات",
-        "options": [
-          "پیجٹ بیماری",
-          "پپڑی دار پرت",
-          "اندر دھंسا ہوا",
-          "ٹیومر سے چپکا ہوا",
-          "دیگر"
-        ]
+        "options": ["پیجٹ بیماری", "پپڑی دار پرت", "اندر دھنسا ہوا", "ٹیومر سے چپکا ہوا", "دیگر"],
+        "type": "multi_select"
       }
     }
   },
@@ -162,7 +199,9 @@
     "label": "ٹیومر",
     "fields": {
       "macroscopic_present": {
-        "label": "میکروسکوپک طور پر نظر آنے والا ٹیومر"
+        "label": "عیانی طور پر نظر آنے والا ٹیومر",
+        "type": "boolean",
+        "value": ""
       },
       "site": {
         "label": "ٹیومر کا مقام",
@@ -174,23 +213,26 @@
           "مرکزی",
           "نپل",
           "غیر متعین"
-        ]
+        ],
+        "type": "select"
       },
       "focality": {
         "label": "فوکلٹی",
-        "options": [
-          "یک بؤری",
-          "کثیر بؤری"
-        ]
+        "options": ["یک بؤری", "کثیر بؤری"],
+        "type": "select"
       },
       "size": {
-        "label": "ٹیومر کا سائز (ملی میٹر)"
+        "label": "ٹیومر کا سائز (ملی میٹر)",
+        "type": "measurement_3d",
+        "value": ""
       },
       "skin_involvement": {
-        "label": "جلد سے چپکا ہوا"
+        "label": "جلد سے چپکا ہوا",
+        "type": "boolean"
       },
       "chest_wall_involvement": {
-        "label": "چھاتی کی دیوار سے چپکا ہوا"
+        "label": "چھاتی کی دیوار سے چپکا ہوا",
+        "type": "boolean"
       }
     }
   },
@@ -198,25 +240,32 @@
     "label": "حاشیے",
     "fields": {
       "medial": {
-        "label": "میڈیئل حاشیہ"
+        "label": "میڈیئل حاشیہ",
+        "type": "text"
       },
       "lateral": {
-        "label": "لیٹرل حاشیہ"
+        "label": "لیٹرل حاشیہ",
+        "type": "text"
       },
       "superior": {
-        "label": "اوپری حاشیہ"
+        "label": "اوپری حاشیہ",
+        "type": "text"
       },
       "inferior": {
-        "label": "زیریں حاشیہ"
+        "label": "زیریں حاشیہ",
+        "type": "text"
       },
       "posterior": {
-        "label": "پچھلا حاشیہ"
+        "label": "پچھلا حاشیہ",
+        "type": "text"
       },
       "anterior": {
-        "label": "اگلا حاشیہ"
+        "label": "اگلا حاشیہ",
+        "type": "text"
       },
       "skin": {
-        "label": "اوپر کی جلد"
+        "label": "اوپر کی جلد",
+        "type": "text"
       }
     }
   },
@@ -225,45 +274,35 @@
     "fields": {
       "presence": {
         "label": "کنکال عضلہ",
-        "options": [
-          "موجود",
-          "غیر موجود"
-        ]
+        "options": ["موجود", "غیر موجود"],
+        "type": "select",
+        "value": ""
       }
     }
   },
   "block_key": {
     "label": "بلاک الاٹمنٹ کلید",
     "fields": {
-      "nipple": {
-        "label": "نپل"
-      },
-      "tumor": {
-        "label": "ٹیومر"
-      },
-      "surrounding_breast": {
-        "label": "اردگرد بریسٹ ٹشو"
-      },
-      "margins": {
-        "label": "حاشیے"
-      },
-      "lymph_nodes": {
-        "label": "لمفی نوڈز"
-      }
+      "nipple": {},
+      "tumor": {},
+      "surrounding_breast": {},
+      "margins": {},
+      "lymph_nodes": {}
     }
   },
   "grossing": {
-    "label": "گراسنگ",
+    "label": "عیانی معائنہ (گراسنگ)",
     "fields": {
       "grossed_by": {
-        "label": "گراس کیا گیا بذریعہ"
+        "label": "گراس کیا گیا بذریعہ",
+        "type": "text",
+        "value": ""
       },
       "date": {
-        "label": "تاریخ"
+        "label": "تاریخ",
+        "type": "date",
+        "value": ""
       }
     }
-  },
-  "domain": {
-    "fields": {}
   }
 }

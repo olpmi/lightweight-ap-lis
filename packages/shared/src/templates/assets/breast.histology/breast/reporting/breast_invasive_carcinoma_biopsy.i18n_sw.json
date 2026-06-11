@@ -1,5 +1,7 @@
 {
   "template_id": "breast_invasive_carcinoma_biopsy_v1",
+  "domain": "anatomic_pathology",
+  "protocol_posting_date": "March 2023",
   "lang": "sw",
   "title": "Karsinoma vamizi ya titi, biopsy",
   "specimen": {
@@ -9,38 +11,40 @@
         "label": "Utaratibu",
         "options": [
           "Biopsy ya sindano",
-          "Fine needle aspiration",
+          "Aspiration ya sindano nyembamba",
           "Nyingine",
           "Haijabainishwa"
         ],
-        "other_specify": "Nyingine, taja"
+        "type": "select",
+        "value": "",
+        "other_specify": ""
       },
       "laterality": {
         "label": "Upande wa sampuli",
-        "options": [
-          "Kulia",
-          "Kushoto",
-          "Haijabainishwa"
-        ]
+        "options": ["Kulia", "Kushoto", "Haijabainishwa"],
+        "type": "select",
+        "value": ""
       }
     }
   },
   "tumor": {
-    "label": "Uvimbe",
+    "label": "Uvimbe wa saratani",
     "fields": {
       "tumor_site": {
         "label": "Eneo la uvimbe",
         "options": [
-          "Quadrant ya juu ya nje",
-          "Quadrant ya chini ya nje",
-          "Quadrant ya juu ya ndani",
-          "Quadrant ya chini ya ndani",
+          "Robo ya juu ya nje",
+          "Robo ya chini ya nje",
+          "Robo ya juu ya ndani",
+          "Robo ya chini ya ndani",
           "Katikati",
           "Chuchu",
           "Nafasi ya saa",
           "Haijabainishwa"
         ],
-        "clock_position_specify": "Nafasi ya saa, taja"
+        "type": "multi_select",
+        "value": [],
+        "clock_position_specify": ""
       },
       "histologic_type": {
         "label": "Aina ya histolojia",
@@ -61,14 +65,16 @@
           "Karsinoma solid papillary yenye uvamizi",
           "Adenokarsinoma ya intraductal papillary yenye uvamizi",
           "Karsinoma adenoid cystic",
-          "Uvímbe wa neuroendocrine",
+          "Uvimbe wa neuroendocrine",
           "Karsinoma ya neuroendocrine",
           "Karsinoma vamizi, aina haiwezi kubainishwa",
           "Aina nyingine ya histolojia ambayo haijaorodheshwa"
         ],
-        "features_specify": "Sifa, taja",
-        "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja",
-        "other_specify": "Nyingine, taja"
+        "type": "select",
+        "value": "",
+        "features_specify": "",
+        "cannot_be_determined_specify": "",
+        "other_specify": ""
       },
       "histologic_grade": {
         "label": "Daraja la histolojia (alama ya histolojia ya Nottingham)",
@@ -78,7 +84,9 @@
             "options": [
               "Haihusiki (hakuna karsinoma iliyobaki au microinvasion pekee)",
               "Alama ya Nottingham"
-            ]
+            ],
+            "type": "select",
+            "value": ""
           },
           "glandular_tubular_differentiation": {
             "label": "Utofautishaji wa tezi (acinar) / tubular",
@@ -88,7 +96,9 @@
               "Alama 3 (chini ya 10% ya eneo la uvimbe linaunda miundo ya tezi / tubular)",
               "Alama haiwezi kubainishwa"
             ],
-            "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
+            "type": "select",
+            "value": "",
+            "cannot_be_determined_specify": ""
           },
           "nuclear_pleomorphism": {
             "label": "Pleomofizimu ya nyuklia",
@@ -98,18 +108,17 @@
               "Alama 3 (viini vya vesicular, mara nyingi vikiwa na nucleoli zilizo dhahiri, vinaonyesha tofauti kubwa ya ukubwa na umbo, wakati mwingine vikiwa na maumbo makubwa sana na yasiyo ya kawaida)",
               "Alama haiwezi kubainishwa"
             ],
-            "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
+            "type": "select",
+            "value": "",
+            "cannot_be_determined_specify": ""
           },
           "mitotic_rate": {
             "label": "Kiwango cha mitosi",
-            "options": [
-              "Alama 1",
-              "Alama 2",
-              "Alama 3",
-              "Alama haiwezi kubainishwa"
-            ],
+            "options": ["Alama 1", "Alama 2", "Alama 3", "Alama haiwezi kubainishwa"],
             "reference_note": "Tazama Jedwali la 1 katika Itifaki ya CAP.",
-            "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
+            "type": "select",
+            "value": "",
+            "cannot_be_determined_specify": ""
           },
           "overall_grade": {
             "label": "Daraja la jumla",
@@ -119,7 +128,9 @@
               "Daraja 3 (alama 8 au 9)",
               "Alama haiwezi kubainishwa"
             ],
-            "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
+            "type": "select",
+            "value": "",
+            "cannot_be_determined_specify": ""
           }
         }
       },
@@ -132,13 +143,19 @@
               "Kipimo halisi kwa milimita (mm)",
               "Angalau kwa milimita (mm)",
               "Haiwezi kubainishwa"
-            ]
+            ],
+            "type": "select",
+            "value": ""
           },
           "measurement_mm": {
-            "label": "Kipimo (mm)"
+            "label": "Kipimo (mm)",
+            "type": "number",
+            "value": ""
           },
           "cannot_be_determined_specify": {
-            "label": "Haiwezi kubainishwa (eleza)"
+            "label": "Haiwezi kubainishwa (eleza)",
+            "type": "text",
+            "value": ""
           }
         }
       }
@@ -149,10 +166,9 @@
     "fields": {
       "presence": {
         "label": "Uwepo wa DCIS",
-        "options": [
-          "Haijaonekana",
-          "Ipo"
-        ]
+        "options": ["Haijaonekana", "Ipo"],
+        "type": "select",
+        "value": ""
       },
       "architectural_patterns": {
         "label": "Miundo ya usanifu",
@@ -165,7 +181,9 @@
           "Solid",
           "Nyingine"
         ],
-        "other_specify": "Nyingine, taja"
+        "type": "multi_select",
+        "value": [],
+        "other_specify": ""
       },
       "nuclear_grade": {
         "label": "Daraja la nyuklia",
@@ -176,8 +194,10 @@
           "Nyingine",
           "Haiwezi kubainishwa"
         ],
-        "other_specify": "Nyingine, taja",
-        "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
+        "type": "select",
+        "value": "",
+        "other_specify": "",
+        "cannot_be_determined_specify": ""
       },
       "necrosis": {
         "label": "Nekrosisi",
@@ -189,8 +209,10 @@
           "Haiwezi kubainishwa",
           "Haiwezi kutengwa"
         ],
-        "other_specify": "Nyingine, taja",
-        "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
+        "type": "select",
+        "value": "",
+        "other_specify": "",
+        "cannot_be_determined_specify": ""
       }
     }
   },
@@ -199,12 +221,10 @@
     "fields": {
       "status": {
         "label": "Uvamizi wa limfatiki na / au mishipa ya damu",
-        "options": [
-          "Haujaonekana",
-          "Upo",
-          "Haiwezi kubainishwa"
-        ],
-        "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
+        "options": ["Haijaonekana", "Upo", "Haiwezi kubainishwa"],
+        "type": "select",
+        "value": "",
+        "cannot_be_determined_specify": ""
       }
     }
   },
@@ -220,7 +240,9 @@
           "Zipo katika tishu isiyo ya neoplasia",
           "Nyingine"
         ],
-        "other_specify": "Nyingine, taja"
+        "type": "multi_select",
+        "value": [],
+        "other_specify": ""
       }
     }
   },
@@ -228,14 +250,10 @@
     "label": "Matokeo ya ziada",
     "fields": {
       "findings": {
-        "label": "Matokeo ya ziada"
+        "label": "Matokeo ya ziada",
+        "type": "text",
+        "value": ""
       }
     }
-  },
-  "domain": {
-    "fields": {}
-  },
-  "protocol_posting_date": {
-    "fields": {}
   }
 }

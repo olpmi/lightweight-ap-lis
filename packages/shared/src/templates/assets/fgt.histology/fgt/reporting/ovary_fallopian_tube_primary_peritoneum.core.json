@@ -1,10 +1,9 @@
 {
   "template_id": "ovary_fallopian_tube_primary_peritoneum_v1",
   "domain": "anatomic_pathology",
-  "title": "Ovary or Fallopian Tube or Primary Peritoneum",
   "protocol_posting_date": "June 2024",
-  "standards": ["AJCC-UICC 8", "FIGO Cancer Report 2021"],
-
+  "lang": "en",
+  "title": "Ovary or Fallopian Tube or Primary Peritoneum",
   "tumor": {
     "label": "Tumor",
     "fields": {
@@ -44,7 +43,6 @@
         "primary_peritoneum_specify": "",
         "other_specify": ""
       },
-
       "tumor_size": {
         "label": "Tumor size",
         "note": "For bilateral tumors, report maximum dimension for the largest borderline or malignant tumor. For carcinomas arising in a borderline tumor, report the carcinoma component only.",
@@ -52,10 +50,7 @@
           "size_type": {
             "label": "Tumor size",
             "type": "select",
-            "options": [
-              "Greatest dimension in centimeters (cm)",
-              "Cannot be determined"
-            ],
+            "options": ["Greatest dimension in centimeters (cm)", "Cannot be determined"],
             "value": ""
           },
           "greatest_dimension_cm": {
@@ -75,7 +70,6 @@
           }
         }
       },
-
       "histologic_type": {
         "label": "Histologic type",
         "type": "multi_select",
@@ -142,7 +136,6 @@
         "other_histologic_type_specify": "",
         "comment": ""
       },
-
       "histologic_grade": {
         "label": "Histologic grade",
         "note": "Required for endometrioid and mucinous carcinomas, immature teratomas, and Sertoli-Leydig cell tumors.",
@@ -199,7 +192,6 @@
           }
         }
       },
-
       "ovarian_surface_involvement": {
         "label": "Ovarian surface involvement",
         "type": "select",
@@ -215,7 +207,6 @@
         "value": "",
         "cannot_be_determined_explain": ""
       },
-
       "fallopian_tube_surface_involvement": {
         "label": "Fallopian tube surface involvement",
         "type": "select",
@@ -231,22 +222,14 @@
         "value": "",
         "cannot_be_determined_explain": ""
       },
-
       "implants": {
         "label": "Implants",
         "note": "Required for advanced stage serous / seromucinous borderline tumors only.",
         "type": "select",
-        "options": [
-          "Not applicable",
-          "Not sampled",
-          "Not identified",
-          "Present",
-          "Indeterminate"
-        ],
+        "options": ["Not applicable", "Not sampled", "Not identified", "Present", "Indeterminate"],
         "value": "",
         "present_specify_sites": ""
       },
-
       "other_tissue_organ_involvement": {
         "label": "Other tissue / organ involvement",
         "type": "multi_select",
@@ -271,7 +254,6 @@
         "other_organs_tissue_specify": "",
         "cannot_be_determined_explain": ""
       },
-
       "largest_extrapelvic_peritoneal_focus": {
         "label": "Largest extrapelvic peritoneal focus",
         "type": "select",
@@ -287,7 +269,6 @@
         "macroscopic_greater_than_2cm_specify_site": "",
         "cannot_be_determined_explain": ""
       },
-
       "peritoneal_ascitic_fluid_involvement": {
         "label": "Peritoneal / ascitic fluid involvement",
         "type": "multi_select",
@@ -308,7 +289,6 @@
         "suspicious_explain": "",
         "cannot_be_determined_explain": ""
       },
-
       "chemotherapy_response_score": {
         "label": "Chemotherapy response score (CRS)",
         "note": "Required only for high-grade serous carcinomas.",
@@ -324,7 +304,6 @@
         "value": "",
         "cannot_be_determined_specify": ""
       },
-
       "tumor_comment": {
         "label": "Tumor comment",
         "type": "text",
@@ -332,7 +311,6 @@
       }
     }
   },
-
   "regional_lymph_nodes": {
     "label": "Regional Lymph Nodes",
     "fields": {
@@ -347,25 +325,21 @@
         ],
         "value": ""
       },
-
       "nodes_with_metastasis_gt_10mm": {
         "label": "Number of nodes with metastasis greater than 10 mm",
         "type": "text",
         "value": ""
       },
-
       "nodes_with_metastasis_10mm_or_less": {
         "label": "Number of nodes with metastasis 10 mm or less",
         "type": "text",
         "value": ""
       },
-
       "nodes_with_itcs": {
         "label": "Number of nodes with isolated tumor cells (ITCs)",
         "type": "text",
         "value": ""
       },
-
       "nodal_sites_with_tumor": {
         "label": "Nodal site(s) with tumor",
         "type": "multi_select",
@@ -389,7 +363,6 @@
         "other_specify": "",
         "cannot_be_determined_specify": ""
       },
-
       "size_of_largest_nodal_metastatic_deposit": {
         "label": "Size of largest nodal metastatic deposit",
         "fields": {
@@ -423,7 +396,6 @@
           }
         }
       },
-
       "location_of_largest_nodal_metastatic_deposit": {
         "label": "Location of largest nodal metastatic deposit",
         "type": "multi_select",
@@ -448,13 +420,11 @@
         "cannot_be_determined_specify": "",
         "cannot_be_determined_explain": ""
       },
-
       "number_of_lymph_nodes_examined": {
         "label": "Number of lymph nodes examined",
         "type": "text",
         "value": ""
       },
-
       "nodal_sites_examined": {
         "label": "Nodal site(s) examined",
         "type": "multi_select",
@@ -478,7 +448,6 @@
         "other_specify": "",
         "cannot_be_determined_specify": ""
       },
-
       "regional_lymph_node_comment": {
         "label": "Regional lymph node comment",
         "type": "text",
@@ -486,7 +455,6 @@
       }
     }
   },
-
   "distant_metastasis": {
     "label": "Distant Metastasis",
     "fields": {
@@ -516,69 +484,57 @@
       }
     }
   },
-
   "ptnm_classification": {
     "label": "pTNM Classification (AJCC 8th Edition)",
     "fields": {
       "modified_classification": {
         "label": "Modified classification",
         "type": "multi_select",
-        "options": [
-          "Not applicable",
-          "y (post-neoadjuvant therapy)",
-          "r (recurrence)"
-        ],
+        "options": ["Not applicable", "y (post-neoadjuvant therapy)", "r (recurrence)"],
         "value": []
       },
-
       "pT_category": {
         "label": "pT category",
         "type": "select",
         "options": [
           "pT not assigned",
-          "pT0",
-          "pT1a",
-          "pT1b",
-          "pT1c1",
-          "pT1c2",
-          "pT1c3",
-          "pT1",
-          "pT2a",
-          "pT2b",
-          "pT2",
-          "pT3a",
-          "pT3b",
-          "pT3c",
-          "pT3"
+          "pT0: No evidence of primary tumor",
+          "pT1a: Tumor limited to one ovary (capsule intact) or fallopian tube (serosa intact); no tumor on ovarian or fallopian tube surface; no malignant cells in ascites or peritoneal washings",
+          "pT1b: Tumor limited to both ovaries (capsules intact) or fallopian tubes (serosa intact); no tumor on ovarian or fallopian tube surface; no malignant cells in ascites or peritoneal washings",
+          "pT1c1: Surgical spill",
+          "pT1c2: Capsule ruptured before surgery or tumor on ovarian or fallopian tube surface",
+          "pT1c3: Malignant cells in ascites or peritoneal washings",
+          "pT1: Tumor limited to ovaries or fallopian tubes (subcategory cannot be determined)",
+          "pT2a: Extension and/or implants on the uterus and/or fallopian tubes and/or ovaries",
+          "pT2b: Extension to and/or implants on other pelvic intraperitoneal tissues",
+          "pT2: Tumor involves one or both ovaries or fallopian tubes with pelvic extension (subcategory cannot be determined)",
+          "pT3a: Microscopic extrapelvic (above the pelvic brim) peritoneal involvement with or without positive retroperitoneal lymph nodes",
+          "pT3b: Macroscopic extrapelvic peritoneal metastasis 2 cm or less in greatest dimension with or without positive retroperitoneal lymph nodes",
+          "pT3c: Macroscopic extrapelvic peritoneal metastasis more than 2 cm in greatest dimension with or without positive retroperitoneal lymph nodes (includes extension of tumor to capsule of liver and spleen without parenchymal involvement of either organ)",
+          "pT3: Peritoneal metastasis beyond pelvis and/or regional lymph node metastasis (subcategory cannot be determined)"
         ],
         "value": ""
       },
-
       "T_suffix": {
         "label": "T suffix",
         "type": "select",
-        "options": [
-          "Not applicable",
-          "(m) multiple primary synchronous tumors in a single organ"
-        ],
+        "options": ["Not applicable", "(m) multiple primary synchronous tumors in a single organ"],
         "value": ""
       },
-
       "pN_category": {
         "label": "pN category",
         "type": "select",
         "options": [
           "pN not assigned (no nodes submitted or found)",
           "pN not assigned (cannot be determined based on available pathological information)",
-          "pN0",
-          "pN0(i+)",
-          "pN1a",
-          "pN1b",
-          "pN1"
+          "pN0: No regional lymph node metastasis",
+          "pN0(i+): Isolated tumor cells in regional lymph node(s) no greater than 0.2 mm",
+          "pN1a: Regional lymph node metastasis greater than 0.2 mm but not greater than 10 mm in greatest dimension",
+          "pN1b: Regional lymph node metastasis greater than 10 mm in greatest dimension",
+          "pN1: Regional lymph node metastasis present (subcategory cannot be determined)"
         ],
         "value": ""
       },
-
       "N_suffix": {
         "label": "N suffix",
         "type": "multi_select",
@@ -589,21 +545,19 @@
         ],
         "value": []
       },
-
       "pM_category": {
         "label": "pM category",
         "type": "select",
         "options": [
           "Not applicable - pM cannot be determined from the submitted specimen(s)",
-          "pM1a",
-          "pM1b",
-          "pM1"
+          "pM1a: Pleural effusion with positive cytology",
+          "pM1b: Hepatic and/or splenic parenchymal metastasis, metastasis to extra-abdominal organs (including inguinal lymph nodes and lymph nodes outside the abdominal cavity)",
+          "pM1: Distant metastasis (subcategory cannot be determined)"
         ],
         "value": ""
       }
     }
   },
-
   "figo_stage": {
     "label": "FIGO Stage",
     "fields": {
@@ -611,28 +565,27 @@
         "label": "FIGO Stage (2021 FIGO Cancer Report)",
         "type": "select",
         "options": [
-          "IA",
-          "IB",
-          "IC1",
-          "IC2",
-          "IC3",
-          "IC",
-          "IIA",
-          "IIB",
-          "IIIA1",
-          "IIIA1(i)",
-          "IIIA1(ii)",
-          "IIIA2",
-          "IIIB",
-          "IIIC",
-          "IVA",
-          "IVB"
+          "IA: Tumor limited to one ovary (capsule intact) or fallopian tube, no tumor on ovarian or fallopian tube surface, negative washings",
+          "IB: Tumor involves both ovaries or fallopian tubes (capsules intact), no tumor on ovarian or fallopian tube surface, negative washings",
+          "IC1: Surgical spill",
+          "IC2: Capsule ruptured before surgery or tumor on ovarian or fallopian tube surface",
+          "IC3: Malignant cells in ascites or peritoneal washings",
+          "IC: Tumor limited to one or both ovaries, with any of IC1-IC3 (subcategory cannot be determined)",
+          "IIA: Extension and/or implants on the uterus and/or fallopian tubes and/or ovaries",
+          "IIB: Extension to and/or implants on other pelvic intraperitoneal tissues",
+          "IIIA1: Positive retroperitoneal lymph nodes only (cytologically or histologically proven)",
+          "IIIA1(i): Metastasis up to and including 10 mm",
+          "IIIA1(ii): Metastasis more than 10 mm",
+          "IIIA2: Microscopic extrapelvic peritoneal involvement with or without positive retroperitoneal lymph nodes",
+          "IIIB: Macroscopic peritoneal metastasis beyond the pelvis up to 2 cm in greatest dimension, with or without positive retroperitoneal lymph nodes",
+          "IIIC: Peritoneal metastasis beyond the pelvis more than 2 cm in greatest dimension, with or without positive retroperitoneal lymph nodes (includes extension of tumor to capsule of liver and spleen without parenchymal involvement of either organ)",
+          "IVA: Pleural effusion with positive cytology",
+          "IVB: Hepatic and/or splenic parenchymal metastasis, metastasis to extra-abdominal organs (including inguinal lymph nodes and lymph nodes outside the abdominal cavity)"
         ],
         "value": ""
       }
     }
   },
-
   "additional_findings": {
     "label": "Additional Findings",
     "fields": {

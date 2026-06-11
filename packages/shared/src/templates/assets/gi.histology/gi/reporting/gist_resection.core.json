@@ -1,9 +1,10 @@
 {
   "template_id": "gist_resection_v1",
   "domain": "anatomic_pathology",
-  "title": "Gastrointestinal Stromal Tumor (GIST): Resection",
+  "protocol_posting_date": "December 2022",
+  "lang": "en",
   "standards": ["AJCC-UICC 8"],
-
+  "title": "Gastrointestinal Stromal Tumor (GIST): Resection",
   "clinical": {
     "label": "Clinical",
     "fields": {
@@ -21,25 +22,17 @@
       }
     }
   },
-
   "specimen": {
     "label": "Specimen",
     "fields": {
       "procedure": {
         "label": "Procedure",
         "type": "select",
-        "options": [
-          "Local excision",
-          "Resection",
-          "Metastasectomy",
-          "Other",
-          "Not specified"
-        ],
+        "options": ["Local excision", "Resection", "Metastasectomy", "Other", "Not specified"],
         "value": ""
       }
     }
   },
-
   "tumor": {
     "label": "Tumor",
     "fields": {
@@ -49,26 +42,22 @@
         "options": ["Unifocal", "Multifocal"],
         "value": ""
       },
-
       "number_of_tumors": {
         "label": "Number of tumors",
         "type": "text",
         "value": ""
       },
-
       "sizes_of_tumors": {
         "label": "Sizes of tumors",
         "type": "text",
         "value": ""
       },
-
       "multiple_primary_sites": {
         "label": "Multiple primary sites",
         "type": "select",
         "options": ["Not applicable", "Present"],
         "value": ""
       },
-
       "tumor_site": {
         "label": "Tumor site",
         "type": "multi_select",
@@ -85,7 +74,9 @@
           "Ileocecal valve",
           "Cecum",
           "Ascending colon",
+          "Hepatic flexure",
           "Transverse colon",
+          "Splenic flexure",
           "Descending colon",
           "Sigmoid colon",
           "Rectosigmoid junction",
@@ -99,26 +90,22 @@
         ],
         "value": []
       },
-
       "histologic_type": {
         "label": "Histologic type",
         "type": "select",
         "options": ["Spindle cell type", "Epithelioid type", "Mixed", "Other"],
         "value": ""
       },
-
       "tumor_size": {
         "label": "Tumor size (clinicoradiologic estimate)",
         "type": "text",
         "value": ""
       },
-
       "mitotic_rate": {
         "label": "Mitotic rate per 5 mm²",
         "type": "text",
         "value": ""
       },
-
       "histologic_grade": {
         "label": "Histologic grade",
         "type": "select",
@@ -130,38 +117,28 @@
         ],
         "value": ""
       },
-
       "necrosis": {
         "label": "Necrosis",
         "type": "select",
         "options": ["Not identified", "Present"],
         "value": ""
       },
-
       "extent_of_necrosis": {
         "label": "Extent of necrosis",
         "type": "text",
         "value": ""
       },
-
       "treatment_effect": {
         "label": "Treatment effect",
         "type": "select",
-        "options": [
-          "No known presurgical therapy",
-          "Not identified",
-          "Present",
-          "Cannot be determined"
-        ],
+        "options": ["No known presurgical therapy", "Not identified", "Present"],
         "value": ""
       },
-
       "percentage_viable_tumor": {
         "label": "Percentage of viable tumor",
         "type": "text",
         "value": ""
       },
-
       "risk_assessment": {
         "label": "Risk assessment",
         "type": "select",
@@ -176,7 +153,6 @@
         ],
         "value": ""
       },
-
       "tumor_comment": {
         "label": "Tumor comment",
         "type": "text",
@@ -184,21 +160,15 @@
       }
     }
   },
-
   "margins": {
     "label": "Margins",
     "fields": {
       "margin_status": {
         "label": "Margin status",
         "type": "select",
-        "options": [
-          "All margins negative for GIST",
-          "GIST present at margin",
-          "Not applicable"
-        ],
+        "options": ["All margins negative for GIST", "GIST present at margin", "Not applicable"],
         "value": ""
       },
-
       "closest_margins": {
         "label": "Closest margin(s)",
         "type": "multi_select",
@@ -213,13 +183,11 @@
         ],
         "value": []
       },
-
       "distance_to_closest_margin": {
         "label": "Distance from GIST to closest margin",
         "type": "text",
         "value": ""
       },
-
       "margins_involved": {
         "label": "Margin(s) involved by GIST",
         "type": "multi_select",
@@ -236,7 +204,6 @@
       }
     }
   },
-
   "regional_lymph_nodes": {
     "label": "Regional Lymph Nodes",
     "fields": {
@@ -251,13 +218,11 @@
         ],
         "value": ""
       },
-
       "number_with_tumor": {
         "label": "Number of lymph nodes with tumor",
         "type": "text",
         "value": ""
       },
-
       "number_examined": {
         "label": "Number of lymph nodes examined",
         "type": "text",
@@ -265,7 +230,6 @@
       }
     }
   },
-
   "distant_metastasis": {
     "label": "Distant Metastasis",
     "fields": {
@@ -277,61 +241,57 @@
       }
     }
   },
-
   "ptnm": {
     "label": "pTNM Classification (AJCC 8th Edition)",
+    "note": "Reporting of pT, pN, and (when applicable) pM categories is based on information available to the pathologist at the time the report is issued. As per the AJCC (Chapter 1, 8th Ed.) it is the managing physician's responsibility to establish the final pathologic stage based upon all pertinent information, including but potentially not limited to this pathology report.",
     "fields": {
       "modified_classification": {
         "label": "Modified classification",
         "type": "multi_select",
-        "options": [
-          "Not applicable",
-          "y (post-neoadjuvant therapy)",
-          "r (recurrence)"
-        ],
+        "options": ["Not applicable", "y (post-neoadjuvant therapy)", "r (recurrence)"],
         "value": []
       },
-
       "pT_category": {
         "label": "pT category",
         "type": "select",
         "options": [
-          "pT0",
-          "pT1 (≤2 cm)",
-          "pT2 (>2 cm to ≤5 cm)",
-          "pT3 (>5 cm to ≤10 cm)",
-          "pT4 (>10 cm)",
-          "pT not assigned"
+          "pT not assigned (cannot be determined based on available pathological information)",
+          "pT0: No evidence of primary tumor",
+          "pT1: Tumor 2 cm or less",
+          "pT2: Tumor more than 2 cm but not more than 5 cm",
+          "pT3: Tumor more than 5 cm but not more than 10 cm",
+          "pT4: Tumor more than 10 cm in greatest dimension"
         ],
         "value": ""
       },
-
       "T_suffix": {
         "label": "T suffix",
         "type": "select",
-        "options": [
-          "Not applicable",
-          "(m) multiple primary synchronous tumors"
-        ],
+        "options": ["Not applicable", "(m) multiple primary synchronous tumors"],
         "value": ""
       },
-
       "pN_category": {
         "label": "pN category",
         "type": "select",
-        "options": ["pN not assigned", "pN0", "pN1"],
+        "options": [
+          "pN not assigned (no nodes submitted or found)",
+          "pN not assigned (cannot be determined based on available pathological information)",
+          "pN0: No regional lymph node metastasis",
+          "pN1: Regional lymph node metastasis"
+        ],
         "value": ""
       },
-
       "pM_category": {
         "label": "pM category",
         "type": "select",
-        "options": ["Not applicable", "pM1"],
+        "options": [
+          "Not applicable - pM cannot be determined from the submitted specimen(s)",
+          "pM1: Distant metastasis"
+        ],
         "value": ""
       }
     }
   },
-
   "additional_findings": {
     "label": "Additional Findings",
     "fields": {

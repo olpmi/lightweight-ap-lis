@@ -1,40 +1,44 @@
 {
   "template_id": "lung_tumor_biopsy_v1",
+  "domain": "anatomic_pathology",
+  "protocol_posting_date": "September 2025",
   "lang": "sw",
-  "title": "Uvimbe wa mapafu, biopsy",
+  "standards": ["AJCC 9"],
+  "title": "Uvimbe wa mapafu, biopsi",
   "tumor": {
     "label": "Uvimbe",
     "fields": {
       "histologic_type": {
-        "label": "Aina ya histolojia",
+        "label": "Aina ya kihistolojia",
+        "type": "select",
         "options": [
-          "Invasive lepidic adenocarcinoma",
-          "Invasive acinar adenocarcinoma",
-          "Invasive papillary adenocarcinoma",
-          "Invasive micropapillary adenocarcinoma",
-          "Invasive solid adenocarcinoma",
-          "Invasive mucinous adenocarcinoma",
-          "Mixed invasive mucinous and non-mucinous adenocarcinoma",
-          "Colloid adenocarcinoma",
-          "Fetal adenocarcinoma",
-          "Enteric-type adenocarcinoma",
-          "Squamous cell carcinoma in situ (SCIS)",
-          "Invasive squamous cell carcinoma, keratinizing",
-          "Invasive squamous cell carcinoma, non-keratinizing",
-          "Invasive squamous cell carcinoma, basaloid",
-          "Lymphoepithelial carcinoma",
-          "Large cell carcinoma",
-          "Adenosquamous carcinoma",
-          "Pleomorphic carcinoma",
-          "Carcinoid tumor, NOS / Neuroendocrine tumor, NOS",
-          "Small cell carcinoma",
-          "Combined small cell carcinoma (small cell carcinoma and non-small cell component)",
-          "Large cell neuroendocrine carcinoma",
-          "Combined large cell neuroendocrine carcinoma (LCNEC and other non-small cell component)",
-          "Carcinoma, type cannot be determined",
-          "Non-small cell carcinoma, subtype cannot be determined",
-          "Other histologic type not listed",
-          "No viable tumor present"
+          "Adenokarsinoma ya lepidic vamizi",
+          "Adenokarsinoma ya asinari vamizi",
+          "Adenokarsinoma ya papillary vamizi",
+          "Adenokarsinoma ya micropapillary vamizi",
+          "Adenokarsinoma ya solid vamizi",
+          "Adenokarsinoma ya mucinous vamizi",
+          "Adenokarsinoma ya mucinous na isiyo ya mucinous iliyochanganywa vamizi (mixed invasive mucinous and non-mucinous adenocarcinoma)",
+          "Adenokarsinoma ya koloidi",
+          "Adenokarsinoma ya fetasi",
+          "Adenokarsinoma ya aina ya utumbo",
+          "Karsinoma ya seli skwamasi in situ (SCIS)",
+          "Karsinoma ya seli skwamasi vamizi, inayounda keratin",
+          "Karsinoma ya seli skwamasi vamizi, isiyounda keratin",
+          "Karsinoma ya seli skwamasi vamizi, basaloid",
+          "Karsinoma ya limfoepitheliamu",
+          "Karsinoma ya seli kubwa (Large cell carcinoma)",
+          "Karsinoma ya adenoskwamasi",
+          "Karsinoma ya pleomofikia",
+          "Uvimbe wa karsinoid, NOS / Uvimbe wa neuroendocrine, NOS",
+          "Karsinoma ya seli ndogo (Small cell carcinoma)",
+          "Karsinoma ya seli ndogo iliyochanganywa (Small cell carcinoma and non-small cell component)",
+          "Karsinoma ya seli kubwa ya neuroendocrine (Large cell neuroendocrine carcinoma)",
+          "Karsinoma ya seli kubwa ya neuroendocrine iliyochanganywa (LCNEC and other non-small cell component)",
+          "Karsinoma, aina haiwezi kubainishwa",
+          "Karsinoma ya sio seli ndogo, aina ndogo haiwezi kubainishwa",
+          "Aina nyingine ya kihistolojia ambayo haijaorodheshwa",
+          "Hakuna uvimbe hai uliopo"
         ],
         "combined_small_cell_non_small_cell_component_specify": "Sehemu iliyochanganywa ya seli ndogo/sio ndogo, taja",
         "combined_large_cell_neuroendocrine_other_component_specify": "Sehemu iliyochanganywa ya seli kubwa za neuroendokrine/nyingine, taja",
@@ -44,10 +48,10 @@
         "no_viable_tumor_present_explain": "Hakuna uvimbe hai uliopo, eleza"
       },
       "histologic_patterns": {
-        "label": "Miundo ya histolojia (hutumika kwa adenocarcinoma zisizo za mucinous pekee)",
+        "label": "Miundo ya histolojia (hutumika kwa adenokarsinoma zisizo za mucinous pekee)",
         "options": [
           "Haihusiki",
-          "Acinar",
+          "Asinari",
           "Papillary",
           "Lepidic",
           "Solid",
@@ -57,31 +61,43 @@
         ]
       },
       "histologic_grade": {
-        "label": "Daraja la histolojia",
+        "label": "Daraja la kihistolojia",
+        "note": "Miundo ya daraja la juu katika adenokarsinoma ya vamizi isiyo ya mucinous inajumuisha miundo ya solid, micropapillary, cribriform, na tezi zilizounganishwa.",
+        "type": "select",
+        "options": [
+          "G1, imetofautishwa vizuri (inajumuisha adenokarsinoma ya lepidic vamizi yenye chini ya 20% ya muundo wa daraja la juu; uvimbe wa karsinoid wa kawaida)",
+          "G2, imetofautishwa kwa wastani (inajumuisha adenokarsinoma ya asinary na papillary vamizi yenye chini ya 20% ya muundo wa daraja la juu; uvimbe wa karsinoid usio wa kawaida)",
+          "G3, imetofautishwa vibaya (inajumuisha adenokarsinoma ya vamizi isiyo ya mucinous yenye 20% au zaidi ya muundo wa daraja la juu)",
+          "G4, haitofautishwi (inajumuisha karsinoma ya seli ndogo; karsinoma ya seli kubwa)",
+          "Nyingine",
+          "GX, haiwezi kutathminiwa",
+          "Haihusiki"
+        ],
+        "value": "",
         "other_specify": "Nyingine, taja",
         "cannot_be_assessed_specify": "Haiwezi kutathminiwa, taja",
-        "not_applicable_specify": "Haihusiki, taja"
+        "not_applicable_specify": ""
       },
       "lymphovascular_invasion": {
         "label": "Uvamizi wa limfatiki na / au mishipa ya damu",
         "fields": {
           "status": {
-            "label": "Uvamizi wa lymphatiki na/au mishipa ya damu",
-            "options": [
-              "Haipatikani",
-              "Ipo",
-              "Haiwezi kuamuliwa"
-            ],
-            "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
+            "label": "Uvamizi wa limfatiki na/au mishipa ya damu",
+            "type": "select",
+            "options": ["Haijaonekana", "Ipo", "Haiwezi kuamuliwa"],
+            "value": "",
+            "cannot_be_determined_specify": ""
           },
           "subtypes": {
             "label": "Aina ndogo za uvamizi",
+            "type": "multi_select",
             "options": [
-              "Uvamizi wa lymphatiki upo",
+              "Uvamizi wa limfatiki upo",
               "Uvamizi wa ateri upo",
-              "Uvamizi wa mishipa ya damu upo",
-              "Other"
+              "Uvamizi wa vena upo",
+              "Nyingine"
             ],
+            "value": [],
             "other_specify": "Nyingine, taja"
           }
         }
@@ -91,11 +107,43 @@
   "additional_findings": {
     "label": "Matokeo ya ziada",
     "fields": {
-      "findings": {},
-      "atypical_adenomatous_hyperplasia_specify": {},
-      "granulomatous_inflammation_specify": {},
-      "fibrosis_specify_pattern": {},
-      "other_specify": {}
+      "findings": {
+        "label": "Matokeo ya ziada",
+        "type": "multi_select",
+        "options": [
+          "Hakuna iliyopatikana",
+          "Ugonjwa mbaya wa tezi za adenomatous atipiki",
+          "Dysplasia ya seli za skwamasi",
+          "Hyperplasia wa nyuroendokrini ulioeneea",
+          "Mabadiliko ya tovuti ya biopsi",
+          "Uvimbe wa granulomatosi",
+          "Mabadiliko ya baada ya kuzuiwa",
+          "Ufibrosi",
+          "Emphysema",
+          "Nyingine"
+        ],
+        "value": []
+      },
+      "atypical_adenomatous_hyperplasia_specify": {
+        "label": "Atypical adenomatous hyperplasia",
+        "type": "text",
+        "value": ""
+      },
+      "granulomatous_inflammation_specify": {
+        "label": "Uvimbe wa granulomatosi (bainisha nekrosisi au usio wa nekrosisi ikiwa inawezekana)",
+        "type": "text",
+        "value": ""
+      },
+      "fibrosis_specify_pattern": {
+        "label": "Ufibrosi (bainisha muundo ikiwa inawezekana)",
+        "type": "text",
+        "value": ""
+      },
+      "other_specify": {
+        "label": "Nyingine (taja)",
+        "type": "text",
+        "value": ""
+      }
     }
   }
 }

@@ -1,30 +1,29 @@
 {
   "template_id": "general_tumor_resection_v1",
+  "domain": "anatomic_pathology",
+  "protocol_posting_date": "June 2021",
   "lang": "fr",
   "title": "Résection tumorale générale",
   "specimen": {
-    "label": "Pièce",
+    "label": "Prélèvement",
     "fields": {
       "procedure": {
-        "label": "Procédure"
+        "label": "Procédure",
+        "type": "text",
+        "value": ""
       },
       "laterality": {
-        "label": "Latéralité de la pièce",
-        "options": [
-          "Droite",
-          "Gauche",
-          "Non précisé",
-          "Non applicable"
-        ]
+        "label": "Latéralité du prélèvement",
+        "type": "select",
+        "options": ["Droite", "Gauche", "Non précisé", "Non applicable"],
+        "value": ""
       },
       "lymph_node_sampling": {
         "label": "Prélèvement ganglionnaire",
-        "options": [
-          "Effectué",
-          "Non effectué",
-          "Inconnu"
-        ],
-        "lymph_nodes_sampled": "Ganglions prélevés"
+        "type": "select",
+        "options": ["Effectué", "Non effectué", "Inconnu"],
+        "value": "",
+        "lymph_nodes_sampled": ""
       }
     }
   },
@@ -32,102 +31,125 @@
     "label": "Tumeur",
     "fields": {
       "site": {
-        "label": "Site(s) tumoral(aux)"
+        "label": "Site(s) tumoral(aux)",
+        "type": "text",
+        "value": ""
       },
       "histologic_type": {
-        "label": "Type histologique"
+        "label": "Type histologique",
+        "type": "text",
+        "value": ""
       },
       "histologic_grade": {
-        "label": "Grade histologique"
+        "label": "Grade histologique",
+        "type": "text",
+        "value": ""
       },
       "tumor_size": {
         "label": "Taille tumorale",
         "fields": {
           "measurement_type": {
             "label": "Type de mesure",
-            "options": [
-              "Plus grande dimension en centimètres (cm)",
-              "Ne peut pas être déterminée"
-            ]
+            "type": "select",
+            "options": ["Plus grande dimension en centimètres (cm)", "Ne peut pas être déterminée"],
+            "value": ""
           },
           "greatest_dimension_cm": {
-            "label": "Plus grande dimension (cm)"
+            "label": "Plus grande dimension (cm)",
+            "type": "number",
+            "value": ""
           },
           "additional_dimensions_cm": {
-            "label": "Dimensions supplémentaires (cm)"
+            "label": "Dimensions supplémentaires (cm)",
+            "type": "measurement_2d",
+            "value": ""
           },
           "cannot_be_determined_specify": {
-            "label": "Ne peut pas être déterminée (expliquer)"
+            "label": "Ne peut pas être déterminée (expliquer)",
+            "type": "text",
+            "value": ""
           }
         }
       },
       "tumor_extent": {
-        "label": "Extension tumorale (structures ou organes atteints)"
+        "label": "Extension tumorale (structures ou organes atteints)",
+        "type": "text",
+        "value": ""
       },
       "mitotic_rate": {
-        "label": "Taux mitotique"
+        "label": "Taux mitotique",
+        "type": "text",
+        "value": ""
       },
       "tumor_necrosis": {
         "label": "Nécrose tumorale",
         "fields": {
           "status": {
             "label": "Statut de la nécrose tumorale",
-            "options": [
-              "Non identifiée",
-              "Présente",
-              "Ne peut pas être déterminée"
-            ]
+            "type": "select",
+            "options": ["Non identifiée", "Présente", "Ne peut pas être déterminée"],
+            "value": ""
           },
           "percentage_type": {
             "label": "Pourcentage de nécrose tumorale",
-            "options": [
-              "Préciser le pourcentage",
-              "Autre",
-              "Ne peut pas être déterminé"
-            ]
+            "type": "select",
+            "options": ["Préciser le pourcentage", "Autre", "Ne peut pas être déterminé"],
+            "value": ""
           },
           "percentage_value": {
-            "label": "Pourcentage (%)"
+            "label": "Pourcentage (%)",
+            "type": "number",
+            "value": ""
           },
           "other_specify": {
-            "label": "Autre (préciser)"
+            "label": "Autre (préciser)",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_specify": {
-            "label": "Ne peut pas être déterminé (expliquer)"
+            "label": "Ne peut pas être déterminé (expliquer)",
+            "type": "text",
+            "value": ""
           }
         }
       },
       "lymphovascular_invasion": {
         "label": "Invasion lymphovasculaire",
-        "options": [
-          "Non identifiée",
-          "Présente",
-          "Ne peut pas être déterminée"
-        ],
-        "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
+        "type": "select",
+        "options": ["Non identifiée", "Présente", "Ne peut pas être déterminée"],
+        "value": "",
+        "cannot_be_determined_specify": ""
       },
       "treatment_effect": {
         "label": "Effet du traitement",
         "fields": {
           "status": {
-            "label": "Statut de l’effet du traitement",
+            "label": "Statut de l'effet du traitement",
+            "type": "select",
             "options": [
               "Aucun traitement préopératoire connu",
               "Non identifié",
               "Présent",
               "Ne peut pas être déterminé"
-            ]
+            ],
+            "value": ""
           },
           "preoperative_therapy_given": {
-            "label": "Traitement préopératoire administré"
+            "label": "Traitement préopératoire administré",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_specify": {
-            "label": "Ne peut pas être déterminé (expliquer)"
+            "label": "Ne peut pas être déterminé (expliquer)",
+            "type": "text",
+            "value": ""
           }
         }
       },
       "tumor_comment": {
-        "label": "Commentaire tumoral"
+        "label": "Commentaire tumoral",
+        "type": "text",
+        "value": ""
       }
     }
   },
@@ -136,17 +158,20 @@
     "fields": {
       "margin_status": {
         "label": "Statut des marges",
+        "type": "select",
         "options": [
           "Toutes les marges sont négatives pour la tumeur",
           "Tumeur présente à la marge",
           "Non applicable"
-        ]
+        ],
+        "value": ""
       },
       "distance_to_closest_margin": {
         "label": "Distance entre la tumeur et la marge la plus proche",
         "fields": {
           "distance_type": {
             "label": "Type de distance",
+            "type": "select",
             "options": [
               "Distance exacte",
               "Supérieure à",
@@ -155,16 +180,23 @@
               "Inférieure à 1 mm",
               "Autre",
               "Ne peut pas être déterminée"
-            ]
+            ],
+            "value": ""
           },
           "distance_mm": {
-            "label": "Distance (mm)"
+            "label": "Distance (mm)",
+            "type": "number",
+            "value": ""
           },
           "other_specify": {
-            "label": "Autre (préciser)"
+            "label": "Autre (préciser)",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_specify": {
-            "label": "Ne peut pas être déterminée (expliquer)"
+            "label": "Ne peut pas être déterminée (expliquer)",
+            "type": "text",
+            "value": ""
           }
         }
       },
@@ -173,16 +205,22 @@
         "fields": {
           "status": {
             "label": "Statut de la/des marge(s) la/les plus proche(s)",
+            "type": "select",
             "options": [
               "Préciser la/les marge(s) la/les plus proche(s)",
               "Ne peut pas être déterminé"
-            ]
+            ],
+            "value": ""
           },
           "specify": {
-            "label": "Préciser la/les marge(s) la/les plus proche(s)"
+            "label": "Préciser la/les marge(s) la/les plus proche(s)",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_specify": {
-            "label": "Ne peut pas être déterminé (expliquer)"
+            "label": "Ne peut pas être déterminé (expliquer)",
+            "type": "text",
+            "value": ""
           }
         }
       },
@@ -191,20 +229,28 @@
         "fields": {
           "status": {
             "label": "Statut de la/des marge(s) envahie(s)",
+            "type": "select",
             "options": [
               "Préciser la/les marge(s) envahie(s)",
               "Autre",
               "Ne peut pas être déterminé"
-            ]
+            ],
+            "value": ""
           },
           "specify": {
-            "label": "Préciser la/les marge(s) envahie(s)"
+            "label": "Préciser la/les marge(s) envahie(s)",
+            "type": "text",
+            "value": ""
           },
           "other_specify": {
-            "label": "Autre (préciser)"
+            "label": "Autre (préciser)",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_specify": {
-            "label": "Ne peut pas être déterminé (expliquer)"
+            "label": "Ne peut pas être déterminé (expliquer)",
+            "type": "text",
+            "value": ""
           }
         }
       }
@@ -215,78 +261,87 @@
     "fields": {
       "regional_lymph_node_status": {
         "label": "Statut des ganglions lymphatiques régionaux",
+        "type": "select",
         "options": [
           "Non applicable (aucun ganglion régional soumis ni trouvé)",
           "Ganglions lymphatiques régionaux présents",
           "Tous les ganglions lymphatiques régionaux sont négatifs pour la tumeur",
           "Tumeur présente dans un ou plusieurs ganglions lymphatiques régionaux"
-        ]
+        ],
+        "value": ""
       },
       "number_with_tumor": {
-        "label": "Nombre de ganglions lymphatiques avec tumeur",
         "fields": {
           "count_type": {
             "label": "Type de nombre",
-            "options": [
-              "Nombre exact",
-              "Au moins",
-              "Autre",
-              "Ne peut pas être déterminé"
-            ]
+            "type": "select",
+            "options": ["Nombre exact", "Au moins", "Autre", "Ne peut pas être déterminé"],
+            "value": ""
           },
           "count_value": {
-            "label": "Nombre"
+            "label": "Nombre",
+            "type": "integer",
+            "value": ""
           },
           "other_specify": {
-            "label": "Autre (préciser)"
+            "label": "Autre (préciser)",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_specify": {
-            "label": "Ne peut pas être déterminé (expliquer)"
+            "label": "Ne peut pas être déterminé (expliquer)",
+            "type": "text",
+            "value": ""
           }
-        }
+        },
+        "label": "Nombre de ganglions lymphatiques avec tumeur"
       },
       "extranodal_extension": {
         "label": "Extension extranodale",
         "fields": {
           "status": {
-            "label": "Statut de l’extension extranodale",
-            "options": [
-              "Non identifiée",
-              "Présente",
-              "Autre",
-              "Ne peut pas être déterminée"
-            ]
+            "label": "Statut de l'extension extranodale",
+            "type": "select",
+            "options": ["Non identifiée", "Présente", "Autre", "Ne peut pas être déterminée"],
+            "value": ""
           },
           "other_specify": {
-            "label": "Autre (préciser)"
+            "label": "Autre (préciser)",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_specify": {
-            "label": "Ne peut pas être déterminée (expliquer)"
+            "label": "Ne peut pas être déterminée (expliquer)",
+            "type": "text",
+            "value": ""
           }
         }
       },
       "number_examined": {
-        "label": "Nombre de ganglions lymphatiques examinés",
         "fields": {
           "count_type": {
             "label": "Type de nombre",
-            "options": [
-              "Nombre exact",
-              "Au moins",
-              "Autre",
-              "Ne peut pas être déterminé"
-            ]
+            "type": "select",
+            "options": ["Nombre exact", "Au moins", "Autre", "Ne peut pas être déterminé"],
+            "value": ""
           },
           "count_value": {
-            "label": "Nombre"
+            "label": "Nombre",
+            "type": "integer",
+            "value": ""
           },
           "other_specify": {
-            "label": "Autre (préciser)"
+            "label": "Autre (préciser)",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_specify": {
-            "label": "Ne peut pas être déterminé (expliquer)"
+            "label": "Ne peut pas être déterminé (expliquer)",
+            "type": "text",
+            "value": ""
           }
-        }
+        },
+        "label": "Nombre de ganglions lymphatiques examinés"
       }
     }
   },
@@ -294,7 +349,9 @@
     "label": "Constatations supplémentaires",
     "fields": {
       "findings": {
-        "label": "Constatations supplémentaires"
+        "label": "Constatations supplémentaires",
+        "type": "text",
+        "value": ""
       }
     }
   }

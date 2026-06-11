@@ -1,30 +1,33 @@
 {
-  "title": "Résection de tumeur gastrique (Modèle macroscopique)",
+  "template_id": "gastric_tumor_resection_gross_v1",
+  "domain": "anatomic_pathology",
+  "lang": "fr",
+  "title": "Résection de tumeur gastrique (modèle macroscopique)",
   "specimen": {
-    "label": "Spécimen",
+    "label": "Prélèvement",
     "fields": {
       "type_of_resection": {
-        "label": "Type de résection (sélectionner une réponse)",
+        "label": "Type de résection",
         "options": [
           "Œsophago-gastrectomie",
           "Gastrectomie totale",
           "Gastrectomie subtotale, proximale",
           "Gastrectomie subtotale, distale",
-          "Autre (préciser)"
+          "Autre"
         ],
-        "other_specify": "Autre (préciser)"
+        "other_specify": ""
       },
       "stomach_greater_curvature_mm": {
-        "label": "Estomac, grande courbure"
+        "label": "Estomac, grande courbure (mm)"
       },
       "stomach_lesser_curvature_mm": {
-        "label": "Estomac, petite courbure"
+        "label": "Estomac, petite courbure (mm)"
       },
       "esophagus_mm": {
-        "label": "Œsophage"
+        "label": "Œsophage (mm)"
       },
       "duodenum_mm": {
-        "label": "Duodénum"
+        "label": "Duodénum (mm)"
       }
     }
   },
@@ -32,7 +35,7 @@
     "label": "Tumeur",
     "fields": {
       "macroscopic_tumor_site": {
-        "label": "Site macroscopique de la tumeur (sélectionner toutes les réponses applicables)",
+        "label": "Site macroscopique de la tumeur",
         "options": [
           "Cardia",
           "Fundus",
@@ -60,19 +63,19 @@
         ]
       },
       "tumor_dimensions_mm": {
-        "label": "Dimensions de la tumeur"
+        "label": "Dimensions de la tumeur (mm)"
       },
       "distance_to_proximal_margin_mm": {
-        "label": "Marge proximale"
+        "label": "Distance à la marge proximale (mm)"
       },
       "distance_to_distal_margin_mm": {
-        "label": "Marge distale"
+        "label": "Distance à la marge distale (mm)"
       },
       "distance_to_lesser_curvature_margin_mm": {
-        "label": "Marge de la petite courbure"
+        "label": "Distance à la marge de la petite courbure (mm)"
       },
       "distance_to_greater_curvature_margin_mm": {
-        "label": "Marge de la grande courbure"
+        "label": "Distance à la marge de la grande courbure (mm)"
       }
     }
   },
@@ -83,10 +86,10 @@
         "label": "Nombre identifié"
       },
       "size_range_min_mm": {
-        "label": "Intervalle de taille minimum (mm)"
+        "label": "Plage de taille minimale (mm)"
       },
       "size_range_max_mm": {
-        "label": "Intervalle de taille maximum (mm)"
+        "label": "Plage de taille maximale (mm)"
       }
     }
   },

@@ -1,7 +1,7 @@
 {
   "template_id": "uterine_cervix_resection_gross_v1",
   "domain": "anatomic_pathology",
-  "title": "Uterine Cervix Resection (Gross Template)",
+  "title": "Uterine Cervix Resection",
 
   "specimen": {
     "label": "Specimen",
@@ -75,10 +75,7 @@
           "size_type": {
             "label": "Tumor size",
             "type": "select",
-            "options": [
-              "Greatest dimension in centimeters (cm)",
-              "Cannot be determined"
-            ],
+            "options": ["Greatest dimension in centimeters (cm)", "Cannot be determined"],
             "value": ""
           },
           "greatest_dimension_cm": {

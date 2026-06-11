@@ -1,6 +1,8 @@
 {
   "templateName": "بریسٹ سائٹولوجی رپورٹنگ ٹیمپلیٹ (بریسٹ فائن نیڈل اسپیریشن بایوپسی سائٹوپیتھولوجی کے لیے یوکوہاما سسٹم)",
   "language": "ur",
+  "direction": "rtl",
+  "rtl": true,
   "sections": {
     "specimen": "نمونہ",
     "specimen_adequacy": "نمونے کی کفایت",
@@ -42,7 +44,7 @@
     "Central": "مرکزی",
     "Axillary tail": "ایکسلری ٹیل",
     "Other": "دیگر",
-    "Palpation": "چھو کر معائنہ",
+    "Palpation": "دستی معائنہ",
     "Ultrasound-guided": "الٹراساؤنڈ گائیڈڈ",
     "Satisfactory for evaluation": "جانچ کے لیے مناسب",
     "Limited cellularity but adequate": "خلیات محدود مگر کافی",
@@ -60,7 +62,7 @@
     "Fibroadenoma": "فائبروایڈینوما",
     "Inflammatory lesion": "التہابی لیژن",
     "Fat necrosis": "فیٹ نیکروسس",
-    "Galactocele": "گلیکٹوسیل",
+    "Galactocele": "گیلیکٹوسیل",
     "Proliferative epithelial lesion with atypia": "ایٹائپیا کے ساتھ پرولیفریٹو ایپی تھیلیل لیژن",
     "Limited atypical cells": "محدود ایٹائپیکل خلیات",
     "Strongly suspicious for carcinoma but quantitatively/qualitatively limited": "کارسینوما کے لیے شدید مشتبہ مگر مقداری / معیاری طور پر محدود",
@@ -77,6 +79,6 @@
     "Category 5: Very high": "زمرہ 5: بہت زیادہ"
   },
   "defaults": {
-    "comment_text": "ٹرپل اسسمنٹ (کلینیکل، امیجنگ، پیتھولوجی) کے ساتھ مطابقت دیکھی جائے۔ کور بایوپسی / دوبارہ FNA / ایکسژن حسبِ ضرورتِ کلینیکل کی جائے۔"
+    "comment_text": "ٹرپل اسسمنٹ (کلینیکل، امیجنگ، پیتھولوجی) کے ساتھ مطابقت دیکھی جائے۔ کور بایوپسی / دوبارہ FNA / ایکسیژن حسبِ ضرورتِ کلینیکل کی جائے۔"
   }
 }

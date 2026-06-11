@@ -1,18 +1,22 @@
 {
   "template_id": "general_tumor_biopsy_v1",
+  "domain": "anatomic_pathology",
+  "protocol_posting_date": "June 2021",
   "lang": "sw",
-  "title": "Biopsy ya jumla ya uvimbe",
+  "title": "Biopsi ya jumla ya uvimbe",
   "clinical": {
     "label": "Kliniki",
     "fields": {
       "treatment_history": {
         "label": "Historia ya matibabu",
+        "type": "select",
         "options": [
           "Hakuna matibabu ya awali yanayojulikana",
           "Matibabu ya awali yalitolewa",
           "Haijabainishwa"
         ],
-        "prior_treatment_specify": "Matibabu ya awali, taja"
+        "value": "",
+        "prior_treatment_specify": ""
       }
     }
   },
@@ -20,36 +24,36 @@
     "label": "Sampuli",
     "fields": {
       "site": {
-        "label": "Eneo la sampuli"
+        "label": "Eneo la sampuli",
+        "type": "text",
+        "value": ""
       },
       "laterality": {
         "label": "Upande wa sampuli",
-        "options": [
-          "Kulia",
-          "Kushoto",
-          "Haijabainishwa",
-          "Haihusiki"
-        ]
+        "type": "select",
+        "options": ["Kulia", "Kushoto", "Haijabainishwa", "Haihusiki"],
+        "value": ""
       },
       "procedure": {
         "label": "Utaratibu",
+        "type": "select",
         "options": [
-          "Biopsy ya sindano",
-          "Biopsy ya kukata sehemu",
-          "Biopsy ya kuondoa",
-          "Fine needle aspiration",
-          "Biopsy, isiyoainishwa vinginevyo",
+          "Biopsi ya sindano",
+          "Biopsi ya ukataji sehemu",
+          "Biopsi ya uondoaji",
+          "Aspirati ya sindano nyembamba",
+          "Biopsi, isiyoainishwa vinginevyo",
           "Nyingine"
         ],
-        "other_specify": "Nyingine, taja"
+        "value": "",
+        "other_specify": ""
       },
       "adequacy": {
         "label": "Ubora wa sampuli",
-        "options": [
-          "Inatosha",
-          "Si bora vya kutosha"
-        ],
-        "suboptimal_explain": "Chini ya kiwango bora, eleza"
+        "type": "select",
+        "options": ["Inatosha", "Chini ya kiwango bora"],
+        "value": "",
+        "suboptimal_explain": ""
       }
     }
   },
@@ -57,31 +61,33 @@
     "label": "Uvimbe",
     "fields": {
       "histologic_type": {
-        "label": "Aina ya histolojia"
+        "label": "Aina ya kihistolojia",
+        "type": "text",
+        "value": ""
       },
       "histologic_grade": {
-        "label": "Daraja la histolojia"
+        "label": "Daraja la kihistolojia",
+        "type": "text",
+        "value": ""
       },
       "lymphovascular_invasion": {
         "label": "Uvamizi wa limfovaskula",
-        "options": [
-          "Haujaonekana",
-          "Upo",
-          "Haiwezi kubainishwa"
-        ],
-        "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
+        "type": "select",
+        "options": ["Haujaonekana", "Upo", "Haiwezi kuamuliwa"],
+        "value": "",
+        "cannot_be_determined_specify": ""
       },
       "perineural_invasion": {
-        "label": "Uvamizi wa perineural",
-        "options": [
-          "Haujaonekana",
-          "Upo",
-          "Haiwezi kubainishwa"
-        ],
-        "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
+        "label": "Uvamizi wa perinerali",
+        "type": "select",
+        "options": ["Haujaonekana", "Upo", "Haiwezi kuamuliwa"],
+        "value": "",
+        "cannot_be_determined_specify": ""
       },
       "additional_pathologic_findings": {
-        "label": "Matokeo ya ziada ya patholojia"
+        "label": "Matokeo ya ziada ya kipatholojia",
+        "type": "text",
+        "value": ""
       }
     }
   }

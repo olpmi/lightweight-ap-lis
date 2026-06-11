@@ -1,5 +1,7 @@
 {
   "template_id": "prostate_needle_biopsy_v1",
+  "domain": "anatomic_pathology",
+  "protocol_posting_date": "September 2023",
   "lang": "ar",
   "ui": {
     "direction": "rtl"
@@ -13,29 +15,41 @@
         "fields": {
           "effects": {
             "label": "تأثير العلاج",
+            "type": "multi_select",
             "options": [
               "لا يوجد علاج قبل الجراحة معروف",
-              "غير موجود",
+              "غير مُشخَّص",
               "يوجد تأثير للعلاج الإشعاعي",
               "يوجد تأثير للعلاج الهرموني",
               "توجد تأثيرات علاجية أخرى",
-              "لا يمكن تحديده"
-            ]
+              "لا يمكن التحديد"
+            ],
+            "value": []
           },
           "radiation_therapy_effect_specify": {
-            "label": "يوجد تأثير للعلاج الإشعاعي"
+            "label": "يوجد تأثير للعلاج الإشعاعي",
+            "type": "text",
+            "value": ""
           },
           "hormonal_therapy_effect_specify": {
-            "label": "يوجد تأثير للعلاج الهرموني"
+            "label": "يوجد تأثير للعلاج الهرموني",
+            "type": "text",
+            "value": ""
           },
           "other_therapy_effects_specify": {
-            "label": "توجد تأثيرات علاجية أخرى"
+            "label": "توجد تأثيرات علاجية أخرى",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_specify": {
-            "label": "لا يمكن تحديده"
+            "label": "لا يمكن التحديد",
+            "type": "text",
+            "value": ""
           },
           "comment": {
-            "label": "تعليق على تأثير العلاج"
+            "label": "تعليق على تأثير العلاج",
+            "type": "text",
+            "value": ""
           }
         }
       }
@@ -43,12 +57,14 @@
   },
   "positive_specimens": {
     "label": "العينة أو المنطقة الإيجابية",
+    "type": "repeatable_group",
     "item_label": "عينة إيجابية",
     "fields": {
       "positive_specimen_location": {
         "label": "موضع العينة الإيجابية",
+        "type": "select",
         "options": [
-          "اليمنى",
+          "أيمن",
           "قاعدة يمنى (RB)",
           "قاعدة يمنى جانبية (RBL)",
           "قاعدة يمنى إنسية (RBM)",
@@ -59,7 +75,7 @@
           "قمة يمنى جانبية (RAL)",
           "قمة يمنى إنسية (RAM)",
           "المنطقة الانتقالية اليمنى (RTZ)",
-          "اليسرى",
+          "أيسر",
           "قاعدة يسرى (LB)",
           "قاعدة يسرى جانبية (LBL)",
           "قاعدة يسرى إنسية (LBM)",
@@ -74,23 +90,27 @@
           "خزعة موجهة بالرنين المغناطيسي",
           "غير محدد"
         ],
-        "location_specify": "الموقع، حدد"
+        "value": "",
+        "location_specify": ""
       },
       "histologic_type": {
         "label": "النوع النسيجي",
         "fields": {
           "category": {
             "label": "الفئة",
+            "type": "select",
             "options": [
               "غدي",
               "حرشفي",
               "عصبي صماوي",
-              "نوع نسيجي آخر غير مدرج",
+              "نوع نسيجي آخر غير مُدرج",
               "سرطان، لا يمكن تحديد النوع"
-            ]
+            ],
+            "value": ""
           },
           "type": {
             "label": "النوع النسيجي",
+            "type": "select",
             "options": [
               "سرطان غدي عُنيبي، تقليدي (معتاد)",
               "سرطان غدي عُنيبي، بخلايا شبيهة بالخاتم",
@@ -106,14 +126,17 @@
               "ورم عصبي صماوي جيد التمايز",
               "سرطان عصبي صماوي صغير الخلايا",
               "سرطان عصبي صماوي كبير الخلايا",
-              "نوع نسيجي آخر غير مدرج",
+              "نوع نسيجي آخر غير مُدرج",
               "سرطان، لا يمكن تحديد النوع"
             ],
-            "other_specify": "أخرى، حدد",
-            "cannot_be_determined_specify": "لا يمكن التحديد، حدد"
+            "value": "",
+            "other_specify": "",
+            "cannot_be_determined_specify": ""
           },
           "comment": {
-            "label": "تعليق على النوع النسيجي"
+            "label": "تعليق على النوع النسيجي",
+            "type": "text",
+            "value": ""
           }
         }
       },
@@ -122,23 +145,21 @@
         "fields": {
           "grade_status": {
             "label": "الدرجة",
-            "options": [
-              "غير منطبق",
-              "لا يمكن تقييمه",
-              "قابل للتقييم"
-            ],
-            "not_applicable_specify": "غير قابل للتطبيق، حدد",
-            "cannot_be_assessed_specify": "لا يمكن التقييم، حدد"
+            "type": "select",
+            "options": ["غير قابل للتطبيق", "لا يمكن تقييمه", "قابل للتقييم"],
+            "value": "",
+            "not_applicable_specify": "",
+            "cannot_be_assessed_specify": ""
           },
           "tumor_microfocus": {
             "label": "بؤرة ورمية مجهرية",
-            "options": [
-              "غير موجودة",
-              "موجودة"
-            ]
+            "type": "select",
+            "options": ["غير مُشخَّص", "موجود"],
+            "value": ""
           },
           "grade_group": {
             "label": "مجموعة الدرجة",
+            "type": "select",
             "options": [
               "مجموعة الدرجة 1 (درجة غليسون 3 + 3 = 6)",
               "مجموعة الدرجة 2 (درجة غليسون 3 + 4 = 7)",
@@ -149,36 +170,45 @@
               "مجموعة الدرجة 5 (درجة غليسون 4 + 5 = 9)",
               "مجموعة الدرجة 5 (درجة غليسون 5 + 4 = 9)",
               "مجموعة الدرجة 5 (درجة غليسون 5 + 5 = 10)"
-            ]
+            ],
+            "value": ""
           },
           "pattern_4_percentage_for_grade_group_2": {
             "label": "نسبة النمط 4 لمجموعة الدرجة 2",
+            "type": "select",
             "options": [
-              "غير منطبق (عينات أخرى في هذه الحالة لها درجات غليسون 8 أو أعلى)",
+              "غير قابل للتطبيق (عينات أخرى في هذه الحالة لها درجات غليسون 8 أو أعلى)",
               "أقل من أو يساوي 5%",
               "6 - 10%",
               "11 - 20%",
               "21 - 30%",
               "31 - 40%",
               "أكثر من 40%"
-            ]
+            ],
+            "value": ""
           },
           "pattern_4_percentage_for_grade_group_3": {
             "label": "نسبة النمط 4 لمجموعة الدرجة 3",
+            "type": "select",
             "options": [
-              "غير منطبق (عينات أخرى في هذه الحالة لها درجات غليسون 8 أو أعلى)",
+              "غير قابل للتطبيق (عينات أخرى في هذه الحالة لها درجات غليسون 8 أو أعلى)",
               "أقل من 61%",
               "61 - 70%",
               "71 - 80%",
               "81 - 90%",
               "أكثر من 90%"
-            ]
+            ],
+            "value": ""
           },
           "pattern_4_percentage_for_gleason_8_and_above": {
-            "label": "نسبة النمط 4 (درجة غليسون 8 فأعلى)"
+            "label": "نسبة النمط 4 (درجة غليسون 8 فأعلى)",
+            "type": "number",
+            "value": ""
           },
           "pattern_5_percentage_for_gleason_8_and_above": {
-            "label": "نسبة النمط 5 (درجة غليسون 8 فأعلى)"
+            "label": "نسبة النمط 5 (درجة غليسون 8 فأعلى)",
+            "type": "number",
+            "value": ""
           }
         }
       },
@@ -187,19 +217,16 @@
         "fields": {
           "status": {
             "label": "IDC",
-            "options": [
-              "غير موجود",
-              "موجود"
-            ]
+            "type": "select",
+            "options": ["غير مُشخَّص", "موجود"],
+            "value": ""
           },
           "incorporated_into_grade": {
             "label": "إدراج IDC ضمن الدرجة",
-            "options": [
-              "نعم",
-              "لا",
-              "لا يمكن تحديده"
-            ],
-            "cannot_be_determined_specify": "لا يمكن التحديد، حدد"
+            "type": "select",
+            "options": ["نعم", "لا", "لا يمكن التحديد"],
+            "value": "",
+            "cannot_be_determined_specify": ""
           }
         }
       },
@@ -208,16 +235,12 @@
         "fields": {
           "status": {
             "label": "الغدد الغربالية",
-            "options": [
-              "غير منطبق",
-              "غير موجودة",
-              "موجودة",
-              "ملتبسة",
-              "لا يمكن تحديدها"
-            ],
-            "present_specify": "موجود، حدد",
-            "equivocal_explain": "غامض، اشرح",
-            "cannot_be_determined_explain": "لا يمكن التحديد، اشرح"
+            "type": "select",
+            "options": ["غير قابل للتطبيق", "غير مُشخَّص", "موجودة", "ملتبسة", "لا يمكن التحديد"],
+            "value": "",
+            "present_specify": "",
+            "equivocal_explain": "",
+            "cannot_be_determined_explain": ""
           }
         }
       },
@@ -226,30 +249,31 @@
         "fields": {
           "total_number_of_cores": {
             "label": "العدد الكلي للأسطوانات",
-            "options": [
-              "حدد العدد",
-              "لا يمكن تحديده"
-            ],
-            "number": "العدد"
+            "type": "select",
+            "options": ["حدد العدد", "لا يمكن التحديد"],
+            "value": "",
+            "number": ""
           },
           "number_of_positive_cores": {
             "label": "عدد الأسطوانات الإيجابية",
-            "options": [
-              "حدد العدد",
-              "لا يمكن تحديده"
-            ],
-            "number": "العدد"
+            "type": "select",
+            "options": ["حدد العدد", "لا يمكن التحديد"],
+            "value": "",
+            "number": ""
           },
           "tumor_measurement_technique": {
             "label": "طريقة قياس الورم",
+            "type": "multi_select",
             "options": [
               "بؤرة واحدة متصلة",
               "اعتبار البؤر المتعددة ورمًا متصلًا",
               "اعتبار البؤر المتعددة ورمًا غير متصل"
-            ]
+            ],
+            "value": []
           },
           "percentage_of_prostatic_tissue_involved": {
             "label": "نسبة نسيج البروستاتا المتأثر بالورم",
+            "type": "select",
             "options": [
               "أقل من 1%",
               "1 - 5%",
@@ -263,88 +287,90 @@
               "71 - 80%",
               "81 - 90%",
               "أكثر من 90%",
-              "لا يمكن تحديدها"
+              "لا يمكن التحديد"
             ],
-            "cannot_be_determined_explain": "لا يمكن التحديد، اشرح"
+            "value": "",
+            "cannot_be_determined_explain": ""
           },
           "length_of_prostatic_tissue_involved": {
             "label": "طول نسيج البروستاتا المتأثر بالورم",
-            "options": [
-              "حدد بالمليمتر (مم)",
-              "أقل من 1 مم"
-            ],
-            "length_mm": "الطول (ملم)"
+            "type": "select",
+            "options": ["حدد بالمليمتر (مم)", "أقل من 1 مم"],
+            "value": "",
+            "length_mm": ""
           }
         }
       },
       "periprostatic_fat_invasion": {
         "label": "غزو الشحم المحيط بالبروستاتا",
-        "options": [
-          "غير موجود",
-          "موجود",
-          "ملتبس",
-          "لا يمكن تحديده"
-        ],
-        "equivocal_explain": "غامض، اشرح",
-        "cannot_be_determined_explain": "لا يمكن التحديد، اشرح"
+        "type": "select",
+        "options": ["غير مُشخَّص", "موجود", "ملتبس", "لا يمكن التحديد"],
+        "value": "",
+        "equivocal_explain": "",
+        "cannot_be_determined_explain": ""
       },
       "seminal_vesicle_or_ejaculatory_duct_invasion": {
         "label": "غزو الحويصلة المنوية / القناة الدافقة",
-        "options": [
-          "غير موجود",
-          "موجود",
-          "ملتبس",
-          "لا يمكن تحديده"
-        ],
-        "equivocal_explain": "غامض، اشرح",
-        "cannot_be_determined_explain": "لا يمكن التحديد، اشرح"
+        "type": "select",
+        "options": ["غير مُشخَّص", "موجود", "ملتبس", "لا يمكن التحديد"],
+        "value": "",
+        "equivocal_explain": "",
+        "cannot_be_determined_explain": ""
       },
       "lymphovascular_invasion": {
         "label": "الغزو اللمفي و / أو الوعائي",
-        "options": [
-          "غير موجود",
-          "موجود",
-          "ملتبس",
-          "لا يمكن تحديده"
-        ],
-        "equivocal_explain": "غامض، اشرح",
-        "cannot_be_determined_specify": "لا يمكن التحديد، حدد"
+        "type": "select",
+        "options": ["غير مُشخَّص", "موجود", "ملتبس", "لا يمكن التحديد"],
+        "value": "",
+        "equivocal_explain": "",
+        "cannot_be_determined_specify": ""
       },
       "perineural_invasion": {
         "label": "الغزو حول العصبي",
-        "options": [
-          "غير موجود",
-          "موجود"
-        ]
+        "type": "select",
+        "options": ["غير مُشخَّص", "موجود"],
+        "value": ""
       },
       "additional_findings": {
         "label": "النتائج الإضافية",
         "fields": {
           "findings": {
             "label": "النتائج الإضافية",
+            "type": "multi_select",
             "options": [
-              "لا شيء محدد",
+              "لا شيء مُشخَّص",
               "تكاثر داخل القناة غير نمطي (AIP)",
               "ورم داخل الظهارة البروستاتية عالي الدرجة (PIN)",
               "تكاثر عُنيبي صغير غير نمطي / بؤرة صغيرة من غدد غير نمطية (ASAP / ATYP)",
               "التهاب",
               "أخرى"
-            ]
+            ],
+            "value": []
           },
           "none_identified_specify": {
-            "label": "لا شيء محدد"
+            "label": "لا شيء مُشخَّص",
+            "type": "text",
+            "value": ""
           },
           "pin_specify": {
-            "label": "ورم داخل الظهارة البروستاتية عالي الدرجة (PIN)"
+            "label": "ورم داخل الظهارة البروستاتية عالي الدرجة (PIN)",
+            "type": "text",
+            "value": ""
           },
           "asap_atyp_specify": {
-            "label": "تكاثر عُنيبي صغير غير نمطي / بؤرة صغيرة من غدد غير نمطية (ASAP / ATYP)"
+            "label": "تكاثر عُنيبي صغير غير نمطي / بؤرة صغيرة من غدد غير نمطية (ASAP / ATYP)",
+            "type": "text",
+            "value": ""
           },
           "inflammation_specify_type": {
-            "label": "التهاب (حدد النوع)"
+            "label": "التهاب (حدد النوع)",
+            "type": "text",
+            "value": ""
           },
           "other_specify": {
-            "label": "أخرى (حدد)"
+            "label": "أخرى (حدد)",
+            "type": "text",
+            "value": ""
           }
         }
       }
@@ -354,7 +380,9 @@
     "label": "التعليقات",
     "fields": {
       "comment_text": {
-        "label": "التعليق / التعليقات"
+        "label": "التعليق / التعليقات",
+        "type": "text",
+        "value": ""
       }
     }
   }

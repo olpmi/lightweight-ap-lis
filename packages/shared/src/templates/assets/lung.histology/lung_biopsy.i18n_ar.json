@@ -1,6 +1,9 @@
 {
   "template_id": "lung_tumor_biopsy_v1",
+  "domain": "anatomic_pathology",
+  "protocol_posting_date": "September 2025",
   "lang": "ar",
+  "standards": ["AJCC 9"],
   "ui": {
     "direction": "rtl"
   },
@@ -10,6 +13,7 @@
     "fields": {
       "histologic_type": {
         "label": "النوع النسيجي",
+        "type": "select",
         "options": [
           "سرطان غدي لبيدي غازٍ",
           "سرطان غدي عُنيبي غازٍ",
@@ -29,27 +33,29 @@
           "سرطان كبير الخلايا",
           "سرطان غدي حرشفي",
           "سرطان متعدد الأشكال",
-          "ورم كارسينويدي، غير محدد خلاف ذلك / ورم عصبي صماوي، غير محدد خلاف ذلك",
+          "ورم كارسينويدي، NOS / ورم عصبي صماوي، NOS",
           "سرطان صغير الخلايا",
           "سرطان صغير الخلايا مختلط (سرطان صغير الخلايا ومكوّن غير صغير الخلايا)",
           "سرطان عصبي صماوي كبير الخلايا",
           "سرطان عصبي صماوي كبير الخلايا مختلط (LCNEC ومكوّن آخر غير صغير الخلايا)",
           "سرطان، لا يمكن تحديد النوع",
           "سرطان غير صغير الخلايا، لا يمكن تحديد النوع الفرعي",
-          "نوع نسيجي آخر غير مدرج",
-          "لا يوجد ورم حي"
+          "نوع نسيجي آخر غير مُدرج",
+          "لا يوجد ورم قابل للحياة"
         ],
-        "combined_small_cell_non_small_cell_component_specify": "مكوّن مركب من خلايا صغيرة/غير صغيرة، حدد",
-        "combined_large_cell_neuroendocrine_other_component_specify": "مكوّن مركب كبير الخلايا عصبي-صماوي/آخر، حدد",
-        "carcinoma_type_cannot_be_determined_specify": "نوع السرطان لا يمكن تحديده، حدد",
-        "non_small_cell_subtype_cannot_be_determined_specify": "النوع الفرعي غير صغير الخلايا لا يمكن تحديده، حدد",
-        "other_histologic_type_specify": "نوع نسيجي آخر، حدد",
-        "no_viable_tumor_present_explain": "لا يوجد ورم قابل للحياة، اشرح"
+        "value": "",
+        "combined_small_cell_non_small_cell_component_specify": "",
+        "combined_large_cell_neuroendocrine_other_component_specify": "",
+        "carcinoma_type_cannot_be_determined_specify": "",
+        "non_small_cell_subtype_cannot_be_determined_specify": "",
+        "other_histologic_type_specify": "",
+        "no_viable_tumor_present_explain": ""
       },
       "histologic_patterns": {
         "label": "الأنماط النسيجية (تنطبق على السرطانات الغدية غير المخاطية فقط)",
+        "type": "multi_select",
         "options": [
-          "غير منطبق",
+          "غير قابل للتطبيق",
           "عُنيبي",
           "حليمي",
           "لبيدي",
@@ -57,35 +63,48 @@
           "حليمي دقيق",
           "غدد معقدة (غربالية ومندمجة)",
           "أخرى"
-        ]
+        ],
+        "value": []
       },
       "histologic_grade": {
         "label": "الدرجة النسيجية",
-        "other_specify": "أخرى، حدد",
-        "cannot_be_assessed_specify": "لا يمكن التقييم، حدد",
-        "not_applicable_specify": "غير قابل للتطبيق، حدد"
+        "note": "تشمل الأنماط عالية الدرجة في السرطان الغدي غير المخاطي الغازي: النمط الصلب، والحليمي الدقيق، والغربالي، والغدد المندمجة.",
+        "type": "select",
+        "options": [
+          "G1، متمايز جيداً (يشمل السرطان الغدي اللبيدي الغازي بنمط عالي الدرجة أقل من 20%؛ ورم كارسينويدي نموذجي)",
+          "G2، متمايز باعتدال (يشمل السرطان الغدي العُنيبي والحليمي الغازي بنمط عالي الدرجة أقل من 20%؛ ورم كارسينويدي غير نمطي)",
+          "G3، ضعيف التمايز (يشمل السرطان الغدي غير المخاطي الغازي بنمط عالي الدرجة 20% أو أكثر)",
+          "G4، غير متمايز (يشمل سرطان صغير الخلايا؛ سرطان كبير الخلايا)",
+          "أخرى",
+          "GX، لا يمكن التقييم",
+          "غير قابل للتطبيق"
+        ],
+        "value": "",
+        "other_specify": "",
+        "cannot_be_assessed_specify": "",
+        "not_applicable_specify": ""
       },
       "lymphovascular_invasion": {
         "label": "الغزو اللمفي و / أو الوعائي",
         "fields": {
           "status": {
             "label": "الغزو اللمفاوي و/أو الوعائي",
-            "options": [
-              "غير محدد",
-              "موجود",
-              "لا يمكن التحديد"
-            ],
-            "cannot_be_determined_specify": "لا يمكن التحديد، حدد"
+            "type": "select",
+            "options": ["غير مُشخَّص", "موجود", "لا يمكن التحديد"],
+            "value": "",
+            "cannot_be_determined_specify": ""
           },
           "subtypes": {
-            "label": "نوع(أنواع) الغزو",
+            "label": "نوع أو أنواع الغزو",
+            "type": "multi_select",
             "options": [
               "الغزو اللمفاوي موجود",
               "الغزو الشرياني موجود",
               "الغزو الوريدي موجود",
-              "Other"
+              "أخرى"
             ],
-            "other_specify": "أخرى، حدد"
+            "value": [],
+            "other_specify": ""
           }
         }
       }
@@ -94,11 +113,43 @@
   "additional_findings": {
     "label": "النتائج الإضافية",
     "fields": {
-      "findings": {},
-      "atypical_adenomatous_hyperplasia_specify": {},
-      "granulomatous_inflammation_specify": {},
-      "fibrosis_specify_pattern": {},
-      "other_specify": {}
+      "findings": {
+        "label": "نتائج إضافية",
+        "type": "multi_select",
+        "options": [
+          "لا شيء مُشخَّص",
+          "تضخم غير نمطي للغدد",
+          "خلل التقرن الحرشفي",
+          "تضخم عصبي صماوي منتشر",
+          "تغيرات موضع الخزعة",
+          "التهاب حبيبومي",
+          "تغيرات ما بعد الانسداد",
+          "تليّف",
+          "انتفاخ الرئة",
+          "أخرى"
+        ],
+        "value": []
+      },
+      "atypical_adenomatous_hyperplasia_specify": {
+        "label": "تضخم غير نمطي للغدد",
+        "type": "text",
+        "value": ""
+      },
+      "granulomatous_inflammation_specify": {
+        "label": "التهاب حبيبومي (حدد إذا كان نخرياً أو غير نخري)",
+        "type": "text",
+        "value": ""
+      },
+      "fibrosis_specify_pattern": {
+        "label": "تليّف (حدد النمط إذا كان ممكناً)",
+        "type": "text",
+        "value": ""
+      },
+      "other_specify": {
+        "label": "أخرى (حدد)",
+        "type": "text",
+        "value": ""
+      }
     }
   }
 }

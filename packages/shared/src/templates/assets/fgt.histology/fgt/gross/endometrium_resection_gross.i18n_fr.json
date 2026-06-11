@@ -1,13 +1,16 @@
 {
-  "title": "Spécimen de résection de l'endomètre (Modèle de macroscopie)",
+  "template_id": "endometrium_resection_gross_v1",
+  "domain": "anatomic_pathology",
+  "lang": "fr",
+  "title": "Pièce de résection de l'endomètre (Modèle de macroscopie)",
   "specimen": {
-    "label": "Spécimen",
+    "label": "Pièce opératoire",
     "fields": {
       "anatomic_structures_included": {
-        "label": "Structures anatomiques incluses dans le spécimen soumis"
+        "label": "Structures anatomiques incluses dans la pièce soumise"
       },
       "specimen_integrity": {
-        "label": "Intégrité du spécimen"
+        "label": "Intégrité de la pièce"
       }
     }
   },
@@ -57,7 +60,7 @@
     }
   },
   "parametrium": {
-    "label": "Paramètre",
+    "label": "Paramètre utérin",
     "fields": {
       "left_parametrium_lateral_extent_cm": {
         "label": "Extension latérale du paramètre gauche (cm)"
@@ -94,7 +97,7 @@
         "label": "Aspect"
       },
       "myometrial_invasion_depth_cm": {
-        "label": "Profondeur d'invasion (cm)"
+        "label": "Profondeur d'invasion myométriale (cm)"
       },
       "myometrial_thickness_cm": {
         "label": "Épaisseur du myomètre (cm)"
@@ -106,10 +109,10 @@
         "label": "Atteinte du stroma cervical"
       },
       "distance_to_ectocervical_margin_cm": {
-        "label": "Marge ectocervicale (cm)"
+        "label": "Distance à la marge ectocervicale (cm)"
       },
       "distance_to_paracervical_parametrial_margin_cm": {
-        "label": "Marge paracervicale/paramétriale (cm)"
+        "label": "Distance à la marge paracervicale / paramétriale (cm)"
       }
     }
   },
@@ -148,7 +151,7 @@
     }
   },
   "adnexa": {
-    "label": "Annexes",
+    "label": "Annexes utérines",
     "fields": {
       "left_fallopian_tube_dimensions": {
         "label": "Trompe de Fallope gauche"
@@ -177,7 +180,7 @@
     }
   },
   "omentum": {
-    "label": "Épiploon",
+    "label": "Grand épiploon",
     "fields": {
       "dimensions": {
         "label": "Dimensions"
@@ -191,7 +194,7 @@
     "label": "Ganglions lymphatiques",
     "fields": {
       "left_pelvic_appearance": {
-        "label": "Ganglions lymphatiques pelviens gauches"
+        "label": "Aspect des ganglions pelviens gauches"
       },
       "left_pelvic_number": {
         "label": "Nombre de ganglions pelviens gauches"
@@ -200,7 +203,7 @@
         "label": "Plage de tailles des ganglions pelviens gauches"
       },
       "right_pelvic_appearance": {
-        "label": "Ganglions lymphatiques pelviens droits"
+        "label": "Aspect des ganglions pelviens droits"
       },
       "right_pelvic_number": {
         "label": "Nombre de ganglions pelviens droits"
@@ -209,7 +212,7 @@
         "label": "Plage de tailles des ganglions pelviens droits"
       },
       "left_para_aortic_appearance": {
-        "label": "Ganglions lymphatiques para-aortiques gauches"
+        "label": "Aspect des ganglions para-aortiques gauches"
       },
       "left_para_aortic_number": {
         "label": "Nombre de ganglions para-aortiques gauches"
@@ -218,7 +221,7 @@
         "label": "Plage de tailles des ganglions para-aortiques gauches"
       },
       "right_para_aortic_appearance": {
-        "label": "Ganglions lymphatiques para-aortiques droits"
+        "label": "Aspect des ganglions para-aortiques droits"
       },
       "right_para_aortic_number": {
         "label": "Nombre de ganglions para-aortiques droits"
@@ -244,10 +247,10 @@
         "label": "Marge ectocervicale"
       },
       "left_parametrium_paracervical_margin": {
-        "label": "Marge paramétriale/paracervicale gauche"
+        "label": "Marge paramétriale / paracervicale gauche"
       },
       "right_parametrium_paracervical_margin": {
-        "label": "Marge paramétriale/paracervicale droite"
+        "label": "Marge paramétriale / paracervicale droite"
       },
       "left_fallopian_tube": {
         "label": "Trompe de Fallope gauche"
@@ -262,7 +265,7 @@
         "label": "Ovaire droit"
       },
       "omentum": {
-        "label": "Épiploon"
+        "label": "Grand épiploon"
       },
       "lymph_nodes": {
         "label": "Ganglions lymphatiques"

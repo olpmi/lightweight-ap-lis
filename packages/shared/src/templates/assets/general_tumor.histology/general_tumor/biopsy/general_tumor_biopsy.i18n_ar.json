@@ -1,5 +1,7 @@
 {
   "template_id": "general_tumor_biopsy_v1",
+  "domain": "anatomic_pathology",
+  "protocol_posting_date": "June 2021",
   "lang": "ar",
   "ui": {
     "direction": "rtl"
@@ -10,12 +12,10 @@
     "fields": {
       "treatment_history": {
         "label": "تاريخ العلاج",
-        "options": [
-          "لا يوجد علاج سابق معروف",
-          "أُعطي علاج سابق",
-          "غير محدد"
-        ],
-        "prior_treatment_specify": "علاج سابق، حدد"
+        "type": "select",
+        "options": ["لا يوجد علاج سابق معروف", "أُعطي علاج سابق", "غير محدد"],
+        "value": "",
+        "prior_treatment_specify": ""
       }
     }
   },
@@ -23,36 +23,36 @@
     "label": "العينة",
     "fields": {
       "site": {
-        "label": "موضع العينة"
+        "label": "موضع العينة",
+        "type": "text",
+        "value": ""
       },
       "laterality": {
         "label": "جهة العينة",
-        "options": [
-          "اليمنى",
-          "اليسرى",
-          "غير محدد",
-          "غير منطبق"
-        ]
+        "type": "select",
+        "options": ["أيمن", "أيسر", "غير محدد", "غير قابل للتطبيق"],
+        "value": ""
       },
       "procedure": {
         "label": "الإجراء",
+        "type": "select",
         "options": [
           "خزعة بالإبرة",
           "خزعة شقية",
           "خزعة استئصالية",
-          "شفط بإبرة دقيقة",
+          "شفط بالإبرة الدقيقة",
           "خزعة غير محددة بطريقة أخرى",
           "أخرى"
         ],
-        "other_specify": "أخرى، حدد"
+        "value": "",
+        "other_specify": ""
       },
       "adequacy": {
         "label": "كفاية العينة",
-        "options": [
-          "كافية",
-          "دون المستوى الأمثل"
-        ],
-        "suboptimal_explain": "دون المستوى الأمثل، اشرح"
+        "type": "select",
+        "options": ["كافية", "دون المستوى الأمثل"],
+        "value": "",
+        "suboptimal_explain": ""
       }
     }
   },
@@ -60,31 +60,33 @@
     "label": "الورم",
     "fields": {
       "histologic_type": {
-        "label": "النوع النسيجي"
+        "label": "النوع النسيجي",
+        "type": "text",
+        "value": ""
       },
       "histologic_grade": {
-        "label": "الدرجة النسيجية"
+        "label": "الدرجة النسيجية",
+        "type": "text",
+        "value": ""
       },
       "lymphovascular_invasion": {
         "label": "الغزو اللمفاوي الوعائي",
-        "options": [
-          "غير موجود",
-          "موجود",
-          "لا يمكن تحديده"
-        ],
-        "cannot_be_determined_specify": "لا يمكن التحديد، حدد"
+        "type": "select",
+        "options": ["غير مُشخَّص", "موجود", "لا يمكن التحديد"],
+        "value": "",
+        "cannot_be_determined_specify": ""
       },
       "perineural_invasion": {
-        "label": "الغزو حول العصب",
-        "options": [
-          "غير موجود",
-          "موجود",
-          "لا يمكن تحديده"
-        ],
-        "cannot_be_determined_specify": "لا يمكن التحديد، حدد"
+        "label": "الغزو حول العصبي",
+        "type": "select",
+        "options": ["غير مُشخَّص", "موجود", "لا يمكن التحديد"],
+        "value": "",
+        "cannot_be_determined_specify": ""
       },
       "additional_pathologic_findings": {
-        "label": "النتائج المرضية الإضافية"
+        "label": "النتائج المرضية الإضافية",
+        "type": "text",
+        "value": ""
       }
     }
   }

@@ -1,5 +1,11 @@
 {
-  "title": "استئصال القولون والمستقيم (قالب الفحص العياني)",
+  "template_id": "colon_rectum_resection_gross_tumor_v1",
+  "domain": "anatomic_pathology",
+  "lang": "ar",
+  "ui": {
+    "direction": "rtl"
+  },
+  "title": "استئصال القولون والمستقيم (نموذج الفحص العياني)",
   "specimen": {
     "label": "العينة",
     "fields": {
@@ -19,10 +25,7 @@
     "fields": {
       "tumor_perforation": {
         "label": "انثقاب الورم",
-        "options": [
-          "غير موجود",
-          "موجود"
-        ]
+        "options": ["غائب", "موجود"]
       },
       "tumor_dimensions_mm": {
         "label": "أبعاد الورم (مم)"
@@ -43,17 +46,11 @@
       },
       "invades_peritoneal_surface": {
         "label": "يغزو الورم السطح البريتوني",
-        "options": [
-          "نعم",
-          "لا"
-        ]
+        "options": ["نعم", "لا"]
       },
       "forms_discrete_serosal_nodules": {
         "label": "يشكل الورم عقيدات مصلية منفصلة",
-        "options": [
-          "نعم",
-          "لا"
-        ]
+        "options": ["نعم", "لا"]
       }
     }
   },
@@ -76,22 +73,14 @@
     "fields": {
       "mesorectum_intactness": {
         "label": "سلامة المساريقا المستقيمية",
-        "options": [
-          "غير كاملة (الدرجة 1)",
-          "شبه كاملة (الدرجة 2)",
-          "كاملة (الدرجة 3)"
-        ]
+        "options": ["غير كاملة (الدرجة 1)", "شبه كاملة (الدرجة 2)", "كاملة (الدرجة 3)"]
       },
       "relationship_to_anterior_peritoneal_reflection": {
         "label": "علاقة الورم بالانعكاس البريتوني الأمامي",
-        "options": [
-          "كله فوقه",
-          "يمتد عبره",
-          "كله تحته"
-        ]
+        "options": ["كله فوقه", "يمتد عبره", "كله تحته"]
       },
       "distance_from_dentate_line_mm": {
-        "label": "المسافة من الخط المسنن (مم)"
+        "label": "المسافة من الخط المسنن (مم) في حالة استئصال البطن والعجان"
       }
     }
   },
@@ -100,10 +89,7 @@
     "fields": {
       "status": {
         "label": "السلائل",
-        "options": [
-          "غير موجود",
-          "موجود"
-        ]
+        "options": ["غائب", "موجود"]
       },
       "if_present_details": {
         "label": "إذا كانت موجودة (سجل العدد، ومدى الحجم، والمظهر العياني)"
@@ -114,7 +100,7 @@
     "label": "العقد اللمفاوية",
     "fields": {
       "number_identified": {
-        "label": "العدد المحدد"
+        "label": "العدد المُحدَّد"
       },
       "size_range_mm": {
         "label": "مدى الحجم (مم)"
@@ -130,7 +116,7 @@
     }
   },
   "block_identification_key": {
-    "label": "مفتاح تعريف القوالب",
+    "label": "مفتاح تعريف الكتل",
     "fields": {
       "tumor": {
         "label": "الورم"
@@ -159,7 +145,7 @@
     "label": "الفحص العياني",
     "fields": {
       "grossed_by_initials": {
-        "label": "أُجري الفحص العياني بواسطة"
+        "label": "أُجري الفحص العياني بواسطة (الأحرف الأولى)"
       },
       "date": {
         "label": "التاريخ"

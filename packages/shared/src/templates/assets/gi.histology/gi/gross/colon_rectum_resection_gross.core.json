@@ -1,7 +1,7 @@
 {
   "template_id": "colon_rectum_resection_gross_tumor_v1",
   "domain": "anatomic_pathology",
-  "title": "Colon and Rectum Resection for Tumor (Gross Template)",
+  "title": "Colon and Rectum Resection for Tumor",
 
   "specimen": {
     "label": "Specimen",

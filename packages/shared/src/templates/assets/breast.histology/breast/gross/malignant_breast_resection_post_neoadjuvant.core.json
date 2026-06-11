@@ -14,7 +14,7 @@
       "site": { "label": "Site", "type": "text", "value": "" },
       "focality": { "label": "Focality", "type": "text", "value": "" },
       "dimensions": {
-        "label": "Dimensions (mm)",
+        "label": "Dimensions (cm)",
         "type": "measurement_3d",
         "value": ""
       },
@@ -197,12 +197,12 @@
     "label": "Tumor Bed",
     "fields": {
       "gross_dimensions": {
-        "label": "Gross dimensions (mm)",
+        "label": "Gross dimensions (cm)",
         "type": "measurement_3d",
         "value": ""
       },
       "imaging_dimensions": {
-        "label": "Imaging dimensions (mm)",
+        "label": "Imaging dimensions (cm)",
         "type": "measurement_3d",
         "value": ""
       },

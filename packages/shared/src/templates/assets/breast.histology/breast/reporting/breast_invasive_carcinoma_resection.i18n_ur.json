@@ -1,27 +1,33 @@
 {
   "template_id": "breast_invasive_carcinoma_resection_v1",
+  "domain": "anatomic_pathology",
+  "protocol_posting_date": "June 2024",
+  "standards": ["AJCC-UICC 8"],
   "lang": "ur",
-  "title": "رپورٹنگ ٹیمپلیٹ - چھاتی کا انویسیو کارسینوما، ریزیکشن",
+  "ui": {
+    "direction": "rtl"
+  },
+  "title": "چھاتی کا انویسیو کارسینوما، ریزیکشن",
   "specimen": {
     "label": "نمونہ",
     "fields": {
       "procedure": {
         "label": "طریقہ کار",
         "options": [
-          "ایکسائزن (مکمل ماسٹیکٹومی سے کم)",
+          "ایکسیژن (مکمل ماسٹیکٹومی سے کم)",
           "مکمل ماسٹیکٹومی (نپل اور جلد کو محفوظ رکھنے والی ماسٹیکٹومی سمیت)",
-          "دیگر (وضاحت کریں)",
-          "متعین نہیں"
+          "دیگر",
+          "غیر متعین"
         ],
-        "other_specify": "دوسرا بتائیں"
+        "type": "select",
+        "value": "",
+        "other_specify": ""
       },
       "laterality": {
         "label": "نمونے کی جانب",
-        "options": [
-          "دائیں",
-          "بائیں",
-          "متعین نہیں"
-        ]
+        "options": ["دائیں", "بائیں", "غیر متعین"],
+        "type": "select",
+        "value": ""
       }
     }
   },
@@ -30,7 +36,19 @@
     "fields": {
       "tumor_site": {
         "label": "ٹیومر کا مقام",
-        "clock_position_specify": "گھڑی کی پوزیشن بتائیں"
+        "options": [
+          "اوپری بیرونی کواڈرینٹ",
+          "زیریں بیرونی کواڈرینٹ",
+          "اوپری اندرونی کواڈرینٹ",
+          "زیریں اندرونی کواڈرینٹ",
+          "مرکزی",
+          "نپل",
+          "گھڑی کی پوزیشن",
+          "غیر متعین"
+        ],
+        "type": "multi_select",
+        "value": [],
+        "clock_position_specify": ""
       },
       "histologic_type": {
         "label": "ہسٹولوجیکل قسم",
@@ -40,7 +58,7 @@
           "مائیکرو انویسیو کارسینوما",
           "انویسیو لوبولر کارسینوما",
           "ڈکٹل اور لوبولر مخلوط خصوصیات والا کارسینوما",
-          "ایسی خصوصیات والا انویسیو کارسینوما (وضاحت کریں)",
+          "ایسی خصوصیات والا انویسیو کارسینوما",
           "ٹیوبولر کارسینوما",
           "انویسیو کریبرفورم کارسینوما",
           "میوسینس کارسینوما",
@@ -54,12 +72,14 @@
           "نیورواینڈوکرائن ٹیومر",
           "نیورواینڈوکرائن کارسینوما",
           "انویسیو کارسینوما، قسم متعین نہیں کی جا سکتی",
-          "دیگر غیر فہرست شدہ ہسٹولوجیکل قسم (وضاحت کریں)"
+          "دیگر غیر فہرست شدہ ہسٹولوجیکل قسم"
         ],
-        "features_specify": "خصوصیات بتائیں",
-        "cannot_be_determined_specify": "'متعین نہیں' کی وضاحت",
-        "other_specify": "دوسرا بتائیں",
-        "comment": "تبصرہ"
+        "type": "select",
+        "value": "",
+        "features_specify": "",
+        "cannot_be_determined_specify": "",
+        "other_specify": "",
+        "comment": ""
       },
       "histologic_grade": {
         "label": "ہسٹولوجیکل گریڈ (ناٹنگھم اسکور)",
@@ -69,7 +89,9 @@
             "options": [
               "قابل اطلاق نہیں (کوئی بقایا کارسینوما نہیں یا صرف مائیکرو انویژن)",
               "ناٹنگھم اسکور"
-            ]
+            ],
+            "type": "select",
+            "value": ""
           },
           "glandular_tubular_differentiation": {
             "label": "گلینڈولر/ٹیوبولر تفریق",
@@ -78,9 +100,11 @@
               "اسکور 2 (ٹیومر کے 10 سے 75% حصے میں گلینڈولر/ٹیوبولر ساختیں بنتی ہیں)",
               "اسکور 3 (ٹیومر کے 10% سے کم حصے میں گلینڈولر/ٹیوبولر ساختیں بنتی ہیں)",
               "صرف مائیکرو انویژن موجود ہے (گریڈ نہیں کیا گیا)",
-              "اسکور متعین نہیں کیا جا سکتا (وضاحت کریں)"
+              "اسکور متعین نہیں کیا جا سکتا"
             ],
-            "cannot_be_determined_specify": "'متعین نہیں' کی وضاحت"
+            "type": "select",
+            "value": "",
+            "cannot_be_determined_specify": ""
           },
           "nuclear_pleomorphism": {
             "label": "نیوکلیئر پلیومورفزم",
@@ -89,9 +113,11 @@
               "اسکور 2 (معمول سے بڑے خلیات، کھلے ویسیکولر نیوکلیائی، نمایاں نیوکلیولائی، سائز اور شکل میں درمیانی تغیر)",
               "اسکور 3 (ویسیکولر نیوکلیائی، اکثر نمایاں نیوکلیولائی کے ساتھ، سائز اور شکل میں واضح تغیر، کبھی کبھار بہت بڑے اور غیر معمولی اشکال)",
               "صرف مائیکرو انویژن موجود ہے (گریڈ نہیں کیا گیا)",
-              "اسکور متعین نہیں کیا جا سکتا (وضاحت کریں)"
+              "اسکور متعین نہیں کیا جا سکتا"
             ],
-            "cannot_be_determined_specify": "'متعین نہیں' کی وضاحت"
+            "type": "select",
+            "value": "",
+            "cannot_be_determined_specify": ""
           },
           "mitotic_rate": {
             "label": "مائٹوٹک شرح",
@@ -100,10 +126,12 @@
               "اسکور 2",
               "اسکور 3",
               "صرف مائیکرو انویژن موجود ہے (گریڈ نہیں کیا گیا)",
-              "اسکور متعین نہیں کیا جا سکتا (وضاحت کریں)"
+              "اسکور متعین نہیں کیا جا سکتا"
             ],
             "reference_note": "نوٹ D میں جدول 1 دیکھیں",
-            "cannot_be_determined_specify": "'متعین نہیں' کی وضاحت"
+            "type": "select",
+            "value": "",
+            "cannot_be_determined_specify": ""
           },
           "overall_grade": {
             "label": "مجموعی گریڈ",
@@ -112,9 +140,11 @@
               "گریڈ 2 (اسکور 6 یا 7)",
               "گریڈ 3 (اسکور 8 یا 9)",
               "صرف مائیکرو انویژن موجود ہے (گریڈ نہیں کیا گیا)",
-              "اسکور متعین نہیں کیا جا سکتا (وضاحت کریں)"
+              "اسکور متعین نہیں کیا جا سکتا"
             ],
-            "cannot_be_determined_specify": "'متعین نہیں' کی وضاحت"
+            "type": "select",
+            "value": "",
+            "cannot_be_determined_specify": ""
           }
         }
       },
@@ -122,22 +152,30 @@
         "label": "ٹیومر کا سائز",
         "fields": {
           "size_type": {
+            "label": "ٹیومر کا سائز",
             "options": [
               "کوئی باقی ماندہ انویسیو کارسینوما نہیں",
               "صرف مائیکرو انویژن (≤ 1 mm)",
               "سب سے بڑے انویسیو فوکس کی سب سے بڑی جہت > 1 mm",
               "سب سے بڑے انویسیو فوکس کا سائز متعین نہیں کیا جا سکتا"
             ],
-            "label": "رسولی کا سائز"
+            "type": "select",
+            "value": ""
           },
           "greatest_dimension_mm": {
-            "label": "سب سے بڑی جہت (ملی میٹر)"
+            "label": "سب سے بڑی جہت (ملی میٹر)",
+            "type": "number",
+            "value": ""
           },
           "additional_dimensions_mm": {
-            "label": "اضافی جہات (ملی میٹر)"
+            "label": "اضافی جہات (ملی میٹر)",
+            "type": "measurement_2d",
+            "value": ""
           },
           "cannot_be_determined_explain": {
-            "label": "سب سے بڑے حملہ آور فوکس کا سائز متعین نہیں کیا جا سکتا (وضاحت کریں)"
+            "type": "text",
+            "value": "",
+            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
           }
         }
       },
@@ -145,107 +183,490 @@
         "label": "ٹیومر کی فوکلیٹی",
         "fields": {
           "status": {
-            "label": "رسولی کی فوکلٹی",
-            "options": [
-              "حملہ آور کارسینوما کا ایک فوکس",
-              "حملہ آور کارسینوما کے متعدد فوکس"
-            ]
+            "label": "ٹیومر کی فوکلیٹی",
+            "options": ["انویسیو کارسینوما کا ایک فوکس", "انویسیو کارسینوما کے متعدد فوکس"],
+            "type": "select",
+            "value": ""
           },
           "number_of_foci": {
             "label": "فوکس کی تعداد",
             "fields": {
               "count_type": {
                 "label": "تعداد کی قسم",
-                "options": [
-                  "تعداد بیان کریں",
-                  "کم از کم",
-                  "متعین نہیں"
-                ]
+                "options": ["تعداد بیان کریں", "کم از کم", "غیر متعین"],
+                "type": "select",
+                "value": ""
               },
               "count_value": {
-                "label": "فوکس کی تعداد"
+                "label": "فوکس کی تعداد",
+                "type": "integer",
+                "value": ""
               }
             }
           },
           "sizes_of_individual_foci_mm": {
-            "label": "انفرادی فوکس کے سائز ملی میٹر میں (ملی میٹر)"
+            "label": "انفرادی فوکس کے سائز ملی میٹر میں",
+            "type": "text",
+            "value": ""
           },
           "sizes_cannot_be_determined": {
-            "label": "انفرادی فوکس کے سائز متعین نہیں کیے جا سکتے"
+            "label": "انفرادی فوکس کے سائز متعین نہیں کیے جا سکتے",
+            "type": "text",
+            "value": ""
+          }
+        }
+      }
+    }
+  },
+  "dcis_lcis": {
+    "label": "کارسینوما در موضع",
+    "fields": {
+      "dcis": {
+        "label": "ڈکٹل کارسینوما اِن سیٹو (DCIS)",
+        "fields": {
+          "presence": {
+            "label": "DCIS",
+            "options": [
+              "شناخت نہیں ہوئی",
+              "موجود",
+              "وسیع انٹراڈکٹل جزو (EIC) کے لیے منفی",
+              "وسیع انٹراڈکٹل جزو (EIC) کے لیے مثبت",
+              "پری سرجیکل (نیواڈجوانٹ) تھیراپی کے بعد صرف DCIS موجود ہے"
+            ],
+            "type": "select",
+            "value": ""
+          },
+          "size_extent": {
+            "label": "DCIS کا سائز (وسعت)",
+            "fields": {
+              "at_least_mm": {
+                "label": "DCIS کا تخمینی سائز (وسعت) کم از کم (ملی میٹر) ہے",
+                "type": "number",
+                "value": ""
+              },
+              "additional_dimensions_mm": {
+                "label": "اضافی جہات (ملی میٹر)",
+                "type": "measurement_2d",
+                "value": ""
+              },
+              "cannot_be_determined": {
+                "label": "متعین نہیں کیا جا سکتا",
+                "type": "text",
+                "value": ""
+              }
+            }
+          },
+          "architectural_patterns": {
+            "label": "معماری پیٹرن",
+            "options": [
+              "کومیڈو",
+              "پیجٹ بیماری (نپل کی جلد پر DCIS)",
+              "کریبریفارم",
+              "مائیکروپاپیلری",
+              "پاپیلری",
+              "سولڈ",
+              "دیگر"
+            ],
+            "type": "multi_select",
+            "value": [],
+            "other_specify": ""
+          },
+          "nuclear_grade": {
+            "label": "نیوکلیر گریڈ",
+            "options": ["گریڈ I (کم)", "گریڈ II (درمیانی)", "گریڈ III (اعلی)"],
+            "type": "select",
+            "value": ""
+          },
+          "necrosis": {
+            "label": "نیکروسس",
+            "options": [
+              "شناخت نہیں ہوئی",
+              "موجود، فوکل (چھوٹے فوکس یا سنگل سیل نیکروسس)",
+              "موجود، مرکزی (وسیع \"کومیڈو\" نیکروسس)"
+            ],
+            "type": "select",
+            "value": ""
+          },
+          "number_of_blocks_with_dcis": {
+            "label": "DCIS والے بلاکس کی تعداد",
+            "type": "integer",
+            "value": ""
+          },
+          "number_of_blocks_examined": {
+            "label": "جانچے گئے بلاکس کی تعداد",
+            "type": "integer",
+            "value": ""
+          },
+          "cannot_be_excluded": {
+            "label": "خارج نہیں کیا جا سکتا",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "lcis": {
+        "label": "لوبولر کارسینوما اِن سیٹو (LCIS)",
+        "options": ["شناخت نہیں ہوئی", "موجود"],
+        "type": "select",
+        "value": ""
+      }
+    }
+  },
+  "tumor_extent": {
+    "label": "ٹیومر کی وسعت",
+    "fields": {
+      "extent_status": {
+        "label": "ٹیومر کی وسعت",
+        "options": [
+          "قابل اطلاق نہیں (جلد، نپل، اور کنکال عضلہ غائب ہیں یا غیر متاثر ہیں)",
+          "جلد موجود ہے اور متاثر ہے",
+          "DCIS نپل کی ایپیڈرمس کو متاثر کرتی ہے (پیجٹ بیماری نپل)",
+          "کنکال عضلہ موجود ہے اور متاثر ہے"
+        ],
+        "type": "multi_select",
+        "value": []
+      },
+      "skin_invasion": {
+        "label": "جلد کا حملہ",
+        "options": [
+          "کارسینوما جلد کے السر کے بغیر براہ راست ڈرمس یا ایپیڈرمس میں داخل ہوتا ہے",
+          "کارسینوما جلد کے السر کے ساتھ براہ راست ڈرمس یا ایپیڈرمس میں داخل ہوتا ہے (T4b درجہ بند)",
+          "کارسینوما براہ راست ڈرمس یا ایپیڈرمس میں داخل نہیں ہوتا"
+        ],
+        "type": "select",
+        "value": ""
+      },
+      "skin_satellite_foci": {
+        "label": "جلد کے سیٹلائٹ فوکس",
+        "options": [
+          "سیٹلائٹ فوکس شناخت نہیں ہوئے",
+          "انویسیو کارسینوما کے جلدی سیٹلائٹ فوکس موجود ہیں"
+        ],
+        "type": "select",
+        "value": ""
+      },
+      "skeletal_muscle": {
+        "label": "کنکال عضلہ",
+        "options": [
+          "کارسینوما کنکال عضلہ میں داخل ہوتا ہے",
+          "کارسینوما کنکال عضلہ اور چھاتی کی دیوار میں داخل ہوتا ہے (T4a درجہ بند)"
+        ],
+        "note": "پیکٹورالس عضلہ میں حملے کو چھاتی کی دیوار میں حملہ نہیں سمجھا جاتا جب تک کہ گہری ساختیں متاثر نہ ہوں۔",
+        "type": "select",
+        "value": ""
+      }
+    }
+  },
+  "invasion_and_calcifications": {
+    "label": "حملہ اور مائیکرو کیلشیفیکیشنز",
+    "fields": {
+      "lymphovascular_invasion": {
+        "label": "لمفاتی اور/یا عروقی حملہ",
+        "fields": {
+          "status": {
+            "label": "لمفاتی اور/یا عروقی حملہ",
+            "options": ["شناخت نہیں ہوئی", "موجود", "متعین نہیں کیا جا سکتا"],
+            "type": "select",
+            "value": "",
+            "cannot_be_determined_specify": ""
+          },
+          "extent": {
+            "label": "لمفاوسکولر حملے کی وسعت",
+            "options": ["فوکل (ایک بلاک میں LVI)", "وسیع (دو یا زیادہ بلاکس میں LVI)"],
+            "type": "select",
+            "value": ""
+          }
+        }
+      },
+      "dermal_lymphovascular_invasion": {
+        "label": "جلدی لمفاوسکولر حملہ",
+        "options": ["کوئی جلد نہیں", "شناخت نہیں ہوئی", "موجود", "متعین نہیں کیا جا سکتا"],
+        "type": "select",
+        "value": "",
+        "cannot_be_determined_specify": ""
+      },
+      "microcalcifications": {
+        "label": "مائیکروکیلسیفیکیشنز",
+        "options": [
+          "شناخت نہیں ہوئیں",
+          "DCIS میں موجود",
+          "انویسیو کارسینوما میں موجود",
+          "غیر نیوپلاسٹک ٹشو میں موجود",
+          "دیگر"
+        ],
+        "type": "multi_select",
+        "value": [],
+        "other_specify": ""
+      }
+    }
+  },
+  "treatment_effect_and_rcb": {
+    "label": "علاج کا اثر اور باقی ماندہ کینسر بوجھ",
+    "fields": {
+      "treatment_effect_breast": {
+        "label": "چھاتی میں علاج کا اثر",
+        "options": [
+          "کوئی معلوم پری سرجیکل تھیراپی نہیں",
+          "انویسیو کارسینوما میں پری سرجیکل تھیراپی کا کوئی واضح ردعمل نہیں",
+          "انویسیو کارسینوما میں پری سرجیکل تھیراپی کا ممکنہ یا واضح ردعمل",
+          "پری سرجیکل تھیراپی کے بعد چھاتی میں کوئی باقی ماندہ انویسیو کارسینوما نہیں"
+        ],
+        "note": "باقی ماندہ ٹیومر کا سب سے بڑا مسلسل فوکس، اگر موجود ہو، ypT زمرہ طے کرنے کے لیے استعمال ہوتا ہے۔",
+        "type": "select",
+        "value": ""
+      },
+      "treatment_effect_lymph_nodes": {
+        "label": "لمف نوڈز میں علاج کا اثر",
+        "options": [
+          "قابل اطلاق نہیں",
+          "میٹاسٹیٹک کارسینوما میں پری سرجیکل تھیراپی کا کوئی واضح ردعمل نہیں",
+          "میٹاسٹیٹک کارسینوما میں پری سرجیکل تھیراپی کا ممکنہ یا واضح ردعمل",
+          "کوئی لمف نوڈ میٹاسٹیسس نہیں۔ ریشہ دار داغ یا ہسٹیوسائٹک مجموعے، شاید پچھلے لمف نوڈ میٹاسٹیسس سے متعلق",
+          "کوئی لمف نوڈ میٹاسٹیسس نہیں اور نوڈز میں کوئی ریشہ دار داغ یا ہسٹیوسائٹک مجموعے نہیں"
+        ],
+        "note": "ضروری ہے اگر نوڈز جمع کرائے گئے ہوں اور معلوم ہو کہ مریض کو پری سرجیکل تھیراپی ملی تھی۔",
+        "type": "select",
+        "value": ""
+      },
+      "rcb_parameters": {
+        "label": "باقی ماندہ کینسر بوجھ (RCB) کے پیرامیٹرز",
+        "fields": {
+          "primary_tumor_bed_greatest_dimension_mm": {
+            "label": "پرائمری ٹیومر بیڈ کی سب سے بڑی جہت (ملی میٹر)",
+            "type": "number",
+            "value": ""
+          },
+          "primary_tumor_bed_second_dimension_mm": {
+            "label": "پرائمری ٹیومر بیڈ کی دوسری بڑی جہت (ملی میٹر)",
+            "type": "number",
+            "value": ""
+          },
+          "overall_cancer_cellularity_percent": {
+            "label": "مجموعی کینسر سیلولیرٹی کا فیصد",
+            "type": "number",
+            "value": ""
+          },
+          "in_situ_disease_percent": {
+            "label": "کینسر کا وہ فیصد جو in situ بیماری ہو",
+            "type": "number",
+            "value": ""
+          },
+          "number_of_positive_lymph_nodes": {
+            "label": "مثبت لمف نوڈز کی تعداد",
+            "type": "integer",
+            "value": ""
+          },
+          "largest_nodal_metastasis_diameter_mm": {
+            "label": "سب سے بڑے نوڈل میٹاسٹیسس کا قطر (ملی میٹر)",
+            "type": "number",
+            "value": ""
+          },
+          "residual_cancer_burden": {
+            "label": "بقایا کینسر کا بوجھ (RCB)",
+            "type": "text",
+            "value": ""
+          },
+          "residual_cancer_burden_class": {
+            "label": "بقایا کینسر کے بوجھ کی کلاس (RCB)",
+            "options": ["RCB-0 (pCR)", "RCB-I", "RCB-II", "RCB-III"],
+            "type": "select",
+            "value": ""
           }
         }
       }
     }
   },
   "margins": {
-    "label": "کنارے",
+    "label": "حاشیے",
     "fields": {
-      "dcis_margin_status": {
-        "label": "DCIS کے لیے کناروں کی حالت",
+      "invasive_carcinoma_margin_status": {
+        "label": "انویسیو کارسینوما کے لیے حاشیے کی حالت",
         "fields": {
           "status": {
+            "label": "انویسیو کارسینوما کے لیے حاشیے کی حالت",
             "options": [
-              "لاگو نہیں (نمونے میں DCIS نہیں)",
-              "تمام کنارے DCIS کے لیے منفی ہیں",
-              "DCIS کنارے پر موجود ہے"
-            ]
+              "قابل اطلاق نہیں (بقایا انویسیو کارسینوما غیر حاضر)",
+              "تمام حاشیے انویسیو کارسینوما کے لیے منفی",
+              "انویسیو کارسینوما حاشیے پر موجود"
+            ],
+            "type": "select",
+            "value": ""
           },
           "distance_to_closest_margin": {
-            "label": "DCIS سے قریب ترین مارجن کا فاصلہ"
+            "label": "انویسیو کارسینوما سے قریب ترین حاشیے تک فاصلہ",
+            "fields": {
+              "distance_type": {
+                "label": "فاصلے کی قسم",
+                "options": ["درست فاصلہ", "سے کم", "سے زیادہ", "دیگر", "متعین نہیں کیا جا سکتا"],
+                "type": "select",
+                "value": ""
+              },
+              "distance_mm": {
+                "label": "فاصلہ (ملی میٹر)",
+                "type": "number",
+                "value": ""
+              },
+              "other_specify": {
+                "type": "text",
+                "value": "",
+                "label": "دیگر (وضاحت کریں)"
+              },
+              "cannot_be_determined_explain": {
+                "type": "text",
+                "value": "",
+                "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
+              }
+            }
           },
           "closest_margins": {
-            "label": "DCIS سے قریب ترین مارجن",
+            "label": "انویسیو کارسینوما سے قریب ترین حاشیہ",
             "options": [
-              "قابل اطلاق نہیں",
-              "Anterior",
-              "Posterior",
-              "Superior",
-              "Inferior",
-              "Medial",
-              "Lateral",
-              "Other",
+              "اگلا",
+              "پچھلا",
+              "اوپری",
+              "زیریں",
+              "میڈیئل",
+              "لیٹرل",
+              "دیگر",
               "متعین نہیں کیا جا سکتا"
             ],
-            "other_specify": "دیگر، وضاحت کریں",
-            "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا، وضاحت کریں"
+            "type": "multi_select",
+            "value": [],
+            "other_specify": "",
+            "cannot_be_determined_explain": ""
           },
           "margins_involved": {
-            "label": "DCIS سے متاثر مارجن",
-            "item_label": "لیبل"
+            "label": "انویسیو کارسینوما سے متاثر حاشیہ",
+            "item_label": "انویسیو کارسینوما سے متاثر حاشیہ",
+            "fields": {
+              "margin": {
+                "label": "حاشیہ",
+                "options": [
+                  "اگلا",
+                  "پچھلا",
+                  "اوپری",
+                  "زیریں",
+                  "میڈیئل",
+                  "لیٹرل",
+                  "دیگر",
+                  "متعین نہیں کیا جا سکتا"
+                ],
+                "type": "select",
+                "value": ""
+              },
+              "extent": {
+                "label": "وسعت",
+                "type": "text",
+                "value": ""
+              },
+              "other_specify": {
+                "type": "text",
+                "value": "",
+                "label": "دیگر (وضاحت کریں)"
+              },
+              "cannot_be_determined_explain": {
+                "type": "text",
+                "value": "",
+                "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
+              }
+            },
+            "type": "repeatable_group"
           }
         }
       },
-      "invasive_carcinoma_margin_status": {
+      "dcis_margin_status": {
+        "label": "DCIS کے لیے حاشیے کی حالت",
         "fields": {
           "status": {
-            "label": "حملہ آور کارسینوما کے لیے مارجن کی حالت",
+            "label": "DCIS کے لیے حاشیے کی حالت",
             "options": [
-              "قابل اطلاق نہیں (بقایا کارسینوما غیر حاضر)",
-              "تمام مارجن منفی",
-              "حملہ آور کارسینوما مارجن پر موجود"
-            ]
+              "قابل اطلاق نہیں (نمونے میں DCIS نہیں)",
+              "تمام حاشیے DCIS کے لیے منفی",
+              "DCIS حاشیے پر موجود"
+            ],
+            "type": "select",
+            "value": ""
           },
           "distance_to_closest_margin": {
-            "label": "حملہ آور کارسینوما سے قریب ترین مارجن کا فاصلہ"
+            "label": "DCIS سے قریب ترین حاشیے تک فاصلہ",
+            "fields": {
+              "distance_type": {
+                "label": "فاصلے کی قسم",
+                "options": ["درست فاصلہ", "سے کم", "سے زیادہ", "دیگر", "متعین نہیں کیا جا سکتا"],
+                "type": "select",
+                "value": ""
+              },
+              "distance_mm": {
+                "label": "فاصلہ (ملی میٹر)",
+                "type": "number",
+                "value": ""
+              },
+              "other_specify": {
+                "type": "text",
+                "value": "",
+                "label": "دیگر (وضاحت کریں)"
+              },
+              "cannot_be_determined_explain": {
+                "type": "text",
+                "value": "",
+                "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
+              }
+            }
           },
           "closest_margins": {
-            "label": "حملہ آور کارسینوما سے قریب ترین مارجن",
+            "label": "DCIS سے قریب ترین حاشیہ",
             "options": [
-              "Anterior",
-              "Posterior",
-              "Superior",
-              "Inferior",
-              "Medial",
-              "Lateral",
-              "Other",
+              "قابل اطلاق نہیں",
+              "اگلا",
+              "پچھلا",
+              "اوپری",
+              "زیریں",
+              "میڈیئل",
+              "لیٹرل",
+              "دیگر",
               "متعین نہیں کیا جا سکتا"
             ],
-            "other_specify": "دیگر، وضاحت کریں",
-            "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا، وضاحت کریں"
+            "type": "multi_select",
+            "value": [],
+            "other_specify": "",
+            "cannot_be_determined_explain": ""
           },
           "margins_involved": {
-            "label": "حملہ آور کارسینوما سے متاثر مارجن",
-            "item_label": "لیبل"
+            "label": "DCIS سے متاثر حاشیہ",
+            "item_label": "DCIS سے متاثر حاشیہ",
+            "fields": {
+              "margin": {
+                "label": "حاشیہ",
+                "options": [
+                  "اگلا",
+                  "پچھلا",
+                  "اوپری",
+                  "زیریں",
+                  "میڈیئل",
+                  "لیٹرل",
+                  "دیگر",
+                  "متعین نہیں کیا جا سکتا"
+                ],
+                "type": "select",
+                "value": ""
+              },
+              "extent": {
+                "label": "وسعت، اگر ممکن ہو",
+                "type": "text",
+                "value": ""
+              },
+              "other_specify": {
+                "type": "text",
+                "value": "",
+                "label": "دیگر (وضاحت کریں)"
+              },
+              "cannot_be_determined_explain": {
+                "type": "text",
+                "value": "",
+                "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
+              }
+            },
+            "type": "repeatable_group"
           }
         }
       }
@@ -255,185 +676,178 @@
     "label": "علاقائی لمف نوڈز",
     "fields": {
       "regional_lymph_node_status": {
-        "label": "علاقائی لمف نوڈز کی حالت"
+        "label": "علاقائی لمف نوڈز کی حالت",
+        "options": [
+          "قابل اطلاق نہیں (کوئی علاقائی لمف نوڈ جمع نہیں کرایا گیا یا نہیں ملا)",
+          "علاقائی لمف نوڈز موجود ہیں",
+          "تمام علاقائی لمف نوڈز ٹیومر کے لیے منفی",
+          "ٹیومر علاقائی لمف نوڈ(ز) میں موجود"
+        ],
+        "type": "select",
+        "value": ""
       },
       "number_with_macrometastases": {
-        "label": "میکرومیٹاسٹیسز والے لمف نوڈز کی تعداد (> 2 mm)",
+        "label": "میکرومیٹاسٹیسز والے لمف نوڈز کی تعداد",
         "fields": {
           "count_type": {
             "label": "گنتی کی قسم",
-            "options": [
-              "Exact number",
-              "کم از کم",
-              "Other",
-              "متعین نہیں کیا جا سکتا"
-            ]
+            "options": ["درست تعداد", "کم از کم", "دیگر", "متعین نہیں کیا جا سکتا"],
+            "type": "select",
+            "value": ""
           },
           "count_value": {
-            "label": "تعداد"
+            "label": "تعداد",
+            "type": "integer",
+            "value": ""
           },
-          "other_specify": {
-            "label": "other specify"
-          },
-          "cannot_be_determined_explain": {
-            "label": "cannot be determined explain"
-          }
+          "other_specify": "",
+          "cannot_be_determined_explain": ""
         }
       },
       "number_with_micrometastases": {
-        "label": "مائیکرومیٹاسٹیسز والے لمف نوڈز کی تعداد (> 0.2 mm سے 2 mm تک اور/یا > 200 خلیات)",
+        "label": "مائیکرومیٹاسٹیسز والے لمف نوڈز کی تعداد",
+        "fields": {
+          "count_type": {
+            "label": "گنتی کی قسم",
+            "options": ["درست تعداد", "کم از کم", "دیگر", "متعین نہیں کیا جا سکتا"],
+            "type": "select",
+            "value": ""
+          },
+          "count_value": {
+            "label": "تعداد",
+            "type": "integer",
+            "value": ""
+          },
+          "other_specify": "",
+          "cannot_be_determined_explain": ""
+        }
+      },
+      "number_with_isolated_tumor_cells": {
+        "label": "الگ تھلگ ٹیومر خلیات والے لمف نوڈز کی تعداد",
         "fields": {
           "count_type": {
             "label": "گنتی کی قسم",
             "options": [
-              "Exact number",
+              "قابل اطلاق نہیں",
+              "درست تعداد",
               "کم از کم",
-              "Other",
+              "دیگر",
               "متعین نہیں کیا جا سکتا"
-            ]
+            ],
+            "type": "select",
+            "value": ""
           },
           "count_value": {
-            "label": "تعداد"
+            "label": "تعداد",
+            "type": "integer",
+            "value": ""
           },
-          "other_specify": {
-            "label": "other specify"
+          "other_specify": "",
+          "cannot_be_determined_explain": ""
+        }
+      },
+      "size_of_largest_nodal_metastatic_deposit": {
+        "label": "سب سے بڑے نوڈل میٹاسٹیٹک ڈپازٹ کا سائز",
+        "fields": {
+          "size_type": {
+            "label": "پیمائش کی قسم",
+            "options": ["درست سائز", "سے کم", "سے زیادہ", "دیگر", "متعین نہیں کیا جا سکتا"],
+            "type": "select",
+            "value": ""
           },
-          "cannot_be_determined_explain": {
-            "label": "cannot be determined explain"
-          }
+          "size_mm": {
+            "label": "سائز (ملی میٹر)",
+            "type": "number",
+            "value": ""
+          },
+          "other_specify": "",
+          "cannot_be_determined_explain": ""
         }
       },
       "extranodal_extension": {
         "label": "ایکسٹرانوڈل ایکسٹینشن",
-        "options": [
-          "شناخت نہیں ہوا",
-          "موجود، ≤ 2 mm",
-          "موجود، > 2 mm",
-          "مقدار واضح کریں",
-          "موجود",
-          "متعین نہیں کیا جا سکتا",
-          "دیگر (وضاحت کریں)"
-        ],
         "fields": {
           "status": {
-            "label": "علاقائی لمف نوڈز کی حالت",
+            "label": "ایکسٹرانوڈل ایکسٹینشن",
             "options": [
-              "لاگو نہیں (کوئی علاقائی لمف نوڈ جمع نہیں کیا گیا یا نہیں ملا)",
-              "علاقائی لمف نوڈز موجود ہیں",
-              "تمام علاقائی لمف نوڈز ٹیومر کے لیے منفی ہیں",
-              "ٹیومر علاقائی لمف نوڈز میں موجود ہے"
-            ]
+              "شناخت نہیں ہوئی",
+              "موجود، 2 ملی میٹر یا کم",
+              "موجود، 2 ملی میٹر سے زیادہ",
+              "موجود",
+              "متعین نہیں کیا جا سکتا",
+              "دیگر"
+            ],
+            "type": "select",
+            "value": ""
           },
           "amount": {
-            "label": "مقدار بیان کریں"
+            "label": "مقدار بیان کریں",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_specify": {
-            "label": "cannot be determined specify"
+            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+            "type": "text",
+            "value": ""
           },
           "other_specify": {
-            "label": "other specify"
+            "label": "دیگر (وضاحت کریں)",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_explain": {
-            "label": "cannot be determined explain"
-          }
-        },
-        "cannot_be_determined_specify": "'متعین نہیں' کی وضاحت",
-        "other_specify": "دوسرا بتائیں",
-        "cannot_be_determined_explain": "'متعین نہیں' کی وضاحت"
-      },
-      "comment": {
-        "label": "علاقائی لمف نوڈز پر تبصرہ"
-      },
-      "number_with_isolated_tumor_cells": {
-        "fields": {
-          "count_type": {
-            "label": "گنتی کی قسم",
-            "options": [
-              "قابل اطلاق نہیں",
-              "Exact number",
-              "کم از کم",
-              "Other",
-              "متعین نہیں کیا جا سکتا"
-            ]
-          },
-          "count_value": {
-            "label": "تعداد"
-          },
-          "other_specify": {
-            "label": "other specify"
-          },
-          "cannot_be_determined_explain": {
-            "label": "cannot be determined explain"
-          }
-        }
-      },
-      "size_of_largest_nodal_metastatic_deposit": {
-        "fields": {
-          "size_type": {
-            "label": "پیمائش کی قسم",
-            "options": [
-              "Exact size",
-              "سے کم",
-              "Greater than",
-              "Other",
-              "متعین نہیں کیا جا سکتا"
-            ]
-          },
-          "size_mm": {
-            "label": "سائز (ملی میٹر)"
-          },
-          "other_specify": {
-            "label": "other specify"
-          },
-          "cannot_be_determined_explain": {
-            "label": "cannot be determined explain"
+            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+            "type": "text",
+            "value": ""
           }
         }
       },
       "total_number_examined": {
+        "label": "جانچے گئے لمف نوڈز کی کل تعداد (سینٹینل اور غیر سینٹینل)",
         "fields": {
           "count_type": {
             "label": "گنتی کی قسم",
-            "options": [
-              "Exact number",
-              "کم از کم",
-              "Other",
-              "متعین نہیں کیا جا سکتا"
-            ]
+            "options": ["درست تعداد", "کم از کم", "دیگر", "متعین نہیں کیا جا سکتا"],
+            "type": "select",
+            "value": ""
           },
           "count_value": {
-            "label": "تعداد"
+            "label": "تعداد",
+            "type": "integer",
+            "value": ""
           },
-          "other_specify": {
-            "label": "other specify"
-          },
-          "cannot_be_determined_explain": {
-            "label": "cannot be determined explain"
-          }
+          "other_specify": "",
+          "cannot_be_determined_explain": ""
         }
       },
       "number_of_sentinel_nodes_examined": {
+        "label": "جانچے گئے سینٹینل نوڈز کی تعداد",
         "fields": {
           "count_type": {
             "label": "گنتی کی قسم",
             "options": [
               "قابل اطلاق نہیں",
-              "Exact number",
+              "درست تعداد",
               "کم از کم",
-              "Other",
+              "دیگر",
               "متعین نہیں کیا جا سکتا"
-            ]
+            ],
+            "type": "select",
+            "value": ""
           },
           "count_value": {
-            "label": "تعداد"
+            "label": "تعداد",
+            "type": "integer",
+            "value": ""
           },
-          "other_specify": {
-            "label": "other specify"
-          },
-          "cannot_be_determined_explain": {
-            "label": "cannot be determined explain"
-          }
+          "other_specify": "",
+          "cannot_be_determined_explain": ""
         }
+      },
+      "comment": {
+        "type": "text",
+        "value": "",
+        "label": "علاقائی لمف نوڈز پر تبصرہ"
       }
     }
   },
@@ -441,184 +855,123 @@
     "label": "دور دراز میٹاسٹیسس",
     "fields": {
       "sites_involved": {
-        "label": "دور دراز متاثرہ مقامات، اگر قابلِ اطلاق ہوں",
-        "non_regional_lymph_nodes_specify": "غیر علاقائی لمف نوڈز بتائیں",
-        "lung_specify": "پھیپھڑے بتائیں",
-        "liver_specify": "جگر بتائیں",
-        "bone_specify": "ہڈی بتائیں",
-        "brain_specify": "دماغ بتائیں",
-        "other_specify": "دوسرا بتائیں",
-        "cannot_be_determined_specify": "'متعین نہیں' کی وضاحت"
+        "label": "دور دراز متاثرہ مقامات",
+        "options": [
+          "قابل اطلاق نہیں",
+          "غیر علاقائی لمف نوڈ(ز)",
+          "پھیپھڑا",
+          "جگر",
+          "ہڈی",
+          "دماغ",
+          "دیگر",
+          "متعین نہیں کیا جا سکتا"
+        ],
+        "type": "multi_select",
+        "value": [],
+        "non_regional_lymph_nodes_specify": "",
+        "lung_specify": "",
+        "liver_specify": "",
+        "bone_specify": "",
+        "brain_specify": "",
+        "other_specify": "",
+        "cannot_be_determined_specify": ""
+      }
+    }
+  },
+  "ptnm_classification": {
+    "label": "pTNM درجہ بندی (AJCC آٹھواں ایڈیشن)",
+    "note": "pT، pN اور جہاں قابل اطلاق ہو pM زمروں کی رپورٹنگ رپورٹ جاری کرتے وقت پیتھالوجسٹ کو دستیاب معلومات پر مبنی ہے۔",
+    "fields": {
+      "modified_classification": {
+        "label": "ترمیم شدہ درجہ بندی",
+        "options": ["قابل اطلاق نہیں", "y (نیواڈجوانٹ تھیراپی کے بعد)", "r (دوبارہ ظاہر ہونا)"],
+        "type": "multi_select",
+        "value": []
+      },
+      "pT_category": {
+        "label": "pT زمرہ",
+        "options": [
+          "pT تفویض نہیں (دستیاب پیتھالوجیکل معلومات کی بنیاد پر متعین نہیں کیا جا سکتا)",
+          "pT0: بنیادی ٹیومر کا کوئی ثبوت نہیں",
+          "pTis (DCIS): ڈکٹل کارسینوما اِن سیٹو",
+          "pTis (Paget): نپل کی پیجٹ بیماری جو انویسیو کارسینوما اور/یا کارسینوما سیٹو (DCIS) سے منسلک نہیں",
+          "pT1mi: ٹیومر ≤ 1 mm",
+          "pT1a: ٹیومر > 1 mm اور ≤ 5 mm",
+          "pT1b: ٹیومر > 5 mm اور ≤ 10 mm",
+          "pT1c: ٹیومر > 10 mm اور ≤ 20 mm",
+          "pT1 (ذیلی زمرہ متعین نہیں کیا جا سکتا)",
+          "pT2: ٹیومر > 20 mm اور ≤ 50 mm",
+          "pT3: ٹیومر > 50 mm",
+          "pT4a: چھاتی کی دیوار تک پھیلاؤ",
+          "pT4b: السر اور/یا ہم طرف سیٹلائٹ نوڈیولز اور/یا جلدی ورم",
+          "pT4c: T4a اور T4b دونوں موجود",
+          "pT4d: سوزشی کارسینوما",
+          "pT4 (ذیلی زمرہ متعین نہیں کیا جا سکتا)"
+        ],
+        "type": "select",
+        "value": ""
+      },
+      "T_suffix": {
+        "label": "T لاحقہ",
+        "options": ["قابل اطلاق نہیں", "(m) ایک عضو میں متعدد بیک وقت بنیادی ٹیومر"],
+        "type": "select",
+        "value": ""
+      },
+      "pN_category": {
+        "label": "pN زمرہ",
+        "options": [
+          "pN تفویض نہیں (کوئی نوڈ جمع نہیں کرایا یا نہیں ملا)",
+          "pN تفویض نہیں (دستیاب پیتھالوجیکل معلومات کی بنیاد پر متعین نہیں کیا جا سکتا)",
+          "pN0: کوئی علاقائی لمف نوڈ میٹاسٹیسس نہیں یا صرف ITC",
+          "pN0 (i+): علاقائی لمف نوڈ(ز) میں صرف ITC",
+          "pN0 (mol+): RT-PCR کے ذریعے مثبت مالیکیولر نتائج؛ کوئی ITC نہیں",
+          "pN1mi: مائیکرومیٹاسٹیسز",
+          "pN1a: 1-3 ایگزیلری لمف نوڈز میں میٹاسٹیسز، کم از کم ایک > 2.0 mm",
+          "pN1b: ہم طرف اندرونی میمری سینٹینل نوڈز میں میٹاسٹیسز، ITC کے علاوہ",
+          "pN1c: pN1a اور pN1b مل کر",
+          "pN2a: 4-9 ایگزیلری لمف نوڈز میں میٹاسٹیسز",
+          "pN2b: کلینیکلی دریافت ہونے والے اندرونی میمری لمف نوڈز میں میٹاسٹیسز",
+          "pN3a: 10 یا اس سے زیادہ ایگزیلری لمف نوڈز یا انفراکلاویکیولر نوڈز میں میٹاسٹیسز",
+          "pN3b: cN2b کی موجودگی میں pN1a یا pN2a، یا pN1b کی موجودگی میں pN2a",
+          "pN3c: ہم طرف سوپراکلاویکیولر لمف نوڈز میں میٹاسٹیسز"
+        ],
+        "type": "select",
+        "value": ""
+      },
+      "N_suffix": {
+        "label": "N لاحقہ",
+        "options": [
+          "قابل اطلاق نہیں",
+          "(sn): سینٹینل نوڈ(ز) کا جائزہ لیا گیا",
+          "(f): FNA یا کور نیڈل بایوپسی سے تصدیق شدہ نوڈل میٹاسٹیسز"
+        ],
+        "type": "multi_select",
+        "value": []
+      },
+      "pM_category": {
+        "label": "pM زمرہ",
+        "options": [
+          "قابل اطلاق نہیں - جمع کرائے گئے نمونے(نمونوں) سے pM متعین نہیں کیا جا سکتا",
+          "pM1: ہسٹولوجیکلی ثابت شدہ میٹاسٹیسز > 0.2 mm"
+        ],
+        "type": "select",
+        "value": ""
+      },
+      "previous_case_number": {
+        "label": "کیس نمبر بتائیں (اگر پچھلے طریقہ کار سے ہو)",
+        "type": "text",
+        "value": ""
       }
     }
   },
   "additional_findings": {
     "label": "اضافی مشاہدات",
     "fields": {
-      "findings": {}
-    }
-  },
-  "dcis_lcis": {
-    "label": "کارسینوما در موضع",
-    "fields": {
-      "dcis": {
-        "fields": {
-          "presence": {
-            "label": "DCIS",
-            "options": [
-              "نشاندہی نہیں",
-              "موجود",
-              "وسیع انٹراڈکٹل جزو (EIC) کے لیے منفی",
-              "وسیع انٹراڈکٹل جزو (EIC) کے لیے مثبت",
-              "پری سرجیکل (نیواڈجوانٹ) تھیراپی کے بعد صرف DCIS موجود ہے"
-            ]
-          },
-          "size_extent": {
-            "label": "DCIS کا سائز (وسعت)"
-          },
-          "architectural_patterns": {
-            "label": "تعمیراتی نمونے",
-            "options": [
-              "کومیڈو",
-              "پیجٹ بیماری (نپل کی جلد پر DCIS)",
-              "کریبریفارم",
-              "مائیکروپاپیلری",
-              "پاپیلری",
-              "ٹھوس",
-              "Other"
-            ],
-            "other_specify": "دیگر، وضاحت کریں"
-          },
-          "nuclear_grade": {
-            "label": "نیوکلیر گریڈ",
-            "options": [
-              "گریڈ I (کم)",
-              "گریڈ II (درمیانی)",
-              "گریڈ III (اعلی)"
-            ]
-          },
-          "necrosis": {
-            "label": "نیکروسس",
-            "options": [
-              "نشاندہی نہیں",
-              "Present, focal (small foci or single cell necrosis)",
-              "Present, central (expansive \"comedo\" necrosis)"
-            ]
-          },
-          "number_of_blocks_with_dcis": {
-            "label": "DCIS والے بلاکس کی تعداد"
-          },
-          "number_of_blocks_examined": {
-            "label": "جانچے گئے بلاکس کی تعداد"
-          },
-          "cannot_be_excluded": {
-            "label": "خارج نہیں کیا جا سکتا"
-          }
-        }
-      },
-      "lcis": {}
-    }
-  },
-  "tumor_extent": {
-    "label": "ٹیومر کی وسعت",
-    "fields": {
-      "extent_status": {},
-      "skin_invasion": {},
-      "skin_satellite_foci": {},
-      "skeletal_muscle": {}
-    }
-  },
-  "invasion_and_calcifications": {
-    "label": "حملہ اور مائیکرو کیلشیفیکیشنز",
-    "fields": {
-      "lymphovascular_invasion": {
-        "fields": {
-          "status": {
-            "label": "لمفاتی اور/یا عروقی حملہ",
-            "options": [
-              "نشاندہی نہیں",
-              "موجود",
-              "متعین نہیں کیا جا سکتا"
-            ],
-            "cannot_be_determined_specify": "متعین نہیں کیا جا سکتا، وضاحت کریں"
-          },
-          "extent": {
-            "label": "لمفاوسکولر حملے کی وسعت",
-            "options": [
-              "فوکل (ایک بلاک میں)",
-              "وسیع (دو یا زیادہ بلاکس میں)"
-            ]
-          }
-        }
-      },
-      "dermal_lymphovascular_invasion": {
-        "cannot_be_determined_specify": "متعین نہیں کیا جا سکتا، وضاحت کریں"
-      },
-      "microcalcifications": {
-        "other_specify": "دیگر، وضاحت کریں"
+      "findings": {
+        "label": "اضافی مشاہدات",
+        "type": "text",
+        "value": ""
       }
     }
-  },
-  "treatment_effect_and_rcb": {
-    "label": "علاج کا اثر اور باقی ماندہ کینسر بوجھ",
-    "fields": {
-      "treatment_effect_breast": {},
-      "treatment_effect_lymph_nodes": {},
-      "rcb_parameters": {
-        "fields": {
-          "primary_tumor_bed_greatest_dimension_mm": {
-            "label": "پرائمری ٹیومر بیڈ کی سب سے بڑی جہت (ملی میٹر)"
-          },
-          "primary_tumor_bed_second_dimension_mm": {
-            "label": "پرائمری ٹیومر بیڈ کی دوسری بڑی جہت (ملی میٹر)"
-          },
-          "overall_cancer_cellularity_percent": {
-            "label": "مجموعی کینسر سیلولیرٹی کا فیصد"
-          },
-          "in_situ_disease_percent": {
-            "label": "کینسر کا وہ فیصد جو in situ بیماری ہو"
-          },
-          "number_of_positive_lymph_nodes": {
-            "label": "مثبت لمف نوڈز کی تعداد"
-          },
-          "largest_nodal_metastasis_diameter_mm": {
-            "label": "سب سے بڑے نوڈل میٹاسٹیسس کا قطر (ملی میٹر)"
-          },
-          "residual_cancer_burden": {
-            "label": "بقایا کینسر کا بوجھ (RCB)"
-          },
-          "residual_cancer_burden_class": {
-            "label": "بقایا کینسر کے بوجھ کی کلاس (RCB)",
-            "options": [
-              "RCB-0 (pCR)",
-              "RCB-I",
-              "RCB-II",
-              "RCB-III"
-            ]
-          }
-        }
-      }
-    }
-  },
-  "ptnm_classification": {
-    "label": "pTNM درجہ بندی",
-    "fields": {
-      "modified_classification": {},
-      "pT_category": {},
-      "T_suffix": {},
-      "pN_category": {},
-      "N_suffix": {},
-      "pM_category": {},
-      "previous_case_number": {}
-    }
-  },
-  "domain": {
-    "fields": {}
-  },
-  "protocol_posting_date": {
-    "fields": {}
-  },
-  "standards": {
-    "fields": {}
   }
 }

@@ -1,6 +1,9 @@
 {
-  "templateName": "فلوئڈ سائٹولوجی رپورٹنگ ٹیمپلیٹ (سیروس فلوئڈ سائٹوپیتھولوجی کے لیے موجودہ بین الاقوامی نظام)",
+  "templateId": "fluid_cytology_international_serous_fluid",
+  "templateName": "فلوئڈ سائٹولوجی رپورٹنگ ٹیمپلیٹ (سیروس فلوئڈ سائٹوپیتھولوجی کے لیے بین الاقوامی نظام)",
   "language": "ur",
+  "direction": "rtl",
+  "rtl": true,
   "sections": {
     "specimen": "نمونہ",
     "preparation_methods": "تیاری کے طریقے",
@@ -23,7 +26,7 @@
     "microscopic_description_brief": "خردبینی تفصیل (مختصر)",
     "favor_diagnosis": "اگر خبیث / مشتبہ ہو تو غالب امکان",
     "favor_other": "دیگر",
-    "cell_block_immunocytochemistry": "سیل بلاک امیونوسائٹو کیمسٹری",
+    "cell_block_immunocytochemistry": "سیل بلاک امیونوسائٹوکیمسٹری",
     "flow_cytometry": "فلو سائٹومیٹری",
     "molecular_studies": "مالیکیولر مطالعات",
     "comment_text": "تبصرہ"
@@ -42,7 +45,7 @@
     "Hemorrhagic": "خونی",
     "Turbid": "گدلا",
     "Conventional smear": "روایتی اسمئیر",
-    "Cytospin": "سائٹو اسپن",
+    "Cytospin": "سائٹواسپن",
     "Liquid-based preparation": "مائع پر مبنی تیاری",
     "Yes": "ہاں",
     "No": "نہیں",
@@ -57,7 +60,8 @@
     "Metastatic adenocarcinoma": "میٹاسٹیٹک ایڈینوکارسینوما",
     "Mesothelioma": "میسوتھیلیوما",
     "Hematolymphoid malignancy": "ہیماتولمفائیڈ خباثت",
-    "Poorly differentiated carcinoma": "کم تمیز یافتہ کارسینوما"
+    "Poorly differentiated carcinoma": "کم متمایز کارسینوما",
+    "Other (favor)": "دیگر"
   },
   "defaults": {
     "comment_text": "کلینیکل ہسٹری، امیجنگ، اور سابقہ پیتھولوجی کے ساتھ مطابقت دیکھی جائے۔ اگر طبی طور پر مناسب ہو تو مزید ٹشو سیمپلنگ کی سفارش کی جا سکتی ہے۔"

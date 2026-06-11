@@ -1,0 +1,66 @@
+{
+  "templateId": "salivary_gland_cytology_milan",
+  "summaryType": "rule_based_patient_facing_summary",
+  "version": "1.0",
+  "language": "fr",
+  "system": "Système de Milan pour le compte rendu de la cytopathologie des glandes salivaires",
+  "triggerField": "milan_category",
+  "summaries": {
+    "milan_i_non_diagnostic": {
+      "professionalLabel": "Catégorie Milan I : Non diagnostique",
+      "patientTitle": "L'échantillon n'était pas suffisant pour poser un diagnostic clair",
+      "plainLanguageSummary": "L'échantillon de glande salivaire ne contenait pas assez de matériel exploitable pour établir un diagnostic clair.",
+      "whatThisMeans": "Cela ne signifie pas qu'un cancer a été détecté. Cela signifie que l'échantillon n'était pas suffisamment adéquat pour fournir une réponse fiable.",
+      "possibleNextSteps": "Votre médecin pourra recommander un nouveau prélèvement, une réévaluation de l'imagerie ou un bilan complémentaire en fonction de la tuméfaction et des données cliniques.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, de l'imagerie et, le cas échéant, de vos résultats antérieurs."
+    },
+    "milan_ii_non_neoplastic": {
+      "professionalLabel": "Catégorie Milan II : Non néoplasique",
+      "patientTitle": "Aucune tumeur identifiée",
+      "plainLanguageSummary": "L'échantillon montre des modifications non tumorales, telles que des modifications inflammatoires ou des modifications réactionnelles bénignes.",
+      "whatThisMeans": "Ce résultat ne montre pas de tumeur des glandes salivaires dans l'échantillon examiné.",
+      "possibleNextSteps": "Votre médecin pourra recommander un suivi clinique ou par imagerie, surtout si la tuméfaction persiste ou évolue.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, de l'imagerie et, le cas échéant, de vos résultats antérieurs."
+    },
+    "milan_iii_aus": {
+      "professionalLabel": "Catégorie Milan III : Atypie de signification indéterminée (AUS)",
+      "patientTitle": "Quelques cellules légèrement inhabituelles ont été observées",
+      "plainLanguageSummary": "L'échantillon montre quelques cellules d'aspect inhabituel, mais les résultats ne sont pas suffisants pour classer clairement la lésion.",
+      "whatThisMeans": "Il s'agit d'un résultat indéterminé. Il peut être dû à des modifications bénignes, mais une évaluation complémentaire peut être nécessaire.",
+      "possibleNextSteps": "Votre médecin pourra recommander une nouvelle ponction à l'aiguille fine, une corrélation avec l'imagerie ou un avis spécialisé.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, de l'imagerie et, le cas échéant, de vos résultats antérieurs."
+    },
+    "milan_iva_benign_neoplasm": {
+      "professionalLabel": "Catégorie Milan IVa : Néoplasme bénin",
+      "patientTitle": "Tumeur bénigne de la glande salivaire",
+      "plainLanguageSummary": "L'échantillon est le plus compatible avec une tumeur bénigne, non cancéreuse, de la glande salivaire.",
+      "whatThisMeans": "Les tumeurs bénignes ne sont pas cancéreuses, mais certaines peuvent continuer à croître ou nécessiter une ablation selon le type, la taille et les symptômes.",
+      "possibleNextSteps": "Votre médecin pourra recommander une consultation chirurgicale, un suivi par imagerie ou une ablation en fonction de la situation clinique.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, de l'imagerie et, le cas échéant, de vos résultats antérieurs."
+    },
+    "milan_ivb_sump": {
+      "professionalLabel": "Catégorie Milan IVb : Néoplasme des glandes salivaires à potentiel malin incertain (SUMP)",
+      "patientTitle": "Tumeur de la glande salivaire au comportement incertain",
+      "plainLanguageSummary": "L'échantillon montre une tumeur de la glande salivaire, mais la cytologie seule ne permet pas de déterminer avec certitude si elle est bénigne ou maligne.",
+      "whatThisMeans": "Une évaluation complémentaire est généralement nécessaire pour comprendre la nature exacte de la tumeur.",
+      "possibleNextSteps": "Votre médecin pourra recommander une consultation chirurgicale, une exérèse ou des examens complémentaires si disponibles.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, de l'imagerie et, le cas échéant, de vos résultats antérieurs."
+    },
+    "milan_v_suspicious_for_malignancy": {
+      "professionalLabel": "Catégorie Milan V : Suspect de malignité",
+      "patientTitle": "Résultat suspect de la glande salivaire",
+      "plainLanguageSummary": "L'échantillon montre des modifications suspectes de malignité, mais peut ne pas être suffisant pour établir un diagnostic définitif.",
+      "whatThisMeans": "Ce résultat suscite une préoccupation importante, et une évaluation complémentaire est généralement nécessaire.",
+      "possibleNextSteps": "Votre médecin pourra recommander une consultation chirurgicale, un prélèvement complémentaire, une imagerie ou d'autres examens.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, de l'imagerie et, le cas échéant, de vos résultats antérieurs."
+    },
+    "milan_vi_malignant": {
+      "professionalLabel": "Catégorie Milan VI : Malin",
+      "patientTitle": "Des cellules cancéreuses ont été identifiées dans l'échantillon de glande salivaire",
+      "plainLanguageSummary": "L'échantillon montre des cellules malignes, ce qui signifie que des cellules cancéreuses ont été identifiées.",
+      "whatThisMeans": "Ce résultat nécessite généralement une prise en charge spécialisée et une planification du traitement.",
+      "possibleNextSteps": "Votre médecin organisera vraisemblablement une orientation vers un spécialiste, une imagerie, une intervention chirurgicale ou une autre planification du traitement selon le type et l'étendue du cancer.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, de l'imagerie et, le cas échéant, de vos résultats antérieurs."
+    }
+  }
+}

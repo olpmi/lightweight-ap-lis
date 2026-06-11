@@ -1,5 +1,6 @@
 {
-  "templateName": "MODÈLE DE COMPTE RENDU DE CYTOLOGIE DES GLANDES SALIVAIRES (SYSTÈME DE MILAN POUR LA CYTOPATHOLOGIE DES GLANDES SALIVAIRES)",
+  "templateId": "salivary_gland_cytology_milan",
+  "templateName": "Modèle de compte rendu de cytologie des glandes salivaires (système de Milan pour la cytopathologie des glandes salivaires)",
   "language": "fr",
   "sections": {
     "specimen": "Prélèvement",
@@ -10,10 +11,10 @@
     "comment": "Commentaire"
   },
   "fields": {
-    "salivary_gland_fna_site": "FNA de glande salivaire (sélectionner l’option appropriée)",
-    "laterality": "Latéralité (sélectionner l’option appropriée)",
+    "salivary_gland_fna_site": "FNA de glande salivaire (sélectionner l'option appropriée)",
+    "laterality": "Latéralité (sélectionner l'option appropriée)",
     "lesion_size_cm": "Taille de la lésion (cm)",
-    "imaging_findings": "Résultats de l’imagerie (si fournis)",
+    "imaging_findings": "Résultats de l'imagerie (si fournis)",
     "adequacy_status": "Adéquation",
     "milan_category": "Catégorie de Milan",
     "microscopic_description_text": "Description microscopique (texte libre)",
@@ -28,7 +29,7 @@
     "Right": "Droite",
     "Left": "Gauche",
     "Midline": "Ligne médiane",
-    "Satisfactory for evaluation": "Satisfaisant pour l’évaluation",
+    "Satisfactory for evaluation": "Satisfaisant pour l'évaluation",
     "Non-diagnostic": "Non diagnostique",
     "I. Non-diagnostic": "I. Non diagnostique",
     "II. Non-neoplastic": "II. Non néoplasique",
@@ -40,6 +41,6 @@
     "Clinical / radiologic correlation": "Corrélation clinique / radiologique",
     "Repeat FNA": "Répéter la FNA",
     "Excision / surgical consultation": "Exérèse / consultation chirurgicale",
-    "Further ancillary studies (cell block / immunocytochemistry / molecular testing if available)": "Études complémentaires supplémentaires (cell block / immunocytochemie / analyses moléculaires si disponibles)"
+    "Further ancillary studies (cell block / immunocytochemistry / molecular testing if available)": "Études complémentaires (bloc cellulaire / immunocytochimie / analyses moléculaires si disponibles)"
   }
 }

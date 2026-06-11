@@ -1,10 +1,13 @@
 {
-  "title": "Upasuaji wa Koloni na Rektamu (Kiolezo cha Gross)",
+  "template_id": "colon_rectum_resection_gross_tumor_v1",
+  "domain": "anatomic_pathology",
+  "lang": "sw",
+  "title": "Upasuaji wa koloni na rektamu (kiolezo cha uchunguzi wa macho)",
   "specimen": {
     "label": "Sampuli",
     "fields": {
       "procedure_type": {
-        "label": "Aina ya upasuaji/utaratibu (kama ilivyoelezwa na daktari)"
+        "label": "Aina ya upasuaji (kama ilivyoelezwa na daktari)"
       },
       "specimen_length_mm": {
         "label": "Urefu wa sampuli (mm)"
@@ -19,10 +22,7 @@
     "fields": {
       "tumor_perforation": {
         "label": "Kutoboka kwa uvimbe",
-        "options": [
-          "Hakupo",
-          "Kupo"
-        ]
+        "options": ["Haipo", "Ipo"]
       },
       "tumor_dimensions_mm": {
         "label": "Vipimo vya uvimbe (mm)"
@@ -30,7 +30,7 @@
       "tumor_site": {
         "label": "Eneo la uvimbe",
         "options": [
-          "Sekamu",
+          "Caecum",
           "Koloni inayopanda",
           "Mpindo wa hepatiki",
           "Koloni ya kuvuka",
@@ -42,18 +42,12 @@
         ]
       },
       "invades_peritoneal_surface": {
-        "label": "Uvimbe umevamia uso wa peritoneamu",
-        "options": [
-          "Ndiyo",
-          "Hapana"
-        ]
+        "label": "Uvimbe umevamia uso wa peritonemu",
+        "options": ["Ndiyo", "Hapana"]
       },
       "forms_discrete_serosal_nodules": {
         "label": "Uvimbe unatengeneza vinundu tofauti kwenye serosa",
-        "options": [
-          "Ndiyo",
-          "Hapana"
-        ]
+        "options": ["Ndiyo", "Hapana"]
       }
     }
   },
@@ -67,7 +61,7 @@
         "label": "Umbali hadi mpaka wa distali (mm)"
       },
       "distance_to_circumferential_margin_mm": {
-        "label": "Umbali hadi mpaka wa mzunguko usiofunikwa na peritoneum (mm)"
+        "label": "Umbali hadi mpaka wa mzunguko usiofunikwa na peritonemu (mm)"
       }
     }
   },
@@ -76,22 +70,14 @@
     "fields": {
       "mesorectum_intactness": {
         "label": "Ukamilifu wa mesorektamu",
-        "options": [
-          "Haujakamilika (Daraja 1)",
-          "Karibu kamili (Daraja 2)",
-          "Kamili (Daraja 3)"
-        ]
+        "options": ["Haujakamilika (Daraja 1)", "Karibu kamili (Daraja 2)", "Kamili (Daraja 3)"]
       },
       "relationship_to_anterior_peritoneal_reflection": {
-        "label": "Uhusiano wa uvimbe na mkunjo wa mbele wa peritoneamu",
-        "options": [
-          "Wote uko juu yake",
-          "Uko juu na chini yake",
-          "Wote uko chini yake"
-        ]
+        "label": "Uhusiano wa uvimbe na mkunjo wa mbele wa peritonemu",
+        "options": ["Wote uko juu yake", "Inapita juu na chini yake", "Wote uko chini yake"]
       },
       "distance_from_dentate_line_mm": {
-        "label": "Umbali kutoka mstari wa dentate (mm)"
+        "label": "Umbali kutoka mstari wa dentate (mm) katika upasuaji wa tumbo na perinea"
       }
     }
   },
@@ -100,10 +86,7 @@
     "fields": {
       "status": {
         "label": "Polipu",
-        "options": [
-          "Hakupo",
-          "Kupo"
-        ]
+        "options": ["Haipo", "Ipo"]
       },
       "if_present_details": {
         "label": "Ikiwa zipo (andika idadi, kiwango cha ukubwa, na mwonekano wa macho)"
@@ -159,7 +142,7 @@
     "label": "Uchunguzi wa macho",
     "fields": {
       "grossed_by_initials": {
-        "label": "Imefanyiwa uchunguzi wa macho na"
+        "label": "Imefanyiwa uchunguzi wa macho na (herufi za kwanza)"
       },
       "date": {
         "label": "Tarehe"

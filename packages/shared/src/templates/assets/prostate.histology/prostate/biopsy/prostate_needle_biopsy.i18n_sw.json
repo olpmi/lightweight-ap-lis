@@ -1,7 +1,9 @@
 {
   "template_id": "prostate_needle_biopsy_v1",
+  "domain": "anatomic_pathology",
+  "protocol_posting_date": "September 2023",
   "lang": "sw",
-  "title": "Tezi ya prostate: biopsy ya sindano",
+  "title": "Tezi ya prostate: biopsi ya sindano",
   "tumor": {
     "label": "Uvimbe",
     "fields": {
@@ -10,29 +12,41 @@
         "fields": {
           "effects": {
             "label": "Athari ya matibabu",
+            "type": "multi_select",
             "options": [
               "Hakuna tiba ya kabla ya upasuaji inayojulikana",
               "Haijaonekana",
-              "Athari ya radiotherapy ipo",
+              "Athari ya tiba ya mionzi ipo",
               "Athari ya tiba ya homoni ipo",
               "Athari nyingine za tiba zipo",
-              "Haiwezi kubainishwa"
-            ]
+              "Haiwezi kuamuliwa"
+            ],
+            "value": []
           },
           "radiation_therapy_effect_specify": {
-            "label": "Athari ya radiotherapy ipo"
+            "label": "Athari ya tiba ya mionzi ipo",
+            "type": "text",
+            "value": ""
           },
           "hormonal_therapy_effect_specify": {
-            "label": "Athari ya tiba ya homoni ipo"
+            "label": "Athari ya tiba ya homoni ipo",
+            "type": "text",
+            "value": ""
           },
           "other_therapy_effects_specify": {
-            "label": "Athari nyingine za tiba zipo"
+            "label": "Athari nyingine za tiba zipo",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_specify": {
-            "label": "Haiwezi kubainishwa"
+            "label": "Haiwezi kuamuliwa",
+            "type": "text",
+            "value": ""
           },
           "comment": {
-            "label": "Maoni kuhusu athari ya matibabu"
+            "label": "Maoni kuhusu athari ya matibabu",
+            "type": "text",
+            "value": ""
           }
         }
       }
@@ -40,10 +54,12 @@
   },
   "positive_specimens": {
     "label": "Sampuli au eneo chanya",
+    "type": "repeatable_group",
     "item_label": "Sampuli chanya",
     "fields": {
       "positive_specimen_location": {
         "label": "Eneo la sampuli chanya",
+        "type": "select",
         "options": [
           "Kulia",
           "Msingi wa kulia (RB)",
@@ -68,74 +84,79 @@
           "Apeksi ya kushoto kati (LAM)",
           "Eneo la mpito la kushoto (LTZ)",
           "Kidonda kingine cha TRUS",
-          "Biopsy iliyoongozwa na MRI",
+          "Biopsi iliyoongozwa na MRI",
           "Haijabainishwa"
         ],
-        "location_specify": "Mahali, taja"
+        "value": "",
+        "location_specify": ""
       },
       "histologic_type": {
-        "label": "Aina ya histolojia",
+        "label": "Aina ya kihistolojia",
         "fields": {
           "category": {
             "label": "Kategoria",
+            "type": "select",
             "options": [
               "Ya tezi",
-              "Squamous",
+              "Skwamasi",
               "Neuroendocrine",
-              "Aina nyingine ya histolojia ambayo haijaorodheshwa",
-              "Karsinoma, aina haiwezi kubainishwa"
-            ]
-          },
-          "type": {
-            "label": "Aina ya histolojia",
-            "options": [
-              "Acinar adenocarcinoma, ya kawaida",
-              "Acinar adenocarcinoma, yenye seli kama signet-ring",
-              "Acinar adenocarcinoma, yenye giant cell pleomorphic",
-              "Acinar adenocarcinoma, sarcomatoid",
-              "Acinar adenocarcinoma, inayofanana na prostatic intraepithelial neoplasia",
-              "Intraductal carcinoma iliyojitenga",
-              "Ductal adenocarcinoma",
-              "Adenosquamous carcinoma",
-              "Squamous cell carcinoma",
-              "Basal cell (adenoid cystic) carcinoma",
-              "Adenocarcinoma yenye utofautishaji wa neuroendocrine",
-              "Uvímbe wa neuroendocrine uliotofautishwa vizuri",
-              "Small cell neuroendocrine carcinoma",
-              "Large cell neuroendocrine carcinoma",
-              "Aina nyingine ya histolojia ambayo haijaorodheshwa",
+              "Aina nyingine ya kihistolojia ambayo haijaorodheshwa",
               "Karsinoma, aina haiwezi kubainishwa"
             ],
-            "other_specify": "Nyingine, taja",
-            "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
+            "value": ""
+          },
+          "type": {
+            "label": "Aina ya kihistolojia",
+            "type": "select",
+            "options": [
+              "Adenokarsinoma ya asinari, ya kawaida",
+              "Adenokarsinoma ya asinari, yenye seli kama pete ya mhuri",
+              "Adenokarsinoma ya asinari, yenye seli kubwa za pleomofikia",
+              "Adenokarsinoma ya asinari, sarkomatoid",
+              "Adenokarsinoma ya asinari, inayofanana na neoplasia ya ndani ya epitheliamu ya prostate",
+              "Karsinoma ya intraductal iliyojitenga",
+              "Adenokarsinoma ya ductal",
+              "Karsinoma ya adenoskwamasi",
+              "Karsinoma ya seli skwamasi",
+              "Karsinoma ya seli basali (adenoid cystic)",
+              "Adenokarsinoma yenye utofautishaji wa neuroendocrine",
+              "Uvimbe wa neuroendocrine uliotofautishwa vizuri",
+              "Karsinoma ya seli ndogo ya neuroendocrine",
+              "Karsinoma ya seli kubwa ya neuroendocrine",
+              "Aina nyingine ya kihistolojia ambayo haijaorodheshwa",
+              "Karsinoma, aina haiwezi kubainishwa"
+            ],
+            "value": "",
+            "other_specify": "",
+            "cannot_be_determined_specify": ""
           },
           "comment": {
-            "label": "Maoni kuhusu aina ya histolojia"
+            "label": "Maoni kuhusu aina ya kihistolojia",
+            "type": "text",
+            "value": ""
           }
         }
       },
       "histologic_grade": {
-        "label": "Daraja la histolojia",
+        "label": "Daraja la kihistolojia",
         "fields": {
           "grade_status": {
             "label": "Daraja",
-            "options": [
-              "Haihusiki",
-              "Haiwezi kutathminiwa",
-              "Inaweza kutathminiwa"
-            ],
-            "not_applicable_specify": "Haihusiki, taja",
-            "cannot_be_assessed_specify": "Haiwezi kutathminiwa, taja"
+            "type": "select",
+            "options": ["Haihusiki", "Haiwezi kutathminiwa", "Inaweza kutathminiwa"],
+            "value": "",
+            "not_applicable_specify": "",
+            "cannot_be_assessed_specify": ""
           },
           "tumor_microfocus": {
             "label": "Microfocus ya uvimbe",
-            "options": [
-              "Haijaonekana",
-              "Ipo"
-            ]
+            "type": "select",
+            "options": ["Haijaonekana", "Ipo"],
+            "value": ""
           },
           "grade_group": {
             "label": "Kikundi cha daraja",
+            "type": "select",
             "options": [
               "Kikundi cha daraja 1 (Gleason Score 3 + 3 = 6)",
               "Kikundi cha daraja 2 (Gleason Score 3 + 4 = 7)",
@@ -146,10 +167,12 @@
               "Kikundi cha daraja 5 (Gleason Score 4 + 5 = 9)",
               "Kikundi cha daraja 5 (Gleason Score 5 + 4 = 9)",
               "Kikundi cha daraja 5 (Gleason Score 5 + 5 = 10)"
-            ]
+            ],
+            "value": ""
           },
           "pattern_4_percentage_for_grade_group_2": {
-            "label": "Asilimia ya pattern 4 kwa grade group 2",
+            "label": "Asilimia ya muundo 4 kwa kikundi cha daraja 2",
+            "type": "select",
             "options": [
               "Haihusiki (sampuli nyingine katika kesi hii zina Gleason Score ya 8 au zaidi)",
               "Chini ya au sawa na 5%",
@@ -158,10 +181,12 @@
               "21 - 30%",
               "31 - 40%",
               "Zaidi ya 40%"
-            ]
+            ],
+            "value": ""
           },
           "pattern_4_percentage_for_grade_group_3": {
-            "label": "Asilimia ya pattern 4 kwa grade group 3",
+            "label": "Asilimia ya muundo 4 kwa kikundi cha daraja 3",
+            "type": "select",
             "options": [
               "Haihusiki (sampuli nyingine katika kesi hii zina Gleason Score ya 8 au zaidi)",
               "Chini ya 61%",
@@ -169,52 +194,50 @@
               "71 - 80%",
               "81 - 90%",
               "Zaidi ya 90%"
-            ]
+            ],
+            "value": ""
           },
           "pattern_4_percentage_for_gleason_8_and_above": {
-            "label": "Asilimia ya pattern 4 (Gleason Score 8 na zaidi)"
+            "label": "Asilimia ya muundo 4 (Gleason Score 8 na zaidi)",
+            "type": "number",
+            "value": ""
           },
           "pattern_5_percentage_for_gleason_8_and_above": {
-            "label": "Asilimia ya pattern 5 (Gleason Score 8 na zaidi)"
+            "label": "Asilimia ya muundo 5 (Gleason Score 8 na zaidi)",
+            "type": "number",
+            "value": ""
           }
         }
       },
       "intraductal_carcinoma": {
-        "label": "Intraductal carcinoma (IDC)",
+        "label": "Karsinoma ya intraductal (IDC)",
         "fields": {
           "status": {
-            "label": "CIC",
-            "options": [
-              "Haijaonekana",
-              "Ipo"
-            ]
+            "label": "IDC",
+            "type": "select",
+            "options": ["Haijaonekana", "Ipo"],
+            "value": ""
           },
           "incorporated_into_grade": {
             "label": "IDC imejumuishwa kwenye daraja",
-            "options": [
-              "Ndiyo",
-              "Hapana",
-              "Haiwezi kubainishwa"
-            ],
-            "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
+            "type": "select",
+            "options": ["Ndiyo", "Hapana", "Haiwezi kuamuliwa"],
+            "value": "",
+            "cannot_be_determined_specify": ""
           }
         }
       },
       "cribriform_glands": {
-        "label": "Tezi za cribriform",
+        "label": "Tezi za kribriformu",
         "fields": {
           "status": {
-            "label": "Tezi za cribriform",
-            "options": [
-              "Haihusiki",
-              "Hazijaonekana",
-              "Zipo",
-              "Si dhahiri",
-              "Haiwezi kubainishwa"
-            ],
-            "present_specify": "Ipo, taja",
-            "equivocal_explain": "Haithibitishwi, eleza",
-            "cannot_be_determined_explain": "Haiwezi kuamuliwa, eleza"
+            "label": "Tezi za kribriformu",
+            "type": "select",
+            "options": ["Haihusiki", "Hazijaonekana", "Zipo", "Haisadikishi", "Haiwezi kuamuliwa"],
+            "value": "",
+            "present_specify": "",
+            "equivocal_explain": "",
+            "cannot_be_determined_explain": ""
           }
         }
       },
@@ -222,31 +245,32 @@
         "label": "Kiasi cha uvimbe",
         "fields": {
           "total_number_of_cores": {
-            "label": "Idadi jumla ya cores",
-            "options": [
-              "Taja idadi",
-              "Haiwezi kubainishwa"
-            ],
-            "number": "Idadi"
+            "label": "Jumla ya idadi ya cores",
+            "type": "select",
+            "options": ["Taja idadi", "Haiwezi kuamuliwa"],
+            "value": "",
+            "number": ""
           },
           "number_of_positive_cores": {
             "label": "Idadi ya cores chanya",
-            "options": [
-              "Taja idadi",
-              "Haiwezi kubainishwa"
-            ],
-            "number": "Idadi"
+            "type": "select",
+            "options": ["Taja idadi", "Haiwezi kuamuliwa"],
+            "value": "",
+            "number": ""
           },
           "tumor_measurement_technique": {
             "label": "Mbinu ya kupima uvimbe",
+            "type": "multi_select",
             "options": [
               "Fokasi moja endelevu",
               "Zingatia foci nyingi kama uvimbe endelevu",
               "Zingatia foci nyingi kama uvimbe usio endelevu"
-            ]
+            ],
+            "value": []
           },
           "percentage_of_prostatic_tissue_involved": {
             "label": "Asilimia ya tishu ya prostate iliyoathiriwa na uvimbe",
+            "type": "select",
             "options": [
               "Chini ya 1%",
               "1 - 5%",
@@ -260,88 +284,90 @@
               "71 - 80%",
               "81 - 90%",
               "Zaidi ya 90%",
-              "Haiwezi kubainishwa"
+              "Haiwezi kuamuliwa"
             ],
-            "cannot_be_determined_explain": "Haiwezi kuamuliwa, eleza"
+            "value": "",
+            "cannot_be_determined_explain": ""
           },
           "length_of_prostatic_tissue_involved": {
             "label": "Urefu wa tishu ya prostate iliyoathiriwa na uvimbe",
-            "options": [
-              "Taja kwa milimita (mm)",
-              "Chini ya 1 mm"
-            ],
-            "length_mm": "Urefu (mm)"
+            "type": "select",
+            "options": ["Taja kwa milimita (mm)", "Chini ya mm 1"],
+            "value": "",
+            "length_mm": ""
           }
         }
       },
       "periprostatic_fat_invasion": {
         "label": "Uvamizi wa mafuta ya periprostatic",
-        "options": [
-          "Haujaonekana",
-          "Upo",
-          "Si dhahiri",
-          "Haiwezi kubainishwa"
-        ],
-        "equivocal_explain": "Haithibitishwi, eleza",
-        "cannot_be_determined_explain": "Haiwezi kuamuliwa, eleza"
+        "type": "select",
+        "options": ["Haujaonekana", "Upo", "Haisadikishi", "Haiwezi kuamuliwa"],
+        "value": "",
+        "equivocal_explain": "",
+        "cannot_be_determined_explain": ""
       },
       "seminal_vesicle_or_ejaculatory_duct_invasion": {
         "label": "Uvamizi wa seminal vesicle / ejaculatory duct",
-        "options": [
-          "Haujaonekana",
-          "Upo",
-          "Si dhahiri",
-          "Haiwezi kubainishwa"
-        ],
-        "equivocal_explain": "Haithibitishwi, eleza",
-        "cannot_be_determined_explain": "Haiwezi kuamuliwa, eleza"
+        "type": "select",
+        "options": ["Haujaonekana", "Upo", "Haisadikishi", "Haiwezi kuamuliwa"],
+        "value": "",
+        "equivocal_explain": "",
+        "cannot_be_determined_explain": ""
       },
       "lymphovascular_invasion": {
         "label": "Uvamizi wa limfatiki na / au mishipa ya damu",
-        "options": [
-          "Haujaonekana",
-          "Upo",
-          "Si dhahiri",
-          "Haiwezi kubainishwa"
-        ],
-        "equivocal_explain": "Haithibitishwi, eleza",
-        "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
+        "type": "select",
+        "options": ["Haujaonekana", "Upo", "Haisadikishi", "Haiwezi kuamuliwa"],
+        "value": "",
+        "equivocal_explain": "",
+        "cannot_be_determined_specify": ""
       },
       "perineural_invasion": {
-        "label": "Uvamizi wa perineural",
-        "options": [
-          "Haujaonekana",
-          "Upo"
-        ]
+        "label": "Uvamizi wa perinerali",
+        "type": "select",
+        "options": ["Haujaonekana", "Upo"],
+        "value": ""
       },
       "additional_findings": {
         "label": "Matokeo ya ziada",
         "fields": {
           "findings": {
             "label": "Matokeo ya ziada",
+            "type": "multi_select",
             "options": [
-              "Hakuna yaliyoonekana",
-              "Atypical intraductal proliferation (AIP)",
-              "High-grade prostatic intraepithelial neoplasia (PIN)",
-              "Atypical small acinar proliferation / small focus of atypical glands (ASAP / ATYP)",
-              "Inflammation",
-              "Other"
-            ]
+              "Hakuna iliyopatikana",
+              "Ukuaji usio wa kawaida wa intraductal (AIP)",
+              "Neoplasia ya kiwango cha juu ya ndani ya epitheliamu ya prostate (PIN)",
+              "Ukuaji mdogo usio wa kawaida wa asinari / kipande kidogo cha tezi zisizo za kawaida (ASAP / ATYP)",
+              "Uvimbe (uchochezi)",
+              "Nyingine"
+            ],
+            "value": []
           },
           "none_identified_specify": {
-            "label": "Hakuna yaliyoonekana"
+            "label": "Hakuna iliyopatikana",
+            "type": "text",
+            "value": ""
           },
           "pin_specify": {
-            "label": "High-grade prostatic intraepithelial neoplasia (PIN)"
+            "label": "Neoplasia ya kiwango cha juu ya ndani ya epitheliamu ya prostate (PIN)",
+            "type": "text",
+            "value": ""
           },
           "asap_atyp_specify": {
-            "label": "Atypical small acinar proliferation / small focus of atypical glands (ASAP / ATYP)"
+            "label": "Ukuaji mdogo usio wa kawaida wa asinari / kipande kidogo cha tezi zisizo za kawaida (ASAP / ATYP)",
+            "type": "text",
+            "value": ""
           },
           "inflammation_specify_type": {
-            "label": "Inflammation (taja aina)"
+            "label": "Uvimbe (uchochezi) — taja aina",
+            "type": "text",
+            "value": ""
           },
           "other_specify": {
-            "label": "Nyingine (taja)"
+            "label": "Nyingine (taja)",
+            "type": "text",
+            "value": ""
           }
         }
       }
@@ -351,7 +377,9 @@
     "label": "Maoni",
     "fields": {
       "comment_text": {
-        "label": "Maoni"
+        "label": "Maoni",
+        "type": "text",
+        "value": ""
       }
     }
   }

@@ -1,27 +1,30 @@
 {
   "template_id": "uterine_cervix_biopsy_v1",
+  "domain": "anatomic_pathology",
+  "protocol_posting_date": "March 2023",
   "lang": "sw",
-  "title": "KIOLEZO CHA RIPOTI: SHINGO YA KIZAZI, BIOPSI",
+  "title": "Kiolezo cha ripoti: mlango wa mfuko wa uzazi, biopsi",
   "tumor": {
-    "label": "Tumor",
+    "label": "Uvimbe wa saratani",
     "fields": {
       "histologic_type": {
         "label": "Aina ya kihistolojia",
+        "type": "select",
         "options": [
-          "Karsinoma ya seli squamous, inayohusiana na HPV",
-          "Karsinoma ya seli squamous, isiyohusiana na HPV",
-          "Karsinoma ya seli squamous, NOS (inakubalika wakati uchunguzi wa p16 au HPV haupatikani)",
+          "Karsinoma ya seli skwamasi, inayohusiana na HPV",
+          "Karsinoma ya seli skwamasi, isiyohusiana na HPV",
+          "Karsinoma ya seli skwamasi, NOS (inakubalika wakati uchunguzi wa p16 au HPV haupatikani)",
           "Adenokarsinoma, NOS",
           "Adenokarsinoma, inayohusiana na HPV",
           "Adenokarsinoma, isiyohusiana na HPV, NOS",
           "Adenokarsinoma, isiyohusiana na HPV, aina ya gastriki",
           "Adenokarsinoma, isiyohusiana na HPV, aina ya seli angavu",
-          "Adenokarsinoma, isiyohusiana na HPV, aina ya mesonefriki",
+          "Adenokarsinoma, isiyohusiana na HPV, aina ya mesonefiriki",
           "Adenokarsinoma ya aina ya endometrioid, NOS",
           "Karsinosarkoma",
-          "Karsinoma adenosquamous",
-          "Karsinoma adenoid basal",
-          "Karsinoma mucoepidermoid",
+          "Karsinoma ya adenosquamasi",
+          "Karsinoma ya adenoid ya msingi",
+          "Karsinoma ya mukoepidermoid",
           "Karsinoma, haiwezi kuainishwa (karsinoma isiyotofautishwa)",
           "Uvimbe wa neuroendocrine, NOS",
           "Uvimbe wa neuroendocrine, daraja la 1",
@@ -30,45 +33,54 @@
           "Karsinoma ya neuroendocrine ya seli kubwa, daraja la juu",
           "Karsinoma ya neuroendocrine, NOS",
           "Karsinoma mchanganyiko ya neuroendocrine na isiyo ya neuroendocrine",
-          "Aina nyingine ya kihistolojia ambayo haijaorodheshwa (taja): _________________",
-          "Karsinoma, aina haiwezi kubainishwa: _________________"
+          "Aina nyingine ya kihistolojia ambayo haijaorodheshwa",
+          "Karsinoma, aina haiwezi kubainishwa"
         ],
-        "other_specify": "Nyingine, taja",
-        "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja",
-        "comment": "Maoni"
+        "value": "",
+        "other_specify": "",
+        "cannot_be_determined_specify": "",
+        "comment": ""
       },
       "histologic_grade": {
         "label": "Daraja la kihistolojia",
+        "type": "select",
         "options": [
           "G1, imetofautishwa vizuri",
           "G2, imetofautishwa kwa wastani",
           "G3, imetofautishwa vibaya",
-          "GX, haiwezi kutathminiwa: _________________",
-          "Haihusiki: _________________"
+          "GX, haiwezi kutathminiwa",
+          "Haihusiki"
         ],
-        "cannot_be_assessed_specify": "Haiwezi kutathminiwa, taja",
-        "not_applicable_specify": "Haihusiki, taja"
+        "value": "",
+        "cannot_be_assessed_specify": "",
+        "not_applicable_specify": ""
       },
       "lymphovascular_invasion": {
-        "equivocal_explain": "Haithibitishwi, eleza",
-        "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
+        "label": "Uvamizi wa limfatiki na / au mishipa ya damu",
+        "type": "select",
+        "options": ["Haijaonekana", "Ipo", "Haisadikishi", "Haiwezi kuamuliwa"],
+        "value": "",
+        "equivocal_explain": "",
+        "cannot_be_determined_specify": ""
       }
     }
   },
   "additional_findings": {
-    "label": "MATOKEO YA ZIADA",
+    "label": "Matokeo ya ziada",
     "fields": {
       "findings": {
         "label": "Matokeo ya ziada (chagua yote yanayohusika)",
+        "type": "multi_select",
         "options": [
-          "Hakuna yaliyotambuliwa",
-          "Lesheni ya squamous intraepithelial ya daraja la chini (CIN 1)",
-          "Lesheni ya squamous intraepithelial ya daraja la juu (CIN 2 au 3)",
-          "Adenokarsinoma in situ ya endoserviksi",
-          "Uvimbe / uchochezi",
-          "Nyingine (taja): _________________"
+          "Hakuna yaliyopatikana",
+          "Lesheni ya skwamasi ya ndani ya epitheliamu ya daraja la chini (CIN 1)",
+          "Lesheni ya skwamasi ya ndani ya epitheliamu ya daraja la juu (CIN 2 au 3)",
+          "Adenokarsinoma in situ ya endoseviksi",
+          "Uvimbe (uchochezi)",
+          "Nyingine"
         ],
-        "other_specify": "Nyingine, taja"
+        "value": [],
+        "other_specify": ""
       }
     }
   }

@@ -1,30 +1,36 @@
 {
-  "title": "استئصال ورم المعدة (قالب الفحص العياني)",
+  "template_id": "gastric_tumor_resection_gross_v1",
+  "domain": "anatomic_pathology",
+  "lang": "ar",
+  "ui": {
+    "direction": "rtl"
+  },
+  "title": "استئصال ورم المعدة (نموذج الفحص العياني)",
   "specimen": {
     "label": "العينة",
     "fields": {
       "type_of_resection": {
-        "label": "نوع الاستئصال (اختر واحدًا)",
+        "label": "نوع الاستئصال",
         "options": [
           "استئصال المريء والمعدة",
           "استئصال المعدة الكامل",
           "استئصال جزئي للمعدة، قريب",
           "استئصال جزئي للمعدة، بعيد",
-          "أخرى (يُحدد)"
+          "أخرى"
         ],
-        "other_specify": "أخرى (يُحدد)"
+        "other_specify": ""
       },
       "stomach_greater_curvature_mm": {
-        "label": "المعدة، الانحناء الكبير"
+        "label": "المعدة، الانحناء الكبير (مم)"
       },
       "stomach_lesser_curvature_mm": {
-        "label": "المعدة، الانحناء الصغير"
+        "label": "المعدة، الانحناء الصغير (مم)"
       },
       "esophagus_mm": {
-        "label": "المريء"
+        "label": "المريء (مم)"
       },
       "duodenum_mm": {
-        "label": "الاثنا عشر"
+        "label": "الاثنا عشر (مم)"
       }
     }
   },
@@ -32,7 +38,7 @@
     "label": "الورم",
     "fields": {
       "macroscopic_tumor_site": {
-        "label": "الموقع العياني للورم (اختر كل ما ينطبق)",
+        "label": "الموقع العياني للورم",
         "options": [
           "الفؤاد",
           "القاع",
@@ -60,33 +66,33 @@
         ]
       },
       "tumor_dimensions_mm": {
-        "label": "أبعاد الورم"
+        "label": "أبعاد الورم (مم)"
       },
       "distance_to_proximal_margin_mm": {
-        "label": "الهامش القريب"
+        "label": "المسافة إلى الهامش القريب (مم)"
       },
       "distance_to_distal_margin_mm": {
-        "label": "الهامش البعيد"
+        "label": "المسافة إلى الهامش البعيد (مم)"
       },
       "distance_to_lesser_curvature_margin_mm": {
-        "label": "هامش الانحناء الصغير"
+        "label": "المسافة إلى هامش الانحناء الصغير (مم)"
       },
       "distance_to_greater_curvature_margin_mm": {
-        "label": "هامش الانحناء الكبير"
+        "label": "المسافة إلى هامش الانحناء الكبير (مم)"
       }
     }
   },
   "lymph_nodes": {
-    "label": "العقد اللمفية",
+    "label": "العقد اللمفاوية",
     "fields": {
       "number_identified": {
-        "label": "العدد المحدد"
+        "label": "العدد المُحدَّد"
       },
       "size_range_min_mm": {
-        "label": "أدنى مدى الحجم (مم)"
+        "label": "أدنى نطاق الحجم (مم)"
       },
       "size_range_max_mm": {
-        "label": "أقصى مدى الحجم (مم)"
+        "label": "أقصى نطاق الحجم (مم)"
       }
     }
   },
@@ -109,7 +115,7 @@
         "label": "معدة غير ورمية"
       },
       "lymph_nodes": {
-        "label": "العقد اللمفية"
+        "label": "العقد اللمفاوية"
       }
     }
   },

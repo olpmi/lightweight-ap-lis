@@ -1,17 +1,18 @@
 {
   "template_id": "breast_biomarker_status_v1",
+  "domain": "anatomic_pathology",
   "lang": "ar",
   "ui": {
     "direction": "rtl"
   },
-  "title": "حالة المؤشرات الحيوية في الثدي",
+  "title": "حالة المؤشرات الحيوية للثدي",
   "er_status": {
     "label": "حالة مستقبل الإستروجين (ER)",
     "fields": {
       "percentage_nuclear_positivity": {
         "label": "نسبة الخلايا ذات الإيجابية النووية",
         "options": [
-          "Less than 1%",
+          "أقل من 1%",
           "1-10%",
           "11-20%",
           "21-30%",
@@ -22,10 +23,14 @@
           "71-80%",
           "81-90%",
           "91-100%"
-        ]
+        ],
+        "type": "select",
+        "value": ""
       },
       "average_intensity": {
-        "label": "متوسط شدة التلوين"
+        "label": "متوسط شدة التلوين",
+        "type": "text",
+        "value": ""
       }
     }
   },
@@ -35,7 +40,7 @@
       "percentage_nuclear_positivity": {
         "label": "نسبة الخلايا ذات الإيجابية النووية",
         "options": [
-          "Less than 1%",
+          "أقل من 1%",
           "1-10%",
           "11-20%",
           "21-30%",
@@ -46,10 +51,14 @@
           "71-80%",
           "81-90%",
           "91-100%"
-        ]
+        ],
+        "type": "select",
+        "value": ""
       },
       "average_intensity": {
-        "label": "متوسط شدة التلوين"
+        "label": "متوسط شدة التلوين",
+        "type": "text",
+        "value": ""
       }
     }
   },
@@ -62,9 +71,11 @@
         "options": [
           "سلبي (الدرجة 0)",
           "سلبي (الدرجة 1+)",
-          "ملتبس (الدرجة 2+)",
+          "غير حاسم (الدرجة 2+)",
           "إيجابي (الدرجة 3+)"
-        ]
+        ],
+        "type": "select",
+        "value": ""
       },
       "score_0_pattern": {
         "label": "نمط الدرجة 0",
@@ -73,7 +84,9 @@
           "تلوين غشائي غير مكتمل وخافت أو بالكاد يُدرك، وفي 10% أو أقل من الخلايا الورمية (0+ / مع تلوين غشائي)",
           "أخرى"
         ],
-        "other_specify": "حدد (أخرى)"
+        "other_specify": "",
+        "type": "select",
+        "value": ""
       },
       "score_1_pattern": {
         "label": "نمط الدرجة 1+",
@@ -81,7 +94,9 @@
           "تلوين غشائي غير مكتمل وخافت أو بالكاد يُدرك، وفي أكثر من 10% من الخلايا الورمية",
           "أخرى"
         ],
-        "other_specify": "حدد (أخرى)"
+        "other_specify": "",
+        "type": "select",
+        "value": ""
       },
       "score_2_pattern": {
         "label": "نمط الدرجة 2+",
@@ -92,15 +107,16 @@
           "وجود تلوين سيتوبلازمي غزير يحجب تقييم شدة التلوين الغشائي",
           "أخرى"
         ],
-        "other_specify": "حدد (أخرى)"
+        "other_specify": "",
+        "type": "select",
+        "value": ""
       },
       "score_3_pattern": {
         "label": "نمط الدرجة 3+",
-        "options": [
-          "تلوين غشائي محيطي كامل وشديد وفي أكثر من 10% من الخلايا الورمية",
-          "أخرى"
-        ],
-        "other_specify": "حدد (أخرى)"
+        "options": ["تلوين غشائي محيطي كامل وشديد وفي أكثر من 10% من الخلايا الورمية", "أخرى"],
+        "other_specify": "",
+        "type": "select",
+        "value": ""
       }
     }
   },
@@ -110,7 +126,7 @@
       "value": {
         "label": "مؤشر التكاثر Ki-67",
         "options": [
-          "Less than 1%",
+          "أقل من 1%",
           "1-10%",
           "11-20%",
           "21-30%",
@@ -121,7 +137,9 @@
           "71-80%",
           "81-90%",
           "91-100%"
-        ]
+        ],
+        "type": "select",
+        "value": ""
       }
     }
   },
@@ -129,29 +147,40 @@
     "label": "الطرق",
     "fields": {
       "block_numbers": {
-        "label": "أُجري الاختبار على رقم/أرقام البلوك"
+        "label": "أُجري الاختبار على رقم / أرقام البلوك",
+        "type": "text",
+        "value": ""
       },
       "er_primary_antibody": {
-        "label": "مستقبل الإستروجين: الجسم المضاد الأولي"
+        "label": "مستقبل الإستروجين: الجسم المضاد الأولي",
+        "type": "text",
+        "value": ""
       },
       "pgr_primary_antibody": {
-        "label": "مستقبل البروجسترون: الجسم المضاد الأولي"
+        "label": "مستقبل البروجسترون: الجسم المضاد الأولي",
+        "type": "text",
+        "value": ""
       },
       "er_pgr_reporting_guideline": {
-        "label": "الإبلاغ عن ER وPgR"
+        "label": "الإبلاغ عن ER وPgR",
+        "type": "fixed_text",
+        "value": "ASCO/CAP 2020 Guideline"
       },
       "her2_primary_antibody": {
-        "label": "HER2 (بالتلوين المناعي الكيميائي): الجسم المضاد الأولي"
+        "label": "HER2 (بالتلوين المناعي الكيميائي): الجسم المضاد الأولي",
+        "type": "text",
+        "value": ""
       },
       "her2_reporting_guideline": {
-        "label": "الإبلاغ عن اختبار HER2 بالتلوين المناعي الكيميائي (IHC)"
+        "label": "الإبلاغ عن اختبار HER2 بالتلوين المناعي الكيميائي (IHC)",
+        "type": "fixed_text",
+        "value": "ASCO/CAP 2025 Guideline"
       },
       "ki67_primary_antibody": {
-        "label": "مؤشر Ki-67: الجسم المضاد الأولي"
+        "label": "مؤشر Ki-67: الجسم المضاد الأولي",
+        "type": "fixed_text",
+        "value": "MIB-1"
       }
     }
-  },
-  "domain": {
-    "fields": {}
   }
 }

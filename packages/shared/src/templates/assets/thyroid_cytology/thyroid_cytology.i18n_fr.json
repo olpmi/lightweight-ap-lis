@@ -1,5 +1,6 @@
 {
-  "templateName": "MODÈLE DE COMPTE RENDU DE CYTOLOGIE THYROÏDIENNE (SYSTÈME DE BETHESDA, 3E ÉDITION)",
+  "templateId": "thyroid_cytology_bethesda_3rd_edition",
+  "templateName": "Modèle de compte rendu de cytologie thyroïdienne (système de Bethesda, 3e édition)",
   "language": "fr",
   "sections": {
     "specimen": "Prélèvement",
@@ -10,20 +11,20 @@
     "comment": "Commentaire"
   },
   "fields": {
-    "thyroid_fna_site": "FNA thyroïdienne (sélectionner l’option appropriée)",
+    "thyroid_fna_site": "FNA thyroïdienne (sélectionner l'option appropriée)",
     "nodule_size_cm": "Taille du nodule (cm)",
     "ultrasound_features": "Caractéristiques échographiques (si fournies)",
     "adequacy_status": "Adéquation",
     "bethesda_category": "Catégorie Bethesda",
     "microscopic_description_text": "Description microscopique (texte libre)",
-    "recommended_management_options": "Prise en charge recommandée (sélectionner l’option appropriée)",
+    "recommended_management_options": "Prise en charge recommandée (sélectionner l'option appropriée)",
     "comment_text": "Commentaire"
   },
   "options": {
     "Right": "Droite",
     "Left": "Gauche",
     "Isthmus": "Isthme",
-    "Satisfactory for evaluation": "Satisfaisant pour l’évaluation",
+    "Satisfactory for evaluation": "Satisfaisant pour l'évaluation",
     "Unsatisfactory / non-diagnostic": "Non satisfaisant / non diagnostique",
     "I. Non-diagnostic / Unsatisfactory": "I. Non diagnostique / non satisfaisant",
     "II. Benign": "II. Bénin",

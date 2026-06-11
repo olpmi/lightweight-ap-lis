@@ -1,10 +1,10 @@
 {
   "template_id": "esophagus_resection_v1",
   "domain": "anatomic_pathology",
-  "title": "Esophagus",
-  "protocol_posting_date": "June 2022",
+  "protocol_posting_date": "June 2021",
+  "lang": "en",
   "standards": ["AJCC-UICC 8"],
-
+  "title": "Esophagus",
   "specimen": {
     "label": "Specimen",
     "fields": {
@@ -23,7 +23,6 @@
       }
     }
   },
-
   "tumor": {
     "label": "Tumor",
     "fields": {
@@ -43,7 +42,6 @@
         ],
         "value": []
       },
-
       "relationship_to_egj": {
         "label": "Relationship of tumor to esophagogastric junction",
         "type": "select",
@@ -57,13 +55,11 @@
         ],
         "value": ""
       },
-
       "distance_of_center_from_egj": {
         "label": "Distance of tumor center from EGJ",
         "type": "text",
         "value": ""
       },
-
       "histologic_type": {
         "label": "Histologic type",
         "type": "select",
@@ -93,7 +89,6 @@
         "value": "",
         "comment": ""
       },
-
       "histologic_grade": {
         "label": "Histologic grade",
         "type": "select",
@@ -107,13 +102,11 @@
         ],
         "value": ""
       },
-
       "tumor_size": {
         "label": "Tumor size",
         "type": "text",
         "value": ""
       },
-
       "tumor_extent": {
         "label": "Tumor extent",
         "type": "select",
@@ -130,7 +123,6 @@
         ],
         "value": ""
       },
-
       "adjacent_structures": {
         "label": "Adjacent structures involved",
         "type": "multi_select",
@@ -147,7 +139,6 @@
         ],
         "value": []
       },
-
       "treatment_effect": {
         "label": "Treatment effect",
         "type": "select",
@@ -162,21 +153,18 @@
         ],
         "value": ""
       },
-
       "lymphovascular_invasion": {
         "label": "Lymphovascular invasion",
         "type": "select",
         "options": ["Not identified", "Present", "Cannot be determined"],
         "value": ""
       },
-
       "perineural_invasion": {
         "label": "Perineural invasion",
         "type": "select",
         "options": ["Not identified", "Present", "Cannot be determined"],
         "value": ""
       },
-
       "tumor_comment": {
         "label": "Tumor comment",
         "type": "text",
@@ -184,7 +172,6 @@
       }
     }
   },
-
   "margins": {
     "label": "Margins",
     "fields": {
@@ -192,13 +179,12 @@
         "label": "Margin status for invasive carcinoma",
         "type": "select",
         "options": [
-          "All margins negative",
+          "All margins negative for invasive carcinoma",
           "Invasive carcinoma present at margin",
           "Not applicable"
         ],
         "value": ""
       },
-
       "closest_margins": {
         "label": "Closest margin(s)",
         "type": "multi_select",
@@ -213,13 +199,11 @@
         ],
         "value": []
       },
-
       "distance_to_closest_margin": {
         "label": "Distance to closest margin",
         "type": "text",
         "value": ""
       },
-
       "dysplasia_and_barrett_margins": {
         "label": "Margin status for dysplasia / intestinal metaplasia",
         "type": "multi_select",
@@ -234,7 +218,6 @@
         ],
         "value": []
       },
-
       "margin_comment": {
         "label": "Margin comment",
         "type": "text",
@@ -242,7 +225,6 @@
       }
     }
   },
-
   "regional_lymph_nodes": {
     "label": "Regional Lymph Nodes",
     "fields": {
@@ -252,24 +234,21 @@
         "options": [
           "Not applicable",
           "Regional lymph nodes present",
-          "All negative for tumor",
+          "All regional lymph nodes negative for tumor",
           "Tumor present in regional lymph node(s)"
         ],
         "value": ""
       },
-
       "number_with_tumor": {
         "label": "Number of lymph nodes with tumor",
         "type": "text",
         "value": ""
       },
-
       "number_examined": {
         "label": "Number of lymph nodes examined",
         "type": "text",
         "value": ""
       },
-
       "comment": {
         "label": "Regional lymph node comment",
         "type": "text",
@@ -277,7 +256,6 @@
       }
     }
   },
-
   "distant_metastasis": {
     "label": "Distant Metastasis",
     "fields": {
@@ -295,9 +273,9 @@
       }
     }
   },
-
   "pathologic_stage": {
     "label": "Pathologic Stage Classification (pTNM, AJCC 8th Edition)",
+    "note": "Reporting of pT, pN, and (when applicable) pM categories is based on information available to the pathologist at the time the report is issued. As per the AJCC (Chapter 1, 8th Ed.) it is the managing physician's responsibility to establish the final pathologic stage based upon all pertinent information, including but potentially not limited to this pathology report.",
     "fields": {
       "tnm_descriptors": {
         "label": "TNM descriptors",
@@ -310,41 +288,48 @@
         ],
         "value": []
       },
-
       "pT_category": {
         "label": "pT category",
         "type": "select",
         "options": [
-          "pT0",
-          "pTis",
-          "pT1a",
-          "pT1b",
-          "pT1",
-          "pT2",
-          "pT3",
-          "pT4a",
-          "pT4b",
-          "pT4"
+          "pT not assigned (cannot be determined based on available pathological information)",
+          "pT0: No evidence of primary tumor",
+          "pTis: High-grade dysplasia, defined as malignant cells confined to the epithelium by the basement membrane",
+          "pT1a: Tumor invades the lamina propria or muscularis mucosae",
+          "pT1b: Tumor invades the submucosa",
+          "pT1 (subcategory cannot be determined)",
+          "pT2: Tumor invades the muscularis propria",
+          "pT3: Tumor invades adventitia",
+          "pT4a: Tumor invades the pleura, pericardium, azygos vein, diaphragm, or peritoneum",
+          "pT4b: Tumor invades other adjacent structures, such as the aorta, vertebral body, or airway",
+          "pT4 (subcategory cannot be determined)"
         ],
         "value": ""
       },
-
       "pN_category": {
         "label": "pN category",
         "type": "select",
-        "options": ["pN0", "pN1", "pN2", "pN3"],
+        "options": [
+          "pN not assigned (no nodes submitted or found)",
+          "pN not assigned (cannot be determined based on available pathological information)",
+          "pN0: No regional lymph node metastasis",
+          "pN1: Metastasis in one or two regional lymph nodes",
+          "pN2: Metastasis in three to six regional lymph nodes",
+          "pN3: Metastasis in seven or more regional lymph nodes"
+        ],
         "value": ""
       },
-
       "pM_category": {
         "label": "pM category",
         "type": "select",
-        "options": ["Not applicable", "pM1"],
+        "options": [
+          "Not applicable - pM cannot be determined from the submitted specimen(s)",
+          "pM1: Distant metastasis"
+        ],
         "value": ""
       }
     }
   },
-
   "additional_findings": {
     "label": "Additional Findings",
     "fields": {

@@ -1,4 +1,5 @@
 {
+  "templateId": "salivary_gland_cytology_milan",
   "templateName": "قالب تقرير سيتولوجيا الغدد اللعابية (نظام ميلانو لتقرير سيتوباثولوجيا الغدد اللعابية)",
   "language": "ar",
   "direction": "rtl",
@@ -29,7 +30,7 @@
     "Other": "أخرى",
     "Right": "أيمن",
     "Left": "أيسر",
-    "Midline": "منتصف",
+    "Midline": "خط المنتصف",
     "Satisfactory for evaluation": "مرضٍ للتقييم",
     "Non-diagnostic": "غير تشخيصي",
     "I. Non-diagnostic": "I. غير تشخيصي",
@@ -42,6 +43,6 @@
     "Clinical / radiologic correlation": "الربط السريري / الشعاعي",
     "Repeat FNA": "إعادة الشفط بالإبرة الدقيقة",
     "Excision / surgical consultation": "الاستئصال / الاستشارة الجراحية",
-    "Further ancillary studies (cell block / immunocytochemistry / molecular testing if available)": "دراسات إضافية مساندة (بلوك خلوي / كيمياء مناعية خلوية / فحوص جزيئية إن توفرت)"
+    "Further ancillary studies (cell block / immunocytochemistry / molecular testing if available)": "دراسات إضافية مساندة (بلوك الخلايا / كيمياء مناعية خلوية / فحوص جزيئية إن توفرت)"
   }
 }

@@ -3,9 +3,6 @@
   "domain": "anatomic_pathology",
   "title": "Breast DCIS, Resection",
   "protocol_posting_date": "June 2021",
-  "case_summary": {
-    "label": "Case Summary (DCIS of the Breast: Resection)"
-  },
   "standards": ["AJCC-UICC 8"],
 
   "specimen": {
@@ -118,11 +115,7 @@
       "nuclear_grade": {
         "label": "Nuclear grade",
         "type": "select",
-        "options": [
-          "Grade I (low)",
-          "Grade II (intermediate)",
-          "Grade III (high)"
-        ],
+        "options": ["Grade I (low)", "Grade II (intermediate)", "Grade III (high)"],
         "value": ""
       },
       "necrosis": {
@@ -274,12 +267,7 @@
           "count_type": {
             "label": "Count type",
             "type": "select",
-            "options": [
-              "Exact number",
-              "At least",
-              "Other",
-              "Cannot be determined"
-            ],
+            "options": ["Exact number", "At least", "Other", "Cannot be determined"],
             "value": ""
           },
           "count_value": {
@@ -305,12 +293,7 @@
           "count_type": {
             "label": "Count type",
             "type": "select",
-            "options": [
-              "Exact number",
-              "At least",
-              "Other",
-              "Cannot be determined"
-            ],
+            "options": ["Exact number", "At least", "Other", "Cannot be determined"],
             "value": ""
           },
           "count_value": {
@@ -368,13 +351,7 @@
           "size_type": {
             "label": "Size type",
             "type": "select",
-            "options": [
-              "Exact size",
-              "Less than",
-              "Greater than",
-              "Other",
-              "Cannot be determined"
-            ],
+            "options": ["Exact size", "Less than", "Greater than", "Other", "Cannot be determined"],
             "value": ""
           },
           "size_mm": {
@@ -415,12 +392,7 @@
           "count_type": {
             "label": "Count type",
             "type": "select",
-            "options": [
-              "Exact number",
-              "At least",
-              "Other",
-              "Cannot be determined"
-            ],
+            "options": ["Exact number", "At least", "Other", "Cannot be determined"],
             "value": ""
           },
           "count_value": {

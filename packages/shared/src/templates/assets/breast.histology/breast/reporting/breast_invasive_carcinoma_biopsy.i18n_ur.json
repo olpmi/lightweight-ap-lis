@@ -1,27 +1,27 @@
 {
   "template_id": "breast_invasive_carcinoma_biopsy_v1",
+  "domain": "anatomic_pathology",
+  "protocol_posting_date": "March 2023",
   "lang": "ur",
+  "ui": {
+    "direction": "rtl"
+  },
   "title": "بریسٹ اِنویسیو کارسینوما، بایوپسی",
   "specimen": {
     "label": "نمونہ",
     "fields": {
       "procedure": {
         "label": "طریقۂ کار",
-        "options": [
-          "نیڈل بایوپسی",
-          "فائن نیڈل ایسپیریشن",
-          "دیگر",
-          "واضح نہیں"
-        ],
-        "other_specify": "دیگر، وضاحت کریں"
+        "options": ["نیڈل بایوپسی", "فائن نیڈل ایسپیریشن", "دیگر", "غیر متعین"],
+        "type": "select",
+        "value": "",
+        "other_specify": ""
       },
       "laterality": {
         "label": "نمونے کی جانب",
-        "options": [
-          "دائیں",
-          "بائیں",
-          "واضح نہیں"
-        ]
+        "options": ["دائیں", "بائیں", "غیر متعین"],
+        "type": "select",
+        "value": ""
       }
     }
   },
@@ -38,9 +38,11 @@
           "مرکزی",
           "نپل",
           "گھڑی کی پوزیشن",
-          "واضح نہیں"
+          "غیر متعین"
         ],
-        "clock_position_specify": "گھڑی کی پوزیشن، وضاحت کریں"
+        "type": "multi_select",
+        "value": [],
+        "clock_position_specify": ""
       },
       "histologic_type": {
         "label": "ہسٹولوجک قسم",
@@ -66,9 +68,11 @@
           "اِنویسیو کارسینوما، قسم متعین نہیں کی جا سکتی",
           "فہرست میں شامل نہ ہونے والی دیگر ہسٹولوجک قسم"
         ],
-        "features_specify": "خصوصیات، وضاحت کریں",
-        "cannot_be_determined_specify": "متعین نہیں کیا جا سکتا، وضاحت کریں",
-        "other_specify": "دیگر، وضاحت کریں"
+        "type": "select",
+        "value": "",
+        "features_specify": "",
+        "cannot_be_determined_specify": "",
+        "other_specify": ""
       },
       "histologic_grade": {
         "label": "ہسٹولوجک گریڈ (ناٹنگھم ہسٹولوجک اسکور)",
@@ -78,7 +82,9 @@
             "options": [
               "قابل اطلاق نہیں (کوئی باقی ماندہ کارسینوما نہیں یا صرف مائیکرو اِنویژن)",
               "ناٹنگھم اسکور"
-            ]
+            ],
+            "type": "select",
+            "value": ""
           },
           "glandular_tubular_differentiation": {
             "label": "غدودی (ایسینر) / ٹیوبیولر تمیز",
@@ -88,7 +94,9 @@
               "اسکور 3 (ٹیومر کے 10% سے کم حصے میں غدودی / ٹیوبیولر ساختیں بن رہی ہوں)",
               "اسکور متعین نہیں کیا جا سکتا"
             ],
-            "cannot_be_determined_specify": "متعین نہیں کیا جا سکتا، وضاحت کریں"
+            "type": "select",
+            "value": "",
+            "cannot_be_determined_specify": ""
           },
           "nuclear_pleomorphism": {
             "label": "نیوکلیئر پلیومارفزم",
@@ -98,18 +106,17 @@
               "اسکور 3 (ویسیکیولر نیوکلیائی، اکثر نمایاں نیوکلیولی کے ساتھ، سائز اور شکل میں نمایاں فرق دکھاتے ہوں، اور کبھی کبھار بہت بڑے اور غیر معمولی اشکال ہوں)",
               "اسکور متعین نہیں کیا جا سکتا"
             ],
-            "cannot_be_determined_specify": "متعین نہیں کیا جا سکتا، وضاحت کریں"
+            "type": "select",
+            "value": "",
+            "cannot_be_determined_specify": ""
           },
           "mitotic_rate": {
             "label": "مائٹوٹک ریٹ",
-            "options": [
-              "اسکور 1",
-              "اسکور 2",
-              "اسکور 3",
-              "اسکور متعین نہیں کیا جا سکتا"
-            ],
+            "options": ["اسکور 1", "اسکور 2", "اسکور 3", "اسکور متعین نہیں کیا جا سکتا"],
             "reference_note": "CAP پروٹوکول میں جدول 1 دیکھیں۔",
-            "cannot_be_determined_specify": "متعین نہیں کیا جا سکتا، وضاحت کریں"
+            "type": "select",
+            "value": "",
+            "cannot_be_determined_specify": ""
           },
           "overall_grade": {
             "label": "مجموعی گریڈ",
@@ -119,7 +126,9 @@
               "گریڈ 3 (اسکور 8 یا 9)",
               "اسکور متعین نہیں کیا جا سکتا"
             ],
-            "cannot_be_determined_specify": "متعین نہیں کیا جا سکتا، وضاحت کریں"
+            "type": "select",
+            "value": "",
+            "cannot_be_determined_specify": ""
           }
         }
       },
@@ -132,13 +141,19 @@
               "بالکل درست پیمائش ملی میٹر (mm) میں",
               "کم از کم ملی میٹر (mm) میں",
               "متعین نہیں کیا جا سکتا"
-            ]
+            ],
+            "type": "select",
+            "value": ""
           },
           "measurement_mm": {
-            "label": "پیمائش (mm)"
+            "label": "پیمائش (mm)",
+            "type": "number",
+            "value": ""
           },
           "cannot_be_determined_specify": {
-            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
+            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+            "type": "text",
+            "value": ""
           }
         }
       }
@@ -149,10 +164,9 @@
     "fields": {
       "presence": {
         "label": "DCIS کی موجودگی",
-        "options": [
-          "شناخت نہیں ہوئی",
-          "موجود"
-        ]
+        "options": ["شناخت نہیں ہوئی", "موجود"],
+        "type": "select",
+        "value": ""
       },
       "architectural_patterns": {
         "label": "معماری پیٹرن",
@@ -165,7 +179,9 @@
           "سولڈ",
           "دیگر"
         ],
-        "other_specify": "دیگر، وضاحت کریں"
+        "type": "multi_select",
+        "value": [],
+        "other_specify": ""
       },
       "nuclear_grade": {
         "label": "نیوکلیئر گریڈ",
@@ -176,8 +192,10 @@
           "دیگر",
           "متعین نہیں کیا جا سکتا"
         ],
-        "other_specify": "دیگر، وضاحت کریں",
-        "cannot_be_determined_specify": "متعین نہیں کیا جا سکتا، وضاحت کریں"
+        "type": "select",
+        "value": "",
+        "other_specify": "",
+        "cannot_be_determined_specify": ""
       },
       "necrosis": {
         "label": "نیکروسس",
@@ -189,8 +207,10 @@
           "متعین نہیں کیا جا سکتا",
           "خارج نہیں کیا جا سکتا"
         ],
-        "other_specify": "دیگر، وضاحت کریں",
-        "cannot_be_determined_specify": "متعین نہیں کیا جا سکتا، وضاحت کریں"
+        "type": "select",
+        "value": "",
+        "other_specify": "",
+        "cannot_be_determined_specify": ""
       }
     }
   },
@@ -199,12 +219,10 @@
     "fields": {
       "status": {
         "label": "لیمفیٹک اور / یا ویسکیولر اِنویژن",
-        "options": [
-          "شناخت نہیں ہوئی",
-          "موجود",
-          "متعین نہیں کیا جا سکتا"
-        ],
-        "cannot_be_determined_specify": "متعین نہیں کیا جا سکتا، وضاحت کریں"
+        "options": ["شناخت نہیں ہوئی", "موجود", "متعین نہیں کیا جا سکتا"],
+        "type": "select",
+        "value": "",
+        "cannot_be_determined_specify": ""
       }
     }
   },
@@ -220,7 +238,9 @@
           "غیر نیوپلاسٹک ٹشو میں موجود",
           "دیگر"
         ],
-        "other_specify": "دیگر، وضاحت کریں"
+        "type": "multi_select",
+        "value": [],
+        "other_specify": ""
       }
     }
   },
@@ -228,14 +248,10 @@
     "label": "اضافی مشاہدات",
     "fields": {
       "findings": {
-        "label": "اضافی مشاہدات"
+        "label": "اضافی مشاہدات",
+        "type": "text",
+        "value": ""
       }
     }
-  },
-  "domain": {
-    "fields": {}
-  },
-  "protocol_posting_date": {
-    "fields": {}
   }
 }

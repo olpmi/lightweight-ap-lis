@@ -1,6 +1,6 @@
 {
   "templateId": "general_cytology",
-  "templateName": "GENERAL CYTOLOGY REPORTING TEMPLATE",
+  "templateName": "General cytology reporting template",
   "language": "en",
   "sections": [
     {
@@ -11,14 +11,7 @@
           "id": "specimen_type",
           "label": "Type",
           "type": "select",
-          "options": [
-            "FNA",
-            "Exfoliative cytology",
-            "Brushings",
-            "Washings",
-            "Body fluid",
-            "Other"
-          ]
+          "options": ["FNA", "Exfoliative cytology", "Brushings", "Washings", "Body fluid", "Other"]
         },
         {
           "id": "site",
@@ -68,11 +61,7 @@
           "id": "preparation_methods_used",
           "label": "Preparation Methods",
           "type": "multiselect",
-          "options": [
-            "Conventional smears",
-            "Liquid-based preparation",
-            "Cytospin"
-          ]
+          "options": ["Conventional smears", "Liquid-based preparation", "Cytospin"]
         },
         {
           "id": "cell_block_prepared",

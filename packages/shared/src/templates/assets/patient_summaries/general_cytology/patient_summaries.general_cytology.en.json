@@ -1,0 +1,66 @@
+{
+  "templateId": "general_cytology",
+  "summaryType": "rule_based_patient_facing_summary",
+  "version": "1.0",
+  "language": "en",
+  "system": "General Cytology Reporting Template",
+  "triggerField": "diagnostic_category",
+  "summaries": {
+    "general_non_diagnostic_unsatisfactory": {
+      "professionalLabel": "Non-diagnostic / Unsatisfactory",
+      "patientTitle": "The sample was not enough for a clear diagnosis",
+      "plainLanguageSummary": "The cytology sample did not contain enough useful cells, or the sample quality was limited, so a clear diagnosis could not be made.",
+      "whatThisMeans": "This does not mean cancer was found. It means the sample was not adequate enough to provide a reliable answer.",
+      "possibleNextSteps": "Your doctor may recommend repeat sampling, biopsy, imaging review, or other tests depending on the site and clinical concern.",
+      "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
+    },
+    "general_negative_for_malignancy_benign": {
+      "professionalLabel": "Negative for malignancy / Benign",
+      "patientTitle": "No cancer cells seen",
+      "plainLanguageSummary": "The sample did not show cancer cells and appears benign in the material examined.",
+      "whatThisMeans": "This is generally reassuring, but it should be interpreted together with your symptoms, examination, imaging, and previous results.",
+      "possibleNextSteps": "Your doctor may recommend routine follow-up, treatment for a benign condition, or further tests if the clinical findings remain concerning.",
+      "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
+    },
+    "general_atypical_cells_present": {
+      "professionalLabel": "Atypical cells present",
+      "patientTitle": "Some unusual cells seen",
+      "plainLanguageSummary": "The sample shows some cells that look unusual, but the findings are not enough to diagnose cancer.",
+      "whatThisMeans": "This is an indeterminate result. The cells may be reactive or benign, but further assessment may be needed.",
+      "possibleNextSteps": "Your doctor may recommend repeat sampling, biopsy, imaging correlation, or other tests depending on the site and clinical concern.",
+      "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
+    },
+    "general_suspicious_for_malignancy": {
+      "professionalLabel": "Suspicious for malignancy",
+      "patientTitle": "Suspicious cells seen",
+      "plainLanguageSummary": "The sample shows cells that are suspicious for cancer, but may not be enough for a definite diagnosis.",
+      "whatThisMeans": "There is significant concern, and further evaluation is usually needed.",
+      "possibleNextSteps": "Your doctor may recommend biopsy, repeat sampling, imaging, or specialist referral.",
+      "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
+    },
+    "general_positive_for_malignancy": {
+      "professionalLabel": "Positive for malignancy",
+      "patientTitle": "Cancer cells identified",
+      "plainLanguageSummary": "The sample shows malignant cells, meaning cancer cells were identified.",
+      "whatThisMeans": "This result usually requires further clinical evaluation and treatment planning.",
+      "possibleNextSteps": "Your doctor will interpret this with your clinical findings and may arrange biopsy, imaging, specialist referral, or additional tests.",
+      "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
+    },
+    "general_neoplasm_benign_low_grade_malignant": {
+      "professionalLabel": "Neoplasm present: benign / low grade / malignant",
+      "patientTitle": "A growth or tumor is present",
+      "plainLanguageSummary": "The sample shows a neoplasm, which means an abnormal growth of cells. The report should specify whether it appears benign, low grade, or malignant where possible.",
+      "whatThisMeans": "The meaning depends on the type of neoplasm, the body site, and whether it is described as benign, low grade, suspicious, or malignant.",
+      "possibleNextSteps": "Your doctor may recommend imaging, biopsy, surgery, or further specialist assessment depending on the diagnosis.",
+      "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
+    },
+    "general_other": {
+      "professionalLabel": "Other",
+      "patientTitle": "Other cytology finding",
+      "plainLanguageSummary": "The report describes a finding that does not fit into the standard diagnostic categories.",
+      "whatThisMeans": "The significance depends on the exact wording of the final interpretation and the clinical context.",
+      "possibleNextSteps": "Your doctor will explain the result and decide whether follow-up, repeat sampling, biopsy, or treatment is needed.",
+      "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
+    }
+  }
+}

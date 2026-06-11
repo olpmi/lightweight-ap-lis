@@ -2,7 +2,7 @@
   "templateId": "cervical_cytology_pap_smear_bethesda",
   "version": "1.0",
   "language": "sw",
-  "title": "KIOLEZO CHA RIPOTI YA SAITOLOJIA YA SHINGO YA KIZAZI (PAP SMEAR) (MFUMO WA BETHESDA)",
+  "title": "Kiolezo cha ripoti ya saitolojia ya shingo ya kizazi (pap smear) (mfumo wa Bethesda)",
   "common": {
     "yes": "Ndiyo",
     "no": "Hapana",
@@ -25,8 +25,8 @@
           "label": "Chanzo",
           "options": {
             "cervix": "Shingo ya kizazi",
-            "ectocervix": "Ektoserviksi",
-            "endocervix": "Endoserviksi",
+            "ectocervix": "Ektoseviksi",
+            "endocervix": "Endoseviksi",
             "vaginal_cuff": "Kifuko cha uke",
             "other": "Nyingine"
           }
@@ -58,16 +58,16 @@
           "options": {
             "obscuring_blood": "Damu inayozuia kuona",
             "inflammation": "Uchochezi",
-            "low_squamous_cellularity": "Seli chache za squamous",
-            "poor_fixation": "Fixation duni"
+            "low_squamous_cellularity": "Seli chache za squamasi",
+            "poor_fixation": "Ufungaji duni"
           }
         },
         "transformation_zone_component": {
-          "label": "Kipengele cha eneo la mabadiliko (endoserviksi / TZ)",
+          "label": "Kipengele cha eneo la mabadiliko (endoserviksi / eneo la mabadiliko)",
           "options": {
             "present": "Ipo",
             "absent": "Haipo",
-            "not_applicable": "Haifai"
+            "not_applicable": "Haihusiki"
           }
         }
       }
@@ -80,27 +80,27 @@
           "options": {
             "nilm_within_normal_limits": "Hasi kwa kidonda cha ndani ya epitheliamu au saratani: ndani ya mipaka ya kawaida",
             "nilm_reactive_inflammation": "Hasi kwa kidonda cha ndani ya epitheliamu au saratani, na mabadiliko ya seli yanayohusiana na uchochezi",
-            "nilm_reactive_radiation_iud_atrophy": "Hasi kwa kidonda cha ndani ya epitheliamu au saratani, na mabadiliko ya seli yanayohusiana na radiation / IUD / atrophy",
+            "nilm_reactive_radiation_iud_atrophy": "Hasi kwa kidonda cha ndani ya epitheliamu au saratani, na mabadiliko ya seli yanayohusiana na mionzi / IUD / atrofi",
             "organism_trichomonas_vaginalis": "Hasi kwa kidonda cha ndani ya epitheliamu au saratani, na viumbe vilivyotambuliwa: Trichomonas vaginalis",
             "organism_candida_spp": "Hasi kwa kidonda cha ndani ya epitheliamu au saratani, na viumbe vilivyotambuliwa: fangasi wanaoendana kimaumbo na Candida spp.",
-            "organism_bacterial_vaginosis": "Hasi kwa kidonda cha ndani ya epitheliamu au saratani, na viumbe vilivyotambuliwa: mabadiliko ya flora yanayoashiria bacterial vaginosis",
+            "organism_bacterial_vaginosis": "Hasi kwa kidonda cha ndani ya epitheliamu au saratani, na viumbe vilivyotambuliwa: mabadiliko ya flora yanayoashiria vaginosisi ya bakteria",
             "organism_actinomyces_spp": "Hasi kwa kidonda cha ndani ya epitheliamu au saratani, na viumbe vilivyotambuliwa: bakteria wanaoendana kimaumbo na Actinomyces spp.",
             "organism_herpes_simplex_virus": "Hasi kwa kidonda cha ndani ya epitheliamu au saratani, na viumbe vilivyotambuliwa: mabadiliko ya virusi vya herpes simplex",
-            "asc_us": "ASC-US (Seli za squamous zisizo za kawaida zenye umuhimu usiojulikana)",
-            "asc_h": "ASC-H (Seli za squamous zisizo za kawaida, HSIL haiwezi kuondolewa)",
-            "lsil": "LSIL (Kidonda cha ndani ya epitheliamu ya squamous cha kiwango cha chini)",
-            "hsil": "HSIL (Kidonda cha ndani ya epitheliamu ya squamous cha kiwango cha juu)",
-            "squamous_cell_carcinoma": "Saratani ya seli za squamous",
-            "ais": "Adenokasinoma ya endoserviksi in situ (AIS)",
-            "adenocarcinoma": "Adenokasinoma",
             "nilm_endometrial_cells": "Hasi kwa kidonda cha ndani ya epitheliamu au saratani, seli za endometriamu zipo (kwa mwanamke mwenye umri wa miaka 45 au zaidi)",
+            "asc_us": "ASC-US (Seli za skwamasi zisizo za kawaida zenye umuhimu usiojulikana)",
+            "asc_h": "ASC-H (Seli za skwamasi zisizo za kawaida, HSIL haiwezi kuondolewa)",
+            "lsil": "LSIL (Kidonda cha ndani ya epitheliamu ya skwamasi cha kiwango cha chini)",
+            "hsil": "HSIL (Kidonda cha ndani ya epitheliamu ya skwamasi cha kiwango cha juu)",
             "hsil_suspicious_for_invasion": "HSIL yenye sifa zinazoshukiwa uvamizi",
-            "agc_endocervical_nos": "Seli za endoserviksi zisizo za kawaida, NOS",
-            "agc_endocervical_favor_neoplastic": "Seli za endoserviksi zisizo za kawaida, zinazoashiria neoplasia",
+            "squamous_cell_carcinoma": "Saratani ya seli za skwamasi",
+            "agc_endocervical_nos": "Seli za endoseviksi zisizo za kawaida, NOS",
+            "agc_endocervical_favor_neoplastic": "Seli za endoseviksi zisizo za kawaida, zinazoashiria neoplasia",
             "agc_endometrial_nos": "Seli za endometriamu zisizo za kawaida, NOS",
             "agc_endometrial_favor_neoplastic": "Seli za endometriamu zisizo za kawaida, zinazoashiria neoplasia",
-            "agc_nos": "Seli za glandula zisizo za kawaida, NOS",
-            "agc_favor_neoplastic": "Seli za glandula zisizo za kawaida, zinazoashiria neoplasia",
+            "agc_nos": "Seli za tezi zisizo za kawaida, NOS",
+            "agc_favor_neoplastic": "Seli za tezi zisizo za kawaida, zinazoashiria neoplasia",
+            "ais": "Adenokasinoma ya endoseviksi in situ (AIS)",
+            "adenocarcinoma": "Adenokasinoma",
             "other_malignant_neoplasm": "Uvimbe mwingine mbaya"
           }
         }

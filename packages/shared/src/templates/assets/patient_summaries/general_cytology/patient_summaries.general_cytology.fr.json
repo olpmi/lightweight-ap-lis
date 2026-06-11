@@ -1,0 +1,66 @@
+{
+  "templateId": "general_cytology",
+  "summaryType": "rule_based_patient_facing_summary",
+  "version": "1.0",
+  "language": "fr",
+  "system": "Modèle général de compte rendu de cytologie",
+  "triggerField": "diagnostic_category",
+  "summaries": {
+    "general_non_diagnostic_unsatisfactory": {
+      "professionalLabel": "Non diagnostique / Non satisfaisant",
+      "patientTitle": "L'échantillon n'était pas suffisant pour poser un diagnostic clair",
+      "plainLanguageSummary": "L'échantillon de cytologie ne contenait pas assez de cellules exploitables, ou la qualité de l'échantillon était limitée, de sorte qu'un diagnostic clair n'a pas pu être établi.",
+      "whatThisMeans": "Cela ne signifie pas qu'un cancer a été détecté. Cela signifie que l'échantillon n'était pas suffisamment adéquat pour fournir une réponse fiable.",
+      "possibleNextSteps": "Votre médecin pourra recommander un nouveau prélèvement, une biopsie, une réévaluation de l'imagerie ou d'autres examens en fonction du site et de la préoccupation clinique.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, de l'imagerie et, le cas échéant, de vos résultats antérieurs."
+    },
+    "general_negative_for_malignancy_benign": {
+      "professionalLabel": "Négatif pour la malignité / Bénin",
+      "patientTitle": "Aucune cellule cancéreuse n'a été observée",
+      "plainLanguageSummary": "L'échantillon ne montre pas de cellules cancéreuses et paraît bénin dans le matériel examiné.",
+      "whatThisMeans": "Ce résultat est généralement rassurant, mais il doit être interprété en tenant compte de vos symptômes, de votre examen clinique, de l'imagerie et de vos résultats antérieurs.",
+      "possibleNextSteps": "Votre médecin pourra recommander un suivi de routine, un traitement pour une affection bénigne, ou des examens complémentaires si les données cliniques restent préoccupantes.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, de l'imagerie et, le cas échéant, de vos résultats antérieurs."
+    },
+    "general_atypical_cells_present": {
+      "professionalLabel": "Cellules atypiques présentes",
+      "patientTitle": "Quelques cellules inhabituelles ont été observées",
+      "plainLanguageSummary": "L'échantillon montre quelques cellules d'aspect inhabituel, mais les résultats ne sont pas suffisants pour poser un diagnostic de cancer.",
+      "whatThisMeans": "Il s'agit d'un résultat indéterminé. Les cellules peuvent être réactionnelles ou bénignes, mais une évaluation complémentaire peut être nécessaire.",
+      "possibleNextSteps": "Votre médecin pourra recommander un nouveau prélèvement, une biopsie, une corrélation avec l'imagerie ou d'autres examens en fonction du site et de la préoccupation clinique.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, de l'imagerie et, le cas échéant, de vos résultats antérieurs."
+    },
+    "general_suspicious_for_malignancy": {
+      "professionalLabel": "Suspect de malignité",
+      "patientTitle": "Des cellules suspectes ont été observées",
+      "plainLanguageSummary": "L'échantillon montre des cellules suspectes de malignité, mais peut ne pas être suffisant pour établir un diagnostic définitif.",
+      "whatThisMeans": "Ce résultat suscite une préoccupation importante, et une évaluation complémentaire est généralement nécessaire.",
+      "possibleNextSteps": "Votre médecin pourra recommander une biopsie, un nouveau prélèvement, une imagerie ou une orientation vers un spécialiste.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, de l'imagerie et, le cas échéant, de vos résultats antérieurs."
+    },
+    "general_positive_for_malignancy": {
+      "professionalLabel": "Positif pour la malignité",
+      "patientTitle": "Des cellules cancéreuses ont été identifiées",
+      "plainLanguageSummary": "L'échantillon montre des cellules malignes, ce qui signifie que des cellules cancéreuses ont été identifiées.",
+      "whatThisMeans": "Ce résultat nécessite généralement une évaluation clinique complémentaire et une planification du traitement.",
+      "possibleNextSteps": "Votre médecin interprétera ce résultat avec vos données cliniques et pourra organiser une biopsie, une imagerie, une orientation vers un spécialiste ou des examens complémentaires.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, de l'imagerie et, le cas échéant, de vos résultats antérieurs."
+    },
+    "general_neoplasm_benign_low_grade_malignant": {
+      "professionalLabel": "Néoplasme présent : bénin / bas grade / malin",
+      "patientTitle": "Une tumeur ou une prolifération cellulaire anormale est présente",
+      "plainLanguageSummary": "L'échantillon montre un néoplasme, c'est-à-dire une prolifération anormale de cellules. Le compte rendu précise si possible s'il paraît bénin, de bas grade ou malin.",
+      "whatThisMeans": "La signification dépend du type de néoplasme, du site anatomique et de la façon dont il est décrit : bénin, bas grade, suspect ou malin.",
+      "possibleNextSteps": "Votre médecin pourra recommander une imagerie, une biopsie, une intervention chirurgicale ou une évaluation spécialisée complémentaire en fonction du diagnostic.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, de l'imagerie et, le cas échéant, de vos résultats antérieurs."
+    },
+    "general_other": {
+      "professionalLabel": "Autre",
+      "patientTitle": "Autre résultat de cytologie",
+      "plainLanguageSummary": "Le compte rendu décrit un résultat qui ne correspond pas aux catégories diagnostiques standard.",
+      "whatThisMeans": "La signification dépend du libellé exact de l'interprétation finale et du contexte clinique.",
+      "possibleNextSteps": "Votre médecin vous expliquera le résultat et décidera si un suivi, un nouveau prélèvement, une biopsie ou un traitement est nécessaire.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, de l'imagerie et, le cas échéant, de vos résultats antérieurs."
+    }
+  }
+}

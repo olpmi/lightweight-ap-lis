@@ -1,30 +1,36 @@
 {
-  "title": "گیسٹرک ٹیومر ریسیکشن (گراسنگ ٹیمپلیٹ)",
+  "template_id": "gastric_tumor_resection_gross_v1",
+  "domain": "anatomic_pathology",
+  "lang": "ur",
+  "ui": {
+    "direction": "rtl"
+  },
+  "title": "معدہ کی رسولی ریسیکشن (ظاہری معائنہ ٹیمپلیٹ)",
   "specimen": {
     "label": "نمونہ",
     "fields": {
       "type_of_resection": {
-        "label": "ریسیکشن کی قسم (ایک منتخب کریں)",
+        "label": "ریسیکشن کی قسم",
         "options": [
           "ایسوفاگو-گیسٹریکٹومی",
           "مکمل گیسٹریکٹومی",
           "جزوی گیسٹریکٹومی، قریبی حصہ",
           "جزوی گیسٹریکٹومی، بعیدی حصہ",
-          "دیگر (وضاحت کریں)"
+          "دیگر"
         ],
-        "other_specify": "دیگر (واضح کریں)"
+        "other_specify": ""
       },
       "stomach_greater_curvature_mm": {
-        "label": "معدہ، بڑا خم"
+        "label": "معدہ، بڑا خم (ملی میٹر)"
       },
       "stomach_lesser_curvature_mm": {
-        "label": "معدہ، چھوٹا خم"
+        "label": "معدہ، چھوٹا خم (ملی میٹر)"
       },
       "esophagus_mm": {
-        "label": "غذائی نالی"
+        "label": "غذائی نالی (ملی میٹر)"
       },
       "duodenum_mm": {
-        "label": "گرہنی"
+        "label": "گرہنی (ملی میٹر)"
       }
     }
   },
@@ -32,7 +38,7 @@
     "label": "رسولی",
     "fields": {
       "macroscopic_tumor_site": {
-        "label": "رسولی کا ظاہری مقام (تمام متعلقہ منتخب کریں)",
+        "label": "رسولی کا ظاہری مقام",
         "options": [
           "کارڈیا",
           "فنڈس",
@@ -60,19 +66,19 @@
         ]
       },
       "tumor_dimensions_mm": {
-        "label": "رسولی کی پیمائشیں"
+        "label": "رسولی کی پیمائشیں (ملی میٹر)"
       },
       "distance_to_proximal_margin_mm": {
-        "label": "قریبی مارجن"
+        "label": "قریبی حاشیے تک فاصلہ (ملی میٹر)"
       },
       "distance_to_distal_margin_mm": {
-        "label": "بعیدی مارجن"
+        "label": "دور حاشیے تک فاصلہ (ملی میٹر)"
       },
       "distance_to_lesser_curvature_margin_mm": {
-        "label": "چھوٹے خم کا مارجن"
+        "label": "چھوٹے خم کے حاشیے تک فاصلہ (ملی میٹر)"
       },
       "distance_to_greater_curvature_margin_mm": {
-        "label": "بڑے خم کا مارجن"
+        "label": "بڑے خم کے حاشیے تک فاصلہ (ملی میٹر)"
       }
     }
   },
@@ -97,13 +103,13 @@
         "label": "رسولی (نمائندہ حصے)"
       },
       "proximal_margin": {
-        "label": "قریبی مارجن"
+        "label": "قریبی حاشیہ"
       },
       "distal_margin": {
-        "label": "بعیدی مارجن"
+        "label": "دور حاشیہ"
       },
       "circumferential_non_peritonealised_margin": {
-        "label": "محیطی / غیر پیریٹونیلائزڈ مارجن"
+        "label": "محیطی / غیر پیریٹونیلائزڈ حاشیہ"
       },
       "non_neoplastic_stomach": {
         "label": "غیر رسولی معدہ"
@@ -114,10 +120,10 @@
     }
   },
   "grossing": {
-    "label": "گراس",
+    "label": "ظاہری معائنہ",
     "fields": {
       "grossed_by": {
-        "label": "گراس کیا گیا از"
+        "label": "ظاہری معائنہ کرنے والا"
       },
       "date": {
         "label": "تاریخ"

@@ -1,0 +1,58 @@
+{
+  "templateId": "thyroid_cytology_bethesda_3rd_edition",
+  "summaryType": "rule_based_patient_facing_summary",
+  "version": "1.0",
+  "language": "fr",
+  "system": "Système de Bethesda pour le compte rendu de la cytopathologie thyroïdienne, 3e édition",
+  "triggerField": "bethesda_category",
+  "summaries": {
+    "bethesda_i_non_diagnostic_unsatisfactory": {
+      "professionalLabel": "Catégorie Bethesda I : Non diagnostique / Non satisfaisant",
+      "patientTitle": "L'échantillon n'était pas suffisant pour poser un diagnostic clair",
+      "plainLanguageSummary": "L'échantillon thyroïdien ne contenait pas assez de cellules exploitables, ou la qualité de l'échantillon était limitée, de sorte qu'un diagnostic clair n'a pas pu être établi.",
+      "whatThisMeans": "Cela ne signifie pas qu'un cancer a été détecté. Cela signifie que l'échantillon n'était pas suffisamment adéquat pour fournir une réponse fiable.",
+      "possibleNextSteps": "Votre médecin pourra recommander de répéter la ponction à l'aiguille fine, souvent sous guidage échographique, en fonction de l'aspect échographique et de la préoccupation clinique.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, de l'imagerie et, le cas échéant, de vos résultats antérieurs."
+    },
+    "bethesda_ii_benign": {
+      "professionalLabel": "Catégorie Bethesda II : Bénin",
+      "patientTitle": "Résultat thyroïdien bénin",
+      "plainLanguageSummary": "L'échantillon thyroïdien montre des cellules bénignes, non cancéreuses.",
+      "whatThisMeans": "Il s'agit généralement d'un résultat rassurant. Il ne montre pas de signes de cancer thyroïdien dans l'échantillon examiné.",
+      "possibleNextSteps": "Votre médecin pourra recommander un suivi de routine, une surveillance échographique, ou aucune action immédiate supplémentaire selon la taille et l'aspect du nodule.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, de l'imagerie et, le cas échéant, de vos résultats antérieurs."
+    },
+    "bethesda_iii_aus": {
+      "professionalLabel": "Catégorie Bethesda III : Atypie de signification indéterminée (AUS)",
+      "patientTitle": "Cellules thyroïdiennes légèrement atypiques",
+      "plainLanguageSummary": "L'échantillon thyroïdien montre quelques cellules d'aspect légèrement inhabituel, mais les résultats ne sont pas suffisants pour diagnostiquer un cancer ou une tumeur certaine.",
+      "whatThisMeans": "Il s'agit d'un résultat indéterminé. Dans de nombreux cas, il ne s'agit pas d'un cancer, mais une évaluation complémentaire peut être nécessaire.",
+      "possibleNextSteps": "Votre médecin pourra recommander un nouveau prélèvement, un suivi échographique, des tests moléculaires si disponibles, ou une orientation vers un avis spécialisé.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, de l'imagerie et, le cas échéant, de vos résultats antérieurs."
+    },
+    "bethesda_iv_follicular_neoplasm_suspicious_for_follicular_neoplasm": {
+      "professionalLabel": "Catégorie Bethesda IV : Néoplasme folliculaire / Suspect de néoplasme folliculaire",
+      "patientTitle": "Possible tumeur thyroïdienne folliculaire",
+      "plainLanguageSummary": "L'échantillon thyroïdien montre un aspect pouvant correspondre à une tumeur thyroïdienne folliculaire.",
+      "whatThisMeans": "La cytologie seule ne permet souvent pas de déterminer de manière fiable si ce type de tumeur thyroïdienne est bénin ou malin, car cela peut nécessiter l'examen de l'ensemble de la capsule du nodule et des vaisseaux sanguins.",
+      "possibleNextSteps": "Votre médecin pourra recommander une consultation chirurgicale, des tests moléculaires si disponibles, ou l'ablation d'une partie de la thyroïde en fonction du tableau clinique global.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, de l'imagerie et, le cas échéant, de vos résultats antérieurs."
+    },
+    "bethesda_v_suspicious_for_malignancy": {
+      "professionalLabel": "Catégorie Bethesda V : Suspect de malignité",
+      "patientTitle": "Résultat thyroïdien suspect",
+      "plainLanguageSummary": "L'échantillon thyroïdien montre des modifications suspectes de malignité, mais les résultats peuvent ne pas être suffisamment complets pour établir un diagnostic définitif.",
+      "whatThisMeans": "Ce résultat suscite une préoccupation importante, et une évaluation complémentaire est généralement nécessaire.",
+      "possibleNextSteps": "Votre médecin pourra recommander une consultation chirurgicale, des examens complémentaires ou un bilan plus approfondi en fonction des données échographiques et de votre situation clinique.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, de l'imagerie et, le cas échéant, de vos résultats antérieurs."
+    },
+    "bethesda_vi_malignant": {
+      "professionalLabel": "Catégorie Bethesda VI : Malin",
+      "patientTitle": "Des cellules cancéreuses ont été identifiées dans l'échantillon thyroïdien",
+      "plainLanguageSummary": "L'échantillon thyroïdien montre des cellules malignes, ce qui signifie que des cellules cancéreuses ont été identifiées.",
+      "whatThisMeans": "Ce résultat nécessite généralement une prise en charge spécialisée. Le traitement exact dépend du type de cancer thyroïdien et de l'ensemble de vos données cliniques.",
+      "possibleNextSteps": "Votre médecin vous orientera vraisemblablement vers une évaluation chirurgicale ou spécialisée et pourra demander des examens complémentaires pour guider le traitement.",
+      "safetyNote": "Ce résumé est fourni à titre informatif général uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l'interprétera en tenant compte de vos symptômes, des résultats de votre examen clinique, de l'imagerie et, le cas échéant, de vos résultats antérieurs."
+    }
+  }
+}

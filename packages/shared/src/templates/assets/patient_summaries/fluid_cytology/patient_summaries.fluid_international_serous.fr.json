@@ -1,0 +1,50 @@
+{
+  "templateId": "fluid_cytology_international_system_serous_fluid",
+  "summaryType": "rule_based_patient_facing_summary",
+  "version": "1.0",
+  "language": "fr",
+  "system": "Système international pour le compte rendu de la cytopathologie des liquides séreux",
+  "triggerField": "diagnostic_category",
+  "summaries": {
+    "isrsfc_i_non_diagnostic": {
+      "professionalLabel": "Catégorie I : Non diagnostique (ND)",
+      "patientTitle": "L’échantillon de liquide n’était pas suffisant pour un diagnostic clair",
+      "plainLanguageSummary": "L’échantillon de liquide ne contenait pas suffisamment de cellules utiles, ou la qualité de l’échantillon était limitée, de sorte qu’un diagnostic clair n’a pas pu être établi.",
+      "whatThisMeans": "Cela ne signifie pas qu’un cancer a été détecté. Cela signifie simplement que l’échantillon n’était pas adéquat pour fournir un résultat fiable.",
+      "possibleNextSteps": "Votre médecin pourra recommander un nouveau prélèvement ou d’autres examens selon vos symptômes, les résultats d’imagerie et vos antécédents médicaux.",
+      "safetyNote": "Ce résumé est fourni uniquement pour une compréhension générale. Veuillez discuter du rapport complet avec votre médecin, qui l’interprétera en tenant compte de vos symptômes, de l’examen clinique, des résultats d’imagerie et des résultats antérieurs lorsque cela est pertinent."
+    },
+    "isrsfc_ii_negative_for_malignancy": {
+      "professionalLabel": "Catégorie II : Négatif pour malignité (NFM)",
+      "patientTitle": "Aucune cellule cancéreuse observée dans l’échantillon de liquide",
+      "plainLanguageSummary": "L’échantillon de liquide ne montre pas de cellules cancéreuses.",
+      "whatThisMeans": "Il s’agit d’un résultat rassurant, mais la cause de l’accumulation de liquide doit toujours être interprétée avec vos données cliniques.",
+      "possibleNextSteps": "Votre médecin pourra poursuivre les investigations ou traiter des causes non cancéreuses telles qu’une infection, une inflammation, ou certaines maladies cardiaques, hépatiques, rénales ou autres.",
+      "safetyNote": "Ce résumé est fourni uniquement pour une compréhension générale. Veuillez discuter du rapport complet avec votre médecin, qui l’interprétera en tenant compte de vos symptômes, de l’examen clinique, des résultats d’imagerie et des résultats antérieurs lorsque cela est pertinent."
+    },
+    "isrsfc_iii_aus": {
+      "professionalLabel": "Catégorie III : Atypies de signification indéterminée (AUS)",
+      "patientTitle": "Quelques cellules inhabituelles observées",
+      "plainLanguageSummary": "L’échantillon de liquide montre certaines cellules inhabituelles, mais les résultats ne sont pas suffisants pour diagnostiquer un cancer.",
+      "whatThisMeans": "Il s’agit d’un résultat indéterminé. Une évaluation complémentaire peut être nécessaire, surtout s’il existe des anomalies cliniques ou radiologiques.",
+      "possibleNextSteps": "Votre médecin pourra recommander une nouvelle analyse du liquide, des études sur bloc cellulaire, une révision des examens d’imagerie ou une biopsie tissulaire selon la situation.",
+      "safetyNote": "Ce résumé est fourni uniquement pour une compréhension générale. Veuillez discuter du rapport complet avec votre médecin, qui l’interprétera en tenant compte de vos symptômes, de l’examen clinique, des résultats d’imagerie et des résultats antérieurs lorsque cela est pertinent."
+    },
+    "isrsfc_iv_suspicious_for_malignancy": {
+      "professionalLabel": "Catégorie IV : Suspect de malignité (SFM)",
+      "patientTitle": "Des cellules suspectes ont été observées dans l’échantillon de liquide",
+      "plainLanguageSummary": "L’échantillon de liquide montre des cellules suspectes de cancer, mais les résultats peuvent ne pas être suffisants pour un diagnostic définitif.",
+      "whatThisMeans": "Il existe une préoccupation importante, et des examens complémentaires sont généralement nécessaires.",
+      "possibleNextSteps": "Votre médecin pourra recommander des examens supplémentaires, une biopsie tissulaire, des examens d’imagerie ou une consultation spécialisée.",
+      "safetyNote": "Ce résumé est fourni uniquement pour une compréhension générale. Veuillez discuter du rapport complet avec votre médecin, qui l’interprétera en tenant compte de vos symptômes, de l’examen clinique, des résultats d’imagerie et des résultats antérieurs lorsque cela est pertinent."
+    },
+    "isrsfc_v_malignant": {
+      "professionalLabel": "Catégorie V : Malin (MAL)",
+      "patientTitle": "Des cellules cancéreuses ont été identifiées dans l’échantillon de liquide",
+      "plainLanguageSummary": "L’échantillon de liquide montre des cellules malignes, ce qui signifie que des cellules cancéreuses ont été identifiées.",
+      "whatThisMeans": "Ce résultat peut indiquer qu’un cancer est présent dans la cavité corporelle d’où le liquide a été prélevé ou qu’il l’atteint.",
+      "possibleNextSteps": "Votre médecin interprétera ce résultat avec vos antécédents et les examens d’imagerie, et pourra organiser d’autres examens ou une planification du traitement.",
+      "safetyNote": "Ce résumé est fourni uniquement pour une compréhension générale. Veuillez discuter du rapport complet avec votre médecin, qui l’interprétera en tenant compte de vos symptômes, de l’examen clinique, des résultats d’imagerie et des résultats antérieurs lorsque cela est pertinent."
+    }
+  }
+}

@@ -1,10 +1,16 @@
 {
-  "title": "کولون اور ریکٹم ریسیکشن (گراسنگ ٹیمپلیٹ)",
+  "template_id": "colon_rectum_resection_gross_tumor_v1",
+  "domain": "anatomic_pathology",
+  "lang": "ur",
+  "ui": {
+    "direction": "rtl"
+  },
+  "title": "کولون اور ریکٹم ریسیکشن (ظاہری معائنہ ٹیمپلیٹ)",
   "specimen": {
     "label": "نمونہ",
     "fields": {
       "procedure_type": {
-        "label": "طریقہ کار کی قسم (جیسا کہ معالج نے بیان کیا)"
+        "label": "طریقۂ کار کی قسم (جیسا کہ معالج نے بیان کیا)"
       },
       "specimen_length_mm": {
         "label": "نمونے کی لمبائی (ملی میٹر)"
@@ -18,11 +24,8 @@
     "label": "رسولی",
     "fields": {
       "tumor_perforation": {
-        "label": "رسولی کا سوراخ/پرفوریشن",
-        "options": [
-          "غیر موجود",
-          "موجود"
-        ]
+        "label": "رسولی کا سوراخ (پرفوریشن)",
+        "options": ["غیر موجود", "موجود"]
       },
       "tumor_dimensions_mm": {
         "label": "رسولی کے ابعاد (ملی میٹر)"
@@ -43,31 +46,25 @@
       },
       "invades_peritoneal_surface": {
         "label": "رسولی پیریٹونیل سطح میں داخل ہوتی ہے",
-        "options": [
-          "ہاں",
-          "نہیں"
-        ]
+        "options": ["ہاں", "نہیں"]
       },
       "forms_discrete_serosal_nodules": {
         "label": "رسولی الگ سیروسل نوڈیولز بناتی ہے",
-        "options": [
-          "ہاں",
-          "نہیں"
-        ]
+        "options": ["ہاں", "نہیں"]
       }
     }
   },
   "margins": {
-    "label": "مارجنز",
+    "label": "حاشیے",
     "fields": {
       "distance_to_proximal_margin_mm": {
-        "label": "قریبی مارجن تک فاصلہ (ملی میٹر)"
+        "label": "قریبی حاشیے تک فاصلہ (ملی میٹر)"
       },
       "distance_to_distal_margin_mm": {
-        "label": "دور مارجن تک فاصلہ (ملی میٹر)"
+        "label": "دور حاشیے تک فاصلہ (ملی میٹر)"
       },
       "distance_to_circumferential_margin_mm": {
-        "label": "محیطی مارجن تک فاصلہ (ملی میٹر)"
+        "label": "غیر پیریٹونیلائزڈ محیطی حاشیے تک فاصلہ (ملی میٹر)"
       }
     }
   },
@@ -76,22 +73,14 @@
     "fields": {
       "mesorectum_intactness": {
         "label": "میسوریکٹم کی سالمیت",
-        "options": [
-          "نامکمل (گریڈ 1)",
-          "تقریباً مکمل (گریڈ 2)",
-          "مکمل (گریڈ 3)"
-        ]
+        "options": ["نامکمل (گریڈ 1)", "تقریباً مکمل (گریڈ 2)", "مکمل (گریڈ 3)"]
       },
       "relationship_to_anterior_peritoneal_reflection": {
-        "label": "رسولی کا anterior peritoneal reflection سے تعلق",
-        "options": [
-          "مکمل طور پر اوپر",
-          "دونوں طرف پھیلی ہوئی",
-          "مکمل طور پر نیچے"
-        ]
+        "label": "رسولی کا اگلے پیریٹونیل انعکاس سے تعلق",
+        "options": ["مکمل طور پر اوپر", "دونوں طرف پھیلی ہوئی", "مکمل طور پر نیچے"]
       },
       "distance_from_dentate_line_mm": {
-        "label": "ڈینٹیٹ لائن سے فاصلہ (ملی میٹر)"
+        "label": "ڈینٹیٹ لائن سے فاصلہ (ملی میٹر) پیٹ اور پیرینیم ریسیکشن میں"
       }
     }
   },
@@ -100,13 +89,10 @@
     "fields": {
       "status": {
         "label": "پولیپس",
-        "options": [
-          "غیر موجود",
-          "موجود"
-        ]
+        "options": ["غیر موجود", "موجود"]
       },
       "if_present_details": {
-        "label": "اگر موجود ہوں (تعداد، سائز کی حد، اور گراس ظاہری شکل درج کریں)"
+        "label": "اگر موجود ہوں (تعداد، سائز کی حد، اور ظاہری شکل درج کریں)"
       }
     }
   },
@@ -122,10 +108,10 @@
     }
   },
   "other_findings": {
-    "label": "دیگر متعلقہ گراس مشاہدات",
+    "label": "دیگر متعلقہ ظاہری مشاہدات",
     "fields": {
       "findings": {
-        "label": "دیگر متعلقہ گراس مشاہدات"
+        "label": "دیگر متعلقہ ظاہری مشاہدات"
       }
     }
   },
@@ -136,13 +122,13 @@
         "label": "رسولی"
       },
       "proximal_margin": {
-        "label": "پروگزمل مارجن"
+        "label": "قریبی حاشیہ"
       },
       "distal_margin": {
-        "label": "ڈسٹل مارجن"
+        "label": "دور حاشیہ"
       },
       "circumferential_margin": {
-        "label": "سرکمفرینشل مارجن"
+        "label": "محیطی حاشیہ"
       },
       "non_neoplastic_colon": {
         "label": "غیر نیوپلاسٹک کولون"
@@ -156,10 +142,10 @@
     }
   },
   "grossing": {
-    "label": "گراس",
+    "label": "ظاہری معائنہ",
     "fields": {
       "grossed_by_initials": {
-        "label": "گراسنگ کرنے والا/والی"
+        "label": "ظاہری معائنہ کرنے والا/والی (ابتدائی حروف)"
       },
       "date": {
         "label": "تاریخ"

@@ -1,33 +1,53 @@
 {
   "template_id": "breast_dcis_resection_v1",
+  "domain": "anatomic_pathology",
+  "protocol_posting_date": "June 2021",
+  "standards": ["AJCC-UICC 8"],
   "lang": "ur",
-  "title": "رپورٹنگ ٹیمپلیٹ – چھاتی کا DCIS، ریزیکشن",
+  "ui": {
+    "direction": "rtl"
+  },
+  "title": "چھاتی کا DCIS، ریزیکشن",
   "specimen": {
     "label": "نمونہ",
     "fields": {
       "procedure": {
         "label": "طریقہ کار",
         "options": [
-          "ایکسائزن (مکمل ماسٹیکٹومی سے کم)",
-          "مکمل ماسٹیکٹومی (بشمول نپل محفوظ رکھنے والی اور جلد محفوظ رکھنے والی ماسٹیکٹومی)",
-          "دیگر (وضاحت کریں): _________________",
-          "متعین نہیں"
+          "ایکسیژن (مکمل ماسٹیکٹومی سے کم)",
+          "مکمل ماسٹیکٹومی (بشمول نپل محفوظ اور جلد محفوظ ماسٹیکٹومی)",
+          "دیگر",
+          "غیر متعین"
         ],
-        "other_specify": "دوسرا بتائیں"
+        "other_specify": "",
+        "type": "select",
+        "value": ""
       },
       "laterality": {
         "label": "نمونے کی جانب",
-        "options": [
-          "دائیں",
-          "بائیں",
-          "متعین نہیں"
-        ]
+        "options": ["دائیں", "بائیں", "غیر متعین"],
+        "type": "select",
+        "value": ""
       }
     }
   },
   "tumor": {
     "label": "ٹیومر",
     "fields": {
+      "tumor_site": {
+        "label": "ٹیومر کا مقام",
+        "options": [
+          "اوپری بیرونی کواڈرینٹ",
+          "زیریں بیرونی کواڈرینٹ",
+          "اوپری اندرونی کواڈرینٹ",
+          "زیریں اندرونی کواڈرینٹ",
+          "مرکزی",
+          "نپل",
+          "غیر متعین"
+        ],
+        "type": "multi_select",
+        "value": []
+      },
       "histologic_type": {
         "label": "ہسٹولوجیکل قسم",
         "options": [
@@ -35,131 +55,182 @@
           "پیجٹ بیماری",
           "اینکیپسولیٹڈ پیپیلری کارسینوما بغیر انویسیو کارسینوما",
           "سالڈ پیپیلری کارسینوما بغیر انویسیو کارسینوما"
-        ]
+        ],
+        "type": "select",
+        "value": ""
+      },
+      "size_extent_of_dcis": {
+        "label": "DCIS کا سائز (وسعت)",
+        "note": "DCIS کا سائز (وسعت) گروس اور خردبینی تشخیص کے ذریعے DCIS کے زیر قبضہ چھاتی کے بافت کے حجم کا تخمینہ ہے۔",
+        "fields": {
+          "size_type": {
+            "label": "DCIS کا سائز (وسعت)",
+            "options": [
+              "DCIS کا تخمینی سائز (وسعت) کم از کم (ملی میٹر) میں ہے",
+              "متعین نہیں کیا جا سکتا"
+            ],
+            "type": "select",
+            "value": ""
+          },
+          "size_mm": {
+            "label": "تخمینی سائز (ملی میٹر)",
+            "type": "number",
+            "value": ""
+          },
+          "additional_dimensions_mm": {
+            "label": "اضافی جہات (ملی میٹر)",
+            "type": "measurement_2d",
+            "value": ""
+          },
+          "cannot_be_determined_specify": {
+            "label": "متعین نہیں کیا جا سکتا",
+            "type": "text",
+            "value": ""
+          },
+          "number_of_blocks_with_dcis": {
+            "label": "DCIS والے بلاکس کی تعداد",
+            "type": "integer",
+            "value": ""
+          },
+          "number_of_blocks_examined": {
+            "label": "جانچے گئے بلاکس کی تعداد",
+            "type": "integer",
+            "value": ""
+          }
+        }
       },
       "architectural_patterns": {
         "label": "ساختی پیٹرنز",
         "options": [
           "کومیدو",
           "پیجٹ بیماری (نپل کی جلد میں DCIS)",
-          "کریبرِفارم",
+          "کریبریفارم",
           "مائیکروپیپیلری",
           "پیپیلری",
           "سالڈ",
-          "دیگر (وضاحت کریں): _________________"
+          "دیگر"
         ],
-        "other_specify": "دوسرا آرکیٹیکچرل پیٹرن بتائیں"
+        "other_specify": "",
+        "type": "multi_select",
+        "value": []
       },
       "nuclear_grade": {
         "label": "نیوکلیئر گریڈ",
-        "options": [
-          "گریڈ I (کم)",
-          "گریڈ II (درمیانی)",
-          "گریڈ III (زیادہ)"
-        ]
+        "options": ["گریڈ I (کم)", "گریڈ II (درمیانی)", "گریڈ III (زیادہ)"],
+        "type": "select",
+        "value": ""
       },
       "necrosis": {
         "label": "نیکروسس",
         "options": [
-          "شناخت نہیں ہوا",
+          "شناخت نہیں ہوئی",
           "موجود، فوکل (چھوٹے فوکس یا ایک خلیے کی نیکروسس)",
-          "موجود، مرکزی (وسیع کومیدو نیکروسس)"
-        ]
+          "موجود، مرکزی (وسیع \"کومیدو\" نیکروسس)"
+        ],
+        "type": "select",
+        "value": ""
       },
       "microcalcifications": {
         "label": "مائیکروکیلسیفیکیشنز",
-        "options": [
-          "شناخت نہیں ہوئیں",
-          "DCIS میں موجود",
-          "غیر نیوپلاسٹک ٹشو میں موجود",
-          "دیگر (وضاحت کریں): _________________"
-        ],
-        "other_specify": "دیگر مائیکرو کیلشیفیکیشنز بتائیں"
-      },
-      "tumor_site": {},
-      "size_extent_of_dcis": {
-        "fields": {
-          "size_type": {
-            "label": "DCIS کا سائز (وسعت)",
-            "options": [
-              "Estimated size (extent) of DCIS is at least in millimeters (mm)",
-              "متعین نہیں کیا جا سکتا"
-            ]
-          },
-          "size_mm": {
-            "label": "تخمینی سائز (ملی میٹر)"
-          },
-          "additional_dimensions_mm": {
-            "label": "اضافی جہات (ملی میٹر)"
-          },
-          "cannot_be_determined_specify": {
-            "label": "متعین نہیں کیا جا سکتا"
-          },
-          "number_of_blocks_with_dcis": {
-            "label": "DCIS والے بلاکس کی تعداد"
-          },
-          "number_of_blocks_examined": {
-            "label": "جانچے گئے بلاکس کی تعداد"
-          }
-        }
+        "options": ["شناخت نہیں ہوئیں", "DCIS میں موجود", "غیر نیوپلاسٹک ٹشو میں موجود", "دیگر"],
+        "other_specify": "",
+        "type": "multi_select",
+        "value": []
       }
     }
   },
   "margins": {
-    "label": "کنارے",
+    "label": "حاشیے",
     "fields": {
-      "margin_status": {},
+      "margin_status": {
+        "label": "حاشیے کی حالت",
+        "note": "غیر متاثر حاشیوں کے لیے، قریب ترین حاشیہ بیان کرنا ضروری ہے اگر DCIS سے حاشیے کا فاصلہ 2 ملی میٹر سے کم ہو۔",
+        "options": [
+          "تمام حاشیے DCIS کے لیے منفی",
+          "حاشیے پر DCIS موجود ہے",
+          "قابل اطلاق نہیں (نمونے میں DCIS نہیں)"
+        ],
+        "type": "select",
+        "value": ""
+      },
       "distance_from_dcis_to_closest_margin": {
+        "label": "DCIS سے قریب ترین حاشیے تک فاصلہ",
         "fields": {
           "distance_type": {
             "label": "فاصلے کی قسم",
-            "options": [
-              "Exact distance",
-              "سے کم",
-              "Greater than",
-              "Other",
-              "متعین نہیں کیا جا سکتا"
-            ]
+            "options": ["درست فاصلہ", "سے کم", "سے زیادہ", "دیگر", "متعین نہیں کیا جا سکتا"],
+            "type": "select",
+            "value": ""
           },
           "distance_mm": {
-            "label": "فاصلہ (ملی میٹر)"
+            "label": "فاصلہ (ملی میٹر)",
+            "type": "number",
+            "value": ""
           },
           "other_specify": {
-            "label": "دیگر (وضاحت کریں)"
+            "label": "دیگر (وضاحت کریں)",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_explain": {
-            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
+            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+            "type": "text",
+            "value": ""
           }
         }
       },
       "closest_margins_to_dcis": {
-        "other_specify": "دیگر، وضاحت کریں",
-        "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا، وضاحت کریں"
+        "label": "DCIS کے قریب ترین حاشیہ (حاشیے)",
+        "options": [
+          "قابل اطلاق نہیں",
+          "اگلا",
+          "پچھلا",
+          "اوپری",
+          "زیریں",
+          "میڈیئل",
+          "لیٹرل",
+          "دیگر",
+          "متعین نہیں کیا جا سکتا"
+        ],
+        "other_specify": "",
+        "cannot_be_determined_explain": "",
+        "type": "multi_select",
+        "value": []
       },
       "margins_involved_by_dcis": {
-        "item_label": "لیبل",
+        "label": "DCIS سے متاثر حاشیہ (حاشیے)",
+        "type": "repeatable_group",
+        "item_label": "DCIS سے متاثر حاشیہ",
         "fields": {
           "margin": {
-            "label": "مارجن",
+            "label": "حاشیہ",
             "options": [
-              "Anterior",
-              "Posterior",
-              "Superior",
-              "Inferior",
-              "Medial",
-              "Lateral",
-              "Other",
+              "اگلا",
+              "پچھلا",
+              "اوپری",
+              "زیریں",
+              "میڈیئل",
+              "لیٹرل",
+              "دیگر",
               "متعین نہیں کیا جا سکتا"
-            ]
+            ],
+            "type": "select",
+            "value": ""
           },
           "extent": {
-            "label": "وسعت، اگر ممکن ہو"
+            "label": "وسعت، اگر ممکن ہو",
+            "type": "text",
+            "value": ""
           },
           "other_specify": {
-            "label": "دیگر (مارجن اور اگر ممکن ہو، وسعت بیان کریں)"
+            "label": "دیگر (حاشیہ اور اگر ممکن ہو وسعت بیان کریں)",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_explain": {
-            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
+            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+            "type": "text",
+            "value": ""
           }
         }
       }
@@ -168,200 +239,296 @@
   "regional_lymph_nodes": {
     "label": "علاقائی لمف نوڈز",
     "fields": {
-      "extranodal_extension": {
-        "label": "ایکسٹرا نوڈل ایکسٹینشن",
+      "regional_lymph_node_status": {
+        "label": "علاقائی لمف نوڈز کی حالت",
         "options": [
-          "شناخت نہیں ہوا",
-          "موجود، 2 mm یا کم",
-          "موجود، 2 mm سے زیادہ",
-          "موجود",
-          "متعین نہیں کیا جا سکتا",
-          "دیگر (وضاحت کریں): _________________",
-          "متعین نہیں کیا جا سکتا (وضاحت کریں): _________________"
+          "قابل اطلاق نہیں (کوئی علاقائی لمف نوڈ جمع نہیں کرایا گیا یا ملا نہیں)",
+          "علاقائی لمف نوڈز موجود ہیں",
+          "تمام علاقائی لمف نوڈز ٹیومر کے لیے منفی",
+          "ٹیومر علاقائی لمف نوڈ(ز) میں موجود ہے"
         ],
-        "other_specify": "دوسرا بتائیں",
-        "cannot_be_determined_explain": "'متعین نہیں' کی وضاحت"
+        "type": "select",
+        "value": ""
       },
-      "regional_lymph_node_status": {},
       "number_with_macrometastases": {
+        "label": "میکرومیٹاسٹیسس والے لمف نوڈز کی تعداد",
         "fields": {
           "count_type": {
             "label": "گنتی کی قسم",
-            "options": [
-              "Exact number",
-              "کم از کم",
-              "Other",
-              "متعین نہیں کیا جا سکتا"
-            ]
+            "options": ["درست تعداد", "کم از کم", "دیگر", "متعین نہیں کیا جا سکتا"],
+            "type": "select",
+            "value": ""
           },
           "count_value": {
-            "label": "تعداد"
+            "label": "تعداد",
+            "type": "integer",
+            "value": ""
           },
           "other_specify": {
-            "label": "دیگر (وضاحت کریں)"
+            "label": "دیگر (وضاحت کریں)",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_explain": {
-            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
+            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+            "type": "text",
+            "value": ""
           }
         }
       },
       "number_with_micrometastases": {
+        "label": "مائیکرومیٹاسٹیسس والے لمف نوڈز کی تعداد",
         "fields": {
           "count_type": {
             "label": "گنتی کی قسم",
-            "options": [
-              "Exact number",
-              "کم از کم",
-              "Other",
-              "متعین نہیں کیا جا سکتا"
-            ]
+            "options": ["درست تعداد", "کم از کم", "دیگر", "متعین نہیں کیا جا سکتا"],
+            "type": "select",
+            "value": ""
           },
           "count_value": {
-            "label": "تعداد"
+            "label": "تعداد",
+            "type": "integer",
+            "value": ""
           },
           "other_specify": {
-            "label": "دیگر (وضاحت کریں)"
+            "label": "دیگر (وضاحت کریں)",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_explain": {
-            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
+            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+            "type": "text",
+            "value": ""
           }
         }
       },
       "number_with_isolated_tumor_cells": {
+        "label": "الگ تھلگ ٹیومر خلیات والے لمف نوڈز کی تعداد",
         "fields": {
           "count_type": {
             "label": "گنتی کی قسم",
             "options": [
               "قابل اطلاق نہیں",
-              "Exact number",
+              "درست تعداد",
               "کم از کم",
-              "Other",
+              "دیگر",
               "متعین نہیں کیا جا سکتا"
-            ]
+            ],
+            "type": "select",
+            "value": ""
           },
           "count_value": {
-            "label": "تعداد"
+            "label": "تعداد",
+            "type": "integer",
+            "value": ""
           },
           "other_specify": {
-            "label": "دیگر (وضاحت کریں)"
+            "label": "دیگر (وضاحت کریں)",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_explain": {
-            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
+            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+            "type": "text",
+            "value": ""
           }
         }
       },
       "size_of_largest_nodal_metastatic_deposit": {
+        "label": "سب سے بڑے نوڈل میٹاسٹیٹک ڈپازٹ کا سائز",
         "fields": {
           "size_type": {
             "label": "پیمائش کی قسم",
-            "options": [
-              "Exact size",
-              "سے کم",
-              "Greater than",
-              "Other",
-              "متعین نہیں کیا جا سکتا"
-            ]
+            "options": ["درست سائز", "سے کم", "سے زیادہ", "دیگر", "متعین نہیں کیا جا سکتا"],
+            "type": "select",
+            "value": ""
           },
           "size_mm": {
-            "label": "سائز (ملی میٹر)"
+            "label": "سائز (ملی میٹر)",
+            "type": "number",
+            "value": ""
           },
           "other_specify": {
-            "label": "دیگر (وضاحت کریں)"
+            "label": "دیگر (وضاحت کریں)",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_explain": {
-            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
+            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+            "type": "text",
+            "value": ""
           }
         }
       },
+      "extranodal_extension": {
+        "label": "ایکسٹرا نوڈل ایکسٹینشن",
+        "options": [
+          "شناخت نہیں ہوئی",
+          "موجود، 2 ملی میٹر یا کم",
+          "موجود، 2 ملی میٹر سے زیادہ",
+          "موجود",
+          "متعین نہیں کیا جا سکتا",
+          "دیگر"
+        ],
+        "other_specify": "",
+        "cannot_be_determined_explain": "",
+        "type": "select",
+        "value": ""
+      },
       "total_number_examined": {
+        "label": "جانچے گئے لمف نوڈز کی کل تعداد (سینٹینل اور غیر سینٹینل)",
         "fields": {
           "count_type": {
             "label": "گنتی کی قسم",
-            "options": [
-              "Exact number",
-              "کم از کم",
-              "Other",
-              "متعین نہیں کیا جا سکتا"
-            ]
+            "options": ["درست تعداد", "کم از کم", "دیگر", "متعین نہیں کیا جا سکتا"],
+            "type": "select",
+            "value": ""
           },
           "count_value": {
-            "label": "تعداد"
+            "label": "تعداد",
+            "type": "integer",
+            "value": ""
           },
           "other_specify": {
-            "label": "دیگر (وضاحت کریں)"
+            "label": "دیگر (وضاحت کریں)",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_explain": {
-            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
+            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+            "type": "text",
+            "value": ""
           }
         }
       },
       "number_of_sentinel_nodes_examined": {
+        "label": "جانچے گئے سینٹینل نوڈز کی تعداد",
         "fields": {
           "count_type": {
             "label": "گنتی کی قسم",
             "options": [
               "قابل اطلاق نہیں",
-              "Exact number",
+              "درست تعداد",
               "کم از کم",
-              "Other",
+              "دیگر",
               "متعین نہیں کیا جا سکتا"
-            ]
+            ],
+            "type": "select",
+            "value": ""
           },
           "count_value": {
-            "label": "تعداد"
+            "label": "تعداد",
+            "type": "integer",
+            "value": ""
           },
           "other_specify": {
-            "label": "دیگر (وضاحت کریں)"
+            "label": "دیگر (وضاحت کریں)",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_explain": {
-            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
+            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+            "type": "text",
+            "value": ""
           }
         }
       },
-      "comment": {}
+      "comment": {
+        "label": "علاقائی لمف نوڈز پر تبصرہ"
+      }
     }
   },
   "distant_metastasis": {
     "label": "دور دراز میٹاسٹیسس",
     "fields": {
       "sites_involved": {
-        "non_regional_lymph_nodes_specify": "non regional lymph nodes specify",
-        "lung_specify": "lung specify",
-        "liver_specify": "liver specify",
-        "bone_specify": "ہڈی، وضاحت کریں",
-        "brain_specify": "brain specify",
-        "other_specify": "دیگر، وضاحت کریں",
-        "cannot_be_determined_specify": "متعین نہیں کیا جا سکتا، وضاحت کریں"
+        "label": "متاثرہ دور دراز مقام (مقامات)",
+        "options": [
+          "قابل اطلاق نہیں",
+          "غیر علاقائی لمف نوڈ(ز)",
+          "پھیپھڑا",
+          "جگر",
+          "ہڈی",
+          "دماغ",
+          "دیگر",
+          "متعین نہیں کیا جا سکتا"
+        ],
+        "non_regional_lymph_nodes_specify": "",
+        "lung_specify": "",
+        "liver_specify": "",
+        "bone_specify": "",
+        "brain_specify": "",
+        "other_specify": "",
+        "cannot_be_determined_specify": "",
+        "type": "multi_select",
+        "value": []
       }
     }
   },
   "pathologic_stage": {
     "label": "پیتھالوجیکل اسٹیج کی درجہ بندی (pTNM، AJCC آٹھواں ایڈیشن)",
+    "note": "pT، pN اور جہاں قابل اطلاق ہو pM زمروں کی رپورٹنگ رپورٹ جاری کرتے وقت پیتھالوجسٹ کو دستیاب معلومات پر مبنی ہے۔",
     "fields": {
       "tnm_descriptors": {
         "label": "TNM وضاحتیں",
-        "options": [
-          "لاگو نہیں",
-          "r (دوبارہ ظاہر ہونا)"
-        ]
+        "options": ["قابل اطلاق نہیں", "r (دوبارہ ظاہر ہونا)"],
+        "type": "select",
+        "value": ""
       },
-      "pT_category": {},
-      "regional_lymph_nodes_modifier": {},
-      "pN_category": {},
-      "pM_category": {},
-      "previous_case_number": {}
+      "pT_category": {
+        "label": "pT زمرہ",
+        "options": [
+          "pTis (DCIS): ڈکٹل کارسینوما اِن سیٹو",
+          "pTis (Paget): نپل کی پیجٹ بیماری جو انویسیو کارسینوما اور/یا نیچے کے بریسٹ پیرنکائما میں DCIS سے منسلک نہیں"
+        ],
+        "type": "select",
+        "value": ""
+      },
+      "regional_lymph_nodes_modifier": {
+        "label": "علاقائی لمف نوڈز موڈیفائر",
+        "options": [
+          "قابل اطلاق نہیں",
+          "(sn): سینٹینل نوڈ(ز) کا جائزہ لیا گیا",
+          "(f): FNA یا کور نیڈل بایوپسی سے تصدیق شدہ نوڈل میٹاسٹیسس"
+        ],
+        "type": "multi_select",
+        "value": []
+      },
+      "pN_category": {
+        "label": "pN زمرہ",
+        "options": [
+          "pN تفویض نہیں (کوئی نوڈ جمع نہیں کرایا یا ملا نہیں)",
+          "pN تفویض نہیں (دستیاب پیتھالوجیکل معلومات کی بنیاد پر متعین نہیں کیا جا سکتا)",
+          "pN0: کوئی علاقائی لمف نوڈ میٹاسٹیسس نہیں یا صرف ITC",
+          "pN0 (i+): علاقائی لمف نوڈ(ز) میں صرف ITC",
+          "pN0 (mol+): RT-PCR کے ذریعے مثبت مالیکیولر نتائج؛ کوئی ITC نہیں ملی",
+          "pN1mi: مائیکرومیٹاسٹیسس",
+          "pN1a: 1-3 ایگزیلری لمف نوڈز میں میٹاسٹیسس، کم از کم ایک 2.0 ملی میٹر سے بڑی",
+          "pN1b: ہم طرف اندرونی میمری سینٹینل نوڈز میں میٹاسٹیسس، ITC کے علاوہ",
+          "pN1c: pN1a اور pN1b مل کر",
+          "pN2a: 4-9 ایگزیلری لمف نوڈز میں میٹاسٹیسس، کم از کم ایک ٹیومر ڈپازٹ 2.0 ملی میٹر سے بڑا",
+          "pN2b: کلینیکلی دریافت ہونے والے اندرونی میمری لمف نوڈز میں میٹاسٹیسس پیتھالوجیکلی منفی ایگزیلری نوڈز کے ساتھ",
+          "pN3a: 10 یا اس سے زیادہ ایگزیلری لمف نوڈز میں یا انفراکلاویکیولر نوڈز میں میٹاسٹیسس",
+          "pN3b: cN2b کی موجودگی میں pN1a یا pN2a، یا pN1b کی موجودگی میں pN2a",
+          "pN3c: ہم طرف سوپراکلاویکیولر لمف نوڈز میں میٹاسٹیسس"
+        ],
+        "type": "select",
+        "value": ""
+      },
+      "pM_category": {
+        "label": "pM زمرہ",
+        "options": [
+          "قابل اطلاق نہیں - جمع کرائے گئے نمونے(نمونوں) سے pM متعین نہیں کیا جا سکتا",
+          "pM1: ہسٹولوجیکلی ثابت شدہ میٹاسٹیسس 0.2 ملی میٹر سے بڑی"
+        ],
+        "type": "select",
+        "value": ""
+      },
+      "previous_case_number": {
+        "label": "کیس نمبر بتائیں (اگر پچھلے طریقہ کار سے ہو)",
+        "type": "text",
+        "value": ""
+      }
     }
-  },
-  "domain": {
-    "fields": {}
-  },
-  "protocol_posting_date": {
-    "fields": {}
-  },
-  "case_summary": {
-    "fields": {}
-  },
-  "standards": {
-    "fields": {}
   }
 }
