@@ -1,6 +1,7 @@
 {
   "template_id": "uterine_cervix_biopsy_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "protocol_posting_date": "March 2023",
   "lang": "sw",
   "title": "Kiolezo cha ripoti: mlango wa mfuko wa uzazi, biopsi",
@@ -39,7 +40,7 @@
         "value": "",
         "other_specify": "Nyingine (taja)",
         "cannot_be_determined_specify": "Haiwezi kubainishwa (taja)",
-        "comment": ""
+        "comment": {"label": "Maoni", "type": "text", "value": ""}
       },
       "histologic_grade": {
         "label": "Daraja la kihistolojia",

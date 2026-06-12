@@ -2,6 +2,11 @@
   "templateId": "general_cytology",
   "templateName": "General cytology reporting template",
   "language": "en",
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategories": ["respiratory_cytology", "csf", "body_fluid_non_effusion"],
+    "reportingSystem": "general_cytology"
+  },
   "sections": [
     {
       "id": "specimen",

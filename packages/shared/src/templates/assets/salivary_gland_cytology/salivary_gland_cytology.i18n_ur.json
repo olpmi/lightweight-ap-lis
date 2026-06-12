@@ -4,6 +4,12 @@
   "language": "ur",
   "direction": "rtl",
   "rtl": true,
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategories": ["fna"],
+    "organ": "salivary_gland",
+    "reportingSystem": "Milan"
+  },
   "sections": {
     "specimen": "نمونہ",
     "adequacy": "کفایت",

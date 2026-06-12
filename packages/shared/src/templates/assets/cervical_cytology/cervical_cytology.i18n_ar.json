@@ -3,6 +3,12 @@
   "version": "1.0",
   "language": "ar",
   "title": "قالب تقرير علم الخلايا لعنق الرحم (مسحة بابانيكولاو) (نظام بيثيسدا)",
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategory": "gyn_cytology",
+    "organSystem": "cervix",
+    "reportingSystem": "Bethesda"
+  },
   "common": {
     "yes": "نعم",
     "no": "لا",

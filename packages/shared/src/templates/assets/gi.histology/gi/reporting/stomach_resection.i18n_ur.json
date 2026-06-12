@@ -1,6 +1,7 @@
 {
   "template_id": "stomach_tumor_resection_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "protocol_posting_date": "March 2023",
   "lang": "ur",
   "standards": ["AJCC-UICC 8"],

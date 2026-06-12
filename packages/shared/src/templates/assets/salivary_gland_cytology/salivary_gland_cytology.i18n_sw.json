@@ -2,6 +2,12 @@
   "templateId": "salivary_gland_cytology_milan",
   "templateName": "Kiolezo cha ripoti ya sitolojia ya tezi za mate (mfumo wa Milan wa kuripoti saitopatholojia ya tezi za mate)",
   "language": "sw",
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategories": ["fna"],
+    "organ": "salivary_gland",
+    "reportingSystem": "Milan"
+  },  
   "sections": {
     "specimen": "Sampuli",
     "adequacy": "Ubora wa sampuli",

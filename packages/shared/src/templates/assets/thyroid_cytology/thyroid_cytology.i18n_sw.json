@@ -2,6 +2,12 @@
   "templateId": "thyroid_cytology_bethesda_3rd_edition",
   "templateName": "Kiolezo cha ripoti ya sitolojia ya tezi ya thyroid (mfumo wa Bethesda toleo la 3)",
   "language": "sw",
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategories": ["fna"],
+    "organ": "thyroid",
+    "reportingSystem": "Bethesda"
+  },
   "sections": {
     "specimen": "Sampuli",
     "adequacy": "Ubora wa sampuli",

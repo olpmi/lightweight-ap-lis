@@ -3,6 +3,12 @@
   "version": "1.0",
   "language": "ur",
   "title": "سروائیکل سائٹولوجی (پاپ اسمئیر) رپورٹنگ ٹیمپلیٹ (بیتھیسڈا سسٹم)",
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategory": "gyn_cytology",
+    "organSystem": "cervix",
+    "reportingSystem": "Bethesda"
+  },
   "common": {
     "yes": "ہاں",
     "no": "نہیں",

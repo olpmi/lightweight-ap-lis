@@ -1,6 +1,7 @@
 {
   "template_id": "uterine_cervix_resection_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "protocol_posting_date": "March 2023",
   "lang": "sw",
   "standards": ["FIGO Cancer Report 2018", "AJCC-UICC 9"],

@@ -1,6 +1,7 @@
 {
   "template_id": "breast_invasive_carcinoma_resection_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "protocol_posting_date": "June 2024",
   "standards": ["AJCC-UICC 8"],
   "lang": "fr",
@@ -77,9 +78,9 @@
         ],
         "type": "select",
         "value": "",
-        "features_specify": "",
-        "cannot_be_determined_specify": "Ne peut pas être déterminé (préciser)",
-        "other_specify": "Autre (préciser)",
+        "features_specify": { "label": "Caractéristiques (préciser)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": { "label": "Ne peut pas être déterminé (préciser)", "type": "text", "value": "" },
+        "other_specify": { "label": "Autre (préciser)", "type": "text", "value": "" },
         "comment": ""
       },
       "histologic_grade": {
@@ -547,8 +548,8 @@
             ],
             "type": "multi_select",
             "value": [],
-            "other_specify": "",
-            "cannot_be_determined_explain": ""
+            "other_specify": { "label": "Autre (préciser)", "type": "text", "value": "" },
+            "cannot_be_determined_explain": { "label": "Ne peut pas être déterminé (expliquer)", "type": "text", "value": "" }
           },
           "margins_involved": {
             "label": "Marge(s) atteinte(s) par le carcinome invasif",

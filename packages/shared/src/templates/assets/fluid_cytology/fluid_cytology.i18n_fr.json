@@ -2,6 +2,12 @@
   "templateId": "fluid_cytology_international_serous_fluid",
   "templateName": "Modèle de compte rendu de cytologie des liquides (Système international pour la cytopathologie des liquides séreux)",
   "language": "fr",
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategory": "serous_fluid",
+    "organSystem": "fluid_cytology",
+    "reportingSystem": "International system for reporting serous fluid cytology"
+  },
   "sections": {
     "specimen": "Prélèvement",
     "preparation_methods": "Méthodes de préparation",

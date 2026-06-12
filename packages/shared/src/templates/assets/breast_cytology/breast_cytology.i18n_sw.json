@@ -3,6 +3,12 @@
   "language": "sw",
   "direction": "ltr",
   "rtl": false,
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategory": "fna",
+    "organSystem": "breast",
+    "reportingSystem": "Yokohama"
+  },
   "sections": {
     "specimen": "Sampuli",
     "specimen_adequacy": "Ubora wa Sampuli",

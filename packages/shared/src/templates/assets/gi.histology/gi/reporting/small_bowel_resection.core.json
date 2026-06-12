@@ -1,233 +1,302 @@
 {
   "template_id": "small_bowel_tumor_resection_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "protocol_posting_date": "June 2025",
   "lang": "en",
-  "standards": ["AJCC 8"],
+  "standards": [
+    "AJCC 8"
+  ],
   "title": "Small Bowel Tumor, Resection",
-  "histologic_type": {
-    "label": "Histologic Type",
-    "type": "select",
-    "options": [
-      "Adenocarcinoma, NOS",
-      "Mucinous adenocarcinoma (greater than 50% mucinous)",
-      "Poorly cohesive carcinoma",
-      "Signet-ring cell carcinoma",
-      "Medullary carcinoma",
-      "Adenosquamous carcinoma",
-      "Squamous cell carcinoma",
-      "Large cell neuroendocrine carcinoma",
-      "Small cell neuroendocrine carcinoma",
-      "Neuroendocrine carcinoma (poorly differentiated)",
-      "Mixed neuroendocrine-non-neuroendocrine neoplasm (MiNEN)",
-      "Undifferentiated carcinoma, NOS",
-      "Other histologic type not listed"
-    ],
-    "value": "",
-    "other_specify": {
-      "label": "Other (specify)",
-      "type": "text",
-      "value": ""
-    }
-  },
-  "histologic_grade": {
-    "label": "Histologic Grade",
-    "type": "select",
-    "options": [
-      "G1, well-differentiated",
-      "G2, moderately differentiated",
-      "G3, poorly differentiated",
-      "G4, undifferentiated",
-      "Other",
-      "GX, cannot be assessed",
-      "Not applicable"
-    ],
-    "value": "",
-    "other_specify": {
-      "label": "Other (specify)",
-      "type": "text",
-      "value": ""
-    },
-    "cannot_be_assessed_specify": {
-      "label": "Cannot be determined (specify)",
-      "type": "text",
-      "value": ""
-    }
-  },
-  "tumor_size": {
-    "label": "Tumor Size",
+  "specimen": {
+    "label": "Specimen",
     "fields": {
-      "greatest_dimension_cm": {
-        "label": "Greatest dimension (cm)",
-        "type": "number",
+      "procedure": {
+        "label": "Procedure",
+        "type": "select",
+        "options": [
+          "Segmental resection",
+          "Right hemicolectomy / ileocolic resection",
+          "Pancreaticoduodenectomy (Whipple resection)",
+          "Other",
+          "Not specified"
+        ],
         "value": ""
       },
-      "additional_dimensions_cm": {
-        "label": "Additional dimensions (cm)",
-        "type": "measurement_2d",
+      "tumor_site": {
+        "label": "Tumor site",
+        "type": "select",
+        "options": [
+          "Duodenum",
+          "Jejunum",
+          "Ileum",
+          "Meckel diverticulum",
+          "Small intestine, not otherwise specified",
+          "Other",
+          "Not specified"
+        ],
         "value": ""
       }
     }
   },
-  "tumor_extent": {
-    "label": "Tumor Extent",
-    "type": "select",
-    "options": [
-      "High-grade dysplasia / carcinoma in situ",
-      "Invades lamina propria",
-      "Invades submucosa",
-      "Invades muscularis propria",
-      "Invades through muscularis propria into subserosa",
-      "Extends into non-peritonealized perimuscular tissue (mesentery or retroperitoneum) without serosal penetration",
-      "Perforates visceral peritoneum",
-      "Directly invades other organ(s) or structure(s)"
-    ],
-    "value": ""
-  },
-  "directly_invades": {
-    "label": "If directly invades other organs (select all that apply)",
-    "type": "multi_select",
-    "options": [
-      "Other loops of small intestine",
-      "Mesentery of adjacent loops of bowel",
-      "Abdominal wall (by way of serosa)"
-    ],
-    "value": []
-  },
-  "duodenum_invasion": {
-    "label": "For Duodenum Only (if applicable)",
-    "type": "multi_select",
-    "options": ["Pancreas", "Bile duct"],
-    "value": []
-  },
-  "macroscopic_tumor_perforation": {
-    "label": "Macroscopic Tumor Perforation",
-    "type": "select",
-    "options": ["Not identified", "Present", "Cannot be determined"],
-    "value": ""
-  },
-  "lymphovascular_invasion": {
-    "label": "Lymphatic and / or Vascular Invasion",
-    "type": "select",
-    "options": ["Not identified", "Present", "Cannot be determined"],
-    "value": ""
-  },
-  "perineural_invasion": {
-    "label": "Perineural Invasion",
-    "type": "select",
-    "options": ["Not identified", "Present", "Cannot be determined"],
-    "value": ""
-  },
-  "treatment_effect": {
-    "label": "Treatment Effect",
-    "type": "select",
-    "options": [
-      "No known presurgical therapy",
-      "Present, with no viable cancer cells (complete response, score 0)",
-      "Present, with single cells or rare small groups of cancer cells (near complete response, score 1)",
-      "Present, with residual cancer showing evident tumor regression, but more than single cells or rare small groups of cancer cells (partial response, score 2)",
-      "Present, NOS",
-      "Absent, with extensive residual cancer and no evident tumor regression (poor or no response, score 3)",
-      "Cannot be determined"
-    ],
-    "value": ""
-  },
-  "margin_status_invasive": {
-    "label": "Margin Status for Invasive Carcinoma",
-    "type": "select",
-    "options": ["All margins negative for invasive carcinoma"],
-    "value": ""
-  },
-  "closest_margins": {
-    "label": "Closest Margin(s) to Invasive Carcinoma",
-    "type": "multi_select",
-    "options": [
-      "Proximal",
-      "Distal",
-      "Radial or mesenteric",
-      "Uncinate (retroperitoneal / superior mesenteric artery)",
-      "Bile duct",
-      "Pancreatic",
-      "Other",
-      "Cannot be determined"
-    ],
-    "value": [],
-    "other_specify": {
-      "label": "Other (specify)",
-      "type": "text",
-      "value": ""
-    },
-    "cannot_be_determined_specify": {
-      "label": "Cannot be determined (specify)",
-      "type": "text",
-      "value": ""
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "histologic_type": {
+        "label": "Histologic Type",
+        "type": "select",
+        "options": [
+          "Adenocarcinoma, NOS",
+          "Mucinous adenocarcinoma (greater than 50% mucinous)",
+          "Poorly cohesive carcinoma",
+          "Signet-ring cell carcinoma",
+          "Medullary carcinoma",
+          "Adenosquamous carcinoma",
+          "Squamous cell carcinoma",
+          "Large cell neuroendocrine carcinoma",
+          "Small cell neuroendocrine carcinoma",
+          "Neuroendocrine carcinoma (poorly differentiated)",
+          "Mixed neuroendocrine-non-neuroendocrine neoplasm (MiNEN)",
+          "Undifferentiated carcinoma, NOS",
+          "Other histologic type not listed"
+        ],
+        "value": "",
+        "other_specify": {
+          "label": "Other (specify)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "histologic_grade": {
+        "label": "Histologic Grade",
+        "type": "select",
+        "options": [
+          "G1, well-differentiated",
+          "G2, moderately differentiated",
+          "G3, poorly differentiated",
+          "G4, undifferentiated",
+          "Other",
+          "GX, cannot be assessed",
+          "Not applicable"
+        ],
+        "value": "",
+        "other_specify": {
+          "label": "Other (specify)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_assessed_specify": {
+          "label": "Cannot be assessed (specify)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "tumor_size": {
+        "label": "Tumor Size",
+        "fields": {
+          "greatest_dimension_cm": {
+            "label": "Greatest dimension (cm)",
+            "type": "number",
+            "value": ""
+          },
+          "additional_dimensions_cm": {
+            "label": "Additional dimensions (cm)",
+            "type": "measurement_2d",
+            "value": ""
+          }
+        }
+      },
+      "tumor_extent": {
+        "label": "Tumor Extent",
+        "type": "select",
+        "options": [
+          "High-grade dysplasia / carcinoma in situ",
+          "Invades lamina propria",
+          "Invades submucosa",
+          "Invades muscularis propria",
+          "Invades through muscularis propria into subserosa",
+          "Extends into non-peritonealized perimuscular tissue (mesentery or retroperitoneum) without serosal penetration",
+          "Perforates visceral peritoneum",
+          "Directly invades other organ(s) or structure(s)"
+        ],
+        "value": ""
+      },
+      "directly_invades": {
+        "label": "If directly invades other organs (select all that apply)",
+        "type": "multi_select",
+        "options": [
+          "Other loops of small intestine",
+          "Mesentery of adjacent loops of bowel",
+          "Abdominal wall (by way of serosa)"
+        ],
+        "value": []
+      },
+      "duodenum_invasion": {
+        "label": "For Duodenum Only (if applicable)",
+        "type": "multi_select",
+        "options": [
+          "Pancreas",
+          "Bile duct"
+        ],
+        "value": []
+      },
+      "macroscopic_tumor_perforation": {
+        "label": "Macroscopic Tumor Perforation",
+        "type": "select",
+        "options": [
+          "Not identified",
+          "Present",
+          "Cannot be determined"
+        ],
+        "value": ""
+      },
+      "lymphovascular_invasion": {
+        "label": "Lymphatic and / or Vascular Invasion",
+        "type": "select",
+        "options": [
+          "Not identified",
+          "Present",
+          "Cannot be determined"
+        ],
+        "value": ""
+      },
+      "perineural_invasion": {
+        "label": "Perineural Invasion",
+        "type": "select",
+        "options": [
+          "Not identified",
+          "Present",
+          "Cannot be determined"
+        ],
+        "value": ""
+      },
+      "treatment_effect": {
+        "label": "Treatment Effect",
+        "type": "select",
+        "options": [
+          "No known presurgical therapy",
+          "Present, with no viable cancer cells (complete response, score 0)",
+          "Present, with single cells or rare small groups of cancer cells (near complete response, score 1)",
+          "Present, with residual cancer showing evident tumor regression, but more than single cells or rare small groups of cancer cells (partial response, score 2)",
+          "Present, NOS",
+          "Absent, with extensive residual cancer and no evident tumor regression (poor or no response, score 3)",
+          "Cannot be determined"
+        ],
+        "value": ""
+      }
     }
   },
-  "distance_to_closest_margin_cm": {
-    "label": "Distance from Invasive Carcinoma to Closest Margin (cm)",
-    "type": "number",
-    "value": ""
-  },
-  "margins_involved_invasive": {
-    "label": "Margin(s) Involved by Invasive Carcinoma",
-    "type": "multi_select",
-    "options": [
-      "Proximal",
-      "Distal",
-      "Radial or mesenteric",
-      "Uncinate (retroperitoneal / superior mesenteric artery)",
-      "Bile duct",
-      "Pancreatic",
-      "Other",
-      "Cannot be determined"
-    ],
-    "value": [],
-    "other_specify": {
-      "label": "Other (specify)",
-      "type": "text",
-      "value": ""
-    },
-    "cannot_be_determined_explain": {
-      "label": "Cannot be determined (explain)",
-      "type": "text",
-      "value": ""
-    },
-    "not_applicable_specify": {
-      "label": "Not applicable",
-      "type": "text",
-      "value": ""
-    }
-  },
-  "margin_status_non_invasive": {
-    "label": "Margin Status for Non-Invasive Tumor",
-    "type": "multi_select",
-    "options": [
-      "All margins negative for high-grade dysplasia and low-grade dysplasia",
-      "High-grade dysplasia present at margin",
-      "Low-grade dysplasia present at margin"
-    ],
-    "value": []
-  },
-  "margins_involved_hgd": {
-    "label": "Margin(s) Involved by High-Grade Dysplasia",
-    "type": "multi_select",
-    "options": ["Proximal", "Distal", "Other", "Cannot be determined"],
-    "value": [],
-    "other_specify": {
-      "label": "Other (specify)",
-      "type": "text",
-      "value": ""
-    }
-  },
-  "margins_involved_lgd": {
-    "label": "Margin(s) Involved by Low-Grade Dysplasia",
-    "type": "multi_select",
-    "options": ["Proximal", "Distal", "Other", "Cannot be determined"],
-    "value": [],
-    "other_specify": {
-      "label": "Other (specify)",
-      "type": "text",
-      "value": ""
+  "margins": {
+    "label": "Margins",
+    "fields": {
+      "margin_status_invasive": {
+        "label": "Margin Status for Invasive Carcinoma",
+        "type": "select",
+        "options": [
+          "All margins negative for invasive carcinoma",
+          "Invasive carcinoma present at margin",
+          "Not applicable"
+        ],
+        "value": ""
+      },
+      "closest_margins": {
+        "label": "Closest Margin(s) to Invasive Carcinoma",
+        "type": "multi_select",
+        "options": [
+          "Proximal",
+          "Distal",
+          "Radial or mesenteric",
+          "Uncinate (retroperitoneal / superior mesenteric artery)",
+          "Bile duct",
+          "Pancreatic",
+          "Other",
+          "Cannot be determined"
+        ],
+        "value": [],
+        "other_specify": {
+          "label": "Other (specify)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_specify": {
+          "label": "Cannot be determined (specify)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "distance_to_closest_margin_cm": {
+        "label": "Distance from Invasive Carcinoma to Closest Margin (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "margins_involved_invasive": {
+        "label": "Margin(s) Involved by Invasive Carcinoma",
+        "type": "multi_select",
+        "options": [
+          "Proximal",
+          "Distal",
+          "Radial or mesenteric (tumor present 0-1 mm from margin)",
+          "Uncinate (retroperitoneal / superior mesenteric artery) (tumor present 0-1 mm from margin)",
+          "Bile duct",
+          "Pancreatic",
+          "Other",
+          "Cannot be determined",
+          "Not applicable"
+        ],
+        "value": [],
+        "other_specify": {
+          "label": "Other (specify)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_explain": {
+          "label": "Cannot be determined (explain)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "margin_status_non_invasive": {
+        "label": "Margin Status for Non-Invasive Tumor",
+        "type": "multi_select",
+        "options": [
+          "All margins negative for high-grade dysplasia and low-grade dysplasia",
+          "High-grade dysplasia present at margin",
+          "Low-grade dysplasia present at margin"
+        ],
+        "value": []
+      },
+      "margins_involved_hgd": {
+        "label": "Margin(s) Involved by High-Grade Dysplasia",
+        "type": "multi_select",
+        "options": [
+          "Proximal",
+          "Distal",
+          "Other",
+          "Cannot be determined"
+        ],
+        "value": [],
+        "other_specify": {
+          "label": "Other (specify)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "margins_involved_lgd": {
+        "label": "Margin(s) Involved by Low-Grade Dysplasia",
+        "type": "multi_select",
+        "options": [
+          "Proximal",
+          "Distal",
+          "Other",
+          "Cannot be determined"
+        ],
+        "value": [],
+        "other_specify": {
+          "label": "Other (specify)",
+          "type": "text",
+          "value": ""
+        }
+      }
     }
   },
   "regional_lymph_nodes": {
@@ -256,35 +325,44 @@
     }
   },
   "distant_metastasis": {
-    "label": "Distant Site(s) Involved",
-    "type": "multi_select",
-    "options": [
-      "Not applicable",
-      "Non-regional lymph node(s)",
-      "Liver",
-      "Other",
-      "Cannot be determined"
-    ],
-    "value": [],
-    "other_specify": {
-      "label": "Other (specify)",
-      "type": "text",
-      "value": ""
-    },
-    "cannot_be_determined_specify": {
-      "label": "Cannot be determined (specify)",
-      "type": "text",
-      "value": ""
+    "label": "Distant Metastasis",
+    "fields": {
+      "sites": {
+        "label": "Distant Site(s) Involved",
+        "type": "multi_select",
+        "options": [
+          "Not applicable",
+          "Non-regional lymph node(s)",
+          "Liver",
+          "Other",
+          "Cannot be determined"
+        ],
+        "value": [],
+        "other_specify": {
+          "label": "Other (specify)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_specify": {
+          "label": "Cannot be determined (specify)",
+          "type": "text",
+          "value": ""
+        }
+      }
     }
   },
-  "ptnm_classification": {
+  "ptnm": {
     "label": "pTNM Classification (AJCC 8th Edition)",
     "note": "Reporting of pT, pN, and (when applicable) pM categories is based on information available to the pathologist at the time the report is issued. As per the AJCC (Chapter 1, 8th Ed.) it is the managing physician's responsibility to establish the final pathologic stage based upon all pertinent information, including but potentially not limited to this pathology report.",
     "fields": {
       "modified_classification": {
         "label": "Modified Classification",
         "type": "multi_select",
-        "options": ["Not applicable", "y (post-neoadjuvant therapy)", "r (recurrence)"],
+        "options": [
+          "Not applicable",
+          "y (post-neoadjuvant therapy)",
+          "r (recurrence)"
+        ],
         "value": []
       },
       "pT_category": {
@@ -306,7 +384,10 @@
       "T_suffix": {
         "label": "T Suffix",
         "type": "select",
-        "options": ["Not applicable", "(m) multiple primary synchronous tumors in a single organ"],
+        "options": [
+          "Not applicable",
+          "(m) multiple primary synchronous tumors in a single organ"
+        ],
         "value": ""
       },
       "pN_category": {
@@ -334,25 +415,30 @@
   },
   "additional_findings": {
     "label": "Additional Findings",
-    "type": "multi_select",
-    "options": [
-      "None identified",
-      "Adenoma(s)",
-      "Crohn disease",
-      "Celiac disease",
-      "Other polyp(s)",
-      "Other"
-    ],
-    "value": [],
-    "other_polyps_specify": {
-      "label": "Other polyp(s) (specify type[s])",
-      "type": "text",
-      "value": ""
-    },
-    "other_specify": {
-      "label": "Other (specify)",
-      "type": "text",
-      "value": ""
+    "fields": {
+      "findings": {
+        "label": "Additional Findings",
+        "type": "multi_select",
+        "options": [
+          "None identified",
+          "Adenoma(s)",
+          "Crohn disease",
+          "Celiac disease",
+          "Other polyp(s)",
+          "Other"
+        ],
+        "value": [],
+        "other_polyps_specify": {
+          "label": "Other polyp(s) (specify type[s])",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": {
+          "label": "Other (specify)",
+          "type": "text",
+          "value": ""
+        }
+      }
     }
   },
   "ancillary_studies": {

@@ -1,6 +1,7 @@
 {
   "template_id": "esophagus_resection_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "protocol_posting_date": "June 2021",
   "lang": "ar",
   "standards": ["AJCC-UICC 8"],

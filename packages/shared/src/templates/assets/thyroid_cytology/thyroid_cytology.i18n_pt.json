@@ -2,6 +2,12 @@
   "templateId": "thyroid_cytology_bethesda_3rd_edition",
   "templateName": "Modelo de laudo de citologia da tiróide (3ª Edição do Sistema de Bethesda)",
   "language": "pt",
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategories": ["fna"],
+    "organ": "thyroid",
+    "reportingSystem": "Bethesda"
+  },
   "sections": [
     {
       "id": "specimen",

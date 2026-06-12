@@ -1,6 +1,7 @@
 {
   "template_id": "uterine_cervix_resection_gross_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "lang": "pt",
   "title": "Ressecção do colo do útero",
 

@@ -2,6 +2,12 @@
   "templateId": "salivary_gland_cytology_milan",
   "templateName": "Modelo de laudo de citologia das glândulas salivares (Sistema de Milão para Relatório de Citopatologia das Glândulas Salivares)",
   "language": "pt",
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategories": ["fna"],
+    "organ": "salivary_gland",
+    "reportingSystem": "Milan"
+  },  
   "sections": [
     {
       "id": "specimen",

@@ -3,6 +3,12 @@
   "language": "fr",
   "direction": "ltr",
   "rtl": false,
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategory": "fna",
+    "organSystem": "breast",
+    "reportingSystem": "Yokohama"
+  },
   "sections": {
     "specimen": "Prélèvement",
     "specimen_adequacy": "Adéquation du prélèvement",

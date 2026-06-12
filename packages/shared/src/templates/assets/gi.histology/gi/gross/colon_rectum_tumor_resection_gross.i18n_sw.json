@@ -1,6 +1,7 @@
 {
   "template_id": "colon_rectum_resection_gross_tumor_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "lang": "sw",
   "title": "Upasuaji wa koloni na rektamu (kiolezo cha uchunguzi wa macho)",
   "specimen": {

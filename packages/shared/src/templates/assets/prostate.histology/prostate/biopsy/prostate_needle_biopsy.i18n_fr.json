@@ -1,6 +1,7 @@
 {
   "template_id": "prostate_needle_biopsy_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "protocol_posting_date": "September 2023",
   "lang": "fr",
   "title": "Prostate : biopsie à l'aiguille",

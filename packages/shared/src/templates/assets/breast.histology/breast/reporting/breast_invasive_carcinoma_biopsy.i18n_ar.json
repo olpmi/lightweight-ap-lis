@@ -1,6 +1,7 @@
 {
   "template_id": "breast_invasive_carcinoma_biopsy_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "protocol_posting_date": "March 2023",
   "lang": "ar",
   "ui": {
@@ -74,7 +75,7 @@
         ],
         "type": "select",
         "value": "",
-        "features_specify": "",
+        "features_specify": { "label": "الخصائص (حدد)", "type": "text", "value": "" },
         "cannot_be_determined_specify": {
           "label": "لا يمكن التحديد (حدد)",
           "type": "text",

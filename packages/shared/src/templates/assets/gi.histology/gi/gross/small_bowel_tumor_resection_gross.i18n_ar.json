@@ -1,37 +1,39 @@
 {
   "template_id": "small_bowel_resection_gross_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "lang": "ar",
   "ui": {
     "direction": "rtl"
   },
-  "title": "استئصال الأمعاء الدقيقة للورم (نموذج الفحص العياني)",
-  "procedure_type": {
-    "label": "نوع الإجراء",
-    "type": "select",
-    "options": [
-      "استئصال قطعي من الأمعاء الدقيقة",
-      "استئصال اللفائفي الأعوري",
-      "استئصال نصف القولون الأيمن مع اللفائفي الطرفي",
-      "استئصال الأمعاء الدقيقة مع المساريقا",
-      "أخرى"
-    ],
-    "value": "",
-    "other_specify": {
-      "label": "أخرى (حدد)",
-      "type": "text",
-      "value": ""
-    }
-  },
-  "orientation_provided": {
-    "label": "تم تحديد الاتجاه",
-    "type": "select",
-    "options": ["نعم", "لا"],
-    "value": ""
-  },
-  "specimen_dimensions": {
-    "label": "أبعاد الأمعاء الدقيقة (سم)",
+  "title": "استئصال الأمعاء الدقيقة للورم",
+
+  "specimen": {
+    "label": "العينة",
     "fields": {
+      "procedure_type": {
+        "label": "نوع الإجراء",
+        "type": "select",
+        "options": [
+          "استئصال قطعي من الأمعاء الدقيقة",
+          "استئصال اللفائفي الأعوري",
+          "استئصال نصف القولون الأيمن مع اللفائفي الطرفي",
+          "استئصال الأمعاء الدقيقة مع المساريقا",
+          "أخرى"
+        ],
+        "value": ""
+      },
+      "procedure_type_other": {
+        "label": "إجراء آخر (حدد)",
+        "type": "text",
+        "value": ""
+      },
+      "orientation_provided": {
+        "label": "تم تحديد الاتجاه",
+        "type": "select",
+        "options": ["نعم", "لا"],
+        "value": ""
+      },
       "small_bowel_length_cm": {
         "label": "طول الأمعاء الدقيقة (سم)",
         "type": "number",
@@ -39,156 +41,206 @@
       }
     }
   },
-  "tumor_present": {
-    "label": "وجود الورم",
-    "type": "select",
-    "options": ["نعم", "غير مرئي عيانياً"],
-    "value": ""
-  },
-  "tumor_focality": {
-    "label": "بؤرية الورم",
-    "type": "select",
-    "options": ["أحادي البؤرة", "متعدد البؤر"],
-    "value": ""
-  },
-  "tumor_location": {
-    "label": "موضع الورم",
-    "type": "select",
-    "options": [
-      "الاثني عشر",
-      "الصائم",
-      "اللفائفي",
-      "اللفائفي الطرفي",
-      "المنطقة المحيطة بالحليمة",
-      "أخرى"
-    ],
-    "value": "",
-    "other_specify": {
-      "label": "موضع آخر (حدد)",
-      "type": "text",
-      "value": ""
+
+  "tumor": {
+    "label": "الورم",
+    "fields": {
+      "tumor_present": {
+        "label": "وجود الورم",
+        "type": "select",
+        "options": ["نعم", "غير مرئي عيانياً"],
+        "value": ""
+      },
+      "tumor_focality": {
+        "label": "بؤرية الورم",
+        "type": "select",
+        "options": [
+          "أحادي البؤرة",
+          "متعدد البؤر"
+        ],
+        "value": ""
+      },
+      "tumor_location": {
+        "label": "موضع الورم",
+        "type": "select",
+        "options": [
+          "الاثني عشر",
+          "الصائم",
+          "اللفائفي",
+          "اللفائفي الطرفي",
+          "المنطقة المحيطة بالحليمة",
+          "أخرى"
+        ],
+        "value": ""
+      },
+      "tumor_location_other": {
+        "label": "موضع آخر للورم (حدد)",
+        "type": "text",
+        "value": ""
+      },
+      "tumor_dimensions_cm": {
+        "label": "أبعاد الورم (سم)",
+        "type": "measurement_3d",
+        "value": ""
+      },
+      "tumor_configuration": {
+        "label": "شكل الورم",
+        "type": "multi_select",
+        "options": [
+          "عنيقي",
+          "خارجي النمو",
+          "فطري",
+          "متقرح",
+          "حلقي",
+          "تسللي",
+          "محيطي",
+          "عقيدي",
+          "أخرى"
+        ],
+        "value": []
+      },
+      "tumor_configuration_other": {
+        "label": "شكل آخر للورم (حدد)",
+        "type": "text",
+        "value": ""
+      },
+      "tumor_consistency": {
+        "label": "قوام الورم",
+        "type": "select",
+        "options": [
+          "صلب",
+          "طري",
+          "هش",
+          "هلامي",
+          "تليفي",
+          "أخرى"
+        ],
+        "value": ""
+      },
+      "tumor_consistency_other": {
+        "label": "قوام آخر للورم (حدد)",
+        "type": "text",
+        "value": ""
+      },
+      "necrosis": {
+        "label": "نخر",
+        "type": "select",
+        "options": [
+          "موجود",
+          "غير موجود"
+        ],
+        "value": ""
+      },
+      "hemorrhage": {
+        "label": "نزيف",
+        "type": "select",
+        "options": [
+          "موجود",
+          "غير موجود"
+        ],
+        "value": ""
+      },
+      "perforation": {
+        "label": "ثقب",
+        "type": "select",
+        "options": [
+          "موجود",
+          "غير موجود"
+        ],
+        "value": ""
+      },
+      "associated_obstruction": {
+        "label": "انسداد مصاحب",
+        "type": "select",
+        "options": [
+          "موجود",
+          "غير موجود"
+        ],
+        "value": ""
+      },
+      "stricture_formation": {
+        "label": "تضيق",
+        "type": "select",
+        "options": [
+          "موجود",
+          "غير موجود"
+        ],
+        "value": ""
+      },
+      "tumor_extent": {
+        "label": "امتداد الورم",
+        "type": "select",
+        "options": [
+          "يغزو الغشاء المخاطي فقط",
+          "يغزو تحت المخاطية",
+          "يغزو العضلة الخاصة",
+          "يغزو تحت المصلية",
+          "يغزو المصلية",
+          "يغزو دهون المساريقا",
+          "يغزو البنى المجاورة",
+          "لا يمكن تقييمه عيانياً"
+        ],
+        "value": ""
+      },
+      "adjacent_structures_involved": {
+        "label": "البنى المجاورة المصابة",
+        "type": "text",
+        "value": ""
+      }
     }
   },
-  "distance_to_margins_cm": {
-    "label": "المسافة من الورم إلى الهوامش (سم)",
+
+  "margins": {
+    "label": "الهوامش",
     "fields": {
-      "proximal": {
-        "label": "الهامش القريب",
+      "distance_to_proximal_margin_cm": {
+        "label": "المسافة إلى الهامش القريب (سم)",
         "type": "number",
         "value": ""
       },
-      "distal": {
-        "label": "الهامش البعيد",
+      "distance_to_distal_margin_cm": {
+        "label": "المسافة إلى الهامش البعيد (سم)",
         "type": "number",
         "value": ""
       },
-      "mesenteric": {
-        "label": "الهامش المساريقي",
+      "distance_to_mesenteric_margin_cm": {
+        "label": "المسافة إلى الهامش المساريقي (سم)",
         "type": "number",
         "value": ""
       }
     }
   },
-  "tumor_dimensions_cm": {
-    "label": "أبعاد الورم (سم)",
-    "type": "measurement_3d",
-    "value": ""
-  },
-  "tumor_configuration": {
-    "label": "شكل الورم",
-    "type": "multi_select",
-    "options": ["عنيقي", "خارجي النمو", "فطري", "متقرح", "حلقي", "تسللي", "محيطي", "عقيدي", "أخرى"],
-    "value": [],
-    "other_specify": {
-      "label": "شكل آخر (حدد)",
-      "type": "text",
-      "value": ""
-    }
-  },
-  "tumor_consistency": {
-    "label": "قوام الورم",
-    "type": "select",
-    "options": ["صلب", "طري", "هش", "هلامي", "تليفي", "أخرى"],
-    "value": "",
-    "other_specify": {
-      "label": "قوام آخر (حدد)",
-      "type": "text",
-      "value": ""
-    }
-  },
-  "necrosis": {
-    "label": "نخر",
-    "type": "select",
-    "options": ["موجود", "غير موجود"],
-    "value": ""
-  },
-  "hemorrhage": {
-    "label": "نزيف",
-    "type": "select",
-    "options": ["موجود", "غير موجود"],
-    "value": ""
-  },
-  "perforation": {
-    "label": "ثقب",
-    "type": "select",
-    "options": ["موجود", "غير موجود"],
-    "value": ""
-  },
-  "associated_obstruction": {
-    "label": "انسداد مصاحب",
-    "type": "select",
-    "options": ["موجود", "غير موجود"],
-    "value": ""
-  },
-  "stricture_formation": {
-    "label": "تضيق",
-    "type": "select",
-    "options": ["موجود", "غير موجود"],
-    "value": ""
-  },
-  "tumor_extent": {
-    "label": "امتداد الورم",
-    "type": "select",
-    "options": [
-      "يغزو الغشاء المخاطي فقط",
-      "يغزو تحت المخاطية",
-      "يغزو العضلة الخاصة",
-      "يغزو تحت المصلية",
-      "يغزو المصلية",
-      "يغزو دهون المساريقا",
-      "يغزو البنى المجاورة"
-    ],
-    "value": "",
-    "adjacent_structures_specify": {
-      "label": "البنى المجاورة (حدد)",
-      "type": "text",
-      "value": ""
-    }
-  },
+
   "background_mucosa": {
-    "label": "مظهر الغشاء المخاطي للأمعاء الدقيقة الخلفي",
-    "type": "multi_select",
-    "options": [
-      "طبيعي",
-      "متقرح",
-      "داء السليلة",
-      "تغير إقفاري",
-      "تأثير الإشعاع",
-      "التصاقات",
-      "أخرى"
-    ],
-    "value": [],
-    "other_specify": {
-      "label": "أخرى (حدد)",
-      "type": "text",
-      "value": ""
+    "label": "الغشاء المخاطي الخلفي",
+    "fields": {
+      "background_small_bowel_mucosa": {
+        "label": "مظهر الغشاء المخاطي للأمعاء الدقيقة",
+        "type": "multi_select",
+        "options": [
+          "طبيعي",
+          "متقرح",
+          "داء السليلة",
+          "تغير إقفاري",
+          "تأثير الإشعاع",
+          "التصاقات",
+          "أخرى"
+        ],
+        "value": []
+      },
+      "background_mucosa_other": {
+        "label": "موجودات أخرى في الغشاء المخاطي (حدد)",
+        "type": "text",
+        "value": ""
+      }
     }
   },
+
   "lymph_nodes": {
     "label": "العقد اللمفاوية الإقليمية",
     "fields": {
       "number_identified": {
-        "label": "العدد المُحدَّد",
+        "label": "العدد المُحدد",
         "type": "integer",
         "value": ""
       },
@@ -199,11 +251,18 @@
       }
     }
   },
-  "other_macroscopic_findings": {
+
+  "other_findings": {
     "label": "موجودات عيانية أخرى ذات صلة",
-    "type": "text",
-    "value": ""
+    "fields": {
+      "findings": {
+        "label": "موجودات عيانية أخرى ذات صلة",
+        "type": "text",
+        "value": ""
+      }
+    }
   },
+
   "block_identification_key": {
     "label": "مفتاح تعريف الكتل",
     "fields": {
@@ -244,10 +303,11 @@
       }
     }
   },
+
   "grossing": {
     "label": "الفحص العياني",
     "fields": {
-      "grossed_by": {
+      "grossed_by_initials": {
         "label": "أُجري الفحص العياني بواسطة (الأحرف الأولى)",
         "type": "text",
         "value": ""

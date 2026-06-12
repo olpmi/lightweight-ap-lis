@@ -1,6 +1,7 @@
 {
   "template_id": "lung_tumor_biopsy_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "lang": "pt",
   "title": "Tumor do pulmão, Biópsia",
   "protocol_posting_date": "September 2025",

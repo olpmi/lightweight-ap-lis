@@ -1,6 +1,7 @@
 {
   "template_id": "endometrium_resection_gross_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "lang": "ur",
   "ui": {
     "direction": "rtl"

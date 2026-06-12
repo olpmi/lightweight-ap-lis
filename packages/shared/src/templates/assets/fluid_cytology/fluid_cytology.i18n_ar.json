@@ -4,6 +4,12 @@
   "language": "ar",
   "direction": "rtl",
   "rtl": true,
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategory": "serous_fluid",
+    "organSystem": "fluid_cytology",
+    "reportingSystem": "International system for reporting serous fluid cytology"
+  },
   "sections": {
     "specimen": "العينة",
     "preparation_methods": "طرق التحضير",

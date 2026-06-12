@@ -4,6 +4,11 @@
   "language": "ur",
   "direction": "rtl",
   "rtl": true,
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategories": ["respiratory_cytology", "csf", "body_fluid_non_effusion"],
+    "reportingSystem": "general_cytology"
+  },
   "sections": {
     "specimen": "نمونہ",
     "sample_adequacy": "نمونے کی کفایت",

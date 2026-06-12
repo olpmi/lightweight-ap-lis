@@ -1,6 +1,7 @@
 {
   "template_id": "small_bowel_tumor_resection_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "protocol_posting_date": "June 2025",
   "lang": "fr",
   "standards": ["AJCC 8"],
@@ -49,7 +50,7 @@
       "value": ""
     },
     "cannot_be_assessed_specify": {
-      "label": "Ne peut pas être déterminé (préciser)",
+      "label": "Non évaluable (préciser)",
       "type": "text",
       "value": ""
     }
@@ -135,7 +136,11 @@
   "margin_status_invasive": {
     "label": "Statut des marges pour le carcinome invasif",
     "type": "select",
-    "options": ["Toutes les marges négatives pour le carcinome invasif"],
+    "options": [
+      "Toutes les marges négatives pour le carcinome invasif",
+      "Carcinome invasif présent à la marge",
+      "Non applicable"
+    ],
     "value": ""
   },
   "closest_margins": {
@@ -174,12 +179,13 @@
     "options": [
       "Proximal",
       "Distal",
-      "Radiale ou mésentérique",
-      "Processus unciforme (rétropéritonéal / artère mésentérique supérieure)",
+      "Radiale ou mésentérique (tumeur présente à 0-1 mm de la marge)",
+      "Processus unciforme (rétropéritonéal / artère mésentérique supérieure) (tumeur présente à 0-1 mm de la marge)",
       "Canal biliaire",
       "Pancréatique",
       "Autre",
-      "Ne peut pas être déterminé"
+      "Ne peut pas être déterminé",
+      "Non applicable"
     ],
     "value": [],
     "other_specify": {
@@ -189,11 +195,6 @@
     },
     "cannot_be_determined_explain": {
       "label": "Ne peut pas être déterminé (expliquer)",
-      "type": "text",
-      "value": ""
-    },
-    "not_applicable_specify": {
-      "label": "Non applicable",
       "type": "text",
       "value": ""
     }

@@ -1,34 +1,36 @@
 {
   "template_id": "esophagus_resection_gross_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "lang": "pt",
   "title": "Esofagectomia para tumor",
-  "procedure_type": {
-    "label": "Tipo de procedimento",
-    "type": "select",
-    "options": [
-      "Esofagectomia total",
-      "Esofagectomia subtotal",
-      "Esofagectomia trans-hiatal",
-      "Esofago-gastrectomia",
-      "Outro"
-    ],
-    "value": "",
-    "other_specify": {
-      "label": "Outro (especificar)",
-      "type": "text",
-      "value": ""
-    }
-  },
-  "orientation_provided": {
-    "label": "Orientação fornecida",
-    "type": "select",
-    "options": ["Sim", "Não"],
-    "value": ""
-  },
-  "specimen_dimensions": {
-    "label": "Dimensões do espécime",
+
+  "specimen": {
+    "label": "Espécime",
     "fields": {
+      "procedure_type": {
+        "label": "Tipo de procedimento",
+        "type": "select",
+        "options": [
+          "Esofagectomia total",
+          "Esofagectomia subtotal",
+          "Esofagectomia trans-hiatal",
+          "Esofago-gastrectomia",
+          "Outro"
+        ],
+        "value": ""
+      },
+      "procedure_type_other": {
+        "label": "Outro procedimento (especificar)",
+        "type": "text",
+        "value": ""
+      },
+      "orientation_provided": {
+        "label": "Orientação fornecida",
+        "type": "select",
+        "options": ["Sim", "Não"],
+        "value": ""
+      },
       "esophagus_length_cm": {
         "label": "Comprimento do esófago (cm)",
         "type": "number",
@@ -46,157 +48,178 @@
       }
     }
   },
-  "tumor_present": {
-    "label": "Tumor presente",
-    "type": "select",
-    "options": ["Sim", "Não identificado macroscopicamente"],
-    "value": ""
-  },
-  "tumor_location": {
-    "label": "Localização do tumor",
-    "type": "select",
-    "options": [
-      "Esófago cervical",
-      "Esófago torácico superior",
-      "Esófago torácico médio",
-      "Esófago torácico inferior",
-      "Junção esofagogástrica (JEG)"
-    ],
-    "value": ""
-  },
-  "distance_to_margins_cm": {
-    "label": "Distância do tumor às margens (cm)",
+
+  "tumor": {
+    "label": "Tumor",
     "fields": {
-      "proximal": {
-        "label": "Margem proximal",
+      "tumor_present": {
+        "label": "Tumor presente",
+        "type": "select",
+        "options": ["Sim", "Não identificado macroscopicamente"],
+        "value": ""
+      },
+      "tumor_location": {
+        "label": "Localização do tumor",
+        "type": "select",
+        "options": [
+          "Esófago cervical",
+          "Esófago torácico superior",
+          "Esófago torácico médio",
+          "Esófago torácico inferior",
+          "Junção esofagogástrica (JEG)"
+        ],
+        "value": ""
+      },
+      "tumor_involves_gej": {
+        "label": "Tumor envolve a JEG",
+        "type": "select",
+        "options": ["Sim", "Não"],
+        "value": ""
+      },
+      "tumor_dimensions_cm": {
+        "label": "Dimensões do tumor (cm)",
+        "type": "measurement_3d",
+        "value": ""
+      },
+      "tumor_configuration": {
+        "label": "Configuração do tumor",
+        "type": "multi_select",
+        "options": [
+          "Exofítico",
+          "Fungoide",
+          "Ulcerado",
+          "Infiltrativo",
+          "Circunferencial",
+          "Polipoide",
+          "Plano"
+        ],
+        "value": []
+      },
+      "tumor_consistency": {
+        "label": "Consistência do tumor",
+        "type": "select",
+        "options": ["Firme", "Mole", "Friável", "Outro"],
+        "value": ""
+      },
+      "tumor_consistency_other": {
+        "label": "Outra consistência (especificar)",
+        "type": "text",
+        "value": ""
+      },
+      "tumor_necrosis": {
+        "label": "Necrose tumoral",
+        "type": "select",
+        "options": ["Presente", "Ausente"],
+        "value": ""
+      },
+      "hemorrhage": {
+        "label": "Hemorragia",
+        "type": "select",
+        "options": ["Presente", "Ausente"],
+        "value": ""
+      },
+      "tumor_extent": {
+        "label": "Extensão do tumor",
+        "type": "select",
+        "options": [
+          "Invade apenas a mucosa",
+          "Invade a submucosa",
+          "Invade a muscularis propria",
+          "Invade a adventícia",
+          "Invade estruturas adjacentes",
+          "Não avaliável macroscopicamente"
+        ],
+        "value": ""
+      },
+      "adjacent_structures_involved": {
+        "label": "Estruturas adjacentes envolvidas",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "margins": {
+    "label": "Margens",
+    "fields": {
+      "distance_to_proximal_margin_cm": {
+        "label": "Distância à margem proximal (cm)",
         "type": "number",
         "value": ""
       },
-      "distal": {
-        "label": "Margem distal",
+      "distance_to_distal_margin_cm": {
+        "label": "Distância à margem distal (cm)",
         "type": "number",
         "value": ""
       },
-      "radial_adventitial": {
-        "label": "Margem radial / adventicial",
+      "distance_to_radial_adventitial_margin_cm": {
+        "label": "Distância à margem radial/adventicial (cm)",
         "type": "number",
         "value": ""
       }
     }
   },
-  "tumor_involves_gej": {
-    "label": "Tumor envolve a JEG",
-    "type": "select",
-    "options": ["Sim", "Não"],
-    "value": ""
-  },
-  "tumor_dimensions_cm": {
-    "label": "Dimensões do tumor (cm)",
-    "type": "measurement_3d",
-    "value": ""
-  },
-  "tumor_configuration": {
-    "label": "Configuração do tumor",
-    "type": "multi_select",
-    "options": [
-      "Exofítico",
-      "Fungoide",
-      "Ulcerado",
-      "Infiltrativo",
-      "Circunferencial",
-      "Polipoide",
-      "Plano"
-    ],
-    "value": []
-  },
-  "tumor_consistency": {
-    "label": "Consistência do tumor",
-    "type": "select",
-    "options": ["Firme", "Mole", "Friável", "Outro"],
-    "value": "",
-    "other_specify": {
-      "label": "Outro (especificar)",
-      "type": "text",
-      "value": ""
+
+  "background_mucosa": {
+    "label": "Mucosa de fundo",
+    "fields": {
+      "background_esophageal_mucosa": {
+        "label": "Aspeto da mucosa esofágica",
+        "type": "multi_select",
+        "options": [
+          "Normal",
+          "Esófago de Barrett",
+          "Ulceração",
+          "Estenose",
+          "Displasia",
+          "Alterações pós-radioterapia",
+          "Outro"
+        ],
+        "value": []
+      },
+      "background_mucosa_other": {
+        "label": "Outro achado (especificar)",
+        "type": "text",
+        "value": ""
+      }
     }
   },
-  "tumor_necrosis": {
-    "label": "Necrose tumoral",
-    "type": "select",
-    "options": ["Presente", "Ausente"],
-    "value": ""
-  },
-  "hemorrhage": {
-    "label": "Hemorragia",
-    "type": "select",
-    "options": ["Presente", "Ausente"],
-    "value": ""
-  },
-  "tumor_extent": {
-    "label": "Extensão do tumor",
-    "type": "select",
-    "options": [
-      "Invade apenas a mucosa",
-      "Invade a submucosa",
-      "Invade a muscularis propria",
-      "Invade a adventícia",
-      "Invade estruturas adjacentes"
-    ],
-    "value": "",
-    "adjacent_structures_specify": {
-      "label": "Estruturas adjacentes (especificar)",
-      "type": "text",
-      "value": ""
+
+  "neoadjuvant_therapy": {
+    "label": "Terapia neoadjuvante / Resposta ao tratamento",
+    "fields": {
+      "previous_neoadjuvant_therapy": {
+        "label": "Terapia neoadjuvante prévia",
+        "type": "select",
+        "options": ["Sim", "Não", "Desconhecido"],
+        "value": ""
+      },
+      "gross_treatment_response": {
+        "label": "Resposta macroscópica ao tratamento",
+        "type": "select",
+        "options": [
+          "Não aplicável",
+          "Nenhuma",
+          "Parcial",
+          "Marcada",
+          "Resposta completa (sem tumor macroscópico)"
+        ],
+        "value": ""
+      },
+      "tumor_bed_size_cm": {
+        "label": "Tamanho do leito tumoral (cm)",
+        "type": "text",
+        "value": ""
+      },
+      "fibrosis": {
+        "label": "Fibrose",
+        "type": "select",
+        "options": ["Presente", "Ausente"],
+        "value": ""
+      }
     }
   },
-  "background_esophageal_mucosa": {
-    "label": "Aspecto da mucosa esofágica de fundo",
-    "type": "multi_select",
-    "options": [
-      "Normal",
-      "Esófago de Barrett",
-      "Ulceração",
-      "Estenose",
-      "Displasia",
-      "Alterações pós-radioterapia",
-      "Outro"
-    ],
-    "value": [],
-    "other_specify": {
-      "label": "Outro (especificar)",
-      "type": "text",
-      "value": ""
-    }
-  },
-  "previous_neoadjuvant_therapy": {
-    "label": "Terapia neoadjuvante prévia",
-    "type": "select",
-    "options": ["Sim", "Não", "Desconhecido"],
-    "value": ""
-  },
-  "gross_treatment_response": {
-    "label": "Evidência macroscópica de resposta ao tratamento",
-    "type": "select",
-    "options": [
-      "Não aplicável",
-      "Nenhuma",
-      "Parcial",
-      "Marcada",
-      "Resposta completa (sem tumor macroscópico)"
-    ],
-    "value": ""
-  },
-  "tumor_bed_size_cm": {
-    "label": "Tamanho do leito tumoral (cm), se aplicável",
-    "type": "text",
-    "value": ""
-  },
-  "fibrosis": {
-    "label": "Fibrose",
-    "type": "select",
-    "options": ["Presente", "Ausente"],
-    "value": ""
-  },
+
   "lymph_nodes": {
     "label": "Gânglios linfáticos regionais",
     "fields": {
@@ -212,11 +235,18 @@
       }
     }
   },
-  "other_macroscopic_findings": {
-    "label": "Outros achados macroscópicos relevantes",
-    "type": "text",
-    "value": ""
+
+  "other_findings": {
+    "label": "Outros achados macroscópicos",
+    "fields": {
+      "findings": {
+        "label": "Outros achados macroscópicos relevantes",
+        "type": "text",
+        "value": ""
+      }
+    }
   },
+
   "block_identification_key": {
     "label": "Chave de identificação de blocos",
     "fields": {
@@ -236,7 +266,7 @@
         "value": ""
       },
       "radial_adventitial_margin": {
-        "label": "Margem radial / adventicial",
+        "label": "Margem radial/adventicial",
         "type": "text",
         "value": ""
       },
@@ -257,10 +287,11 @@
       }
     }
   },
+
   "grossing": {
     "label": "Exame macroscópico",
     "fields": {
-      "grossed_by": {
+      "grossed_by_initials": {
         "label": "Exame macroscópico realizado por (iniciais)",
         "type": "text",
         "value": ""

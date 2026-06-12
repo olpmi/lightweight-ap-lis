@@ -2,6 +2,12 @@
   "templateId": "salivary_gland_cytology_milan",
   "templateName": "Modèle de compte rendu de cytologie des glandes salivaires (système de Milan pour la cytopathologie des glandes salivaires)",
   "language": "fr",
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategories": ["fna"],
+    "organ": "salivary_gland",
+    "reportingSystem": "Milan"
+  },  
   "sections": {
     "specimen": "Prélèvement",
     "adequacy": "Adéquation",

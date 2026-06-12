@@ -2,6 +2,11 @@
   "templateId": "general_cytology",
   "templateName": "Modelo de laudo de citologia geral",
   "language": "pt",
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategories": ["respiratory_cytology", "csf", "body_fluid_non_effusion"],
+    "reportingSystem": "general_cytology"
+  },
   "sections": [
     {
       "id": "specimen",

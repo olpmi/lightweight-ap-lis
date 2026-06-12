@@ -2,6 +2,12 @@
   "templateId": "fluid_cytology_international_serous_fluid",
   "templateName": "Fluid cytology reporting template (International System for Reporting Serous Fluid Cytology)",
   "language": "en",
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategory": "serous_fluid",
+    "organSystem": "fluid_cytology",
+    "reportingSystem": "International system for reporting serous fluid cytology"
+  },
   "sections": [
     {
       "id": "specimen",

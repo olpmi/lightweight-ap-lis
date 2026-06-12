@@ -4,6 +4,11 @@
   "language": "ar",
   "direction": "rtl",
   "rtl": true,
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategories": ["respiratory_cytology", "csf", "body_fluid_non_effusion"],
+    "reportingSystem": "general_cytology"
+  },
   "sections": {
     "specimen": "العينة",
     "sample_adequacy": "كفاية العينة",

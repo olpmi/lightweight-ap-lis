@@ -1,6 +1,7 @@
 {
   "template_id": "breast_invasive_carcinoma_resection_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "protocol_posting_date": "June 2024",
   "standards": ["AJCC-UICC 8"],
   "lang": "sw",
@@ -73,9 +74,13 @@
         ],
         "type": "select",
         "value": "",
-        "features_specify": "",
-        "cannot_be_determined_specify": "Haiwezi kuamuliwa (taja)",
-        "other_specify": "Nyingine (taja)",
+        "features_specify": { "label": "Sifa (taja)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "Haiwezi kuamuliwa (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": { "label": "Nyingine (taja)", "type": "text", "value": "" },
         "comment": ""
       },
       "histologic_grade": {
@@ -358,7 +363,7 @@
     }
   },
   "invasion_and_calcifications": {
-    "label": "Uvamizi na kalcifikesheni",
+    "label": "Uvamizi na kalsifikesheni",
     "fields": {
       "lymphovascular_invasion": {
         "label": "Uvamizi wa lymphatiki na/au mishipa ya damu",
@@ -542,7 +547,7 @@
             "type": "multi_select",
             "value": [],
             "other_specify": "",
-            "cannot_be_determined_explain": ""
+            "cannot_be_determined_explain": "Haiwezi kuamuliwa (eleza)"
           },
           "margins_involved": {
             "label": "Mpaka(mipaka) ulioathiriwa na karsinoma ya uvamizi",

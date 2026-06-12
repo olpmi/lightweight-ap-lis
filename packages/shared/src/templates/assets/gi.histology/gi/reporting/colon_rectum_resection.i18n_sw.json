@@ -1,6 +1,7 @@
 {
   "template_id": "colorectal_malignant_tumor_resection_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "protocol_posting_date": "September 2025",
   "lang": "sw",
   "standards": ["AJCC 8"],

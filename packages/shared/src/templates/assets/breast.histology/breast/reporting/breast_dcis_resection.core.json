@@ -1,6 +1,7 @@
 {
   "template_id": "breast_dcis_resection_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "title": "Breast DCIS, Resection",
   "protocol_posting_date": "June 2021",
   "standards": ["AJCC-UICC 8"],

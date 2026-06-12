@@ -1,6 +1,7 @@
 {
   "template_id": "gastric_tumor_resection_gross_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "lang": "fr",
   "title": "Résection de tumeur gastrique (modèle macroscopique)",
   "specimen": {

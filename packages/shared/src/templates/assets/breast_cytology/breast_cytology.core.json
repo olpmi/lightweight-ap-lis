@@ -2,6 +2,13 @@
   "templateId": "breast_cytology_yokohama",
   "templateName": "Breast Cytology Reporting Template (Yokohama System for Reporting Breast Fine Needle Aspiration Biopsy Cytopathology)",
   "language": "en",
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategory": "fna",
+    "organSystem": "breast",
+    "reportingSystem": "Yokohama"
+  },
+
   "sections": [
     {
       "id": "specimen",
@@ -11,10 +18,7 @@
           "id": "breast_side",
           "label": "Breast FNA",
           "type": "select",
-          "options": [
-            "Right",
-            "Left"
-          ]
+          "options": ["Right", "Left"]
         },
         {
           "id": "site",
@@ -44,11 +48,7 @@
           "id": "guidance",
           "label": "Guidance",
           "type": "select",
-          "options": [
-            "Palpation",
-            "Ultrasound-guided",
-            "Other"
-          ]
+          "options": ["Palpation", "Ultrasound-guided", "Other"]
         }
       ]
     },
@@ -105,12 +105,7 @@
           "id": "final_interpretation_category",
           "label": "Final Interpretation Category",
           "type": "select",
-          "options": [
-            "Benign",
-            "Atypical",
-            "Suspicious",
-            "Malignant"
-          ]
+          "options": ["Benign", "Atypical", "Suspicious", "Malignant"]
         },
         {
           "id": "benign_interpretation",
@@ -128,18 +123,13 @@
           "id": "atypical_interpretation",
           "label": "Atypical",
           "type": "multiselect",
-          "options": [
-            "Proliferative epithelial lesion with atypia",
-            "Limited atypical cells"
-          ]
+          "options": ["Proliferative epithelial lesion with atypia", "Limited atypical cells"]
         },
         {
           "id": "suspicious_interpretation",
           "label": "Suspicious",
           "type": "multiselect",
-          "options": [
-            "Strongly suspicious for carcinoma but quantitatively/qualitatively limited"
-          ]
+          "options": ["Strongly suspicious for carcinoma but quantitatively/qualitatively limited"]
         },
         {
           "id": "malignant_interpretation",
@@ -167,10 +157,7 @@
           "id": "cell_block",
           "label": "Cell block",
           "type": "select",
-          "options": [
-            "Yes",
-            "No"
-          ]
+          "options": ["Yes", "No"]
         },
         {
           "id": "immunocytochemistry",

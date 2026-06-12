@@ -2,6 +2,12 @@
   "templateId": "breast_cytology_yokohama",
   "templateName": "Modelo de relatório de citologia mamária (Sistema de Yokohama para relatório de citopatologia de biópsia aspirativa por agulha fina da mama)",
   "language": "pt",
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategory": "fna",
+    "organSystem": "breast",
+    "reportingSystem": "Yokohama"
+  },
   "sections": [
     {
       "id": "specimen",

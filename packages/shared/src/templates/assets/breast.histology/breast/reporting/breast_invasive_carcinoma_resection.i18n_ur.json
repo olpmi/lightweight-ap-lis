@@ -1,6 +1,7 @@
 {
   "template_id": "breast_invasive_carcinoma_resection_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "protocol_posting_date": "June 2024",
   "standards": ["AJCC-UICC 8"],
   "lang": "ur",
@@ -21,7 +22,7 @@
         ],
         "type": "select",
         "value": "",
-        "other_specify": ""
+        "other_specify": { "label": "دیگر (وضاحت کریں)", "type": "text", "value": "" }
       },
       "laterality": {
         "label": "نمونے کی جانب",
@@ -80,13 +81,13 @@
         ],
         "type": "select",
         "value": "",
-        "features_specify": "",
+        "features_specify": { "label": "خصوصیات (وضاحت کریں)", "type": "text", "value": "" },
         "cannot_be_determined_specify": {
           "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
           "type": "text",
           "value": ""
         },
-        "other_specify": "",
+        "other_specify": { "label": "دیگر (وضاحت کریں)", "type": "text", "value": "" },
         "comment": ""
       },
       "histologic_grade": {
@@ -293,7 +294,7 @@
             ],
             "type": "multi_select",
             "value": [],
-            "other_specify": ""
+            "other_specify": { "label": "دیگر (وضاحت کریں)", "type": "text", "value": "" }
           },
           "nuclear_grade": {
             "label": "نیوکلیر گریڈ",
@@ -424,7 +425,7 @@
         ],
         "type": "multi_select",
         "value": [],
-        "other_specify": ""
+        "other_specify": { "label": "دیگر (وضاحت کریں)", "type": "text", "value": "" }
       }
     }
   },
@@ -560,8 +561,8 @@
             ],
             "type": "multi_select",
             "value": [],
-            "other_specify": "",
-            "cannot_be_determined_explain": ""
+            "other_specify": { "label": "دیگر (وضاحت کریں)", "type": "text", "value": "" },
+            "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
           },
           "margins_involved": {
             "label": "انویسیو کارسینوما سے متاثر حاشیہ",
@@ -656,8 +657,8 @@
             ],
             "type": "multi_select",
             "value": [],
-            "other_specify": "",
-            "cannot_be_determined_explain": ""
+            "other_specify": { "label": "دیگر (وضاحت کریں)", "type": "text", "value": "" },
+            "cannot_be_determined_explain": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
           },
           "margins_involved": {
             "label": "DCIS سے متاثر حاشیہ",
@@ -750,7 +751,7 @@
             "type": "integer",
             "value": ""
           },
-          "other_specify": "",
+          "other_specify": { "label": "دیگر (وضاحت کریں)", "type": "text", "value": "" },
           "cannot_be_determined_explain": {
             "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
             "type": "text",

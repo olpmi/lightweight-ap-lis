@@ -1,6 +1,7 @@
 {
   "template_id": "malignant_breast_resection_non_neoadjuvant_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "lang": "fr",
   "title": "Résection mammaire maligne (sans traitement néoadjuvant)",
   "clinical_case_summary": {

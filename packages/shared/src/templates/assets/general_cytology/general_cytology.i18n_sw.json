@@ -2,6 +2,11 @@
   "templateId": "general_cytology",
   "templateName": "Kiolezo cha ripoti ya saitolojia ya jumla",
   "language": "sw",
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategories": ["respiratory_cytology", "csf", "body_fluid_non_effusion"],
+    "reportingSystem": "general_cytology"
+  },
   "sections": {
     "specimen": "Sampuli",
     "sample_adequacy": "Ubora wa sampuli",

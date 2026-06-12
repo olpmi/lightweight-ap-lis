@@ -5,6 +5,12 @@
   "category": "cytology",
   "system": "Bethesda System",
   "title": "Cervical Cytology (Pap Smear) Reporting Template (Bethesda System)",
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategory": "gyn_cytology",
+    "organSystem": "cervix",
+    "reportingSystem": "Bethesda"
+  },
   "sections": [
     {
       "id": "specimen",

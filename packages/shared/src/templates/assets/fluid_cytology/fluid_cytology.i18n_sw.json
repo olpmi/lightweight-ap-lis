@@ -2,6 +2,12 @@
   "templateId": "fluid_cytology_international_serous_fluid",
   "templateName": "Kiolezo cha ripoti ya sitolojia ya majimaji (Mfumo wa kimataifa wa kuripoti saitopatholojia ya majimaji ya serous)",
   "language": "sw",
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategory": "serous_fluid",
+    "organSystem": "fluid_cytology",
+    "reportingSystem": "International system for reporting serous fluid cytology"
+  },  
   "sections": {
     "specimen": "Sampuli",
     "preparation_methods": "Mbinu za maandalizi",

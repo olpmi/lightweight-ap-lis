@@ -1,6 +1,7 @@
 {
   "template_id": "malignant_breast_resection_post_neoadjuvant_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "lang": "sw",
   "title": "Upasuaji wa kuondoa saratani ya titi (baada ya kemikali ya awali ya neoadjuvant)",
   "clinical_case_summary": {

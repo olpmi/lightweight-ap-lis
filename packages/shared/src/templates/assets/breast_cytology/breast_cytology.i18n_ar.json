@@ -3,6 +3,13 @@
   "language": "ar",
   "direction": "rtl",
   "rtl": true,
+
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategory": "fna",
+    "organSystem": "breast",
+    "reportingSystem": "Yokohama"
+  },
   "sections": {
     "specimen": "العينة",
     "specimen_adequacy": "كفاية العينة",

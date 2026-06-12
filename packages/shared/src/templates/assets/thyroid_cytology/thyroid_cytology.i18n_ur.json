@@ -4,6 +4,12 @@
   "language": "ur",
   "direction": "rtl",
   "rtl": true,
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategories": ["fna"],
+    "organ": "thyroid",
+    "reportingSystem": "Bethesda"
+  },
   "sections": {
     "specimen": "نمونہ",
     "adequacy": "کفایت",

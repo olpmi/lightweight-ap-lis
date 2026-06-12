@@ -2,6 +2,11 @@
   "templateId": "general_cytology",
   "templateName": "Modèle de compte rendu de cytologie générale",
   "language": "fr",
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategories": ["respiratory_cytology", "csf", "body_fluid_non_effusion"],
+    "reportingSystem": "general_cytology"
+  },  
   "sections": {
     "specimen": "Prélèvement",
     "sample_adequacy": "Adéquation de l'échantillon",

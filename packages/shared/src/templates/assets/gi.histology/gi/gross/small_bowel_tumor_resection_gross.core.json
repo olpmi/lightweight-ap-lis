@@ -1,0 +1,301 @@
+{
+  "template_id": "small_bowel_resection_gross_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "lang": "en",
+  "title": "Small Bowel Resection for Tumor",
+
+  "specimen": {
+    "label": "Specimen",
+    "fields": {
+      "procedure_type": {
+        "label": "Procedure type",
+        "type": "select",
+        "options": [
+          "Segmental small bowel resection",
+          "Ileocecal resection",
+          "Right hemicolectomy with terminal ileum",
+          "Small bowel resection with mesentery",
+          "Other"
+        ],
+        "value": ""
+      },
+      "procedure_type_other": {
+        "label": "Other procedure type, specify",
+        "type": "text",
+        "value": ""
+      },
+      "orientation_provided": {
+        "label": "Orientation provided",
+        "type": "select",
+        "options": ["Yes", "No"],
+        "value": ""
+      },
+      "small_bowel_length_cm": {
+        "label": "Small bowel length (cm)",
+        "type": "number",
+        "value": ""
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "tumor_present": {
+        "label": "Tumor present",
+        "type": "select",
+        "options": ["Yes", "Not grossly identified"],
+        "value": ""
+      },
+      "tumor_focality": {
+        "label": "Tumor focality",
+        "type": "select",
+        "options": ["Unifocal", "Multifocal"],
+        "value": ""
+      },
+      "tumor_location": {
+        "label": "Tumor location",
+        "type": "select",
+        "options": [
+          "Duodenum",
+          "Jejunum",
+          "Ileum",
+          "Terminal ileum",
+          "Periampullary region",
+          "Other"
+        ],
+        "value": ""
+      },
+      "tumor_location_other": {
+        "label": "Other tumor location, specify",
+        "type": "text",
+        "value": ""
+      },
+      "tumor_dimensions_cm": {
+        "label": "Tumor dimensions (cm)",
+        "type": "measurement_3d",
+        "value": ""
+      },
+      "tumor_configuration": {
+        "label": "Tumor configuration",
+        "type": "multi_select",
+        "options": [
+          "Polypoid",
+          "Exophytic",
+          "Fungating",
+          "Ulcerated",
+          "Annular",
+          "Infiltrative",
+          "Circumferential",
+          "Nodular",
+          "Other"
+        ],
+        "value": []
+      },
+      "tumor_configuration_other": {
+        "label": "Other tumor configuration, specify",
+        "type": "text",
+        "value": ""
+      },
+      "tumor_consistency": {
+        "label": "Tumor consistency",
+        "type": "select",
+        "options": [
+          "Firm",
+          "Soft",
+          "Friable",
+          "Gelatinous",
+          "Fibrotic",
+          "Other"
+        ],
+        "value": ""
+      },
+      "tumor_consistency_other": {
+        "label": "Other tumor consistency, specify",
+        "type": "text",
+        "value": ""
+      },
+      "necrosis": {
+        "label": "Necrosis",
+        "type": "select",
+        "options": ["Present", "Absent"],
+        "value": ""
+      },
+      "hemorrhage": {
+        "label": "Hemorrhage",
+        "type": "select",
+        "options": ["Present", "Absent"],
+        "value": ""
+      },
+      "perforation": {
+        "label": "Perforation",
+        "type": "select",
+        "options": ["Present", "Absent"],
+        "value": ""
+      },
+      "associated_obstruction": {
+        "label": "Associated obstruction",
+        "type": "select",
+        "options": ["Present", "Absent"],
+        "value": ""
+      },
+      "stricture_formation": {
+        "label": "Stricture formation",
+        "type": "select",
+        "options": ["Present", "Absent"],
+        "value": ""
+      },
+      "tumor_extent": {
+        "label": "Tumor extent",
+        "type": "select",
+        "options": [
+          "Invades mucosa only",
+          "Invades submucosa",
+          "Invades muscularis propria",
+          "Invades subserosa",
+          "Invades serosa",
+          "Invades mesenteric fat",
+          "Invades adjacent structures",
+          "Cannot be assessed grossly"
+        ],
+        "value": ""
+      },
+      "adjacent_structures_involved": {
+        "label": "Adjacent structures involved, if present",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "margins": {
+    "label": "Margins",
+    "fields": {
+      "distance_to_proximal_margin_cm": {
+        "label": "Distance to proximal margin (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "distance_to_distal_margin_cm": {
+        "label": "Distance to distal margin (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "distance_to_mesenteric_margin_cm": {
+        "label": "Distance to mesenteric margin (cm)",
+        "type": "number",
+        "value": ""
+      }
+    }
+  },
+
+  "background_mucosa": {
+    "label": "Background Mucosa",
+    "fields": {
+      "background_small_bowel_mucosa": {
+        "label": "Background small bowel mucosa",
+        "type": "multi_select",
+        "options": [
+          "Unremarkable",
+          "Ulcerated",
+          "Polyposis",
+          "Ischemic change",
+          "Radiation effect",
+          "Adhesions",
+          "Other"
+        ],
+        "value": []
+      },
+      "background_mucosa_other": {
+        "label": "Other background mucosal finding, specify",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "lymph_nodes": {
+    "label": "Regional Lymph Nodes",
+    "fields": {
+      "number_identified": {
+        "label": "Number identified",
+        "type": "integer",
+        "value": ""
+      },
+      "size_range_mm": {
+        "label": "Size range (mm)",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "other_findings": {
+    "label": "Other Relevant Macroscopic Findings",
+    "fields": {
+      "findings": {
+        "label": "Other relevant macroscopic findings",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "block_identification_key": {
+    "label": "Block Identification Key",
+    "fields": {
+      "tumor": {
+        "label": "Tumor",
+        "type": "text",
+        "value": ""
+      },
+      "proximal_margin": {
+        "label": "Proximal margin",
+        "type": "text",
+        "value": ""
+      },
+      "distal_margin": {
+        "label": "Distal margin",
+        "type": "text",
+        "value": ""
+      },
+      "mesenteric_margin": {
+        "label": "Mesenteric margin",
+        "type": "text",
+        "value": ""
+      },
+      "non_neoplastic_small_bowel": {
+        "label": "Non-neoplastic small bowel",
+        "type": "text",
+        "value": ""
+      },
+      "lymph_nodes": {
+        "label": "Lymph nodes",
+        "type": "text",
+        "value": ""
+      },
+      "additional_sections": {
+        "label": "Additional sections",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "grossing": {
+    "label": "Grossing",
+    "fields": {
+      "grossed_by_initials": {
+        "label": "Grossed by (initials)",
+        "type": "text",
+        "value": ""
+      },
+      "date": {
+        "label": "Date",
+        "type": "date",
+        "value": ""
+      }
+    }
+  }
+}

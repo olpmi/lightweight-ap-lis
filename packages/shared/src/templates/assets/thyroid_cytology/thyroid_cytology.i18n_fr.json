@@ -2,6 +2,12 @@
   "templateId": "thyroid_cytology_bethesda_3rd_edition",
   "templateName": "Modèle de compte rendu de cytologie thyroïdienne (système de Bethesda, 3e édition)",
   "language": "fr",
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategories": ["fna"],
+    "organ": "thyroid",
+    "reportingSystem": "Bethesda"
+  },  
   "sections": {
     "specimen": "Prélèvement",
     "adequacy": "Adéquation",

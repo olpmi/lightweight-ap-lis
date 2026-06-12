@@ -1,233 +1,271 @@
 {
   "template_id": "small_bowel_tumor_resection_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "protocol_posting_date": "June 2025",
   "lang": "sw",
-  "standards": ["AJCC 8"],
+  "standards": [
+    "AJCC 8"
+  ],
   "title": "Uvimbe wa utumbo mdogo, uondoaji",
-  "histologic_type": {
-    "label": "Aina ya kihistolojia",
-    "type": "select",
-    "options": [
-      "Adenokarsinoma, SOE",
-      "Adenokarsinoma ya myuzi (zaidi ya 50% ya myuzi)",
-      "Karsinoma ya kushikamana kidogo",
-      "Karsinoma ya seli za pete ya kidole",
-      "Karsinoma ya medula",
-      "Karsinoma ya adenoeskwamasi",
-      "Karsinoma ya seli za skwamasi",
-      "Karsinoma ya nyuroendokrini ya seli kubwa",
-      "Karsinoma ya nyuroendokrini ya seli ndogo",
-      "Karsinoma ya nyuroendokrini (isiyo na utofauti)",
-      "Neoplazima mchanganyiko ya nyuroendokrini na isiyo ya nyuroendokrini (MiNEN)",
-      "Karsinoma isiyotofautishwa, SOE",
-      "Aina nyingine ya kihistolojia isiyoorodheshwa"
-    ],
-    "value": "",
-    "other_specify": {
-      "label": "Nyingine (taja)",
-      "type": "text",
-      "value": ""
-    }
-  },
-  "histologic_grade": {
-    "label": "Daraja la kihistolojia",
-    "type": "select",
-    "options": [
-      "G1, imetofautishwa vizuri",
-      "G2, imetofautishwa kwa wastani",
-      "G3, imetofautishwa kidogo",
-      "G4, haijatofautishwa",
-      "Nyingine",
-      "GX, haiwezi kutathminiwa",
-      "Haihusiki"
-    ],
-    "value": "",
-    "other_specify": {
-      "label": "Nyingine (taja)",
-      "type": "text",
-      "value": ""
-    },
-    "cannot_be_assessed_specify": {
-      "label": "Haiwezi kuamuliwa (taja)",
-      "type": "text",
-      "value": ""
-    }
-  },
-  "tumor_size": {
-    "label": "Ukubwa wa uvimbe",
+  "tumor": {
+    "label": "Uvimbe",
     "fields": {
-      "greatest_dimension_cm": {
-        "label": "Kipimo kikubwa (cm)",
-        "type": "number",
+      "histologic_type": {
+        "label": "Aina ya kihistolojia",
+        "type": "select",
+        "options": [
+          "Adenokarsinoma, SOE",
+          "Adenokarsinoma ya myuzi (zaidi ya 50% ya myuzi)",
+          "Karsinoma ya kushikamana kidogo",
+          "Karsinoma ya seli za pete ya kidole",
+          "Karsinoma ya medula",
+          "Karsinoma ya adenoeskwamasi",
+          "Karsinoma ya seli za skwamasi",
+          "Karsinoma ya nyuroendokrini ya seli kubwa",
+          "Karsinoma ya nyuroendokrini ya seli ndogo",
+          "Karsinoma ya nyuroendokrini (isiyo na utofauti)",
+          "Neoplazima mchanganyiko ya nyuroendokrini na isiyo ya nyuroendokrini (MiNEN)",
+          "Karsinoma isiyotofautishwa, SOE",
+          "Aina nyingine ya kihistolojia isiyoorodheshwa"
+        ],
+        "value": "",
+        "other_specify": {
+          "label": "Nyingine (taja)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "histologic_grade": {
+        "label": "Daraja la kihistolojia",
+        "type": "select",
+        "options": [
+          "G1, imetofautishwa vizuri",
+          "G2, imetofautishwa kwa wastani",
+          "G3, imetofautishwa kidogo",
+          "G4, haijatofautishwa",
+          "Nyingine",
+          "GX, haiwezi kutathminiwa",
+          "Haihusiki"
+        ],
+        "value": "",
+        "other_specify": {
+          "label": "Nyingine (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_assessed_specify": {
+          "label": "Haiwezi kutathminiwa (taja)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "tumor_size": {
+        "label": "Ukubwa wa uvimbe",
+        "fields": {
+          "greatest_dimension_cm": {
+            "label": "Kipimo kikubwa (cm)",
+            "type": "number",
+            "value": ""
+          },
+          "additional_dimensions_cm": {
+            "label": "Vipimo vya ziada (cm)",
+            "type": "measurement_2d",
+            "value": ""
+          }
+        }
+      },
+      "tumor_extent": {
+        "label": "Upanuzi wa uvimbe",
+        "type": "select",
+        "options": [
+          "Displasia ya daraja la juu / karsinoma in situ",
+          "Uvamizi wa lamina propria",
+          "Uvamizi wa submukosa",
+          "Uvamizi wa muscularis propria",
+          "Uvamizi kupitia muscularis propria hadi subserosa",
+          "Upanuzi hadi tishu za perimuscular zisizo na peritoneum (mesenterio au nyuma ya peritoneum) bila kupenya serosa",
+          "Kutoboka kwa peritoneum ya ndani",
+          "Uvamizi wa moja kwa moja wa viungo au miundo mingine"
+        ],
         "value": ""
       },
-      "additional_dimensions_cm": {
-        "label": "Vipimo vya ziada (cm)",
-        "type": "measurement_2d",
+      "directly_invades": {
+        "label": "Iwapo inavamia moja kwa moja viungo vingine (chagua vyote vinavyohusika)",
+        "type": "multi_select",
+        "options": [
+          "Mizunguko mingine ya utumbo mdogo",
+          "Mesenterio ya mizunguko ya utumbo jirani",
+          "Ukuta wa tumbo (kupitia serosa)"
+        ],
+        "value": []
+      },
+      "duodenum_invasion": {
+        "label": "Kwa duodeni peke yake (ikiwa inahusika)",
+        "type": "multi_select",
+        "options": [
+          "Kongosho",
+          "Mrija wa nyongo"
+        ],
+        "value": []
+      },
+      "macroscopic_tumor_perforation": {
+        "label": "Kutoboka kwa uvimbe kwa macho",
+        "type": "select",
+        "options": [
+          "Haikupatikana",
+          "Ipo",
+          "Haiwezi kuamuliwa"
+        ],
+        "value": ""
+      },
+      "treatment_effect": {
+        "label": "Athari ya matibabu",
+        "type": "select",
+        "options": [
+          "Hakuna tiba inayojulikana kabla ya upasuaji",
+          "Ipo, bila seli za saratani zinazoweza kuishi (mwitikio kamili, alama 0)",
+          "Ipo, na seli moja au makundi madogo nadra ya seli za saratani (mwitikio karibu kamili, alama 1)",
+          "Ipo, na saratani iliyobaki inayoonyesha kupungua kwa uvimbe, lakini zaidi ya seli moja au makundi madogo nadra (mwitikio wa sehemu, alama 2)",
+          "Ipo, SOE",
+          "Haipatikani, na saratani nyingi iliyobaki bila kupungua kwa uvimbe (mwitikio mbaya au kutokuwepo, alama 3)",
+          "Haiwezi kuamuliwa"
+        ],
+        "value": ""
+      },
+      "lymphovascular_invasion": {
+        "label": "Uvamizi wa limfu na/au mishipa ya damu",
+        "type": "select",
+        "options": [
+          "Haikupatikana",
+          "Ipo",
+          "Haiwezi kuamuliwa"
+        ],
+        "value": ""
+      },
+      "perineural_invasion": {
+        "label": "Uvamizi wa perineural",
+        "type": "select",
+        "options": [
+          "Haikupatikana",
+          "Ipo",
+          "Haiwezi kuamuliwa"
+        ],
         "value": ""
       }
     }
   },
-  "tumor_extent": {
-    "label": "Upanuzi wa uvimbe",
-    "type": "select",
-    "options": [
-      "Displasia ya daraja la juu / karsinoma in situ",
-      "Uvamizi wa lamina propria",
-      "Uvamizi wa submukosa",
-      "Uvamizi wa muscularis propria",
-      "Uvamizi kupitia muscularis propria hadi subserosa",
-      "Upanuzi hadi tishu za perimuscular zisizo na peritoneum (mesenterio au nyuma ya peritoneum) bila kupenya serosa",
-      "Kutoboka kwa peritoneum ya ndani",
-      "Uvamizi wa moja kwa moja wa viungo au miundo mingine"
-    ],
-    "value": ""
-  },
-  "directly_invades": {
-    "label": "Iwapo inavamia moja kwa moja viungo vingine (chagua vyote vinavyohusika)",
-    "type": "multi_select",
-    "options": [
-      "Mizunguko mingine ya utumbo mdogo",
-      "Mesenterio ya mizunguko ya utumbo jirani",
-      "Ukuta wa tumbo (kupitia serosa)"
-    ],
-    "value": []
-  },
-  "duodenum_invasion": {
-    "label": "Kwa duodeni peke yake (ikiwa inahusika)",
-    "type": "multi_select",
-    "options": ["Kongosho", "Mrija wa nyongo"],
-    "value": []
-  },
-  "macroscopic_tumor_perforation": {
-    "label": "Kutoboka kwa uvimbe kwa macho",
-    "type": "select",
-    "options": ["Haikupatikana", "Ipo", "Haiwezi kuamuliwa"],
-    "value": ""
-  },
-  "lymphovascular_invasion": {
-    "label": "Uvamizi wa limfu na/au mishipa ya damu",
-    "type": "select",
-    "options": ["Haikupatikana", "Ipo", "Haiwezi kuamuliwa"],
-    "value": ""
-  },
-  "perineural_invasion": {
-    "label": "Uvamizi wa perineural",
-    "type": "select",
-    "options": ["Haikupatikana", "Ipo", "Haiwezi kuamuliwa"],
-    "value": ""
-  },
-  "treatment_effect": {
-    "label": "Athari ya matibabu",
-    "type": "select",
-    "options": [
-      "Hakuna tiba inayojulikana kabla ya upasuaji",
-      "Ipo, bila seli za saratani zinazoweza kuishi (mwitikio kamili, alama 0)",
-      "Ipo, na seli moja au makundi madogo nadra ya seli za saratani (mwitikio karibu kamili, alama 1)",
-      "Ipo, na saratani iliyobaki inayoonyesha kupungua kwa uvimbe, lakini zaidi ya seli moja au makundi madogo nadra (mwitikio wa sehemu, alama 2)",
-      "Ipo, SOE",
-      "Haipatikani, na saratani nyingi iliyobaki bila kupungua kwa uvimbe (mwitikio mbaya au kutokuwepo, alama 3)",
-      "Haiwezi kuamuliwa"
-    ],
-    "value": ""
-  },
-  "margin_status_invasive": {
-    "label": "Hali ya mpaka kwa karsinoma invasive",
-    "type": "select",
-    "options": ["Mipaka yote hasi kwa karsinoma invasive"],
-    "value": ""
-  },
-  "closest_margins": {
-    "label": "Mpaka (mipaka) karibu zaidi na karsinoma invasive",
-    "type": "multi_select",
-    "options": [
-      "Mpaka wa karibu",
-      "Mpaka wa mbali",
-      "Radiali au ya mesenterio",
-      "Uncinate (nyuma ya peritoneum / ateri kuu ya mesenterio)",
-      "Mrija wa nyongo",
-      "Ya kongosho",
-      "Nyingine",
-      "Haiwezi kuamuliwa"
-    ],
-    "value": [],
-    "other_specify": {
-      "label": "Nyingine (taja)",
-      "type": "text",
-      "value": ""
-    },
-    "cannot_be_determined_specify": {
-      "label": "Haiwezi kuamuliwa (taja)",
-      "type": "text",
-      "value": ""
-    }
-  },
-  "distance_to_closest_margin_cm": {
-    "label": "Umbali kutoka karsinoma invasive hadi mpaka wa karibu (cm)",
-    "type": "number",
-    "value": ""
-  },
-  "margins_involved_invasive": {
-    "label": "Mpaka (mipaka) iliyohusika na karsinoma invasive",
-    "type": "multi_select",
-    "options": [
-      "Mpaka wa karibu",
-      "Mpaka wa mbali",
-      "Radiali au ya mesenterio",
-      "Uncinate (nyuma ya peritoneum / ateri kuu ya mesenterio)",
-      "Mrija wa nyongo",
-      "Ya kongosho",
-      "Nyingine",
-      "Haiwezi kuamuliwa"
-    ],
-    "value": [],
-    "other_specify": {
-      "label": "Nyingine (taja)",
-      "type": "text",
-      "value": ""
-    },
-    "cannot_be_determined_explain": {
-      "label": "Haiwezi kuamuliwa (eleza)",
-      "type": "text",
-      "value": ""
-    },
-    "not_applicable_specify": {
-      "label": "Haihusiki",
-      "type": "text",
-      "value": ""
-    }
-  },
-  "margin_status_non_invasive": {
-    "label": "Hali ya mpaka kwa uvimbe usio wa invasive",
-    "type": "multi_select",
-    "options": [
-      "Mipaka yote hasi kwa displasia ya daraja la juu na la chini",
-      "Displasia ya daraja la juu ipo kwenye mpaka",
-      "Displasia ya daraja la chini ipo kwenye mpaka"
-    ],
-    "value": []
-  },
-  "margins_involved_hgd": {
-    "label": "Mpaka (mipaka) iliyohusika na displasia ya daraja la juu",
-    "type": "multi_select",
-    "options": ["Mpaka wa karibu", "Mpaka wa mbali", "Nyingine", "Haiwezi kuamuliwa"],
-    "value": [],
-    "other_specify": {
-      "label": "Nyingine (taja)",
-      "type": "text",
-      "value": ""
-    }
-  },
-  "margins_involved_lgd": {
-    "label": "Mpaka (mipaka) iliyohusika na displasia ya daraja la chini",
-    "type": "multi_select",
-    "options": ["Mpaka wa karibu", "Mpaka wa mbali", "Nyingine", "Haiwezi kuamuliwa"],
-    "value": [],
-    "other_specify": {
-      "label": "Nyingine (taja)",
-      "type": "text",
-      "value": ""
+  "margins": {
+    "label": "Mipaka",
+    "fields": {
+      "margin_status_invasive": {
+        "label": "Hali ya mpaka kwa karsinoma invasive",
+        "type": "select",
+        "options": [
+          "Mipaka yote hasi kwa karsinoma invasive",
+          "Karsinoma invasive ipo kwenye mpaka",
+          "Haihusiki"
+        ],
+        "value": ""
+      },
+      "closest_margins": {
+        "label": "Mpaka (mipaka) karibu zaidi na karsinoma invasive",
+        "type": "multi_select",
+        "options": [
+          "Mpaka wa karibu",
+          "Mpaka wa mbali",
+          "Radiali au ya mesenterio",
+          "Uncinate (nyuma ya peritoneum / ateri kuu ya mesenterio)",
+          "Mrija wa nyongo",
+          "Ya kongosho",
+          "Nyingine",
+          "Haiwezi kuamuliwa"
+        ],
+        "value": [],
+        "other_specify": {
+          "label": "Nyingine (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_specify": {
+          "label": "Haiwezi kuamuliwa (taja)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "distance_to_closest_margin_cm": {
+        "label": "Umbali kutoka karsinoma invasive hadi mpaka wa karibu (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "margins_involved_invasive": {
+        "label": "Mpaka (mipaka) iliyohusika na karsinoma invasive",
+        "type": "multi_select",
+        "options": [
+          "Mpaka wa karibu",
+          "Mpaka wa mbali",
+          "Radiali au ya mesenterio (uvimbe uko 0-1 mm kutoka mpakani)",
+          "Uncinate (nyuma ya peritoneum / ateri kuu ya mesenterio) (uvimbe uko 0-1 mm kutoka mpakani)",
+          "Mrija wa nyongo",
+          "Ya kongosho",
+          "Nyingine",
+          "Haiwezi kuamuliwa",
+          "Haihusiki"
+        ],
+        "value": [],
+        "other_specify": {
+          "label": "Nyingine (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_explain": {
+          "label": "Haiwezi kuamuliwa (eleza)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "margin_status_non_invasive": {
+        "label": "Hali ya mpaka kwa uvimbe usio wa invasive",
+        "type": "multi_select",
+        "options": [
+          "Mipaka yote hasi kwa displasia ya daraja la juu na la chini",
+          "Displasia ya daraja la juu ipo kwenye mpaka",
+          "Displasia ya daraja la chini ipo kwenye mpaka"
+        ],
+        "value": []
+      },
+      "margins_involved_hgd": {
+        "label": "Mpaka (mipaka) iliyohusika na displasia ya daraja la juu",
+        "type": "multi_select",
+        "options": [
+          "Mpaka wa karibu",
+          "Mpaka wa mbali",
+          "Nyingine",
+          "Haiwezi kuamuliwa"
+        ],
+        "value": [],
+        "other_specify": {
+          "label": "Nyingine (taja)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "margins_involved_lgd": {
+        "label": "Mpaka (mipaka) iliyohusika na displasia ya daraja la chini",
+        "type": "multi_select",
+        "options": [
+          "Mpaka wa karibu",
+          "Mpaka wa mbali",
+          "Nyingine",
+          "Haiwezi kuamuliwa"
+        ],
+        "value": [],
+        "other_specify": {
+          "label": "Nyingine (taja)",
+          "type": "text",
+          "value": ""
+        }
+      }
     }
   },
   "regional_lymph_nodes": {
@@ -257,34 +295,43 @@
   },
   "distant_metastasis": {
     "label": "Maeneo ya mbali yaliyohusika",
-    "type": "multi_select",
-    "options": [
-      "Haihusiki",
-      "Nodi za limfu zisizo za kikanda",
-      "Ini",
-      "Nyingine",
-      "Haiwezi kuamuliwa"
-    ],
-    "value": [],
-    "other_specify": {
-      "label": "Nyingine (taja)",
-      "type": "text",
-      "value": ""
-    },
-    "cannot_be_determined_specify": {
-      "label": "Haiwezi kuamuliwa (taja)",
-      "type": "text",
-      "value": ""
+    "fields": {
+      "sites": {
+        "label": "Maeneo ya mbali yaliyohusika",
+        "type": "multi_select",
+        "options": [
+          "Haihusiki",
+          "Nodi za limfu zisizo za kikanda",
+          "Ini",
+          "Nyingine",
+          "Haiwezi kuamuliwa"
+        ],
+        "value": [],
+        "other_specify": {
+          "label": "Nyingine (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_specify": {
+          "label": "Haiwezi kuamuliwa (taja)",
+          "type": "text",
+          "value": ""
+        }
+      }
     }
   },
-  "ptnm_classification": {
+  "ptnm": {
     "label": "Uainishaji wa pTNM (Toleo la 8 la AJCC)",
     "note": "Uripotiaji wa makundi ya pT, pN na (inapohusika) pM unategemea taarifa zinazopatikana kwa mwanapatholojia wakati ripoti inapotolewa. Kulingana na AJCC (Sura ya 1, Toleo la 8), ni jukumu la daktari anayeshughulikia kuanzisha hatua ya mwisho ya kipatholojia kulingana na taarifa zote zinazohusika.",
     "fields": {
       "modified_classification": {
         "label": "Uainishaji uliorekebishwa",
         "type": "multi_select",
-        "options": ["Haihusiki", "y (baada ya tiba ya neoadjuvant)", "r (kurudia)"],
+        "options": [
+          "Haihusiki",
+          "y (baada ya tiba ya neoadjuvant)",
+          "r (kurudia)"
+        ],
         "value": []
       },
       "pT_category": {
@@ -306,7 +353,10 @@
       "T_suffix": {
         "label": "Kiambishi cha T",
         "type": "select",
-        "options": ["Haihusiki", "(m) uvimbe wa msingi mingi wa wakati mmoja katika kiungo kimoja"],
+        "options": [
+          "Haihusiki",
+          "(m) uvimbe wa msingi mingi wa wakati mmoja katika kiungo kimoja"
+        ],
         "value": ""
       },
       "pN_category": {
@@ -334,25 +384,30 @@
   },
   "additional_findings": {
     "label": "Matokeo ya ziada",
-    "type": "multi_select",
-    "options": [
-      "Hakuna iliyopatikana",
-      "Adenoma(s)",
-      "Ugonjwa wa Crohn",
-      "Ugonjwa wa celiac",
-      "Polipo(s) nyingine",
-      "Nyingine"
-    ],
-    "value": [],
-    "other_polyps_specify": {
-      "label": "Polipo(s) nyingine (taja aina)",
-      "type": "text",
-      "value": ""
-    },
-    "other_specify": {
-      "label": "Nyingine (taja)",
-      "type": "text",
-      "value": ""
+    "fields": {
+      "findings": {
+        "label": "Matokeo ya ziada",
+        "type": "multi_select",
+        "options": [
+          "Hakuna iliyopatikana",
+          "Adenoma(s)",
+          "Ugonjwa wa Crohn",
+          "Ugonjwa wa celiac",
+          "Polipo(s) nyingine",
+          "Nyingine"
+        ],
+        "value": [],
+        "other_polyps_specify": {
+          "label": "Polipo(s) nyingine (taja aina)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": {
+          "label": "Nyingine (taja)",
+          "type": "text",
+          "value": ""
+        }
+      }
     }
   },
   "ancillary_studies": {

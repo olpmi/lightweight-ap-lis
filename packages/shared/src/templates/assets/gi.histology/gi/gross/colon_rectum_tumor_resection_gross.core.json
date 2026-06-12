@@ -1,6 +1,7 @@
 {
   "template_id": "colon_rectum_resection_gross_tumor_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "title": "Colon and Rectum Resection for Tumor",
 
   "specimen": {

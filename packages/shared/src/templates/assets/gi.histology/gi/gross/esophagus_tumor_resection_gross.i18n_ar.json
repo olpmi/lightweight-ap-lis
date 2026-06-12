@@ -1,37 +1,39 @@
 {
   "template_id": "esophagus_resection_gross_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "lang": "ar",
   "ui": {
     "direction": "rtl"
   },
-  "title": "استئصال المريء للورم (نموذج الفحص العياني)",
-  "procedure_type": {
-    "label": "نوع الإجراء",
-    "type": "select",
-    "options": [
-      "استئصال كامل للمريء",
-      "استئصال جزئي للمريء",
-      "استئصال المريء عبر الفتحة الهوائية",
-      "استئصال المريء والمعدة",
-      "أخرى"
-    ],
-    "value": "",
-    "other_specify": {
-      "label": "أخرى (حدد)",
-      "type": "text",
-      "value": ""
-    }
-  },
-  "orientation_provided": {
-    "label": "تم تحديد الاتجاه",
-    "type": "select",
-    "options": ["نعم", "لا"],
-    "value": ""
-  },
-  "specimen_dimensions": {
-    "label": "أبعاد العينة",
+  "title": "استئصال المريء للورم",
+
+  "specimen": {
+    "label": "العينة",
     "fields": {
+      "procedure_type": {
+        "label": "نوع الإجراء",
+        "type": "select",
+        "options": [
+          "استئصال كامل للمريء",
+          "استئصال جزئي للمريء",
+          "استئصال المريء عبر الحجاب الحاجز",
+          "استئصال المريء والمعدة",
+          "أخرى"
+        ],
+        "value": ""
+      },
+      "procedure_type_other": {
+        "label": "نوع إجراء آخر، حدده",
+        "type": "text",
+        "value": ""
+      },
+      "orientation_provided": {
+        "label": "تم تحديد اتجاه العينة",
+        "type": "select",
+        "options": ["نعم", "لا"],
+        "value": ""
+      },
       "esophagus_length_cm": {
         "label": "طول المريء (سم)",
         "type": "number",
@@ -49,140 +51,183 @@
       }
     }
   },
-  "tumor_present": {
-    "label": "وجود الورم",
-    "type": "select",
-    "options": ["نعم", "غير مرئي عيانياً"],
-    "value": ""
-  },
-  "tumor_location": {
-    "label": "موضع الورم",
-    "type": "select",
-    "options": [
-      "المريء العنقي",
-      "المريء الصدري العلوي",
-      "المريء الصدري الأوسط",
-      "المريء الصدري السفلي",
-      "الوصل المعدي المريئي (WMM)"
-    ],
-    "value": ""
-  },
-  "distance_to_margins_cm": {
-    "label": "المسافة من الورم إلى الهوامش (سم)",
+
+  "tumor": {
+    "label": "الورم",
     "fields": {
-      "proximal": {
-        "label": "الهامش القريب",
+      "tumor_present": {
+        "label": "وجود الورم",
+        "type": "select",
+        "options": ["نعم", "غير مُحدد عيانياً"],
+        "value": ""
+      },
+      "tumor_location": {
+        "label": "موضع الورم",
+        "type": "select",
+        "options": [
+          "المريء العنقي",
+          "المريء الصدري العلوي",
+          "المريء الصدري الأوسط",
+          "المريء الصدري السفلي",
+          "الوصل المعدي المريئي"
+        ],
+        "value": ""
+      },
+      "tumor_involves_gej": {
+        "label": "الورم يشمل الوصل المعدي المريئي",
+        "type": "select",
+        "options": ["نعم", "لا"],
+        "value": ""
+      },
+      "tumor_dimensions_cm": {
+        "label": "أبعاد الورم (سم)",
+        "type": "measurement_3d",
+        "value": ""
+      },
+      "tumor_configuration": {
+        "label": "شكل الورم",
+        "type": "multi_select",
+        "options": [
+          "بارز",
+          "فطري",
+          "متقرح",
+          "ارتشاحي",
+          "محيطي",
+          "سلائلي",
+          "مسطح"
+        ],
+        "value": []
+      },
+      "tumor_consistency": {
+        "label": "قوام الورم",
+        "type": "select",
+        "options": ["صلب", "طري", "هش", "أخرى"],
+        "value": ""
+      },
+      "tumor_consistency_other": {
+        "label": "قوام آخر للورم، حدده",
+        "type": "text",
+        "value": ""
+      },
+      "tumor_necrosis": {
+        "label": "نخر الورم",
+        "type": "select",
+        "options": ["موجود", "غير موجود"],
+        "value": ""
+      },
+      "hemorrhage": {
+        "label": "نزف",
+        "type": "select",
+        "options": ["موجود", "غير موجود"],
+        "value": ""
+      },
+      "tumor_extent": {
+        "label": "امتداد الورم",
+        "type": "select",
+        "options": [
+          "يغزو الغشاء المخاطي فقط",
+          "يغزو تحت المخاطية",
+          "يغزو العضلة الخاصة",
+          "يغزو الغلاف الخارجي",
+          "يغزو البنى المجاورة",
+          "لا يمكن تقييمه عيانياً"
+        ],
+        "value": ""
+      },
+      "adjacent_structures_involved": {
+        "label": "البنى المجاورة المصابة، إن وجدت",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "margins": {
+    "label": "الهوامش",
+    "fields": {
+      "distance_to_proximal_margin_cm": {
+        "label": "المسافة إلى الهامش القريب (سم)",
         "type": "number",
         "value": ""
       },
-      "distal": {
-        "label": "الهامش البعيد",
+      "distance_to_distal_margin_cm": {
+        "label": "المسافة إلى الهامش البعيد (سم)",
         "type": "number",
         "value": ""
       },
-      "radial_adventitial": {
-        "label": "الهامش الشعاعي / الغلاف الخارجي",
+      "distance_to_radial_adventitial_margin_cm": {
+        "label": "المسافة إلى الهامش الشعاعي/الخارجي (سم)",
         "type": "number",
         "value": ""
       }
     }
   },
-  "tumor_involves_gej": {
-    "label": "الورم يشمل الوصل المعدي المريئي",
-    "type": "select",
-    "options": ["نعم", "لا"],
-    "value": ""
-  },
-  "tumor_dimensions_cm": {
-    "label": "أبعاد الورم (سم)",
-    "type": "measurement_3d",
-    "value": ""
-  },
-  "tumor_configuration": {
-    "label": "شكل الورم",
-    "type": "multi_select",
-    "options": ["خارجي النمو", "فطري", "متقرح", "تسللي", "محيطي", "عنيقي", "مسطح"],
-    "value": []
-  },
-  "tumor_consistency": {
-    "label": "قوام الورم",
-    "type": "select",
-    "options": ["صلب", "طري", "هش", "أخرى"],
-    "value": "",
-    "other_specify": {
-      "label": "أخرى (حدد)",
-      "type": "text",
-      "value": ""
+
+  "background_mucosa": {
+    "label": "الغشاء المخاطي الخلفي",
+    "fields": {
+      "background_esophageal_mucosa": {
+        "label": "الغشاء المخاطي للمريء غير الورمي",
+        "type": "multi_select",
+        "options": [
+          "طبيعي",
+          "مريء باريت",
+          "تقرح",
+          "تضيق",
+          "خلل التنسج",
+          "تغيرات إشعاعية",
+          "أخرى"
+        ],
+        "value": []
+      },
+      "background_mucosa_other": {
+        "label": "موجودات أخرى في الغشاء المخاطي، حددها",
+        "type": "text",
+        "value": ""
+      }
     }
   },
-  "tumor_necrosis": {
-    "label": "نخر الورم",
-    "type": "select",
-    "options": ["موجود", "غير موجود"],
-    "value": ""
-  },
-  "hemorrhage": {
-    "label": "نزيف",
-    "type": "select",
-    "options": ["موجود", "غير موجود"],
-    "value": ""
-  },
-  "tumor_extent": {
-    "label": "امتداد الورم",
-    "type": "select",
-    "options": [
-      "يغزو الغشاء المخاطي فقط",
-      "يغزو تحت المخاطية",
-      "يغزو العضلة الخاصة",
-      "يغزو الغلاف الخارجي",
-      "يغزو البنى المجاورة"
-    ],
-    "value": "",
-    "adjacent_structures_specify": {
-      "label": "البنى المجاورة (حدد)",
-      "type": "text",
-      "value": ""
+
+  "neoadjuvant_therapy": {
+    "label": "العلاج المساعد الأولي / الاستجابة للعلاج",
+    "fields": {
+      "previous_neoadjuvant_therapy": {
+        "label": "علاج مساعد أولي سابق",
+        "type": "select",
+        "options": ["نعم", "لا", "غير معروف"],
+        "value": ""
+      },
+      "gross_treatment_response": {
+        "label": "الدليل العياني على الاستجابة للعلاج",
+        "type": "select",
+        "options": [
+          "غير قابل للتطبيق",
+          "لا يوجد",
+          "جزئي",
+          "واضح",
+          "استجابة كاملة/لا يوجد ورم عياني"
+        ],
+        "value": ""
+      },
+      "tumor_bed_size_cm": {
+        "label": "حجم سرير الورم (سم)، إن وجد",
+        "type": "text",
+        "value": ""
+      },
+      "fibrosis": {
+        "label": "تليف",
+        "type": "select",
+        "options": ["موجود", "غير موجود"],
+        "value": ""
+      }
     }
   },
-  "background_esophageal_mucosa": {
-    "label": "مظهر الغشاء المخاطي للمريء الخلفي",
-    "type": "multi_select",
-    "options": ["طبيعي", "مريء باريت", "تقرح", "تضيق", "خلل التنسج", "تغيرات إشعاعية", "أخرى"],
-    "value": [],
-    "other_specify": {
-      "label": "أخرى (حدد)",
-      "type": "text",
-      "value": ""
-    }
-  },
-  "previous_neoadjuvant_therapy": {
-    "label": "علاج مساعد أولي سابق",
-    "type": "select",
-    "options": ["نعم", "لا", "غير معروف"],
-    "value": ""
-  },
-  "gross_treatment_response": {
-    "label": "الدليل العياني على الاستجابة للعلاج",
-    "type": "select",
-    "options": ["غير قابل للتطبيق", "لا يوجد", "جزئي", "واضح", "استجابة كاملة (لا يوجد ورم عياني)"],
-    "value": ""
-  },
-  "tumor_bed_size_cm": {
-    "label": "حجم سرير الورم (سم)، إن وجد",
-    "type": "text",
-    "value": ""
-  },
-  "fibrosis": {
-    "label": "تليف",
-    "type": "select",
-    "options": ["موجود", "غير موجود"],
-    "value": ""
-  },
+
   "lymph_nodes": {
     "label": "العقد اللمفاوية الإقليمية",
     "fields": {
       "number_identified": {
-        "label": "العدد المُحدَّد",
+        "label": "العدد المُحدد",
         "type": "integer",
         "value": ""
       },
@@ -193,11 +238,18 @@
       }
     }
   },
-  "other_macroscopic_findings": {
-    "label": "موجودات مجهرية عيانية أخرى ذات صلة",
-    "type": "text",
-    "value": ""
+
+  "other_findings": {
+    "label": "موجودات عيانية أخرى ذات صلة",
+    "fields": {
+      "findings": {
+        "label": "موجودات عيانية أخرى ذات صلة",
+        "type": "text",
+        "value": ""
+      }
+    }
   },
+
   "block_identification_key": {
     "label": "مفتاح تعريف الكتل",
     "fields": {
@@ -217,7 +269,7 @@
         "value": ""
       },
       "radial_adventitial_margin": {
-        "label": "الهامش الشعاعي / الغلاف الخارجي",
+        "label": "الهامش الشعاعي/الخارجي",
         "type": "text",
         "value": ""
       },
@@ -238,10 +290,11 @@
       }
     }
   },
+
   "grossing": {
     "label": "الفحص العياني",
     "fields": {
-      "grossed_by": {
+      "grossed_by_initials": {
         "label": "أُجري الفحص العياني بواسطة (الأحرف الأولى)",
         "type": "text",
         "value": ""

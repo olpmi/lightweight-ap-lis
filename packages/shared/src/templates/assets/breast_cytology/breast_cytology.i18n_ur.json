@@ -3,6 +3,12 @@
   "language": "ur",
   "direction": "rtl",
   "rtl": true,
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategory": "fna",
+    "organSystem": "breast",
+    "reportingSystem": "Yokohama"
+  },
   "sections": {
     "specimen": "نمونہ",
     "specimen_adequacy": "نمونے کی کفایت",

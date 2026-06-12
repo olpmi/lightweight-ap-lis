@@ -1,37 +1,42 @@
 {
   "template_id": "small_bowel_resection_gross_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "lang": "ur",
   "ui": {
     "direction": "rtl"
   },
-  "title": "رسولی کے لیے چھوٹی آنت کی ریسیکشن (ظاہری معائنہ کا نمونہ)",
-  "procedure_type": {
-    "label": "طریقۂ کار کی قسم",
-    "type": "select",
-    "options": [
-      "چھوٹی آنت کی حصوی ریسیکشن",
-      "ileocecal ریسیکشن",
-      "دائیں طرف کی ہیمی کولیکٹومی بمع ٹرمینل آئیلیم",
-      "چھوٹی آنت کی میسنٹری کے ساتھ ریسیکشن",
-      "دیگر"
-    ],
-    "value": "",
-    "other_specify": {
-      "label": "دیگر (وضاحت کریں)",
-      "type": "text",
-      "value": ""
-    }
-  },
-  "orientation_provided": {
-    "label": "سمت بندی فراہم کی گئی",
-    "type": "select",
-    "options": ["ہاں", "نہیں"],
-    "value": ""
-  },
-  "specimen_dimensions": {
-    "label": "چھوٹی آنت کی پیمائش (سینٹی میٹر)",
+  "title": "رسولی کے لیے چھوٹی آنت کی ریسیکشن",
+
+  "specimen": {
+    "label": "نمونہ",
     "fields": {
+      "procedure_type": {
+        "label": "طریقۂ کار کی قسم",
+        "type": "select",
+        "options": [
+          "چھوٹی آنت کی حصوی ریسیکشن",
+          "آئیلیوسیکل ریسیکشن",
+          "دائیں طرف کی ہیمی کولیکٹومی بمع ٹرمینل آئیلیم",
+          "چھوٹی آنت کی میسنٹری کے ساتھ ریسیکشن",
+          "دیگر"
+        ],
+        "value": ""
+      },
+      "procedure_type_other": {
+        "label": "دیگر طریقۂ کار (وضاحت کریں)",
+        "type": "text",
+        "value": ""
+      },
+      "orientation_provided": {
+        "label": "سمت بندی فراہم کی گئی",
+        "type": "select",
+        "options": [
+          "ہاں",
+          "نہیں"
+        ],
+        "value": ""
+      },
       "small_bowel_length_cm": {
         "label": "چھوٹی آنت کی لمبائی (سینٹی میٹر)",
         "type": "number",
@@ -39,161 +44,204 @@
       }
     }
   },
-  "tumor_present": {
-    "label": "رسولی موجود ہے",
-    "type": "select",
-    "options": ["ہاں", "ظاہری معائنے میں نظر نہیں آئی"],
-    "value": ""
-  },
-  "tumor_focality": {
-    "label": "رسولی کی بؤریت",
-    "type": "select",
-    "options": ["یک بؤری", "کثیر بؤری"],
-    "value": ""
-  },
-  "tumor_location": {
-    "label": "رسولی کا مقام",
-    "type": "select",
-    "options": [
-      "گرہنی (Duodenum)",
-      "جیجونم",
-      "آئیلیم",
-      "ٹرمینل آئیلیم",
-      "پیری ایمپولری خطہ",
-      "دیگر"
-    ],
-    "value": "",
-    "other_specify": {
-      "label": "دیگر مقام (وضاحت کریں)",
-      "type": "text",
-      "value": ""
+
+  "tumor": {
+    "label": "رسولی",
+    "fields": {
+      "tumor_present": {
+        "label": "رسولی موجود ہے",
+        "type": "select",
+        "options": [
+          "ہاں",
+          "ظاہری معائنے میں نظر نہیں آئی"
+        ],
+        "value": ""
+      },
+      "tumor_focality": {
+        "label": "رسولی کی بؤریت",
+        "type": "select",
+        "options": [
+          "یک بؤری",
+          "کثیر بؤری"
+        ],
+        "value": ""
+      },
+      "tumor_location": {
+        "label": "رسولی کا مقام",
+        "type": "select",
+        "options": [
+          "گرہنی",
+          "جیجونم",
+          "آئیلیم",
+          "ٹرمینل آئیلیم",
+          "پیری ایمپولری خطہ",
+          "دیگر"
+        ],
+        "value": ""
+      },
+      "tumor_location_other": {
+        "label": "دیگر مقام (وضاحت کریں)",
+        "type": "text",
+        "value": ""
+      },
+      "tumor_dimensions_cm": {
+        "label": "رسولی کی پیمائش (سینٹی میٹر)",
+        "type": "measurement_3d",
+        "value": ""
+      },
+      "tumor_configuration": {
+        "label": "رسولی کی ساخت",
+        "type": "multi_select",
+        "options": [
+          "پولیپ نما",
+          "بیرونی نمو",
+          "فنگس نما",
+          "السر دار",
+          "حلقوی",
+          "رسوخی",
+          "محیطی",
+          "گانٹھ نما",
+          "دیگر"
+        ],
+        "value": []
+      },
+      "tumor_configuration_other": {
+        "label": "دیگر ساخت (وضاحت کریں)",
+        "type": "text",
+        "value": ""
+      },
+      "tumor_consistency": {
+        "label": "رسولی کی کثافت",
+        "type": "select",
+        "options": [
+          "سخت",
+          "نرم",
+          "ٹوٹنے والی",
+          "جیلی نما",
+          "فائبروٹک",
+          "دیگر"
+        ],
+        "value": ""
+      },
+      "tumor_consistency_other": {
+        "label": "دیگر کثافت (وضاحت کریں)",
+        "type": "text",
+        "value": ""
+      },
+      "necrosis": {
+        "label": "نیکروسس",
+        "type": "select",
+        "options": [
+          "موجود",
+          "غیر موجود"
+        ],
+        "value": ""
+      },
+      "hemorrhage": {
+        "label": "خون بہنا",
+        "type": "select",
+        "options": [
+          "موجود",
+          "غیر موجود"
+        ],
+        "value": ""
+      },
+      "perforation": {
+        "label": "سوراخ",
+        "type": "select",
+        "options": [
+          "موجود",
+          "غیر موجود"
+        ],
+        "value": ""
+      },
+      "associated_obstruction": {
+        "label": "متعلقہ رکاوٹ",
+        "type": "select",
+        "options": [
+          "موجود",
+          "غیر موجود"
+        ],
+        "value": ""
+      },
+      "stricture_formation": {
+        "label": "تنگی",
+        "type": "select",
+        "options": [
+          "موجود",
+          "غیر موجود"
+        ],
+        "value": ""
+      },
+      "tumor_extent": {
+        "label": "رسولی کا پھیلاؤ",
+        "type": "select",
+        "options": [
+          "صرف میوکوسا میں رسوخ",
+          "سب میوکوسا میں رسوخ",
+          "مسکولاریس پروپریا میں رسوخ",
+          "سب سیروسا میں رسوخ",
+          "سیروسا میں رسوخ",
+          "میسنٹری کی چربی میں رسوخ",
+          "ملحق ساخت میں رسوخ",
+          "ظاہری طور پر قابلِ تشخیص نہیں"
+        ],
+        "value": ""
+      },
+      "adjacent_structures_involved": {
+        "label": "متاثرہ ملحق ساختیں",
+        "type": "text",
+        "value": ""
+      }
     }
   },
-  "distance_to_margins_cm": {
-    "label": "رسولی سے حاشیوں تک فاصلہ (سینٹی میٹر)",
+
+  "margins": {
+    "label": "حاشیے",
     "fields": {
-      "proximal": {
-        "label": "قریبی حاشیہ",
+      "distance_to_proximal_margin_cm": {
+        "label": "قریبی حاشیے تک فاصلہ (سینٹی میٹر)",
         "type": "number",
         "value": ""
       },
-      "distal": {
-        "label": "دوری حاشیہ",
+      "distance_to_distal_margin_cm": {
+        "label": "دوری حاشیے تک فاصلہ (سینٹی میٹر)",
         "type": "number",
         "value": ""
       },
-      "mesenteric": {
-        "label": "میسنٹیریک حاشیہ",
+      "distance_to_mesenteric_margin_cm": {
+        "label": "میسنٹیریک حاشیے تک فاصلہ (سینٹی میٹر)",
         "type": "number",
         "value": ""
       }
     }
   },
-  "tumor_dimensions_cm": {
-    "label": "رسولی کی پیمائش (سینٹی میٹر)",
-    "type": "measurement_3d",
-    "value": ""
-  },
-  "tumor_configuration": {
-    "label": "رسولی کی ساخت",
-    "type": "multi_select",
-    "options": [
-      "پولیپ نما",
-      "بیرونی نمو",
-      "فنگس نما",
-      "السر دار",
-      "حلقوی",
-      "رسوخی",
-      "محیطی",
-      "گانٹھ نما",
-      "دیگر"
-    ],
-    "value": [],
-    "other_specify": {
-      "label": "دیگر ساخت (وضاحت کریں)",
-      "type": "text",
-      "value": ""
-    }
-  },
-  "tumor_consistency": {
-    "label": "رسولی کی کثافت",
-    "type": "select",
-    "options": ["سخت", "نرم", "ٹوٹنے والی", "جیلی نما", "فائبروٹک", "دیگر"],
-    "value": "",
-    "other_specify": {
-      "label": "دیگر کثافت (وضاحت کریں)",
-      "type": "text",
-      "value": ""
-    }
-  },
-  "necrosis": {
-    "label": "نیکروسس",
-    "type": "select",
-    "options": ["موجود", "غیر موجود"],
-    "value": ""
-  },
-  "hemorrhage": {
-    "label": "خون بہنا",
-    "type": "select",
-    "options": ["موجود", "غیر موجود"],
-    "value": ""
-  },
-  "perforation": {
-    "label": "سوراخ",
-    "type": "select",
-    "options": ["موجود", "غیر موجود"],
-    "value": ""
-  },
-  "associated_obstruction": {
-    "label": "متعلقہ رکاوٹ",
-    "type": "select",
-    "options": ["موجود", "غیر موجود"],
-    "value": ""
-  },
-  "stricture_formation": {
-    "label": "تنگی",
-    "type": "select",
-    "options": ["موجود", "غیر موجود"],
-    "value": ""
-  },
-  "tumor_extent": {
-    "label": "رسولی کا پھیلاؤ",
-    "type": "select",
-    "options": [
-      "صرف میوکوسا میں رسوخ",
-      "سب میوکوسا میں رسوخ",
-      "مسکولاریس پروپریا میں رسوخ",
-      "سب سیروسا میں رسوخ",
-      "سیروسا میں رسوخ",
-      "میسنٹیری کی چربی میں رسوخ",
-      "ملحق ساخت میں رسوخ"
-    ],
-    "value": "",
-    "adjacent_structures_specify": {
-      "label": "ملحق ساخت (وضاحت کریں)",
-      "type": "text",
-      "value": ""
-    }
-  },
+
   "background_mucosa": {
-    "label": "پس منظر کی چھوٹی آنت کی میوکوسا کا منظر",
-    "type": "multi_select",
-    "options": [
-      "معمول کے مطابق",
-      "السر دار",
-      "پولیپوسس",
-      "اسکیمک تبدیلی",
-      "ریڈی ایشن اثر",
-      "Adhesions",
-      "دیگر"
-    ],
-    "value": [],
-    "other_specify": {
-      "label": "دیگر (وضاحت کریں)",
-      "type": "text",
-      "value": ""
+    "label": "پس منظر کی میوکوسا",
+    "fields": {
+      "background_small_bowel_mucosa": {
+        "label": "پس منظر کی چھوٹی آنت کی میوکوسا کا منظر",
+        "type": "multi_select",
+        "options": [
+          "معمول کے مطابق",
+          "السر دار",
+          "پولیپوسس",
+          "اسکیمک تبدیلی",
+          "ریڈی ایشن اثر",
+          "چپکاؤ",
+          "دیگر"
+        ],
+        "value": []
+      },
+      "background_mucosa_other": {
+        "label": "دیگر میوکوسل تبدیلی (وضاحت کریں)",
+        "type": "text",
+        "value": ""
+      }
     }
   },
+
   "lymph_nodes": {
     "label": "علاقائی لمف نوڈز",
     "fields": {
@@ -209,11 +257,18 @@
       }
     }
   },
-  "other_macroscopic_findings": {
-    "label": "دیگر متعلقہ ظاہری معائنے کے نتائج",
-    "type": "text",
-    "value": ""
+
+  "other_findings": {
+    "label": "دیگر متعلقہ ظاہری نتائج",
+    "fields": {
+      "findings": {
+        "label": "دیگر متعلقہ ظاہری معائنے کے نتائج",
+        "type": "text",
+        "value": ""
+      }
+    }
   },
+
   "block_identification_key": {
     "label": "بلاک شناخت کلید",
     "fields": {
@@ -254,10 +309,11 @@
       }
     }
   },
+
   "grossing": {
     "label": "ظاہری معائنہ",
     "fields": {
-      "grossed_by": {
+      "grossed_by_initials": {
         "label": "ظاہری معائنہ کرنے والا/والی (ابتدائی حروف)",
         "type": "text",
         "value": ""

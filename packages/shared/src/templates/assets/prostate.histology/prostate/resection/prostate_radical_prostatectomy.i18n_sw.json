@@ -1,6 +1,7 @@
 {
   "template_id": "prostate_radical_prostatectomy_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "protocol_posting_date": "September 2023",
   "lang": "sw",
   "standards": ["AJCC-UICC 8"],

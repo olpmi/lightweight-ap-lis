@@ -1,34 +1,39 @@
 {
   "template_id": "small_bowel_resection_gross_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "lang": "pt",
-  "title": "Ressecção do intestino delgado para tumor",
-  "procedure_type": {
-    "label": "Tipo de procedimento",
-    "type": "select",
-    "options": [
-      "Ressecção segmentar do intestino delgado",
-      "Ressecção ileocecal",
-      "Hemicolectomia direita com íleon terminal",
-      "Ressecção do intestino delgado com mesentério",
-      "Outro"
-    ],
-    "value": "",
-    "other_specify": {
-      "label": "Outro (especificar)",
-      "type": "text",
-      "value": ""
-    }
-  },
-  "orientation_provided": {
-    "label": "Orientação fornecida",
-    "type": "select",
-    "options": ["Sim", "Não"],
-    "value": ""
-  },
-  "specimen_dimensions": {
-    "label": "Dimensões do intestino delgado (cm)",
+  "title": "Ressecção do Intestino Delgado para Tumor",
+
+  "specimen": {
+    "label": "Espécime",
     "fields": {
+      "procedure_type": {
+        "label": "Tipo de procedimento",
+        "type": "select",
+        "options": [
+          "Ressecção segmentar do intestino delgado",
+          "Ressecção ileocecal",
+          "Hemicolectomia direita com íleo terminal",
+          "Ressecção do intestino delgado com mesentério",
+          "Outro"
+        ],
+        "value": ""
+      },
+      "procedure_type_other": {
+        "label": "Outro procedimento (especificar)",
+        "type": "text",
+        "value": ""
+      },
+      "orientation_provided": {
+        "label": "Orientação fornecida",
+        "type": "select",
+        "options": [
+          "Sim",
+          "Não"
+        ],
+        "value": ""
+      },
       "small_bowel_length_cm": {
         "label": "Comprimento do intestino delgado (cm)",
         "type": "number",
@@ -36,156 +41,206 @@
       }
     }
   },
-  "tumor_present": {
-    "label": "Tumor presente",
-    "type": "select",
-    "options": ["Sim", "Não identificado macroscopicamente"],
-    "value": ""
-  },
-  "tumor_focality": {
-    "label": "Focalidade do tumor",
-    "type": "select",
-    "options": ["Unifocal", "Multifocal"],
-    "value": ""
-  },
-  "tumor_location": {
-    "label": "Localização do tumor",
-    "type": "select",
-    "options": ["Duodeno", "Jejuno", "Íleo", "Íleo terminal", "Região periampular", "Outro"],
-    "value": "",
-    "other_specify": {
-      "label": "Outra localização (especificar)",
-      "type": "text",
-      "value": ""
+
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "tumor_present": {
+        "label": "Tumor presente",
+        "type": "select",
+        "options": [
+          "Sim",
+          "Não identificado macroscopicamente"
+        ],
+        "value": ""
+      },
+      "tumor_focality": {
+        "label": "Focalidade do tumor",
+        "type": "select",
+        "options": [
+          "Unifocal",
+          "Multifocal"
+        ],
+        "value": ""
+      },
+      "tumor_location": {
+        "label": "Localização do tumor",
+        "type": "select",
+        "options": [
+          "Duodeno",
+          "Jejuno",
+          "Íleo",
+          "Íleo terminal",
+          "Região periampular",
+          "Outro"
+        ],
+        "value": ""
+      },
+      "tumor_location_other": {
+        "label": "Outra localização (especificar)",
+        "type": "text",
+        "value": ""
+      },
+      "tumor_dimensions_cm": {
+        "label": "Dimensões do tumor (cm)",
+        "type": "measurement_3d",
+        "value": ""
+      },
+      "tumor_configuration": {
+        "label": "Configuração do tumor",
+        "type": "multi_select",
+        "options": [
+          "Polipoide",
+          "Exofítico",
+          "Fungoide",
+          "Ulcerado",
+          "Anular",
+          "Infiltrativo",
+          "Circunferencial",
+          "Nodular",
+          "Outro"
+        ],
+        "value": []
+      },
+      "tumor_configuration_other": {
+        "label": "Outra configuração (especificar)",
+        "type": "text",
+        "value": ""
+      },
+      "tumor_consistency": {
+        "label": "Consistência do tumor",
+        "type": "select",
+        "options": [
+          "Firme",
+          "Mole",
+          "Friável",
+          "Gelatinoso",
+          "Fibrótico",
+          "Outro"
+        ],
+        "value": ""
+      },
+      "tumor_consistency_other": {
+        "label": "Outra consistência (especificar)",
+        "type": "text",
+        "value": ""
+      },
+      "necrosis": {
+        "label": "Necrose",
+        "type": "select",
+        "options": [
+          "Presente",
+          "Ausente"
+        ],
+        "value": ""
+      },
+      "hemorrhage": {
+        "label": "Hemorragia",
+        "type": "select",
+        "options": [
+          "Presente",
+          "Ausente"
+        ],
+        "value": ""
+      },
+      "perforation": {
+        "label": "Perfuração",
+        "type": "select",
+        "options": [
+          "Presente",
+          "Ausente"
+        ],
+        "value": ""
+      },
+      "associated_obstruction": {
+        "label": "Obstrução associada",
+        "type": "select",
+        "options": [
+          "Presente",
+          "Ausente"
+        ],
+        "value": ""
+      },
+      "stricture_formation": {
+        "label": "Formação de estenose",
+        "type": "select",
+        "options": [
+          "Presente",
+          "Ausente"
+        ],
+        "value": ""
+      },
+      "tumor_extent": {
+        "label": "Extensão do tumor",
+        "type": "select",
+        "options": [
+          "Invade apenas a mucosa",
+          "Invade a submucosa",
+          "Invade a muscularis propria",
+          "Invade a subserosa",
+          "Invade a serosa",
+          "Invade a gordura mesentérica",
+          "Invade estruturas adjacentes",
+          "Não pode ser avaliado macroscopicamente"
+        ],
+        "value": ""
+      },
+      "adjacent_structures_involved": {
+        "label": "Estruturas adjacentes envolvidas",
+        "type": "text",
+        "value": ""
+      }
     }
   },
-  "distance_to_margins_cm": {
-    "label": "Distância do tumor às margens (cm)",
+
+  "margins": {
+    "label": "Margens",
     "fields": {
-      "proximal": {
-        "label": "Margem proximal",
+      "distance_to_proximal_margin_cm": {
+        "label": "Distância à margem proximal (cm)",
         "type": "number",
         "value": ""
       },
-      "distal": {
-        "label": "Margem distal",
+      "distance_to_distal_margin_cm": {
+        "label": "Distância à margem distal (cm)",
         "type": "number",
         "value": ""
       },
-      "mesenteric": {
-        "label": "Margem mesentérica",
+      "distance_to_mesenteric_margin_cm": {
+        "label": "Distância à margem mesentérica (cm)",
         "type": "number",
         "value": ""
       }
     }
   },
-  "tumor_dimensions_cm": {
-    "label": "Dimensões do tumor (cm)",
-    "type": "measurement_3d",
-    "value": ""
-  },
-  "tumor_configuration": {
-    "label": "Configuração do tumor",
-    "type": "multi_select",
-    "options": [
-      "Polipoide",
-      "Exofítico",
-      "Fungoide",
-      "Ulcerado",
-      "Anular",
-      "Infiltrativo",
-      "Circunferencial",
-      "Nodular",
-      "Outro"
-    ],
-    "value": [],
-    "other_specify": {
-      "label": "Outra configuração (especificar)",
-      "type": "text",
-      "value": ""
-    }
-  },
-  "tumor_consistency": {
-    "label": "Consistência do tumor",
-    "type": "select",
-    "options": ["Firme", "Mole", "Friável", "Gelatinoso", "Fibrótico", "Outro"],
-    "value": "",
-    "other_specify": {
-      "label": "Outra consistência (especificar)",
-      "type": "text",
-      "value": ""
-    }
-  },
-  "necrosis": {
-    "label": "Necrose",
-    "type": "select",
-    "options": ["Presente", "Ausente"],
-    "value": ""
-  },
-  "hemorrhage": {
-    "label": "Hemorragia",
-    "type": "select",
-    "options": ["Presente", "Ausente"],
-    "value": ""
-  },
-  "perforation": {
-    "label": "Perfuração",
-    "type": "select",
-    "options": ["Presente", "Ausente"],
-    "value": ""
-  },
-  "associated_obstruction": {
-    "label": "Obstrução associada",
-    "type": "select",
-    "options": ["Presente", "Ausente"],
-    "value": ""
-  },
-  "stricture_formation": {
-    "label": "Formação de estenose",
-    "type": "select",
-    "options": ["Presente", "Ausente"],
-    "value": ""
-  },
-  "tumor_extent": {
-    "label": "Extensão do tumor",
-    "type": "select",
-    "options": [
-      "Invade apenas a mucosa",
-      "Invade a submucosa",
-      "Invade a muscularis propria",
-      "Invade a subserosa",
-      "Invade a serosa",
-      "Invade a gordura mesentérica",
-      "Invade estruturas adjacentes"
-    ],
-    "value": "",
-    "adjacent_structures_specify": {
-      "label": "Estruturas adjacentes (especificar)",
-      "type": "text",
-      "value": ""
-    }
-  },
+
   "background_mucosa": {
-    "label": "Aspecto da mucosa do intestino delgado de fundo",
-    "type": "multi_select",
-    "options": [
-      "Normal",
-      "Ulcerada",
-      "Polipose",
-      "Alteração isquémica",
-      "Efeito de radioterapia",
-      "Aderências",
-      "Outro"
-    ],
-    "value": [],
-    "other_specify": {
-      "label": "Outro (especificar)",
-      "type": "text",
-      "value": ""
+    "label": "Mucosa de Fundo",
+    "fields": {
+      "background_small_bowel_mucosa": {
+        "label": "Aspeto da mucosa do intestino delgado",
+        "type": "multi_select",
+        "options": [
+          "Normal",
+          "Ulcerada",
+          "Polipose",
+          "Alteração isquémica",
+          "Efeito de radioterapia",
+          "Aderências",
+          "Outro"
+        ],
+        "value": []
+      },
+      "background_mucosa_other": {
+        "label": "Outro achado da mucosa (especificar)",
+        "type": "text",
+        "value": ""
+      }
     }
   },
+
   "lymph_nodes": {
-    "label": "Gânglios linfáticos regionais",
+    "label": "Gânglios Linfáticos Regionais",
     "fields": {
       "number_identified": {
         "label": "Número identificado",
@@ -199,13 +254,20 @@
       }
     }
   },
-  "other_macroscopic_findings": {
-    "label": "Outros achados macroscópicos relevantes",
-    "type": "text",
-    "value": ""
+
+  "other_findings": {
+    "label": "Outros Achados Macroscópicos",
+    "fields": {
+      "findings": {
+        "label": "Outros achados macroscópicos relevantes",
+        "type": "text",
+        "value": ""
+      }
+    }
   },
+
   "block_identification_key": {
-    "label": "Chave de identificação de blocos",
+    "label": "Chave de Identificação de Blocos",
     "fields": {
       "tumor": {
         "label": "Tumor",
@@ -244,10 +306,11 @@
       }
     }
   },
+
   "grossing": {
-    "label": "Exame macroscópico",
+    "label": "Exame Macroscópico",
     "fields": {
-      "grossed_by": {
+      "grossed_by_initials": {
         "label": "Exame macroscópico realizado por (iniciais)",
         "type": "text",
         "value": ""

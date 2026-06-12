@@ -1,6 +1,7 @@
 {
   "template_id": "ovary_fallopian_tube_primary_peritoneum_gross_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "lang": "ur",
   "ui": {
     "direction": "rtl"

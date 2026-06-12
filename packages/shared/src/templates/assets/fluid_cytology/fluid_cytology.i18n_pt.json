@@ -2,6 +2,12 @@
   "templateId": "fluid_cytology_international_serous_fluid",
   "templateName": "Modelo de laudo de citologia de fluidos (Sistema Internacional para Relato de Citologia de Fluidos Serosos)",
   "language": "pt",
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategory": "serous_fluid",
+    "organSystem": "fluid_cytology",
+    "reportingSystem": "International system for reporting serous fluid cytology"
+  },
   "sections": [
     {
       "id": "specimen",

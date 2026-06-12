@@ -1,6 +1,7 @@
 {
   "template_id": "breast_invasive_carcinoma_resection_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "protocol_posting_date": "June 2024",
   "standards": ["AJCC-UICC 8"],
   "lang": "ar",
@@ -80,7 +81,7 @@
         ],
         "type": "select",
         "value": "",
-        "features_specify": "",
+        "features_specify": { "label": "الخصائص (حدد)", "type": "text", "value": "" },
         "cannot_be_determined_specify": {
           "label": "لا يمكن التحديد (حدد)",
           "type": "text",
@@ -290,7 +291,7 @@
             ],
             "type": "multi_select",
             "value": [],
-            "other_specify": ""
+            "other_specify": { "label": "أخرى (حدد)", "type": "text", "value": "" }
           },
           "nuclear_grade": {
             "label": "الدرجة النووية",
@@ -422,7 +423,7 @@
         ],
         "type": "multi_select",
         "value": [],
-        "other_specify": ""
+        "other_specify": { "label": "أخرى (حدد)", "type": "text", "value": "" }
       }
     }
   },
@@ -549,8 +550,8 @@
             "options": ["أمامي", "خلفي", "علوي", "سفلي", "أنسي", "وحشي", "أخرى", "لا يمكن التحديد"],
             "type": "multi_select",
             "value": [],
-            "other_specify": "",
-            "cannot_be_determined_explain": ""
+            "other_specify": { "label": "أخرى (حدد)", "type": "text", "value": "" },
+            "cannot_be_determined_explain": { "label": "لا يمكن التحديد (اشرح)", "type": "text", "value": "" }
           },
           "margins_involved": {
             "label": "الهامش(الهوامش) المصابة بالسرطان الغازي",
@@ -645,8 +646,8 @@
             ],
             "type": "multi_select",
             "value": [],
-            "other_specify": "",
-            "cannot_be_determined_explain": ""
+            "other_specify": { "label": "أخرى (حدد)", "type": "text", "value": "" },
+            "cannot_be_determined_explain": { "label": "لا يمكن التحديد (اشرح)", "type": "text", "value": "" }
           },
           "margins_involved": {
             "label": "الهامش(الهوامش) المصابة بالـ DCIS",
@@ -717,7 +718,7 @@
             "type": "integer",
             "value": ""
           },
-          "other_specify": "",
+          "other_specify": { "label": "أخرى (حدد)", "type": "text", "value": "" },
           "cannot_be_determined_specify": {
             "label": "لا يمكن التحديد (حدد)",
             "type": "text",
@@ -761,7 +762,7 @@
             "type": "integer",
             "value": ""
           },
-          "other_specify": "",
+          "other_specify": { "label": "أخرى (حدد)", "type": "text", "value": "" },
           "cannot_be_determined_explain": {
             "label": "لا يمكن التحديد (اشرح)",
             "type": "text",
@@ -783,7 +784,7 @@
             "type": "number",
             "value": ""
           },
-          "other_specify": "",
+          "other_specify": { "label": "أخرى (حدد)", "type": "text", "value": "" },
           "cannot_be_determined_explain": {
             "label": "لا يمكن التحديد (اشرح)",
             "type": "text",
@@ -843,7 +844,7 @@
             "type": "integer",
             "value": ""
           },
-          "other_specify": "",
+          "other_specify": { "label": "أخرى (حدد)", "type": "text", "value": "" },
           "cannot_be_determined_explain": {
             "label": "لا يمكن التحديد (اشرح)",
             "type": "text",

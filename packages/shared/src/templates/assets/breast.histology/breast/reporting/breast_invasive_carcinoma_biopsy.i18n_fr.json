@@ -1,6 +1,7 @@
 {
   "template_id": "breast_invasive_carcinoma_biopsy_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "protocol_posting_date": "March 2023",
   "lang": "fr",
   "title": "Carcinome mammaire invasif, biopsie",
@@ -76,7 +77,7 @@
         ],
         "type": "select",
         "value": "",
-        "features_specify": "",
+        "features_specify": { "label": "Caractéristiques (préciser)", "type": "text", "value": "" },
         "cannot_be_determined_specify": "Ne peut pas être déterminé (expliquer)",
         "other_specify": "Autre (préciser)"
       },

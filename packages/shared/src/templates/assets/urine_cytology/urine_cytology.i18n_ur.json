@@ -1,0 +1,274 @@
+{
+  "templateId": "urine_cytology_paris_system",
+  "templateName": "پیشاب کی سائٹولوجی رپورٹنگ ٹیمپلیٹ (پیرس سسٹم برائے رپورٹنگ یورینری سائٹولوجی)",
+  "language": "ur",
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategory": "urine_cytology",
+    "organSystem": "urinary_tract",
+    "reportingSystem": "Paris System for Reporting Urinary Cytology"
+  },
+  "sections": [
+    {
+      "id": "specimen",
+      "title": "نمونہ",
+      "fields": [
+        {
+          "id": "specimen_type",
+          "label": "نمونے کی قسم",
+          "type": "select",
+          "options": [
+            "خود بخود خارج شدہ پیشاب",
+            "کیتھیٹر کے ذریعے حاصل شدہ پیشاب",
+            "مثانے کا واشنگ",
+            "مثانے کا باربوٹیج",
+            "یوریٹر کا واشنگ",
+            "گردے کی پیلوِس کا واشنگ",
+            "آئیلیئل کنڈوئٹ کا پیشاب",
+            "دیگر"
+          ]
+        },
+        {
+          "id": "specimen_site",
+          "label": "نمونے کا مقام",
+          "type": "select",
+          "options": [
+            "مثانہ",
+            "دائیں یوریٹر",
+            "بائیں یوریٹر",
+            "دائیں گردے کی پیلوِس",
+            "بائیں گردے کی پیلوِس",
+            "اوپری پیشابی راستہ، غیر متعین",
+            "پیشابی راستہ، غیر متعین",
+            "دیگر"
+          ]
+        },
+        {
+          "id": "laterality",
+          "label": "طرف (اگر قابل اطلاق ہو)",
+          "type": "select",
+          "options": ["دائیں", "بائیں", "دو طرفہ", "قابل اطلاق نہیں"]
+        },
+        {
+          "id": "clinical_indication",
+          "label": "طبی اشارہ",
+          "type": "multiselect",
+          "options": [
+            "ہیمیچوریا (پیشاب میں خون)",
+            "یوروتھیلیل سرطان کی نگرانی",
+            "کم درجے کی یوروتھیلیل نیوپلازیا کی سابقہ تاریخ",
+            "اعلیٰ درجے کے یوروتھیلیل سرطان کی سابقہ تاریخ",
+            "امیجنگ یا سیسٹوسکوپی میں مشتبہ تبدیلی",
+            "پیشاب کی نالی کی تحریکی علامات",
+            "دیگر"
+          ]
+        },
+        {
+          "id": "clinical_indication_other",
+          "label": "دیگر طبی اشارہ",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "preparation_methods",
+      "title": "تیاری کے طریقے",
+      "fields": [
+        {
+          "id": "preparation_methods_used",
+          "label": "استعمال شدہ تیاری کے طریقے",
+          "type": "multiselect",
+          "options": ["روایتی اسمئیر", "سائٹو اسپن", "مائع پر مبنی تیاری", "سیل بلاک"]
+        },
+        {
+          "id": "cell_block_prepared",
+          "label": "سیل بلاک تیار کیا گیا",
+          "type": "select",
+          "options": ["ہاں", "نہیں"]
+        }
+      ]
+    },
+    {
+      "id": "adequacy",
+      "title": "نمونے کی کفایت",
+      "fields": [
+        {
+          "id": "adequacy_status",
+          "label": "نمونے کی کفایت",
+          "type": "select",
+          "options": ["تشخیص کے لیے کافی", "خلیات کم لیکن کافی", "ناکافی / غیر تشخیصی"]
+        },
+        {
+          "id": "unsatisfactory_reason",
+          "label": "ناکافی ہونے کی وجہ",
+          "type": "multiselect",
+          "options": [
+            "یوروتھیلیل خلیات کی کمی",
+            "خراب تحفظ یا تنزلی",
+            "خون کی وجہ سے رکاوٹ",
+            "التہاب کی وجہ سے رکاوٹ",
+            "آلودگی یا چکناہٹ کی وجہ سے رکاوٹ",
+            "ناکافی حجم",
+            "دیگر"
+          ]
+        },
+        {
+          "id": "unsatisfactory_reason_other",
+          "label": "دیگر وجہ",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "diagnostic_category",
+      "title": "تشخیصی درجہ بندی (پیرس سسٹم)",
+      "fields": [
+        {
+          "id": "paris_category",
+          "label": "تشخیصی درجہ بندی",
+          "type": "select",
+          "options": [
+            "I. غیر تشخیصی / ناکافی",
+            "II. اعلیٰ درجے کے یوروتھیلیل سرطان کے لیے منفی (NHGUC)",
+            "III. غیر معمولی یوروتھیلیل خلیات (AUC)",
+            "IV. اعلیٰ درجے کے یوروتھیلیل سرطان کے حق میں مشتبہ (SHGUC)",
+            "V. اعلیٰ درجے کا یوروتھیلیل سرطان (HGUC)",
+            "VI. دیگر ابتدائی یا میٹاسٹیٹک بدخیم رسولیاں"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "negative_findings",
+      "title": "اگر اعلیٰ درجے کے یوروتھیلیل سرطان کے لیے منفی ہو",
+      "fields": [
+        {
+          "id": "negative_findings_options",
+          "label": "نتائج",
+          "type": "multiselect",
+          "options": [
+            "سومی یوروتھیلیل خلیات",
+            "ردعملی یوروتھیلیل خلیات",
+            "تنزلی کی تبدیلیاں",
+            "التہاب",
+            "بلورات",
+            "پتھری سے وابستہ تبدیلیاں",
+            "پولی اوما وائرس کا سائٹوپیتھک اثر",
+            "طبی آلات سے وابستہ تبدیلیاں",
+            "کم درجے کی یوروتھیلیل نیوپلازیا موجود یا خارج نہیں کی جا سکتی",
+            "دیگر"
+          ]
+        },
+        {
+          "id": "negative_findings_other",
+          "label": "دیگر نتیجہ",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "atypical_suspicious_features",
+      "title": "غیر معمولی یا مشتبہ سائٹولوجیکل خصوصیات",
+      "fields": [
+        {
+          "id": "cytologic_features",
+          "label": "موجود خصوصیات",
+          "type": "multiselect",
+          "options": [
+            "نیوکلیئس سے سائٹوپلازم تناسب میں اضافہ",
+            "نیوکلیئر ہائپرکرومیزیا",
+            "نیوکلیئر جھلی کی بے قاعدگی",
+            "موٹا یا جمتا ہوا کرومیٹن",
+            "خلیاتی پلیومارفزم",
+            "نمایاں نیوکلیولی",
+            "نیکروسس",
+            "مائٹوسز",
+            "تین جہتی خلیاتی جھرمٹ",
+            "دیگر"
+          ]
+        },
+        {
+          "id": "cytologic_features_other",
+          "label": "دیگر سائٹولوجیکل خصوصیت",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "microscopic_description",
+      "title": "خردبینی تفصیل",
+      "fields": [
+        {
+          "id": "microscopic_description_text",
+          "label": "خردبینی تفصیل",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "id": "malignancy_subtype",
+      "title": "اگر بدخیمی یا دیگر سرطان ہو تو ترجیحی تشخیص",
+      "fields": [
+        {
+          "id": "malignancy_favor",
+          "label": "ترجیحی تشخیص",
+          "type": "multiselect",
+          "options": [
+            "اعلیٰ درجے کا یوروتھیلیل سرطان",
+            "اسکوامس تفریق کے ساتھ یوروتھیلیل سرطان",
+            "غدی تفریق کے ساتھ یوروتھیلیل سرطان",
+            "اسکوامس سیل کارسینوما",
+            "ایڈینوکارسینوما",
+            "سمال سیل / نیورواینڈوکرائن سرطان",
+            "میٹاسٹیٹک سرطان",
+            "ہیمیٹولمفائیڈ نیوپلازیا",
+            "دیگر"
+          ]
+        },
+        {
+          "id": "malignancy_favor_other",
+          "label": "دیگر بدخیم رسولی",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "ancillary_studies",
+      "title": "معاون مطالعات (اگر کیے گئے ہوں)",
+      "fields": [
+        {
+          "id": "urovysion_fish",
+          "label": "UroVysion FISH",
+          "type": "select",
+          "options": ["نہیں کیا گیا", "زیر التواء", "منفی", "مثبت", "غیر واضح"]
+        },
+        {
+          "id": "immunocytochemistry",
+          "label": "امیونوسائٹو کیمسٹری",
+          "type": "text"
+        },
+        {
+          "id": "molecular_studies",
+          "label": "مالیکیولر مطالعات",
+          "type": "text"
+        },
+        {
+          "id": "microbiology_stains_cultures",
+          "label": "مائیکروبایولوجی رنگ آمیزی / کلچرز",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "comment_recommendation",
+      "title": "تبصرہ / سفارش",
+      "fields": [
+        {
+          "id": "comment_text",
+          "label": "تبصرہ / سفارش",
+          "type": "textarea"
+        }
+      ]
+    }
+  ]
+}

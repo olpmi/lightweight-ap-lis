@@ -3,6 +3,12 @@
   "version": "1.0",
   "language": "fr",
   "title": "Modèle de compte rendu de cytologie cervicale (frottis de Papanicolaou) (système de Bethesda)",
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategory": "gyn_cytology",
+    "organSystem": "cervix",
+    "reportingSystem": "Bethesda"
+  },
   "common": {
     "yes": "Oui",
     "no": "Non",

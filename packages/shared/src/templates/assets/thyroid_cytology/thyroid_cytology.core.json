@@ -2,6 +2,12 @@
   "templateId": "thyroid_cytology_bethesda_3rd_edition",
   "templateName": "Thyroid cytology reporting template (3RD Edition Bethesda System)",
   "language": "en",
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategories": ["fna"],
+    "organ": "thyroid",
+    "reportingSystem": "Bethesda"
+  },
   "sections": [
     {
       "id": "specimen",

@@ -5,6 +5,12 @@
   "category": "cytology",
   "system": "Bethesda System",
   "title": "Modelo de relatório de citologia cervical (Papanicolaou) — Sistema de Bethesda",
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategory": "gyn_cytology",
+    "organSystem": "cervix",
+    "reportingSystem": "Bethesda"
+  },
   "sections": [
     {
       "id": "specimen",

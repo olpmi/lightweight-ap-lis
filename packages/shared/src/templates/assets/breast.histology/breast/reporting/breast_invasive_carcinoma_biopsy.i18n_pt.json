@@ -1,6 +1,7 @@
 {
   "template_id": "breast_invasive_carcinoma_biopsy_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "lang": "pt",
   "title": "Mama — Carcinoma Invasivo, Biópsia",
   "protocol_posting_date": "March 2023",
