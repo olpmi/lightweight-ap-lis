@@ -17,7 +17,7 @@ describe('Patient summary lookup endpoint', () => {
     expect(res.body.data.templateId).toBe('general_cytology');
     expect(res.body.data.language).toBe('sw');
     expect(res.body.data.triggerFields).toContain('diagnostic_category');
-    expect(res.body.data.rules[0].match.diagnostic_category.equals).toContain('Non-diagnostic / Unsatisfactory');
+    expect(res.body.data.rules[0].match.diagnostic_category.equals).toContain('general_non_diagnostic_unsatisfactory');
   });
 
   it('resolves the Swahili fluid summary under the canonical template id', async () => {
