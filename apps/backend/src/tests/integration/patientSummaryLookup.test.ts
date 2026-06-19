@@ -32,4 +32,39 @@ describe('Patient summary lookup endpoint', () => {
     expect(res.body.data.system).toContain('Majimaji ya Serous');
     expect(res.body.data.triggerFields).toContain('diagnostic_category');
   });
+
+  it('returns rules for the histology_rule_based family', async () => {
+    const app = createApp();
+    const res = await request(app)
+      .get('/api/lookups/patient-summary-definition')
+      .query({ templateId: 'patient_summaries.histology', language: 'sw' });
+
+    expect(res.status).toBe(200);
+    expect(res.body.data.templateId).toBe('patient_summaries.histology');
+    expect(res.body.data.language).toBe('sw');
+    expect(res.body.data.family).toBe('histology_rule_based');
+    expect(res.body.data.triggerFields).toContain('diagnosis_key');
+    expect(res.body.data.rules.length).toBeGreaterThan(0);
+
+    const invasiveRule = (res.body.data.rules as Array<{ ruleId: string; match: Record<string, { equals: string[] }>; plainLanguageSummary: string; patientTitle: string }>)
+      .find((r) => r.ruleId === 'invasive_carcinoma_of_no_special_type_ductal');
+    expect(invasiveRule).toBeDefined();
+    expect(invasiveRule?.match.diagnosis_key.equals).toContain('invasive_carcinoma_of_no_special_type_ductal');
+    expect(invasiveRule?.plainLanguageSummary.length).toBeGreaterThan(0);
+    expect(invasiveRule?.patientTitle.length).toBeGreaterThan(0);
+  });
+
+  it('histology_rule_based English definition produces rules with expanded sentence blocks', async () => {
+    const app = createApp();
+    const res = await request(app)
+      .get('/api/lookups/patient-summary-definition')
+      .query({ templateId: 'patient_summaries.histology', language: 'en' });
+
+    expect(res.status).toBe(200);
+    // {biopsy_limited_sample} token should be expanded — no raw { } tokens remaining in invasive biopsy rule
+    const invasiveRule = (res.body.data.rules as Array<{ ruleId: string; plainLanguageSummary: string }>)
+      .find((r) => r.ruleId === 'invasive_carcinoma_of_no_special_type_ductal');
+    expect(invasiveRule?.plainLanguageSummary).not.toMatch(/\{[^}]+\}/);
+    expect(invasiveRule?.plainLanguageSummary).toContain('breast');
+  });
 });
