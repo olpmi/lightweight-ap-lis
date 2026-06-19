@@ -171,12 +171,20 @@ function getSourceRecords(): PatientSummarySourceRecord[] {
       }
 
       const englishDefinition = readJsonFile(englishPath);
+      const metadataRecord = asRecord(englishDefinition.metadata);
+      // Derive a clean templateId: prefer root templateId, then metadata.id with the
+      // trailing language-code suffix stripped (e.g. "patient_summaries.histology.en" → "patient_summaries.histology"),
+      // then fall back to the raw sourceKey.
+      const rawMetadataId = asString(metadataRecord?.id);
+      const metadataId = rawMetadataId ? rawMetadataId.replace(/\.[a-z]{2}$/, '') : '';
+      const templateId = asString(englishDefinition.templateId) || metadataId || sourceKey;
+      const system = asString(englishDefinition.system) || asString(metadataRecord?.title) || sourceKey;
       return [{
         sourceKey,
         family: group.family,
         relativeDir: group.relativeDir,
-        templateId: asString(englishDefinition.templateId, sourceKey),
-        system: asString(englishDefinition.system, sourceKey),
+        templateId,
+        system,
         languages: group.files,
       } satisfies PatientSummarySourceRecord];
     })
@@ -196,6 +204,102 @@ function getRequestedLanguage(language: AppLanguageCode | PatientSummaryLanguage
   return coercePatientSummaryLanguage(language);
 }
 
+/**
+ * Replaces `{key}` tokens in `text` with values from `blocks`.
+ * Unrecognized tokens are left as-is so no content is silently dropped.
+ */
+function expandSentenceBlocks(text: string, blocks: RawRecord): string {
+  return text.replace(/\{([^}]+)\}/g, (token, key: string) => {
+    const replacement = blocks[key];
+    return typeof replacement === 'string' ? replacement : token;
+  });
+}
+
+/**
+ * Normalization path for the `histology_rule_based` family.
+ *
+ * These JSON files use `template_groups` (per-organ/subtype summary blocks) +
+ * `diagnosis_key_map` (maps specific diagnosis-key values to a group/template)
+ * instead of the flat `summaries` record used by cytology templates.
+ *
+ * Each entry in `diagnosis_key_map` becomes one `PatientSummaryRule` whose match
+ * condition is `{ <triggerField>: { equals: [diagnosisKey] } }`.
+ */
+function normalizeHistologyRuleBasedDefinition(
+  sourceRecord: PatientSummarySourceRecord,
+  baseDefinition: RawRecord,
+  overlayDefinition: RawRecord | null,
+  language: PatientSummaryLanguageCode
+): PatientSummaryDefinition {
+  const triggerField = asString(baseDefinition.triggerField) || 'diagnosis_key';
+
+  const baseDiagnosisKeyMap = asRecord(baseDefinition.diagnosis_key_map) ?? {};
+  const baseTemplateGroups = asRecord(baseDefinition.template_groups) ?? {};
+  const baseSharedBlocks = asRecord(baseDefinition.shared_sentence_blocks) ?? {};
+
+  const overlayDiagnosisKeyMap = asRecord(overlayDefinition?.diagnosis_key_map) ?? {};
+  const overlayTemplateGroups = asRecord(overlayDefinition?.template_groups) ?? {};
+  const overlaySharedBlocks = asRecord(overlayDefinition?.shared_sentence_blocks) ?? {};
+
+  // Merge sentence blocks — overlay values win.
+  const mergedSharedBlocks: RawRecord = { ...baseSharedBlocks, ...overlaySharedBlocks };
+
+  const rules: PatientSummaryRule[] = Object.entries(baseDiagnosisKeyMap).flatMap(([diagnosisKey, rawMapEntry]) => {
+    const baseMapEntry = asRecord(rawMapEntry);
+    if (!baseMapEntry) {
+      return [];
+    }
+
+    const templateGroupKey = asString(baseMapEntry.template_group);
+    const templateKey = asString(baseMapEntry.template_key);
+    if (!templateGroupKey || !templateKey) {
+      return [];
+    }
+
+    const baseGroupEntry = asRecord(asRecord(baseTemplateGroups[templateGroupKey])?.[templateKey]);
+    const overlayGroupEntry = asRecord(asRecord(overlayTemplateGroups[templateGroupKey])?.[templateKey]);
+    const overlayMapEntry = asRecord(overlayDiagnosisKeyMap[diagnosisKey]);
+
+    const patientLabel = asString(overlayMapEntry?.patient_label, asString(baseMapEntry.patient_label));
+    const patientTitle = asString(overlayGroupEntry?.label, asString(baseGroupEntry?.label));
+    const rawSummary = asString(overlayGroupEntry?.summary, asString(baseGroupEntry?.summary));
+    const plainLanguageSummary = expandSentenceBlocks(rawSummary, mergedSharedBlocks);
+
+    return [{
+      ruleId: diagnosisKey,
+      match: { [triggerField]: { equals: [diagnosisKey], includes: [] } },
+      professionalLabel: patientLabel,
+      patientTitle,
+      plainLanguageSummary,
+      whatThisMeans: '',
+      possibleNextSteps: '',
+      safetyNote: '',
+    } satisfies PatientSummaryRule];
+  });
+
+  const triggerFields = rules.length > 0 ? [triggerField] : [];
+  const availableLanguages = PATIENT_SUMMARY_LANGUAGE_CODES.filter((languageCode) => sourceRecord.languages[languageCode]);
+  const overlayMetadata = asRecord(overlayDefinition?.metadata);
+  const baseMetadata = asRecord(baseDefinition.metadata);
+  const system = asString(overlayDefinition?.system)
+    || asString(overlayMetadata?.title)
+    || asString(baseDefinition.system)
+    || asString(baseMetadata?.title)
+    || sourceRecord.system;
+
+  return {
+    templateId: sourceRecord.templateId,
+    family: sourceRecord.family,
+    relativeDir: sourceRecord.relativeDir,
+    language,
+    availableLanguages,
+    summaryType: 'rule_based_patient_facing_summary',
+    system,
+    triggerFields,
+    rules,
+  } satisfies PatientSummaryDefinition;
+}
+
 function normalizeDefinition(
   sourceRecord: PatientSummarySourceRecord,
   language: PatientSummaryLanguageCode
@@ -208,6 +312,13 @@ function normalizeDefinition(
   const baseDefinition = readJsonFile(basePath);
   const overlayPath = language === 'en' ? null : sourceRecord.languages[language] ?? null;
   const overlayDefinition = overlayPath ? readJsonFile(overlayPath) : null;
+
+  // Dispatch to the histology_rule_based normalizer when the file uses the
+  // template_groups + diagnosis_key_map layout instead of a flat summaries record.
+  if (asRecord(baseDefinition.template_groups) && asRecord(baseDefinition.diagnosis_key_map)) {
+    return normalizeHistologyRuleBasedDefinition(sourceRecord, baseDefinition, overlayDefinition, language);
+  }
+
   const baseSummaries = asRecord(baseDefinition.summaries) ?? {};
   const overlaySummaries = asRecord(overlayDefinition?.summaries) ?? {};
   const fallbackTriggerField = asString(baseDefinition.triggerField);
