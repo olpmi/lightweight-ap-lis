@@ -75,6 +75,7 @@ const BOOLEAN_OPTION_LABELS: Record<AppLanguageCode, { yes: string; no: string }
   fr: { yes: 'Oui', no: 'Non' },
   ar: { yes: 'نعم', no: 'لا' },
   ur: { yes: 'ہاں', no: 'نہیں' },
+  pt: { yes: 'Sim', no: 'Não' },
 };
 
 const BOOLEAN_TRUE_ALIASES = new Set(['yes', 'true', '1', 'oui', 'ndiyo', 'نعم', 'ہاں']);

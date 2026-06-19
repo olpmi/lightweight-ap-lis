@@ -1,6 +1,6 @@
 import type { AppLanguageCode } from '../templates/index.js';
 
-export const PATIENT_SUMMARY_LANGUAGE_CODES = ['en', 'sw'] as const;
+export const PATIENT_SUMMARY_LANGUAGE_CODES = ['en', 'sw', 'fr', 'ar', 'ur', 'pt'] as const;
 
 export type PatientSummaryLanguageCode = (typeof PATIENT_SUMMARY_LANGUAGE_CODES)[number];
 
@@ -57,7 +57,9 @@ export interface ResolvedPatientSummary extends PatientSummaryContent {
 export function coercePatientSummaryLanguage(
   language: AppLanguageCode | PatientSummaryLanguageCode | undefined
 ): PatientSummaryLanguageCode {
-  return language === 'sw' ? 'sw' : 'en';
+  return (PATIENT_SUMMARY_LANGUAGE_CODES as readonly string[]).includes(language ?? '')
+    ? (language as PatientSummaryLanguageCode)
+    : 'en';
 }
 
 function matchesScalar(value: string, candidates: string[]): boolean {

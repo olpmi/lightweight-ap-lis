@@ -1,8 +1,8 @@
-export const APP_LANGUAGE_CODES = ['en', 'sw', 'fr', 'ar', 'ur'] as const;
+export const APP_LANGUAGE_CODES = ['en', 'sw', 'fr', 'ar', 'ur', 'pt'] as const;
 
 export type AppLanguageCode = (typeof APP_LANGUAGE_CODES)[number];
 
-export const TEMPLATE_OVERLAY_LANGUAGE_CODES = ['sw', 'fr', 'ar', 'ur'] as const;
+export const TEMPLATE_OVERLAY_LANGUAGE_CODES = ['sw', 'fr', 'ar', 'ur', 'pt'] as const;
 
 export type TemplateOverlayLanguageCode = (typeof TEMPLATE_OVERLAY_LANGUAGE_CODES)[number];
 

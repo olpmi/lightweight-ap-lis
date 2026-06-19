@@ -6,7 +6,7 @@ const scriptsDir = path.dirname(fileURLToPath(import.meta.url));
 const packageRoot = path.resolve(scriptsDir, '..');
 const assetRoot = path.join(packageRoot, 'src', 'templates', 'assets');
 
-const overlayLanguages = ['ar', 'fr', 'sw', 'ur'];
+const overlayLanguages = ['ar', 'fr', 'pt', 'sw', 'ur'];
 const templateFiles = [];
 const namingErrors = [];
 const parseErrors = [];
@@ -42,9 +42,22 @@ for (const filePath of templateFiles) {
   const fileName = path.basename(filePath);
   const coreMatch = fileName.match(/^(.*)\.core\.json$/);
   const overlayMatch = fileName.match(/^(.*)\.i18n_([a-z]{2})\.json$/);
+  // Patient-summary files (patient_summaries.<id>.<lang>.json) live under
+  // templates/assets/patient_summaries/ and use their own naming convention.
+  // They are validated by the patientSummaries loader, not here.
+  const isPatientSummary = /^patient_summaries\..+\.[a-z]{2}\.json$/.test(fileName);
 
-  if (!coreMatch && !overlayMatch) {
+  if (!coreMatch && !overlayMatch && !isPatientSummary) {
     namingErrors.push(relativePath);
+    continue;
+  }
+
+  if (isPatientSummary) {
+    try {
+      JSON.parse(readFileSync(filePath, 'utf8'));
+    } catch (error) {
+      parseErrors.push(`${relativePath}: ${error instanceof Error ? error.message : String(error)}`);
+    }
     continue;
   }
 
