@@ -24,10 +24,10 @@ describe('Patient summary lookup endpoint', () => {
     const app = createApp();
     const res = await request(app)
       .get('/api/lookups/patient-summary-definition')
-      .query({ templateId: 'fluid_cytology_international_serous_fluid', language: 'sw' });
+      .query({ templateId: 'fluid_cytology_international_system_serous_fluid', language: 'sw' });
 
     expect(res.status).toBe(200);
-    expect(res.body.data.templateId).toBe('fluid_cytology_international_serous_fluid');
+    expect(res.body.data.templateId).toBe('fluid_cytology_international_system_serous_fluid');
     expect(res.body.data.language).toBe('sw');
     expect(res.body.data.system).toContain('Majimaji ya Serous');
     expect(res.body.data.triggerFields).toContain('diagnostic_category');
