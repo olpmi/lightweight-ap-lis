@@ -1,0 +1,333 @@
+{
+  "template_id": "esophagus_resection_gross_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "lang": "sw",
+  "title": "Uondoaji wa Umio kwa Uvimbe",
+
+  "specimen": {
+    "label": "Sampuli",
+    "fields": {
+      "procedure_type": {
+        "label": "Aina ya utaratibu",
+        "type": "select",
+        "options": [
+          "Uondoaji kamili wa umio",
+          "Uondoaji wa sehemu ya umio",
+          "Uondoaji wa umio kupitia njia ya hiatal",
+          "Uondoaji wa umio na tumbo",
+          "Nyingine"
+        ],
+        "value": ""
+      },
+      "procedure_type_other": {
+        "label": "Utaratibu mwingine (taja)",
+        "type": "text",
+        "value": ""
+      },
+      "orientation_provided": {
+        "label": "Mwelekeo uliotolewa",
+        "type": "select",
+        "options": [
+          "Ndiyo",
+          "Hapana"
+        ],
+        "value": ""
+      },
+      "esophagus_length_cm": {
+        "label": "Urefu wa umio (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "gastric_component_length_cm": {
+        "label": "Urefu wa sehemu ya tumbo (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "gastric_component_max_width_cm": {
+        "label": "Upana wa juu wa sehemu ya tumbo (cm)",
+        "type": "number",
+        "value": ""
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "Uvimbe",
+    "fields": {
+      "tumor_present": {
+        "label": "Uvimbe upo",
+        "type": "select",
+        "options": [
+          "Ndiyo",
+          "Haukuonekana kwa macho"
+        ],
+        "value": ""
+      },
+      "tumor_location": {
+        "label": "Mahali pa uvimbe",
+        "type": "select",
+        "options": [
+          "Umio wa shingo",
+          "Umio wa kifua cha juu",
+          "Umio wa kifua cha kati",
+          "Umio wa kifua cha chini",
+          "Mpaka wa umio na tumbo (GEJ)"
+        ],
+        "value": ""
+      },
+      "tumor_involves_gej": {
+        "label": "Uvimbe unahusisha GEJ",
+        "type": "select",
+        "options": [
+          "Ndiyo",
+          "Hapana"
+        ],
+        "value": ""
+      },
+      "tumor_dimensions_cm": {
+        "label": "Vipimo vya uvimbe (cm)",
+        "type": "measurement_3d",
+        "value": ""
+      },
+      "tumor_configuration": {
+        "label": "Muundo wa uvimbe",
+        "type": "multi_select",
+        "options": [
+          "Inayojitokeza nje",
+          "Fungoidi",
+          "Yenye kidonda",
+          "Inayopenya",
+          "Ya mzingo mzima",
+          "Polipoidi",
+          "Tambarare"
+        ],
+        "value": []
+      },
+      "tumor_consistency": {
+        "label": "Msimamo wa uvimbe",
+        "type": "select",
+        "options": [
+          "Mgumu",
+          "Laini",
+          "Tete",
+          "Nyingine"
+        ],
+        "value": ""
+      },
+      "tumor_consistency_other": {
+        "label": "Msimamo mwingine (taja)",
+        "type": "text",
+        "value": ""
+      },
+      "tumor_necrosis": {
+        "label": "Nekrosisi ya uvimbe",
+        "type": "select",
+        "options": [
+          "Ipo",
+          "Haipo"
+        ],
+        "value": ""
+      },
+      "hemorrhage": {
+        "label": "Kutokwa damu",
+        "type": "select",
+        "options": [
+          "Ipo",
+          "Haipo"
+        ],
+        "value": ""
+      },
+      "tumor_extent": {
+        "label": "Upanuzi wa uvimbe",
+        "type": "select",
+        "options": [
+          "Uvamizi wa utando wa ndani tu",
+          "Uvamizi wa tishu chini ya utando",
+          "Uvamizi wa misuli ya umio",
+          "Uvamizi wa adventitia",
+          "Uvamizi wa miundo jirani",
+          "Hauwezi kutathminiwa kwa macho"
+        ],
+        "value": ""
+      },
+      "adjacent_structures_involved": {
+        "label": "Miundo jirani iliyoathirika",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "margins": {
+    "label": "Mipaka",
+    "fields": {
+      "distance_to_proximal_margin_cm": {
+        "label": "Umbali hadi mpaka wa karibu (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "distance_to_distal_margin_cm": {
+        "label": "Umbali hadi mpaka wa mbali (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "distance_to_radial_adventitial_margin_cm": {
+        "label": "Umbali hadi mpaka wa radiali/adventitia (cm)",
+        "type": "number",
+        "value": ""
+      }
+    }
+  },
+
+  "background_mucosa": {
+    "label": "Utando wa Umio Usio na Uvimbe",
+    "fields": {
+      "background_esophageal_mucosa": {
+        "label": "Muonekano wa utando wa umio",
+        "type": "multi_select",
+        "options": [
+          "Kawaida",
+          "Umio wa Barrett",
+          "Kidonda",
+          "Kuziba",
+          "Displasia",
+          "Mabadiliko ya mionzi",
+          "Nyingine"
+        ],
+        "value": []
+      },
+      "background_mucosa_other": {
+        "label": "Mabadiliko mengine (taja)",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "neoadjuvant_therapy": {
+    "label": "Tiba ya Neoadjuvant / Mwitikio wa Matibabu",
+    "fields": {
+      "previous_neoadjuvant_therapy": {
+        "label": "Tiba ya neoadjuvant ya awali",
+        "type": "select",
+        "options": [
+          "Ndiyo",
+          "Hapana",
+          "Haijulikani"
+        ],
+        "value": ""
+      },
+      "gross_treatment_response": {
+        "label": "Ushahidi wa macho wa mwitikio wa matibabu",
+        "type": "select",
+        "options": [
+          "Haihusiki",
+          "Hakuna",
+          "Sehemu",
+          "Dhahiri",
+          "Mwitikio kamili (hakuna uvimbe unaoonekana)"
+        ],
+        "value": ""
+      },
+      "tumor_bed_size_cm": {
+        "label": "Ukubwa wa kitanda cha uvimbe (cm)",
+        "type": "text",
+        "value": ""
+      },
+      "fibrosis": {
+        "label": "Fibrosisi",
+        "type": "select",
+        "options": [
+          "Ipo",
+          "Haipo"
+        ],
+        "value": ""
+      }
+    }
+  },
+
+  "lymph_nodes": {
+    "label": "Nodi za Limfu za Kikanda",
+    "fields": {
+      "number_identified": {
+        "label": "Idadi iliyopatikana",
+        "type": "integer",
+        "value": ""
+      },
+      "size_range_mm": {
+        "label": "Kiwango cha ukubwa (mm)",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "other_findings": {
+    "label": "Matokeo Mengine ya Kimaumbile",
+    "fields": {
+      "findings": {
+        "label": "Matokeo mengine ya kimaumbile yanayohusika",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "block_identification_key": {
+    "label": "Mwongozo wa Vitambulisho vya Vizuizi",
+    "fields": {
+      "tumor": {
+        "label": "Uvimbe",
+        "type": "text",
+        "value": ""
+      },
+      "proximal_margin": {
+        "label": "Mpaka wa karibu",
+        "type": "text",
+        "value": ""
+      },
+      "distal_margin": {
+        "label": "Mpaka wa mbali",
+        "type": "text",
+        "value": ""
+      },
+      "radial_adventitial_margin": {
+        "label": "Mpaka wa radiali/adventitia",
+        "type": "text",
+        "value": ""
+      },
+      "non_neoplastic_esophagus": {
+        "label": "Umio usio na uvimbe",
+        "type": "text",
+        "value": ""
+      },
+      "lymph_nodes": {
+        "label": "Nodi za limfu",
+        "type": "text",
+        "value": ""
+      },
+      "additional_sections": {
+        "label": "Sehemu za ziada",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "grossing": {
+    "label": "Uchunguzi wa Macho",
+    "fields": {
+      "grossed_by_initials": {
+        "label": "Imefanyiwa uchunguzi wa macho na (herufi za kwanza)",
+        "type": "text",
+        "value": ""
+      },
+      "date": {
+        "label": "Tarehe",
+        "type": "date",
+        "value": ""
+      }
+    }
+  }
+}

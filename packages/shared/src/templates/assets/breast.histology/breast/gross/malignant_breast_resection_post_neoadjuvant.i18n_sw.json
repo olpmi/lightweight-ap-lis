@@ -1,30 +1,46 @@
 {
   "template_id": "malignant_breast_resection_post_neoadjuvant_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
   "lang": "sw",
-  "title": "Resection ya uvimbe mbaya wa titi (baada ya chemotherapy ya neoadjuvant)",
+  "title": "Upasuaji wa kuondoa saratani ya titi (baada ya kemikali ya awali ya neoadjuvant)",
   "clinical_case_summary": {
     "label": "Muhtasari wa kliniki (kabla ya tiba ya neoadjuvant)",
     "fields": {
       "tumor_characteristics": {
-        "label": "Sifa za uvimbe"
+        "label": "Sifa za uvimbe wa saratani",
+        "type": "text",
+        "value": ""
       },
       "site": {
-        "label": "Eneo"
+        "label": "Eneo",
+        "type": "text",
+        "value": ""
       },
       "focality": {
-        "label": "Maeneo ya uvimbe"
+        "label": "Maeneo ya uvimbe",
+        "type": "text",
+        "value": ""
       },
       "dimensions": {
-        "label": "Vipimo (mm)"
+        "label": "Vipimo (sm)",
+        "type": "measurement_3d",
+        "value": ""
       },
       "baseline_biomarker": {
-        "label": "Biomarker ya msingi ya uvimbe"
+        "label": "Biomarker ya msingi ya uvimbe",
+        "type": "text",
+        "value": ""
       },
       "neoadjuvant_regimen": {
-        "label": "Mpango wa chemotherapy ya neoadjuvant"
+        "label": "Mpango wa chemotherapy ya neoadjuvant",
+        "type": "text",
+        "value": ""
       },
       "cycles_completed": {
-        "label": "Mizunguko iliyokamilishwa"
+        "label": "Mizunguko iliyokamilishwa",
+        "type": "integer",
+        "value": ""
       }
     }
   },
@@ -33,22 +49,21 @@
     "fields": {
       "intraoperative_consult": {
         "label": "Ushauri wa ndani ya upasuaji ulifanyika",
-        "options": [
-          "Ndiyo",
-          "Hapana"
-        ],
-        "reason": "Sababu"
+        "options": ["Ndiyo", "Hapana"],
+        "reason": "Sababu",
+        "type": "select",
+        "value": ""
       },
       "weight": {
-        "label": "Uzito wa sampuli (g)"
+        "label": "Uzito wa sampuli (g)",
+        "type": "number",
+        "value": ""
       },
       "laterality": {
         "label": "Upande",
-        "options": [
-          "Kushoto",
-          "Kulia",
-          "Haijabainishwa"
-        ]
+        "options": ["Kushoto", "Kulia", "Haijabainishwa"],
+        "type": "select",
+        "value": ""
       },
       "type": {
         "label": "Aina ya sampuli",
@@ -60,7 +75,9 @@
           "Lumpectomy (ukataji mpana wa eneo)",
           "Quadrantectomy (uondoaji wa sehemu)",
           "Upasuaji wa onkoplastiki wa kuhifadhi titi"
-        ]
+        ],
+        "type": "select",
+        "value": ""
       }
     }
   },
@@ -68,25 +85,37 @@
     "label": "Nodi za limfu",
     "fields": {
       "present": {
-        "label": "Nodi za limfu zipo"
+        "label": "Nodi za limfu zipo",
+        "type": "boolean",
+        "value": ""
       },
       "sentinel": {
         "label": "Nodi za limfu sentinel",
         "fields": {
           "site": {
-            "label": "Eneo"
+            "label": "Eneo",
+            "type": "text",
+            "value": ""
           },
           "radioactive_count": {
-            "label": "Idadi ya mionzi"
+            "label": "Idadi ya mionzi",
+            "type": "text",
+            "value": ""
           },
           "dye_uptake": {
-            "label": "Uchukuaji wa rangi"
+            "label": "Uchukuaji wa rangi",
+            "type": "boolean",
+            "value": ""
           },
           "number": {
-            "label": "Idadi"
+            "label": "Idadi",
+            "type": "integer",
+            "value": ""
           },
           "dimensions": {
-            "label": "Vipimo vya kila nodi"
+            "label": "Vipimo vya kila nodi",
+            "type": "text",
+            "value": ""
           }
         }
       },
@@ -94,21 +123,23 @@
         "label": "Nodi za limfu zisizo sentinel",
         "fields": {
           "total_number": {
-            "label": "Jumla ya nodi"
+            "label": "Jumla ya nodi",
+            "type": "integer",
+            "value": ""
           },
           "size_range": {
-            "label": "Wigo wa ukubwa"
+            "label": "Wigo wa ukubwa",
+            "type": "text",
+            "value": ""
           }
         }
       },
       "pre_treatment_abnormal": {
         "label": "Nodi zisizo za kawaida kabla ya matibabu",
-        "options": [
-          "Haijulikani",
-          "Hazipo",
-          "Zipo"
-        ],
-        "if_present_number": "Ikiwa zipo, idadi"
+        "options": ["Haijulikani", "Hazipo", "Zipo"],
+        "type": "select",
+        "value": "",
+        "if_present_number": ""
       }
     }
   },
@@ -116,13 +147,19 @@
     "label": "Vipimo vya titi",
     "fields": {
       "medial_lateral": {
-        "label": "Urefu wa kati hadi pembeni"
+        "label": "Urefu wa kati hadi pembeni",
+        "type": "measurement",
+        "value": ""
       },
       "superior_inferior": {
-        "label": "Urefu wa juu hadi chini"
+        "label": "Urefu wa juu hadi chini",
+        "type": "measurement",
+        "value": ""
       },
       "anterior_posterior": {
-        "label": "Urefu wa mbele hadi nyuma"
+        "label": "Urefu wa mbele hadi nyuma",
+        "type": "measurement",
+        "value": ""
       }
     }
   },
@@ -130,21 +167,27 @@
     "label": "Ngozi",
     "fields": {
       "present": {
-        "label": "Ngozi ipo"
+        "label": "Ngozi ipo",
+        "type": "boolean",
+        "value": ""
       },
       "dimensions": {
-        "label": "Vipimo vya ngozi"
+        "label": "Vipimo vya ngozi",
+        "type": "text",
+        "value": ""
       },
       "abnormalities": {
         "label": "Hitilafu za ngozi",
         "options": [
-          "Vidonda",
+          "Kidonda (ulceration)",
           "Kovu la upasuaji wa awali",
           "Uwekundu",
           "Kuhusika kwa >30%",
           "Vinundu vya ngozi satelaiti",
           "Nyingine"
-        ]
+        ],
+        "type": "multi_select",
+        "value": ""
       }
     }
   },
@@ -152,46 +195,55 @@
     "label": "Chuchu",
     "fields": {
       "present": {
-        "label": "Chuchu ipo"
+        "label": "Chuchu ipo",
+        "type": "boolean",
+        "value": ""
       },
       "description": {
         "label": "Maelezo ya chuchu",
-        "options": [
-          "Kawaida",
-          "Isiyo ya kawaida"
-        ]
+        "options": ["Kawaida", "Isiyo ya kawaida"],
+        "type": "select"
       },
       "abnormal_features": {
         "label": "Vipengele visivyo vya kawaida",
         "options": [
           "Ugonjwa wa Paget",
-          "Ukoko wenye magamba",
+          "Magamba ya ngozi",
           "Imeingia ndani",
           "Imeshikamana na uvimbe",
           "Nyingine"
-        ]
+        ],
+        "type": "multi_select"
       }
     }
   },
   "tumor_bed": {
-    "label": "Eneo la uvimbe",
+    "label": "Eneo la sehemu ya uvimbe (tumor bed)",
     "fields": {
       "gross_dimensions": {
-        "label": "Vipimo vya gross (mm)"
+        "label": "Vipimo vya makroskopia (sm)",
+        "type": "measurement_3d",
+        "value": ""
       },
       "imaging_dimensions": {
-        "label": "Vipimo vya picha (mm)"
+        "label": "Vipimo vya picha (sm)",
+        "type": "measurement_3d",
+        "value": ""
       },
       "description": {
-        "label": "Maelezo ya eneo la uvimbe"
+        "label": "Maelezo ya eneo la uvimbe",
+        "type": "text",
+        "value": ""
       }
     }
   },
   "tumor": {
-    "label": "Uvimbe",
+    "label": "Uvimbe wa saratani",
     "fields": {
       "macroscopic_present": {
-        "label": "Uvimbe unaoonekana kwa macho"
+        "label": "Uvimbe unaoonekana kwa macho",
+        "type": "boolean",
+        "value": ""
       },
       "site": {
         "label": "Eneo la uvimbe",
@@ -203,23 +255,26 @@
           "Katikati",
           "Chuchu",
           "Haijabainishwa"
-        ]
+        ],
+        "type": "select"
       },
       "focality": {
         "label": "Maeneo ya uvimbe",
-        "options": [
-          "Eneo moja",
-          "Maeneo mengi"
-        ]
+        "options": ["Eneo moja (unifocal)", "Maeneo mengi (multifocal)"],
+        "type": "select"
       },
       "size_post_treatment": {
-        "label": "Ukubwa wa uvimbe baada ya neoadjuvant (mm)"
+        "label": "Ukubwa wa uvimbe baada ya neoadjuvant (mm)",
+        "type": "measurement_3d",
+        "value": ""
       },
       "skin_involvement": {
-        "label": "Imeshikamana na ngozi"
+        "label": "Imeshikamana na ngozi",
+        "type": "boolean"
       },
       "chest_wall_involvement": {
-        "label": "Imeshikamana na ukuta wa kifua"
+        "label": "Imeshikamana na ukuta wa kifua",
+        "type": "boolean"
       }
     }
   },
@@ -227,25 +282,32 @@
     "label": "Mipaka",
     "fields": {
       "medial": {
-        "label": "Mpaka wa kati"
+        "label": "Mpaka wa kati",
+        "type": "text"
       },
       "lateral": {
-        "label": "Mpaka wa pembeni"
+        "label": "Mpaka wa pembeni",
+        "type": "text"
       },
       "superior": {
-        "label": "Mpaka wa juu"
+        "label": "Mpaka wa juu",
+        "type": "text"
       },
       "inferior": {
-        "label": "Mpaka wa chini"
+        "label": "Mpaka wa chini",
+        "type": "text"
       },
       "posterior": {
-        "label": "Mpaka wa nyuma"
+        "label": "Mpaka wa nyuma",
+        "type": "text"
       },
       "anterior": {
-        "label": "Mpaka wa mbele"
+        "label": "Mpaka wa mbele",
+        "type": "text"
       },
       "skin": {
-        "label": "Ngozi iliyo juu"
+        "label": "Ngozi iliyo juu",
+        "type": "text"
       }
     }
   },
@@ -254,45 +316,37 @@
     "fields": {
       "presence": {
         "label": "Misuli ya mifupa",
-        "options": [
-          "Ipo",
-          "Haipo"
-        ]
+        "options": ["Ipo", "Haipo"],
+        "type": "select",
+        "value": ""
       }
     }
   },
   "block_key": {
-    "label": "Uwekaji wa vizuizi vya sampuli",
+    "label": "Mwongozo wa vizuizi vya tishu",
     "fields": {
-      "nipple": {
-        "label": "Chuchu"
-      },
-      "tumor": {
-        "label": "Uvimbe"
-      },
-      "surrounding_breast": {
-        "label": "Tishu za titi zinazozunguka"
-      },
-      "margins": {
-        "label": "Mipaka"
-      },
-      "lymph_nodes": {
-        "label": "Nodi za limfu"
-      }
+      "nipple": { "label": "Chuchu", "type": "text", "value": "" },
+      "tumor": { "label": "Uvimbe", "type": "text", "value": "" },
+      "surrounding_breast": { "label": "Tishu za titi zinazozunguka", "type": "text", "value": "" },
+      "medial margin": { "label": "Mpaka wa kati", "type": "text", "value": "" },
+      "lateral margin": { "label": "Mpaka wa pembeni", "type": "text", "value": "" },
+      "Superior margin": { "label": "Mpaka wa juu", "type": "text", "value": "" },
+      "Inferior margin": { "label": "Mpaka wa chini", "type": "text", "value": "" },
+      "Posterior margin": { "label": "Mpaka wa nyuma", "type": "text", "value": "" },
+      "Anterior margin": { "label": "Mpaka wa mbele", "type": "text", "value": "" },
+      "lymph_nodes": { "label": "Nodi za limfu", "type": "text", "value": "" }
     }
   },
+
   "grossing": {
-    "label": "Uchunguzi wa makroskopia",
+    "label": "Uchunguzi wa macho",
     "fields": {
       "grossed_by": {
-        "label": "Imefanyiwa uchunguzi wa makroskopia na"
+        "label": "Imefanyiwa uchunguzi wa macho na (herufi za kwanza)",
+        "type": "text",
+        "value": ""
       },
-      "date": {
-        "label": "Tarehe"
-      }
+      "date": { "label": "Tarehe", "type": "date", "value": "" }
     }
-  },
-  "domain": {
-    "fields": {}
   }
 }

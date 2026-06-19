@@ -1,0 +1,131 @@
+{
+  "template_id": "gastric_tumor_resection_gross_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "lang": "fr",
+  "title": "Résection de tumeur gastrique (modèle macroscopique)",
+  "specimen": {
+    "label": "Prélèvement",
+    "fields": {
+      "type_of_resection": {
+        "label": "Type de résection",
+        "options": [
+          "Œsophago-gastrectomie",
+          "Gastrectomie totale",
+          "Gastrectomie subtotale, proximale",
+          "Gastrectomie subtotale, distale",
+          "Autre"
+        ],
+        "other_specify": ""
+      },
+      "stomach_greater_curvature_mm": {
+        "label": "Estomac, grande courbure (mm)"
+      },
+      "stomach_lesser_curvature_mm": {
+        "label": "Estomac, petite courbure (mm)"
+      },
+      "esophagus_mm": {
+        "label": "Œsophage (mm)"
+      },
+      "duodenum_mm": {
+        "label": "Duodénum (mm)"
+      }
+    }
+  },
+  "tumor": {
+    "label": "Tumeur",
+    "fields": {
+      "macroscopic_tumor_site": {
+        "label": "Site macroscopique de la tumeur",
+        "options": [
+          "Cardia",
+          "Fundus",
+          "Corps",
+          "Antre",
+          "Pylore",
+          "Petite courbure",
+          "Grande courbure",
+          "Paroi antérieure",
+          "Paroi postérieure"
+        ]
+      },
+      "morphologic_classification": {
+        "label": "Classification morphologique",
+        "options": [
+          "Type 0-I (Proéminent)",
+          "Type 0-IIa (Surélevé)",
+          "Type 0-IIb (Plat)",
+          "Type 0-IIc (Déprimé)",
+          "Type 0-III (Excavé)",
+          "Type I (Polypoïde)",
+          "Type II (Bourgeonnant)",
+          "Type III (Ulcéré)",
+          "Type IV (Infiltrant)"
+        ]
+      },
+      "tumor_dimensions_mm": {
+        "label": "Dimensions de la tumeur (mm)"
+      },
+      "distance_to_proximal_margin_mm": {
+        "label": "Distance à la marge proximale (mm)"
+      },
+      "distance_to_distal_margin_mm": {
+        "label": "Distance à la marge distale (mm)"
+      },
+      "distance_to_lesser_curvature_margin_mm": {
+        "label": "Distance à la marge de la petite courbure (mm)"
+      },
+      "distance_to_greater_curvature_margin_mm": {
+        "label": "Distance à la marge de la grande courbure (mm)"
+      }
+    }
+  },
+  "lymph_nodes": {
+    "label": "Ganglions lymphatiques",
+    "fields": {
+      "number_identified": {
+        "label": "Nombre identifié"
+      },
+      "size_range_min_mm": {
+        "label": "Plage de taille minimale (mm)"
+      },
+      "size_range_max_mm": {
+        "label": "Plage de taille maximale (mm)"
+      }
+    }
+  },
+  "block_identification_key": {
+    "label": "Clé d'identification des blocs",
+    "fields": {
+      "tumor_representative_sections": {
+        "label": "Tumeur (coupes représentatives)"
+      },
+      "proximal_margin": {
+        "label": "Marge proximale"
+      },
+      "distal_margin": {
+        "label": "Marge distale"
+      },
+      "circumferential_non_peritonealised_margin": {
+        "label": "Marge circonférentielle / non péritonisée"
+      },
+      "non_neoplastic_stomach": {
+        "label": "Estomac non néoplasique"
+      },
+      "lymph_nodes": {
+        "label": "Ganglions lymphatiques"
+      }
+    }
+  },
+  "grossing": {
+    "label": "Macroscopie",
+    "fields": {
+      "grossed_by": {
+        "label": "Macroscopie réalisée par"
+      },
+      "date": {
+        "label": "Date"
+      }
+    }
+  }
+}

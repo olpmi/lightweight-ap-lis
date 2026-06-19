@@ -2,7 +2,13 @@
   "templateId": "cervical_cytology_pap_smear_bethesda",
   "version": "1.0",
   "language": "ar",
-  "title": "قالب تقرير علم الخلايا لعنق الرحم (مسحة باب) (نظام بيثيسدا)",
+  "title": "قالب تقرير علم الخلايا لعنق الرحم (مسحة بابانيكولاو) (نظام بيثيسدا)",
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategory": "gyn_cytology",
+    "organSystem": "cervix",
+    "reportingSystem": "Bethesda"
+  },
   "common": {
     "yes": "نعم",
     "no": "لا",
@@ -27,7 +33,7 @@
             "cervix": "عنق الرحم",
             "ectocervix": "الجزء الخارجي من عنق الرحم",
             "endocervix": "القناة العنقية",
-            "vaginal_cuff": "قبو المهبل",
+            "vaginal_cuff": "قبة المهبل",
             "other": "أخرى"
           }
         },
@@ -63,7 +69,7 @@
           }
         },
         "transformation_zone_component": {
-          "label": "مكوّن منطقة التحوّل (عنق الرحم الداخلي / TZ)",
+          "label": "مكوّن منطقة التحوّل (عنق الرحم الداخلي / منطقة التحوّل)",
           "options": {
             "present": "موجود",
             "absent": "غائب",
@@ -86,21 +92,21 @@
             "organism_bacterial_vaginosis": "سلبي لآفة داخل الظهارة أو خباثة، مع كائنات محددة: تبدل في الفلورا يوحي بالتهاب المهبل الجرثومي",
             "organism_actinomyces_spp": "سلبي لآفة داخل الظهارة أو خباثة، مع كائنات محددة: بكتيريا تتوافق شكلياً مع أنواع الأكتينوميسيس",
             "organism_herpes_simplex_virus": "سلبي لآفة داخل الظهارة أو خباثة، مع كائنات محددة: تغيرات فيروس الهربس البسيط",
+            "nilm_endometrial_cells": "سلبي لآفة داخل الظهارة أو خباثة، مع وجود خلايا بطانة الرحم (في امرأة بعمر ≥45 سنة)",
             "asc_us": "ASC-US (خلايا حرشفية غير نمطية ذات أهمية غير محددة)",
             "asc_h": "ASC-H (خلايا حرشفية غير نمطية، لا يمكن استبعاد HSIL)",
             "lsil": "LSIL (آفة حرشفية داخل الظهارة منخفضة الدرجة)",
             "hsil": "HSIL (آفة حرشفية داخل الظهارة عالية الدرجة)",
-            "squamous_cell_carcinoma": "سرطان الخلايا الحرشفية",
-            "ais": "سرطان غدي باطن عنق الرحم موضعي (AIS)",
-            "adenocarcinoma": "سرطان غدي",
-            "nilm_endometrial_cells": "سلبي للآفة الظهارية الداخلية أو الخباثة، مع وجود خلايا بطانة الرحم (في امرأة بعمر ≥٤٥ سنة)",
             "hsil_suspicious_for_invasion": "HSIL مع سمات مشبوهة للغزو",
+            "squamous_cell_carcinoma": "سرطان الخلايا الحرشفية",
             "agc_endocervical_nos": "خلايا عنق الرحم الداخلي غير نمطية، NOS",
             "agc_endocervical_favor_neoplastic": "خلايا عنق الرحم الداخلي غير نمطية، تميل إلى الورم",
             "agc_endometrial_nos": "خلايا بطانة الرحم غير نمطية، NOS",
             "agc_endometrial_favor_neoplastic": "خلايا بطانة الرحم غير نمطية، تميل إلى الورم",
             "agc_nos": "خلايا غدية غير نمطية، NOS",
             "agc_favor_neoplastic": "خلايا غدية غير نمطية، تميل إلى الورم",
+            "ais": "سرطان غدي باطن عنق الرحم موضعي (AIS)",
+            "adenocarcinoma": "سرطان غدي",
             "other_malignant_neoplasm": "ورم خبيث آخر"
           }
         }

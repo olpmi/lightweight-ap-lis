@@ -1,0 +1,112 @@
+{
+  "templateId": "salivary_gland_cytology_milan",
+  "templateName": "Modelo de laudo de citologia das glândulas salivares (Sistema de Milão para Relatório de Citopatologia das Glândulas Salivares)",
+  "language": "pt",
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategories": ["fna"],
+    "organ": "salivary_gland",
+    "reportingSystem": "Milan"
+  },  
+  "sections": [
+    {
+      "id": "specimen",
+      "title": "Espécime",
+      "fields": [
+        {
+          "id": "salivary_gland_fna_site",
+          "label": "PAF da glândula salivar (seleccionar a opção apropriada)",
+          "type": "select",
+          "options": ["Parótida", "Submandibular", "Glândula salivar minor", "Outro"]
+        },
+        {
+          "id": "laterality",
+          "label": "Lateralidade (seleccionar a opção apropriada)",
+          "type": "select",
+          "options": ["Direita", "Esquerda", "Linha média"]
+        },
+        {
+          "id": "lesion_size_cm",
+          "label": "Tamanho da lesão (cm)",
+          "type": "text"
+        },
+        {
+          "id": "imaging_findings",
+          "label": "Achados de imagem (se fornecidos)",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "adequacy",
+      "title": "Adequação",
+      "fields": [
+        {
+          "id": "adequacy_status",
+          "label": "Adequação",
+          "type": "select",
+          "options": ["Satisfatório para avaliação", "Não diagnóstico"]
+        }
+      ]
+    },
+    {
+      "id": "milan_category",
+      "title": "Categoria de Milão",
+      "fields": [
+        {
+          "id": "milan_category",
+          "label": "Categoria de Milão",
+          "type": "select",
+          "options": [
+            "I. Não diagnóstico",
+            "II. Não neoplásico",
+            "III. Atipia de significado indeterminado (AUS)",
+            "IVa. Neoplasia benigna",
+            "IVb. Neoplasia da glândula salivar de potencial maligno incerto (SUMP)",
+            "V. Suspeito de malignidade",
+            "VI. Maligno"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "microscopic_description",
+      "title": "Descrição microscópica",
+      "fields": [
+        {
+          "id": "microscopic_description_text",
+          "label": "Descrição microscópica (texto livre)",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "id": "recommended_management",
+      "title": "Conduta recomendada",
+      "fields": [
+        {
+          "id": "recommended_management_options",
+          "label": "Conduta recomendada",
+          "type": "multiselect",
+          "options": [
+            "Correlação clínica / radiológica",
+            "Repetição da PAF",
+            "Excisão / consulta cirúrgica",
+            "Estudos complementares adicionais (bloco celular / imuno-citoquímica / testes moleculares se disponíveis)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "comment",
+      "title": "Comentário",
+      "fields": [
+        {
+          "id": "comment_text",
+          "label": "Comentário",
+          "type": "textarea"
+        }
+      ]
+    }
+  ]
+}

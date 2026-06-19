@@ -1,27 +1,30 @@
 {
   "template_id": "breast_invasive_carcinoma_biopsy_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "protocol_posting_date": "March 2023",
   "lang": "fr",
   "title": "Carcinome mammaire invasif, biopsie",
   "specimen": {
-    "label": "Pièce",
+    "label": "Prélèvement",
     "fields": {
       "procedure": {
         "label": "Procédure",
         "options": [
-          "Biopsie à l’aiguille",
-          "Ponction à l’aiguille fine",
+          "Biopsie à l'aiguille",
+          "Cytoponction à l'aiguille fine",
           "Autre",
           "Non précisé"
         ],
-        "other_specify": "Autre, préciser"
+        "type": "select",
+        "value": "",
+        "other_specify": "Autre (préciser)"
       },
       "laterality": {
-        "label": "Latéralité de la pièce",
-        "options": [
-          "Droite",
-          "Gauche",
-          "Non précisé"
-        ]
+        "label": "Latéralité du prélèvement",
+        "options": ["Droite", "Gauche", "Non précisé"],
+        "type": "select",
+        "value": ""
       }
     }
   },
@@ -40,7 +43,13 @@
           "Position horaire",
           "Non précisé"
         ],
-        "clock_position_specify": "Position horaire, préciser"
+        "type": "multi_select",
+        "value": [],
+        "clock_position_specify": {
+          "label": "Position en cadran horaire (préciser)",
+          "type": "text",
+          "value": ""
+        }
       },
       "histologic_type": {
         "label": "Type histologique",
@@ -66,9 +75,11 @@
           "Carcinome invasif, type indéterminable",
           "Autre type histologique non listé"
         ],
-        "features_specify": "Caractéristiques, préciser",
-        "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser",
-        "other_specify": "Autre, préciser"
+        "type": "select",
+        "value": "",
+        "features_specify": { "label": "Caractéristiques (préciser)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": "Ne peut pas être déterminé (expliquer)",
+        "other_specify": "Autre (préciser)"
       },
       "histologic_grade": {
         "label": "Grade histologique (score histologique de Nottingham)",
@@ -78,7 +89,9 @@
             "options": [
               "Non applicable (pas de carcinome résiduel ou micro-invasion seulement)",
               "Score de Nottingham"
-            ]
+            ],
+            "type": "select",
+            "value": ""
           },
           "glandular_tubular_differentiation": {
             "label": "Différenciation glandulaire (aciniaire) / tubulaire",
@@ -88,7 +101,9 @@
               "Score 3 (moins de 10 % de la tumeur formant des structures glandulaires / tubulaires)",
               "Le score ne peut pas être déterminé"
             ],
-            "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
+            "type": "select",
+            "value": "",
+            "cannot_be_determined_specify": "Ne peut pas être déterminé (expliquer)"
           },
           "nuclear_pleomorphism": {
             "label": "Pléomorphisme nucléaire",
@@ -98,18 +113,17 @@
               "Score 3 (noyaux vésiculeux, souvent avec nucléoles proéminents, montrant une variation marquée de la taille et de la forme, parfois avec des formes très grandes et bizarres)",
               "Le score ne peut pas être déterminé"
             ],
-            "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
+            "type": "select",
+            "value": "",
+            "cannot_be_determined_specify": "Ne peut pas être déterminé (expliquer)"
           },
           "mitotic_rate": {
             "label": "Taux mitotique",
-            "options": [
-              "Score 1",
-              "Score 2",
-              "Score 3",
-              "Le score ne peut pas être déterminé"
-            ],
+            "options": ["Score 1", "Score 2", "Score 3", "Le score ne peut pas être déterminé"],
             "reference_note": "Voir le tableau 1 du protocole CAP.",
-            "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
+            "type": "select",
+            "value": "",
+            "cannot_be_determined_specify": "Ne peut pas être déterminé (expliquer)"
           },
           "overall_grade": {
             "label": "Grade global",
@@ -119,7 +133,9 @@
               "Grade 3 (scores de 8 ou 9)",
               "Le score ne peut pas être déterminé"
             ],
-            "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
+            "type": "select",
+            "value": "",
+            "cannot_be_determined_specify": "Ne peut pas être déterminé (expliquer)"
           }
         }
       },
@@ -132,13 +148,19 @@
               "Mesure exacte en millimètres (mm)",
               "Au moins en millimètres (mm)",
               "Ne peut pas être déterminé"
-            ]
+            ],
+            "type": "select",
+            "value": ""
           },
           "measurement_mm": {
-            "label": "Mesure (mm)"
+            "label": "Mesure (mm)",
+            "type": "number",
+            "value": ""
           },
           "cannot_be_determined_specify": {
-            "label": "Ne peut pas être déterminé (expliquer)"
+            "label": "Ne peut pas être déterminé (expliquer)",
+            "type": "text",
+            "value": ""
           }
         }
       }
@@ -149,10 +171,9 @@
     "fields": {
       "presence": {
         "label": "Présence de CCIS",
-        "options": [
-          "Non identifié",
-          "Présent"
-        ]
+        "options": ["Non identifié", "Présent"],
+        "type": "select",
+        "value": ""
       },
       "architectural_patterns": {
         "label": "Patterns architecturaux",
@@ -165,7 +186,9 @@
           "Solide",
           "Autre"
         ],
-        "other_specify": "Autre, préciser"
+        "type": "multi_select",
+        "value": [],
+        "other_specify": "Autre (préciser)"
       },
       "nuclear_grade": {
         "label": "Grade nucléaire",
@@ -176,21 +199,25 @@
           "Autre",
           "Ne peut pas être déterminé"
         ],
-        "other_specify": "Autre, préciser",
-        "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
+        "type": "select",
+        "value": "",
+        "other_specify": "Autre (préciser)",
+        "cannot_be_determined_specify": "Ne peut pas être déterminé (expliquer)"
       },
       "necrosis": {
         "label": "Nécrose",
         "options": [
           "Non identifiée",
-          "Présente, focale (petits foyers ou nécrose d’une cellule isolée)",
+          "Présente, focale (petits foyers ou nécrose d'une cellule isolée)",
           "Présente, centrale (nécrose expansive de type « comédo »)",
           "Autre",
           "Ne peut pas être déterminée",
           "Ne peut pas être exclue"
         ],
-        "other_specify": "Autre, préciser",
-        "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
+        "type": "select",
+        "value": "",
+        "other_specify": "Autre (préciser)",
+        "cannot_be_determined_specify": "Ne peut pas être déterminé (expliquer)"
       }
     }
   },
@@ -199,12 +226,10 @@
     "fields": {
       "status": {
         "label": "Invasion lymphatique et / ou vasculaire",
-        "options": [
-          "Non identifiée",
-          "Présente",
-          "Ne peut pas être déterminée"
-        ],
-        "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
+        "options": ["Non identifiée", "Présente", "Ne peut pas être déterminée"],
+        "type": "select",
+        "value": "",
+        "cannot_be_determined_specify": "Ne peut pas être déterminé (expliquer)"
       }
     }
   },
@@ -220,7 +245,9 @@
           "Présentes dans le tissu non néoplasique",
           "Autre"
         ],
-        "other_specify": "Autre, préciser"
+        "type": "multi_select",
+        "value": [],
+        "other_specify": "Autre (préciser)"
       }
     }
   },
@@ -228,14 +255,10 @@
     "label": "Constatations supplémentaires",
     "fields": {
       "findings": {
-        "label": "Constatations supplémentaires"
+        "label": "Constatations supplémentaires",
+        "type": "text",
+        "value": ""
       }
     }
-  },
-  "domain": {
-    "fields": {}
-  },
-  "protocol_posting_date": {
-    "fields": {}
   }
 }

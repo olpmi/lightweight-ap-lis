@@ -1,0 +1,895 @@
+{
+  "template_id": "ovary_fallopian_tube_primary_peritoneum_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "protocol_posting_date": "June 2024",
+  "lang": "pt",
+  "title": "Ovário ou trompa de Falópio ou peritoneu primário",
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "tumor_site": {
+        "label": "Local do tumor",
+        "note": "Seleccionar apenas o local de origem do tumor primário.",
+        "type": "multi_select",
+        "options": [
+          "Ovário direito",
+          "Ovário esquerdo",
+          "Ovários bilaterais",
+          "Ovário, lateralidade não determinável",
+          "Trompa de Falópio direita",
+          "Trompa de Falópio esquerda",
+          "Trompas de Falópio bilaterais",
+          "Trompa de Falópio, lateralidade não determinável",
+          "Tubo-ovárico direito",
+          "Tubo-ovárico esquerdo",
+          "Tubo-ovárico bilateral",
+          "Tubo-ovárico, lateralidade não determinável",
+          "Peritoneu primário",
+          "Outro"
+        ],
+        "value": [],
+        "right_ovary_specify": {
+          "label": "Ovário direito (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "left_ovary_specify": {
+          "label": "Ovário esquerdo (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "bilateral_ovaries_specify": {
+          "label": "Ovários bilaterais (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "ovary_laterality_cannot_be_determined_explain": {
+          "label": "Lateralidade do ovário não determinável (explicar)",
+          "type": "text",
+          "value": ""
+        },
+        "right_fallopian_tube_specify": {
+          "label": "Trompa de Falópio direita (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "left_fallopian_tube_specify": {
+          "label": "Trompa de Falópio esquerda (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "bilateral_fallopian_tubes_specify": {
+          "label": "Trompas de Falópio bilaterais (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "fallopian_tube_laterality_cannot_be_determined_explain": {
+          "label": "Lateralidade da trompa de Falópio não determinável (explicar)",
+          "type": "text",
+          "value": ""
+        },
+        "right_tubo_ovarian_specify": {
+          "label": "Tubo-ovárico direito (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "left_tubo_ovarian_specify": {
+          "label": "Tubo-ovárico esquerdo (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "bilateral_tubo_ovarian_specify": {
+          "label": "Tubo-ovárico bilateral (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "tubo_ovarian_laterality_cannot_be_determined_explain": {
+          "label": "Lateralidade do tubo-ovárico não determinável (explicar)",
+          "type": "text",
+          "value": ""
+        },
+        "primary_peritoneum_specify": {
+          "label": "Peritoneu primário (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": {
+          "label": "Outro (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "tumor_size": {
+        "label": "Tamanho do tumor",
+        "note": "Para tumores bilaterais, registar a dimensão máxima do maior tumor borderline ou maligno. Para carcinomas originados num tumor borderline, registar apenas a componente carcinomatosa.",
+        "fields": {
+          "size_type": {
+            "label": "Tamanho do tumor",
+            "type": "select",
+            "options": ["Maior dimensão em centímetros (cm)", "Não é possível determinar"],
+            "value": ""
+          },
+          "greatest_dimension_cm": {
+            "label": "Maior dimensão (cm)",
+            "type": "number",
+            "value": ""
+          },
+          "additional_dimensions_cm": {
+            "label": "Dimensões adicionais (cm)",
+            "type": "measurement_2d",
+            "value": ""
+          },
+          "cannot_be_determined_explain": {
+            "label": "Não é possível determinar (explicar)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "histologic_type": {
+        "label": "Tipo histológico",
+        "type": "multi_select",
+        "options": [
+          "Tumor borderline seroso",
+          "Tumor borderline seroso, variante micropapilar / cribriforme",
+          "Tumor borderline seroso com microinvasão",
+          "Carcinoma seroso de baixo grau microinvasivo",
+          "Carcinoma seroso de baixo grau",
+          "Carcinoma seroso de alto grau",
+          "Tumor borderline mucinoso",
+          "Tumor borderline mucinoso com carcinoma intraepitelial",
+          "Tumor borderline mucinoso com microinvasão",
+          "Adenocarcinoma mucinoso microinvasivo",
+          "Adenocarcinoma mucinoso",
+          "Tumor borderline endometrioide",
+          "Carcinoma endometrioide",
+          "Carcinoma endometrioide, tipo seromucinoso",
+          "Tumor borderline seromucinoso",
+          "Tumor borderline de células claras",
+          "Carcinoma de células claras",
+          "Tumor de Brenner borderline",
+          "Tumor de Brenner maligno",
+          "Adenocarcinoma mesonéfrico-like",
+          "Carcinoma de pequenas células, tipo hipercalcémico",
+          "Carcinoma desdiferenciado",
+          "Carcinoma indiferenciado, SOE",
+          "Carcinossarcoma",
+          "Carcinoma, subtipo não determinável",
+          "Tumor epitelial borderline misto",
+          "Carcinoma misto",
+          "Sarcoma estromal endometrioide, baixo grau",
+          "Sarcoma estromal endometrioide, alto grau",
+          "Adenossarcoma",
+          "Leiomiossarcoma",
+          "Fibrossarcoma",
+          "Tumor de células da granulosa, tipo adulto",
+          "Tumor de células da granulosa, tipo juvenil",
+          "Tumor de células esteroides, SOE",
+          "Tumor de células esteroides, maligno",
+          "Tumor de células de Sertoli-Leydig",
+          "Outro tumor dos cordões sexuais e estroma",
+          "Teratoma imaturo",
+          "Teratoma com transformação maligna",
+          "Struma ovarii maligno",
+          "Disgerminoma",
+          "Tumor do saco vitelino",
+          "Carcinoma embrionário",
+          "Gonadoblastoma",
+          "Coriocarcinoma, tipo não gestacional",
+          "Tumor maligno misto de células germinativas",
+          "Tumor do estroma gastrointestinal",
+          "Tumor fibroso solitário, maligno",
+          "Tumor desmoplásico de células redondas e pequenas",
+          "Outro tipo histológico não listado"
+        ],
+        "value": [],
+        "mixed_epithelial_borderline_tumor_specify": {
+          "label": "Tumor epitelial borderline misto (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "mixed_carcinoma_specify": {
+          "label": "Carcinoma misto (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "other_sex_cord_stromal_tumor_specify": {
+          "label": "Outro tumor dos cordões sexuais e estroma (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "teratoma_with_malignant_transformation_specify": {
+          "label": "Teratoma com transformação maligna (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "malignant_struma_ovarii_specify": {
+          "label": "Struma ovarii maligno (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "mixed_malignant_germ_cell_tumor_specify": {
+          "label": "Tumor maligno misto de células germinativas (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "other_histologic_type_specify": {
+          "label": "Outro tipo histológico (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "comment": {
+          "label": "Comentário",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "histologic_grade": {
+        "label": "Grau histológico",
+        "note": "Obrigatório para carcinomas endometrioides e mucinosos, teratomas imaturos e tumores de células de Sertoli-Leydig.",
+        "fields": {
+          "grade_system": {
+            "label": "Sistema de graduação",
+            "type": "select",
+            "options": [
+              "Não aplicável",
+              "Sistema de Graduação OMS",
+              "Sistema de Graduação FIGO",
+              "Sistema de Graduação de Silverberg",
+              "Graduação baseada no padrão de crescimento",
+              "Sistema de Graduação em 2 Níveis",
+              "Sistema de Graduação em 3 Níveis"
+            ],
+            "value": ""
+          },
+          "grade_value": {
+            "label": "Valor do grau",
+            "type": "select",
+            "options": [
+              "GB, tumor borderline",
+              "G1, bem diferenciado",
+              "G2, moderadamente diferenciado",
+              "G3, pouco diferenciado",
+              "GX, não é possível avaliar",
+              "Grau FIGO 1",
+              "Grau FIGO 2",
+              "Grau FIGO 3",
+              "Grau Silverberg 1",
+              "Grau Silverberg 2",
+              "Grau Silverberg 3",
+              "Baixo grau, baseado no padrão de crescimento",
+              "Alto grau, baseado no padrão de crescimento",
+              "Outra graduação baseada no padrão de crescimento",
+              "Baixo grau",
+              "Alto grau",
+              "Grau 1 (baixo grau)",
+              "Grau 2 (alto grau)",
+              "Grau 3 (alto grau)"
+            ],
+            "value": ""
+          },
+          "other_growth_pattern_based_grading_specify": {
+            "label": "Outra graduação baseada no padrão de crescimento (especificar)",
+            "type": "text",
+            "value": ""
+          },
+          "gx_cannot_be_assessed_specify": {
+            "label": "GX, não é possível avaliar (especificar)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "ovarian_surface_involvement": {
+        "label": "Envolvimento da superfície ovárica",
+        "type": "select",
+        "options": [
+          "Não aplicável",
+          "Não identificado",
+          "Presente, direito",
+          "Presente, esquerdo",
+          "Presente, direito e esquerdo",
+          "Presente",
+          "Não é possível determinar"
+        ],
+        "value": "",
+        "cannot_be_determined_explain": {
+          "label": "Não é possível determinar (explicar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "fallopian_tube_surface_involvement": {
+        "label": "Envolvimento da superfície da trompa de Falópio",
+        "type": "select",
+        "options": [
+          "Não aplicável",
+          "Não identificado",
+          "Presente, direita",
+          "Presente, esquerda",
+          "Presente, direita e esquerda",
+          "Presente",
+          "Não é possível determinar"
+        ],
+        "value": "",
+        "cannot_be_determined_explain": {
+          "label": "Não é possível determinar (explicar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "implants": {
+        "label": "Implantes",
+        "note": "Obrigatório apenas para tumores borderline serosos / seromucinosos em estadio avançado.",
+        "type": "select",
+        "options": [
+          "Não aplicável",
+          "Não amostrado",
+          "Não identificados",
+          "Presentes",
+          "Indeterminado"
+        ],
+        "value": "",
+        "present_specify_sites": {
+          "label": "Presentes (especificar locais)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "other_tissue_organ_involvement": {
+        "label": "Envolvimento de outros tecidos / órgãos",
+        "type": "multi_select",
+        "options": [
+          "Não aplicável",
+          "Não identificado",
+          "Ovário direito",
+          "Ovário esquerdo",
+          "Ovário (lado não especificado)",
+          "Trompa de Falópio direita",
+          "Trompa de Falópio esquerda",
+          "Trompa de Falópio (lado não especificado)",
+          "Corpo uterino",
+          "Colo do útero",
+          "Peritoneu pélvico",
+          "Peritoneu abdominal",
+          "Omento",
+          "Outros órgãos / tecidos",
+          "Não é possível determinar"
+        ],
+        "value": [],
+        "other_organs_tissue_specify": {
+          "label": "Outros órgãos / tecidos (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_explain": {
+          "label": "Não é possível determinar (explicar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "largest_extrapelvic_peritoneal_focus": {
+        "label": "Maior foco peritoneal extrapélvico",
+        "type": "select",
+        "options": [
+          "Não aplicável",
+          "Microscópico",
+          "Macroscópico (2 cm ou menos)",
+          "Macroscópico (superior a 2 cm)",
+          "Não é possível determinar"
+        ],
+        "value": "",
+        "macroscopic_2cm_or_less_specify_site": {
+          "label": "Macroscópico ≤2 cm (especificar local)",
+          "type": "text",
+          "value": ""
+        },
+        "macroscopic_greater_than_2cm_specify_site": {
+          "label": "Macroscópico >2 cm (especificar local)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_explain": {
+          "label": "Não é possível determinar (explicar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "peritoneal_ascitic_fluid_involvement": {
+        "label": "Envolvimento do líquido peritoneal / ascítico",
+        "type": "multi_select",
+        "options": [
+          "Não submetido / desconhecido",
+          "Negativo para células malignas",
+          "Atípico",
+          "Células neoplásicas presentes (neoplasia serosa, baixo grau, ver espécime cirúrgico correspondente)",
+          "Outro",
+          "Suspeito",
+          "Células malignas presentes",
+          "Não é possível determinar",
+          "Resultados pendentes"
+        ],
+        "value": [],
+        "atypical_explain": {
+          "label": "Atípico (explicar)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": {
+          "label": "Outro (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "suspicious_explain": {
+          "label": "Suspeito (explicar)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_explain": {
+          "label": "Não é possível determinar (explicar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "chemotherapy_response_score": {
+        "label": "Pontuação de resposta à quimioterapia (CRS)",
+        "note": "Obrigatório apenas para carcinomas serosos de alto grau.",
+        "type": "select",
+        "options": [
+          "Não aplicável",
+          "Sem terapia pré-cirúrgica conhecida",
+          "CRS1 (sem resposta definida ou resposta mínima)",
+          "CRS2 (resposta moderada)",
+          "CRS3 (resposta marcada sem cancro residual ou com cancro residual mínimo)",
+          "Não é possível determinar"
+        ],
+        "value": "",
+        "cannot_be_determined_specify": {
+          "label": "Não é possível determinar (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "tumor_comment": {
+        "label": "Comentário sobre o tumor",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+  "regional_lymph_nodes": {
+    "label": "Gânglios linfáticos regionais",
+    "fields": {
+      "regional_lymph_node_status": {
+        "label": "Estado dos gânglios linfáticos regionais",
+        "type": "select",
+        "options": [
+          "Não aplicável (nenhum gânglio linfático regional submetido ou encontrado)",
+          "Gânglios linfáticos regionais presentes",
+          "Todos os gânglios linfáticos regionais negativos para células tumorais",
+          "Tumor presente em gânglio(s) linfático(s) regional(is)"
+        ],
+        "value": ""
+      },
+      "nodes_with_metastasis_gt_10mm": {
+        "label": "Número de gânglios com metástase superior a 10 mm",
+        "type": "text",
+        "value": ""
+      },
+      "nodes_with_metastasis_10mm_or_less": {
+        "label": "Número de gânglios com metástase igual ou inferior a 10 mm",
+        "type": "text",
+        "value": ""
+      },
+      "nodes_with_itcs": {
+        "label": "Número de gânglios com células tumorais isoladas (CTIs)",
+        "type": "text",
+        "value": ""
+      },
+      "nodal_sites_with_tumor": {
+        "label": "Local(is) ganglionar(es) com tumor",
+        "type": "multi_select",
+        "options": [
+          "Pélvico direito",
+          "Pélvico esquerdo",
+          "Pélvico, SOE",
+          "Para-aórtico direito",
+          "Para-aórtico esquerdo",
+          "Para-aórtico, SOE",
+          "Outro",
+          "Não é possível determinar"
+        ],
+        "value": [],
+        "right_pelvic_specify": {
+          "label": "Pélvico direito (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "left_pelvic_specify": {
+          "label": "Pélvico esquerdo (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "pelvic_nos_specify": {
+          "label": "Pélvico, SOE (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "right_para_aortic_specify": {
+          "label": "Para-aórtico direito (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "left_para_aortic_specify": {
+          "label": "Para-aórtico esquerdo (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "para_aortic_nos_specify": {
+          "label": "Para-aórtico, SOE (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": {
+          "label": "Outro (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_specify": {
+          "label": "Não é possível determinar (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "size_of_largest_nodal_metastatic_deposit": {
+        "label": "Tamanho do maior depósito metastático ganglionar",
+        "fields": {
+          "size_type": {
+            "label": "Tipo de tamanho",
+            "type": "select",
+            "options": [
+              "Tamanho exacto",
+              "Pelo menos",
+              "Superior a",
+              "Inferior a",
+              "Outro",
+              "Não é possível determinar"
+            ],
+            "value": ""
+          },
+          "size_mm": {
+            "label": "Tamanho (mm)",
+            "type": "number",
+            "value": ""
+          },
+          "other_specify": {
+            "label": "Outro (especificar)",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_explain": {
+            "label": "Não é possível determinar (explicar)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "location_of_largest_nodal_metastatic_deposit": {
+        "label": "Localização do maior depósito metastático ganglionar",
+        "type": "multi_select",
+        "options": [
+          "Pélvico direito",
+          "Pélvico esquerdo",
+          "Pélvico, SOE",
+          "Para-aórtico direito",
+          "Para-aórtico esquerdo",
+          "Para-aórtico, SOE",
+          "Outro",
+          "Não é possível determinar"
+        ],
+        "value": [],
+        "right_pelvic_specify": {
+          "label": "Pélvico direito (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "left_pelvic_specify": {
+          "label": "Pélvico esquerdo (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "pelvic_nos_specify": {
+          "label": "Pélvico, SOE (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "right_para_aortic_specify": {
+          "label": "Para-aórtico direito (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "left_para_aortic_specify": {
+          "label": "Para-aórtico esquerdo (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "para_aortic_nos_specify": {
+          "label": "Para-aórtico, SOE (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": {
+          "label": "Outro (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_specify": {
+          "label": "Não é possível determinar (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_explain": {
+          "label": "Não é possível determinar (explicar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "number_of_lymph_nodes_examined": {
+        "label": "Número de gânglios linfáticos examinados",
+        "type": "text",
+        "value": ""
+      },
+      "nodal_sites_examined": {
+        "label": "Local(is) ganglionar(es) examinado(s)",
+        "type": "multi_select",
+        "options": [
+          "Pélvico direito",
+          "Pélvico esquerdo",
+          "Pélvico, SOE",
+          "Para-aórtico direito",
+          "Para-aórtico esquerdo",
+          "Para-aórtico, SOE",
+          "Outro",
+          "Não é possível determinar"
+        ],
+        "value": [],
+        "right_pelvic_specify": {
+          "label": "Pélvico direito (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "left_pelvic_specify": {
+          "label": "Pélvico esquerdo (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "pelvic_nos_specify": {
+          "label": "Pélvico, SOE (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "right_para_aortic_specify": {
+          "label": "Para-aórtico direito (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "left_para_aortic_specify": {
+          "label": "Para-aórtico esquerdo (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "para_aortic_nos_specify": {
+          "label": "Para-aórtico, SOE (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": {
+          "label": "Outro (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_specify": {
+          "label": "Não é possível determinar (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "regional_lymph_node_comment": {
+        "label": "Comentário sobre os gânglios linfáticos regionais",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+  "distant_metastasis": {
+    "label": "Metástases à distância",
+    "fields": {
+      "distant_sites_involved": {
+        "label": "Local(is) à distância envolvido(s)",
+        "type": "multi_select",
+        "options": [
+          "Não aplicável",
+          "Derrame pleural com citologia positiva",
+          "Parênquima hepático",
+          "Parênquima esplénico",
+          "Órgão(s) extra-abdominal(is)",
+          "Gânglio(s) inguinal(is) e gânglios fora da cavidade abdominal",
+          "Envolvimento transmural do intestino",
+          "Outro",
+          "Não é possível determinar"
+        ],
+        "value": [],
+        "pleural_effusion_specify": {
+          "label": "Derrame pleural (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "liver_parenchyma_specify": {
+          "label": "Parênquima hepático (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "splenic_parenchyma_specify": {
+          "label": "Parênquima esplénico (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "extra_abdominal_organs_specify": {
+          "label": "Órgãos extra-abdominais (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "inguinal_lymph_nodes_specify": {
+          "label": "Gânglios inguinais (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "transmural_involvement_specify": {
+          "label": "Envolvimento transmural (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": {
+          "label": "Outro (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_specify": {
+          "label": "Não é possível determinar (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      }
+    }
+  },
+  "ptnm_classification": {
+    "label": "Classificação pTNM (AJCC 8ª Edição)",
+    "fields": {
+      "modified_classification": {
+        "label": "Classificação modificada",
+        "type": "multi_select",
+        "options": ["Não aplicável", "y (pós-terapia neoadjuvante)", "r (recidiva)"],
+        "value": []
+      },
+      "pT_category": {
+        "label": "Categoria pT",
+        "type": "select",
+        "options": [
+          "pT não atribuído",
+          "pT0: Sem evidência de tumor primário",
+          "pT1a: Tumor limitado a um ovário (cápsula intacta) ou trompa de Falópio (serosa intacta); sem tumor na superfície ovárica ou da trompa de Falópio; sem células malignas em ascite ou lavados peritoneais",
+          "pT1b: Tumor limitado a ambos os ovários (cápsulas intactas) ou trompas de Falópio (serosa intacta); sem tumor na superfície ovárica ou da trompa de Falópio; sem células malignas em ascite ou lavados peritoneais",
+          "pT1c1: Derrame cirúrgico",
+          "pT1c2: Cápsula roturada antes da cirurgia ou tumor na superfície ovárica ou da trompa de Falópio",
+          "pT1c3: Células malignas em ascite ou lavados peritoneais",
+          "pT1: Tumor limitado aos ovários ou trompas de Falópio (subcategoria não determinável)",
+          "pT2a: Extensão e/ou implantes no útero e/ou trompas de Falópio e/ou ovários",
+          "pT2b: Extensão para e/ou implantes noutros tecidos intraperitoneais pélvicos",
+          "pT2: Tumor envolve um ou ambos os ovários ou trompas de Falópio com extensão pélvica (subcategoria não determinável)",
+          "pT3a: Envolvimento peritoneal extrapélvico (acima do bordo pélvico) microscópico, com ou sem gânglios retroperitoneais positivos",
+          "pT3b: Metástase peritoneal extrapélvica macroscópica igual ou inferior a 2 cm na maior dimensão, com ou sem gânglios retroperitoneais positivos",
+          "pT3c: Metástase peritoneal extrapélvica macroscópica superior a 2 cm na maior dimensão, com ou sem gânglios retroperitoneais positivos (inclui extensão do tumor à cápsula do fígado e baço sem envolvimento parenquimatoso)",
+          "pT3: Metástase peritoneal além da pelve e/ou metástase em gânglios linfáticos regionais (subcategoria não determinável)"
+        ],
+        "value": ""
+      },
+      "T_suffix": {
+        "label": "Sufixo T",
+        "type": "select",
+        "options": ["Não aplicável", "(m) tumores primários síncronos múltiplos num único órgão"],
+        "value": ""
+      },
+      "pN_category": {
+        "label": "Categoria pN",
+        "type": "select",
+        "options": [
+          "pN não atribuído (nenhum gânglio submetido ou encontrado)",
+          "pN não atribuído (não é possível determinar com base nas informações patológicas disponíveis)",
+          "pN0: Sem metástase em gânglio linfático regional",
+          "pN0(i+): Células tumorais isoladas em gânglio(s) linfático(s) regional(is) não superiores a 0,2 mm",
+          "pN1a: Metástase em gânglio linfático regional superior a 0,2 mm mas não superior a 10 mm na maior dimensão",
+          "pN1b: Metástase em gânglio linfático regional superior a 10 mm na maior dimensão",
+          "pN1: Metástase em gânglio linfático regional presente (subcategoria não determinável)"
+        ],
+        "value": ""
+      },
+      "N_suffix": {
+        "label": "Sufixo N",
+        "type": "multi_select",
+        "options": [
+          "Não aplicável",
+          "(sn) metástase identificada apenas por biópsia do gânglio sentinela",
+          "(f) metástase identificada apenas por PAF ou biópsia por agulha grossa"
+        ],
+        "value": []
+      },
+      "pM_category": {
+        "label": "Categoria pM",
+        "type": "select",
+        "options": [
+          "Não aplicável — pM não pode ser determinado a partir do(s) espécime(s) submetido(s)",
+          "pM1a: Derrame pleural com citologia positiva",
+          "pM1b: Metástase no parênquima hepático e/ou esplénico, metástase em órgãos extra-abdominais (incluindo gânglios inguinais e gânglios fora da cavidade abdominal)",
+          "pM1: Metástase à distância (subcategoria não determinável)"
+        ],
+        "value": ""
+      }
+    }
+  },
+  "figo_stage": {
+    "label": "Estadiamento FIGO",
+    "fields": {
+      "figo_stage_2021": {
+        "label": "Estadiamento FIGO (Relatório de Cancro FIGO 2021)",
+        "type": "select",
+        "options": [
+          "IA: Tumor limitado a um ovário (cápsula intacta) ou trompa de Falópio, sem tumor na superfície ovárica ou da trompa de Falópio, lavados negativos",
+          "IB: Tumor envolve ambos os ovários ou trompas de Falópio (cápsulas intactas), sem tumor na superfície ovárica ou da trompa de Falópio, lavados negativos",
+          "IC1: Derrame cirúrgico",
+          "IC2: Cápsula roturada antes da cirurgia ou tumor na superfície ovárica ou da trompa de Falópio",
+          "IC3: Células malignas em ascite ou lavados peritoneais",
+          "IC: Tumor limitado a um ou ambos os ovários, com qualquer critério IC1-IC3 (subcategoria não determinável)",
+          "IIA: Extensão e/ou implantes no útero e/ou trompas de Falópio e/ou ovários",
+          "IIB: Extensão para e/ou implantes noutros tecidos intraperitoneais pélvicos",
+          "IIIA1: Apenas gânglios retroperitoneais positivos (comprovado citológica ou histologicamente)",
+          "IIIA1(i): Metástase igual ou inferior a 10 mm",
+          "IIIA1(ii): Metástase superior a 10 mm",
+          "IIIA2: Envolvimento peritoneal extrapélvico microscópico, com ou sem gânglios retroperitoneais positivos",
+          "IIIB: Metástase peritoneal macroscópica além da pelve até 2 cm na maior dimensão, com ou sem gânglios retroperitoneais positivos",
+          "IIIC: Metástase peritoneal além da pelve superior a 2 cm na maior dimensão, com ou sem gânglios retroperitoneais positivos (inclui extensão do tumor à cápsula do fígado e baço sem envolvimento parenquimatoso)",
+          "IVA: Derrame pleural com citologia positiva",
+          "IVB: Metástase no parênquima hepático e/ou esplénico, metástase em órgãos extra-abdominais (incluindo gânglios inguinais e gânglios fora da cavidade abdominal)"
+        ],
+        "value": ""
+      }
+    }
+  },
+  "additional_findings": {
+    "label": "Achados adicionais",
+    "fields": {
+      "findings": {
+        "label": "Achados adicionais",
+        "type": "multi_select",
+        "options": [
+          "Nenhum identificado",
+          "Carcinoma intraepitelial tubário seroso (STIC)",
+          "Endometriose",
+          "Endossalpingiose",
+          "Outro"
+        ],
+        "value": [],
+        "stic_left": false,
+        "stic_right": false,
+        "stic_bilateral": false,
+        "endometriosis_within_tumor": false,
+        "endometriosis_outside_of_tumor": false,
+        "other_specify": {
+          "label": "Outro (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      }
+    }
+  }
+}

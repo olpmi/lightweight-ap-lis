@@ -1,0 +1,131 @@
+{
+  "template_id": "gastric_tumor_resection_gross_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "lang": "sw",
+  "title": "Upasuaji wa uvimbe wa tumbo (kiolezo cha uchunguzi wa macho)",
+  "specimen": {
+    "label": "Sampuli",
+    "fields": {
+      "type_of_resection": {
+        "label": "Aina ya ukataji",
+        "options": [
+          "Ukataji wa umio na tumbo",
+          "Ukataji kamili wa tumbo",
+          "Ukataji sehemu wa tumbo, upande wa karibu",
+          "Ukataji sehemu wa tumbo, upande wa mbali",
+          "Nyingine"
+        ],
+        "other_specify": ""
+      },
+      "stomach_greater_curvature_mm": {
+        "label": "Tumbo, mpindo mkubwa (mm)"
+      },
+      "stomach_lesser_curvature_mm": {
+        "label": "Tumbo, mpindo mdogo (mm)"
+      },
+      "esophagus_mm": {
+        "label": "Umio (mm)"
+      },
+      "duodenum_mm": {
+        "label": "Duodeniamu (mm)"
+      }
+    }
+  },
+  "tumor": {
+    "label": "Uvimbe",
+    "fields": {
+      "macroscopic_tumor_site": {
+        "label": "Mahali pa uvimbe kwa macho",
+        "options": [
+          "Kadia",
+          "Fundus",
+          "Mwili",
+          "Antrum",
+          "Pailori",
+          "Mpindo mdogo",
+          "Mpindo mkubwa",
+          "Ukuta wa mbele",
+          "Ukuta wa nyuma"
+        ]
+      },
+      "morphologic_classification": {
+        "label": "Uainishaji wa kimuundo",
+        "options": [
+          "Aina 0-I (uliojitokeza)",
+          "Aina 0-IIa (ulioinuka)",
+          "Aina 0-IIb (bapa)",
+          "Aina 0-IIc (uliozama)",
+          "Aina 0-III (uliochimbika)",
+          "Aina I (polipoidi)",
+          "Aina II (unaoota kama uyoga)",
+          "Aina III (wenye kidonda)",
+          "Aina IV (unaopenya)"
+        ]
+      },
+      "tumor_dimensions_mm": {
+        "label": "Vipimo vya uvimbe (mm)"
+      },
+      "distance_to_proximal_margin_mm": {
+        "label": "Umbali hadi mpaka wa karibu (mm)"
+      },
+      "distance_to_distal_margin_mm": {
+        "label": "Umbali hadi mpaka wa mbali (mm)"
+      },
+      "distance_to_lesser_curvature_margin_mm": {
+        "label": "Umbali hadi mpaka wa mpindo mdogo (mm)"
+      },
+      "distance_to_greater_curvature_margin_mm": {
+        "label": "Umbali hadi mpaka wa mpindo mkubwa (mm)"
+      }
+    }
+  },
+  "lymph_nodes": {
+    "label": "Nodi za limfu",
+    "fields": {
+      "number_identified": {
+        "label": "Idadi iliyotambuliwa"
+      },
+      "size_range_min_mm": {
+        "label": "Kiwango cha chini cha ukubwa (mm)"
+      },
+      "size_range_max_mm": {
+        "label": "Kiwango cha juu cha ukubwa (mm)"
+      }
+    }
+  },
+  "block_identification_key": {
+    "label": "Ufunguo wa utambulisho wa vitalu",
+    "fields": {
+      "tumor_representative_sections": {
+        "label": "Uvimbe (sehemu wakilishi)"
+      },
+      "proximal_margin": {
+        "label": "Mpaka wa karibu"
+      },
+      "distal_margin": {
+        "label": "Mpaka wa mbali"
+      },
+      "circumferential_non_peritonealised_margin": {
+        "label": "Mpaka wa mzunguko / usiofunikwa na peritonemu"
+      },
+      "non_neoplastic_stomach": {
+        "label": "Tumbo lisilo na uvimbe"
+      },
+      "lymph_nodes": {
+        "label": "Nodi za limfu"
+      }
+    }
+  },
+  "grossing": {
+    "label": "Uchunguzi wa macho",
+    "fields": {
+      "grossed_by": {
+        "label": "Imefanyiwa uchunguzi wa macho na"
+      },
+      "date": {
+        "label": "Tarehe"
+      }
+    }
+  }
+}

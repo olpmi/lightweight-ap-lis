@@ -1,7 +1,11 @@
 {
-  "title": "Ovaire, trompe de Fallope ou péritoine primaire (Modèle macroscopique)",
+  "template_id": "ovary_fallopian_tube_primary_peritoneum_gross_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "lang": "fr",
+  "title": "Ovaire, trompe de Fallope ou péritoine primaire",
   "specimen": {
-    "label": "Spécimen",
+    "label": "Pièce opératoire",
     "fields": {
       "procedure": {
         "label": "Procédure (sélectionner toutes les réponses applicables)",
@@ -28,7 +32,7 @@
           "Lavage pelvien",
           "Liquide d'ascite",
           "Pleurocentèse (liquide pleural)",
-          "Autre (préciser)"
+          "Autre"
         ],
         "other_specify": "Autre (préciser)"
       },
@@ -40,20 +44,20 @@
           "Vaginale assistée par laparoscopie",
           "Laparoscopique",
           "Laparoscopique assistée par robot",
-          "Autre (préciser)",
+          "Autre",
           "Non précisé"
         ],
         "other_specify": "Autre (préciser)"
       },
       "specimen_integrity_note": {
-        "label": "Note d'intégrité du spécimen"
-      },
-      "specimen_integrity_applicability": {
-        "label": "Applicabilité de l'intégrité du spécimen",
-        "options": [
-          "Non applicable"
-        ]
+        "label": "Note sur l'intégrité du prélèvement",
+        "type": "text",
+        "value": "Pour les tumeurs ovariennes primitives : si l'ovaire contenant la tumeur primitive est retiré intact dans un sac de cœlioscopie puis rompu dans le sac par le chirurgien sans déversement dans la cavité péritonéale, l'intégrité du prélèvement doit être indiquée comme 'capsule intacte' avec un commentaire l'expliquant dans le compte rendu. Pour les tumeurs péritonéales primitives chez les femmes ayant subi une salpingo-ovariectomie antérieure, sélectionner 'non applicable'."
       }
+    },
+    "specimen_integrity_applicability": {
+      "label": "Applicabilité de l'intégrité du spécimen",
+      "options": ["Non applicable"]
     }
   },
   "ovarian_integrity": {
@@ -63,67 +67,37 @@
         "label": "Ovaire droit"
       },
       "right_ovary_integrity": {
-        "label": "Ovaire droit – Capsule intacte",
-        "options": [
-          "Capsule intacte",
-          "Capsule rompue",
-          "Fragmenté",
-          "Autre (préciser)"
-        ],
+        "label": "Intégrité de l'ovaire droit",
+        "options": ["Capsule intacte", "Capsule rompue", "Fragmenté", "Autre"],
         "other_specify": "Autre (préciser)"
       },
       "right_ovary_time_of_rupture": {
-        "label": "Moment de la rupture",
-        "options": [
-          "Moment de la rupture",
-          "Préopératoire",
-          "Intraopératoire",
-          "Inconnu"
-        ]
+        "label": "Moment de la rupture – ovaire droit",
+        "options": ["Préopératoire", "Intraopératoire", "Inconnu"]
       },
       "left_ovary_present": {
         "label": "Ovaire gauche"
       },
       "left_ovary_integrity": {
-        "label": "Ovaire gauche – Capsule intacte",
-        "options": [
-          "Capsule intacte",
-          "Capsule rompue",
-          "Fragmenté",
-          "Autre (préciser)"
-        ],
-        "other_specify": "Autre (préciser)"
+        "label": "Intégrité de l'ovaire gauche",
+        "options": ["Capsule intacte", "Capsule rompue", "Fragmenté", "Autre"],
+        "other_specify": ""
       },
       "left_ovary_time_of_rupture": {
-        "label": "Moment de la rupture",
-        "options": [
-          "Moment de la rupture",
-          "Préopératoire",
-          "Intraopératoire",
-          "Inconnu"
-        ]
+        "label": "Moment de la rupture – ovaire gauche",
+        "options": ["Préopératoire", "Intraopératoire", "Inconnu"]
       },
       "ovary_laterality_not_specified_present": {
         "label": "Ovaire, latéralité non précisée"
       },
       "ovary_laterality_not_specified_integrity": {
-        "label": "Ovaire, latéralité non précisée – Capsule intacte",
-        "options": [
-          "Capsule intacte",
-          "Capsule rompue",
-          "Fragmenté",
-          "Autre (préciser)"
-        ],
-        "other_specify": "Autre (préciser)"
+        "label": "Intégrité de l'ovaire (latéralité non précisée)",
+        "options": ["Capsule intacte", "Capsule rompue", "Fragmenté", "Autre"],
+        "other_specify": ""
       },
       "ovary_laterality_not_specified_time_of_rupture": {
-        "label": "Moment de la rupture",
-        "options": [
-          "Moment de la rupture",
-          "Préopératoire",
-          "Intraopératoire",
-          "Inconnu"
-        ]
+        "label": "Moment de la rupture (latéralité non précisée)",
+        "options": ["Préopératoire", "Intraopératoire", "Inconnu"]
       }
     }
   },
@@ -134,39 +108,24 @@
         "label": "Trompe de Fallope droite"
       },
       "right_fallopian_tube_integrity": {
-        "label": "Trompe de Fallope droite – Séreuse intacte",
-        "options": [
-          "Séreuse intacte",
-          "Séreuse rompue",
-          "Fragmenté",
-          "Autre (préciser)"
-        ],
+        "label": "Intégrité de la trompe de Fallope droite",
+        "options": ["Séreuse intacte", "Séreuse rompue", "Fragmenté", "Autre"],
         "other_specify": "Autre (préciser)"
       },
       "left_fallopian_tube_present": {
         "label": "Trompe de Fallope gauche"
       },
       "left_fallopian_tube_integrity": {
-        "label": "Trompe de Fallope gauche – Séreuse intacte",
-        "options": [
-          "Séreuse intacte",
-          "Séreuse rompue",
-          "Fragmenté",
-          "Autre (préciser)"
-        ],
+        "label": "Intégrité de la trompe de Fallope gauche",
+        "options": ["Séreuse intacte", "Séreuse rompue", "Fragmenté", "Autre"],
         "other_specify": "Autre (préciser)"
       },
       "fallopian_tube_laterality_not_specified_present": {
         "label": "Trompe de Fallope, latéralité non précisée"
       },
       "fallopian_tube_laterality_not_specified_integrity": {
-        "label": "Trompe de Fallope, latéralité non précisée – Séreuse intacte",
-        "options": [
-          "Séreuse intacte",
-          "Séreuse rompue",
-          "Fragmenté",
-          "Autre (préciser)"
-        ],
+        "label": "Intégrité de la trompe de Fallope (latéralité non précisée)",
+        "options": ["Séreuse intacte", "Séreuse rompue", "Fragmenté", "Autre"],
         "other_specify": "Autre (préciser)"
       }
     }
@@ -176,12 +135,7 @@
     "fields": {
       "status": {
         "label": "Intégrité de l'utérus",
-        "options": [
-          "Intact",
-          "Ouvert",
-          "Morcelé",
-          "Autre (préciser)"
-        ],
+        "options": ["Intact", "Ouvert", "Morcelé", "Autre"],
         "other_specify": "Autre (préciser)"
       }
     }
@@ -217,7 +171,7 @@
         "label": "Col de l'utérus"
       },
       "omentum": {
-        "label": "Épiploon"
+        "label": "Grand épiploon"
       },
       "lymph_nodes": {
         "label": "Ganglions lymphatiques"

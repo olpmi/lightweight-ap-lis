@@ -1,6 +1,13 @@
 {
-  "templateName": "MODÈLE DE COMPTE RENDU DE CYTOLOGIE DES LIQUIDES (SYSTÈME INTERNATIONAL ACTUEL POUR LA CYTOPATHOLOGIE DES LIQUIDES SÉREUX)",
+  "templateId": "fluid_cytology_international_serous_fluid",
+  "templateName": "Modèle de compte rendu de cytologie des liquides (Système international pour la cytopathologie des liquides séreux)",
   "language": "fr",
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategory": "serous_fluid",
+    "organSystem": "fluid_cytology",
+    "reportingSystem": "International system for reporting serous fluid cytology"
+  },
   "sections": {
     "specimen": "Prélèvement",
     "preparation_methods": "Méthodes de préparation",
@@ -12,18 +19,18 @@
     "comment": "Commentaire"
   },
   "fields": {
-    "fluid_type": "Type de liquide (sélectionner l’option appropriée)",
+    "fluid_type": "Type de liquide (sélectionner l'option appropriée)",
     "laterality": "Latéralité (si applicable)",
     "volume_received_ml": "Volume reçu (mL)",
     "appearance": "Aspect",
     "preparation_methods_used": "Méthodes de préparation",
-    "cell_block_prepared": "Cell block préparé",
+    "cell_block_prepared": "Bloc cellulaire préparé",
     "adequacy_status": "Adéquation",
     "diagnostic_category": "Catégorie diagnostique",
     "microscopic_description_brief": "Description microscopique (brève)",
     "favor_diagnosis": "En cas de malignité / suspicion, en faveur de",
     "favor_other": "Autre",
-    "cell_block_immunocytochemistry": "Immunocytochemie sur cell block",
+    "cell_block_immunocytochemistry": "Immunocytochimie sur bloc cellulaire",
     "flow_cytometry": "Cytométrie en flux",
     "molecular_studies": "Études moléculaires",
     "comment_text": "Commentaire"
@@ -46,7 +53,7 @@
     "Liquid-based preparation": "Préparation en milieu liquide",
     "Yes": "Oui",
     "No": "Non",
-    "Satisfactory for evaluation": "Satisfaisant pour l’évaluation",
+    "Satisfactory for evaluation": "Satisfaisant pour l'évaluation",
     "Limited / Scant cellularity": "Limité / faible cellularité",
     "Unsatisfactory": "Non satisfaisant",
     "I. Non-diagnostic (ND)": "I. Non diagnostique (ND)",
@@ -57,9 +64,10 @@
     "Metastatic adenocarcinoma": "Adénocarcinome métastatique",
     "Mesothelioma": "Mésothéliome",
     "Hematolymphoid malignancy": "Tumeur hématolymphoïde maligne",
-    "Poorly differentiated carcinoma": "Carcinome peu différencié"
+    "Poorly differentiated carcinoma": "Carcinome peu différencié",
+    "Other (favor)": "Autre"
   },
   "defaults": {
-    "comment_text": "À corréler avec l’histoire clinique, l’imagerie et les examens anatomopathologiques antérieurs. Un prélèvement tissulaire complémentaire peut être recommandé selon le contexte clinique."
+    "comment_text": "À corréler avec l'histoire clinique, l'imagerie et les examens anatomopathologiques antérieurs. Un prélèvement tissulaire complémentaire peut être recommandé selon le contexte clinique."
   }
 }

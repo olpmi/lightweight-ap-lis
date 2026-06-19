@@ -1,34 +1,28 @@
 {
   "template_id": "breast_dcis_biopsy_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "protocol_posting_date": "June 2021",
   "lang": "ar",
   "ui": {
     "direction": "rtl"
   },
-  "title": "DCIS الثدي، خزعة",
-  "case_summary": {
-    "label": "ملخص الحالة (DCIS الثدي: خزعة)",
-    "fields": {}
-  },
+  "title": "سرطان قنوي موضعي في الثدي (DCIS)، خزعة",
   "specimen": {
     "label": "العينة",
     "fields": {
       "procedure": {
         "label": "الإجراء",
-        "options": [
-          "خزعة بالإبرة",
-          "شفط بإبرة دقيقة",
-          "أخرى",
-          "غير محدد"
-        ],
-        "other_specify": "حدد (أخرى)"
+        "options": ["خزعة بالإبرة", "شفط بإبرة دقيقة", "أخرى", "غير محدد"],
+        "type": "select",
+        "value": "",
+        "other_specify": "أخرى (حدد)"
       },
       "laterality": {
         "label": "جهة العينة",
-        "options": [
-          "اليمنى",
-          "اليسرى",
-          "غير محدد"
-        ]
+        "options": ["اليمنى", "اليسرى", "غير محدد"],
+        "type": "select",
+        "value": ""
       }
     }
   },
@@ -47,7 +41,13 @@
           "موضع الساعة",
           "غير محدد"
         ],
-        "clock_position_specify": "حدد موضع الساعة"
+        "type": "multi_select",
+        "value": [],
+        "clock_position_specify": {
+          "label": "موضع عقارب الساعة (حدد)",
+          "type": "text",
+          "value": ""
+        }
       },
       "histologic_type": {
         "label": "النوع النسيجي",
@@ -56,7 +56,9 @@
           "مرض باجيت",
           "سرطان حليمي مُحاط بمحفظة دون سرطان غازي",
           "سرطان حليمي صلب دون سرطان غازي"
-        ]
+        ],
+        "type": "select",
+        "value": ""
       },
       "architectural_patterns": {
         "label": "الأنماط المعمارية",
@@ -69,7 +71,9 @@
           "صلب",
           "أخرى"
         ],
-        "other_specify": "حدد النمط المعماري الآخر"
+        "type": "multi_select",
+        "value": [],
+        "other_specify": "أخرى (حدد)"
       },
       "nuclear_grade": {
         "label": "الدرجة النووية",
@@ -80,30 +84,39 @@
           "أخرى",
           "لا يمكن تحديدها"
         ],
-        "other_specify": "حدد الدرجة النووية الأخرى",
-        "cannot_be_determined_specify": "حدد 'لا يمكن تحديده'"
+        "type": "select",
+        "value": "",
+        "other_specify": "أخرى (حدد)",
+        "cannot_be_determined_specify": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        }
       },
       "necrosis": {
         "label": "النخر",
         "options": [
-          "غير موجود",
+          "غير مُشخَّص",
           "موجود، بؤري (بؤر صغيرة أو نخر خلية مفردة)",
           "موجود، مركزي (نخر \"كوميدو\" واسع)",
           "أخرى",
           "لا يمكن تحديده"
         ],
-        "other_specify": "حدد نخر آخر",
-        "cannot_be_determined_specify": "حدد 'لا يمكن تحديده'"
+        "type": "select",
+        "value": "",
+        "other_specify": "أخرى (حدد)",
+        "cannot_be_determined_specify": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        }
       },
       "microcalcifications": {
         "label": "التكلسات الدقيقة",
-        "options": [
-          "غير موجودة",
-          "موجودة في DCIS",
-          "موجودة في نسيج غير ورمي",
-          "أخرى"
-        ],
-        "other_specify": "حدد التكلسات الدقيقة الأخرى"
+        "options": ["غير موجودة", "موجودة في DCIS", "موجودة في نسيج غير ورمي", "أخرى"],
+        "type": "multi_select",
+        "value": [],
+        "other_specify": "أخرى (حدد)"
       }
     }
   },
@@ -111,14 +124,10 @@
     "label": "النتائج الإضافية",
     "fields": {
       "findings": {
-        "label": "النتائج الإضافية"
+        "label": "النتائج الإضافية",
+        "type": "text",
+        "value": ""
       }
     }
-  },
-  "domain": {
-    "fields": {}
-  },
-  "protocol_posting_date": {
-    "fields": {}
   }
 }

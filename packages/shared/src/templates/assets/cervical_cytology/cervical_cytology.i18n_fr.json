@@ -2,7 +2,13 @@
   "templateId": "cervical_cytology_pap_smear_bethesda",
   "version": "1.0",
   "language": "fr",
-  "title": "MODÈLE DE COMPTE RENDU DE CYTOLOGIE CERVICALE (FROTTIS PAPANICOLAOU) (SYSTÈME DE BETHESDA)",
+  "title": "Modèle de compte rendu de cytologie cervicale (frottis de Papanicolaou) (système de Bethesda)",
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategory": "gyn_cytology",
+    "organSystem": "cervix",
+    "reportingSystem": "Bethesda"
+  },
   "common": {
     "yes": "Oui",
     "no": "Non",
@@ -15,7 +21,7 @@
       "title": "Prélèvement",
       "fields": {
         "specimen_type": {
-          "label": "Cytologie cervicale (sélectionner l’option appropriée)",
+          "label": "Cytologie cervicale (sélectionner l'option appropriée)",
           "options": {
             "conventional_smear": "Frottis conventionnel",
             "liquid_based_cytology": "Cytologie en milieu liquide"
@@ -24,7 +30,7 @@
         "source": {
           "label": "Source",
           "options": {
-            "cervix": "Col de l’utérus",
+            "cervix": "Col de l'utérus",
             "ectocervix": "Exocol",
             "endocervix": "Endocol",
             "vaginal_cuff": "Fond vaginal",
@@ -46,11 +52,11 @@
         "adequacy_status": {
           "label": "Adéquation du prélèvement",
           "options": {
-            "satisfactory_for_evaluation": "Satisfaisant pour l’évaluation",
-            "unsatisfactory_scant_cellularity": "Non satisfaisant pour l’évaluation - cellularité insuffisante",
-            "unsatisfactory_obscuring_blood_inflammation": "Non satisfaisant pour l’évaluation - sang masquant / inflammation",
-            "unsatisfactory_poor_preservation": "Non satisfaisant pour l’évaluation - mauvaise conservation",
-            "unsatisfactory_other": "Non satisfaisant pour l’évaluation - autre"
+            "satisfactory_for_evaluation": "Satisfaisant pour l'évaluation",
+            "unsatisfactory_scant_cellularity": "Non satisfaisant pour l'évaluation - cellularité insuffisante",
+            "unsatisfactory_obscuring_blood_inflammation": "Non satisfaisant pour l'évaluation - sang masquant / inflammation",
+            "unsatisfactory_poor_preservation": "Non satisfaisant pour l'évaluation - mauvaise conservation",
+            "unsatisfactory_other": "Non satisfaisant pour l'évaluation - autre"
           }
         },
         "satisfactory_but_limited_by": {
@@ -63,7 +69,7 @@
           }
         },
         "transformation_zone_component": {
-          "label": "Composante de la zone de transformation (endocervicale / TZ)",
+          "label": "Composante de la zone de transformation (endocervicale / zone de transformation)",
           "options": {
             "present": "Présente",
             "absent": "Absente",
@@ -73,34 +79,34 @@
       }
     },
     "interpretation_result": {
-      "title": "Interprétation / Résultat (sélectionner l’option appropriée)",
+      "title": "Interprétation / Résultat (sélectionner l'option appropriée)",
       "fields": {
         "interpretation_result": {
           "label": "Interprétation / Résultat",
           "options": {
             "nilm_within_normal_limits": "Négatif pour lésion intraépithéliale ou malignité : dans les limites de la normale",
-            "nilm_reactive_inflammation": "Négatif pour lésion intraépithéliale ou malignité, avec modifications cellulaires réactionnelles associées à l’inflammation",
+            "nilm_reactive_inflammation": "Négatif pour lésion intraépithéliale ou malignité, avec modifications cellulaires réactionnelles associées à l'inflammation",
             "nilm_reactive_radiation_iud_atrophy": "Négatif pour lésion intraépithéliale ou malignité, avec modifications cellulaires réactionnelles associées à la radiothérapie / DIU / atrophie",
             "organism_trichomonas_vaginalis": "Négatif pour lésion intraépithéliale ou malignité, avec organismes identifiés : Trichomonas vaginalis",
             "organism_candida_spp": "Négatif pour lésion intraépithéliale ou malignité, avec organismes identifiés : organismes fongiques morphologiquement compatibles avec Candida spp.",
-            "organism_bacterial_vaginosis": "Négatif pour lésion intraépithéliale ou malignité, avec organismes identifiés : modification de la flore évocatrice d’une vaginose bactérienne",
+            "organism_bacterial_vaginosis": "Négatif pour lésion intraépithéliale ou malignité, avec organismes identifiés : modification de la flore évocatrice d'une vaginose bactérienne",
             "organism_actinomyces_spp": "Négatif pour lésion intraépithéliale ou malignité, avec organismes identifiés : bactéries morphologiquement compatibles avec Actinomyces spp.",
             "organism_herpes_simplex_virus": "Négatif pour lésion intraépithéliale ou malignité, avec organismes identifiés : modifications liées au virus herpès simplex",
+            "nilm_endometrial_cells": "Négatif pour lésion intraépithéliale ou malignité, cellules endométriales présentes (chez une femme de ≥45 ans)",
             "asc_us": "ASC-US (Cellules malpighiennes atypiques de signification indéterminée)",
             "asc_h": "ASC-H (Cellules malpighiennes atypiques, HSIL ne peut être exclue)",
             "lsil": "LSIL (Lésion malpighienne intraépithéliale de bas grade)",
             "hsil": "HSIL (Lésion malpighienne intraépithéliale de haut grade)",
+            "hsil_suspicious_for_invasion": "HSIL avec signes suspects d'invasion",
             "squamous_cell_carcinoma": "Carcinome épidermoïde",
+            "agc_endocervical_nos": "Cellules endocervicales atypiques, SAI",
+            "agc_endocervical_favor_neoplastic": "Cellules endocervicales atypiques, en faveur d'une néoplasie",
+            "agc_endometrial_nos": "Cellules endométriales atypiques, SAI",
+            "agc_endometrial_favor_neoplastic": "Cellules endométriales atypiques, en faveur d'une néoplasie",
+            "agc_nos": "Cellules glandulaires atypiques, SAI",
+            "agc_favor_neoplastic": "Cellules glandulaires atypiques, en faveur d'une néoplasie",
             "ais": "Adénocarcinome endocervical in situ (AIS)",
             "adenocarcinoma": "Adénocarcinome",
-            "nilm_endometrial_cells": "Négatif pour lésion intraépithéliale ou malignité, cellules endométriales présentes (chez une femme de ≥45 ans)",
-            "hsil_suspicious_for_invasion": "HSIL avec signes suspects d’invasion",
-            "agc_endocervical_nos": "Cellules endocervicales atypiques, SAI",
-            "agc_endocervical_favor_neoplastic": "Cellules endocervicales atypiques, en faveur d’une néoplasie",
-            "agc_endometrial_nos": "Cellules endométriales atypiques, SAI",
-            "agc_endometrial_favor_neoplastic": "Cellules endométriales atypiques, en faveur d’une néoplasie",
-            "agc_nos": "Cellules glandulaires atypiques, SAI",
-            "agc_favor_neoplastic": "Cellules glandulaires atypiques, en faveur d’une néoplasie",
             "other_malignant_neoplasm": "Autre néoplasme malin"
           }
         }

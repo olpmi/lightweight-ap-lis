@@ -1,0 +1,469 @@
+{
+  "template_id": "prostate_needle_biopsy_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "lang": "pt",
+  "title": "Próstata: Biópsia por agulha",
+  "protocol_posting_date": "September 2023",
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "treatment_effect": {
+        "label": "Efeito do tratamento",
+        "fields": {
+          "effects": {
+            "label": "Efeito do tratamento",
+            "type": "multi_select",
+            "options": [
+              "Sem terapia pré-cirúrgica conhecida",
+              "Não identificado",
+              "Efeito de radioterapia presente",
+              "Efeito de terapia hormonal presente",
+              "Efeito(s) de outra(s) terapia(s) presente(s)",
+              "Não é possível determinar"
+            ],
+            "value": []
+          },
+          "radiation_therapy_effect_specify": {
+            "label": "Efeito de radioterapia presente (especificar)",
+            "type": "text",
+            "value": ""
+          },
+          "hormonal_therapy_effect_specify": {
+            "label": "Efeito de terapia hormonal presente (especificar)",
+            "type": "text",
+            "value": ""
+          },
+          "other_therapy_effects_specify": {
+            "label": "Efeito(s) de outra(s) terapia(s) presente(s) (especificar)",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_specify": {
+            "label": "Não é possível determinar (especificar)",
+            "type": "text",
+            "value": ""
+          },
+          "comment": {
+            "label": "Comentário sobre o efeito do tratamento",
+            "type": "text",
+            "value": ""
+          }
+        }
+      }
+    }
+  },
+  "positive_specimens": {
+    "label": "Espécime ou zona positiva",
+    "type": "repeatable_group",
+    "item_label": "Espécime positivo",
+    "fields": {
+      "positive_specimen_location": {
+        "label": "Localização do espécime positivo",
+        "type": "select",
+        "options": [
+          "Direito",
+          "Base direita (BD)",
+          "Base direita lateral (BDL)",
+          "Base direita medial (BDM)",
+          "Médio direito (MD)",
+          "Médio direito lateral (MDL)",
+          "Médio direito medial (MDM)",
+          "Ápex direito (AD)",
+          "Ápex direito lateral (ADL)",
+          "Ápex direito medial (ADM)",
+          "Zona de transição direita (ZTD)",
+          "Esquerdo",
+          "Base esquerda (BE)",
+          "Base esquerda lateral (BEL)",
+          "Base esquerda medial (BEM)",
+          "Médio esquerdo (ME)",
+          "Médio esquerdo lateral (MEL)",
+          "Médio esquerdo medial (MEM)",
+          "Ápex esquerdo (AE)",
+          "Ápex esquerdo lateral (AEL)",
+          "Ápex esquerdo medial (AEM)",
+          "Zona de transição esquerda (ZTE)",
+          "Outra lesão de ecografia transrectal (ECOTR)",
+          "Biópsia guiada por RMN",
+          "Não especificado"
+        ],
+        "value": "",
+        "location_specify": {
+          "label": "Localização (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "histologic_type": {
+        "label": "Tipo histológico",
+        "fields": {
+          "category": {
+            "label": "Categoria",
+            "type": "select",
+            "options": [
+              "Glandular",
+              "Escamoso",
+              "Neuroendócrino",
+              "Outro tipo histológico não listado",
+              "Carcinoma, tipo não determinável"
+            ],
+            "value": ""
+          },
+          "type": {
+            "label": "Tipo histológico",
+            "type": "select",
+            "options": [
+              "Adenocarcinoma acinar, convencional (usual)",
+              "Adenocarcinoma acinar, tipo células em anel de sinete",
+              "Adenocarcinoma acinar, célula gigante pleomórfica",
+              "Adenocarcinoma acinar, sarcomatoide",
+              "Adenocarcinoma acinar, semelhante a neoplasia intraepitelial prostática",
+              "Carcinoma intraductal isolado",
+              "Adenocarcinoma ductal",
+              "Carcinoma adenoescamoso",
+              "Carcinoma de células escamosas",
+              "Carcinoma de células basais (adenoide cístico)",
+              "Adenocarcinoma com diferenciação neuroendócrina",
+              "Tumor neuroendócrino bem diferenciado",
+              "Carcinoma neuroendócrino de pequenas células",
+              "Carcinoma neuroendócrino de grandes células",
+              "Outro tipo histológico não listado",
+              "Carcinoma, tipo não determinável"
+            ],
+            "value": "",
+            "other_specify": {
+              "label": "Outro (especificar)",
+              "type": "text",
+              "value": ""
+            },
+            "cannot_be_determined_specify": {
+              "label": "Não é possível determinar (especificar)",
+              "type": "text",
+              "value": ""
+            }
+          },
+          "comment": {
+            "label": "Comentário sobre o tipo histológico",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "histologic_grade": {
+        "label": "Grau histológico",
+        "fields": {
+          "grade_status": {
+            "label": "Grau",
+            "type": "select",
+            "options": ["Não aplicável", "Não é possível avaliar", "Avaliável"],
+            "value": "",
+            "not_applicable_specify": {
+              "label": "Não aplicável (especificar)",
+              "type": "text",
+              "value": ""
+            },
+            "cannot_be_assessed_specify": {
+              "label": "Não é possível avaliar (especificar)",
+              "type": "text",
+              "value": ""
+            }
+          },
+          "tumor_microfocus": {
+            "label": "Microfoco tumoral",
+            "type": "select",
+            "options": ["Não identificado", "Presente"],
+            "value": ""
+          },
+          "grade_group": {
+            "label": "Grupo de grau",
+            "type": "select",
+            "options": [
+              "Grupo de grau 1 (Pontuação de Gleason 3 + 3 = 6)",
+              "Grupo de grau 2 (Pontuação de Gleason 3 + 4 = 7)",
+              "Grupo de grau 3 (Pontuação de Gleason 4 + 3 = 7)",
+              "Grupo de grau 4 (Pontuação de Gleason 4 + 4 = 8)",
+              "Grupo de grau 4 (Pontuação de Gleason 3 + 5 = 8)",
+              "Grupo de grau 4 (Pontuação de Gleason 5 + 3 = 8)",
+              "Grupo de grau 5 (Pontuação de Gleason 4 + 5 = 9)",
+              "Grupo de grau 5 (Pontuação de Gleason 5 + 4 = 9)",
+              "Grupo de grau 5 (Pontuação de Gleason 5 + 5 = 10)"
+            ],
+            "value": ""
+          },
+          "pattern_4_percentage_for_grade_group_2": {
+            "label": "Percentagem do padrão 4 para o grupo de grau 2",
+            "type": "select",
+            "options": [
+              "Não aplicável (outros espécimes deste caso têm pontuações de Gleason de 8 ou superior)",
+              "Igual ou inferior a 5%",
+              "6 - 10%",
+              "11 - 20%",
+              "21 - 30%",
+              "31 - 40%",
+              "Superior a 40%"
+            ],
+            "value": ""
+          },
+          "pattern_4_percentage_for_grade_group_3": {
+            "label": "Percentagem do padrão 4 para o grupo de grau 3",
+            "type": "select",
+            "options": [
+              "Não aplicável (outros espécimes deste caso têm pontuações de Gleason de 8 ou superior)",
+              "Inferior a 61%",
+              "61 - 70%",
+              "71 - 80%",
+              "81 - 90%",
+              "Superior a 90%"
+            ],
+            "value": ""
+          },
+          "pattern_4_percentage_for_gleason_8_and_above": {
+            "label": "Percentagem do padrão 4 (pontuação de Gleason 8 e superior)",
+            "type": "number",
+            "value": ""
+          },
+          "pattern_5_percentage_for_gleason_8_and_above": {
+            "label": "Percentagem do padrão 5 (pontuação de Gleason 8 e superior)",
+            "type": "number",
+            "value": ""
+          }
+        }
+      },
+      "intraductal_carcinoma": {
+        "label": "Carcinoma intraductal (CID)",
+        "fields": {
+          "status": {
+            "label": "CID",
+            "type": "select",
+            "options": ["Não identificado", "Presente"],
+            "value": ""
+          },
+          "incorporated_into_grade": {
+            "label": "CID incorporado no grau",
+            "type": "select",
+            "options": ["Sim", "Não", "Não é possível determinar"],
+            "value": "",
+            "cannot_be_determined_specify": {
+              "label": "Não é possível determinar (especificar)",
+              "type": "text",
+              "value": ""
+            }
+          }
+        }
+      },
+      "cribriform_glands": {
+        "label": "Glândulas cribiformes",
+        "fields": {
+          "status": {
+            "label": "Glândulas cribiformes",
+            "type": "select",
+            "options": [
+              "Não aplicável",
+              "Não identificadas",
+              "Presentes",
+              "Equívoco",
+              "Não é possível determinar"
+            ],
+            "value": "",
+            "present_specify": {
+              "label": "Presentes (especificar)",
+              "type": "text",
+              "value": ""
+            },
+            "equivocal_explain": {
+              "label": "Equívoco (explicar)",
+              "type": "text",
+              "value": ""
+            },
+            "cannot_be_determined_explain": {
+              "label": "Não é possível determinar (explicar)",
+              "type": "text",
+              "value": ""
+            }
+          }
+        }
+      },
+      "tumor_quantitation": {
+        "label": "Quantificação do tumor",
+        "fields": {
+          "total_number_of_cores": {
+            "label": "Número total de fragmentos",
+            "type": "select",
+            "options": ["Especificar número", "Não é possível determinar"],
+            "value": "",
+            "number": {
+              "label": "Número",
+              "type": "integer",
+              "value": ""
+            }
+          },
+          "number_of_positive_cores": {
+            "label": "Número de fragmentos positivos",
+            "type": "select",
+            "options": ["Especificar número", "Não é possível determinar"],
+            "value": "",
+            "number": {
+              "label": "Número",
+              "type": "integer",
+              "value": ""
+            }
+          },
+          "tumor_measurement_technique": {
+            "label": "Técnica de medição do tumor",
+            "type": "multi_select",
+            "options": [
+              "Foco único contínuo",
+              "Considerar múltiplos focos como tumor contínuo",
+              "Considerar múltiplos focos como tumor descontínuo"
+            ],
+            "value": []
+          },
+          "percentage_of_prostatic_tissue_involved": {
+            "label": "Percentagem de tecido prostático envolvido por tumor",
+            "type": "select",
+            "options": [
+              "Inferior a 1%",
+              "1 - 5%",
+              "6 - 10%",
+              "11 - 20%",
+              "21 - 30%",
+              "31 - 40%",
+              "41 - 50%",
+              "51 - 60%",
+              "61 - 70%",
+              "71 - 80%",
+              "81 - 90%",
+              "Superior a 90%",
+              "Não é possível determinar"
+            ],
+            "value": "",
+            "cannot_be_determined_explain": {
+              "label": "Não é possível determinar (explicar)",
+              "type": "text",
+              "value": ""
+            }
+          },
+          "length_of_prostatic_tissue_involved": {
+            "label": "Comprimento de tecido prostático envolvido por tumor",
+            "type": "select",
+            "options": ["Especificar em milímetros (mm)", "Inferior a 1 mm"],
+            "value": "",
+            "length_mm": {
+              "label": "Comprimento (mm)",
+              "type": "number",
+              "value": ""
+            }
+          }
+        }
+      },
+      "periprostatic_fat_invasion": {
+        "label": "Invasão da gordura periprostática",
+        "type": "select",
+        "options": ["Não identificada", "Presente", "Equívoco", "Não é possível determinar"],
+        "value": "",
+        "equivocal_explain": {
+          "label": "Equívoco (explicar)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_explain": {
+          "label": "Não é possível determinar (explicar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "seminal_vesicle_or_ejaculatory_duct_invasion": {
+        "label": "Invasão da vesícula seminal / canal ejaculador",
+        "type": "select",
+        "options": ["Não identificada", "Presente", "Equívoco", "Não é possível determinar"],
+        "value": "",
+        "equivocal_explain": {
+          "label": "Equívoco (explicar)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_explain": {
+          "label": "Não é possível determinar (explicar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "lymphovascular_invasion": {
+        "label": "Invasão linfática e/ou vascular",
+        "type": "select",
+        "options": ["Não identificada", "Presente", "Equívoco", "Não é possível determinar"],
+        "value": "",
+        "equivocal_explain": {
+          "label": "Equívoco (explicar)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_specify": {
+          "label": "Não é possível determinar (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "perineural_invasion": {
+        "label": "Invasão perineural",
+        "type": "select",
+        "options": ["Não identificada", "Presente"],
+        "value": ""
+      },
+      "additional_findings": {
+        "label": "Achados adicionais",
+        "fields": {
+          "findings": {
+            "label": "Achados adicionais",
+            "type": "multi_select",
+            "options": [
+              "Nenhum identificado",
+              "Proliferação intraductal atípica (PIA)",
+              "Neoplasia intraepitelial prostática de alto grau (NIP)",
+              "Proliferação acinar atípica de pequenas glândulas / pequeno foco de glândulas atípicas (ASAP / ATYP)",
+              "Inflamação",
+              "Outro"
+            ],
+            "value": []
+          },
+          "none_identified_specify": {
+            "label": "Nenhum identificado (especificar)",
+            "type": "text",
+            "value": ""
+          },
+          "pin_specify": {
+            "label": "Neoplasia intraepitelial prostática de alto grau (NIP) (especificar)",
+            "type": "text",
+            "value": ""
+          },
+          "asap_atyp_specify": {
+            "label": "Proliferação acinar atípica / pequeno foco de glândulas atípicas (ASAP / ATYP) (especificar)",
+            "type": "text",
+            "value": ""
+          },
+          "inflammation_specify_type": {
+            "label": "Inflamação (especificar o tipo)",
+            "type": "text",
+            "value": ""
+          },
+          "other_specify": {
+            "label": "Outro (especificar)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      }
+    }
+  },
+  "comments": {
+    "label": "Comentários",
+    "fields": {
+      "comment_text": {
+        "label": "Comentário(s)",
+        "type": "text",
+        "value": ""
+      }
+    }
+  }
+}

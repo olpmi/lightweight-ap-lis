@@ -1,0 +1,272 @@
+{
+  "metadata": {
+    "id": "patient_summaries.histology.sw",
+    "language": "sw",
+    "version": "1.0.0",
+    "title": "Muhtasari wa Histolojia kwa Wagonjwa",
+    "description": "Muhtasari wa Kiswahili unaotegemea sheria kwa wagonjwa kwa templeti za histolojia za sasa. Muhtasari huu unatumia lugha rahisi na unakusudia kusaidia wagonjwa kuelewa maana ya jumla ya matokeo yao ya patholojia.",
+    "scope": [
+      "Biopsi ya saratani ya matiti (invasive carcinoma)",
+      "Upasuaji wa saratani ya matiti (invasive carcinoma)",
+      "Biopsi ya DCIS ya matiti",
+      "Upasuaji wa DCIS ya matiti",
+      "Hali ya vialama vya matiti",
+      "Biopsi ya mlango wa uzazi (seviksi)",
+      "Upasuaji wa mlango wa uzazi (seviksi)",
+      "Endometriamu (ukuta wa kizazi)",
+      "Ovari, mrija wa fallopio, na peritonamu ya msingi",
+      "Biopsi ya uvimbe wa jumla",
+      "Upasuaji wa uvimbe wa jumla",
+      "Upasuaji wa uvimbe mbaya wa utumbo mkubwa",
+      "Uvimbe wa umio",
+      "Uvimbe wa stromal ya njia ya usagaji chakula (GIST)",
+      "Upasuaji wa uvimbe wa tumbo",
+      "Biopsi ya kibofu cha uzazi wa kiume (prostate)",
+      "Upasuaji wa prostate",
+      "Biopsi ya uvimbe wa mapafu"
+    ],
+    "note": "Faili hii haijumuishi muhtasari wa lymphoma, uvimbe mbaya, au hali za uchochezi, kwa sababu hizo ziko nje ya seti ya templeti za histolojia zilizotolewa."
+  },
+  "global_disclaimer": "Muhtasari huu umeandikwa kwa lugha rahisi zaidi kukusaidia kuelewa ripoti ya patholojia. Haubadilishi mazungumzo na daktari wako au timu ya huduma ya kliniki, ambao watakueleza maana ya matokeo kwa matibabu yako.",
+  "common_terms": {
+    "biopsy": "Biopsi ni sampuli ndogo ya tishu inayoondolewa ili iweze kuchunguzwa chini ya darubini.",
+    "resection": "Upasuaji wa kuondoa (resection) ni operesheni ambapo kipande kikubwa cha tishu, au kiungo, kinaondolewa na kuchunguzwa.",
+    "malignant": "Mbaya (malignant) inamaanisha kuwa na saratani.",
+    "invasive": "Invasive inamaanisha saratani imekua ndani ya tishu zinazozunguka na haiko juu ya uso wa nyuzi peke yake.",
+    "in_situ": "In situ inamaanisha seli zisizo za kawaida zipo lakini hazijavamia tishu zinazozunguka.",
+    "grade": "Daraja (grade) inaelezea jinsi seli za saratani zinavyoonekana chini ya darubini. Uvimbe wa daraja la juu mara nyingi huwa mkali zaidi.",
+    "margin": "Mpaka (margin) ni ukingo wa tishu iliyoondolewa wakati wa upasuaji. Ikiwa uvimbe uko kwenye mpaka, matibabu zaidi yanaweza kuhitajika wakati mwingine.",
+    "lymph_node": "Nodi za limfu ni tezi ndogo za mfumo wa kinga ambazo zinaweza kuwa na seli za saratani ikiwa saratani imesambaa.",
+    "lymphovascular_invasion": "Uvamizi wa limfovascular inamaanisha seli za saratani zinaonekana ndani ya mishipa midogo ya damu au njia za limfu.",
+    "perineural_invasion": "Uvamizi wa perineural inamaanisha seli za saratani zinaonekana karibu au kando ya mishipa ya neva.",
+    "biomarker": "Alama ya kibiolojia (biomarker) ni matokeo ya kipimo maalum ambayo yanaweza kusaidia kuongoza matibabu."
+  },
+  "grade_language": {
+    "grade_1": "daraja la chini, inamaanisha seli za saratani zinaonekana zisizo za kawaida kidogo na zinaweza kukua polepole zaidi",
+    "grade_2": "daraja la kati",
+    "grade_3": "daraja la juu, inamaanisha seli za saratani zinaonekana zisizo za kawaida zaidi na zinaweza kuwa kali zaidi",
+    "well_differentiated": "tofauti vizuri (well differentiated), inamaanisha seli za uvimbe bado zinaonekana sawa kiasi na seli za kawaida ambazo zilitoka",
+    "moderately_differentiated": "tofauti kiasi (moderately differentiated), inamaanisha seli za uvimbe zinaonyesha kiwango cha kati cha kutokuwa za kawaida",
+    "poorly_differentiated": "tofauti vibaya (poorly differentiated), inamaanisha seli za uvimbe zinaonekana zisizo za kawaida sana na zinaweza kuwa kali zaidi",
+    "undifferentiated": "bila utofauti (undifferentiated), inamaanisha seli za uvimbe zinaonekana zisizo za kawaida sana na hazilingani tena na seli za kawaida ambazo zilitoka",
+    "low_grade": "daraja la chini, inamaanisha seli za uvimbe zinaonekana zisizo za kawaida kidogo na zinaweza kukua polepole zaidi",
+    "high_grade": "daraja la juu, inamaanisha seli za uvimbe zinaonekana zisizo za kawaida sana na zinaweza kuwa kali zaidi",
+    "not_applicable": "haijapewa daraja la kawaida katika ripoti hii",
+    "cannot_be_assessed": "haiwezekani kutathminiwa katika sampuli hii",
+    "not_specified": "haikubainishwa katika ripoti hii"
+  },
+  "shared_sentence_blocks": {
+    "biopsy_limited_sample": "Kwa sababu hii ni sampuli ndogo ya tishu, ukubwa kamili na upeo wa uvimbe unaweza kuhitaji kutathminiwa kwenye sampuli kubwa ya upasuaji au kwa picha za matibabu na taarifa nyingine za kliniki.",
+    "resection_more_information": "Kwa sababu hii ni sampuli kubwa ya upasuaji, ripoti inaweza kujumuisha taarifa kama vile ukubwa wa uvimbe, mipaka, nodi za limfu, na kama uvimbe umesambaa kwenye tishu za karibu.",
+    "additional_tests": "Majaribio ya ziada yanaweza kufanywa ili kuainisha uvimbe vizuri zaidi au kusaidia kuongoza matibabu.",
+    "team_interpretation": "Timu yako ya kliniki itafafanua matokeo haya pamoja na matokeo ya uchunguzi wako, picha za matibabu, na matokeo mengine ya majaribio."
+  },
+  "template_groups": {
+    "breast": {
+      "invasive_carcinoma_biopsy": {
+        "label": "Saratani ya matiti (invasive carcinoma), biopsi",
+        "summary": "Biopsi ya matiti inaonyesha saratani ya matiti inayovamia. Hii inamaanisha seli za saratani zipo na zimekua ndani ya tishu za matiti zinazozunguka. Ripoti inaweza kuelezea aina ya saratani ya matiti na daraja lake, ambalo husaidia kuonyesha jinsi seli zinavyoonekana chini ya darubini. Vipimo vya alama za kibiolojia za matiti kama vile ER, PR, HER2, na Ki67 mara nyingi hutumika kusaidia kuongoza matibabu. {biopsy_limited_sample}"
+      },
+      "invasive_carcinoma_resection": {
+        "label": "Saratani ya matiti (invasive carcinoma), upasuaji",
+        "summary": "Sampuli ya upasuaji wa matiti inaonyesha saratani ya matiti inayovamia. Hii inamaanisha seli za saratani zilikuwepo na zilikuwa zimekua ndani ya tishu za matiti zinazozunguka. Ripoti inaweza kuelezea aina ya uvimbe, daraja, ukubwa, kama nodi za limfu zinahusika, na kama uvimbe uko karibu au uko kwenye mipaka ya upasuaji. Vipimo vya alama za kibiolojia za matiti kama vile ER, PR, HER2, na Ki67 husaidia kuongoza maamuzi ya matibabu. {resection_more_information}"
+      },
+      "dcis_biopsy": {
+        "label": "DCIS ya matiti, biopsi",
+        "summary": "Biopsi ya matiti inaonyesha ductal carcinoma in situ, inayoitwa pia DCIS. DCIS inamaanisha seli zisizo za kawaida zinazofanana na saratani zipo ndani ya mirija ya matiti, lakini hazijavamia tishu za matiti zinazozunguka katika sampuli hii. Ripoti inaweza kuelezea daraja, mfumo, na kama kuna nekrosisi au uwiano wa calcium. {biopsy_limited_sample}"
+      },
+      "dcis_resection": {
+        "label": "DCIS ya matiti, upasuaji",
+        "summary": "Sampuli ya upasuaji wa matiti inaonyesha ductal carcinoma in situ, inayoitwa pia DCIS. DCIS inamaanisha seli zisizo za kawaida zinazofanana na saratani zipo ndani ya mirija ya matiti, lakini hazijavamia tishu za matiti zinazozunguka. Ripoti inaweza kuelezea ukubwa wa DCIS, daraja, kama kuna nekrosisi, na kama DCIS iko karibu au ipo kwenye mipaka ya upasuaji."
+      },
+      "biomarker_status": {
+        "label": "Hali ya vialama vya matiti",
+        "summary": "Sehemu hii ya ripoti inatoa matokeo ya vipimo maalum vya uvimbe wa matiti. ER na PR zinaonyesha kama uvimbe unaweza kujibu matibabu yanayotegemea homoni. HER2 inaonyesha kama matibabu yanayolenga HER2 yanaweza kuwa na manufaa. Ki67 inatoa makadirio ya jinsi seli za uvimbe zinavyokua kwa nguvu. Timu yako ya onkolojia itatumia matokeo haya pamoja na utambuzi, daraja, hatua, na taarifa nyingine za kliniki."
+      }
+    },
+    "gynecologic": {
+      "cervix_biopsy": {
+        "label": "Mlango wa uzazi (seviksi), biopsi",
+        "summary": "Biopsi ya seviksi inaonyesha uvimbe au seli zisizo za kawaida kwenye seviksi. Ripoti inaweza kuelezea aina ya uvimbe, kama vile squamous cell carcinoma, adenocarcinoma, au neuroendocrine carcinoma, na inaweza kujumuisha daraja au vipengele vingine. Kwa sababu hii ni biopsi, inatoa taarifa muhimu za utambuzi lakini inaweza isionyeshe ukubwa kamili au upeo wa ugonjwa. {team_interpretation}"
+      },
+      "cervix_resection": {
+        "label": "Mlango wa uzazi (seviksi), upasuaji",
+        "summary": "Sampuli ya upasuaji wa seviksi inaonyesha uvimbe au seli zisizo za kawaida kwenye seviksi. Ripoti inaweza kuelezea aina ya uvimbe, daraja, kina cha uvamizi, kama tishu za karibu zinahusika, kama saratani ipo kwenye mipaka, na kama nodi za limfu zina uvimbe. Vipengele hivi husaidia kuongoza upangaji wa hatua na matibabu."
+      },
+      "endometrium": {
+        "label": "Endometriamu (ukuta wa kizazi)",
+        "summary": "Ukuta wa kizazi, unaoitwa endometriamu, unaonyesha uvimbe. Ripoti inaweza kuelezea aina ya uvimbe, kama vile endometrioid carcinoma, serous carcinoma, clear cell carcinoma, carcinosarcoma, au aina nyingine. Inaweza pia kuelezea daraja, jinsi uvimbe unavyokua ndani ya misuli ya kizazi, kama seviksi au viungo vingine vinahusika, na kama uvamizi wa limfovascular upo. Vipengele hivi husaidia kuongoza upangaji wa hatua na matibabu."
+      },
+      "ovary_fallopian_tube_primary_peritoneum": {
+        "label": "Ovari, mrija wa fallopio, au peritonamu ya msingi",
+        "summary": "Tishu inaonyesha uvimbe unaohusisha ovari, mrija wa fallopio, au peritonamu. Ripoti inaweza kuelezea aina ya uvimbe, kama vile serous carcinoma, mucinous carcinoma, endometrioid carcinoma, clear cell carcinoma, uvimbe wa mpakani (borderline tumor), sex cord-stromal tumor, germ cell tumor, au aina nyingine ya uvimbe. Inaweza pia kuelezea ukubwa wa uvimbe, daraja inapohusika, uhusiano na uso, kusambaa kwa tishu nyingine, na matokeo ya nodi za limfu. Maelezo haya husaidia kuongoza upangaji wa hatua na matibabu."
+      }
+    },
+    "gastrointestinal": {
+      "colorectal_malignant_resection": {
+        "label": "Uvimbe mbaya wa utumbo mkubwa, upasuaji",
+        "summary": "Sampuli ya upasuaji wa koloni au rektamu inaonyesha uvimbe mbaya, mara nyingi aina inayoitwa adenocarcinoma. Ripoti inaweza kuelezea aina ya uvimbe, daraja, ukubwa, jinsi unavyokua ndani ya ukuta wa utumbo au tishu za karibu, kama uvamizi wa limfovascular au perineural upo, kama nodi za limfu zina uvimbe, na kama mipaka ya upasuaji iko safi. Matokeo haya husaidia kuamua hatua na kuongoza matibabu zaidi."
+      },
+      "stomach_tumor_resection": {
+        "label": "Uvimbe wa tumbo, upasuaji",
+        "summary": "Sampuli ya upasuaji wa tumbo inaonyesha uvimbe. Ripoti inaweza kuelezea aina ya uvimbe, kama vile adenocarcinoma, poorly cohesive carcinoma, mucinous carcinoma, squamous cell carcinoma, neuroendocrine carcinoma, au aina nyingine. Inaweza pia kuelezea daraja, ukubwa wa uvimbe, kina cha uvamizi, kusambaa kwa viungo vya karibu, hali ya mipaka, na matokeo ya nodi za limfu. Vipengele hivi husaidia kuongoza upangaji wa hatua na matibabu."
+      },
+      "esophagus_tumor": {
+        "label": "Uvimbe wa umio",
+        "summary": "Sampuli ya umio inaonyesha uvimbe. Ripoti inaweza kuelezea aina ya uvimbe, kama vile adenocarcinoma, squamous cell carcinoma, neuroendocrine tumor, au aina nyingine. Inaweza pia kuelezea daraja, ukubwa wa uvimbe, kina cha uvamizi, kama miundo ya karibu inahusika, matokeo ya nodi za limfu, na hali ya mipaka. Maelezo haya husaidia kuongoza upangaji wa hatua na matibabu."
+      },
+      "gist": {
+        "label": "Uvimbe wa stromal ya njia ya usagaji chakula (GIST)",
+        "summary": "Sampuli inaonyesha uvimbe wa stromal ya njia ya usagaji chakula, unaoitwa pia GIST. GIST ni uvimbe unaotoka kwenye seli maalum za msaada katika njia ya usagaji chakula. Ripoti inaweza kuelezea eneo la uvimbe, ukubwa, aina ya seli, kiwango cha mitosisi, daraja, nekrosisi, mipaka, na kategoria ya hatari. Vipengele hivi husaidia kukadiria jinsi uvimbe unavyoweza kujibu na kama matibabu ya ziada yanaweza kuhitajika."
+      }
+    },
+    "genitourinary": {
+      "prostate_core_biopsy": {
+        "label": "Biopsi ya kibofu cha uzazi wa kiume (prostate)",
+        "summary": "Biopsi ya prostate inaonyesha kama saratani ya prostate ipo katika moja au zaidi ya maeneo yaliyosampuliwa. Ikiwa saratani ipo, ripoti inaweza kuelezea aina ya uvimbe, kundi la daraja (grade group), alama ya Gleason, kiasi gani cha kila core kinahusika, na kama vipengele kama vile tezi za cribriform au intraductal carcinoma vinaonekana. Matokeo haya husaidia kukadiria jinsi saratani inavyoweza kuwa kali na kuongoza mazungumzo ya matibabu."
+      },
+      "prostatectomy": {
+        "label": "Upasuaji mkubwa wa prostate (radical prostatectomy)",
+        "summary": "Sampuli ya upasuaji wa prostate inaonyesha tishu ya prostate iliyoondolewa wakati wa upasuaji. Ikiwa saratani ya prostate ipo, ripoti inaweza kuelezea aina ya uvimbe, kundi la daraja, alama ya Gleason, kiasi gani cha prostate kinahusika, kama uvimbe umepanuka nje ya prostate, kama mipaka inahusika, na kama nodi za limfu zina uvimbe. Matokeo haya husaidia kuamua hatua na kuongoza huduma ya ufuatiliaji."
+      }
+    },
+    "thoracic": {
+      "lung_tumor_biopsy": {
+        "label": "Uvimbe wa mapafu, biopsi",
+        "summary": "Biopsi ya mapafu inaonyesha uvimbe kwenye mapafu. Ripoti inaweza kuelezea aina ya uvimbe, kama vile adenocarcinoma, squamous cell carcinoma, small cell carcinoma, large cell neuroendocrine carcinoma, carcinoid tumor, au aina nyingine. Kwa sababu hii ni biopsi, inaweza isionyeshe ukubwa kamili au upeo wa ugonjwa. Majaribio ya ziada ya alama za kibiolojia au molekuli yanaweza kufanywa kusaidia kuongoza matibabu."
+      }
+    },
+    "general": {
+      "general_tumor_biopsy": {
+        "label": "Biopsi ya uvimbe wa jumla",
+        "summary": "Biopsi inaonyesha uvimbe kwenye tishu iliyosampuliwa. Ripoti inaweza kuelezea aina ya uvimbe, daraja, na vipengele kama vile uvamizi wa limfovascular au perineural. Kwa sababu hii ni sampuli ndogo ya tishu, majaribio ya ziada au sampuli kubwa zaidi wakati mwingine zinaweza kuhitajika kutoa taarifa kamili zaidi."
+      },
+      "general_tumor_resection": {
+        "label": "Upasuaji wa uvimbe wa jumla",
+        "summary": "Sampuli ya upasuaji inaonyesha uvimbe kwenye tishu iliyoondolewa. Ripoti inaweza kuelezea aina ya uvimbe, daraja, ukubwa, upeo, nekrosisi, uvamizi wa limfovascular, athari ya matibabu, hali ya mipaka, na matokeo ya nodi za limfu. Vipengele hivi husaidia timu yako ya kliniki kuelewa uvimbe na kupanga huduma zaidi."
+      }
+    }
+  },
+  "diagnosis_key_map": {
+    "invasive_carcinoma_of_no_special_type_ductal": {
+      "template_group": "breast",
+      "template_key": "invasive_carcinoma_biopsy",
+      "patient_label": "saratani ya matiti inayovamia"
+    },
+    "invasive_lobular_carcinoma": {
+      "template_group": "breast",
+      "template_key": "invasive_carcinoma_biopsy",
+      "patient_label": "saratani ya matiti inayovamia (lobular)"
+    },
+    "ductal_carcinoma_in_situ": {
+      "template_group": "breast",
+      "template_key": "dcis_biopsy",
+      "patient_label": "ductal carcinoma in situ"
+    },
+    "squamous_cell_carcinoma_cervix": {
+      "template_group": "gynecologic",
+      "template_key": "cervix_biopsy",
+      "patient_label": "squamous cell carcinoma ya seviksi"
+    },
+    "adenocarcinoma_cervix": {
+      "template_group": "gynecologic",
+      "template_key": "cervix_biopsy",
+      "patient_label": "adenocarcinoma ya seviksi"
+    },
+    "endometrioid_carcinoma_endometrium": {
+      "template_group": "gynecologic",
+      "template_key": "endometrium",
+      "patient_label": "endometrioid carcinoma ya ukuta wa kizazi"
+    },
+    "serous_carcinoma_endometrium": {
+      "template_group": "gynecologic",
+      "template_key": "endometrium",
+      "patient_label": "serous carcinoma ya ukuta wa kizazi"
+    },
+    "high_grade_serous_carcinoma_ovary_fallopian_tube_peritoneum": {
+      "template_group": "gynecologic",
+      "template_key": "ovary_fallopian_tube_primary_peritoneum",
+      "patient_label": "serous carcinoma ya daraja la juu"
+    },
+    "low_grade_serous_carcinoma_ovary_fallopian_tube_peritoneum": {
+      "template_group": "gynecologic",
+      "template_key": "ovary_fallopian_tube_primary_peritoneum",
+      "patient_label": "serous carcinoma ya daraja la chini"
+    },
+    "colorectal_adenocarcinoma": {
+      "template_group": "gastrointestinal",
+      "template_key": "colorectal_malignant_resection",
+      "patient_label": "adenocarcinoma ya utumbo mkubwa"
+    },
+    "gastric_adenocarcinoma": {
+      "template_group": "gastrointestinal",
+      "template_key": "stomach_tumor_resection",
+      "patient_label": "adenocarcinoma ya tumbo"
+    },
+    "esophageal_adenocarcinoma": {
+      "template_group": "gastrointestinal",
+      "template_key": "esophagus_tumor",
+      "patient_label": "adenocarcinoma ya umio"
+    },
+    "esophageal_squamous_cell_carcinoma": {
+      "template_group": "gastrointestinal",
+      "template_key": "esophagus_tumor",
+      "patient_label": "squamous cell carcinoma ya umio"
+    },
+    "gastrointestinal_stromal_tumor": {
+      "template_group": "gastrointestinal",
+      "template_key": "gist",
+      "patient_label": "uvimbe wa stromal ya njia ya usagaji chakula"
+    },
+    "prostate_acinar_adenocarcinoma": {
+      "template_group": "genitourinary",
+      "template_key": "prostate_core_biopsy",
+      "patient_label": "adenocarcinoma ya prostate"
+    },
+    "lung_adenocarcinoma": {
+      "template_group": "thoracic",
+      "template_key": "lung_tumor_biopsy",
+      "patient_label": "adenocarcinoma ya mapafu"
+    },
+    "lung_squamous_cell_carcinoma": {
+      "template_group": "thoracic",
+      "template_key": "lung_tumor_biopsy",
+      "patient_label": "squamous cell carcinoma ya mapafu"
+    },
+    "small_cell_carcinoma_lung": {
+      "template_group": "thoracic",
+      "template_key": "lung_tumor_biopsy",
+      "patient_label": "small cell carcinoma ya mapafu"
+    }
+  },
+  "biomarker_summaries": {
+    "breast_er_positive": "Uvimbe una kipokezi cha estrojeni (estrogen receptor positive). Hii inamaanisha matibabu yanayotegemea homoni yanaweza kuwa na manufaa.",
+    "breast_er_negative": "Uvimbe hauna kipokezi cha estrojeni (estrogen receptor negative). Hii inamaanisha matibabu ya homoni ya estrojeni yanaweza kuwa na manufaa kidogo kwa uvimbe huu.",
+    "breast_pr_positive": "Uvimbe una kipokezi cha projesteroni (progesterone receptor positive). Hii inaweza kuunga mkono matumizi ya matibabu yanayotegemea homoni.",
+    "breast_pr_negative": "Uvimbe hauna kipokezi cha projesteroni (progesterone receptor negative).",
+    "breast_her2_negative_0": "HER2 hasi yenye alama ya 0. Hii inamaanisha matibabu yanayolenga HER2 kwa kawaida hayaonyeshwi kulingana na matokeo haya.",
+    "breast_her2_negative_1": "HER2 hasi yenye alama ya 1+. Hii bado inachukuliwa kuwa HER2 hasi kwa mujibu wa ripoti ya kawaida.",
+    "breast_her2_equivocal_2": "HER2 haijulikani vyema (equivocal) yenye alama ya 2+. Majaribio ya ziada yanaweza kuhitajika kufafanua hali ya HER2.",
+    "breast_her2_positive_3": "HER2 chanya yenye alama ya 3+. Hii inaweza kufanya matibabu yanayolenga HER2 kuwa muhimu.",
+    "breast_ki67_low": "Ki67 ni ya chini, ikionyesha kiwango cha chini cha shughuli za ukuaji wa seli za uvimbe.",
+    "breast_ki67_high": "Ki67 ni ya juu, ikionyesha kiwango cha juu cha shughuli za ukuaji wa seli za uvimbe.",
+    "pdl1_positive": "PD-L1 ni chanya. Hii inaweza kuwa muhimu wakati wa kuzingatia immunotherapy.",
+    "pdl1_negative": "PD-L1 ni hasi kulingana na kipimo kilichofanywa.",
+    "mismatch_repair_intact": "Protini za ukarabati wa mismatch zimehifadhiwa. Timu yako ya kliniki itafafanua matokeo haya pamoja na matokeo mengine.",
+    "mismatch_repair_deficient": "Protini moja au zaidi za ukarabati wa mismatch zimepotea. Hii inaweza kuwa na athari kwa majaribio zaidi na upangaji wa matibabu.",
+    "gist_cd117_positive": "CD117 ni chanya, matokeo ambayo yanaweza kuunga mkono utambuzi wa GIST.",
+    "gist_dog1_positive": "DOG1 ni chanya, matokeo ambayo yanaweza kuunga mkono utambuzi wa GIST."
+  },
+  "optional_result_modifiers": {
+    "negative_margins": "Mipaka ni hasi, inamaanisha uvimbe haukuonekana kwenye ukingo wa tishu iliyoondolewa.",
+    "positive_margins": "Uvimbe uko kwenye mpaka, inamaanisha seli za uvimbe zinaonekana kwenye ukingo wa tishu iliyoondolewa.",
+    "lymph_nodes_negative": "Nodi za limfu zilizochunguzwa hazionyeshi uvimbe.",
+    "lymph_nodes_positive": "Nodi moja au zaidi za limfu zilizochunguzwa zina uvimbe.",
+    "lvi_present": "Uvamizi wa limfovascular upo, inamaanisha seli za uvimbe zinaonekana ndani ya mishipa midogo au njia za limfu.",
+    "lvi_absent": "Uvamizi wa limfovascular haukutambuliwa.",
+    "pni_present": "Uvamizi wa perineural upo, inamaanisha seli za uvimbe zinaonekana karibu au kando ya mishipa ya neva.",
+    "pni_absent": "Uvamizi wa perineural haukutambuliwa.",
+    "treatment_effect_present": "Kuna mabadiliko yanayoonyesha uvimbe ulijibu matibabu yaliyotolewa kabla ya upasuaji.",
+    "treatment_effect_absent": "Hakuna athari ya matibabu iliyo wazi iliyotambuliwa katika tishu iliyochunguzwa."
+  }
+}

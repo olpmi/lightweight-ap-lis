@@ -27,7 +27,7 @@ interface PatientSummarySourceRecord {
 
 const patientSummaryAssetRoot = path.join(__dirname, '..', 'templates', 'assets', 'patient_summaries');
 const patientSummaryLanguageCodes = new Set<string>(PATIENT_SUMMARY_LANGUAGE_CODES);
-const patientSummaryFilePattern = /^(.*)\.patient_summary(?:_([a-z]{2})|\.([a-z]{2}))\.json$/;
+const patientSummaryFilePattern = /^(.+)\.([a-z]{2})\.json$/;
 
 function walk(dirPath: string): string[] {
   const filePaths: string[] = [];
@@ -147,7 +147,7 @@ function getSourceRecords(): PatientSummarySourceRecord[] {
       continue;
     }
 
-    const languageCode = (match[2] ?? match[3] ?? '').toLowerCase();
+    const languageCode = (match[2] ?? '').toLowerCase();
     if (!patientSummaryLanguageCodes.has(languageCode)) {
       continue;
     }

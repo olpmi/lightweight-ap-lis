@@ -1,0 +1,195 @@
+{
+  "template_id": "breast_biomarker_status_v1",
+  "domain": "anatomic_pathology",
+  "lang": "pt",
+  "title": "Estado dos biomarcadores mamários",
+
+  "er_status": {
+    "label": "Estado do receptor de estrogênio (RE)",
+    "fields": {
+      "percentage_nuclear_positivity": {
+        "label": "Percentagem de células com positividade nuclear",
+        "type": "select",
+        "options": [
+          "Menos de 1%",
+          "1-10%",
+          "11-20%",
+          "21-30%",
+          "31-40%",
+          "41-50%",
+          "51-60%",
+          "61-70%",
+          "71-80%",
+          "81-90%",
+          "91-100%"
+        ],
+        "value": ""
+      },
+      "average_intensity": {
+        "label": "Intensidade média da coloração",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "pgr_status": {
+    "label": "Estado do receptor de progesterona (RP)",
+    "fields": {
+      "percentage_nuclear_positivity": {
+        "label": "Percentagem de células com positividade nuclear",
+        "type": "select",
+        "options": [
+          "Menos de 1%",
+          "1-10%",
+          "11-20%",
+          "21-30%",
+          "31-40%",
+          "41-50%",
+          "51-60%",
+          "61-70%",
+          "71-80%",
+          "81-90%",
+          "91-100%"
+        ],
+        "value": ""
+      },
+      "average_intensity": {
+        "label": "Intensidade média da coloração",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "her2_ihc_status": {
+    "label": "Estado do HER2 por imuno-histoquímica (IHQ)",
+    "comment": "Cancroes de mama com escores IHQ de HER2 0+, 1+ ou 2+ (ISH negativo) podem ser elegíveis para tratamento dirigido a níveis não amplificados de expressão de HER2 no cenário metastático. Atualmente, pacientes sem coloração de membrana pela IHQ (0) são inelegíveis ou excluídos. Considere utilizar o comentário padronizado opcional do relatório de IHQ de HER2 para explicar a relevância clínica de níveis mais baixos de coloração IHQ de HER2 no cenário metastático e as definições de HER2 ultralow e low utilizadas em ensaios clínicos.",
+    "fields": {
+      "overall_score": {
+        "label": "Pontuação global de IHQ do HER2",
+        "type": "select",
+        "options": [
+          "Negativo (Pontuação 0)",
+          "Negativo (Pontuação 1+)",
+          "Equívoco (Pontuação 2+)",
+          "Positivo (Pontuação 3+)"
+        ],
+        "value": ""
+      },
+
+      "score_0_pattern": {
+        "label": "Padrão da pontuação 0",
+        "type": "select",
+        "options": [
+          "Sem coloração de membrana detectada (0 / ausência de coloração de membrana)",
+          "Coloração de membrana incompleta, fraca ou dificilmente perceptível, em menos de ou igual a 10% das células tumorais (0+ / com coloração de membrana)",
+          "Outro"
+        ],
+        "value": "",
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" }
+      },
+
+      "score_1_pattern": {
+        "label": "Padrão da pontuação 1+",
+        "type": "select",
+        "options": [
+          "Coloração de membrana incompleta, fraca ou dificilmente perceptível, em mais de 10% das células tumorais",
+          "Outro"
+        ],
+        "value": "",
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" }
+      },
+
+      "score_2_pattern": {
+        "label": "Padrão da pontuação 2+",
+        "type": "select",
+        "options": [
+          "Coloração de membrana completa, de fraca a moderada, observada em mais de 10% das células tumorais",
+          "Coloração de membrana incompleta, moderada a intensa (basolateral)",
+          "Menos de ou igual a 10% do cancro apresenta coloração circunferencial completa e intensa (3+) (heterogênea, mas de extensão muito limitada; considerar resultados de espécimes adicionais)",
+          "Coloração citoplasmática abundante presente, obscurecendo a avaliação da intensidade da coloração de membrana",
+          "Outro"
+        ],
+        "value": "",
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" }
+      },
+
+      "score_3_pattern": {
+        "label": "Padrão da pontuação 3+",
+        "type": "select",
+        "options": [
+          "Coloração de membrana circunferencial completa, intensa e em mais de 10% das células tumorais",
+          "Outro"
+        ],
+        "value": "",
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" }
+      }
+    }
+  },
+
+  "ki67_status": {
+    "label": "Índice de proliferação Ki-67",
+    "fields": {
+      "value": {
+        "label": "Índice de proliferação Ki-67",
+        "type": "select",
+        "options": [
+          "Menos de 1%",
+          "1-10%",
+          "11-20%",
+          "21-30%",
+          "31-40%",
+          "41-50%",
+          "51-60%",
+          "61-70%",
+          "71-80%",
+          "81-90%",
+          "91-100%"
+        ],
+        "value": ""
+      }
+    }
+  },
+
+  "methods": {
+    "label": "Métodos",
+    "fields": {
+      "block_numbers": {
+        "label": "Testes realizados no(s) bloco(s) número(s)",
+        "type": "text",
+        "value": ""
+      },
+      "er_primary_antibody": {
+        "label": "Receptor de estrogênio: anticorpo primário",
+        "type": "text",
+        "value": ""
+      },
+      "pgr_primary_antibody": {
+        "label": "Receptor de progesterona: anticorpo primário",
+        "type": "text",
+        "value": ""
+      },
+      "er_pgr_reporting_guideline": {
+        "label": "Relatório de RE e RP",
+        "type": "fixed_text",
+        "value": "Diretriz ASCO/CAP 2020"
+      },
+      "her2_primary_antibody": {
+        "label": "HER2 (por imuno-histoquímica): anticorpo primário",
+        "type": "text",
+        "value": ""
+      },
+      "her2_reporting_guideline": {
+        "label": "Relatório de teste de HER2 por imuno-histoquímica (IHQ)",
+        "type": "fixed_text",
+        "value": "Diretriz ASCO/CAP 2025"
+      },
+      "ki67_primary_antibody": {
+        "label": "Índice Ki-67: anticorpo primário",
+        "type": "fixed_text",
+        "value": "MIB-1"
+      }
+    }
+  }
+}

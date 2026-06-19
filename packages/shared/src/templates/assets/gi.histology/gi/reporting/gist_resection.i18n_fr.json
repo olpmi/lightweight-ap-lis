@@ -1,83 +1,78 @@
 {
   "template_id": "gist_resection_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "protocol_posting_date": "December 2022",
   "lang": "fr",
-  "title": "Modèle de compte rendu : tumeur stromale gastro-intestinale (GIST) : résection",
+  "standards": ["AJCC-UICC 8"],
+  "title": "Tumeur stromale gastro-intestinale (GIST) : résection",
   "clinical": {
-    "label": "CLINIQUE",
+    "label": "Clinique",
     "fields": {
       "preresection_treatment": {
-        "label": "Traitement avant résection (sélectionner tout ce qui s’applique)",
+        "label": "Traitement avant résection",
+        "type": "multi_select",
         "options": [
           "Aucun traitement avant résection connu",
-          "Biopsie ou chirurgie antérieure (préciser)",
-          "Traitement systémique effectué (préciser le type)",
+          "Biopsie ou chirurgie antérieure",
+          "Traitement systémique effectué",
           "Traitement effectué, type non précisé",
           "Non précisé"
-        ]
+        ],
+        "value": []
       }
     }
   },
   "specimen": {
-    "label": "SPÉCIMEN",
+    "label": "Prélèvement",
     "fields": {
       "procedure": {
         "label": "Procédure",
-        "options": [
-          "Exérèse locale",
-          "Résection (préciser le type, p. ex. gastrectomie partielle)",
-          "Métastasectomie",
-          "Autre (préciser)",
-          "Non précisé"
-        ]
+        "type": "select",
+        "options": ["Exérèse locale", "Résection", "Métastasectomie", "Autre", "Non précisé"],
+        "value": ""
       }
     }
   },
   "tumor": {
-    "label": "TUMEUR",
+    "label": "Tumeur",
     "fields": {
       "tumor_focality": {
         "label": "Focalité tumorale",
-        "options": [
-          "Unifocale",
-          "Multifocale"
-        ]
+        "type": "select",
+        "options": ["Unifocale", "Multifocale"],
+        "value": ""
       },
       "number_of_tumors": {
         "label": "Nombre de tumeurs",
-        "options": [
-          "Préciser le nombre",
-          "Autre (préciser)",
-          "Ne peut être déterminé"
-        ]
+        "type": "text",
+        "value": ""
       },
       "sizes_of_tumors": {
         "label": "Tailles des tumeurs",
-        "options": [
-          "Ne peut être déterminé"
-        ]
+        "type": "text",
+        "value": ""
       },
       "multiple_primary_sites": {
-        "label": "Sites primaires multiples (p. ex. estomac et intestin grêle)",
-        "options": [
-          "Sans objet (aucun autre site primaire présent)",
-          "Présent"
-        ]
+        "label": "Sites primaires multiples",
+        "type": "select",
+        "options": ["Non applicable (aucun autre site primaire présent)", "Présent"],
+        "value": ""
       },
       "tumor_site": {
         "label": "Site tumoral",
+        "type": "multi_select",
         "options": [
-          "Œsophage (préciser la localisation)",
+          "Œsophage",
           "Jonction gastro-œsophagienne",
-          "Estomac (préciser la localisation)",
-          "Intestin grêle",
+          "Estomac",
           "Duodénum",
           "Jéjunum",
-          "Iléon (à l’exclusion de la valve iléo-cæcale)",
-          "Diverticule de Meckel (site de la tumeur)",
+          "Iléon (sans valve iléo-cæcale)",
+          "Diverticule de Meckel",
           "Intestin grêle, SAI",
           "Appendice",
           "Valve iléo-cæcale",
-          "Gros intestin",
           "Cæcum",
           "Côlon ascendant",
           "Angle hépatique du côlon",
@@ -89,84 +84,70 @@
           "Rectum",
           "Gros intestin, SAI",
           "Rétropéritoine",
-          "Péritoine / abdomen (préciser le site)",
-          "Autre (préciser)",
-          "Ne peut être déterminé",
+          "Péritoine / abdomen",
+          "Autre",
+          "Ne peut pas être déterminé",
           "Non précisé"
-        ]
+        ],
+        "value": []
       },
       "histologic_type": {
         "label": "Type histologique",
+        "type": "select",
         "options": [
           "Tumeur stromale gastro-intestinale, type à cellules fusiformes",
           "Tumeur stromale gastro-intestinale, type épithélioïde",
           "Tumeur stromale gastro-intestinale, mixte",
-          "Tumeur stromale gastro-intestinale, autre (préciser)"
-        ]
-      },
-      "histologic_type_comment": {
-        "label": "Commentaire sur le type histologique"
+          "Tumeur stromale gastro-intestinale, autre"
+        ],
+        "value": ""
       },
       "tumor_size": {
-        "label": "Taille tumorale (selon l’estimation clinicoradiologique)",
-        "options": [
-          "Plus grande dimension en centimètres (cm)",
-          "Dimension supplémentaire en centimètres (cm)",
-          "Ne peut être déterminée (expliquer)"
-        ]
+        "label": "Taille tumorale (selon l'estimation clinicoradiologique)",
+        "type": "text",
+        "value": ""
       },
       "mitotic_rate": {
-        "label": "Index mitotique",
-        "options": [
-          "Préciser l’index mitotique par 5 mm²",
-          "Autre (préciser)",
-          "Ne peut être déterminé (expliquer)"
-        ]
+        "label": "Index mitotique par 5 mm²",
+        "type": "text",
+        "value": ""
       },
       "histologic_grade": {
         "label": "Grade histologique",
+        "type": "select",
         "options": [
-          "G1, bas grade (index mitotique inférieur ou égal à 5 par 5 mm²)",
-          "G2, haut grade (index mitotique supérieur à 5 par 5 mm²)",
-          "Autre (préciser)",
+          "G1, bas grade (index mitotique ≤5 par 5 mm²)",
+          "G2, haut grade (index mitotique >5 par 5 mm²)",
+          "Autre",
           "GX, ne peut être évalué"
-        ]
+        ],
+        "value": ""
       },
       "necrosis": {
         "label": "Nécrose",
-        "options": [
-          "Non identifiée",
-          "Présente"
-        ]
+        "type": "select",
+        "options": ["Non identifiée", "Présente"],
+        "value": ""
       },
       "extent_of_necrosis": {
         "label": "Étendue de la nécrose",
-        "options": [
-          "Préciser le pourcentage",
-          "Autre (préciser)",
-          "Ne peut être déterminée",
-          "Ne peut être déterminée"
-        ]
+        "type": "text",
+        "value": ""
       },
       "treatment_effect": {
         "label": "Effet du traitement",
-        "options": [
-          "Aucun traitement préchirurgical connu",
-          "Non identifié",
-          "Présent"
-        ]
+        "type": "select",
+        "options": ["Aucun traitement préchirurgical connu", "Non identifié", "Présent"],
+        "value": ""
       },
       "percentage_viable_tumor": {
         "label": "Pourcentage de tumeur viable",
-        "options": [
-          "Préciser le pourcentage",
-          "Autre (préciser)",
-          "Ne peut être déterminé",
-          "Ne peut être déterminé"
-        ]
+        "type": "text",
+        "value": ""
       },
       "risk_assessment": {
         "label": "Évaluation du risque",
+        "type": "select",
         "options": [
           "Aucun",
           "Très faible risque",
@@ -174,165 +155,163 @@
           "Risque modéré",
           "Risque élevé",
           "Manifestement malin / métastatique",
-          "Ne peut être déterminé"
-        ]
+          "Ne peut pas être déterminé"
+        ],
+        "value": ""
       },
       "tumor_comment": {
-        "label": "Commentaire sur la tumeur"
+        "label": "Commentaire sur la tumeur",
+        "type": "text",
+        "value": ""
       }
     }
   },
   "margins": {
-    "label": "MARGES",
+    "label": "Marges",
     "fields": {
       "margin_status": {
         "label": "Statut des marges",
+        "type": "select",
         "options": [
-          "Toutes les marges sont négatives pour GIST"
-        ]
+          "Toutes les marges sont négatives pour GIST",
+          "GIST présent à la marge",
+          "Non applicable"
+        ],
+        "value": ""
+      },
+      "closest_margins": {
+        "label": "Marge(s) la/les plus proche(s) du GIST",
+        "type": "multi_select",
+        "options": [
+          "Proximal",
+          "Distal",
+          "Omental (radial)",
+          "Muqueuse",
+          "Profonde",
+          "Autre",
+          "Ne peut pas être déterminé"
+        ],
+        "value": []
       },
       "distance_to_closest_margin": {
         "label": "Distance entre le GIST et la marge la plus proche",
-        "options": [
-          "Distance exacte en cm",
-          "Supérieure à 1 cm",
-          "Distance exacte en mm",
-          "Supérieure à 10 mm",
-          "Autre (préciser)",
-          "Ne peut être déterminée"
-        ]
-      },
-      "gist_present_at_margin": {
-        "label": "GIST présent à la marge"
-      },
-      "closest_margins": {
-        "label": "Marge(s) la/les plus proche(s) du GIST (sélectionner tout ce qui s’applique)",
-        "options": [
-          "Proximale",
-          "Distale",
-          "Omentale (radiale)",
-          "Muqueuse",
-          "Profonde",
-          "Autre (préciser)",
-          "Ne peut être déterminée"
-        ]
+        "type": "text",
+        "value": ""
       },
       "margins_involved": {
-        "label": "Marge(s) atteinte(s) par le GIST (sélectionner tout ce qui s’applique)",
+        "label": "Marge(s) atteinte(s) par le GIST",
+        "type": "multi_select",
         "options": [
-          "Proximale",
-          "Distale",
-          "Omentale (radiale)",
+          "Proximal",
+          "Distal",
+          "Omental (radial)",
           "Muqueuse",
           "Profonde",
-          "Autre (préciser)",
-          "Ne peut être déterminée",
-          "Autre (préciser)",
-          "Ne peut être déterminée (expliquer)",
-          "Sans objet"
-        ]
+          "Autre",
+          "Ne peut pas être déterminé"
+        ],
+        "value": []
       }
     }
   },
   "regional_lymph_nodes": {
-    "label": "GANGLIONS LYMPHATIQUES RÉGIONAUX",
+    "label": "Ganglions lymphatiques régionaux",
     "fields": {
       "status": {
         "label": "Statut des ganglions lymphatiques régionaux",
+        "type": "select",
         "options": [
-          "Sans objet (aucun ganglion régional soumis ou trouvé)",
+          "Non applicable (aucun ganglion régional soumis ni trouvé)",
           "Ganglions lymphatiques régionaux présents",
           "Tous les ganglions régionaux sont négatifs pour la tumeur",
-          "Tumeur présente dans un/des ganglion(s) régional(aux)"
-        ]
+          "Tumeur présente dans un ou plusieurs ganglions régionaux"
+        ],
+        "value": ""
       },
       "number_with_tumor": {
         "label": "Nombre de ganglions lymphatiques avec tumeur",
-        "options": [
-          "Nombre exact (préciser)",
-          "Au moins (préciser)",
-          "Autre (préciser)",
-          "Ne peut être déterminé (expliquer)",
-          "Autre (préciser)"
-        ]
+        "type": "text",
+        "value": ""
       },
       "number_examined": {
         "label": "Nombre de ganglions lymphatiques examinés",
-        "options": [
-          "Nombre exact (préciser)",
-          "Au moins (préciser)",
-          "Autre (préciser)",
-          "Ne peut être déterminé (expliquer)"
-        ]
+        "type": "text",
+        "value": ""
       }
     }
   },
   "distant_metastasis": {
-    "label": "MÉTASTASE À DISTANCE",
+    "label": "Métastases à distance",
     "fields": {
       "sites": {
-        "label": "Site(s) distant(s) atteint(s), le cas échéant (sélectionner tout ce qui s’applique)",
-        "options": [
-          "Sans objet",
-          "Foie",
-          "Autre (préciser)",
-          "Ne peut être déterminé"
-        ]
+        "label": "Site(s) à distance atteint(s)",
+        "type": "multi_select",
+        "options": ["Non applicable", "Foie", "Autre", "Ne peut pas être déterminé"],
+        "value": []
       }
     }
   },
   "ptnm": {
-    "label": "CLASSIFICATION pTNM (AJCC 8e édition)",
+    "label": "Classification pTNM (8e édition AJCC)",
+    "note": "Le signalement des catégories pT, pN et, le cas échéant, pM est basé sur les informations disponibles pour le pathologiste au moment de la délivrance du rapport. Conformément à la 8e édition de l'AJCC (chapitre 1), il incombe au médecin responsable d'établir le stade pathologique final.",
     "fields": {
       "modified_classification": {
-        "label": "Classification modifiée (requise seulement le cas échéant) (sélectionner tout ce qui s’applique)",
-        "options": [
-          "Sans objet",
-          "y (après traitement néoadjuvant)",
-          "r (récidive)"
-        ]
+        "label": "Classification modifiée",
+        "type": "multi_select",
+        "options": ["Non applicable", "y (après traitement néoadjuvant)", "r (récidive)"],
+        "value": []
       },
       "pT_category": {
         "label": "Catégorie pT",
+        "type": "select",
         "options": [
-          "pT non attribué (ne peut être déterminé selon les informations pathologiques disponibles)",
-          "pT0 : aucune preuve de tumeur primaire",
+          "pT non attribué (ne peut pas être déterminé d'après les informations pathologiques disponibles)",
+          "pT0 : aucune preuve de tumeur primitive",
           "pT1 : tumeur de 2 cm ou moins",
           "pT2 : tumeur de plus de 2 cm mais pas plus de 5 cm",
           "pT3 : tumeur de plus de 5 cm mais pas plus de 10 cm",
           "pT4 : tumeur de plus de 10 cm dans sa plus grande dimension"
-        ]
+        ],
+        "value": ""
       },
       "T_suffix": {
-        "label": "Suffixe T (requis seulement le cas échéant)",
+        "label": "Suffixe T",
+        "type": "select",
         "options": [
-          "Sans objet",
-          "(m) Tumeurs primaires synchrones multiples dans un seul organe"
-        ]
+          "Non applicable",
+          "(m) tumeurs primitives synchrones multiples dans un seul organe"
+        ],
+        "value": ""
       },
       "pN_category": {
         "label": "Catégorie pN",
+        "type": "select",
         "options": [
-          "pN non attribué (aucun ganglion soumis ou trouvé)",
-          "pN non attribué (ne peut être déterminé selon les informations pathologiques disponibles)",
-          "pN0 : aucune métastase ganglionnaire régionale",
+          "pN non attribué (aucun ganglion soumis ni trouvé)",
+          "pN non attribué (ne peut pas être déterminé d'après les informations pathologiques disponibles)",
+          "pN0 : pas de métastase ganglionnaire régionale",
           "pN1 : métastase ganglionnaire régionale"
-        ]
+        ],
+        "value": ""
       },
       "pM_category": {
-        "label": "Catégorie pM (requise seulement si confirmée pathologiquement)",
+        "label": "Catégorie pM",
+        "type": "select",
         "options": [
-          "Sans objet - pM ne peut être déterminé à partir du/des spécimen(s) soumis",
+          "Non applicable — pM ne peut pas être déterminé à partir du/des prélèvement(s) soumis",
           "pM1 : métastase à distance"
-        ]
+        ],
+        "value": ""
       }
     }
   },
   "additional_findings": {
-    "label": "CONSTATATIONS SUPPLÉMENTAIRES",
+    "label": "Constatations supplémentaires",
     "fields": {
       "findings": {
-        "label": "Constatations supplémentaires (préciser)"
+        "label": "Constatations supplémentaires",
+        "type": "text",
+        "value": ""
       }
     }
   }

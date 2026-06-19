@@ -1,0 +1,66 @@
+{
+  "templateId": "general_cytology",
+  "summaryType": "rule_based_patient_facing_summary",
+  "version": "1.0",
+  "language": "pt",
+  "system": "Modelo de laudo de citologia geral",
+  "triggerField": "diagnostic_category",
+  "summaries": {
+    "general_non_diagnostic_unsatisfactory": {
+      "professionalLabel": "Não diagnóstico / Insatisfatório",
+      "patientTitle": "A amostra não foi suficiente para um diagnóstico claro",
+      "plainLanguageSummary": "A amostra de citologia não continha células suficientes ou a qualidade da amostra era limitada, pelo que não foi possível estabelecer um diagnóstico claro.",
+      "whatThisMeans": "Isto não significa que foi encontrado cancro. Significa que a amostra não foi adequada para fornecer uma resposta fiável.",
+      "possibleNextSteps": "O seu médico poderá recomendar nova colheita de amostra, biópsia, revisão de imagem ou outros exames, dependendo do local e da preocupação clínica.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, imagem e resultados anteriores quando relevante."
+    },
+    "general_negative_for_malignancy_benign": {
+      "professionalLabel": "Negativo para malignidade / Benigno",
+      "patientTitle": "Sem células cancerosas observadas",
+      "plainLanguageSummary": "A amostra não mostrou células cancerosas e parece benigna no material examinado.",
+      "whatThisMeans": "Este é geralmente um resultado tranquilizador, mas deve ser interpretado juntamente com os seus sintomas, exame físico, imagem e resultados anteriores.",
+      "possibleNextSteps": "O seu médico poderá recomendar seguimento de rotina, tratamento de uma condição benigna ou outros exames se os achados clínicos continuarem a suscitar preocupação.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, imagem e resultados anteriores quando relevante."
+    },
+    "general_atypical_cells_present": {
+      "professionalLabel": "Células atípicas presentes",
+      "patientTitle": "Algumas células invulgares observadas",
+      "plainLanguageSummary": "A amostra mostra algumas células com aspecto invulgar, mas os achados não são suficientes para diagnosticar cancro.",
+      "whatThisMeans": "Este é um resultado indeterminado. As células podem ser reativas ou benignas, mas poderá ser necessária uma avaliação adicional.",
+      "possibleNextSteps": "O seu médico poderá recomendar nova colheita de amostra, biópsia, correlação com imagem ou outros exames, dependendo do local e da preocupação clínica.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, imagem e resultados anteriores quando relevante."
+    },
+    "general_suspicious_for_malignancy": {
+      "professionalLabel": "Suspeito de malignidade",
+      "patientTitle": "Células suspeitas observadas",
+      "plainLanguageSummary": "A amostra mostra células suspeitas de cancro, mas podem não ser suficientes para um diagnóstico definitivo.",
+      "whatThisMeans": "Existe uma preocupação significativa e habitualmente é necessária uma avaliação adicional.",
+      "possibleNextSteps": "O seu médico poderá recomendar biópsia, nova colheita de amostra, exames de imagem ou encaminhamento para especialista.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, imagem e resultados anteriores quando relevante."
+    },
+    "general_positive_for_malignancy": {
+      "professionalLabel": "Positivo para malignidade",
+      "patientTitle": "Células cancerosas identificadas",
+      "plainLanguageSummary": "A amostra mostra células malignas, ou seja, foram identificadas células cancerosas.",
+      "whatThisMeans": "Este resultado requer habitualmente avaliação clínica adicional e planeamento do tratamento.",
+      "possibleNextSteps": "O seu médico interpretará este resultado com os seus achados clínicos e poderá providenciar biópsia, exames de imagem, encaminhamento para especialista ou exames adicionais.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, imagem e resultados anteriores quando relevante."
+    },
+    "general_neoplasm_benign_low_grade_malignant": {
+      "professionalLabel": "Neoplasia presente: benigna / baixo grau / maligna",
+      "patientTitle": "Uma neoplasia ou tumor está presente",
+      "plainLanguageSummary": "A amostra mostra uma neoplasia, ou seja, um crescimento anormal de células. O relatório deverá especificar se parece benigna, de baixo grau ou maligna, sempre que possível.",
+      "whatThisMeans": "O significado depende do tipo de neoplasia, do local do corpo e de se é descrita como benigna, de baixo grau, suspeita ou maligna.",
+      "possibleNextSteps": "O seu médico poderá recomendar exames de imagem, biópsia, cirurgia ou avaliação especializada adicional, dependendo do diagnóstico.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, imagem e resultados anteriores quando relevante."
+    },
+    "general_other": {
+      "professionalLabel": "Outro",
+      "patientTitle": "Outro achado citológico",
+      "plainLanguageSummary": "O relatório descreve um achado que não se enquadra nas categorias diagnósticas habituais.",
+      "whatThisMeans": "O significado depende da redacção exacta da interpretação final e do contexto clínico.",
+      "possibleNextSteps": "O seu médico explicará o resultado e decidirá se são necessários seguimento, nova colheita de amostra, biópsia ou tratamento.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, imagem e resultados anteriores quando relevante."
+    }
+  }
+}

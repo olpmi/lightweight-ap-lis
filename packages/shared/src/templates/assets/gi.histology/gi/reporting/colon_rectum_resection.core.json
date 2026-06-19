@@ -1,10 +1,11 @@
 {
   "template_id": "colorectal_malignant_tumor_resection_v1",
   "domain": "anatomic_pathology",
-  "title": "Colorectal Malignant Tumor, Resection",
+  "case_type": "histology",
   "protocol_posting_date": "September 2025",
+  "lang": "en",
   "standards": ["AJCC 8"],
-
+  "title": "Colorectal Malignant Tumor, Resection",
   "specimen": {
     "label": "Specimen",
     "fields": {
@@ -25,7 +26,6 @@
         "value": "",
         "other_specify": ""
       },
-
       "macroscopic_mesorectum": {
         "label": "Macroscopic evaluation of mesorectum",
         "type": "select",
@@ -41,7 +41,6 @@
       }
     }
   },
-
   "tumor": {
     "label": "Tumor",
     "fields": {
@@ -64,7 +63,6 @@
         ],
         "value": []
       },
-
       "rectal_tumor_location": {
         "label": "Rectal tumor location",
         "type": "select",
@@ -77,7 +75,6 @@
         ],
         "value": ""
       },
-
       "histologic_type": {
         "label": "Histologic type",
         "type": "select",
@@ -102,7 +99,6 @@
         "specify_components": "",
         "comment": ""
       },
-
       "histologic_grade": {
         "label": "Histologic grade",
         "type": "select",
@@ -120,7 +116,6 @@
         "cannot_be_assessed_specify": "",
         "not_applicable_specify": ""
       },
-
       "tumor_size": {
         "label": "Tumor size",
         "fields": {
@@ -141,7 +136,6 @@
           }
         }
       },
-
       "multiple_primary_sites": {
         "label": "Multiple primary sites",
         "type": "select",
@@ -149,7 +143,6 @@
         "value": "",
         "present_specify": ""
       },
-
       "tumor_extent": {
         "label": "Tumor extent",
         "type": "select",
@@ -168,14 +161,13 @@
         "adjacent_structure_specify": "",
         "cannot_be_determined_specify": ""
       },
-
       "submucosal_invasion": {
         "label": "Submucosal invasion (pT1 only)",
         "fields": {
           "status": {
             "label": "Submucosal invasion",
             "type": "select",
-            "options": ["Not applicable", "Not identified", "Present"],
+            "options": ["Not applicable (not a pT1 tumor)", "Present"],
             "value": ""
           },
           "depth": {
@@ -205,14 +197,12 @@
           }
         }
       },
-
       "macroscopic_tumor_perforation": {
         "label": "Macroscopic tumor perforation",
         "type": "select",
         "options": ["Not identified", "Present", "Cannot be determined"],
         "value": ""
       },
-
       "lymphovascular_invasion": {
         "label": "Lymphatic and / or vascular invasion",
         "type": "multi_select",
@@ -226,14 +216,12 @@
         ],
         "value": []
       },
-
       "perineural_invasion": {
         "label": "Perineural invasion",
         "type": "select",
         "options": ["Not identified", "Present", "Cannot be determined"],
         "value": ""
       },
-
       "tumor_budding_score": {
         "label": "Tumor budding score",
         "type": "select",
@@ -246,13 +234,11 @@
         ],
         "value": ""
       },
-
       "number_of_tumor_buds": {
         "label": "Number of tumor buds per hotspot field",
         "type": "text",
         "value": ""
       },
-
       "polyp_origin": {
         "label": "Type of polyp in which invasive carcinoma arose",
         "type": "select",
@@ -269,7 +255,6 @@
         "value": "",
         "other_specify": ""
       },
-
       "treatment_effect": {
         "label": "Treatment effect",
         "type": "select",
@@ -284,7 +269,6 @@
         ],
         "value": ""
       },
-
       "tumor_comment": {
         "label": "Tumor comment",
         "type": "text",
@@ -292,7 +276,6 @@
       }
     }
   },
-
   "margins": {
     "label": "Margins",
     "fields": {
@@ -306,7 +289,6 @@
         ],
         "value": ""
       },
-
       "closest_margin": {
         "label": "Closest margin(s) to invasive carcinoma",
         "type": "multi_select",
@@ -322,25 +304,21 @@
         ],
         "value": []
       },
-
       "distance_to_closest_margin": {
         "label": "Distance from invasive carcinoma to closest margin",
         "type": "text",
         "value": ""
       },
-
       "distance_to_radial_margin_rectum": {
         "label": "Distance to radial margin (rectal tumors only)",
         "type": "text",
         "value": ""
       },
-
       "distance_to_distal_margin_rectum": {
         "label": "Distance to distal margin (rectal tumors only)",
         "type": "text",
         "value": ""
       },
-
       "non_invasive_margin_status": {
         "label": "Margin status for non-invasive tumor",
         "type": "multi_select",
@@ -352,7 +330,6 @@
         ],
         "value": []
       },
-
       "margin_comment": {
         "label": "Margin comment",
         "type": "text",
@@ -360,7 +337,6 @@
       }
     }
   },
-
   "regional_lymph_nodes": {
     "label": "Regional Lymph Nodes",
     "fields": {
@@ -375,32 +351,27 @@
         ],
         "value": ""
       },
-
       "number_with_tumor": {
         "label": "Number of lymph nodes with tumor",
         "type": "text",
         "value": ""
       },
-
       "number_examined": {
         "label": "Number of lymph nodes examined",
         "type": "text",
         "value": ""
       },
-
       "tumor_deposits": {
         "label": "Tumor deposits",
         "type": "select",
         "options": ["Not identified", "Present", "Cannot be determined"],
         "value": ""
       },
-
       "number_of_tumor_deposits": {
         "label": "Number of tumor deposits",
         "type": "text",
         "value": ""
       },
-
       "comment": {
         "label": "Regional lymph node comment",
         "type": "text",
@@ -408,7 +379,6 @@
       }
     }
   },
-
   "distant_metastasis": {
     "label": "Distant Metastasis",
     "fields": {
@@ -426,63 +396,69 @@
       }
     }
   },
-
   "ptnm": {
     "label": "pTNM Classification (AJCC 8th Edition)",
+    "note": "Reporting of pT, pN, and (when applicable) pM categories is based on information available to the pathologist at the time the report is issued. As per the AJCC (Chapter 1, 8th Ed.) it is the managing physician's responsibility to establish the final pathologic stage based upon all pertinent information, including but potentially not limited to this pathology report.",
     "fields": {
       "modified_classification": {
         "label": "Modified classification",
         "type": "multi_select",
-        "options": [
-          "Not applicable",
-          "y (post-neoadjuvant therapy)",
-          "r (recurrence)"
-        ],
+        "options": ["Not applicable", "y (post-neoadjuvant therapy)", "r (recurrence)"],
         "value": []
       },
-
       "pT_category": {
         "label": "pT category",
         "type": "select",
-        "options": ["pT0", "pTis", "pT1", "pT2", "pT3", "pT4a", "pT4b", "pT4"],
-        "value": ""
-      },
-
-      "T_suffix": {
-        "label": "T suffix",
-        "type": "select",
         "options": [
-          "Not applicable",
-          "(m) multiple primary synchronous tumors in a single organ"
+          "pT not assigned (cannot be determined based on available pathological information)",
+          "pT0: No evidence of primary tumor",
+          "pTis: Carcinoma in situ, intramucosal carcinoma (involvement of lamina propria with no extension through muscularis mucosae)",
+          "pT1: Tumor invades the submucosa (through the muscularis mucosa but not into the muscularis propria)",
+          "pT2: Tumor invades the muscularis propria",
+          "pT3: Tumor invades through the muscularis propria into pericolorectal tissues",
+          "pT4a: Tumor invades through the visceral peritoneum (including gross perforation of the bowel through tumor and continuous invasion of tumor through areas of inflammation to the surface of the visceral peritoneum)",
+          "pT4b: Tumor directly invades or adheres to adjacent organs or structures",
+          "pT4 (subcategory cannot be determined)"
         ],
         "value": ""
       },
-
+      "T_suffix": {
+        "label": "T suffix",
+        "type": "select",
+        "options": ["Not applicable", "(m) multiple primary synchronous tumors in a single organ"],
+        "value": ""
+      },
       "pN_category": {
         "label": "pN category",
         "type": "select",
         "options": [
-          "pN0",
-          "pN1a",
-          "pN1b",
-          "pN1c",
-          "pN1",
-          "pN2a",
-          "pN2b",
-          "pN2"
+          "pN not assigned (no nodes submitted or found)",
+          "pN not assigned (cannot be determined based on available pathological information)",
+          "pN0: No regional lymph node metastasis",
+          "pN1a: One regional lymph node is positive",
+          "pN1b: Two or three regional lymph nodes are positive",
+          "pN1c: No regional lymph nodes are positive, but there are tumor deposits in the subserosa, mesentery, nonperitonealized pericolic or perirectal / mesorectal tissues",
+          "pN1 (subcategory cannot be determined)",
+          "pN2a: Four to six regional lymph nodes are positive",
+          "pN2b: Seven or more regional lymph nodes are positive",
+          "pN2 (subcategory cannot be assessed)"
         ],
         "value": ""
       },
-
       "pM_category": {
         "label": "pM category",
         "type": "select",
-        "options": ["Not applicable", "pM1a", "pM1b", "pM1c", "pM1"],
+        "options": [
+          "Not applicable - pM cannot be determined from the submitted specimen(s)",
+          "pM1a: Metastasis to one site or organ is identified without peritoneal metastasis",
+          "pM1b: Metastasis to two or more sites or organs is identified without peritoneal metastasis",
+          "pM1c: Metastasis to the peritoneal surface is identified alone or with other site or organ metastases",
+          "pM1 (subcategory cannot be determined)"
+        ],
         "value": ""
       }
     }
   },
-
   "additional_findings": {
     "label": "Additional Findings",
     "fields": {
@@ -503,7 +479,6 @@
       }
     }
   },
-
   "comments": {
     "label": "Comments",
     "fields": {

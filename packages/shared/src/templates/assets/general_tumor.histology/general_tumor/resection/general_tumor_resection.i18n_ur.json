@@ -1,133 +1,167 @@
 {
   "template_id": "general_tumor_resection_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "protocol_posting_date": "June 2021",
   "lang": "ur",
-  "title": "جنرل ٹیومر ریسیکشن",
+  "ui": {
+    "direction": "rtl"
+  },
+  "title": "جنرل رسولی ریسیکشن",
   "specimen": {
     "label": "نمونہ",
     "fields": {
       "procedure": {
-        "label": "طریقۂ کار"
+        "label": "طریقۂ کار",
+        "type": "text",
+        "value": ""
       },
       "laterality": {
         "label": "نمونے کی جانب",
-        "options": [
-          "دائیں",
-          "بائیں",
-          "واضح نہیں",
-          "قابل اطلاق نہیں"
-        ]
+        "type": "select",
+        "options": ["دائیں", "بائیں", "غیر متعین", "قابل اطلاق نہیں"],
+        "value": ""
       },
       "lymph_node_sampling": {
         "label": "لمف نوڈ سیمپلنگ",
-        "options": [
-          "کی گئی",
-          "نہیں کی گئی",
-          "معلوم نہیں"
-        ],
-        "lymph_nodes_sampled": "نمونہ لیے گئے لمف نوڈز"
+        "type": "select",
+        "options": ["کی گئی", "نہیں کی گئی", "معلوم نہیں"],
+        "value": "",
+        "lymph_nodes_sampled": {
+          "label": "نمونے کے لیے لیے گئے لمف نوڈز",
+          "type": "text",
+          "value": ""
+        }
       }
     }
   },
   "tumor": {
-    "label": "ٹیومر",
+    "label": "رسولی",
     "fields": {
       "site": {
-        "label": "ٹیومر کی جگہ / جگہیں"
+        "label": "رسولی کا مقام / مقامات",
+        "type": "text",
+        "value": ""
       },
       "histologic_type": {
-        "label": "ہسٹولوجک قسم"
+        "label": "ہسٹولوجیکل قسم",
+        "type": "text",
+        "value": ""
       },
       "histologic_grade": {
-        "label": "ہسٹولوجک گریڈ"
+        "label": "ہسٹولوجیکل گریڈ",
+        "type": "text",
+        "value": ""
       },
       "tumor_size": {
-        "label": "ٹیومر کا سائز",
+        "label": "رسولی کا سائز",
         "fields": {
           "measurement_type": {
             "label": "پیمائش کی قسم",
-            "options": [
-              "سب سے بڑی جہت سینٹی میٹر (cm) میں",
-              "متعین نہیں کیا جا سکتا"
-            ]
+            "type": "select",
+            "options": ["سب سے بڑی جہت سینٹی میٹر (cm) میں", "متعین نہیں کیا جا سکتا"],
+            "value": ""
           },
           "greatest_dimension_cm": {
-            "label": "سب سے بڑی جہت (cm)"
+            "label": "سب سے بڑی جہت (cm)",
+            "type": "number",
+            "value": ""
           },
           "additional_dimensions_cm": {
-            "label": "اضافی جہات (cm)"
+            "label": "اضافی جہات (cm)",
+            "type": "measurement_2d",
+            "value": ""
           },
           "cannot_be_determined_specify": {
-            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
+            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+            "type": "text",
+            "value": ""
           }
         }
       },
       "tumor_extent": {
-        "label": "ٹیومر کا پھیلاؤ (متاثرہ ساختیں یا اعضاء)"
+        "label": "رسولی کا پھیلاؤ (متاثرہ ساختیں یا اعضاء)",
+        "type": "text",
+        "value": ""
       },
       "mitotic_rate": {
-        "label": "مائٹوٹک ریٹ"
+        "label": "مائٹوٹک ریٹ",
+        "type": "text",
+        "value": ""
       },
       "tumor_necrosis": {
-        "label": "ٹیومر نیکروسس",
+        "label": "رسولی نیکروسس",
         "fields": {
           "status": {
-            "label": "ٹیومر نیکروسس کی حالت",
-            "options": [
-              "شناخت نہیں ہوئی",
-              "موجود",
-              "متعین نہیں کیا جا سکتا"
-            ]
+            "label": "رسولی نیکروسس کی حالت",
+            "type": "select",
+            "options": ["شناخت نہیں ہوئی", "موجود", "متعین نہیں کیا جا سکتا"],
+            "value": ""
           },
           "percentage_type": {
-            "label": "ٹیومر نیکروسس کا فیصد",
-            "options": [
-              "فیصد درج کریں",
-              "دیگر",
-              "متعین نہیں کیا جا سکتا"
-            ]
+            "label": "رسولی نیکروسس کا فیصد",
+            "type": "select",
+            "options": ["فیصد درج کریں", "دیگر", "متعین نہیں کیا جا سکتا"],
+            "value": ""
           },
           "percentage_value": {
-            "label": "فیصد (%)"
+            "label": "فیصد (%)",
+            "type": "number",
+            "value": ""
           },
           "other_specify": {
-            "label": "دیگر (وضاحت کریں)"
+            "label": "دیگر (وضاحت کریں)",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_specify": {
-            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
+            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+            "type": "text",
+            "value": ""
           }
         }
       },
       "lymphovascular_invasion": {
-        "label": "لیمفوویسکیولر اِنویژن",
-        "options": [
-          "شناخت نہیں ہوئی",
-          "موجود",
-          "متعین نہیں کیا جا سکتا"
-        ],
-        "cannot_be_determined_specify": "متعین نہیں کیا جا سکتا، وضاحت کریں"
+        "label": "لمفاتی و عروقی رسوخ",
+        "type": "select",
+        "options": ["شناخت نہیں ہوئی", "موجود", "متعین نہیں کیا جا سکتا"],
+        "value": "",
+        "cannot_be_determined_specify": {
+          "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        }
       },
       "treatment_effect": {
         "label": "علاج کا اثر",
         "fields": {
           "status": {
             "label": "علاج کے اثر کی حالت",
+            "type": "select",
             "options": [
-              "پری آپریٹو علاج معلوم نہیں",
-              "شناخت نہیں ہوا",
+              "کوئی معلوم پری آپریٹو علاج نہیں",
+              "شناخت نہیں ہوئی",
               "موجود",
               "متعین نہیں کیا جا سکتا"
-            ]
+            ],
+            "value": ""
           },
           "preoperative_therapy_given": {
-            "label": "دیا گیا پری آپریٹو علاج"
+            "label": "دیا گیا پری آپریٹو علاج",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_specify": {
-            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
+            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+            "type": "text",
+            "value": ""
           }
         }
       },
       "tumor_comment": {
-        "label": "ٹیومر پر تبصرہ"
+        "label": "رسولی پر تبصرہ",
+        "type": "text",
+        "value": ""
       }
     }
   },
@@ -136,75 +170,88 @@
     "fields": {
       "margin_status": {
         "label": "حاشیے کی حالت",
-        "options": [
-          "تمام حاشیے ٹیومر کے لیے منفی ہیں",
-          "ٹیومر حاشیے پر موجود ہے",
-          "قابل اطلاق نہیں"
-        ]
+        "type": "select",
+        "options": ["تمام حاشیے رسولی کے لیے منفی ہیں", "رسولی حاشیے پر موجود", "قابل اطلاق نہیں"],
+        "value": ""
       },
       "distance_to_closest_margin": {
-        "label": "ٹیومر سے قریب ترین حاشیے تک فاصلہ",
+        "label": "رسولی سے قریب ترین حاشیے تک فاصلہ",
         "fields": {
           "distance_type": {
             "label": "فاصلے کی قسم",
+            "type": "select",
             "options": [
               "بالکل درست فاصلہ",
               "سے زیادہ",
               "کم از کم",
               "سے کم",
-              "1 ملی میٹر سے کم",
+              "1 mm سے کم",
               "دیگر",
               "متعین نہیں کیا جا سکتا"
-            ]
+            ],
+            "value": ""
           },
           "distance_mm": {
-            "label": "فاصلہ (mm)"
+            "label": "فاصلہ (mm)",
+            "type": "number",
+            "value": ""
           },
           "other_specify": {
-            "label": "دیگر (وضاحت کریں)"
+            "label": "دیگر (وضاحت کریں)",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_specify": {
-            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
+            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+            "type": "text",
+            "value": ""
           }
         }
       },
       "closest_margins_to_tumor": {
-        "label": "ٹیومر کے قریب ترین حاشیہ / حاشیے",
+        "label": "رسولی کے قریب ترین حاشیہ / حاشیے",
         "fields": {
           "status": {
             "label": "قریب ترین حاشیے کی حالت",
-            "options": [
-              "قریب ترین حاشیہ / حاشیے درج کریں",
-              "متعین نہیں کیا جا سکتا"
-            ]
+            "type": "select",
+            "options": ["قریب ترین حاشیہ / حاشیے درج کریں", "متعین نہیں کیا جا سکتا"],
+            "value": ""
           },
           "specify": {
-            "label": "قریب ترین حاشیہ / حاشیے درج کریں"
+            "label": "قریب ترین حاشیہ / حاشیے درج کریں",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_specify": {
-            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
+            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+            "type": "text",
+            "value": ""
           }
         }
       },
       "margins_involved_by_tumor": {
-        "label": "ٹیومر سے متاثرہ حاشیہ / حاشیے",
+        "label": "رسولی سے متاثرہ حاشیہ / حاشیے",
         "fields": {
           "status": {
             "label": "متاثرہ حاشیے کی حالت",
-            "options": [
-              "متاثرہ حاشیہ / حاشیے درج کریں",
-              "دیگر",
-              "متعین نہیں کیا جا سکتا"
-            ]
+            "type": "select",
+            "options": ["متاثرہ حاشیہ / حاشیے درج کریں", "دیگر", "متعین نہیں کیا جا سکتا"],
+            "value": ""
           },
           "specify": {
-            "label": "متاثرہ حاشیہ / حاشیے درج کریں"
+            "label": "متاثرہ حاشیہ / حاشیے درج کریں",
+            "type": "text",
+            "value": ""
           },
           "other_specify": {
-            "label": "دیگر (وضاحت کریں)"
+            "label": "دیگر (وضاحت کریں)",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_specify": {
-            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
+            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+            "type": "text",
+            "value": ""
           }
         }
       }
@@ -215,78 +262,87 @@
     "fields": {
       "regional_lymph_node_status": {
         "label": "علاقائی لمف نوڈ کی حالت",
+        "type": "select",
         "options": [
           "قابل اطلاق نہیں (کوئی علاقائی لمف نوڈ جمع نہیں کیے گئے یا نہیں ملے)",
           "علاقائی لمف نوڈز موجود ہیں",
-          "تمام علاقائی لمف نوڈز ٹیومر کے لیے منفی ہیں",
-          "علاقائی لمف نوڈ / نوڈز میں ٹیومر موجود ہے"
-        ]
+          "تمام علاقائی لمف نوڈز رسولی کے لیے منفی ہیں",
+          "علاقائی لمف نوڈ / نوڈز میں رسولی موجود ہے"
+        ],
+        "value": ""
       },
       "number_with_tumor": {
-        "label": "ٹیومر والے لمف نوڈز کی تعداد",
         "fields": {
           "count_type": {
             "label": "تعداد کی قسم",
-            "options": [
-              "بالکل درست تعداد",
-              "کم از کم",
-              "دیگر",
-              "متعین نہیں کیا جا سکتا"
-            ]
+            "type": "select",
+            "options": ["بالکل درست تعداد", "کم از کم", "دیگر", "متعین نہیں کیا جا سکتا"],
+            "value": ""
           },
           "count_value": {
-            "label": "تعداد"
+            "label": "تعداد",
+            "type": "integer",
+            "value": ""
           },
           "other_specify": {
-            "label": "دیگر (وضاحت کریں)"
+            "label": "دیگر (وضاحت کریں)",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_specify": {
-            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
+            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+            "type": "text",
+            "value": ""
           }
-        }
+        },
+        "label": "رسولی والے لمف نوڈز کی تعداد"
       },
       "extranodal_extension": {
-        "label": "ایکسٹرانوڈل ایکسٹینشن",
+        "label": "نوڈ سے باہر پھیلاؤ",
         "fields": {
           "status": {
-            "label": "ایکسٹرانوڈل ایکسٹینشن کی حالت",
-            "options": [
-              "شناخت نہیں ہوئی",
-              "موجود",
-              "دیگر",
-              "متعین نہیں کیا جا سکتا"
-            ]
+            "label": "نوڈ سے باہر پھیلاؤ کی حالت",
+            "type": "select",
+            "options": ["شناخت نہیں ہوئی", "موجود", "دیگر", "متعین نہیں کیا جا سکتا"],
+            "value": ""
           },
           "other_specify": {
-            "label": "دیگر (وضاحت کریں)"
+            "label": "دیگر (وضاحت کریں)",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_specify": {
-            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
+            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+            "type": "text",
+            "value": ""
           }
         }
       },
       "number_examined": {
-        "label": "جائزہ لیے گئے لمف نوڈز کی تعداد",
         "fields": {
           "count_type": {
             "label": "تعداد کی قسم",
-            "options": [
-              "بالکل درست تعداد",
-              "کم از کم",
-              "دیگر",
-              "متعین نہیں کیا جا سکتا"
-            ]
+            "type": "select",
+            "options": ["بالکل درست تعداد", "کم از کم", "دیگر", "متعین نہیں کیا جا سکتا"],
+            "value": ""
           },
           "count_value": {
-            "label": "تعداد"
+            "label": "تعداد",
+            "type": "integer",
+            "value": ""
           },
           "other_specify": {
-            "label": "دیگر (وضاحت کریں)"
+            "label": "دیگر (وضاحت کریں)",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_specify": {
-            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)"
+            "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+            "type": "text",
+            "value": ""
           }
-        }
+        },
+        "label": "معائنہ کیے گئے لمف نوڈز کی تعداد"
       }
     }
   },
@@ -294,7 +350,9 @@
     "label": "اضافی مشاہدات",
     "fields": {
       "findings": {
-        "label": "اضافی مشاہدات"
+        "label": "اضافی مشاہدات",
+        "type": "text",
+        "value": ""
       }
     }
   }

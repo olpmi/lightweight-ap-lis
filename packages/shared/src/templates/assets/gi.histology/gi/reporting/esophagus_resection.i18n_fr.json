@@ -1,51 +1,69 @@
 {
   "template_id": "esophagus_resection_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "protocol_posting_date": "June 2021",
   "lang": "fr",
-  "title": "MODÈLE DE COMPTE RENDU – ŒSOPHAGE",
+  "standards": ["AJCC-UICC 8"],
+  "title": "Œsophage",
   "specimen": {
-    "label": "PRÉLÈVEMENT",
+    "label": "Prélèvement",
     "fields": {
       "procedure": {
         "label": "Procédure",
+        "type": "select",
         "options": [
+          "Résection endoscopique",
           "Œsophagectomie",
           "Œsogastrectomie",
-          "Résection endoscopique"
+          "Autre",
+          "Non précisé"
         ],
-        "other_specify": "Autre, préciser"
+        "value": "",
+        "other_specify": { "label": "Autre (précisez)", "type": "text", "value": "" }
       }
     }
   },
   "tumor": {
-    "label": "TUMEUR",
+    "label": "Tumeur",
     "fields": {
       "tumor_site": {
-        "label": "Site tumoral (sélectionner tout ce qui s’applique)",
+        "label": "Site tumoral",
+        "type": "multi_select",
         "options": [
           "Œsophage cervical (proximal)",
           "Œsophage moyen, thoracique supérieur",
           "Œsophage moyen, thoracique moyen",
-          "Œsophage moyen, sans autre précision",
+          "Œsophage moyen, SAI",
           "Œsophage distal (thoracique inférieur)",
           "Jonction œsogastrique (JOG)",
           "Estomac proximal / cardia",
+          "Autre",
           "Œsophage, SAI"
-        ]
+        ],
+        "value": []
       },
       "relationship_to_egj": {
         "label": "Relation de la tumeur avec la jonction œsogastrique",
+        "type": "select",
         "options": [
-          "La tumeur est entièrement dans l’œsophage tubulaire et n’implique pas la JOG",
-          "Le point médian est dans l’œsophage distal ET la tumeur implique la JOG",
+          "La tumeur est entièrement dans l'œsophage tubulaire et n'implique pas la JOG",
+          "Le point médian est dans l'œsophage distal ET la tumeur implique la JOG",
           "Le point médian est situé à la JOG",
-          "Le point médian est à 2 cm ou moins dans l’estomac proximal/cardia et la tumeur implique la JOG"
-        ]
+          "Le point médian est à 2 cm ou moins dans l'estomac proximal ou cardia et la tumeur implique la JOG",
+          "Non précisé",
+          "Ne peut pas être déterminé"
+        ],
+        "value": ""
       },
       "distance_of_center_from_egj": {
-        "label": "Distance du centre tumoral à la JOG"
+        "label": "Distance du centre tumoral à la JOG",
+        "type": "text",
+        "value": ""
       },
       "histologic_type": {
         "label": "Type histologique",
+        "type": "select",
         "options": [
           "Adénocarcinome",
           "Carcinome adénoïde kystique",
@@ -66,33 +84,50 @@
           "G1, tumeur neuroendocrine bien différenciée",
           "G2, tumeur neuroendocrine bien différenciée",
           "G3, tumeur neuroendocrine bien différenciée",
-          "Autre type histologique non listé (préciser)",
-          "Carcinome, type ne pouvant être déterminé"
+          "Autre type histologique non listé",
+          "Carcinome, type indéterminable"
         ],
-        "comment": "Commentaire"
+        "value": "",
+        "comment": { "label": "Commentaire", "type": "text", "value": "" }
       },
       "histologic_grade": {
         "label": "Grade histologique",
+        "type": "select",
         "options": [
           "G1, bien différencié",
           "G2, moyennement différencié",
           "G3, peu différencié, indifférencié",
-          "GX, ne peut être évalué"
-        ]
+          "Autre",
+          "GX, ne peut être évalué",
+          "Non applicable"
+        ],
+        "value": ""
       },
       "tumor_size": {
-        "label": "Taille tumorale"
+        "label": "Taille tumorale",
+        "type": "text",
+        "value": ""
       },
       "tumor_extent": {
         "label": "Extension tumorale",
+        "type": "select",
         "options": [
           "Dysplasie de haut grade / carcinome in situ",
           "Envahit la lamina propria",
           "Envahit la muscularis mucosae",
           "Envahit la sous-muqueuse",
           "Envahit la musculeuse propre",
-          "Envahit l’adventice",
+          "Envahit l'adventice",
           "Envahit les structures ou organes adjacents",
+          "Ne peut pas être déterminé",
+          "Aucune preuve de tumeur primitive"
+        ],
+        "value": ""
+      },
+      "adjacent_structures": {
+        "label": "Structures adjacentes envahies",
+        "type": "multi_select",
+        "options": [
           "Plèvre",
           "Péricarde",
           "Veine azygos",
@@ -100,148 +135,220 @@
           "Péritoine",
           "Aorte",
           "Corps vertébral",
-          "Voie aérienne",
-          "Aucune preuve de tumeur primitive"
-        ]
+          "Voies aériennes",
+          "Autre"
+        ],
+        "value": []
       },
       "treatment_effect": {
         "label": "Effet du traitement",
+        "type": "select",
         "options": [
           "Aucun traitement préchirurgical connu",
           "Présent, sans cellules cancéreuses viables (réponse complète, score 0)",
           "Présent, cellules isolées ou rares petits groupes de cellules cancéreuses (réponse quasi complète, score 1)",
-          "Présent, cancer résiduel avec régression tumorale évidente (réponse partielle, score 2)",
+          "Présent, cancer résiduel avec régression tumorale évidente, mais plus que des cellules isolées ou de rares petits groupes (réponse partielle, score 2)",
           "Présent (sans autre précision)",
-          "Absent, cancer résiduel étendu sans régression tumorale évidente (réponse faible ou nulle, score 3)"
-        ]
+          "Absent, cancer résiduel étendu sans régression tumorale évidente (réponse faible ou nulle, score 3)",
+          "Ne peut pas être déterminé"
+        ],
+        "value": ""
       },
       "lymphovascular_invasion": {
-        "label": "Invasion lymphovasculaire"
+        "label": "Invasion lymphovasculaire",
+        "type": "select",
+        "options": ["Non identifiée", "Présente", "Ne peut pas être déterminée"],
+        "value": ""
       },
       "perineural_invasion": {
-        "label": "Invasion périnerveuse"
+        "label": "Invasion périnerveuse",
+        "type": "select",
+        "options": ["Non identifiée", "Présente", "Ne peut pas être déterminée"],
+        "value": ""
       },
       "tumor_comment": {
-        "label": "Commentaire sur la tumeur"
-      },
-      "adjacent_structures": {}
+        "label": "Commentaire sur la tumeur",
+        "type": "text",
+        "value": ""
+      }
     }
   },
   "margins": {
-    "label": "MARGES",
+    "label": "Marges",
     "fields": {
       "margin_status_invasive": {
         "label": "Statut des marges pour le carcinome invasif",
+        "type": "select",
         "options": [
           "Toutes les marges sont négatives pour le carcinome invasif",
-          "Dysplasie épidermoïde de bas grade présente à la marge",
-          "Dysplasie épidermoïde de haut grade présente à la marge",
-          "Dysplasie glandulaire de bas grade présente à la marge",
-          "Dysplasie glandulaire de haut grade présente à la marge",
-          "Métaplasie intestinale (œsophage de Barrett) sans dysplasie présente à la marge"
-        ]
+          "Carcinome invasif présent à la marge",
+          "Non applicable"
+        ],
+        "value": ""
       },
       "closest_margins": {
-        "label": "Marge(s) la/les plus proche(s) du carcinome invasif (sélectionner tout ce qui s’applique)",
+        "label": "Marge(s) la/les plus proche(s)",
+        "type": "multi_select",
         "options": [
           "Proximale",
           "Distale",
           "Radiale",
           "Muqueuse",
           "Profonde",
-          "Autre (préciser)",
-          "Ne peut être déterminé",
-          "Dysplasie épidermoïde de bas grade présente à la marge",
-          "Dysplasie épidermoïde de haut grade présente à la marge",
-          "Dysplasie glandulaire de bas grade présente à la marge",
-          "Dysplasie glandulaire de haut grade présente à la marge",
-          "Métaplasie intestinale (œsophage de Barrett) sans dysplasie présente à la marge"
-        ]
+          "Autre",
+          "Ne peut pas être déterminé"
+        ],
+        "value": []
       },
       "distance_to_closest_margin": {
-        "label": "Distance du carcinome invasif à la marge la plus proche"
+        "label": "Distance du carcinome invasif à la marge la plus proche",
+        "type": "text",
+        "value": ""
       },
       "dysplasia_and_barrett_margins": {
-        "label": "Statut des marges pour la dysplasie et la métaplasie intestinale (sélectionner tout ce qui s’applique)",
+        "label": "Statut des marges pour la dysplasie et la métaplasie intestinale",
+        "type": "multi_select",
         "options": [
           "Toutes les marges sont négatives pour la dysplasie",
           "Dysplasie épidermoïde de bas grade présente à la marge",
           "Dysplasie épidermoïde de haut grade présente à la marge",
           "Dysplasie glandulaire de bas grade présente à la marge",
           "Dysplasie glandulaire de haut grade présente à la marge",
-          "Métaplasie intestinale (œsophage de Barrett) sans dysplasie présente à la marge"
-        ]
+          "Métaplasie intestinale (œsophage de Barrett) sans dysplasie présente à la marge",
+          "Non applicable"
+        ],
+        "value": []
       },
       "margin_comment": {
-        "label": "Commentaire sur les marges"
+        "label": "Commentaire sur les marges",
+        "type": "text",
+        "value": ""
       }
     }
   },
   "regional_lymph_nodes": {
-    "label": "GANGLIONS LYMPHATIQUES RÉGIONAUX",
+    "label": "Ganglions lymphatiques régionaux",
     "fields": {
       "status": {
         "label": "Statut des ganglions lymphatiques régionaux",
+        "type": "select",
         "options": [
-          "Sans objet (aucun ganglion lymphatique régional soumis ou trouvé)",
+          "Non applicable (aucun ganglion lymphatique régional soumis ni trouvé)",
           "Ganglions lymphatiques régionaux présents",
           "Tous les ganglions régionaux sont négatifs pour la tumeur",
-          "Tumeur présente dans un/des ganglion(s) régional(aux)"
-        ]
+          "Tumeur présente dans un ou plusieurs ganglions régionaux"
+        ],
+        "value": ""
       },
       "number_with_tumor": {
-        "label": "Nombre de ganglions lymphatiques avec tumeur"
+        "label": "Nombre de ganglions lymphatiques avec tumeur",
+        "type": "text",
+        "value": ""
       },
       "number_examined": {
-        "label": "Nombre de ganglions lymphatiques examinés"
+        "label": "Nombre de ganglions lymphatiques examinés",
+        "type": "text",
+        "value": ""
       },
       "comment": {
-        "label": "Commentaire sur les ganglions lymphatiques régionaux"
+        "label": "Commentaire sur les ganglions lymphatiques régionaux",
+        "type": "text",
+        "value": ""
       }
     }
   },
   "distant_metastasis": {
-    "label": "MÉTASTASE À DISTANCE",
+    "label": "Métastases à distance",
     "fields": {
       "sites": {
-        "label": "Site(s) distant(s) atteint(s), le cas échéant (sélectionner tout ce qui s’applique)",
+        "label": "Site(s) à distance atteint(s)",
+        "type": "multi_select",
         "options": [
+          "Non applicable",
+          "Ganglion(s) lymphatique(s) non régional/régionaux",
           "Foie",
-          "Ganglion(s) lymphatique(s) non régionaux"
-        ]
+          "Autre",
+          "Ne peut pas être déterminé"
+        ],
+        "value": []
       }
     }
   },
   "pathologic_stage": {
-    "label": "CLASSIFICATION DU STADE PATHOLOGIQUE (pTNM, 8e édition AJCC)",
+    "label": "Classification du stade pathologique (pTNM, 8e édition AJCC)",
+    "note": "Le signalement des catégories pT, pN et, le cas échéant, pM est basé sur les informations disponibles pour le pathologiste au moment de la délivrance du rapport. Conformément à la 8e édition de l'AJCC (chapitre 1), il incombe au médecin responsable d'établir le stade pathologique final sur la base de toutes les informations pertinentes.",
     "fields": {
       "tnm_descriptors": {
-        "label": "Descripteurs TNM (sélectionner tout ce qui s’applique)",
+        "label": "Descripteurs TNM",
+        "type": "multi_select",
         "options": [
+          "Non applicable",
           "m (tumeurs primitives multiples)",
           "r (récidive)",
           "y (post-traitement)"
-        ]
+        ],
+        "value": []
       },
-      "pT_category": {},
-      "pN_category": {},
-      "pM_category": {}
+      "pT_category": {
+        "label": "Catégorie pT",
+        "type": "select",
+        "options": [
+          "pT non attribué (ne peut pas être déterminé d'après les informations pathologiques disponibles)",
+          "pT0 : aucune preuve de tumeur primitive",
+          "pTis : dysplasie de haut grade, définie comme des cellules malignes confinées à l'épithélium par la membrane basale",
+          "pT1a : la tumeur envahit la lamina propria ou la muscularis mucosae",
+          "pT1b : la tumeur envahit la sous-muqueuse",
+          "pT1 (sous-catégorie indéterminable)",
+          "pT2 : la tumeur envahit la musculeuse propre",
+          "pT3 : la tumeur envahit l'adventice",
+          "pT4a : la tumeur envahit la plèvre, le péricarde, la veine azygos, le diaphragme ou le péritoine",
+          "pT4b : la tumeur envahit d'autres structures adjacentes telles que l'aorte, le corps vertébral ou les voies aériennes",
+          "pT4 (sous-catégorie indéterminable)"
+        ],
+        "value": ""
+      },
+      "pN_category": {
+        "label": "Catégorie pN",
+        "type": "select",
+        "options": [
+          "pN non attribué (aucun ganglion soumis ni trouvé)",
+          "pN non attribué (ne peut pas être déterminé d'après les informations pathologiques disponibles)",
+          "pN0 : pas de métastase ganglionnaire régionale",
+          "pN1 : métastase dans un ou deux ganglions lymphatiques régionaux",
+          "pN2 : métastases dans trois à six ganglions lymphatiques régionaux",
+          "pN3 : métastases dans sept ganglions lymphatiques régionaux ou plus"
+        ],
+        "value": ""
+      },
+      "pM_category": {
+        "label": "Catégorie pM",
+        "type": "select",
+        "options": [
+          "Non applicable — pM ne peut pas être déterminé à partir du/des prélèvement(s) soumis",
+          "pM1 : métastase à distance"
+        ],
+        "value": ""
+      }
     }
   },
   "additional_findings": {
-    "label": "CONSTATATIONS ADDITIONNELLES",
+    "label": "Constatations supplémentaires",
     "fields": {
       "findings": {
-        "label": "Constatations additionnelles (sélectionner tout ce qui s’applique)",
+        "label": "Constatations supplémentaires",
+        "type": "multi_select",
         "options": [
-          "Œsophagite (préciser le type)",
-          "Gastrite (préciser le type)",
+          "Aucune identifiée",
           "Métaplasie intestinale (œsophage de Barrett)",
           "Dysplasie épidermoïde de bas grade",
           "Dysplasie épidermoïde de haut grade",
           "Dysplasie glandulaire de bas grade",
-          "Dysplasie glandulaire de haut grade"
-        ]
+          "Dysplasie glandulaire de haut grade",
+          "Œsophagite",
+          "Gastrite",
+          "Autre"
+        ],
+        "value": []
       }
     }
   }

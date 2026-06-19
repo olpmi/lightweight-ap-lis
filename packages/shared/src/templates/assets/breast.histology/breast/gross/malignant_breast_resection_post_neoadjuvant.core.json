@@ -1,6 +1,7 @@
 {
   "template_id": "malignant_breast_resection_post_neoadjuvant_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "title": "Malignant Breast Resection (Post-Neoadjuvant Chemotherapy)",
 
   "clinical_case_summary": {
@@ -14,7 +15,7 @@
       "site": { "label": "Site", "type": "text", "value": "" },
       "focality": { "label": "Focality", "type": "text", "value": "" },
       "dimensions": {
-        "label": "Dimensions (mm)",
+        "label": "Dimensions (cm)",
         "type": "measurement_3d",
         "value": ""
       },
@@ -182,13 +183,7 @@
       "abnormal_features": {
         "label": "Abnormal features",
         "type": "multi_select",
-        "options": [
-          "Paget’s disease",
-          "Scaling crust",
-          "Retracted",
-          "Fixed to tumor",
-          "Other"
-        ]
+        "options": ["Paget’s disease", "Scaling crust", "Retracted", "Fixed to tumor", "Other"]
       }
     }
   },
@@ -197,12 +192,12 @@
     "label": "Tumor Bed",
     "fields": {
       "gross_dimensions": {
-        "label": "Gross dimensions (mm)",
+        "label": "Gross dimensions (cm)",
         "type": "measurement_3d",
         "value": ""
       },
       "imaging_dimensions": {
-        "label": "Imaging dimensions (mm)",
+        "label": "Imaging dimensions (cm)",
         "type": "measurement_3d",
         "value": ""
       },
@@ -285,9 +280,14 @@
     "label": "Block Allocation Key",
     "fields": {
       "nipple": {},
-      "tumor": {},
+      "tumor/tumor_bed": {},
       "surrounding_breast": {},
-      "margins": {},
+      "medial margin": {},
+      "lateral margin": {},
+      "Superior margin": {},
+      "Inferior margin": {},
+      "Posterior margin": {},
+      "Anterior margin": {},
       "lymph_nodes": {}
     }
   },
@@ -296,7 +296,7 @@
     "label": "Grossing",
     "fields": {
       "grossed_by": { "label": "Grossed by", "type": "text", "value": "" },
-      "date":       { "label": "Date",        "type": "date", "value": "" }
+      "date": { "label": "Date", "type": "date", "value": "" }
     }
   }
 }

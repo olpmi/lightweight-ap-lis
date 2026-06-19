@@ -1,0 +1,283 @@
+{
+  "templateId": "urine_cytology_paris_system",
+  "templateName": "Modèle de compte rendu de cytologie urinaire (Système de Paris pour le compte rendu de la cytologie urinaire)",
+  "language": "fr",
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategory": "urine_cytology",
+    "organSystem": "urinary_tract",
+    "reportingSystem": "Paris System for Reporting Urinary Cytology"
+  },
+  "sections": [
+    {
+      "id": "specimen",
+      "title": "Prélèvement",
+      "fields": [
+        {
+          "id": "specimen_type",
+          "label": "Type de prélèvement",
+          "type": "select",
+          "options": [
+            "Urine spontanée",
+            "Urine obtenue par cathétérisme",
+            "Lavage vésical",
+            "Barbotage vésical",
+            "Lavage urétéral",
+            "Lavage du bassinet rénal",
+            "Urine de conduit iléal",
+            "Autre"
+          ]
+        },
+        {
+          "id": "specimen_site",
+          "label": "Site du prélèvement",
+          "type": "select",
+          "options": [
+            "Vessie",
+            "Uretère droit",
+            "Uretère gauche",
+            "Bassinet rénal droit",
+            "Bassinet rénal gauche",
+            "Voies urinaires supérieures, sans précision",
+            "Voies urinaires, sans précision",
+            "Autre"
+          ]
+        },
+        {
+          "id": "laterality",
+          "label": "Latéralité (si applicable)",
+          "type": "select",
+          "options": ["Droite", "Gauche", "Bilatérale", "Non applicable"]
+        },
+        {
+          "id": "clinical_indication",
+          "label": "Indication clinique",
+          "type": "multiselect",
+          "options": [
+            "Hématurie",
+            "Surveillance d’un carcinome urothélial",
+            "Antécédent de néoplasie urothéliale de bas grade",
+            "Antécédent de carcinome urothélial de haut grade",
+            "Imagerie ou cystoscopie suspecte",
+            "Symptômes urinaires irritatifs",
+            "Autre"
+          ]
+        },
+        {
+          "id": "clinical_indication_other",
+          "label": "Autre indication clinique",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "preparation_methods",
+      "title": "Méthodes de préparation",
+      "fields": [
+        {
+          "id": "preparation_methods_used",
+          "label": "Méthodes de préparation",
+          "type": "multiselect",
+          "options": [
+            "Frottis conventionnel",
+            "Cytospin",
+            "Préparation en milieu liquide",
+            "Bloc cellulaire"
+          ]
+        },
+        {
+          "id": "cell_block_prepared",
+          "label": "Bloc cellulaire préparé",
+          "type": "select",
+          "options": ["Oui", "Non"]
+        }
+      ]
+    },
+    {
+      "id": "adequacy",
+      "title": "Adéquation",
+      "fields": [
+        {
+          "id": "adequacy_status",
+          "label": "Adéquation",
+          "type": "select",
+          "options": [
+            "Adéquat pour l’évaluation",
+            "Cellularité limitée mais adéquate",
+            "Insatisfaisant / non diagnostique"
+          ]
+        },
+        {
+          "id": "unsatisfactory_reason",
+          "label": "Raison de l’insuffisance",
+          "type": "multiselect",
+          "options": [
+            "Rareté des cellules urothéliales",
+            "Dégénérescence ou mauvaise conservation",
+            "Obscurci par le sang",
+            "Obscurci par l’inflammation",
+            "Obscurci par un contaminant ou lubrifiant",
+            "Volume insuffisant",
+            "Autre"
+          ]
+        },
+        {
+          "id": "unsatisfactory_reason_other",
+          "label": "Autre raison",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "diagnostic_category",
+      "title": "Catégorie diagnostique (Système de Paris)",
+      "fields": [
+        {
+          "id": "paris_category",
+          "label": "Catégorie diagnostique",
+          "type": "select",
+          "options": [
+            "I. Non diagnostique / Insatisfaisant",
+            "II. Négatif pour un carcinome urothélial de haut grade (NHGUC)",
+            "III. Cellules urothéliales atypiques (AUC)",
+            "IV. Suspect de carcinome urothélial de haut grade (SHGUC)",
+            "V. Carcinome urothélial de haut grade (HGUC)",
+            "VI. Autres tumeurs malignes primitives ou métastatiques"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "negative_findings",
+      "title": "Si négatif pour un carcinome urothélial de haut grade",
+      "fields": [
+        {
+          "id": "negative_findings_options",
+          "label": "Résultats",
+          "type": "multiselect",
+          "options": [
+            "Cellules urothéliales bénignes",
+            "Cellules urothéliales réactionnelles",
+            "Modifications dégénératives",
+            "Inflammation",
+            "Cristaux",
+            "Modifications associées à une lithiase",
+            "Effet cytopathique du polyomavirus",
+            "Modifications liées à l’instrumentation",
+            "Néoplasie urothéliale de bas grade observée ou ne pouvant être exclue",
+            "Autre"
+          ]
+        },
+        {
+          "id": "negative_findings_other",
+          "label": "Autre résultat",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "atypical_suspicious_features",
+      "title": "Caractéristiques cytologiques atypiques ou suspectes",
+      "fields": [
+        {
+          "id": "cytologic_features",
+          "label": "Caractéristiques cytologiques observées",
+          "type": "multiselect",
+          "options": [
+            "Rapport nucléocytoplasmique augmenté",
+            "Hyperchromasie nucléaire",
+            "Irrégularité de la membrane nucléaire",
+            "Chromatine grossière ou agglutinée",
+            "Pléomorphisme cellulaire",
+            "Nucléoles proéminents",
+            "Nécrose",
+            "Figures de mitose",
+            "Amas cellulaires tridimensionnels",
+            "Autre"
+          ]
+        },
+        {
+          "id": "cytologic_features_other",
+          "label": "Autre caractéristique cytologique",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "microscopic_description",
+      "title": "Description microscopique",
+      "fields": [
+        {
+          "id": "microscopic_description_text",
+          "label": "Description microscopique",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "id": "malignancy_subtype",
+      "title": "En cas de malignité ou d’autre tumeur maligne, orientation diagnostique",
+      "fields": [
+        {
+          "id": "malignancy_favor",
+          "label": "Orientation diagnostique",
+          "type": "multiselect",
+          "options": [
+            "Carcinome urothélial de haut grade",
+            "Carcinome urothélial avec différenciation malpighienne",
+            "Carcinome urothélial avec différenciation glandulaire",
+            "Carcinome épidermoïde",
+            "Adénocarcinome",
+            "Carcinome à petites cellules / tumeur neuroendocrine",
+            "Carcinome métastatique",
+            "Tumeur hématolymphoïde",
+            "Autre"
+          ]
+        },
+        {
+          "id": "malignancy_favor_other",
+          "label": "Autre tumeur maligne",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "ancillary_studies",
+      "title": "Études complémentaires (si réalisées)",
+      "fields": [
+        {
+          "id": "urovysion_fish",
+          "label": "Test UroVysion FISH",
+          "type": "select",
+          "options": ["Non réalisé", "En attente", "Négatif", "Positif", "Équivoque"]
+        },
+        {
+          "id": "immunocytochemistry",
+          "label": "Immunocytochimie",
+          "type": "text"
+        },
+        {
+          "id": "molecular_studies",
+          "label": "Études moléculaires",
+          "type": "text"
+        },
+        {
+          "id": "microbiology_stains_cultures",
+          "label": "Colorations ou cultures microbiologiques",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "comment_recommendation",
+      "title": "Commentaire / Recommandation",
+      "fields": [
+        {
+          "id": "comment_text",
+          "label": "Commentaire / Recommandation",
+          "type": "textarea"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,262 @@
+{
+  "template_id": "malignant_breast_resection_post_neoadjuvant_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "lang": "pt",
+  "title": "Ressecção mamária maligna (pós-quimioterapia neoadjuvante)",
+
+  "clinical_case_summary": {
+    "label": "Resumo do caso clínico (pré-terapia neoadjuvante)",
+    "fields": {
+      "tumor_characteristics": { "label": "Características do tumor", "type": "text", "value": "" },
+      "site": { "label": "Local", "type": "text", "value": "" },
+      "focality": { "label": "Focalidade", "type": "text", "value": "" },
+      "dimensions": { "label": "Dimensões (cm)", "type": "measurement_3d", "value": "" },
+      "baseline_biomarker": { "label": "Biomarcador tumoral basal", "type": "text", "value": "" },
+      "neoadjuvant_regimen": {
+        "label": "Esquema de quimioterapia neoadjuvante",
+        "type": "text",
+        "value": ""
+      },
+      "cycles_completed": { "label": "Ciclos concluídos", "type": "integer", "value": "" }
+    }
+  },
+
+  "specimen": {
+    "label": "Espécime",
+    "fields": {
+      "intraoperative_consult": {
+        "label": "Consulta intraoperatória realizada",
+        "type": "select",
+        "options": ["Sim", "Não"],
+        "value": "",
+        "reason": ""
+      },
+      "weight": { "label": "Peso da espécime (g)", "type": "number", "value": "" },
+      "laterality": {
+        "label": "Lateralidade",
+        "type": "select",
+        "options": ["Esquerda", "Direita", "Não especificada"],
+        "value": ""
+      },
+      "type": {
+        "label": "Tipo de espécime",
+        "type": "select",
+        "options": [
+          "Mastectomia radical modificada",
+          "Mastectomia simples",
+          "Mastectomia com preservação de pele",
+          "Mastectomia com preservação de mamilo",
+          "Tumorectomia (excisão local ampla)",
+          "Quadrantectomia (ressecção segmentar)",
+          "Cirurgia oncoplástica conservadora da mama"
+        ],
+        "value": ""
+      }
+    }
+  },
+
+  "lymph_nodes": {
+    "label": "Gânglios linfáticos",
+    "fields": {
+      "present": { "label": "Gânglios linfáticos presentes", "type": "boolean", "value": "" },
+      "sentinel": {
+        "label": "Gânglios linfáticos sentinela",
+        "fields": {
+          "site": { "label": "Local", "type": "text", "value": "" },
+          "radioactive_count": { "label": "Contagem radioativa", "type": "text", "value": "" },
+          "dye_uptake": { "label": "Captação do corante", "type": "boolean", "value": "" },
+          "number": { "label": "Número", "type": "integer", "value": "" },
+          "dimensions": {
+            "label": "Dimensões de cada gânglio linfático",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "non_sentinel": {
+        "label": "Gânglios linfáticos não sentinela",
+        "fields": {
+          "total_number": {
+            "label": "Número total de gânglios linfáticos",
+            "type": "integer",
+            "value": ""
+          },
+          "size_range": { "label": "Intervalo de tamanhos", "type": "text", "value": "" }
+        }
+      },
+      "pre_treatment_abnormal": {
+        "label": "Gânglios linfáticos anormais pré-tratamento",
+        "type": "select",
+        "options": ["Desconhecido", "Ausente", "Presente"],
+        "value": "",
+        "if_present_number": ""
+      }
+    }
+  },
+
+  "breast_measurements": {
+    "label": "Dimensões da mama",
+    "fields": {
+      "medial_lateral": {
+        "label": "Comprimento medial–lateral",
+        "type": "measurement",
+        "value": ""
+      },
+      "superior_inferior": {
+        "label": "Comprimento superior–inferior",
+        "type": "measurement",
+        "value": ""
+      },
+      "anterior_posterior": {
+        "label": "Comprimento anterior–posterior",
+        "type": "measurement",
+        "value": ""
+      }
+    }
+  },
+
+  "skin": {
+    "label": "Pele",
+    "fields": {
+      "present": { "label": "Pele presente", "type": "boolean", "value": "" },
+      "dimensions": { "label": "Dimensões da pele", "type": "text", "value": "" },
+      "abnormalities": {
+        "label": "Alterações cutâneas",
+        "type": "multi_select",
+        "options": [
+          "Ulceração",
+          "Cicatriz cirúrgica prévia",
+          "Eritema",
+          ">30% de envolvimento",
+          "Nódulos cutâneos satélites",
+          "Outro"
+        ],
+        "value": ""
+      }
+    }
+  },
+
+  "nipple": {
+    "label": "Mamilo",
+    "fields": {
+      "present": { "label": "Mamilo presente", "type": "boolean", "value": "" },
+      "description": {
+        "label": "Descrição do mamilo",
+        "type": "select",
+        "options": ["Normal", "Anormal"]
+      },
+      "abnormal_features": {
+        "label": "Alterações anormais",
+        "type": "multi_select",
+        "options": ["Doença de Paget", "Crosta descamativa", "Retraído", "Fixo ao tumor", "Outro"]
+      }
+    }
+  },
+
+  "tumor_bed": {
+    "label": "Leito tumoral",
+    "fields": {
+      "gross_dimensions": {
+        "label": "Dimensões macroscópicas (cm)",
+        "type": "measurement_3d",
+        "value": ""
+      },
+      "imaging_dimensions": {
+        "label": "Dimensões por imagem (cm)",
+        "type": "measurement_3d",
+        "value": ""
+      },
+      "description": { "label": "Descrição do leito tumoral", "type": "text", "value": "" }
+    }
+  },
+
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "macroscopic_present": {
+        "label": "Tumor macroscopicamente visível",
+        "type": "boolean",
+        "value": ""
+      },
+      "site": {
+        "label": "Local do tumor",
+        "type": "select",
+        "options": [
+          "Quadrante superior externo",
+          "Quadrante superior interno",
+          "Quadrante inferior externo",
+          "Quadrante inferior interno",
+          "Central",
+          "Mamilo",
+          "Não especificado"
+        ]
+      },
+      "focality": {
+        "label": "Focalidade",
+        "type": "select",
+        "options": ["Unifocal", "Multifocal"]
+      },
+      "size_post_treatment": {
+        "label": "Tamanho do tumor pós-neoadjuvância (mm)",
+        "type": "measurement_3d",
+        "value": ""
+      },
+      "skin_involvement": { "label": "Fixo à pele", "type": "boolean" },
+      "chest_wall_involvement": { "label": "Fixo à parede torácica", "type": "boolean" }
+    }
+  },
+
+  "margins": {
+    "label": "Margens",
+    "fields": {
+      "medial": { "label": "Margem medial", "type": "text" },
+      "lateral": { "label": "Margem lateral", "type": "text" },
+      "superior": { "label": "Margem superior", "type": "text" },
+      "inferior": { "label": "Margem inferior", "type": "text" },
+      "posterior": { "label": "Margem posterior", "type": "text" },
+      "anterior": { "label": "Margem anterior", "type": "text" },
+      "skin": { "label": "Pele sobrejacente", "type": "text" }
+    }
+  },
+
+  "muscle": {
+    "label": "Músculo esquelético",
+    "fields": {
+      "presence": {
+        "label": "Músculo esquelético",
+        "type": "select",
+        "options": ["Presente", "Ausente"],
+        "value": ""
+      }
+    }
+  },
+
+  "block_key": {
+    "label": "Chave de alocação de blocos",
+    "fields": {
+      "nipple": { "label": "Mamilo", "type": "text", "value": "" },
+      "tumor/tumor_bed": { "label": "Tumor / leito tumoral", "type": "text", "value": "" },
+      "surrounding_breast": { "label": "Tecido mamário circundante", "type": "text", "value": "" },
+      "medial margin": { "label": "Margem medial", "type": "text", "value": "" },
+      "lateral margin": { "label": "Margem lateral", "type": "text", "value": "" },
+      "Superior margin": { "label": "Margem superior", "type": "text", "value": "" },
+      "Inferior margin": { "label": "Margem inferior", "type": "text", "value": "" },
+      "Posterior margin": { "label": "Margem posterior", "type": "text", "value": "" },
+      "Anterior margin": { "label": "Margem anterior", "type": "text", "value": "" },
+      "lymph_nodes": { "label": "Gânglios linfáticos", "type": "text", "value": "" }
+    }
+  },
+
+  "grossing": {
+    "label": "Exame macroscópico",
+    "fields": {
+      "grossed_by": {
+        "label": "Exame macroscópico realizado por (iniciais)",
+        "type": "text",
+        "value": ""
+      },
+      "date": { "label": "Data", "type": "date", "value": "" }
+    }
+  }
+}

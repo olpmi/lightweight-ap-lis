@@ -1,31 +1,30 @@
 {
   "template_id": "breast_dcis_biopsy_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "protocol_posting_date": "June 2021",
   "lang": "fr",
   "title": "CCIS du sein, biopsie",
-  "case_summary": {
-    "label": "Résumé du cas (CCIS du sein : biopsie)",
-    "fields": {}
-  },
   "specimen": {
-    "label": "Pièce",
+    "label": "Prélèvement",
     "fields": {
       "procedure": {
         "label": "Procédure",
         "options": [
-          "Biopsie à l’aiguille",
-          "Ponction à l’aiguille fine",
+          "Biopsie à l'aiguille",
+          "Cytoponction à l'aiguille fine",
           "Autre",
           "Non précisé"
         ],
-        "other_specify": "Précisez (autre)"
+        "type": "select",
+        "value": "",
+        "other_specify": "Autre (préciser)"
       },
       "laterality": {
-        "label": "Latéralité de la pièce",
-        "options": [
-          "Droite",
-          "Gauche",
-          "Non précisé"
-        ]
+        "label": "Latéralité du prélèvement",
+        "options": ["Droite", "Gauche", "Non précisé"],
+        "type": "select",
+        "value": ""
       }
     }
   },
@@ -44,7 +43,13 @@
           "Position horaire",
           "Non précisé"
         ],
-        "clock_position_specify": "Précisez la position horaire"
+        "type": "multi_select",
+        "value": [],
+        "clock_position_specify": {
+          "label": "Position en cadran horaire (préciser)",
+          "type": "text",
+          "value": ""
+        }
       },
       "histologic_type": {
         "label": "Type histologique",
@@ -53,7 +58,9 @@
           "Maladie de Paget",
           "Carcinome papillaire encapsulé sans carcinome invasif",
           "Carcinome papillaire solide sans carcinome invasif"
-        ]
+        ],
+        "type": "select",
+        "value": ""
       },
       "architectural_patterns": {
         "label": "Patterns architecturaux",
@@ -66,7 +73,9 @@
           "Solide",
           "Autre"
         ],
-        "other_specify": "Précisez l'autre schéma architectural"
+        "type": "multi_select",
+        "value": [],
+        "other_specify": { "label": "Autre (préciser)", "type": "text", "value": "" }
       },
       "nuclear_grade": {
         "label": "Grade nucléaire",
@@ -77,8 +86,14 @@
           "Autre",
           "Ne peut pas être déterminé"
         ],
-        "other_specify": "Précisez l'autre grade nucléaire",
-        "cannot_be_determined_specify": "Précisez 'ne peut être déterminé'"
+        "type": "select",
+        "value": "",
+        "other_specify": { "label": "Autre (préciser)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "Ne peut pas être déterminé (préciser)",
+          "type": "text",
+          "value": ""
+        }
       },
       "necrosis": {
         "label": "Nécrose",
@@ -89,8 +104,14 @@
           "Autre",
           "Ne peut pas être déterminée"
         ],
-        "other_specify": "Précisez autre nécrose",
-        "cannot_be_determined_specify": "Précisez 'ne peut être déterminé'"
+        "type": "select",
+        "value": "",
+        "other_specify": { "label": "Autre (préciser)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "Ne peut pas être déterminé (préciser)",
+          "type": "text",
+          "value": ""
+        }
       },
       "microcalcifications": {
         "label": "Microcalcifications",
@@ -100,7 +121,9 @@
           "Présentes dans le tissu non néoplasique",
           "Autre"
         ],
-        "other_specify": "Précisez les autres microcalcifications"
+        "type": "multi_select",
+        "value": [],
+        "other_specify": "Autre (préciser)"
       }
     }
   },
@@ -108,14 +131,10 @@
     "label": "Constatations supplémentaires",
     "fields": {
       "findings": {
-        "label": "Constatations supplémentaires"
+        "label": "Constatations supplémentaires",
+        "type": "text",
+        "value": ""
       }
     }
-  },
-  "domain": {
-    "fields": {}
-  },
-  "protocol_posting_date": {
-    "fields": {}
   }
 }

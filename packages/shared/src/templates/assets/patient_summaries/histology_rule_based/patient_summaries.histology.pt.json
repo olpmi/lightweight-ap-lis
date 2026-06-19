@@ -1,0 +1,272 @@
+{
+  "metadata": {
+    "id": "patient_summaries.histology.pt",
+    "language": "pt",
+    "version": "1.0.0",
+    "title": "Resumos de histologia para o doente",
+    "description": "Resumos baseados em regras para o doente, em português europeu, para os modelos de histologia actuais. Estes resumos utilizam linguagem simples e destinam-se a ajudar os doentes a compreender o significado geral do seu resultado de anatomia patológica.",
+    "scope": [
+      "Biópsia de carcinoma invasivo da mama",
+      "Ressecção de carcinoma invasivo da mama",
+      "Biópsia de CDIS da mama",
+      "Ressecção de CDIS da mama",
+      "Estado dos biomarcadores da mama",
+      "Biópsia do colo do útero",
+      "Ressecção do colo do útero",
+      "Endométrio",
+      "Ovário, trompa de Falópio e peritoneu primário",
+      "Biópsia tumoral geral",
+      "Ressecção tumoral geral",
+      "Ressecção de tumor maligno colorrectal",
+      "Tumor do esófago",
+      "Tumor do estroma gastrointestinal",
+      "Ressecção de tumor do estômago",
+      "Biópsia por agulha da próstata",
+      "Prostatectomia",
+      "Biópsia de tumor do pulmão"
+    ],
+    "note": "Este ficheiro não inclui resumos de linfoma, tumor benigno nem condições inflamatórias, uma vez que estes estão fora do conjunto actual de modelos de histologia fornecidos."
+  },
+  "global_disclaimer": "Este resumo foi escrito numa linguagem mais simples para o ajudar a compreender o relatório de anatomia patológica. Não substitui a discussão com o seu médico ou equipa de cuidados clínicos, que lhe explicarão o que o resultado significa para o seu tratamento.",
+  "common_terms": {
+    "biopsy": "Uma biópsia é uma pequena amostra de tecido retirada para ser examinada ao microscópio.",
+    "resection": "Uma ressecção é uma operação na qual é removido e examinado um fragmento maior de tecido ou um órgão.",
+    "malignant": "Maligno significa canceroso.",
+    "invasive": "Invasivo significa que o cancro cresceu para o tecido circundante e não se encontra apenas na superfície do revestimento.",
+    "in_situ": "In situ significa que estão presentes células anormais, mas que não invadiram o tecido circundante.",
+    "grade": "O grau descreve o aspecto anormal das células cancerosas ao microscópio. Os tumores de grau mais elevado comportam-se frequentemente de forma mais agressiva.",
+    "margin": "Uma margem é a borda do tecido removido durante a cirurgia. Se o tumor estiver na margem, por vezes poderá ser necessário tratamento adicional.",
+    "lymph_node": "Os gânglios linfáticos são pequenas glândulas do sistema imunitário que podem, por vezes, conter células cancerosas se o cancro se tiver disseminado.",
+    "lymphovascular_invasion": "Invasão linfovascular significa que são observadas células cancerosas no interior de pequenos vasos sanguíneos ou canais linfáticos.",
+    "perineural_invasion": "Invasão perineural significa que são observadas células cancerosas em torno ou ao longo dos nervos.",
+    "biomarker": "Um biomarcador é um resultado de teste especial que pode ajudar a orientar o tratamento."
+  },
+  "grade_language": {
+    "grade_1": "baixo grau, o que significa que as células cancerosas parecem menos anormais e podem crescer mais lentamente",
+    "grade_2": "grau intermédio",
+    "grade_3": "alto grau, o que significa que as células cancerosas parecem mais anormais e podem comportar-se de forma mais agressiva",
+    "well_differentiated": "bem diferenciado, o que significa que as células tumorais ainda se assemelham um pouco às células normais de que são originárias",
+    "moderately_differentiated": "moderadamente diferenciado, o que significa que as células tumorais apresentam um nível intermédio de anormalidade",
+    "poorly_differentiated": "pouco diferenciado, o que significa que as células tumorais parecem muito anormais e podem comportar-se de forma mais agressiva",
+    "undifferentiated": "indiferenciado, o que significa que as células tumorais parecem muito anormais e já não se assemelham às células normais de que são originárias",
+    "low_grade": "baixo grau, o que significa que as células tumorais parecem menos anormais e podem crescer mais lentamente",
+    "high_grade": "alto grau, o que significa que as células tumorais parecem muito anormais e podem comportar-se de forma mais agressiva",
+    "not_applicable": "sem grau padrão atribuído neste relatório",
+    "cannot_be_assessed": "não avaliável nesta amostra",
+    "not_specified": "não especificado neste relatório"
+  },
+  "shared_sentence_blocks": {
+    "biopsy_limited_sample": "Como se trata de uma pequena amostra de tecido, o tamanho total e a extensão do tumor poderão ter de ser avaliados numa peça cirúrgica maior ou com imagem e outras informações clínicas.",
+    "resection_more_information": "Como se trata de uma peça cirúrgica maior, o relatório pode incluir informações sobre o tamanho do tumor, as margens, os gânglios linfáticos e se o tumor se disseminou para tecidos vizinhos.",
+    "additional_tests": "Poderão ser realizados testes adicionais para melhor classificar o tumor ou ajudar a orientar o tratamento.",
+    "team_interpretation": "A sua equipa clínica interpretará este resultado juntamente com os achados do seu exame físico, imagem e outros resultados de testes."
+  },
+  "template_groups": {
+    "breast": {
+      "invasive_carcinoma_biopsy": {
+        "label": "Carcinoma invasivo da mama, biópsia",
+        "summary": "A biópsia da mama mostra cancro invasivo da mama. Isto significa que estão presentes células cancerosas que cresceram para o tecido mamário circundante. O relatório pode descrever o tipo de cancro da mama e o seu grau, o que ajuda a mostrar o aspecto anormal das células ao microscópio. Os testes de biomarcadores da mama, como RE, RP, HER2 e Ki67, são frequentemente utilizados para ajudar a orientar o tratamento. {biopsy_limited_sample}"
+      },
+      "invasive_carcinoma_resection": {
+        "label": "Carcinoma invasivo da mama, ressecção",
+        "summary": "A peça cirúrgica da mama mostra cancro invasivo da mama. Isto significa que estavam presentes células cancerosas que tinham crescido para o tecido mamário circundante. O relatório pode descrever o tipo de tumor, o grau, o tamanho, se os gânglios linfáticos estão envolvidos e se o tumor está próximo ou presente nas margens cirúrgicas. Os testes de biomarcadores da mama, como RE, RP, HER2 e Ki67, ajudam a orientar as decisões de tratamento. {resection_more_information}"
+      },
+      "dcis_biopsy": {
+        "label": "CDIS da mama, biópsia",
+        "summary": "A biópsia da mama mostra carcinoma ductal in situ, também designado CDIS. O CDIS significa que estão presentes células anormais semelhantes a cancro no interior dos ductos mamários, mas que não invadiram o tecido mamário circundante nesta amostra. O relatório pode descrever o grau, o padrão e a presença de necrose ou calcificações. {biopsy_limited_sample}"
+      },
+      "dcis_resection": {
+        "label": "CDIS da mama, ressecção",
+        "summary": "A peça cirúrgica da mama mostra carcinoma ductal in situ, também designado CDIS. O CDIS significa que estão presentes células anormais semelhantes a cancro no interior dos ductos mamários, mas que não invadiram o tecido mamário circundante. O relatório pode descrever o tamanho do CDIS, o grau, a presença de necrose e se o CDIS está próximo ou presente nas margens cirúrgicas."
+      },
+      "biomarker_status": {
+        "label": "Estado dos biomarcadores da mama",
+        "summary": "Esta parte do relatório apresenta os resultados de testes especiais sobre o tumor da mama. O RE e o RP mostram se o tumor pode responder ao tratamento hormonal. O HER2 mostra se o tratamento dirigido ao HER2 pode ser útil. O Ki67 fornece uma estimativa da actividade de crescimento das células tumorais. A sua equipa de oncologia utilizará estes resultados juntamente com o diagnóstico, o grau, o estadiamento e outras informações clínicas."
+      }
+    },
+    "gynecologic": {
+      "cervix_biopsy": {
+        "label": "Colo do útero, biópsia",
+        "summary": "A biópsia do colo do útero mostra um tumor ou células anormais no colo do útero. O relatório pode descrever o tipo de tumor, como carcinoma de células escamosas, adenocarcinoma ou carcinoma neuroendócrino, e pode incluir o grau ou outras características. Como se trata de uma biópsia, fornece informação diagnóstica importante, mas pode não mostrar o tamanho ou extensão total da doença. {team_interpretation}"
+      },
+      "cervix_resection": {
+        "label": "Colo do útero, ressecção",
+        "summary": "A peça cirúrgica do colo do útero mostra um tumor ou células anormais no colo do útero. O relatório pode descrever o tipo de tumor, o grau, a profundidade de invasão, se tecidos vizinhos estão envolvidos, se o cancro está presente nas margens e se os gânglios linfáticos contêm tumor. Estas características ajudam a orientar o estadiamento e o planeamento do tratamento."
+      },
+      "endometrium": {
+        "label": "Endométrio",
+        "summary": "O revestimento do útero, denominado endométrio, mostra um tumor. O relatório pode descrever o tipo de tumor, como carcinoma endometrioide, carcinoma seroso, carcinoma de células claras, carcinossarcoma ou outro tipo. Pode também descrever o grau, a profundidade de invasão no músculo uterino, se o colo do útero ou outros órgãos estão envolvidos e se está presente invasão linfovascular. Estas características ajudam a orientar o estadiamento e o tratamento."
+      },
+      "ovary_fallopian_tube_primary_peritoneum": {
+        "label": "Ovário, trompa de Falópio ou peritoneu primário",
+        "summary": "O tecido mostra um tumor com envolvimento do ovário, da trompa de Falópio ou do peritoneu. O relatório pode descrever o tipo de tumor, como carcinoma seroso, carcinoma mucinoso, carcinoma endometrioide, carcinoma de células claras, tumor borderline, tumor dos cordões sexuais e estroma, tumor de células germinativas ou outro tipo de tumor. Pode também descrever o tamanho do tumor, o grau quando aplicável, o envolvimento da superfície, a disseminação para outros tecidos e os achados ganglionares. Estes detalhes ajudam a orientar o estadiamento e o tratamento."
+      }
+    },
+    "gastrointestinal": {
+      "colorectal_malignant_resection": {
+        "label": "Tumor maligno colorrectal, ressecção",
+        "summary": "A peça cirúrgica do cólon ou recto mostra um tumor maligno, mais frequentemente do tipo denominado adenocarcinoma. O relatório pode descrever o tipo de tumor, o grau, o tamanho, a profundidade de invasão da parede intestinal ou tecidos vizinhos, se estão presentes invasão linfovascular ou perineural, se os gânglios linfáticos contêm tumor e se as margens cirúrgicas estão livres. Estes achados ajudam a determinar o estadiamento e a orientar o tratamento adicional."
+      },
+      "stomach_tumor_resection": {
+        "label": "Tumor do estômago, ressecção",
+        "summary": "A peça cirúrgica do estômago mostra um tumor. O relatório pode descrever o tipo de tumor, como adenocarcinoma, carcinoma pouco coeso, carcinoma mucinoso, carcinoma de células escamosas, carcinoma neuroendócrino ou outro tipo. Pode também descrever o grau, o tamanho do tumor, a profundidade de invasão, a disseminação para órgãos vizinhos, o estado das margens e os achados ganglionares. Estas características ajudam a orientar o estadiamento e o tratamento."
+      },
+      "esophagus_tumor": {
+        "label": "Tumor do esófago",
+        "summary": "O espécime do esófago mostra um tumor. O relatório pode descrever o tipo de tumor, como adenocarcinoma, carcinoma de células escamosas, tumor neuroendócrino ou outro tipo. Pode também descrever o grau, o tamanho do tumor, a profundidade de invasão, se estruturas vizinhas estão envolvidas, os achados ganglionares e o estado das margens. Estes detalhes ajudam a orientar o estadiamento e o planeamento do tratamento."
+      },
+      "gist": {
+        "label": "Tumor do estroma gastrointestinal",
+        "summary": "O espécime mostra um tumor do estroma gastrointestinal, também designado GIST. O GIST é um tumor que surge a partir de células de suporte especializadas do tracto digestivo. O relatório pode descrever o local do tumor, o tamanho, o tipo celular, a taxa mitótica, o grau, a necrose, as margens e a categoria de risco. Estas características ajudam a estimar o comportamento provável do tumor e a determinar se poderá ser necessário tratamento adicional."
+      }
+    },
+    "genitourinary": {
+      "prostate_core_biopsy": {
+        "label": "Biópsia por agulha da próstata",
+        "summary": "A biópsia da próstata mostra se está presente cancro da próstata numa ou mais áreas amostradas. Se estiver presente cancro, o relatório pode descrever o tipo de tumor, o grupo de grau, a pontuação de Gleason, a quantidade de cada fragmento envolvida e se são observadas características como glândulas cribiformes ou carcinoma intraductal. Estes achados ajudam a estimar a agressividade do cancro e a orientar as discussões sobre o tratamento."
+      },
+      "prostatectomy": {
+        "label": "Prostatectomia radical",
+        "summary": "A peça cirúrgica da próstata mostra tecido prostático removido durante a cirurgia. Se estiver presente cancro da próstata, o relatório pode descrever o tipo de tumor, o grupo de grau, a pontuação de Gleason, a extensão do envolvimento da próstata, se o tumor se estendeu para fora da próstata, se as margens estão envolvidas e se os gânglios linfáticos contêm tumor. Estes achados ajudam a determinar o estadiamento e a orientar o seguimento."
+      }
+    },
+    "thoracic": {
+      "lung_tumor_biopsy": {
+        "label": "Tumor do pulmão, biópsia",
+        "summary": "A biópsia do pulmão mostra um tumor no pulmão. O relatório pode descrever o tipo de tumor, como adenocarcinoma, carcinoma de células escamosas, carcinoma de pequenas células, carcinoma neuroendócrino de grandes células, tumor carcinoide ou outro tipo. Como se trata de uma biópsia, pode não mostrar o tamanho ou extensão total da doença. Poderão ser realizados testes de biomarcadores ou moleculares adicionais para ajudar a orientar o tratamento."
+      }
+    },
+    "general": {
+      "general_tumor_biopsy": {
+        "label": "Biópsia tumoral geral",
+        "summary": "A biópsia mostra um tumor no tecido amostrado. O relatório pode descrever o tipo de tumor, o grau e características como invasão linfovascular ou perineural. Como se trata de uma pequena amostra de tecido, por vezes podem ser necessários testes adicionais ou uma peça maior para fornecer informação mais completa."
+      },
+      "general_tumor_resection": {
+        "label": "Ressecção tumoral geral",
+        "summary": "A peça cirúrgica mostra um tumor no tecido removido. O relatório pode descrever o tipo de tumor, o grau, o tamanho, a extensão, a necrose, a invasão linfovascular, o efeito do tratamento, o estado das margens e os achados ganglionares. Estas características ajudam a sua equipa clínica a compreender o tumor e a planear os cuidados futuros."
+      }
+    }
+  },
+  "diagnosis_key_map": {
+    "invasive_carcinoma_of_no_special_type_ductal": {
+      "template_group": "breast",
+      "template_key": "invasive_carcinoma_biopsy",
+      "patient_label": "cancro invasivo da mama"
+    },
+    "invasive_lobular_carcinoma": {
+      "template_group": "breast",
+      "template_key": "invasive_carcinoma_biopsy",
+      "patient_label": "carcinoma lobular invasivo da mama"
+    },
+    "ductal_carcinoma_in_situ": {
+      "template_group": "breast",
+      "template_key": "dcis_biopsy",
+      "patient_label": "carcinoma ductal in situ"
+    },
+    "squamous_cell_carcinoma_cervix": {
+      "template_group": "gynecologic",
+      "template_key": "cervix_biopsy",
+      "patient_label": "carcinoma de células escamosas do colo do útero"
+    },
+    "adenocarcinoma_cervix": {
+      "template_group": "gynecologic",
+      "template_key": "cervix_biopsy",
+      "patient_label": "adenocarcinoma do colo do útero"
+    },
+    "endometrioid_carcinoma_endometrium": {
+      "template_group": "gynecologic",
+      "template_key": "endometrium",
+      "patient_label": "carcinoma endometrioide do revestimento uterino"
+    },
+    "serous_carcinoma_endometrium": {
+      "template_group": "gynecologic",
+      "template_key": "endometrium",
+      "patient_label": "carcinoma seroso do revestimento uterino"
+    },
+    "high_grade_serous_carcinoma_ovary_fallopian_tube_peritoneum": {
+      "template_group": "gynecologic",
+      "template_key": "ovary_fallopian_tube_primary_peritoneum",
+      "patient_label": "carcinoma seroso de alto grau"
+    },
+    "low_grade_serous_carcinoma_ovary_fallopian_tube_peritoneum": {
+      "template_group": "gynecologic",
+      "template_key": "ovary_fallopian_tube_primary_peritoneum",
+      "patient_label": "carcinoma seroso de baixo grau"
+    },
+    "colorectal_adenocarcinoma": {
+      "template_group": "gastrointestinal",
+      "template_key": "colorectal_malignant_resection",
+      "patient_label": "adenocarcinoma colorrectal"
+    },
+    "gastric_adenocarcinoma": {
+      "template_group": "gastrointestinal",
+      "template_key": "stomach_tumor_resection",
+      "patient_label": "adenocarcinoma do estômago"
+    },
+    "esophageal_adenocarcinoma": {
+      "template_group": "gastrointestinal",
+      "template_key": "esophagus_tumor",
+      "patient_label": "adenocarcinoma do esófago"
+    },
+    "esophageal_squamous_cell_carcinoma": {
+      "template_group": "gastrointestinal",
+      "template_key": "esophagus_tumor",
+      "patient_label": "carcinoma de células escamosas do esófago"
+    },
+    "gastrointestinal_stromal_tumor": {
+      "template_group": "gastrointestinal",
+      "template_key": "gist",
+      "patient_label": "tumor do estroma gastrointestinal"
+    },
+    "prostate_acinar_adenocarcinoma": {
+      "template_group": "genitourinary",
+      "template_key": "prostate_core_biopsy",
+      "patient_label": "adenocarcinoma da próstata"
+    },
+    "lung_adenocarcinoma": {
+      "template_group": "thoracic",
+      "template_key": "lung_tumor_biopsy",
+      "patient_label": "adenocarcinoma do pulmão"
+    },
+    "lung_squamous_cell_carcinoma": {
+      "template_group": "thoracic",
+      "template_key": "lung_tumor_biopsy",
+      "patient_label": "carcinoma de células escamosas do pulmão"
+    },
+    "small_cell_carcinoma_lung": {
+      "template_group": "thoracic",
+      "template_key": "lung_tumor_biopsy",
+      "patient_label": "carcinoma de pequenas células do pulmão"
+    }
+  },
+  "biomarker_summaries": {
+    "breast_er_positive": "O tumor é receptor de estrogênio positivo. Isto significa que o tratamento hormonal pode ser útil.",
+    "breast_er_negative": "O tumor é receptor de estrogênio negativo. Isto significa que o tratamento com hormona estrogénica pode ser menos útil para este tumor.",
+    "breast_pr_positive": "O tumor é receptor de progesterona positivo. Isto pode apoiar a utilização de tratamento hormonal.",
+    "breast_pr_negative": "O tumor é receptor de progesterona negativo.",
+    "breast_her2_negative_0": "O HER2 é negativo com pontuação 0. Isto significa que o tratamento dirigido ao HER2 habitualmente não está indicado com base neste resultado.",
+    "breast_her2_negative_1": "O HER2 é negativo com pontuação 1+. Isto ainda é considerado HER2 negativo pelo relatório padrão.",
+    "breast_her2_equivocal_2": "O HER2 é equívoco com pontuação 2+. Poderão ser necessários testes adicionais para clarificar o estado do HER2.",
+    "breast_her2_positive_3": "O HER2 é positivo com pontuação 3+. Isto pode tornar o tratamento dirigido ao HER2 relevante.",
+    "breast_ki67_low": "O Ki67 é baixo, sugerindo um nível mais baixo de actividade de crescimento das células tumorais.",
+    "breast_ki67_high": "O Ki67 é alto, sugerindo um nível mais elevado de actividade de crescimento das células tumorais.",
+    "pdl1_positive": "O PD-L1 é positivo. Isto pode ser relevante ao considerar imunoterapia.",
+    "pdl1_negative": "O PD-L1 é negativo pelo teste realizado.",
+    "mismatch_repair_intact": "As proteínas de reparação de incompatibilidades de DNA estão retidas. A sua equipa clínica interpretará este resultado juntamente com outros achados.",
+    "mismatch_repair_deficient": "Uma ou mais proteínas de reparação de incompatibilidades de DNA estão ausentes. Isto pode ter implicações para testes adicionais e planeamento do tratamento.",
+    "gist_cd117_positive": "O CD117 é positivo, um resultado que pode apoiar o diagnóstico de GIST.",
+    "gist_dog1_positive": "O DOG1 é positivo, um resultado que pode apoiar o diagnóstico de GIST."
+  },
+  "optional_result_modifiers": {
+    "negative_margins": "As margens são negativas, o que significa que o tumor não foi observado na borda de corte do tecido removido.",
+    "positive_margins": "O tumor está presente na margem, o que significa que células tumorais são observadas na borda de corte do tecido removido.",
+    "lymph_nodes_negative": "Os gânglios linfáticos examinados não mostram tumor.",
+    "lymph_nodes_positive": "Um ou mais gânglios linfáticos examinados contêm tumor.",
+    "lvi_present": "Está presente invasão linfovascular, o que significa que células tumorais são observadas no interior de pequenos vasos ou canais linfáticos.",
+    "lvi_absent": "Invasão linfovascular não identificada.",
+    "pni_present": "Está presente invasão perineural, o que significa que células tumorais são observadas em torno ou ao longo dos nervos.",
+    "pni_absent": "Invasão perineural não identificada.",
+    "treatment_effect_present": "Existem alterações sugerindo que o tumor respondeu ao tratamento administrado antes da cirurgia.",
+    "treatment_effect_absent": "Não é identificado efeito de tratamento claro no tecido examinado."
+  }
+}

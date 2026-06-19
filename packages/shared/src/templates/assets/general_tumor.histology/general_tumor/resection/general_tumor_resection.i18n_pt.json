@@ -1,0 +1,364 @@
+{
+  "template_id": "general_tumor_resection_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "lang": "pt",
+  "title": "Ressecção tumoral geral",
+  "protocol_posting_date": "June 2021",
+  "specimen": {
+    "label": "Espécime",
+    "fields": {
+      "procedure": {
+        "label": "Procedimento",
+        "type": "text",
+        "value": ""
+      },
+      "laterality": {
+        "label": "Lateralidade do espécime",
+        "type": "select",
+        "options": ["Direito", "Esquerdo", "Não especificado", "Não aplicável"],
+        "value": ""
+      },
+      "lymph_node_sampling": {
+        "label": "Colheita de gânglios linfáticos",
+        "type": "select",
+        "options": ["Realizada", "Não realizada", "Não conhecido"],
+        "value": "",
+        "lymph_nodes_sampled": {
+          "label": "Gânglios linfáticos colhidos",
+          "type": "text",
+          "value": ""
+        }
+      }
+    }
+  },
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "site": {
+        "label": "Local(is) do tumor",
+        "type": "text",
+        "value": ""
+      },
+      "histologic_type": {
+        "label": "Tipo histológico",
+        "type": "text",
+        "value": ""
+      },
+      "histologic_grade": {
+        "label": "Grau histológico",
+        "type": "text",
+        "value": ""
+      },
+      "tumor_size": {
+        "label": "Tamanho do tumor",
+        "fields": {
+          "measurement_type": {
+            "label": "Tipo de medição",
+            "type": "select",
+            "options": ["Maior dimensão em centímetros (cm)", "Não é possível determinar"],
+            "value": ""
+          },
+          "greatest_dimension_cm": {
+            "label": "Maior dimensão (cm)",
+            "type": "number",
+            "value": ""
+          },
+          "additional_dimensions_cm": {
+            "label": "Dimensões adicionais (cm)",
+            "type": "measurement_2d",
+            "value": ""
+          },
+          "cannot_be_determined_specify": {
+            "label": "Não é possível determinar (explicar)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "tumor_extent": {
+        "label": "Extensão do tumor (estruturas ou órgãos envolvidos)",
+        "type": "text",
+        "value": ""
+      },
+      "mitotic_rate": {
+        "label": "Taxa mitótica",
+        "type": "text",
+        "value": ""
+      },
+      "tumor_necrosis": {
+        "label": "Necrose tumoral",
+        "fields": {
+          "status": {
+            "label": "Estado da necrose tumoral",
+            "type": "select",
+            "options": ["Não identificada", "Presente", "Não é possível determinar"],
+            "value": ""
+          },
+          "percentage_type": {
+            "label": "Percentagem de necrose tumoral",
+            "type": "select",
+            "options": ["Especificar percentagem", "Outro", "Não é possível determinar"],
+            "value": ""
+          },
+          "percentage_value": {
+            "label": "Percentagem (%)",
+            "type": "number",
+            "value": ""
+          },
+          "other_specify": {
+            "label": "Outro (especificar)",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_specify": {
+            "label": "Não é possível determinar (explicar)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "lymphovascular_invasion": {
+        "label": "Invasão linfovascular",
+        "type": "select",
+        "options": ["Não identificada", "Presente", "Não é possível determinar"],
+        "value": "",
+        "cannot_be_determined_specify": {
+          "label": "Não é possível determinar (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "treatment_effect": {
+        "label": "Efeito do tratamento",
+        "fields": {
+          "status": {
+            "label": "Estado do efeito do tratamento",
+            "type": "select",
+            "options": [
+              "Sem terapia pré-operatória conhecida",
+              "Não identificado",
+              "Presente",
+              "Não é possível determinar"
+            ],
+            "value": ""
+          },
+          "preoperative_therapy_given": {
+            "label": "Terapia pré-operatória realizada",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_specify": {
+            "label": "Não é possível determinar (explicar)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "tumor_comment": {
+        "label": "Comentário sobre o tumor",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+  "margins": {
+    "label": "Margens",
+    "fields": {
+      "margin_status": {
+        "label": "Estado das margens",
+        "type": "select",
+        "options": [
+          "Todas as margens negativas para tumor",
+          "Tumor presente na margem",
+          "Não aplicável"
+        ],
+        "value": ""
+      },
+      "distance_to_closest_margin": {
+        "label": "Distância do tumor à margem mais próxima",
+        "fields": {
+          "distance_type": {
+            "label": "Tipo de distância",
+            "type": "select",
+            "options": [
+              "Distância exacta",
+              "Superior a",
+              "Pelo menos",
+              "Inferior a",
+              "Inferior a 1 mm",
+              "Outro",
+              "Não é possível determinar"
+            ],
+            "value": ""
+          },
+          "distance_mm": {
+            "label": "Distância (mm)",
+            "type": "number",
+            "value": ""
+          },
+          "other_specify": {
+            "label": "Outro (especificar)",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_specify": {
+            "label": "Não é possível determinar (explicar)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "closest_margins_to_tumor": {
+        "label": "Margem(ns) mais próxima(s) ao tumor",
+        "fields": {
+          "status": {
+            "label": "Estado da(s) margem(ns) mais próxima(s)",
+            "type": "select",
+            "options": ["Especificar a(s) margem(ns) mais próxima(s)", "Não é possível determinar"],
+            "value": ""
+          },
+          "specify": {
+            "label": "Especificar a(s) margem(ns) mais próxima(s)",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_specify": {
+            "label": "Não é possível determinar (explicar)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "margins_involved_by_tumor": {
+        "label": "Margem(ns) envolvida(s) por tumor",
+        "fields": {
+          "status": {
+            "label": "Estado da(s) margem(ns) envolvida(s)",
+            "type": "select",
+            "options": [
+              "Especificar a(s) margem(ns) envolvida(s)",
+              "Outro",
+              "Não é possível determinar"
+            ],
+            "value": ""
+          },
+          "specify": {
+            "label": "Especificar a(s) margem(ns) envolvida(s)",
+            "type": "text",
+            "value": ""
+          },
+          "other_specify": {
+            "label": "Outro (especificar)",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_specify": {
+            "label": "Não é possível determinar (explicar)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      }
+    }
+  },
+  "regional_lymph_nodes": {
+    "label": "Gânglios linfáticos regionais",
+    "fields": {
+      "regional_lymph_node_status": {
+        "label": "Estado dos gânglios linfáticos regionais",
+        "type": "select",
+        "options": [
+          "Não aplicável (nenhum gânglio linfático regional submetido ou encontrado)",
+          "Gânglios linfáticos regionais presentes",
+          "Todos os gânglios linfáticos regionais negativos para tumor",
+          "Tumor presente em gânglio(s) linfático(s) regional(is)"
+        ],
+        "value": ""
+      },
+      "number_with_tumor": {
+        "label": "Número de gânglios linfáticos com tumor",
+        "fields": {
+          "count_type": {
+            "label": "Tipo de contagem",
+            "type": "select",
+            "options": ["Número exacto", "Pelo menos", "Outro", "Não é possível determinar"],
+            "value": ""
+          },
+          "count_value": {
+            "label": "Contagem",
+            "type": "integer",
+            "value": ""
+          },
+          "other_specify": {
+            "label": "Outro (especificar)",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_specify": {
+            "label": "Não é possível determinar (explicar)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "extranodal_extension": {
+        "label": "Extensão extranodal",
+        "fields": {
+          "status": {
+            "label": "Estado da extensão extranodal",
+            "type": "select",
+            "options": ["Não identificada", "Presente", "Outro", "Não é possível determinar"],
+            "value": ""
+          },
+          "other_specify": {
+            "label": "Outro (especificar)",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_specify": {
+            "label": "Não é possível determinar (explicar)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "number_examined": {
+        "label": "Número de gânglios linfáticos examinados",
+        "fields": {
+          "count_type": {
+            "label": "Tipo de contagem",
+            "type": "select",
+            "options": ["Número exacto", "Pelo menos", "Outro", "Não é possível determinar"],
+            "value": ""
+          },
+          "count_value": {
+            "label": "Contagem",
+            "type": "integer",
+            "value": ""
+          },
+          "other_specify": {
+            "label": "Outro (especificar)",
+            "type": "text",
+            "value": ""
+          },
+          "cannot_be_determined_specify": {
+            "label": "Não é possível determinar (explicar)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      }
+    }
+  },
+  "additional_findings": {
+    "label": "Achados adicionais",
+    "fields": {
+      "findings": {
+        "label": "Achados adicionais",
+        "type": "text",
+        "value": ""
+      }
+    }
+  }
+}

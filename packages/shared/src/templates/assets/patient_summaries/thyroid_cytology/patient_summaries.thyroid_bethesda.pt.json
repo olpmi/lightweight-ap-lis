@@ -1,0 +1,58 @@
+{
+  "templateId": "thyroid_cytology_bethesda_3rd_edition",
+  "summaryType": "rule_based_patient_facing_summary",
+  "version": "1.0",
+  "language": "pt",
+  "system": "Sistema de Bethesda para Relatório de Citopatologia da Tiróide, 3ª Edição",
+  "triggerField": "bethesda_category",
+  "summaries": {
+    "bethesda_i_non_diagnostic_unsatisfactory": {
+      "professionalLabel": "Categoria de Bethesda I: Não diagnóstico / Insatisfatório",
+      "patientTitle": "A amostra não foi suficiente para um diagnóstico claro",
+      "plainLanguageSummary": "A amostra da tiróide não continha células suficientes ou a qualidade da amostra era limitada, pelo que não foi possível estabelecer um diagnóstico claro.",
+      "whatThisMeans": "Isto não significa que foi encontrado cancro. Significa que a amostra não foi adequada para fornecer uma resposta fiável.",
+      "possibleNextSteps": "O seu médico poderá recomendar a repetição da punção aspirativa por agulha fina, frequentemente com orientação ecográfica, dependendo do aspecto ecográfico e da preocupação clínica.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, imagem e resultados anteriores quando relevante."
+    },
+    "bethesda_ii_benign": {
+      "professionalLabel": "Categoria de Bethesda II: Benigno",
+      "patientTitle": "Resultado benigno da tiróide",
+      "plainLanguageSummary": "A amostra da tiróide mostra células benignas, não cancerosas.",
+      "whatThisMeans": "Este é geralmente um resultado tranquilizador. Não mostra características de cancro da tiróide na amostra examinada.",
+      "possibleNextSteps": "O seu médico poderá recomendar seguimento de rotina, monitorização ecográfica ou nenhuma acção imediata adicional, dependendo do tamanho e aspecto do nódulo.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, imagem e resultados anteriores quando relevante."
+    },
+    "bethesda_iii_aus": {
+      "professionalLabel": "Categoria de Bethesda III: Atipia de significado indeterminado (AUS)",
+      "patientTitle": "Células da tiróide ligeiramente atípicas",
+      "plainLanguageSummary": "A amostra da tiróide mostra algumas células com aspecto ligeiramente invulgar, mas os achados não são suficientes para diagnosticar cancro ou um tumor definitivo.",
+      "whatThisMeans": "Este é um resultado indeterminado. Muitos casos não são cancro, mas poderá ser necessária uma avaliação adicional.",
+      "possibleNextSteps": "O seu médico poderá recomendar nova colheita de amostra, seguimento ecográfico, testes moleculares se disponíveis ou encaminhamento para consulta especializada.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, imagem e resultados anteriores quando relevante."
+    },
+    "bethesda_iv_follicular_neoplasm_suspicious_for_follicular_neoplasm": {
+      "professionalLabel": "Categoria de Bethesda IV: Neoplasia folicular / Suspeito de neoplasia folicular",
+      "patientTitle": "Possível tumor folicular da tiróide",
+      "plainLanguageSummary": "A amostra da tiróide mostra um padrão que pode representar um tumor folicular da tiróide.",
+      "whatThisMeans": "A citologia isolada frequentemente não permite determinar de forma fiável se este tipo de tumor da tiróide é benigno ou maligno, uma vez que isso pode exigir o exame de toda a cápsula do nódulo e dos vasos sanguíneos.",
+      "possibleNextSteps": "O seu médico poderá recomendar consulta cirúrgica, testes moleculares se disponíveis ou remoção de parte da tiróide, dependendo do quadro clínico completo.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, imagem e resultados anteriores quando relevante."
+    },
+    "bethesda_v_suspicious_for_malignancy": {
+      "professionalLabel": "Categoria de Bethesda V: Suspeito de malignidade",
+      "patientTitle": "Resultado suspeito da tiróide",
+      "plainLanguageSummary": "A amostra da tiróide mostra alterações suspeitas de cancro, mas os achados podem não ser suficientemente completos para um diagnóstico definitivo.",
+      "whatThisMeans": "Existe uma preocupação significativa e habitualmente é necessária uma avaliação adicional.",
+      "possibleNextSteps": "O seu médico poderá recomendar consulta cirúrgica, testes adicionais ou investigação complementar, dependendo dos achados ecográficos e da sua situação clínica.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, imagem e resultados anteriores quando relevante."
+    },
+    "bethesda_vi_malignant": {
+      "professionalLabel": "Categoria de Bethesda VI: Maligno",
+      "patientTitle": "Células cancerosas identificadas na amostra da tiróide",
+      "plainLanguageSummary": "A amostra da tiróide mostra células malignas, ou seja, foram identificadas células cancerosas.",
+      "whatThisMeans": "Este resultado requer habitualmente tratamento especializado. O tratamento exacto depende do tipo de cancro da tiróide e dos seus achados clínicos globais.",
+      "possibleNextSteps": "O seu médico encaminhá-lo-á provavelmente para avaliação cirúrgica ou especializada e poderá solicitar testes adicionais para orientar o tratamento.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, imagem e resultados anteriores quando relevante."
+    }
+  }
+}

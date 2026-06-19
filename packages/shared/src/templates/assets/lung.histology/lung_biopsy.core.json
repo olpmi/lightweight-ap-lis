@@ -1,6 +1,7 @@
 {
   "template_id": "lung_tumor_biopsy_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "title": "Lung Tumor, Biopsy",
   "protocol_posting_date": "September 2025",
   "standards": ["AJCC 9"],

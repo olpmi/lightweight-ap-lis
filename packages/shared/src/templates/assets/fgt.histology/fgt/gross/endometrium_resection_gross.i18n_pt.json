@@ -1,0 +1,317 @@
+{
+  "template_id": "endometrium_resection_gross_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "lang": "pt",
+  "title": "Peça cirúrgica de ressecção do endométrio",
+
+  "specimen": {
+    "label": "Espécime",
+    "fields": {
+      "anatomic_structures_included": {
+        "label": "Estruturas anatômicas incluídas na espécime submetida",
+        "type": "text",
+        "value": ""
+      },
+      "specimen_integrity": { "label": "Integridade da espécime", "type": "text", "value": "" }
+    }
+  },
+
+  "uterus": {
+    "label": "Útero",
+    "fields": {
+      "uterus_dimensions_cm": { "label": "Dimensões do útero (cm)", "type": "text", "value": "" },
+      "serosal_surface": { "label": "Superfície serosa", "type": "text", "value": "" }
+    }
+  },
+
+  "cervix": {
+    "label": "Colo do útero",
+    "fields": {
+      "dimensions": { "label": "Dimensões", "type": "text", "value": "" },
+      "diameter_cm": { "label": "Diâmetro (cm)", "type": "number", "value": "" },
+      "length_cm": { "label": "Comprimento (cm)", "type": "number", "value": "" },
+      "cervical_os": { "label": "Orifício cervical", "type": "text", "value": "" },
+      "portio_vaginalis": {
+        "label": "Porção vaginal (portio vaginalis)",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "vaginal_cuff": {
+    "label": "Cúpula vaginal",
+    "fields": {
+      "maximum_length_cm": { "label": "Comprimento máximo (cm)", "type": "number", "value": "" },
+      "minimum_length_cm": { "label": "Comprimento mínimo (cm)", "type": "number", "value": "" },
+      "appearance": { "label": "Aspecto", "type": "text", "value": "" }
+    }
+  },
+
+  "parametrium": {
+    "label": "Paramétrio",
+    "fields": {
+      "left_parametrium_lateral_extent_cm": {
+        "label": "Extensão lateral do paramétrio esquerdo (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "right_parametrium_lateral_extent_cm": {
+        "label": "Extensão lateral do paramétrio direito (cm)",
+        "type": "number",
+        "value": ""
+      }
+    }
+  },
+
+  "corpus": {
+    "label": "Corpo uterino",
+    "fields": {
+      "endometrial_cavity_dimensions": {
+        "label": "Dimensões da cavidade endometrial",
+        "type": "text",
+        "value": ""
+      },
+      "endometrial_thickness": { "label": "Espessura do endométrio", "type": "text", "value": "" }
+    }
+  },
+
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "tumor_site": { "label": "Local do tumor", "type": "text", "value": "" },
+      "tumor_size_greatest_dimension_cm": {
+        "label": "Maior dimensão (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "tumor_size_additional_dimensions_cm": {
+        "label": "Dimensões adicionais (cm)",
+        "type": "measurement_2d",
+        "value": ""
+      },
+      "appearance": { "label": "Aspecto", "type": "text", "value": "" },
+      "myometrial_invasion_depth_cm": {
+        "label": "Profundidade de invasão miometrial (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "myometrial_thickness_cm": {
+        "label": "Espessura do miométrio (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "lower_uterine_segment_involvement": {
+        "label": "Comprometimento do segmento uterino inferior",
+        "type": "text",
+        "value": ""
+      },
+      "cervical_stromal_involvement": {
+        "label": "Comprometimento do estroma cervical",
+        "type": "text",
+        "value": ""
+      },
+      "distance_to_ectocervical_margin_cm": {
+        "label": "Distância à margem ectocervical (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "distance_to_paracervical_parametrial_margin_cm": {
+        "label": "Distância à margem paracervical / parametrial (cm)",
+        "type": "number",
+        "value": ""
+      }
+    }
+  },
+
+  "polyps": {
+    "label": "Pólipos",
+    "fields": {
+      "location": { "label": "Localização", "type": "text", "value": "" },
+      "number": { "label": "Número", "type": "integer", "value": "" },
+      "dimensions": { "label": "Dimensões", "type": "text", "value": "" },
+      "appearance": { "label": "Aspecto", "type": "text", "value": "" }
+    }
+  },
+
+  "fibroids": {
+    "label": "Miomas",
+    "fields": {
+      "location": { "label": "Localização", "type": "text", "value": "" },
+      "number": { "label": "Número", "type": "integer", "value": "" },
+      "dimensions": { "label": "Dimensões", "type": "text", "value": "" },
+      "appearance": { "label": "Aspecto", "type": "text", "value": "" }
+    }
+  },
+
+  "adnexa": {
+    "label": "Anexos",
+    "fields": {
+      "left_fallopian_tube_dimensions": {
+        "label": "Dimensões da trompa de Falópio esquerda",
+        "type": "text",
+        "value": ""
+      },
+      "left_fallopian_tube_appearance": {
+        "label": "Aspecto da trompa de Falópio esquerda",
+        "type": "text",
+        "value": ""
+      },
+      "left_ovary_dimensions": {
+        "label": "Dimensões do ovário esquerdo",
+        "type": "text",
+        "value": ""
+      },
+      "left_ovary_appearance": {
+        "label": "Aspecto do ovário esquerdo",
+        "type": "text",
+        "value": ""
+      },
+      "right_fallopian_tube_dimensions": {
+        "label": "Dimensões da trompa de Falópio direita",
+        "type": "text",
+        "value": ""
+      },
+      "right_fallopian_tube_appearance": {
+        "label": "Aspecto da trompa de Falópio direita",
+        "type": "text",
+        "value": ""
+      },
+      "right_ovary_dimensions": {
+        "label": "Dimensões do ovário direito",
+        "type": "text",
+        "value": ""
+      },
+      "right_ovary_appearance": {
+        "label": "Aspecto do ovário direito",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "omentum": {
+    "label": "Omento",
+    "fields": {
+      "dimensions": { "label": "Dimensões", "type": "text", "value": "" },
+      "appearance": { "label": "Aspecto", "type": "text", "value": "" }
+    }
+  },
+
+  "lymph_nodes": {
+    "label": "Gânglios linfáticos",
+    "fields": {
+      "left_pelvic_appearance": {
+        "label": "Aspecto dos gânglios linfáticos pélvicos esquerdos",
+        "type": "text",
+        "value": ""
+      },
+      "left_pelvic_number": {
+        "label": "Número de gânglios linfáticos pélvicos esquerdos",
+        "type": "integer",
+        "value": ""
+      },
+      "left_pelvic_size_range": {
+        "label": "Intervalo de tamanhos dos gânglios linfáticos pélvicos esquerdos",
+        "type": "text",
+        "value": ""
+      },
+      "right_pelvic_appearance": {
+        "label": "Aspecto dos gânglios linfáticos pélvicos direitos",
+        "type": "text",
+        "value": ""
+      },
+      "right_pelvic_number": {
+        "label": "Número de gânglios linfáticos pélvicos direitos",
+        "type": "integer",
+        "value": ""
+      },
+      "right_pelvic_size_range": {
+        "label": "Intervalo de tamanhos dos gânglios linfáticos pélvicos direitos",
+        "type": "text",
+        "value": ""
+      },
+      "left_para_aortic_appearance": {
+        "label": "Aspecto dos gânglios linfáticos para-aórticos esquerdos",
+        "type": "text",
+        "value": ""
+      },
+      "left_para_aortic_number": {
+        "label": "Número de gânglios linfáticos para-aórticos esquerdos",
+        "type": "integer",
+        "value": ""
+      },
+      "left_para_aortic_size_range": {
+        "label": "Intervalo de tamanhos dos gânglios linfáticos para-aórticos esquerdos",
+        "type": "text",
+        "value": ""
+      },
+      "right_para_aortic_appearance": {
+        "label": "Aspecto dos gânglios linfáticos para-aórticos direitos",
+        "type": "text",
+        "value": ""
+      },
+      "right_para_aortic_number": {
+        "label": "Número de gânglios linfáticos para-aórticos direitos",
+        "type": "integer",
+        "value": ""
+      },
+      "right_para_aortic_size_range": {
+        "label": "Intervalo de tamanhos dos gânglios linfáticos para-aórticos direitos",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "block_allocation_key": {
+    "label": "Chave de alocação de blocos",
+    "fields": {
+      "full_thickness_endo_myometrium_with_tumor": {
+        "label": "Endo-miométrio em espessura total com tumor",
+        "type": "text",
+        "value": ""
+      },
+      "anterior_and_posterior_lower_uterine_segment": {
+        "label": "Segmento uterino inferior anterior e posterior",
+        "type": "text",
+        "value": ""
+      },
+      "anterior_and_posterior_cervix": {
+        "label": "Colo do útero anterior e posterior",
+        "type": "text",
+        "value": ""
+      },
+      "ectocervical_margin": { "label": "Margem ectocervical", "type": "text", "value": "" },
+      "left_parametrium_paracervical_margin": {
+        "label": "Paramétrio esquerdo / margem paracervical",
+        "type": "text",
+        "value": ""
+      },
+      "right_parametrium_paracervical_margin": {
+        "label": "Paramétrio direito / margem paracervical",
+        "type": "text",
+        "value": ""
+      },
+      "left_fallopian_tube": { "label": "Trompa de Falópio esquerda", "type": "text", "value": "" },
+      "left_ovary": { "label": "Ovário esquerdo", "type": "text", "value": "" },
+      "right_fallopian_tube": { "label": "Trompa de Falópio direita", "type": "text", "value": "" },
+      "right_ovary": { "label": "Ovário direito", "type": "text", "value": "" },
+      "omentum": { "label": "Omento", "type": "text", "value": "" },
+      "lymph_nodes": { "label": "Gânglios linfáticos", "type": "text", "value": "" }
+    }
+  },
+
+  "grossing": {
+    "label": "Exame macroscópico",
+    "fields": {
+      "grossed_by": {
+        "label": "Exame macroscópico realizado por (iniciais)",
+        "type": "text",
+        "value": ""
+      },
+      "date": { "label": "Data", "type": "date", "value": "" }
+    }
+  }
+}

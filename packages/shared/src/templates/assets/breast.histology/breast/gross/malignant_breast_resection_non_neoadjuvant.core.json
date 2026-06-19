@@ -1,6 +1,7 @@
 {
   "template_id": "malignant_breast_resection_non_neoadjuvant_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "title": "Malignant Breast Resection (Non-Neoadjuvant)",
 
   "clinical_case_summary": {
@@ -14,7 +15,7 @@
       "site": { "label": "Site", "type": "text", "value": "" },
       "focality": { "label": "Focality", "type": "text", "value": "" },
       "dimensions": {
-        "label": "Dimensions (mm)",
+        "label": "Dimensions (cm)",
         "type": "measurement_3d",
         "value": ""
       },
@@ -163,13 +164,7 @@
       "abnormal_features": {
         "label": "Abnormal features",
         "type": "multi_select",
-        "options": [
-          "Paget’s disease",
-          "Scaling crust",
-          "Retracted",
-          "Fixed to tumor",
-          "Other"
-        ]
+        "options": ["Paget’s disease", "Scaling crust", "Retracted", "Fixed to tumor", "Other"]
       }
     }
   },
@@ -204,7 +199,7 @@
       },
 
       "size": {
-        "label": "Tumor size (mm)",
+        "label": "Tumor size (cm)",
         "type": "measurement_3d",
         "value": ""
       },
@@ -247,7 +242,12 @@
       "nipple": {},
       "tumor": {},
       "surrounding_breast": {},
-      "margins": {},
+      "medial margin": {},
+      "lateral margin": {},
+      "Superior margin": {},
+      "Inferior margin": {},
+      "Posterior margin": {},
+      "Anterior margin": {},
       "lymph_nodes": {}
     }
   },
@@ -256,7 +256,7 @@
     "label": "Grossing",
     "fields": {
       "grossed_by": { "label": "Grossed by", "type": "text", "value": "" },
-      "date":       { "label": "Date",        "type": "date", "value": "" }
+      "date": { "label": "Date", "type": "date", "value": "" }
     }
   }
 }

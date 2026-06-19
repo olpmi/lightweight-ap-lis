@@ -1,33 +1,49 @@
 {
   "template_id": "malignant_breast_resection_post_neoadjuvant_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
   "lang": "ar",
   "ui": {
     "direction": "rtl"
   },
-  "title": "استئصال ورم خبيث في الثدي (بعد العلاج الكيميائي النيوأدجوفانت)",
+  "title": "استئصال الثدي للورم الخبيث (بعد العلاج الكيميائي المساعد الأولي)",
   "clinical_case_summary": {
-    "label": "ملخص الحالة السريرية (قبل العلاج النيوأدجوفانت)",
+    "label": "ملخص الحالة السريرية (قبل العلاج المساعد الأولي)",
     "fields": {
       "tumor_characteristics": {
-        "label": "خصائص الورم"
+        "label": "خصائص الورم",
+        "type": "text",
+        "value": ""
       },
       "site": {
-        "label": "الموضع"
+        "label": "الموضع",
+        "type": "text",
+        "value": ""
       },
       "focality": {
-        "label": "البؤرية"
+        "label": "البؤرية",
+        "type": "text",
+        "value": ""
       },
       "dimensions": {
-        "label": "الأبعاد (مم)"
+        "label": "الأبعاد (سم)",
+        "type": "measurement_3d",
+        "value": ""
       },
       "baseline_biomarker": {
-        "label": "المؤشر الحيوي الأساسي للورم"
+        "label": "المؤشر الحيوي الأساسي للورم",
+        "type": "text",
+        "value": ""
       },
       "neoadjuvant_regimen": {
-        "label": "نظام العلاج الكيميائي النيوأدجوفانت"
+        "label": "نظام العلاج الكيميائي المساعد الأولي",
+        "type": "text",
+        "value": ""
       },
       "cycles_completed": {
-        "label": "الدورات المكتملة"
+        "label": "الدورات المكتملة",
+        "type": "integer",
+        "value": ""
       }
     }
   },
@@ -36,22 +52,21 @@
     "fields": {
       "intraoperative_consult": {
         "label": "تم إجراء استشارة أثناء الجراحة",
-        "options": [
-          "نعم",
-          "لا"
-        ],
-        "reason": "السبب"
+        "options": ["نعم", "لا"],
+        "reason": "السبب",
+        "type": "select",
+        "value": ""
       },
       "weight": {
-        "label": "وزن العينة (غ)"
+        "label": "وزن العينة (غ)",
+        "type": "number",
+        "value": ""
       },
       "laterality": {
         "label": "الجهة",
-        "options": [
-          "يسار",
-          "يمين",
-          "غير محدد"
-        ]
+        "options": ["يسار", "يمين", "غير محدد"],
+        "type": "select",
+        "value": ""
       },
       "type": {
         "label": "نوع العينة",
@@ -62,8 +77,10 @@
           "استئصال ثدي محافظ على الحلمة",
           "استئصال الكتلة (استئصال موضعي واسع)",
           "استئصال ربعي (استئصال قطعي)",
-          "جراحة حفظ الثدي الترميمية الأورامية"
-        ]
+          "الجراحة الترميمية الحافظة للثدي (الأورامية الترميمية)"
+        ],
+        "type": "select",
+        "value": ""
       }
     }
   },
@@ -71,25 +88,37 @@
     "label": "العقد اللمفاوية",
     "fields": {
       "present": {
-        "label": "وجود عقد لمفاوية"
+        "label": "وجود عقد لمفاوية",
+        "type": "boolean",
+        "value": ""
       },
       "sentinel": {
         "label": "العقد اللمفاوية الحارسة",
         "fields": {
           "site": {
-            "label": "الموضع"
+            "label": "الموضع",
+            "type": "text",
+            "value": ""
           },
           "radioactive_count": {
-            "label": "العدّ الإشعاعي"
+            "label": "العدّ الإشعاعي",
+            "type": "text",
+            "value": ""
           },
           "dye_uptake": {
-            "label": "التقاط الصبغة"
+            "label": "التقاط الصبغة",
+            "type": "boolean",
+            "value": ""
           },
           "number": {
-            "label": "العدد"
+            "label": "العدد",
+            "type": "integer",
+            "value": ""
           },
           "dimensions": {
-            "label": "أبعاد كل عقدة"
+            "label": "أبعاد كل عقدة",
+            "type": "text",
+            "value": ""
           }
         }
       },
@@ -97,21 +126,23 @@
         "label": "العقد اللمفاوية غير الحارسة",
         "fields": {
           "total_number": {
-            "label": "العدد الإجمالي للعقد"
+            "label": "العدد الإجمالي للعقد",
+            "type": "integer",
+            "value": ""
           },
           "size_range": {
-            "label": "مدى الحجم"
+            "label": "مدى الحجم",
+            "type": "text",
+            "value": ""
           }
         }
       },
       "pre_treatment_abnormal": {
         "label": "العقد غير الطبيعية قبل العلاج",
-        "options": [
-          "غير معروف",
-          "غير موجودة",
-          "موجودة"
-        ],
-        "if_present_number": "العدد إذا كانت موجودة"
+        "options": ["غير معروف", "غير موجودة", "موجودة"],
+        "type": "select",
+        "value": "",
+        "if_present_number": ""
       }
     }
   },
@@ -119,13 +150,19 @@
     "label": "أبعاد الثدي",
     "fields": {
       "medial_lateral": {
-        "label": "الطول الأنسي الوحشي"
+        "label": "الطول الأنسي الوحشي",
+        "type": "measurement",
+        "value": ""
       },
       "superior_inferior": {
-        "label": "الطول العلوي السفلي"
+        "label": "الطول العلوي السفلي",
+        "type": "measurement",
+        "value": ""
       },
       "anterior_posterior": {
-        "label": "الطول الأمامي الخلفي"
+        "label": "الطول الأمامي الخلفي",
+        "type": "measurement",
+        "value": ""
       }
     }
   },
@@ -133,10 +170,14 @@
     "label": "الجلد",
     "fields": {
       "present": {
-        "label": "وجود الجلد"
+        "label": "وجود الجلد",
+        "type": "boolean",
+        "value": ""
       },
       "dimensions": {
-        "label": "أبعاد الجلد"
+        "label": "أبعاد الجلد",
+        "type": "text",
+        "value": ""
       },
       "abnormalities": {
         "label": "شذوذات الجلد",
@@ -144,10 +185,12 @@
           "تقرح",
           "ندبة جراحية سابقة",
           "حمامى",
-          ">30% إصابة",
+          ">30% تورط جلدي",
           "عقيدات جلدية ساتلة",
           "أخرى"
-        ]
+        ],
+        "type": "multi_select",
+        "value": ""
       }
     }
   },
@@ -155,24 +198,19 @@
     "label": "الحلمة",
     "fields": {
       "present": {
-        "label": "وجود الحلمة"
+        "label": "وجود الحلمة",
+        "type": "boolean",
+        "value": ""
       },
       "description": {
         "label": "وصف الحلمة",
-        "options": [
-          "طبيعي",
-          "غير طبيعي"
-        ]
+        "options": ["طبيعي", "غير طبيعي"],
+        "type": "select"
       },
       "abnormal_features": {
         "label": "السمات غير الطبيعية",
-        "options": [
-          "داء باجيت",
-          "قشرة متقشرة",
-          "منكمشة",
-          "مثبتة إلى الورم",
-          "أخرى"
-        ]
+        "options": ["داء باجيت", "تغيرات قشرية", "منكمشة", "مثبتة إلى الورم", "أخرى"],
+        "type": "multi_select"
       }
     }
   },
@@ -180,13 +218,19 @@
     "label": "سرير الورم",
     "fields": {
       "gross_dimensions": {
-        "label": "الأبعاد العيانية (مم)"
+        "label": "الأبعاد العيانية (سم)",
+        "type": "measurement_3d",
+        "value": ""
       },
       "imaging_dimensions": {
-        "label": "الأبعاد بالتصوير (مم)"
+        "label": "الأبعاد بالتصوير (سم)",
+        "type": "measurement_3d",
+        "value": ""
       },
       "description": {
-        "label": "وصف سرير الورم"
+        "label": "وصف سرير الورم",
+        "type": "text",
+        "value": ""
       }
     }
   },
@@ -194,7 +238,9 @@
     "label": "الورم",
     "fields": {
       "macroscopic_present": {
-        "label": "ورم مرئي عيانياً"
+        "label": "ورم مرئي عيانياً",
+        "type": "boolean",
+        "value": ""
       },
       "site": {
         "label": "موضع الورم",
@@ -206,23 +252,26 @@
           "مركزي",
           "الحلمة",
           "غير محدد"
-        ]
+        ],
+        "type": "select"
       },
       "focality": {
         "label": "البؤرية",
-        "options": [
-          "أحادي البؤرة",
-          "متعدد البؤر"
-        ]
+        "options": ["أحادي البؤرة", "متعدد البؤر"],
+        "type": "select"
       },
       "size_post_treatment": {
-        "label": "حجم الورم بعد العلاج النيوأدجوفانت (مم)"
+        "label": "حجم الورم بعد العلاج المساعد الأولي (مم)",
+        "type": "measurement_3d",
+        "value": ""
       },
       "skin_involvement": {
-        "label": "مثبت إلى الجلد"
+        "label": "مثبت إلى الجلد",
+        "type": "boolean"
       },
       "chest_wall_involvement": {
-        "label": "مثبت إلى جدار الصدر"
+        "label": "مثبت إلى جدار الصدر",
+        "type": "boolean"
       }
     }
   },
@@ -230,25 +279,32 @@
     "label": "الحواف",
     "fields": {
       "medial": {
-        "label": "الهامش الأنسي"
+        "label": "الهامش الأنسي",
+        "type": "text"
       },
       "lateral": {
-        "label": "الهامش الوحشي"
+        "label": "الهامش الوحشي",
+        "type": "text"
       },
       "superior": {
-        "label": "الهامش العلوي"
+        "label": "الهامش العلوي",
+        "type": "text"
       },
       "inferior": {
-        "label": "الهامش السفلي"
+        "label": "الهامش السفلي",
+        "type": "text"
       },
       "posterior": {
-        "label": "الهامش الخلفي"
+        "label": "الهامش الخلفي",
+        "type": "text"
       },
       "anterior": {
-        "label": "الهامش الأمامي"
+        "label": "الهامش الأمامي",
+        "type": "text"
       },
       "skin": {
-        "label": "الجلد المغطي"
+        "label": "الجلد السطحي (الموجود فوقه)",
+        "type": "text"
       }
     }
   },
@@ -257,45 +313,36 @@
     "fields": {
       "presence": {
         "label": "العضلات الهيكلية",
-        "options": [
-          "موجود",
-          "غير موجود"
-        ]
+        "options": ["موجود", "غير موجود"],
+        "type": "select",
+        "value": ""
       }
     }
   },
   "block_key": {
     "label": "مفتاح توزيع الكتل",
     "fields": {
-      "nipple": {
-        "label": "الحلمة"
-      },
-      "tumor": {
-        "label": "الورم"
-      },
-      "surrounding_breast": {
-        "label": "نسيج الثدي المحيط"
-      },
-      "margins": {
-        "label": "الحواف"
-      },
-      "lymph_nodes": {
-        "label": "العقد اللمفاوية"
-      }
+      "nipple": { "label": "الحلمة", "type": "text", "value": "" },
+      "tumor": { "label": "الورم", "type": "text", "value": "" },
+      "surrounding_breast": { "label": "نسيج الثدي المحيط", "type": "text", "value": "" },
+      "medial margin": { "label": "الهامش الأنسي", "type": "text", "value": "" },
+      "lateral margin": { "label": "الهامش الوحشي", "type": "text", "value": "" },
+      "Superior margin": { "label": "الهامش العلوي", "type": "text", "value": "" },
+      "Inferior margin": { "label": "الهامش السفلي", "type": "text", "value": "" },
+      "Posterior margin": { "label": "الهامش الخلفي", "type": "text", "value": "" },
+      "Anterior margin": { "label": "الهامش الأمامي", "type": "text", "value": "" },
+      "lymph_nodes": { "label": "العقد اللمفاوية", "type": "text", "value": "" }
     }
   },
   "grossing": {
     "label": "الفحص العياني",
     "fields": {
       "grossed_by": {
-        "label": "أُجري الفحص العياني بواسطة"
+        "label": "أُجري الفحص العياني بواسطة (الأحرف الأولى)",
+        "type": "text",
+        "value": ""
       },
-      "date": {
-        "label": "التاريخ"
-      }
+      "date": { "label": "التاريخ", "type": "date", "value": "" }
     }
-  },
-  "domain": {
-    "fields": {}
   }
 }

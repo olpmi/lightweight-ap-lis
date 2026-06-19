@@ -27,6 +27,7 @@ enum AppLanguage {
   ar
   ur
   sw
+  pt
 
   @@map("app_language")
 }

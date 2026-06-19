@@ -1,7 +1,14 @@
 {
   "template_id": "breast_dcis_resection_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "protocol_posting_date": "June 2021",
+  "standards": ["AJCC-UICC 8"],
   "lang": "ar",
-  "title": "قالب التقرير – سرطان قنوي موضعي بالثدي، الاستئصال",
+  "ui": {
+    "direction": "rtl"
+  },
+  "title": "سرطان قنوي موضعي في الثدي (DCIS)، استئصال",
   "specimen": {
     "label": "العينة",
     "fields": {
@@ -10,32 +17,85 @@
         "options": [
           "استئصال أقل من استئصال الثدي الكامل",
           "استئصال الثدي الكامل (بما في ذلك الحفاظ على الحلمة والجلد)",
-          "أخرى (حدد): _________________",
+          "أخرى",
           "غير محدد"
         ],
-        "other_specify": "حدد (أخرى)"
+        "other_specify": "أخرى (حدد)",
+        "type": "select",
+        "value": ""
       },
       "laterality": {
         "label": "جهة العينة",
-        "options": [
-          "يمين",
-          "يسار",
-          "غير محدد"
-        ]
+        "options": ["يمين", "يسار", "غير محدد"],
+        "type": "select",
+        "value": ""
       }
     }
   },
   "tumor": {
     "label": "الورم",
     "fields": {
+      "tumor_site": {
+        "label": "موضع الورم",
+        "options": [
+          "الربع العلوي الخارجي",
+          "الربع السفلي الخارجي",
+          "الربع العلوي الداخلي",
+          "الربع السفلي الداخلي",
+          "مركزي",
+          "الحلمة",
+          "غير محدد"
+        ],
+        "type": "multi_select",
+        "value": []
+      },
       "histologic_type": {
         "label": "النوع النسيجي",
         "options": [
           "سرطان قنوي موضعي",
           "مرض باجيت",
-          "سرطان حليمي مغلف دون سرطان غازي",
+          "سرطان حليمي مُحاط بمحفظة دون سرطان غازي",
           "سرطان حليمي صلب دون سرطان غازي"
-        ]
+        ],
+        "type": "select",
+        "value": ""
+      },
+      "size_extent_of_dcis": {
+        "label": "حجم (مدى) الـ DCIS",
+        "note": "حجم (مدى) الـ DCIS هو تقدير لحجم نسيج الثدي الذي يشغله الـ DCIS استناداً إلى الفحص العياني والمجهري.",
+        "fields": {
+          "size_type": {
+            "label": "حجم (مدى) الـ DCIS",
+            "options": ["الحجم المقدّر (مدى) للـ DCIS لا يقل عن (مم)", "لا يمكن التحديد"],
+            "type": "select",
+            "value": ""
+          },
+          "size_mm": {
+            "label": "الحجم المقدر (مم)",
+            "type": "number",
+            "value": ""
+          },
+          "additional_dimensions_mm": {
+            "label": "أبعاد إضافية (مم)",
+            "type": "measurement_2d",
+            "value": ""
+          },
+          "cannot_be_determined_specify": {
+            "label": "لا يمكن التحديد",
+            "type": "text",
+            "value": ""
+          },
+          "number_of_blocks_with_dcis": {
+            "label": "عدد الكتل التي تحتوي على DCIS",
+            "type": "integer",
+            "value": ""
+          },
+          "number_of_blocks_examined": {
+            "label": "عدد الكتل المفحوصة",
+            "type": "integer",
+            "value": ""
+          }
+        }
       },
       "architectural_patterns": {
         "label": "الأنماط المعمارية",
@@ -46,120 +106,124 @@
           "حليمي دقيق",
           "حليمي",
           "صلب",
-          "أخرى (حدد): _________________"
+          "أخرى"
         ],
-        "other_specify": "حدد النمط المعماري الآخر"
+        "other_specify": "أخرى (حدد)",
+        "type": "multi_select",
+        "value": []
       },
       "nuclear_grade": {
         "label": "الدرجة النووية",
-        "options": [
-          "الدرجة I (منخفضة)",
-          "الدرجة II (متوسطة)",
-          "الدرجة III (مرتفعة)"
-        ]
+        "options": ["الدرجة I (منخفضة)", "الدرجة II (متوسطة)", "الدرجة III (مرتفعة)"],
+        "type": "select",
+        "value": ""
       },
       "necrosis": {
         "label": "النخر",
         "options": [
-          "غير محدد",
+          "غير مُشخَّص",
           "موجود، بؤري (بؤر صغيرة أو نخر خلية واحدة)",
-          "موجود، مركزي (نخر كوميدو توسعي)"
-        ]
+          "موجود، مركزي (نخر \"كوميدو\" واسع)"
+        ],
+        "type": "select",
+        "value": ""
       },
       "microcalcifications": {
         "label": "التكلسات الدقيقة",
-        "options": [
-          "غير محدد",
-          "موجودة في DCIS",
-          "موجودة في نسيج غير ورمي",
-          "أخرى (حدد): _________________"
-        ],
-        "other_specify": "حدد التكلسات الدقيقة الأخرى"
-      },
-      "tumor_site": {},
-      "size_extent_of_dcis": {
-        "fields": {
-          "size_type": {
-            "label": "حجم (مدى) الـ DCIS",
-            "options": [
-              "Estimated size (extent) of DCIS is at least in millimeters (mm)",
-              "لا يمكن التحديد"
-            ]
-          },
-          "size_mm": {
-            "label": "الحجم المقدر (ملم)"
-          },
-          "additional_dimensions_mm": {
-            "label": "أبعاد إضافية (ملم)"
-          },
-          "cannot_be_determined_specify": {
-            "label": "لا يمكن التحديد"
-          },
-          "number_of_blocks_with_dcis": {
-            "label": "عدد الكتل التي تحتوي على DCIS"
-          },
-          "number_of_blocks_examined": {
-            "label": "عدد الكتل المفحوصة"
-          }
-        }
+        "options": ["غير موجودة", "موجودة في DCIS", "موجودة في نسيج غير ورمي", "أخرى"],
+        "other_specify": "أخرى (حدد)",
+        "type": "multi_select",
+        "value": []
       }
     }
   },
   "margins": {
     "label": "الهوامش",
     "fields": {
-      "margin_status": {},
+      "margin_status": {
+        "label": "حالة الهامش",
+        "note": "يجب تحديد أقرب هامش إذا كانت المسافة بين الـ DCIS والهامش أقل من 2 مم.",
+        "options": [
+          "جميع الهوامش سلبية لـ DCIS",
+          "DCIS موجود عند الهامش",
+          "غير قابل للتطبيق (لا يوجد DCIS في العينة)"
+        ],
+        "type": "select",
+        "value": ""
+      },
       "distance_from_dcis_to_closest_margin": {
+        "label": "المسافة من DCIS إلى أقرب هامش",
         "fields": {
           "distance_type": {
             "label": "نوع المسافة",
-            "options": [
-              "Exact distance",
-              "أقل من",
-              "Greater than",
-              "Other",
-              "لا يمكن التحديد"
-            ]
+            "options": ["مسافة دقيقة", "أقل من", "أكبر من", "أخرى", "لا يمكن التحديد"],
+            "type": "select",
+            "value": ""
           },
           "distance_mm": {
-            "label": "المسافة (ملم)"
+            "label": "المسافة (مم)",
+            "type": "number",
+            "value": ""
           },
           "other_specify": {
-            "label": "أخرى (حدد)"
+            "label": "أخرى (حدد)",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_explain": {
-            "label": "لا يمكن التحديد (اشرح)"
+            "label": "لا يمكن التحديد (اشرح)",
+            "type": "text",
+            "value": ""
           }
         }
       },
       "closest_margins_to_dcis": {
-        "other_specify": "أخرى، حدد",
-        "cannot_be_determined_explain": "لا يمكن التحديد، اشرح"
+        "label": "أقرب هامش (هوامش) إلى DCIS",
+        "options": [
+          "غير قابل للتطبيق",
+          "أمامي",
+          "خلفي",
+          "علوي",
+          "سفلي",
+          "أنسي",
+          "وحشي",
+          "أخرى",
+          "لا يمكن التحديد"
+        ],
+        "other_specify": "أخرى (حدد)",
+        "cannot_be_determined_specify": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "type": "multi_select",
+        "value": []
       },
       "margins_involved_by_dcis": {
-        "item_label": "تسمية",
+        "label": "الهامش (الهوامش) المتأثرة بـ DCIS",
+        "type": "repeatable_group",
+        "item_label": "هامش متأثر بـ DCIS",
         "fields": {
           "margin": {
             "label": "الهامش",
-            "options": [
-              "Anterior",
-              "Posterior",
-              "Superior",
-              "Inferior",
-              "Medial",
-              "Lateral",
-              "Other",
-              "لا يمكن التحديد"
-            ]
+            "options": ["أمامي", "خلفي", "علوي", "سفلي", "أنسي", "وحشي", "أخرى", "لا يمكن التحديد"],
+            "type": "select",
+            "value": ""
           },
           "extent": {
-            "label": "المدى، إن أمكن"
+            "label": "المدى، إن أمكن",
+            "type": "text",
+            "value": ""
           },
           "other_specify": {
-            "label": "أخرى (حدد الهامش(الهوامش) وإن أمكن، المدى)"
+            "label": "أخرى (حدد الهامش والمدى إن أمكن)",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_explain": {
-            "label": "لا يمكن التحديد (اشرح)"
+            "label": "لا يمكن التحديد (اشرح)",
+            "type": "text",
+            "value": ""
           }
         }
       }
@@ -168,200 +232,290 @@
   "regional_lymph_nodes": {
     "label": "العقد اللمفاوية الإقليمية",
     "fields": {
-      "extranodal_extension": {
-        "label": "الامتداد خارج العقدة",
+      "regional_lymph_node_status": {
+        "label": "حالة العقد اللمفاوية الإقليمية",
         "options": [
-          "غير محدد",
-          "موجود، 2 mm أو أقل",
-          "موجود، أكبر من 2 mm",
-          "موجود",
-          "لا يمكن تحديده",
-          "أخرى (حدد): _________________",
-          "لا يمكن تحديده (اشرح): _________________"
+          "غير قابل للتطبيق (لم تُرسل عقد لمفاوية أو لم تُعثر عليها)",
+          "العقد اللمفاوية الإقليمية موجودة",
+          "جميع العقد اللمفاوية الإقليمية سلبية للورم",
+          "الورم موجود في العقدة (العقد) اللمفاوية الإقليمية"
         ],
-        "other_specify": "حدد (أخرى)",
-        "cannot_be_determined_explain": "اشرح 'لا يمكن تحديده'"
+        "type": "select",
+        "value": ""
       },
-      "regional_lymph_node_status": {},
       "number_with_macrometastases": {
+        "label": "عدد العقد اللمفاوية ذات النقائل الكبرى",
         "fields": {
           "count_type": {
             "label": "نوع العدد",
-            "options": [
-              "Exact number",
-              "على الأقل",
-              "Other",
-              "لا يمكن التحديد"
-            ]
+            "options": ["عدد دقيق", "على الأقل", "أخرى", "لا يمكن التحديد"],
+            "type": "select",
+            "value": ""
           },
           "count_value": {
-            "label": "العدد"
+            "label": "العدد",
+            "type": "integer",
+            "value": ""
           },
           "other_specify": {
-            "label": "أخرى (حدد)"
+            "label": "أخرى (حدد)",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_explain": {
-            "label": "لا يمكن التحديد (اشرح)"
+            "label": "لا يمكن التحديد (اشرح)",
+            "type": "text",
+            "value": ""
           }
         }
       },
       "number_with_micrometastases": {
+        "label": "عدد العقد اللمفاوية ذات النقائل الصغرى",
         "fields": {
           "count_type": {
             "label": "نوع العدد",
-            "options": [
-              "Exact number",
-              "على الأقل",
-              "Other",
-              "لا يمكن التحديد"
-            ]
+            "options": ["عدد دقيق", "على الأقل", "أخرى", "لا يمكن التحديد"],
+            "type": "select",
+            "value": ""
           },
           "count_value": {
-            "label": "العدد"
+            "label": "العدد",
+            "type": "integer",
+            "value": ""
           },
           "other_specify": {
-            "label": "أخرى (حدد)"
+            "label": "أخرى (حدد)",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_explain": {
-            "label": "لا يمكن التحديد (اشرح)"
+            "label": "لا يمكن التحديد (اشرح)",
+            "type": "text",
+            "value": ""
           }
         }
       },
       "number_with_isolated_tumor_cells": {
+        "label": "عدد العقد اللمفاوية ذات الخلايا الورمية المعزولة",
         "fields": {
           "count_type": {
             "label": "نوع العدد",
-            "options": [
-              "غير قابل للتطبيق",
-              "Exact number",
-              "على الأقل",
-              "Other",
-              "لا يمكن التحديد"
-            ]
+            "options": ["غير قابل للتطبيق", "عدد دقيق", "على الأقل", "أخرى", "لا يمكن التحديد"],
+            "type": "select",
+            "value": ""
           },
           "count_value": {
-            "label": "العدد"
+            "label": "العدد",
+            "type": "integer",
+            "value": ""
           },
           "other_specify": {
-            "label": "أخرى (حدد)"
+            "label": "أخرى (حدد)",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_explain": {
-            "label": "لا يمكن التحديد (اشرح)"
+            "label": "لا يمكن التحديد (اشرح)",
+            "type": "text",
+            "value": ""
           }
         }
       },
       "size_of_largest_nodal_metastatic_deposit": {
+        "label": "حجم أكبر بؤرة نقيلية في العقدة",
         "fields": {
           "size_type": {
             "label": "نوع القياس",
-            "options": [
-              "Exact size",
-              "أقل من",
-              "Greater than",
-              "Other",
-              "لا يمكن التحديد"
-            ]
+            "options": ["حجم دقيق", "أقل من", "أكبر من", "أخرى", "لا يمكن التحديد"],
+            "type": "select",
+            "value": ""
           },
           "size_mm": {
-            "label": "الحجم (ملم)"
+            "label": "الحجم (مم)",
+            "type": "number",
+            "value": ""
           },
           "other_specify": {
-            "label": "أخرى (حدد)"
+            "label": "أخرى (حدد)",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_explain": {
-            "label": "لا يمكن التحديد (اشرح)"
+            "label": "لا يمكن التحديد (اشرح)",
+            "type": "text",
+            "value": ""
           }
         }
       },
+      "extranodal_extension": {
+        "label": "الامتداد خارج العقدة",
+        "options": [
+          "غير مُشخَّص",
+          "موجود، 2 مم أو أقل",
+          "موجود، أكبر من 2 مم",
+          "موجود",
+          "لا يمكن تحديده",
+          "أخرى"
+        ],
+        "other_specify": "",
+        "cannot_be_determined_explain": "",
+        "type": "select",
+        "value": ""
+      },
       "total_number_examined": {
+        "label": "العدد الإجمالي للعقد اللمفاوية المفحوصة (الحارسة وغير الحارسة)",
         "fields": {
           "count_type": {
             "label": "نوع العدد",
-            "options": [
-              "Exact number",
-              "على الأقل",
-              "Other",
-              "لا يمكن التحديد"
-            ]
+            "options": ["عدد دقيق", "على الأقل", "أخرى", "لا يمكن التحديد"],
+            "type": "select",
+            "value": ""
           },
           "count_value": {
-            "label": "العدد"
+            "label": "العدد",
+            "type": "integer",
+            "value": ""
           },
           "other_specify": {
-            "label": "أخرى (حدد)"
+            "label": "أخرى (حدد)",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_explain": {
-            "label": "لا يمكن التحديد (اشرح)"
+            "label": "لا يمكن التحديد (اشرح)",
+            "type": "text",
+            "value": ""
           }
         }
       },
       "number_of_sentinel_nodes_examined": {
+        "label": "عدد العقد الحارسة المفحوصة",
         "fields": {
           "count_type": {
             "label": "نوع العدد",
-            "options": [
-              "غير قابل للتطبيق",
-              "Exact number",
-              "على الأقل",
-              "Other",
-              "لا يمكن التحديد"
-            ]
+            "options": ["غير قابل للتطبيق", "عدد دقيق", "على الأقل", "أخرى", "لا يمكن التحديد"],
+            "type": "select",
+            "value": ""
           },
           "count_value": {
-            "label": "العدد"
+            "label": "العدد",
+            "type": "integer",
+            "value": ""
           },
           "other_specify": {
-            "label": "أخرى (حدد)"
+            "label": "أخرى (حدد)",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_explain": {
-            "label": "لا يمكن التحديد (اشرح)"
+            "label": "لا يمكن التحديد (اشرح)",
+            "type": "text",
+            "value": ""
           }
         }
       },
-      "comment": {}
+      "comment": {
+        "label": "تعليق على العقد اللمفاوية الإقليمية"
+      }
     }
   },
   "distant_metastasis": {
     "label": "النقائل البعيدة",
     "fields": {
       "sites_involved": {
-        "non_regional_lymph_nodes_specify": "non regional lymph nodes specify",
-        "lung_specify": "lung specify",
-        "liver_specify": "liver specify",
-        "bone_specify": "العظم، حدد",
-        "brain_specify": "brain specify",
-        "other_specify": "أخرى، حدد",
-        "cannot_be_determined_specify": "لا يمكن التحديد، حدد"
+        "label": "الموضع (المواضع) البعيدة المتأثرة",
+        "options": [
+          "غير قابل للتطبيق",
+          "العقد اللمفاوية غير الإقليمية",
+          "الرئة",
+          "الكبد",
+          "العظم",
+          "الدماغ",
+          "أخرى",
+          "لا يمكن التحديد"
+        ],
+        "non_regional_lymph_nodes_specify": {
+          "label": "العقد اللمفاوية غير الإقليمية (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "lung_specify": { "label": "الرئة (حدد)", "type": "text", "value": "" },
+        "liver_specify": { "label": "الكبد (حدد)", "type": "text", "value": "" },
+        "bone_specify": { "label": "العظام (حدد)", "type": "text", "value": "" },
+        "brain_specify": { "label": "الدماغ (حدد)", "type": "text", "value": "" },
+        "other_specify": { "label": "أخرى (حدد)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        }
       }
     }
   },
   "pathologic_stage": {
     "label": "تصنيف المرحلة المرضية (pTNM، الإصدار الثامن AJCC)",
+    "note": "يستند الإبلاغ عن فئات pT وpN وpM (عند الانطباق) إلى المعلومات المتاحة لعلم الأمراض وقت إصدار التقرير.",
     "fields": {
       "tnm_descriptors": {
         "label": "واصفات TNM",
+        "options": ["لا ينطبق", "r (ناكس)"],
+        "type": "select",
+        "value": ""
+      },
+      "pT_category": {
+        "label": "فئة pT",
+        "options": [
+          "pTis (DCIS): سرطان قنوي موضعي",
+          "pTis (Paget): مرض باجيت في الحلمة غير المرتبط بسرطان غازي و/أو DCIS في الحمة الثديية الكامنة"
+        ],
+        "type": "select",
+        "value": ""
+      },
+      "regional_lymph_nodes_modifier": {
+        "label": "معدّل العقد اللمفاوية الإقليمية",
         "options": [
           "لا ينطبق",
-          "r (ناكس)"
-        ]
+          "(sn): تقييم العقد الحارسة",
+          "(f): تأكيد النقيلة بالشفط بالإبرة الدقيقة أو الخزعة اللبية"
+        ],
+        "type": "multi_select",
+        "value": []
       },
-      "pT_category": {},
-      "regional_lymph_nodes_modifier": {},
-      "pN_category": {},
-      "pM_category": {},
-      "previous_case_number": {}
+      "pN_category": {
+        "label": "فئة pN",
+        "options": [
+          "pN غير مُحدد (لم تُرسل عقد أو لم تُعثر عليها)",
+          "pN غير مُحدد (لا يمكن التحديد بناءً على المعلومات المرضية المتاحة)",
+          "pN0: لا توجد نقائل في العقد اللمفاوية الإقليمية أو خلايا ورمية معزولة فقط",
+          "pN0 (i+): خلايا ورمية معزولة فقط في العقد اللمفاوية الإقليمية",
+          "pN0 (mol+): نتائج جزيئية إيجابية بـ RT-PCR؛ لم تُكتشف خلايا ورمية معزولة",
+          "pN1mi: نقائل صغرى",
+          "pN1a: نقائل في 1-3 عقد إبطية، نقيلة واحدة على الأقل أكبر من 2.0 مم",
+          "pN1b: نقائل في العقد الحارسة الثديية الداخلية المماثلة، باستثناء الخلايا الورمية المعزولة",
+          "pN1c: pN1a وpN1b مجتمعتين",
+          "pN2a: نقائل في 4-9 عقد إبطية، ترسّب ورمي واحد على الأقل أكبر من 2.0 مم",
+          "pN2b: نقائل في العقد اللمفاوية الثديية الداخلية المكتشفة سريرياً مع عقد إبطية سلبية مرضياً",
+          "pN3a: نقائل في 10 عقد إبطية أو أكثر أو نقائل في العقد دون الترقوة",
+          "pN3b: pN1a أو pN2a مع وجود cN2b، أو pN2a مع وجود pN1b",
+          "pN3c: نقائل في العقد اللمفاوية فوق الترقوة المماثلة"
+        ],
+        "type": "select",
+        "value": ""
+      },
+      "pM_category": {
+        "label": "فئة pM",
+        "options": [
+          "غير قابل للتطبيق - لا يمكن تحديد pM من العينة (العينات) المُرسلة",
+          "pM1: نقائل مثبتة نسيجياً أكبر من 0.2 مم"
+        ],
+        "type": "select",
+        "value": ""
+      },
+      "previous_case_number": {
+        "label": "حدد رقم الحالة (إن كان من إجراء سابق)",
+        "type": "text",
+        "value": ""
+      }
     }
-  },
-  "domain": {
-    "fields": {}
-  },
-  "protocol_posting_date": {
-    "fields": {}
-  },
-  "case_summary": {
-    "fields": {}
-  },
-  "standards": {
-    "fields": {}
   }
 }

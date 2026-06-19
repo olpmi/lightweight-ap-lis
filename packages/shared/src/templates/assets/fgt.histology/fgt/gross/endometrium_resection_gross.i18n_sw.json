@@ -1,5 +1,9 @@
 {
-  "title": "Sampuli ya Upasuaji wa Endometriamu (Kiolezo cha Gross)",
+  "template_id": "endometrium_resection_gross_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "lang": "sw",
+  "title": "Sampuli ya upasuaji wa endometriamu",
   "specimen": {
     "label": "Sampuli",
     "fields": {
@@ -57,13 +61,13 @@
     }
   },
   "parametrium": {
-    "label": "Tishu inayozunguka mfuko wa uzazi",
+    "label": "Parametriamu",
     "fields": {
       "left_parametrium_lateral_extent_cm": {
-        "label": "Upanuzi wa upande wa tishu inayozunguka mfuko wa uzazi (kushoto) (cm)"
+        "label": "Upanuzi wa upande wa parametriamu ya kushoto (cm)"
       },
       "right_parametrium_lateral_extent_cm": {
-        "label": "Upanuzi wa upande wa tishu inayozunguka mfuko wa uzazi (kulia) (cm)"
+        "label": "Upanuzi wa upande wa parametriamu ya kulia (cm)"
       }
     }
   },
@@ -79,7 +83,7 @@
     }
   },
   "tumor": {
-    "label": "Uvimbe",
+    "label": "Uvimbe wa saratani",
     "fields": {
       "tumor_site": {
         "label": "Eneo la uvimbe"
@@ -94,7 +98,7 @@
         "label": "Mwonekano"
       },
       "myometrial_invasion_depth_cm": {
-        "label": "Kina cha uvamizi (cm)"
+        "label": "Kina cha uvamizi wa myometriamu (cm)"
       },
       "myometrial_thickness_cm": {
         "label": "Unene wa myometriamu (cm)"
@@ -106,10 +110,10 @@
         "label": "Ushiriki wa stroma ya mlango wa mfuko wa uzazi"
       },
       "distance_to_ectocervical_margin_cm": {
-        "label": "Umbali hadi kingo ya ectocervix (cm)"
+        "label": "Umbali hadi kingo ya ektoseviksi (cm)"
       },
       "distance_to_paracervical_parametrial_margin_cm": {
-        "label": "Umbali hadi kingo ya paracervical/parametrial (cm)"
+        "label": "Umbali hadi kingo ya parasevikali / parametriamu (cm)"
       }
     }
   },
@@ -131,7 +135,7 @@
     }
   },
   "fibroids": {
-    "label": "Misuli ya nyuzi",
+    "label": "Mioma",
     "fields": {
       "location": {
         "label": "Mahali"
@@ -191,7 +195,7 @@
     "label": "Nodi za limfu",
     "fields": {
       "left_pelvic_appearance": {
-        "label": "Nodi za limfu za nyonga (kushoto)"
+        "label": "Mwonekano wa nodi za limfu za nyonga (kushoto)"
       },
       "left_pelvic_number": {
         "label": "Idadi ya nodi za nyonga (kushoto)"
@@ -200,7 +204,7 @@
         "label": "Kiwango cha ukubwa wa nodi za nyonga (kushoto)"
       },
       "right_pelvic_appearance": {
-        "label": "Nodi za limfu za nyonga (kulia)"
+        "label": "Mwonekano wa nodi za limfu za nyonga (kulia)"
       },
       "right_pelvic_number": {
         "label": "Idadi ya nodi za nyonga (kulia)"
@@ -209,7 +213,7 @@
         "label": "Kiwango cha ukubwa wa nodi za nyonga (kulia)"
       },
       "left_para_aortic_appearance": {
-        "label": "Nodi za limfu za para-aortiki (kushoto)"
+        "label": "Mwonekano wa nodi za limfu za para-aortiki (kushoto)"
       },
       "left_para_aortic_number": {
         "label": "Idadi ya nodi za para-aortiki (kushoto)"
@@ -218,7 +222,7 @@
         "label": "Kiwango cha ukubwa wa nodi za para-aortiki (kushoto)"
       },
       "right_para_aortic_appearance": {
-        "label": "Nodi za limfu za para-aortiki (kulia)"
+        "label": "Mwonekano wa nodi za limfu za para-aortiki (kulia)"
       },
       "right_para_aortic_number": {
         "label": "Idadi ya nodi za para-aortiki (kulia)"
@@ -241,13 +245,13 @@
         "label": "Mlango wa mfuko wa uzazi (mbele na nyuma)"
       },
       "ectocervical_margin": {
-        "label": "Kingo ya ectocervix"
+        "label": "Kingo ya ektoseviksi"
       },
       "left_parametrium_paracervical_margin": {
-        "label": "Kingo ya parametrial/paracervical (kushoto)"
+        "label": "Kingo ya parametriamu / parasevikali (kushoto)"
       },
       "right_parametrium_paracervical_margin": {
-        "label": "Kingo ya parametrial/paracervical (kulia)"
+        "label": "Kingo ya parametriamu / parasevikali (kulia)"
       },
       "left_fallopian_tube": {
         "label": "Mrija wa fallopian wa kushoto"
@@ -270,14 +274,14 @@
     }
   },
   "grossing": {
-    "label": "Uchunguzi wa makroskopia",
+    "label": "Uchunguzi wa macho",
     "fields": {
       "grossed_by": {
-        "label": "Imefanyiwa grossing na"
+        "label": "Imefanyiwa uchunguzi wa macho na (herufi za kwanza)",
+        "type": "text",
+        "value": ""
       },
-      "date": {
-        "label": "Tarehe"
-      }
+      "date": { "label": "Tarehe", "type": "date", "value": "" }
     }
   }
 }

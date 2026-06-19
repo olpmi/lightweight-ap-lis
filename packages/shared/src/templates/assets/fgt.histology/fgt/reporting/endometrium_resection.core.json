@@ -1,14 +1,10 @@
 {
   "template_id": "endometrium_resection_v1",
   "domain": "anatomic_pathology",
-  "title": "Endometrium",
+  "case_type": "histology",
   "protocol_posting_date": "December 2024",
-  "standards": [
-    "AJCC 8",
-    "FIGO 2009 Staging (2018 Annual Report)",
-    "FIGO 2023 Staging"
-  ],
-
+  "lang": "en",
+  "title": "Endometrium",
   "specimen": {
     "label": "Specimen",
     "fields": {
@@ -49,7 +45,6 @@
       }
     }
   },
-
   "tumor": {
     "label": "Tumor",
     "fields": {
@@ -83,7 +78,6 @@
           }
         }
       },
-
       "histologic_type": {
         "label": "Histologic type",
         "type": "select",
@@ -106,7 +100,6 @@
         "mixed_carcinoma_specify": "",
         "other_specify": ""
       },
-
       "histologic_grade": {
         "label": "Histologic grade",
         "note": "FIGO grading applies to endometrioid carcinomas only. All other subtypes are considered high-grade.",
@@ -123,7 +116,6 @@
         "other_specify": "",
         "cannot_be_assessed_explain": ""
       },
-
       "myometrial_invasion": {
         "label": "Myometrial invasion",
         "fields": {
@@ -156,7 +148,6 @@
           }
         }
       },
-
       "adenomyosis": {
         "label": "Adenomyosis",
         "type": "select",
@@ -169,7 +160,6 @@
         "value": "",
         "cannot_be_determined_specify": ""
       },
-
       "uterine_serosal_involvement": {
         "label": "Uterine serosal involvement",
         "type": "select",
@@ -177,7 +167,6 @@
         "value": "",
         "cannot_be_determined_explain": ""
       },
-
       "lower_uterine_segment_involvement": {
         "label": "Lower uterine segment involvement",
         "type": "select",
@@ -190,7 +179,6 @@
         "value": "",
         "cannot_be_determined_explain": ""
       },
-
       "cervical_involvement": {
         "label": "Cervical involvement",
         "fields": {
@@ -218,7 +206,6 @@
           }
         }
       },
-
       "other_tissue_organ_involvement": {
         "label": "Other tissue / organ involvement",
         "type": "multi_select",
@@ -247,7 +234,6 @@
         "other_specify": "",
         "cannot_be_determined_explain": ""
       },
-
       "peritoneal_pelvic_washings": {
         "label": "Peritoneal / pelvic washings / ascitic fluid",
         "type": "select",
@@ -263,7 +249,6 @@
         "atypical_explain": "",
         "suspicious_explain": ""
       },
-
       "lymphovascular_invasion": {
         "label": "Lymphatic and / or vascular invasion",
         "note": "Report the maximum number of LVI foci present on the single slide with the highest number of foci.",
@@ -277,10 +262,7 @@
           "extent": {
             "label": "Extent of LVI",
             "type": "select",
-            "options": [
-              "Less than or equal to 4 foci",
-              "Greater than or equal to 5 foci"
-            ],
+            "options": ["Less than or equal to 4 foci", "Greater than or equal to 5 foci"],
             "value": ""
           },
           "number_of_foci": {
@@ -295,7 +277,6 @@
           }
         }
       },
-
       "tumor_comment": {
         "label": "Tumor comment",
         "type": "text",
@@ -303,7 +284,6 @@
       }
     }
   },
-
   "margins": {
     "label": "Margins",
     "fields": {
@@ -318,7 +298,6 @@
         ],
         "value": ""
       },
-
       "closest_margins_to_carcinoma": {
         "label": "Closest margin(s) to carcinoma",
         "type": "multi_select",
@@ -338,7 +317,6 @@
         "other_specify": "",
         "cannot_be_determined_specify": ""
       },
-
       "distance_from_carcinoma_to_closest_margin": {
         "label": "Distance from carcinoma to closest margin",
         "fields": {
@@ -354,8 +332,8 @@
             ],
             "value": ""
           },
-          "distance_mm": {
-            "label": "Distance (mm)",
+          "distance_cm": {
+            "label": "Distance (cm)",
             "type": "number",
             "value": ""
           },
@@ -366,7 +344,6 @@
           }
         }
       },
-
       "margins_involved_by_carcinoma": {
         "label": "Margin(s) involved by carcinoma",
         "type": "multi_select",
@@ -387,7 +364,6 @@
         "cannot_be_determined_specify": "",
         "cannot_be_determined_explain": ""
       },
-
       "margin_comment": {
         "label": "Margin comment",
         "type": "text",
@@ -395,7 +371,6 @@
       }
     }
   },
-
   "regional_lymph_nodes": {
     "label": "Regional Lymph Nodes",
     "fields": {
@@ -411,7 +386,6 @@
         ],
         "value": ""
       },
-
       "pelvic_nodes": {
         "label": "Pelvic lymph nodes",
         "fields": {
@@ -475,7 +449,6 @@
           }
         }
       },
-
       "para_aortic_nodes": {
         "label": "Para-aortic lymph nodes",
         "fields": {
@@ -539,7 +512,6 @@
           }
         }
       },
-
       "regional_lymph_node_comment": {
         "label": "Regional lymph node comment",
         "type": "text",
@@ -547,7 +519,6 @@
       }
     }
   },
-
   "distant_metastasis": {
     "label": "Distant Metastasis",
     "fields": {
@@ -577,151 +548,114 @@
       }
     }
   },
-
   "ptnm_classification": {
     "label": "pTNM Classification (AJCC 8th Edition)",
     "fields": {
       "modified_classification": {
         "label": "Modified classification",
         "type": "multi_select",
-        "options": [
-          "Not applicable",
-          "y (post-neoadjuvant therapy)",
-          "r (recurrence)"
-        ],
+        "options": ["Not applicable", "y (post-neoadjuvant therapy)", "r (recurrence)"],
         "value": []
       },
-
       "pT_category": {
         "label": "pT category",
         "type": "select",
         "options": [
           "pT not assigned",
-          "pT0",
-          "pT1a",
-          "pT1b",
-          "pT1",
-          "pT2",
-          "pT3a",
-          "pT3b",
-          "pT3",
-          "pT4"
+          "pT0: No evidence of primary tumor",
+          "pT1a: Tumor limited to the endometrium or invading less than one half of the myometrium",
+          "pT1b: Tumor invading one half or more of the myometrium",
+          "pT1: Tumor confined to the corpus uteri, NOS (subcategory cannot be determined)",
+          "pT2: Tumor invades stromal connective tissue of the cervix but does not extend beyond the uterus (does not include endocervical glandular involvement)",
+          "pT3a: Tumor involves serosa and/or adnexa (direct extension or metastasis)",
+          "pT3b: Vaginal involvement (direct extension or metastasis) or parametrial involvement",
+          "pT3: Tumor extends beyond the uterus, NOS (subcategory cannot be determined)",
+          "pT4: Tumor invades bladder mucosa and/or bowel mucosa (bullous edema is not sufficient to classify a tumor as pT4)"
         ],
         "value": ""
       },
-
       "T_suffix": {
         "label": "T suffix",
         "type": "select",
-        "options": [
-          "Not applicable",
-          "(m) multiple primary synchronous tumors in a single organ"
-        ],
+        "options": ["Not applicable", "(m) multiple primary synchronous tumors in a single organ"],
         "value": ""
       },
-
       "pN_category": {
         "label": "pN category",
         "type": "select",
         "options": [
           "pN not assigned (no nodes submitted or found)",
           "pN not assigned (cannot be determined based on available pathological information)",
-          "pN0",
-          "pN0(i+)",
-          "pN1mi",
-          "pN1a",
-          "pN1",
-          "pN2mi",
-          "pN2a",
-          "pN2"
+          "pN0: No regional lymph node metastasis",
+          "pN0(i+): Isolated tumor cells in regional lymph node(s) no greater than 0.2 mm",
+          "pN1mi: Regional lymph node micrometastasis (greater than 0.2 mm but not greater than 2.0 mm)",
+          "pN1a: Regional lymph node macrometastasis to pelvic lymph nodes (greater than 2.0 mm)",
+          "pN1: Regional lymph node metastasis to pelvic lymph nodes (subcategory cannot be determined)",
+          "pN2mi: Regional lymph node micrometastasis (greater than 0.2 mm but not greater than 2.0 mm) to para-aortic lymph nodes with or without positive pelvic lymph nodes",
+          "pN2a: Regional lymph node macrometastasis (greater than 2.0 mm) to para-aortic lymph nodes with or without positive pelvic lymph nodes",
+          "pN2: Regional lymph node metastasis to para-aortic lymph nodes (subcategory cannot be determined)"
         ],
         "value": ""
       },
-
       "N_suffix": {
         "label": "N suffix",
         "type": "multi_select",
-        "options": [
-          "Not applicable",
-          "(sn) Sentinel node procedure",
-          "(f) FNA or core biopsy"
-        ],
+        "options": ["Not applicable", "(sn) Sentinel node procedure", "(f) FNA or core biopsy"],
         "value": []
       },
-
       "pM_category": {
         "label": "pM category",
         "type": "select",
         "options": [
           "Not applicable - pM cannot be determined from the submitted specimen(s)",
-          "pM1"
+          "pM1: Distant metastasis (includes inguinal lymph nodes and intraperitoneal disease or lung, liver, or bone). It excludes metastasis to pelvic or para-aortic lymph nodes, vagina, uterine serosa, or adnexa"
         ],
         "value": ""
       }
     }
   },
-
   "figo_stage": {
     "label": "FIGO Stage",
     "fields": {
-      "figo_2009_2018": {
-        "label": "FIGO Stage (FIGO 2009 / 2018 Report)",
-        "type": "select",
-        "options": [
-          "I",
-          "IA",
-          "IB",
-          "II",
-          "IIIA",
-          "IIIB",
-          "IIIC",
-          "IIIC1",
-          "IIIC2",
-          "IVA",
-          "IVB"
-        ],
-        "value": ""
-      },
       "figo_2023": {
         "label": "FIGO Stage (2023 Staging for Cancer of the Endometrium)",
         "type": "select",
         "options": [
-          "I",
-          "IA",
-          "IA1",
-          "IA2",
-          "IA3",
-          "IAm (POLEmut)",
-          "IB",
-          "IC",
-          "II",
-          "IIA",
-          "IIB",
-          "IIC",
-          "IICm (p53abn)",
-          "III",
-          "IIIA",
-          "IIIA1",
-          "IIIA2",
-          "IIIB",
-          "IIIB1",
-          "IIIB2",
-          "IIIC",
-          "IIIC1",
-          "IIIC1i",
-          "IIIC1ii",
-          "IIIC2",
-          "IIIC2i",
-          "IIIC2ii",
-          "IVA",
-          "IVB",
-          "IVC"
+          "I: Tumor confined to the corpus uteri and the ovary",
+          "IA: Disease limited to the endometrium OR non-aggressive histological type (i.e., low-grade endometrioid) with less than 50% myometrial invasion without LVSI or with focal LVSI OR disease of favorable prognosis",
+          "IA1: Non-aggressive histological type limited to an endometrial polyp OR confined to the endometrium",
+          "IA2: Non-aggressive histological types with less than 50% myometrial invasion without LVSI or with focal LVSI",
+          "IA3: Low-grade endometrioid carcinomas limited to the uterus and the ovary",
+          "IAm (POLEmut): Endometrial carcinoma with POLE mutation, confined to the corpus uteri or with cervical extension, regardless of LVSI degree or histological type",
+          "IB: Non-aggressive histological types with 50% or more myometrial invasion without LVSI or with focal LVSI",
+          "IC: Aggressive histological types confined to a polyp or confined to the endometrium",
+          "II: Cervical stromal invasion without extra-uterine extension OR substantial LVSI OR aggressive histological types with myometrial invasion",
+          "IIA: Cervical stromal invasion by non-aggressive histological types",
+          "IIB: Substantial LVSI in non-aggressive histological types",
+          "IIC: Aggressive histological types with any myometrial involvement",
+          "IICm (p53abn): Endometrial carcinoma with abnormal p53, confined to corpus uteri with any myometrial invasion, with or without cervical invasion, regardless of LVSI degree or histological type",
+          "III: Local and/or regional spread of the tumor of any histological subtype",
+          "IIIA: Invasion of uterine serosa, adnexa, or both by direct extension or metastasis",
+          "IIIA1: Spread to the ovary or fallopian tube (unless it meets criteria for stage IA3)",
+          "IIIA2: Involvement of the sub-serosal compartment of the uterus or spread through the uterine serosa",
+          "IIIB: Metastasis or direct spread to the vagina and/or parametria or pelvic peritoneum",
+          "IIIB1: Metastasis or direct spread to the vagina and/or parametria",
+          "IIIB2: Metastasis to the pelvic peritoneum",
+          "IIIC: Metastasis to pelvic or para-aortic lymph nodes or both",
+          "IIIC1: Metastasis to pelvic lymph nodes",
+          "IIIC1i: Micrometastasis (to pelvic lymph nodes)",
+          "IIIC1ii: Macrometastasis (to pelvic lymph nodes)",
+          "IIIC2: Metastasis to para-aortic lymph nodes up to renal vessels, with or without positive pelvic lymph nodes",
+          "IIIC2i: Micrometastasis to para-aortic lymph nodes up to renal vessels, with or without positive pelvic lymph nodes",
+          "IIIC2ii: Macrometastasis to para-aortic lymph nodes up to renal vessels, with or without positive pelvic lymph nodes",
+          "IVA: Invasion of bladder mucosa and/or bowel mucosa",
+          "IVB: Peritoneal metastasis beyond the pelvis (abdominal peritoneal metastasis)",
+          "IVC: Distant metastasis, including metastasis to any extra- or intra-abdominal lymph nodes above renal vessels, lung, liver, brain, or bone"
         ],
         "value": ""
       }
     }
   },
-
   "additional_findings": {
     "label": "Additional Findings",
     "fields": {

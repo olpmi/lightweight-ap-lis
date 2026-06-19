@@ -1,0 +1,50 @@
+{
+  "templateId": "breast_cytology_yokohama",
+  "summaryType": "rule_based_patient_facing_summary",
+  "version": "1.0",
+  "language": "fr",
+  "system": "Système de Yokohama pour le compte rendu de la cytopathologie par ponction à l’aiguille fine du sein",
+  "triggerField": "diagnostic_category_yokohama",
+  "summaries": {
+    "yokohama_i_insufficient_inadequate": {
+      "professionalLabel": "Catégorie I : Insuffisant / Non adéquat",
+      "patientTitle": "L’échantillon mammaire n’était pas suffisant pour établir un diagnostic clair",
+      "plainLanguageSummary": "L’échantillon mammaire ne contenait pas suffisamment de cellules utiles, ou sa qualité était limitée, ce qui n’a pas permis d’établir un diagnostic fiable.",
+      "whatThisMeans": "Cela ne signifie pas qu’un cancer a été détecté. Cela indique simplement que l’échantillon n’était pas suffisant pour fournir une réponse fiable.",
+      "possibleNextSteps": "Votre médecin peut recommander une nouvelle ponction (FNA), une biopsie au trocart, une réévaluation des examens d’imagerie, ou une évaluation complémentaire selon la masse mammaire et les résultats d’imagerie.",
+      "safetyNote": "Ce résumé est fourni à titre informatif uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l’interprétera en tenant compte de vos symptômes, de l’examen clinique, des résultats d’imagerie et des antécédents pertinents."
+    },
+    "yokohama_ii_benign": {
+      "professionalLabel": "Catégorie II : Bénin",
+      "patientTitle": "Résultat mammaire bénin",
+      "plainLanguageSummary": "L’échantillon mammaire montre des cellules bénignes, non cancéreuses.",
+      "whatThisMeans": "Ce résultat est généralement rassurant, mais il doit être interprété en association avec l’examen clinique et les résultats d’imagerie.",
+      "possibleNextSteps": "Votre médecin comparera ces résultats avec l’imagerie et l’examen clinique. Un suivi, une nouvelle ponction ou une biopsie au trocart peuvent être recommandés si les résultats ne concordent pas.",
+      "safetyNote": "Ce résumé est fourni à titre informatif uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l’interprétera en tenant compte de vos symptômes, de l’examen clinique, des résultats d’imagerie et des antécédents pertinents."
+    },
+    "yokohama_iii_atypical": {
+      "professionalLabel": "Catégorie III : Atypique",
+      "patientTitle": "Présence de certaines cellules mammaires atypiques",
+      "plainLanguageSummary": "L’échantillon mammaire montre des cellules qui paraissent inhabituelles, mais les résultats ne sont pas suffisants pour diagnostiquer un cancer.",
+      "whatThisMeans": "Il s’agit d’un résultat indéterminé. Une évaluation complémentaire peut être nécessaire pour exclure une lésion plus significative.",
+      "possibleNextSteps": "Votre médecin peut recommander une biopsie au trocart, une nouvelle ponction, une corrélation avec l’imagerie ou une évaluation dans une clinique spécialisée du sein.",
+      "safetyNote": "Ce résumé est fourni à titre informatif uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l’interprétera en tenant compte de vos symptômes, de l’examen clinique, des résultats d’imagerie et des antécédents pertinents."
+    },
+    "yokohama_iv_suspicious_for_malignancy": {
+      "professionalLabel": "Catégorie IV : Suspicion de malignité",
+      "patientTitle": "Résultat mammaire suspect",
+      "plainLanguageSummary": "L’échantillon mammaire présente des modifications suspectes de cancer, mais celles-ci peuvent ne pas être suffisantes pour poser un diagnostic définitif.",
+      "whatThisMeans": "Il existe une forte suspicion, et des examens complémentaires sont généralement nécessaires.",
+      "possibleNextSteps": "Votre médecin recommandera généralement une biopsie au trocart, une corrélation avec l’imagerie et une évaluation spécialisée du sein.",
+      "safetyNote": "Ce résumé est fourni à titre informatif uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l’interprétera en tenant compte de vos symptômes, de l’examen clinique, des résultats d’imagerie et des antécédents pertinents."
+    },
+    "yokohama_v_malignant": {
+      "professionalLabel": "Catégorie V : Malin",
+      "patientTitle": "Présence de cellules cancéreuses dans l’échantillon mammaire",
+      "plainLanguageSummary": "L’échantillon mammaire montre des cellules malignes, ce qui signifie que des cellules cancéreuses ont été identifiées.",
+      "whatThisMeans": "Ce résultat nécessite généralement une évaluation spécialisée en oncologie mammaire et une planification du traitement.",
+      "possibleNextSteps": "Votre médecin organisera une corrélation avec l’imagerie, éventuellement une biopsie au trocart ou des tests de biomarqueurs, ainsi qu’une orientation vers une équipe spécialisée en cancer du sein.",
+      "safetyNote": "Ce résumé est fourni à titre informatif uniquement. Veuillez discuter du rapport complet avec votre médecin, qui l’interprétera en tenant compte de vos symptômes, de l’examen clinique, des résultats d’imagerie et des antécédents pertinents."
+    }
+  }
+}

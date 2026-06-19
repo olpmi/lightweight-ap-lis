@@ -1,0 +1,325 @@
+{
+  "template_id": "small_bowel_resection_gross_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "lang": "sw",
+  "title": "Uondoaji wa Utumbo Mdogo kwa Uvimbe",
+
+  "specimen": {
+    "label": "Sampuli",
+    "fields": {
+      "procedure_type": {
+        "label": "Aina ya utaratibu",
+        "type": "select",
+        "options": [
+          "Uondoaji wa sehemu ya utumbo mdogo",
+          "Uondoaji wa ileamu na sekamu",
+          "Hemikolektomia ya kulia na ileamu ya mwisho",
+          "Uondoaji wa utumbo mdogo na mesenteri",
+          "Nyingine"
+        ],
+        "value": ""
+      },
+      "procedure_type_other": {
+        "label": "Utaratibu mwingine (taja)",
+        "type": "text",
+        "value": ""
+      },
+      "orientation_provided": {
+        "label": "Mwelekeo uliotolewa",
+        "type": "select",
+        "options": [
+          "Ndiyo",
+          "Hapana"
+        ],
+        "value": ""
+      },
+      "small_bowel_length_cm": {
+        "label": "Urefu wa utumbo mdogo (cm)",
+        "type": "number",
+        "value": ""
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "Uvimbe",
+    "fields": {
+      "tumor_present": {
+        "label": "Uvimbe upo",
+        "type": "select",
+        "options": [
+          "Ndiyo",
+          "Haukuonekana kwa macho"
+        ],
+        "value": ""
+      },
+      "tumor_focality": {
+        "label": "Usambazaji wa uvimbe",
+        "type": "select",
+        "options": [
+          "Mahali pamoja",
+          "Maeneo mengi"
+        ],
+        "value": ""
+      },
+      "tumor_location": {
+        "label": "Mahali pa uvimbe",
+        "type": "select",
+        "options": [
+          "Duodeni",
+          "Jejunamu",
+          "Ileamu",
+          "Ileamu ya mwisho",
+          "Eneo la periampulari",
+          "Nyingine"
+        ],
+        "value": ""
+      },
+      "tumor_location_other": {
+        "label": "Mahali pengine (taja)",
+        "type": "text",
+        "value": ""
+      },
+      "tumor_dimensions_cm": {
+        "label": "Vipimo vya uvimbe (cm)",
+        "type": "measurement_3d",
+        "value": ""
+      },
+      "tumor_configuration": {
+        "label": "Muundo wa uvimbe",
+        "type": "multi_select",
+        "options": [
+          "Polipoidi",
+          "Inayojitokeza nje",
+          "Fungoidi",
+          "Yenye kidonda",
+          "Ya mviringo",
+          "Inayopenya",
+          "Ya mzingo mzima",
+          "Nodula",
+          "Nyingine"
+        ],
+        "value": []
+      },
+      "tumor_configuration_other": {
+        "label": "Muundo mwingine (taja)",
+        "type": "text",
+        "value": ""
+      },
+      "tumor_consistency": {
+        "label": "Msimamo wa uvimbe",
+        "type": "select",
+        "options": [
+          "Mgumu",
+          "Laini",
+          "Tete",
+          "Kama jeli",
+          "Yenye nyuzi nyingi",
+          "Nyingine"
+        ],
+        "value": ""
+      },
+      "tumor_consistency_other": {
+        "label": "Msimamo mwingine (taja)",
+        "type": "text",
+        "value": ""
+      },
+      "necrosis": {
+        "label": "Nekrosisi",
+        "type": "select",
+        "options": [
+          "Ipo",
+          "Haipo"
+        ],
+        "value": ""
+      },
+      "hemorrhage": {
+        "label": "Kutokwa damu",
+        "type": "select",
+        "options": [
+          "Ipo",
+          "Haipo"
+        ],
+        "value": ""
+      },
+      "perforation": {
+        "label": "Kutoboka",
+        "type": "select",
+        "options": [
+          "Ipo",
+          "Haipo"
+        ],
+        "value": ""
+      },
+      "associated_obstruction": {
+        "label": "Kuziba kuhusiana na uvimbe",
+        "type": "select",
+        "options": [
+          "Ipo",
+          "Haipo"
+        ],
+        "value": ""
+      },
+      "stricture_formation": {
+        "label": "Kuwepo kwa mfinyo",
+        "type": "select",
+        "options": [
+          "Ipo",
+          "Haipo"
+        ],
+        "value": ""
+      },
+      "tumor_extent": {
+        "label": "Upanuzi wa uvimbe",
+        "type": "select",
+        "options": [
+          "Uvamizi wa utando wa ndani tu",
+          "Uvamizi wa tishu chini ya utando",
+          "Uvamizi wa misuli",
+          "Uvamizi wa chini ya serosa",
+          "Uvamizi wa serosa",
+          "Uvamizi wa mafuta ya mesenteri",
+          "Uvamizi wa miundo jirani",
+          "Haiwezi kutathminiwa kwa macho"
+        ],
+        "value": ""
+      },
+      "adjacent_structures_involved": {
+        "label": "Miundo jirani iliyoathirika",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "margins": {
+    "label": "Mipaka",
+    "fields": {
+      "distance_to_proximal_margin_cm": {
+        "label": "Umbali hadi mpaka wa karibu (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "distance_to_distal_margin_cm": {
+        "label": "Umbali hadi mpaka wa mbali (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "distance_to_mesenteric_margin_cm": {
+        "label": "Umbali hadi mpaka wa mesenteri (cm)",
+        "type": "number",
+        "value": ""
+      }
+    }
+  },
+
+  "background_mucosa": {
+    "label": "Utando wa Nyuma wa Utumbo Mdogo",
+    "fields": {
+      "background_small_bowel_mucosa": {
+        "label": "Muonekano wa utando wa utumbo mdogo",
+        "type": "multi_select",
+        "options": [
+          "Kawaida",
+          "Yenye vidonda",
+          "Poliposisi",
+          "Mabadiliko ya iskemia",
+          "Athari za mionzi",
+          "Mshikamano wa tishu",
+          "Nyingine"
+        ],
+        "value": []
+      },
+      "background_mucosa_other": {
+        "label": "Mabadiliko mengine ya utando (taja)",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "lymph_nodes": {
+    "label": "Nodi za Limfu za Kikanda",
+    "fields": {
+      "number_identified": {
+        "label": "Idadi iliyopatikana",
+        "type": "integer",
+        "value": ""
+      },
+      "size_range_mm": {
+        "label": "Kiwango cha ukubwa (mm)",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "other_findings": {
+    "label": "Matokeo Mengine ya Kimaumbile",
+    "fields": {
+      "findings": {
+        "label": "Matokeo mengine ya kimaumbile yanayohusika",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "block_identification_key": {
+    "label": "Mwongozo wa Vitambulisho vya Vizuizi",
+    "fields": {
+      "tumor": {
+        "label": "Uvimbe",
+        "type": "text",
+        "value": ""
+      },
+      "proximal_margin": {
+        "label": "Mpaka wa karibu",
+        "type": "text",
+        "value": ""
+      },
+      "distal_margin": {
+        "label": "Mpaka wa mbali",
+        "type": "text",
+        "value": ""
+      },
+      "mesenteric_margin": {
+        "label": "Mpaka wa mesenteri",
+        "type": "text",
+        "value": ""
+      },
+      "non_neoplastic_small_bowel": {
+        "label": "Utumbo mdogo usio na uvimbe",
+        "type": "text",
+        "value": ""
+      },
+      "lymph_nodes": {
+        "label": "Nodi za limfu",
+        "type": "text",
+        "value": ""
+      },
+      "additional_sections": {
+        "label": "Sehemu za ziada",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "grossing": {
+    "label": "Uchunguzi wa Macho",
+    "fields": {
+      "grossed_by_initials": {
+        "label": "Imefanyiwa uchunguzi wa macho na (herufi za kwanza)",
+        "type": "text",
+        "value": ""
+      },
+      "date": {
+        "label": "Tarehe",
+        "type": "date",
+        "value": ""
+      }
+    }
+  }
+}

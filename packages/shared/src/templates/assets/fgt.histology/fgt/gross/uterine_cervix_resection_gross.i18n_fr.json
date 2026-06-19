@@ -1,7 +1,11 @@
 {
-  "title": "Résection du col utérin (Modèle macroscopique)",
+  "template_id": "uterine_cervix_resection_gross_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "lang": "fr",
+  "title": "Résection du col utérin",
   "specimen": {
-    "label": "Spécimen",
+    "label": "Pièce opératoire",
     "fields": {
       "procedure": {
         "label": "Procédure (sélectionner toutes les réponses applicables)",
@@ -24,10 +28,14 @@
           "Salpingectomie, côté non précisé",
           "Résection du manchon vaginal",
           "Omentectomie",
-          "Autre (préciser)"
+          "Autre"
         ],
-        "other_specify": "Autre (préciser)",
-        "pelvic_exenteration_specify_included_organs": "pelvic exenteration specify included organs"
+        "pelvic_exenteration_specify_included_organs": {
+          "label": "Exentération pelvienne (préciser les organes inclus)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": { "label": "Autre (préciser)", "type": "text", "value": "" }
       },
       "hysterectomy_type": {
         "label": "Type d'hystérectomie",
@@ -37,10 +45,10 @@
           "Vaginale assistée par laparoscopie",
           "Laparoscopique",
           "Laparoscopique assistée par robot",
-          "Autre (préciser)",
+          "Autre",
           "Non précisé"
         ],
-        "other_specify": "Autre (préciser)"
+        "other_specify": { "label": "Autre (préciser)", "type": "text", "value": "" }
       }
     }
   },
@@ -54,20 +62,17 @@
           "Quadrant inférieur gauche (postérieur) (3 à 6 heures)",
           "Quadrant inférieur droit (postérieur) (6 à 9 heures)",
           "Quadrant supérieur droit (antérieur) (9 à 12 heures)",
-          "Autre (préciser)",
+          "Autre",
           "Non précisé"
         ],
-        "other_specify": "Autre (préciser)"
+        "other_specify": { "label": "Autre (préciser)", "type": "text", "value": "" }
       },
       "tumor_size": {
         "label": "Taille de la tumeur",
         "fields": {
           "size_type": {
-            "label": "Type de taille tumorale",
-            "options": [
-              "Plus grande dimension en centimètres (cm)",
-              "Ne peut pas être déterminé"
-            ]
+            "label": "Type de mesure tumorale",
+            "options": ["Plus grande dimension en centimètres (cm)", "Ne peut pas être déterminée"]
           },
           "greatest_dimension_cm": {
             "label": "Plus grande dimension (cm)"
@@ -76,7 +81,7 @@
             "label": "Dimensions supplémentaires (cm)"
           },
           "cannot_be_determined_explain": {
-            "label": "Ne peut pas être déterminé (expliquer)"
+            "label": "Ne peut pas être déterminée (expliquer)"
           },
           "note": {
             "label": "Note sur la taille tumorale",
@@ -96,13 +101,13 @@
     "label": "Marges",
     "fields": {
       "ectocervical_margin_cm": {
-        "label": "Marge ectocervicale"
+        "label": "Distance à la marge ectocervicale (cm)"
       },
       "endocervical_margin_cm": {
-        "label": "Marge endocervicale"
+        "label": "Distance à la marge endocervicale (cm)"
       },
       "parametrial_margin_cm": {
-        "label": "Marge paramétriale"
+        "label": "Distance à la marge paramétriale (cm)"
       }
     }
   },
@@ -111,18 +116,11 @@
     "fields": {
       "status": {
         "label": "Atteinte paramétriale",
-        "options": [
-          "Absente",
-          "Présente"
-        ]
+        "options": ["Absente", "Présente"]
       },
       "laterality": {
         "label": "Latéralité",
-        "options": [
-          "Droite",
-          "Gauche",
-          "Bilatérale"
-        ]
+        "options": ["Droite", "Gauche", "Bilatérale"]
       }
     }
   },
@@ -131,10 +129,7 @@
     "fields": {
       "status": {
         "label": "Atteinte du manchon vaginal",
-        "options": [
-          "Absente",
-          "Présente"
-        ]
+        "options": ["Absente", "Présente"]
       }
     }
   },
@@ -143,10 +138,7 @@
     "fields": {
       "status": {
         "label": "Ganglions lymphatiques",
-        "options": [
-          "Présents",
-          "Absents"
-        ]
+        "options": ["Présents", "Absents"]
       },
       "total_number_of_nodes": {
         "label": "Nombre total de ganglions"
@@ -169,10 +161,10 @@
         "label": "Marge ectocervicale"
       },
       "right_parametrium": {
-        "label": "Paramètre droit"
+        "label": "Paramètre utérin droit"
       },
       "left_parametrium": {
-        "label": "Paramètre gauche"
+        "label": "Paramètre utérin gauche"
       },
       "vaginal_cuff_margin": {
         "label": "Marge du manchon vaginal"
@@ -204,7 +196,7 @@
     "label": "Macroscopie",
     "fields": {
       "grossed_by": {
-        "label": "Examiné macroscopiquement par"
+        "label": "Macroscopie réalisée par"
       },
       "date": {
         "label": "Date"

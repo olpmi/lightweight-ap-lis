@@ -1,0 +1,459 @@
+{
+  "template_id": "small_bowel_tumor_resection_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "protocol_posting_date": "June 2025",
+  "lang": "en",
+  "standards": [
+    "AJCC 8"
+  ],
+  "title": "Small Bowel Tumor, Resection",
+  "specimen": {
+    "label": "Specimen",
+    "fields": {
+      "procedure": {
+        "label": "Procedure",
+        "type": "select",
+        "options": [
+          "Segmental resection",
+          "Right hemicolectomy / ileocolic resection",
+          "Pancreaticoduodenectomy (Whipple resection)",
+          "Other",
+          "Not specified"
+        ],
+        "value": ""
+      },
+      "tumor_site": {
+        "label": "Tumor site",
+        "type": "select",
+        "options": [
+          "Duodenum",
+          "Jejunum",
+          "Ileum",
+          "Meckel diverticulum",
+          "Small intestine, not otherwise specified",
+          "Other",
+          "Not specified"
+        ],
+        "value": ""
+      }
+    }
+  },
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "histologic_type": {
+        "label": "Histologic Type",
+        "type": "select",
+        "options": [
+          "Adenocarcinoma, NOS",
+          "Mucinous adenocarcinoma (greater than 50% mucinous)",
+          "Poorly cohesive carcinoma",
+          "Signet-ring cell carcinoma",
+          "Medullary carcinoma",
+          "Adenosquamous carcinoma",
+          "Squamous cell carcinoma",
+          "Large cell neuroendocrine carcinoma",
+          "Small cell neuroendocrine carcinoma",
+          "Neuroendocrine carcinoma (poorly differentiated)",
+          "Mixed neuroendocrine-non-neuroendocrine neoplasm (MiNEN)",
+          "Undifferentiated carcinoma, NOS",
+          "Other histologic type not listed"
+        ],
+        "value": "",
+        "other_specify": {
+          "label": "Other (specify)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "histologic_grade": {
+        "label": "Histologic Grade",
+        "type": "select",
+        "options": [
+          "G1, well-differentiated",
+          "G2, moderately differentiated",
+          "G3, poorly differentiated",
+          "G4, undifferentiated",
+          "Other",
+          "GX, cannot be assessed",
+          "Not applicable"
+        ],
+        "value": "",
+        "other_specify": {
+          "label": "Other (specify)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_assessed_specify": {
+          "label": "Cannot be assessed (specify)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "tumor_size": {
+        "label": "Tumor Size",
+        "fields": {
+          "greatest_dimension_cm": {
+            "label": "Greatest dimension (cm)",
+            "type": "number",
+            "value": ""
+          },
+          "additional_dimensions_cm": {
+            "label": "Additional dimensions (cm)",
+            "type": "measurement_2d",
+            "value": ""
+          }
+        }
+      },
+      "tumor_extent": {
+        "label": "Tumor Extent",
+        "type": "select",
+        "options": [
+          "High-grade dysplasia / carcinoma in situ",
+          "Invades lamina propria",
+          "Invades submucosa",
+          "Invades muscularis propria",
+          "Invades through muscularis propria into subserosa",
+          "Extends into non-peritonealized perimuscular tissue (mesentery or retroperitoneum) without serosal penetration",
+          "Perforates visceral peritoneum",
+          "Directly invades other organ(s) or structure(s)"
+        ],
+        "value": ""
+      },
+      "directly_invades": {
+        "label": "If directly invades other organs (select all that apply)",
+        "type": "multi_select",
+        "options": [
+          "Other loops of small intestine",
+          "Mesentery of adjacent loops of bowel",
+          "Abdominal wall (by way of serosa)"
+        ],
+        "value": []
+      },
+      "duodenum_invasion": {
+        "label": "For Duodenum Only (if applicable)",
+        "type": "multi_select",
+        "options": [
+          "Pancreas",
+          "Bile duct"
+        ],
+        "value": []
+      },
+      "macroscopic_tumor_perforation": {
+        "label": "Macroscopic Tumor Perforation",
+        "type": "select",
+        "options": [
+          "Not identified",
+          "Present",
+          "Cannot be determined"
+        ],
+        "value": ""
+      },
+      "lymphovascular_invasion": {
+        "label": "Lymphatic and / or Vascular Invasion",
+        "type": "select",
+        "options": [
+          "Not identified",
+          "Present",
+          "Cannot be determined"
+        ],
+        "value": ""
+      },
+      "perineural_invasion": {
+        "label": "Perineural Invasion",
+        "type": "select",
+        "options": [
+          "Not identified",
+          "Present",
+          "Cannot be determined"
+        ],
+        "value": ""
+      },
+      "treatment_effect": {
+        "label": "Treatment Effect",
+        "type": "select",
+        "options": [
+          "No known presurgical therapy",
+          "Present, with no viable cancer cells (complete response, score 0)",
+          "Present, with single cells or rare small groups of cancer cells (near complete response, score 1)",
+          "Present, with residual cancer showing evident tumor regression, but more than single cells or rare small groups of cancer cells (partial response, score 2)",
+          "Present, NOS",
+          "Absent, with extensive residual cancer and no evident tumor regression (poor or no response, score 3)",
+          "Cannot be determined"
+        ],
+        "value": ""
+      }
+    }
+  },
+  "margins": {
+    "label": "Margins",
+    "fields": {
+      "margin_status_invasive": {
+        "label": "Margin Status for Invasive Carcinoma",
+        "type": "select",
+        "options": [
+          "All margins negative for invasive carcinoma",
+          "Invasive carcinoma present at margin",
+          "Not applicable"
+        ],
+        "value": ""
+      },
+      "closest_margins": {
+        "label": "Closest Margin(s) to Invasive Carcinoma",
+        "type": "multi_select",
+        "options": [
+          "Proximal",
+          "Distal",
+          "Radial or mesenteric",
+          "Uncinate (retroperitoneal / superior mesenteric artery)",
+          "Bile duct",
+          "Pancreatic",
+          "Other",
+          "Cannot be determined"
+        ],
+        "value": [],
+        "other_specify": {
+          "label": "Other (specify)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_specify": {
+          "label": "Cannot be determined (specify)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "distance_to_closest_margin_cm": {
+        "label": "Distance from Invasive Carcinoma to Closest Margin (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "margins_involved_invasive": {
+        "label": "Margin(s) Involved by Invasive Carcinoma",
+        "type": "multi_select",
+        "options": [
+          "Proximal",
+          "Distal",
+          "Radial or mesenteric (tumor present 0-1 mm from margin)",
+          "Uncinate (retroperitoneal / superior mesenteric artery) (tumor present 0-1 mm from margin)",
+          "Bile duct",
+          "Pancreatic",
+          "Other",
+          "Cannot be determined",
+          "Not applicable"
+        ],
+        "value": [],
+        "other_specify": {
+          "label": "Other (specify)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_explain": {
+          "label": "Cannot be determined (explain)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "margin_status_non_invasive": {
+        "label": "Margin Status for Non-Invasive Tumor",
+        "type": "multi_select",
+        "options": [
+          "All margins negative for high-grade dysplasia and low-grade dysplasia",
+          "High-grade dysplasia present at margin",
+          "Low-grade dysplasia present at margin"
+        ],
+        "value": []
+      },
+      "margins_involved_hgd": {
+        "label": "Margin(s) Involved by High-Grade Dysplasia",
+        "type": "multi_select",
+        "options": [
+          "Proximal",
+          "Distal",
+          "Other",
+          "Cannot be determined"
+        ],
+        "value": [],
+        "other_specify": {
+          "label": "Other (specify)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "margins_involved_lgd": {
+        "label": "Margin(s) Involved by Low-Grade Dysplasia",
+        "type": "multi_select",
+        "options": [
+          "Proximal",
+          "Distal",
+          "Other",
+          "Cannot be determined"
+        ],
+        "value": [],
+        "other_specify": {
+          "label": "Other (specify)",
+          "type": "text",
+          "value": ""
+        }
+      }
+    }
+  },
+  "regional_lymph_nodes": {
+    "label": "Regional Lymph Node Status",
+    "fields": {
+      "status": {
+        "label": "Regional lymph node status",
+        "type": "select",
+        "options": [
+          "Not applicable (no regional lymph nodes submitted or found)",
+          "All regional lymph nodes negative for tumor",
+          "Tumor present in regional lymph node(s)"
+        ],
+        "value": ""
+      },
+      "number_with_tumor": {
+        "label": "Number of Lymph Nodes with Tumor",
+        "type": "integer",
+        "value": ""
+      },
+      "number_examined": {
+        "label": "Number of Lymph Nodes Examined",
+        "type": "integer",
+        "value": ""
+      }
+    }
+  },
+  "distant_metastasis": {
+    "label": "Distant Metastasis",
+    "fields": {
+      "sites": {
+        "label": "Distant Site(s) Involved",
+        "type": "multi_select",
+        "options": [
+          "Not applicable",
+          "Non-regional lymph node(s)",
+          "Liver",
+          "Other",
+          "Cannot be determined"
+        ],
+        "value": [],
+        "other_specify": {
+          "label": "Other (specify)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_specify": {
+          "label": "Cannot be determined (specify)",
+          "type": "text",
+          "value": ""
+        }
+      }
+    }
+  },
+  "ptnm": {
+    "label": "pTNM Classification (AJCC 8th Edition)",
+    "note": "Reporting of pT, pN, and (when applicable) pM categories is based on information available to the pathologist at the time the report is issued. As per the AJCC (Chapter 1, 8th Ed.) it is the managing physician's responsibility to establish the final pathologic stage based upon all pertinent information, including but potentially not limited to this pathology report.",
+    "fields": {
+      "modified_classification": {
+        "label": "Modified Classification",
+        "type": "multi_select",
+        "options": [
+          "Not applicable",
+          "y (post-neoadjuvant therapy)",
+          "r (recurrence)"
+        ],
+        "value": []
+      },
+      "pT_category": {
+        "label": "pT Category",
+        "type": "select",
+        "options": [
+          "pT not assigned (cannot be determined based on available pathological information)",
+          "pT0: No evidence of primary tumor",
+          "pTis: High-grade dysplasia / carcinoma in situ",
+          "pT1a: Tumor invades the lamina propria",
+          "pT1b: Tumor invades the submucosa",
+          "pT1 (subcategory cannot be determined)",
+          "pT2: Tumor invades the muscularis propria",
+          "pT3: Tumor invades through the muscularis propria into the subserosa, or extends into nonperitonealized perimuscular tissue (mesentery or retroperitoneum) without serosal penetration",
+          "pT4: Tumor perforates the visceral peritoneum or directly invades other organs or structures (e.g., other loops of small intestine, mesentery of adjacent loops of bowel, and abdominal wall by way of serosa; for duodenum only, invasion of pancreas or bile duct)"
+        ],
+        "value": ""
+      },
+      "T_suffix": {
+        "label": "T Suffix",
+        "type": "select",
+        "options": [
+          "Not applicable",
+          "(m) multiple primary synchronous tumors in a single organ"
+        ],
+        "value": ""
+      },
+      "pN_category": {
+        "label": "pN Category",
+        "type": "select",
+        "options": [
+          "pN not assigned (no nodes submitted or found)",
+          "pN not assigned (cannot be determined based on available pathological information)",
+          "pN0: No regional lymph node metastasis",
+          "pN1: Metastasis in one or two regional lymph nodes",
+          "pN2: Metastasis in three or more regional lymph nodes"
+        ],
+        "value": ""
+      },
+      "pM_category": {
+        "label": "pM Category",
+        "type": "select",
+        "options": [
+          "Not applicable - pM cannot be determined from the submitted specimen(s)",
+          "pM1: Distant metastasis"
+        ],
+        "value": ""
+      }
+    }
+  },
+  "additional_findings": {
+    "label": "Additional Findings",
+    "fields": {
+      "findings": {
+        "label": "Additional Findings",
+        "type": "multi_select",
+        "options": [
+          "None identified",
+          "Adenoma(s)",
+          "Crohn disease",
+          "Celiac disease",
+          "Other polyp(s)",
+          "Other"
+        ],
+        "value": [],
+        "other_polyps_specify": {
+          "label": "Other polyp(s) (specify type[s])",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": {
+          "label": "Other (specify)",
+          "type": "text",
+          "value": ""
+        }
+      }
+    }
+  },
+  "ancillary_studies": {
+    "label": "Ancillary Studies",
+    "fields": {
+      "specify": {
+        "label": "Specify",
+        "type": "text",
+        "value": ""
+      },
+      "not_performed": {
+        "label": "Not performed",
+        "type": "boolean",
+        "value": ""
+      }
+    }
+  }
+}

@@ -1,7 +1,13 @@
 {
   "templateId": "thyroid_cytology_bethesda_3rd_edition",
-  "templateName": "THYROID CYTOLOGY REPORTING TEMPLATE (3RD EDITION BETHESDA SYSTEM)",
+  "templateName": "Thyroid cytology reporting template (3RD Edition Bethesda System)",
   "language": "en",
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategories": ["fna"],
+    "organ": "thyroid",
+    "reportingSystem": "Bethesda"
+  },
   "sections": [
     {
       "id": "specimen",
@@ -33,10 +39,7 @@
           "id": "adequacy_status",
           "label": "Adequacy",
           "type": "select",
-          "options": [
-            "Satisfactory for evaluation",
-            "Unsatisfactory / non-diagnostic"
-          ]
+          "options": ["Satisfactory for evaluation", "Unsatisfactory / non-diagnostic"]
         }
       ]
     },

@@ -1,7 +1,8 @@
 {
   "template_id": "endometrium_resection_gross_v1",
   "domain": "anatomic_pathology",
-  "title": "Endometrium Resection Specimen (Grossing Template)",
+  "case_type": "histology",
+  "title": "Endometrium Resection Specimen",
 
   "specimen": {
     "label": "Specimen",

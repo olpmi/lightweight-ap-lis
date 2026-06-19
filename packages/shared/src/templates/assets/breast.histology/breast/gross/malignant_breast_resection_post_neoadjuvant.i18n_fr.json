@@ -1,30 +1,46 @@
 {
   "template_id": "malignant_breast_resection_post_neoadjuvant_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
   "lang": "fr",
   "title": "Résection mammaire maligne (après chimiothérapie néoadjuvante)",
   "clinical_case_summary": {
     "label": "Résumé clinique (pré-thérapie néoadjuvante)",
     "fields": {
       "tumor_characteristics": {
-        "label": "Caractéristiques de la tumeur"
+        "label": "Caractéristiques de la tumeur",
+        "type": "text",
+        "value": ""
       },
       "site": {
-        "label": "Site"
+        "label": "Site",
+        "type": "text",
+        "value": ""
       },
       "focality": {
-        "label": "Focalité"
+        "label": "Focalité",
+        "type": "text",
+        "value": ""
       },
       "dimensions": {
-        "label": "Dimensions (mm)"
+        "label": "Dimensions (cm)",
+        "type": "measurement_3d",
+        "value": ""
       },
       "baseline_biomarker": {
-        "label": "Biomarqueur tumoral de base"
+        "label": "Biomarqueur tumoral de base",
+        "type": "text",
+        "value": ""
       },
       "neoadjuvant_regimen": {
-        "label": "Schéma de chimiothérapie néoadjuvante"
+        "label": "Schéma de chimiothérapie néoadjuvante",
+        "type": "text",
+        "value": ""
       },
       "cycles_completed": {
-        "label": "Cycles terminés"
+        "label": "Cycles terminés",
+        "type": "integer",
+        "value": ""
       }
     }
   },
@@ -33,22 +49,21 @@
     "fields": {
       "intraoperative_consult": {
         "label": "Consultation peropératoire réalisée",
-        "options": [
-          "Oui",
-          "Non"
-        ],
-        "reason": "Raison"
+        "options": ["Oui", "Non"],
+        "reason": "Raison",
+        "type": "select",
+        "value": ""
       },
       "weight": {
-        "label": "Poids de la pièce (g)"
+        "label": "Poids de la pièce (g)",
+        "type": "number",
+        "value": ""
       },
       "laterality": {
         "label": "Latéralité",
-        "options": [
-          "Gauche",
-          "Droite",
-          "Non précisée"
-        ]
+        "options": ["Gauche", "Droite", "Non précisée"],
+        "type": "select",
+        "value": ""
       },
       "type": {
         "label": "Type de pièce",
@@ -60,7 +75,9 @@
           "Tumorectomie (exérèse large locale)",
           "Quadrantectomie (résection segmentaire)",
           "Chirurgie mammaire conservatrice oncoplastique"
-        ]
+        ],
+        "type": "select",
+        "value": ""
       }
     }
   },
@@ -68,25 +85,37 @@
     "label": "Ganglions lymphatiques",
     "fields": {
       "present": {
-        "label": "Ganglions lymphatiques présents"
+        "label": "Ganglions lymphatiques présents",
+        "type": "boolean",
+        "value": ""
       },
       "sentinel": {
         "label": "Ganglions sentinelles",
         "fields": {
           "site": {
-            "label": "Site"
+            "label": "Site",
+            "type": "text",
+            "value": ""
           },
           "radioactive_count": {
-            "label": "Comptage radioactif"
+            "label": "Comptage radioactif",
+            "type": "text",
+            "value": ""
           },
           "dye_uptake": {
-            "label": "Capture du colorant"
+            "label": "Fixation du colorant",
+            "type": "boolean",
+            "value": ""
           },
           "number": {
-            "label": "Nombre"
+            "label": "Nombre",
+            "type": "integer",
+            "value": ""
           },
           "dimensions": {
-            "label": "Dimensions de chaque ganglion"
+            "label": "Dimensions de chaque ganglion",
+            "type": "text",
+            "value": ""
           }
         }
       },
@@ -94,21 +123,23 @@
         "label": "Ganglions non sentinelles",
         "fields": {
           "total_number": {
-            "label": "Nombre total de ganglions"
+            "label": "Nombre total de ganglions",
+            "type": "integer",
+            "value": ""
           },
           "size_range": {
-            "label": "Plage de taille"
+            "label": "Plage de taille",
+            "type": "text",
+            "value": ""
           }
         }
       },
       "pre_treatment_abnormal": {
         "label": "Ganglions anormaux avant traitement",
-        "options": [
-          "Inconnu",
-          "Absents",
-          "Présents"
-        ],
-        "if_present_number": "Nombre si présents"
+        "options": ["Inconnu", "Absents", "Présents"],
+        "type": "select",
+        "value": "",
+        "if_present_number": ""
       }
     }
   },
@@ -116,13 +147,19 @@
     "label": "Dimensions du sein",
     "fields": {
       "medial_lateral": {
-        "label": "Longueur médio-latérale"
+        "label": "Longueur médio-latérale",
+        "type": "measurement",
+        "value": ""
       },
       "superior_inferior": {
-        "label": "Longueur supéro-inférieure"
+        "label": "Longueur supéro-inférieure",
+        "type": "measurement",
+        "value": ""
       },
       "anterior_posterior": {
-        "label": "Longueur antéro-postérieure"
+        "label": "Longueur antéro-postérieure",
+        "type": "measurement",
+        "value": ""
       }
     }
   },
@@ -130,10 +167,14 @@
     "label": "Peau",
     "fields": {
       "present": {
-        "label": "Peau présente"
+        "label": "Peau présente",
+        "type": "boolean",
+        "value": ""
       },
       "dimensions": {
-        "label": "Dimensions de la peau"
+        "label": "Dimensions de la peau",
+        "type": "text",
+        "value": ""
       },
       "abnormalities": {
         "label": "Anomalies cutanées",
@@ -144,7 +185,9 @@
           ">30% d'atteinte",
           "Nodules cutanés satellites",
           "Autre"
-        ]
+        ],
+        "type": "multi_select",
+        "value": ""
       }
     }
   },
@@ -152,24 +195,25 @@
     "label": "Mamelon",
     "fields": {
       "present": {
-        "label": "Mamelon présent"
+        "label": "Mamelon présent",
+        "type": "boolean",
+        "value": ""
       },
       "description": {
         "label": "Description du mamelon",
-        "options": [
-          "Normal",
-          "Anormal"
-        ]
+        "options": ["Normal", "Anormal"],
+        "type": "select"
       },
       "abnormal_features": {
         "label": "Caractéristiques anormales",
         "options": [
           "Maladie de Paget",
-          "Croûtes squameuses",
+          "Lésion squameuse (eczéma)",
           "Rétracté",
           "Fixé à la tumeur",
           "Autre"
-        ]
+        ],
+        "type": "multi_select"
       }
     }
   },
@@ -177,13 +221,19 @@
     "label": "Lit tumoral",
     "fields": {
       "gross_dimensions": {
-        "label": "Dimensions macroscopiques (mm)"
+        "label": "Dimensions macroscopiques (cm)",
+        "type": "measurement_3d",
+        "value": ""
       },
       "imaging_dimensions": {
-        "label": "Dimensions à l'imagerie (mm)"
+        "label": "Dimensions à l'imagerie (cm)",
+        "type": "measurement_3d",
+        "value": ""
       },
       "description": {
-        "label": "Description du lit tumoral"
+        "label": "Description du lit tumoral",
+        "type": "text",
+        "value": ""
       }
     }
   },
@@ -191,7 +241,9 @@
     "label": "Tumeur",
     "fields": {
       "macroscopic_present": {
-        "label": "Tumeur visible macroscopiquement"
+        "label": "Tumeur visible macroscopiquement",
+        "type": "boolean",
+        "value": ""
       },
       "site": {
         "label": "Site tumoral",
@@ -203,23 +255,26 @@
           "Central",
           "Mamelon",
           "Non précisé"
-        ]
+        ],
+        "type": "select"
       },
       "focality": {
         "label": "Focalité",
-        "options": [
-          "Unifocale",
-          "Multifocale"
-        ]
+        "options": ["Unifocale", "Multifocale"],
+        "type": "select"
       },
       "size_post_treatment": {
-        "label": "Taille tumorale post-néoadjuvante (mm)"
+        "label": "Taille tumorale post-néoadjuvante (mm)",
+        "type": "measurement_3d",
+        "value": ""
       },
       "skin_involvement": {
-        "label": "Fixée à la peau"
+        "label": "Fixée à la peau",
+        "type": "boolean"
       },
       "chest_wall_involvement": {
-        "label": "Fixée à la paroi thoracique"
+        "label": "Fixée à la paroi thoracique",
+        "type": "boolean"
       }
     }
   },
@@ -227,25 +282,32 @@
     "label": "Marges",
     "fields": {
       "medial": {
-        "label": "Marge médiale"
+        "label": "Marge médiale",
+        "type": "text"
       },
       "lateral": {
-        "label": "Marge latérale"
+        "label": "Marge latérale",
+        "type": "text"
       },
       "superior": {
-        "label": "Marge supérieure"
+        "label": "Marge supérieure",
+        "type": "text"
       },
       "inferior": {
-        "label": "Marge inférieure"
+        "label": "Marge inférieure",
+        "type": "text"
       },
       "posterior": {
-        "label": "Marge postérieure"
+        "label": "Marge postérieure",
+        "type": "text"
       },
       "anterior": {
-        "label": "Marge antérieure"
+        "label": "Marge antérieure",
+        "type": "text"
       },
       "skin": {
-        "label": "Peau sus-jacente"
+        "label": "Peau sus-jacente",
+        "type": "text"
       }
     }
   },
@@ -254,45 +316,37 @@
     "fields": {
       "presence": {
         "label": "Muscle squelettique",
-        "options": [
-          "Présent",
-          "Absent"
-        ]
+        "options": ["Présent", "Absent"],
+        "type": "select",
+        "value": ""
       }
     }
   },
   "block_key": {
     "label": "Clé d'attribution des blocs",
     "fields": {
-      "nipple": {
-        "label": "Mamelon"
-      },
-      "tumor": {
-        "label": "Tumeur"
-      },
-      "surrounding_breast": {
-        "label": "Tissu mammaire adjacent"
-      },
-      "margins": {
-        "label": "Marges"
-      },
-      "lymph_nodes": {
-        "label": "Ganglions lymphatiques"
-      }
+      "nipple": { "label": "Mamelon", "type": "text", "value": "" },
+      "tumor": { "label": "Tumeur", "type": "text", "value": "" },
+      "surrounding_breast": { "label": "Tissu mammaire environnant", "type": "text", "value": "" },
+      "medial margin": { "label": "Marge médiale", "type": "text", "value": "" },
+      "lateral margin": { "label": "Marge latérale", "type": "text", "value": "" },
+      "Superior margin": { "label": "Marge supérieure", "type": "text", "value": "" },
+      "Inferior margin": { "label": "Marge inférieure", "type": "text", "value": "" },
+      "Posterior margin": { "label": "Marge postérieure", "type": "text", "value": "" },
+      "Anterior margin": { "label": "Marge antérieure", "type": "text", "value": "" },
+      "lymph_nodes": { "label": "Ganglions lymphatiques", "type": "text", "value": "" }
     }
   },
+
   "grossing": {
     "label": "Macroscopie",
     "fields": {
       "grossed_by": {
-        "label": "Macroscopie réalisée par"
+        "label": "Examiné macroscopiquement par (initiales)",
+        "type": "text",
+        "value": ""
       },
-      "date": {
-        "label": "Date"
-      }
+      "date": { "label": "Date", "type": "date", "value": "" }
     }
-  },
-  "domain": {
-    "fields": {}
   }
 }

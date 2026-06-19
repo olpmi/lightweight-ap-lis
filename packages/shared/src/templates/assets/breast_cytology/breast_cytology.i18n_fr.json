@@ -1,6 +1,14 @@
 {
-  "templateName": "MODÈLE DE COMPTE RENDU DE CYTOLOGIE DU SEIN (SYSTÈME DE YOKOHAMA POUR LA CYTOPATHOLOGIE DES BIOPSIES PAR ASPIRATION À L’AIGUILLE FINE DU SEIN)",
+  "templateName": "Modèle de compte rendu de cytopathologie du sein (Système de Yokohama pour la cytopathologie des biopsies par aspiration à l'aiguille fine du sein)",
   "language": "fr",
+  "direction": "ltr",
+  "rtl": false,
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategory": "fna",
+    "organSystem": "breast",
+    "reportingSystem": "Yokohama"
+  },
   "sections": {
     "specimen": "Prélèvement",
     "specimen_adequacy": "Adéquation du prélèvement",
@@ -15,19 +23,19 @@
     "breast_side": "FNA mammaire",
     "site": "Site",
     "lesion_size_cm": "Taille de la lésion (cm)",
-    "imaging_category": "Catégorie d’imagerie (si fournie)",
+    "imaging_category": "Catégorie d'imagerie (si fournie)",
     "guidance": "Guidage",
-    "adequacy_status": "Adéquation du prélèvement (sélectionner l’option appropriée)",
+    "adequacy_status": "Adéquation du prélèvement (sélectionner l'option appropriée)",
     "yokohama_category": "Catégorie diagnostique (Yokohama)",
     "microscopic_description_text": "Description microscopique (texte libre)",
-    "final_interpretation_category": "Catégorie de l’interprétation finale",
+    "final_interpretation_category": "Catégorie de l'interprétation finale",
     "benign_interpretation": "Bénin",
     "atypical_interpretation": "Atypique",
     "suspicious_interpretation": "Suspect",
     "malignant_interpretation": "Malin",
     "malignant_other": "Autre malignité",
-    "cell_block": "Cell block",
-    "immunocytochemistry": "Immunocytochemie",
+    "cell_block": "Bloc cellulaire",
+    "immunocytochemistry": "Immunocytochimie",
     "biomarker_testing": "Analyse des biomarqueurs (ER / PR / HER2 si validée)",
     "risk_of_malignancy_category": "Risque de malignité (approximatif)",
     "comment_text": "Commentaire / Recommandation"
@@ -44,9 +52,9 @@
     "Other": "Autre",
     "Palpation": "Palpation",
     "Ultrasound-guided": "Guidé par échographie",
-    "Satisfactory for evaluation": "Satisfaisant pour l’évaluation",
+    "Satisfactory for evaluation": "Satisfaisant pour l'évaluation",
     "Limited cellularity but adequate": "Cellularité limitée mais adéquate",
-    "Inadequate / non-diagnostic": "Inadéquat / non diagnostique",
+    "Inadequate / non-diagnostic": "Inadéquat / non-diagnostique",
     "I: Insufficient / Inadequate": "I : Insuffisant / inadéquat",
     "II: Benign": "II : Bénin",
     "III: Atypical": "III : Atypique",
@@ -77,6 +85,6 @@
     "Category 5: Very high": "Catégorie 5 : Très élevé"
   },
   "defaults": {
-    "comment_text": "À corréler avec l’évaluation triple (clinique, imagerie, pathologie). Biopsie au trocart / répétition de la FNA / exérèse selon l’indication clinique."
+    "comment_text": "À corréler avec l'évaluation triple (clinique, imagerie, pathologie). Biopsie au trocart / répétition de la FNA / exérèse selon l'indication clinique."
   }
 }

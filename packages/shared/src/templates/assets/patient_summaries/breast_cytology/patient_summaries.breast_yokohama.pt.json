@@ -1,0 +1,50 @@
+{
+  "templateId": "breast_cytology_yokohama",
+  "summaryType": "rule_based_patient_facing_summary",
+  "version": "1.0",
+  "language": "pt",
+  "system": "Sistema de Yokohama para Relatório de Citopatologia de Biópsia Aspirativa por Agulha Fina da Mama",
+  "triggerField": "diagnostic_category_yokohama",
+  "summaries": {
+    "yokohama_i_insufficient_inadequate": {
+      "professionalLabel": "Categoria I: Insuficiente / Inadequado",
+      "patientTitle": "A amostra da mama não foi suficiente para um diagnóstico claro",
+      "plainLanguageSummary": "A amostra da mama não continha células suficientes ou a qualidade da amostra era limitada, pelo que não foi possível estabelecer um diagnóstico claro.",
+      "whatThisMeans": "Isto não significa que foi encontrado cancro. Significa que a amostra não foi adequada para fornecer uma resposta fiável.",
+      "possibleNextSteps": "O seu médico poderá recomendar a repetição da PAF, biópsia por agulha grossa, revisão de imagem ou avaliação adicional, dependendo do nódulo mamário e dos achados de imagem.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, imagem e resultados anteriores quando relevante."
+    },
+    "yokohama_ii_benign": {
+      "professionalLabel": "Categoria II: Benigno",
+      "patientTitle": "Resultado mamário benigno",
+      "plainLanguageSummary": "A amostra da mama mostra células benignas, não cancerosas.",
+      "whatThisMeans": "Este resultado é geralmente tranquilizador, mas os resultados mamários são habitualmente interpretados em conjunto com o exame clínico e a imagem.",
+      "possibleNextSteps": "O seu médico correlacionará este resultado com a imagem e o exame da mama. O seguimento, nova colheita de amostra ou biópsia por agulha grossa podem ainda ser recomendados se os achados não forem concordantes.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, imagem e resultados anteriores quando relevante."
+    },
+    "yokohama_iii_atypical": {
+      "professionalLabel": "Categoria III: Atípico",
+      "patientTitle": "Algumas células mamárias atípicas observadas",
+      "plainLanguageSummary": "A amostra da mama mostra algumas células com aspecto invulgar, mas os achados não são suficientes para diagnosticar cancro.",
+      "whatThisMeans": "Este é um resultado indeterminado. Poderá ser necessária uma avaliação adicional para excluir uma lesão mais significativa.",
+      "possibleNextSteps": "O seu médico poderá recomendar biópsia por agulha grossa, repetição da colheita de amostra, correlação com imagem ou consulta numa clínica especializada de mama.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, imagem e resultados anteriores quando relevante."
+    },
+    "yokohama_iv_suspicious_for_malignancy": {
+      "professionalLabel": "Categoria IV: Suspeito de Malignidade",
+      "patientTitle": "Resultado mamário suspeito",
+      "plainLanguageSummary": "A amostra da mama mostra alterações suspeitas de cancro, mas poderão não ser suficientes para um diagnóstico definitivo.",
+      "whatThisMeans": "Existe uma preocupação significativa e habitualmente é necessária uma avaliação adicional.",
+      "possibleNextSteps": "O seu médico recomendará habitualmente biópsia por agulha grossa, correlação com imagem e avaliação especializada da mama.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, imagem e resultados anteriores quando relevante."
+    },
+    "yokohama_v_malignant": {
+      "professionalLabel": "Categoria V: Maligno",
+      "patientTitle": "Células cancerosas identificadas na amostra da mama",
+      "plainLanguageSummary": "A amostra da mama mostra células malignas, ou seja, foram identificadas células cancerosas.",
+      "whatThisMeans": "Este resultado requer habitualmente avaliação especializada em oncologia mamária e planeamento do tratamento.",
+      "possibleNextSteps": "O seu médico providenciará correlação com imagem, eventual biópsia por agulha grossa ou testes de biomarcadores, e encaminhamento para a equipa de cuidados em cancro da mama.",
+      "safetyNote": "Este resumo destina-se apenas a uma compreensão geral. Por favor, discuta o relatório completo com o seu médico, que o interpretará juntamente com os seus sintomas, achados do exame físico, imagem e resultados anteriores quando relevante."
+    }
+  }
+}

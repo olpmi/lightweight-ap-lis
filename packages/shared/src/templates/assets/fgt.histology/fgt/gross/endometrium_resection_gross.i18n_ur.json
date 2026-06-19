@@ -1,5 +1,12 @@
 {
-  "title": "اینڈومیٹریئم ریسیکشن نمونہ (گراسنگ ٹیمپلیٹ)",
+  "template_id": "endometrium_resection_gross_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "lang": "ur",
+  "ui": {
+    "direction": "rtl"
+  },
+  "title": "اینڈومیٹریئم ریسیکشن نمونہ (عیانی معائنہ ٹیمپلیٹ)",
   "specimen": {
     "label": "نمونہ",
     "fields": {
@@ -23,7 +30,7 @@
     }
   },
   "cervix": {
-    "label": "سروکس",
+    "label": "سروکس (گردن رحم)",
     "fields": {
       "dimensions": {
         "label": "ابعاد"
@@ -35,7 +42,7 @@
         "label": "لمبائی (سم)"
       },
       "cervical_os": {
-        "label": "سرویکل اوس"
+        "label": "گردن رحم کا سوراخ (سرویکل اوس)"
       },
       "portio_vaginalis": {
         "label": "پورٹیو ویجائنیلس"
@@ -94,7 +101,7 @@
         "label": "ظاہری حالت"
       },
       "myometrial_invasion_depth_cm": {
-        "label": "انویژن کی گہرائی (سم)"
+        "label": "مایومیٹریئم میں رسوخ کی گہرائی (سم)"
       },
       "myometrial_thickness_cm": {
         "label": "مایومیٹریئم کی موٹائی (سم)"
@@ -109,7 +116,7 @@
         "label": "ایکٹوسرویکل مارجن تک فاصلہ (سم)"
       },
       "distance_to_paracervical_parametrial_margin_cm": {
-        "label": "پیراسرویکل/پیرامیٹریل مارجن تک فاصلہ (سم)"
+        "label": "پیراسرویکل / پیرامیٹریل مارجن تک فاصلہ (سم)"
       }
     }
   },
@@ -148,31 +155,31 @@
     }
   },
   "adnexa": {
-    "label": "اینڈنیکسا",
+    "label": "زوائد رحم (ایڈنیکسا)",
     "fields": {
       "left_fallopian_tube_dimensions": {
         "label": "بائیں فیلوپین ٹیوب"
       },
       "left_fallopian_tube_appearance": {
-        "label": "بائیں فیلوپین ٹیوب کی حالت"
+        "label": "بائیں فیلوپین ٹیوب کی ظاہری حالت"
       },
       "left_ovary_dimensions": {
         "label": "بائیں بیضہ دانی"
       },
       "left_ovary_appearance": {
-        "label": "بائیں بیضہ دانی کی حالت"
+        "label": "بائیں بیضہ دانی کی ظاہری حالت"
       },
       "right_fallopian_tube_dimensions": {
         "label": "دائیں فیلوپین ٹیوب"
       },
       "right_fallopian_tube_appearance": {
-        "label": "دائیں فیلوپین ٹیوب کی حالت"
+        "label": "دائیں فیلوپین ٹیوب کی ظاہری حالت"
       },
       "right_ovary_dimensions": {
         "label": "دائیں بیضہ دانی"
       },
       "right_ovary_appearance": {
-        "label": "دائیں بیضہ دانی کی حالت"
+        "label": "دائیں بیضہ دانی کی ظاہری حالت"
       }
     }
   },
@@ -191,7 +198,7 @@
     "label": "لمف نوڈز",
     "fields": {
       "left_pelvic_appearance": {
-        "label": "بائیں پیلوک لمف نوڈز"
+        "label": "بائیں پیلوک لمف نوڈز کی ظاہری حالت"
       },
       "left_pelvic_number": {
         "label": "بائیں پیلوک لمف نوڈز کی تعداد"
@@ -200,7 +207,7 @@
         "label": "بائیں پیلوک لمف نوڈز کا سائز"
       },
       "right_pelvic_appearance": {
-        "label": "دائیں پیلوک لمف نوڈز"
+        "label": "دائیں پیلوک لمف نوڈز کی ظاہری حالت"
       },
       "right_pelvic_number": {
         "label": "دائیں پیلوک لمف نوڈز کی تعداد"
@@ -209,7 +216,7 @@
         "label": "دائیں پیلوک لمف نوڈز کا سائز"
       },
       "left_para_aortic_appearance": {
-        "label": "بائیں پیرا-آرٹک لمف نوڈز"
+        "label": "بائیں پیرا-آرٹک لمف نوڈز کی ظاہری حالت"
       },
       "left_para_aortic_number": {
         "label": "بائیں پیرا-آرٹک لمف نوڈز کی تعداد"
@@ -218,7 +225,7 @@
         "label": "بائیں پیرا-آرٹک لمف نوڈز کا سائز"
       },
       "right_para_aortic_appearance": {
-        "label": "دائیں پیرا-آرٹک لمف نوڈز"
+        "label": "دائیں پیرا-آرٹک لمف نوڈز کی ظاہری حالت"
       },
       "right_para_aortic_number": {
         "label": "دائیں پیرا-آرٹک لمف نوڈز کی تعداد"
@@ -244,10 +251,10 @@
         "label": "ایکٹوسرویکل مارجن"
       },
       "left_parametrium_paracervical_margin": {
-        "label": "بائیں پیرامیٹریل/پیراسرویکل مارجن"
+        "label": "بائیں پیرامیٹریل / پیراسرویکل مارجن"
       },
       "right_parametrium_paracervical_margin": {
-        "label": "دائیں پیرامیٹریل/پیراسرویکل مارجن"
+        "label": "دائیں پیرامیٹریل / پیراسرویکل مارجن"
       },
       "left_fallopian_tube": {
         "label": "بائیں فیلوپین ٹیوب"
@@ -270,10 +277,10 @@
     }
   },
   "grossing": {
-    "label": "گراس",
+    "label": "عیانی معائنہ (گراسنگ)",
     "fields": {
       "grossed_by": {
-        "label": "گراس کیا گیا بذریعہ"
+        "label": "عیانی معائنہ کیا گیا بذریعہ"
       },
       "date": {
         "label": "تاریخ"

@@ -1,0 +1,278 @@
+{
+  "templateId": "urine_cytology_paris_system",
+  "templateName": "Urine cytology reporting template (Paris System for Reporting Urinary Cytology)",
+  "language": "en",
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategory": "urine_cytology",
+    "organSystem": "urinary_tract",
+    "reportingSystem": "Paris System for Reporting Urinary Cytology"
+  },
+  "sections": [
+    {
+      "id": "specimen",
+      "title": "Specimen",
+      "fields": [
+        {
+          "id": "specimen_type",
+          "label": "Specimen type",
+          "type": "select",
+          "options": [
+            "Voided urine",
+            "Catheterized urine",
+            "Bladder washing",
+            "Bladder barbotage",
+            "Ureteric washing",
+            "Renal pelvis washing",
+            "Ileal conduit urine",
+            "Other"
+          ]
+        },
+        {
+          "id": "specimen_site",
+          "label": "Specimen site",
+          "type": "select",
+          "options": [
+            "Bladder",
+            "Right ureter",
+            "Left ureter",
+            "Right renal pelvis",
+            "Left renal pelvis",
+            "Upper urinary tract, not otherwise specified",
+            "Urinary tract, not otherwise specified",
+            "Other"
+          ]
+        },
+        {
+          "id": "laterality",
+          "label": "Laterality (if applicable)",
+          "type": "select",
+          "options": ["Right", "Left", "Bilateral", "Not applicable"]
+        },
+        {
+          "id": "clinical_indication",
+          "label": "Clinical indication",
+          "type": "multiselect",
+          "options": [
+            "Hematuria",
+            "Surveillance for urothelial carcinoma",
+            "History of low-grade urothelial neoplasm",
+            "History of high-grade urothelial carcinoma",
+            "Suspicious imaging / cystoscopy finding",
+            "Irritative urinary symptoms",
+            "Other"
+          ]
+        },
+        {
+          "id": "clinical_indication_other",
+          "label": "Other clinical indication",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "preparation_methods",
+      "title": "Preparation Methods",
+      "fields": [
+        {
+          "id": "preparation_methods_used",
+          "label": "Preparation methods",
+          "type": "multiselect",
+          "options": ["Conventional smear", "Cytospin", "Liquid-based preparation", "Cell block"]
+        },
+        {
+          "id": "cell_block_prepared",
+          "label": "Cell block prepared",
+          "type": "select",
+          "options": ["Yes", "No"]
+        }
+      ]
+    },
+    {
+      "id": "adequacy",
+      "title": "Adequacy",
+      "fields": [
+        {
+          "id": "adequacy_status",
+          "label": "Adequacy",
+          "type": "select",
+          "options": [
+            "Satisfactory for evaluation",
+            "Limited cellularity but adequate",
+            "Unsatisfactory / non-diagnostic"
+          ]
+        },
+        {
+          "id": "unsatisfactory_reason",
+          "label": "Reason if unsatisfactory",
+          "type": "multiselect",
+          "options": [
+            "Scant urothelial cells",
+            "Degeneration / poor preservation",
+            "Obscuring blood",
+            "Obscuring inflammation",
+            "Obscuring lubricant / contaminant",
+            "Insufficient volume",
+            "Other"
+          ]
+        },
+        {
+          "id": "unsatisfactory_reason_other",
+          "label": "Other reason",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "diagnostic_category",
+      "title": "Diagnostic Category (Paris System)",
+      "fields": [
+        {
+          "id": "paris_category",
+          "label": "Diagnostic Category",
+          "type": "select",
+          "options": [
+            "I. Non-diagnostic / Unsatisfactory",
+            "II. Negative for High-Grade Urothelial Carcinoma (NHGUC)",
+            "III. Atypical Urothelial Cells (AUC)",
+            "IV. Suspicious for High-Grade Urothelial Carcinoma (SHGUC)",
+            "V. High-Grade Urothelial Carcinoma (HGUC)",
+            "VI. Other malignancies, primary and metastatic"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "negative_findings",
+      "title": "If Negative for High-Grade Urothelial Carcinoma",
+      "fields": [
+        {
+          "id": "negative_findings_options",
+          "label": "Findings",
+          "type": "multiselect",
+          "options": [
+            "Benign urothelial cells",
+            "Reactive urothelial cells",
+            "Degenerative changes",
+            "Inflammation",
+            "Crystals",
+            "Calculus-associated changes",
+            "Polyoma virus cytopathic effect",
+            "Changes consistent with instrumentation",
+            "Low-grade urothelial neoplasm noted / cannot exclude low-grade urothelial neoplasm",
+            "Other"
+          ]
+        },
+        {
+          "id": "negative_findings_other",
+          "label": "Other finding",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "atypical_suspicious_features",
+      "title": "Atypical / Suspicious Cytologic Features",
+      "fields": [
+        {
+          "id": "cytologic_features",
+          "label": "Cytologic features present",
+          "type": "multiselect",
+          "options": [
+            "Increased nuclear-to-cytoplasmic ratio",
+            "Nuclear hyperchromasia",
+            "Irregular nuclear membranes",
+            "Coarse / clumped chromatin",
+            "Cellular pleomorphism",
+            "Prominent nucleoli",
+            "Necrosis",
+            "Mitoses",
+            "Three-dimensional clusters",
+            "Other"
+          ]
+        },
+        {
+          "id": "cytologic_features_other",
+          "label": "Other cytologic feature",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "microscopic_description",
+      "title": "Microscopic Description",
+      "fields": [
+        {
+          "id": "microscopic_description_text",
+          "label": "Microscopic Description",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "id": "malignancy_subtype",
+      "title": "If Malignant / Other Malignancy, Favor",
+      "fields": [
+        {
+          "id": "malignancy_favor",
+          "label": "If malignant, favor",
+          "type": "multiselect",
+          "options": [
+            "High-grade urothelial carcinoma",
+            "Urothelial carcinoma with squamous differentiation",
+            "Urothelial carcinoma with glandular differentiation",
+            "Squamous cell carcinoma",
+            "Adenocarcinoma",
+            "Small cell / neuroendocrine carcinoma",
+            "Metastatic carcinoma",
+            "Hematolymphoid malignancy",
+            "Other"
+          ]
+        },
+        {
+          "id": "malignancy_favor_other",
+          "label": "Other malignancy",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "ancillary_studies",
+      "title": "Ancillary Studies (if performed)",
+      "fields": [
+        {
+          "id": "urovysion_fish",
+          "label": "UroVysion FISH",
+          "type": "select",
+          "options": ["Not performed", "Pending", "Negative", "Positive", "Equivocal"]
+        },
+        {
+          "id": "immunocytochemistry",
+          "label": "Immunocytochemistry",
+          "type": "text"
+        },
+        {
+          "id": "molecular_studies",
+          "label": "Molecular studies",
+          "type": "text"
+        },
+        {
+          "id": "microbiology_stains_cultures",
+          "label": "Microbiology stains / cultures",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "comment_recommendation",
+      "title": "Comment / Recommendation",
+      "fields": [
+        {
+          "id": "comment_text",
+          "label": "Comment / Recommendation",
+          "type": "textarea"
+        }
+      ]
+    }
+  ]
+}

@@ -1,16 +1,20 @@
 {
   "template_id": "uterine_cervix_biopsy_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "protocol_posting_date": "March 2023",
   "lang": "fr",
-  "title": "MODÈLE DE COMPTE RENDU : COL UTÉRIN, BIOPSIE",
+  "title": "Modèle de compte rendu : col utérin, biopsie",
   "tumor": {
-    "label": "Tumor",
+    "label": "Tumeur",
     "fields": {
       "histologic_type": {
         "label": "Type histologique",
+        "type": "select",
         "options": [
           "Carcinome épidermoïde associé au HPV",
           "Carcinome épidermoïde indépendant du HPV",
-          "Carcinome épidermoïde, SAI (acceptable lorsque le test p16 ou HPV n’est pas disponible)",
+          "Carcinome épidermoïde, SAI (acceptable lorsque le test p16 ou HPV n'est pas disponible)",
           "Adénocarcinome, SAI",
           "Adénocarcinome associé au HPV",
           "Adénocarcinome indépendant du HPV, SAI",
@@ -30,45 +34,54 @@
           "Carcinome neuroendocrine à grandes cellules, haut grade",
           "Carcinome neuroendocrine, SAI",
           "Carcinome mixte neuroendocrine et non neuroendocrine",
-          "Autre type histologique non listé (préciser) : _________________",
-          "Carcinome, type ne pouvant être déterminé : _________________"
+          "Autre type histologique non listé",
+          "Carcinome, type ne pouvant être déterminé"
         ],
-        "other_specify": "Autre, préciser",
-        "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser",
+        "value": "",
+        "other_specify": "Autre type (préciser)",
+        "cannot_be_determined_specify": "Ne peut être déterminé (préciser)",
         "comment": "Commentaire"
       },
       "histologic_grade": {
         "label": "Grade histologique",
+        "type": "select",
         "options": [
           "G1, bien différencié",
           "G2, modérément différencié",
           "G3, peu différencié",
-          "GX, ne peut être évalué : _________________",
-          "Sans objet : _________________"
+          "GX, ne peut être évalué",
+          "Sans objet"
         ],
-        "cannot_be_assessed_specify": "Ne peut pas être évalué, préciser",
-        "not_applicable_specify": "Non applicable, préciser"
+        "value": "",
+        "cannot_be_assessed_specify": "Ne peut être évalué (préciser)",
+        "not_applicable_specify": "Sans objet (préciser)"
       },
       "lymphovascular_invasion": {
-        "equivocal_explain": "Équivoque, expliquer",
-        "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
+        "label": "Invasion lymphatique et / ou vasculaire",
+        "type": "select",
+        "options": ["Non identifiée", "Présente", "Équivoque", "Ne peut pas être déterminée"],
+        "value": "",
+        "equivocal_explain": "Équivoque (préciser)",
+        "cannot_be_determined_specify": "Ne peut pas être déterminée (préciser)"
       }
     }
   },
   "additional_findings": {
-    "label": "CONSTATATIONS SUPPLÉMENTAIRES",
+    "label": "Constatations supplémentaires",
     "fields": {
       "findings": {
-        "label": "Constatations supplémentaires (sélectionner tout ce qui s’applique)",
+        "label": "Constatations supplémentaires (sélectionner toutes les réponses applicables)",
+        "type": "multi_select",
         "options": [
           "Aucune identifiée",
           "Lésion intraépithéliale épidermoïde de bas grade (CIN 1)",
           "Lésion intraépithéliale épidermoïde de haut grade (CIN 2 ou 3)",
           "Adénocarcinome endocervical in situ",
           "Inflammation",
-          "Autre (préciser) : _________________"
+          "Autre"
         ],
-        "other_specify": "Autre, préciser"
+        "value": [],
+        "other_specify": "Autre (préciser)"
       }
     }
   }

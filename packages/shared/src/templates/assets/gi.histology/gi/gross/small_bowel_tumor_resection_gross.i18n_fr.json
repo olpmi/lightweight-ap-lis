@@ -1,0 +1,325 @@
+{
+  "template_id": "small_bowel_resection_gross_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "lang": "fr",
+  "title": "Résection du grêle pour tumeur",
+
+  "specimen": {
+    "label": "Prélèvement",
+    "fields": {
+      "procedure_type": {
+        "label": "Type de procédure",
+        "type": "select",
+        "options": [
+          "Résection segmentaire du grêle",
+          "Résection iléocæcale",
+          "Hémicolectomie droite avec iléon terminal",
+          "Résection du grêle avec mésentère",
+          "Autre"
+        ],
+        "value": ""
+      },
+      "procedure_type_other": {
+        "label": "Autre procédure (préciser)",
+        "type": "text",
+        "value": ""
+      },
+      "orientation_provided": {
+        "label": "Orientation fournie",
+        "type": "select",
+        "options": [
+          "Oui",
+          "Non"
+        ],
+        "value": ""
+      },
+      "small_bowel_length_cm": {
+        "label": "Longueur du grêle (cm)",
+        "type": "number",
+        "value": ""
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "Tumeur",
+    "fields": {
+      "tumor_present": {
+        "label": "Tumeur présente",
+        "type": "select",
+        "options": [
+          "Oui",
+          "Non identifiée macroscopiquement"
+        ],
+        "value": ""
+      },
+      "tumor_focality": {
+        "label": "Focalité de la tumeur",
+        "type": "select",
+        "options": [
+          "Unifocale",
+          "Multifocale"
+        ],
+        "value": ""
+      },
+      "tumor_location": {
+        "label": "Localisation de la tumeur",
+        "type": "select",
+        "options": [
+          "Duodénum",
+          "Jéjunum",
+          "Iléon",
+          "Iléon terminal",
+          "Région périampullaire",
+          "Autre"
+        ],
+        "value": ""
+      },
+      "tumor_location_other": {
+        "label": "Autre localisation (préciser)",
+        "type": "text",
+        "value": ""
+      },
+      "tumor_dimensions_cm": {
+        "label": "Dimensions de la tumeur (cm)",
+        "type": "measurement_3d",
+        "value": ""
+      },
+      "tumor_configuration": {
+        "label": "Configuration de la tumeur",
+        "type": "multi_select",
+        "options": [
+          "Polypoïde",
+          "Exophytique",
+          "Fongueuse",
+          "Ulcérée",
+          "Annulaire",
+          "Infiltrante",
+          "Circonférentielle",
+          "Nodulaire",
+          "Autre"
+        ],
+        "value": []
+      },
+      "tumor_configuration_other": {
+        "label": "Autre configuration (préciser)",
+        "type": "text",
+        "value": ""
+      },
+      "tumor_consistency": {
+        "label": "Consistance de la tumeur",
+        "type": "select",
+        "options": [
+          "Ferme",
+          "Molle",
+          "Friable",
+          "Gélatineuse",
+          "Fibrotique",
+          "Autre"
+        ],
+        "value": ""
+      },
+      "tumor_consistency_other": {
+        "label": "Autre consistance (préciser)",
+        "type": "text",
+        "value": ""
+      },
+      "necrosis": {
+        "label": "Nécrose",
+        "type": "select",
+        "options": [
+          "Présente",
+          "Absente"
+        ],
+        "value": ""
+      },
+      "hemorrhage": {
+        "label": "Hémorragie",
+        "type": "select",
+        "options": [
+          "Présente",
+          "Absente"
+        ],
+        "value": ""
+      },
+      "perforation": {
+        "label": "Perforation",
+        "type": "select",
+        "options": [
+          "Présente",
+          "Absente"
+        ],
+        "value": ""
+      },
+      "associated_obstruction": {
+        "label": "Obstruction associée",
+        "type": "select",
+        "options": [
+          "Présente",
+          "Absente"
+        ],
+        "value": ""
+      },
+      "stricture_formation": {
+        "label": "Sténose",
+        "type": "select",
+        "options": [
+          "Présente",
+          "Absente"
+        ],
+        "value": ""
+      },
+      "tumor_extent": {
+        "label": "Extension de la tumeur",
+        "type": "select",
+        "options": [
+          "Envahit uniquement la muqueuse",
+          "Envahit la sous-muqueuse",
+          "Envahit la musculeuse propre",
+          "Envahit la sous-séreuse",
+          "Envahit la séreuse",
+          "Envahit la graisse mésentérique",
+          "Envahit les structures adjacentes",
+          "Non évaluable macroscopiquement"
+        ],
+        "value": ""
+      },
+      "adjacent_structures_involved": {
+        "label": "Structures adjacentes impliquées",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "margins": {
+    "label": "Marges",
+    "fields": {
+      "distance_to_proximal_margin_cm": {
+        "label": "Distance à la marge proximale (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "distance_to_distal_margin_cm": {
+        "label": "Distance à la marge distale (cm)",
+        "type": "number",
+        "value": ""
+      },
+      "distance_to_mesenteric_margin_cm": {
+        "label": "Distance à la marge mésentérique (cm)",
+        "type": "number",
+        "value": ""
+      }
+    }
+  },
+
+  "background_mucosa": {
+    "label": "Muqueuse de fond",
+    "fields": {
+      "background_small_bowel_mucosa": {
+        "label": "Aspect de la muqueuse du grêle",
+        "type": "multi_select",
+        "options": [
+          "Normale",
+          "Ulcérée",
+          "Polypose",
+          "Modification ischémique",
+          "Effet radique",
+          "Adhérences",
+          "Autre"
+        ],
+        "value": []
+      },
+      "background_mucosa_other": {
+        "label": "Autre anomalie de la muqueuse (préciser)",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "lymph_nodes": {
+    "label": "Ganglions lymphatiques régionaux",
+    "fields": {
+      "number_identified": {
+        "label": "Nombre identifié",
+        "type": "integer",
+        "value": ""
+      },
+      "size_range_mm": {
+        "label": "Étendue des tailles (mm)",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "other_findings": {
+    "label": "Autres constatations macroscopiques",
+    "fields": {
+      "findings": {
+        "label": "Autres constatations macroscopiques pertinentes",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "block_identification_key": {
+    "label": "Clé d'identification des blocs",
+    "fields": {
+      "tumor": {
+        "label": "Tumeur",
+        "type": "text",
+        "value": ""
+      },
+      "proximal_margin": {
+        "label": "Marge proximale",
+        "type": "text",
+        "value": ""
+      },
+      "distal_margin": {
+        "label": "Marge distale",
+        "type": "text",
+        "value": ""
+      },
+      "mesenteric_margin": {
+        "label": "Marge mésentérique",
+        "type": "text",
+        "value": ""
+      },
+      "non_neoplastic_small_bowel": {
+        "label": "Grêle non néoplasique",
+        "type": "text",
+        "value": ""
+      },
+      "lymph_nodes": {
+        "label": "Ganglions lymphatiques",
+        "type": "text",
+        "value": ""
+      },
+      "additional_sections": {
+        "label": "Coupes supplémentaires",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "grossing": {
+    "label": "Macroscopie",
+    "fields": {
+      "grossed_by_initials": {
+        "label": "Examiné macroscopiquement par (initiales)",
+        "type": "text",
+        "value": ""
+      },
+      "date": {
+        "label": "Date",
+        "type": "date",
+        "value": ""
+      }
+    }
+  }
+}

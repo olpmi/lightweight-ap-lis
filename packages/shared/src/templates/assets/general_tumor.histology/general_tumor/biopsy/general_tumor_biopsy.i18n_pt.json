@@ -1,0 +1,110 @@
+{
+  "template_id": "general_tumor_biopsy_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "lang": "pt",
+  "title": "Biópsia tumoral geral",
+  "protocol_posting_date": "June 2021",
+
+  "clinical": {
+    "label": "Clínico",
+    "fields": {
+      "treatment_history": {
+        "label": "Antecedentes de tratamento",
+        "type": "select",
+        "options": [
+          "Sem tratamento prévio conhecido",
+          "Tratamento prévio realizado",
+          "Não especificado"
+        ],
+        "value": "",
+        "prior_treatment_specify": {
+          "label": "Tratamento prévio (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      }
+    }
+  },
+
+  "specimen": {
+    "label": "Espécime",
+    "fields": {
+      "site": {
+        "label": "Local do espécime",
+        "type": "text",
+        "value": ""
+      },
+      "laterality": {
+        "label": "Lateralidade do espécime",
+        "type": "select",
+        "options": ["Direito", "Esquerdo", "Não especificado", "Não aplicável"],
+        "value": ""
+      },
+      "procedure": {
+        "label": "Procedimento",
+        "type": "select",
+        "options": [
+          "Biópsia por agulha",
+          "Biópsia incisional",
+          "Biópsia excisional",
+          "Punção aspirativa por agulha fina",
+          "Biópsia, sem outra especificação",
+          "Outro"
+        ],
+        "value": "",
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" }
+      },
+      "adequacy": {
+        "label": "Adequação do espécime",
+        "type": "select",
+        "options": ["Adequado", "Subóptimo"],
+        "value": "",
+        "suboptimal_explain": { "label": "Subóptimo (explicar)", "type": "text", "value": "" }
+      }
+    }
+  },
+
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "histologic_type": {
+        "label": "Tipo histológico",
+        "type": "text",
+        "value": ""
+      },
+      "histologic_grade": {
+        "label": "Grau histológico",
+        "type": "text",
+        "value": ""
+      },
+      "lymphovascular_invasion": {
+        "label": "Invasão linfovascular",
+        "type": "select",
+        "options": ["Não identificada", "Presente", "Não é possível determinar"],
+        "value": "",
+        "cannot_be_determined_specify": {
+          "label": "Não é possível determinar (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "perineural_invasion": {
+        "label": "Invasão perineural",
+        "type": "select",
+        "options": ["Não identificada", "Presente", "Não é possível determinar"],
+        "value": "",
+        "cannot_be_determined_specify": {
+          "label": "Não é possível determinar (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "additional_pathologic_findings": {
+        "label": "Achados patológicos adicionais",
+        "type": "text",
+        "value": ""
+      }
+    }
+  }
+}

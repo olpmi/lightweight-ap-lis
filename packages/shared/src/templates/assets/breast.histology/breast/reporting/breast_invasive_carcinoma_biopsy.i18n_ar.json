@@ -1,5 +1,8 @@
 {
   "template_id": "breast_invasive_carcinoma_biopsy_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "protocol_posting_date": "March 2023",
   "lang": "ar",
   "ui": {
     "direction": "rtl"
@@ -10,21 +13,16 @@
     "fields": {
       "procedure": {
         "label": "الإجراء",
-        "options": [
-          "خزعة بالإبرة",
-          "شفط بإبرة دقيقة",
-          "أخرى",
-          "غير محدد"
-        ],
-        "other_specify": "أخرى، حدد"
+        "options": ["خزعة بالإبرة", "شفط بإبرة دقيقة", "أخرى", "غير محدد"],
+        "type": "select",
+        "value": "",
+        "other_specify": "أخرى (حدد)"
       },
       "laterality": {
         "label": "جهة العينة",
-        "options": [
-          "اليمنى",
-          "اليسرى",
-          "غير محدد"
-        ]
+        "options": ["اليمنى", "اليسرى", "غير محدد"],
+        "type": "select",
+        "value": ""
       }
     }
   },
@@ -43,7 +41,13 @@
           "موضع الساعة",
           "غير محدد"
         ],
-        "clock_position_specify": "موقع الساعة، حدد"
+        "type": "multi_select",
+        "value": [],
+        "clock_position_specify": {
+          "label": "موضع عقارب الساعة (حدد)",
+          "type": "text",
+          "value": ""
+        }
       },
       "histologic_type": {
         "label": "النوع النسيجي",
@@ -69,19 +73,24 @@
           "سرطان غازٍ، لا يمكن تحديد النوع",
           "نوع نسيجي آخر غير مدرج"
         ],
-        "features_specify": "الميزات، حدد",
-        "cannot_be_determined_specify": "لا يمكن التحديد، حدد",
-        "other_specify": "أخرى، حدد"
+        "type": "select",
+        "value": "",
+        "features_specify": { "label": "الخصائص (حدد)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": "أخرى (حدد)"
       },
       "histologic_grade": {
         "label": "الدرجة النسيجية (درجة نوتنغهام النسيجية)",
         "fields": {
           "applicability": {
             "label": "قابلية التطبيق",
-            "options": [
-              "غير منطبق (لا يوجد سرطان متبقٍ أو غزو مجهري فقط)",
-              "درجة نوتنغهام"
-            ]
+            "options": ["غير منطبق (لا يوجد سرطان متبقٍ أو غزو مجهري فقط)", "درجة نوتنغهام"],
+            "type": "select",
+            "value": ""
           },
           "glandular_tubular_differentiation": {
             "label": "التمايز الغدي (العنيبي) / الأنبوبي",
@@ -91,7 +100,13 @@
               "الدرجة 3 (أقل من 10% من مساحة الورم تُشكّل بُنى غدية / أنبوبية)",
               "لا يمكن تحديد الدرجة"
             ],
-            "cannot_be_determined_specify": "لا يمكن التحديد، حدد"
+            "type": "select",
+            "value": "",
+            "cannot_be_determined_specify": {
+              "label": "لا يمكن التحديد (حدد)",
+              "type": "text",
+              "value": ""
+            }
           },
           "nuclear_pleomorphism": {
             "label": "تفاوت الأشكال النووي",
@@ -101,18 +116,25 @@
               "الدرجة 3 (أنوية حويصلية غالبًا مع نويات بارزة، وتُظهر تفاوتًا ملحوظًا في الحجم والشكل، وأحيانًا أشكالًا كبيرة جدًا وغريبة)",
               "لا يمكن تحديد الدرجة"
             ],
-            "cannot_be_determined_specify": "لا يمكن التحديد، حدد"
+            "type": "select",
+            "value": "",
+            "cannot_be_determined_specify": {
+              "label": "لا يمكن التحديد (حدد)",
+              "type": "text",
+              "value": ""
+            }
           },
           "mitotic_rate": {
             "label": "معدل الانقسام الميتوزي",
-            "options": [
-              "الدرجة 1",
-              "الدرجة 2",
-              "الدرجة 3",
-              "لا يمكن تحديد الدرجة"
-            ],
+            "options": ["الدرجة 1", "الدرجة 2", "الدرجة 3", "لا يمكن تحديد الدرجة"],
             "reference_note": "انظر الجدول 1 في بروتوكول CAP.",
-            "cannot_be_determined_specify": "لا يمكن التحديد، حدد"
+            "type": "select",
+            "value": "",
+            "cannot_be_determined_specify": {
+              "label": "لا يمكن التحديد (حدد)",
+              "type": "text",
+              "value": ""
+            }
           },
           "overall_grade": {
             "label": "الدرجة الإجمالية",
@@ -122,7 +144,13 @@
               "الدرجة 3 (مجموع 8 أو 9)",
               "لا يمكن تحديد الدرجة"
             ],
-            "cannot_be_determined_specify": "لا يمكن التحديد، حدد"
+            "type": "select",
+            "value": "",
+            "cannot_be_determined_specify": {
+              "label": "لا يمكن التحديد (حدد)",
+              "type": "text",
+              "value": ""
+            }
           }
         }
       },
@@ -131,17 +159,19 @@
         "fields": {
           "measurement_type": {
             "label": "نوع القياس",
-            "options": [
-              "قياس دقيق بالمليمتر (مم)",
-              "على الأقل بالمليمتر (مم)",
-              "لا يمكن تحديده"
-            ]
+            "options": ["قياس دقيق بالمليمتر (مم)", "على الأقل بالمليمتر (مم)", "لا يمكن تحديده"],
+            "type": "select",
+            "value": ""
           },
           "measurement_mm": {
-            "label": "القياس (مم)"
+            "label": "القياس (مم)",
+            "type": "number",
+            "value": ""
           },
           "cannot_be_determined_specify": {
-            "label": "لا يمكن تحديده (اشرح)"
+            "label": "لا يمكن تحديده (اشرح)",
+            "type": "text",
+            "value": ""
           }
         }
       }
@@ -152,10 +182,9 @@
     "fields": {
       "presence": {
         "label": "وجود DCIS",
-        "options": [
-          "غير موجود",
-          "موجود"
-        ]
+        "options": ["غير مُشخَّص", "موجود"],
+        "type": "select",
+        "value": ""
       },
       "architectural_patterns": {
         "label": "الأنماط المعمارية",
@@ -168,7 +197,9 @@
           "صلب",
           "أخرى"
         ],
-        "other_specify": "أخرى، حدد"
+        "type": "multi_select",
+        "value": [],
+        "other_specify": "أخرى (حدد)"
       },
       "nuclear_grade": {
         "label": "الدرجة النووية",
@@ -179,21 +210,33 @@
           "أخرى",
           "لا يمكن تحديدها"
         ],
-        "other_specify": "أخرى، حدد",
-        "cannot_be_determined_specify": "لا يمكن التحديد، حدد"
+        "type": "select",
+        "value": "",
+        "other_specify": "أخرى (حدد)",
+        "cannot_be_determined_specify": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        }
       },
       "necrosis": {
         "label": "النخر",
         "options": [
-          "غير موجود",
+          "غير مُشخَّص",
           "موجود، بؤري (بؤر صغيرة أو نخر خلية مفردة)",
           "موجود، مركزي (نخر «كوميدو» واسع)",
           "أخرى",
           "لا يمكن تحديده",
           "لا يمكن استبعاده"
         ],
-        "other_specify": "أخرى، حدد",
-        "cannot_be_determined_specify": "لا يمكن التحديد، حدد"
+        "type": "select",
+        "value": "",
+        "other_specify": "أخرى (حدد)",
+        "cannot_be_determined_specify": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        }
       }
     }
   },
@@ -202,12 +245,14 @@
     "fields": {
       "status": {
         "label": "الغزو اللمفي و / أو الوعائي",
-        "options": [
-          "غير موجود",
-          "موجود",
-          "لا يمكن تحديده"
-        ],
-        "cannot_be_determined_specify": "لا يمكن التحديد، حدد"
+        "options": ["غير مُشخَّص", "موجود", "لا يمكن تحديده"],
+        "type": "select",
+        "value": "",
+        "cannot_be_determined_specify": {
+          "label": "لا يمكن التحديد (حدد)",
+          "type": "text",
+          "value": ""
+        }
       }
     }
   },
@@ -223,7 +268,9 @@
           "موجودة في نسيج غير ورمي",
           "أخرى"
         ],
-        "other_specify": "أخرى، حدد"
+        "type": "multi_select",
+        "value": [],
+        "other_specify": "أخرى (حدد)"
       }
     }
   },
@@ -231,14 +278,10 @@
     "label": "النتائج الإضافية",
     "fields": {
       "findings": {
-        "label": "النتائج الإضافية"
+        "label": "النتائج الإضافية",
+        "type": "text",
+        "value": ""
       }
     }
-  },
-  "domain": {
-    "fields": {}
-  },
-  "protocol_posting_date": {
-    "fields": {}
   }
 }

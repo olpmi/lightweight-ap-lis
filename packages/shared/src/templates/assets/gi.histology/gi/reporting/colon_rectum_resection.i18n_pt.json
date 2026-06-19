@@ -1,0 +1,548 @@
+{
+  "template_id": "colorectal_malignant_tumor_resection_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "protocol_posting_date": "September 2025",
+  "lang": "pt",
+  "standards": ["AJCC 8"],
+  "title": "Tumor maligno colorrectal, ressecção",
+  "specimen": {
+    "label": "Espécime",
+    "fields": {
+      "procedure": {
+        "label": "Procedimento",
+        "type": "select",
+        "options": [
+          "Hemicolectomia direita",
+          "Colectomia transversa",
+          "Hemicolectomia esquerda",
+          "Sigmoidectomia",
+          "Ressecção anterior baixa",
+          "Colectomia abdominal total",
+          "Ressecção abdominoperineal",
+          "Outro",
+          "Não especificado"
+        ],
+        "value": "",
+        "other_specify": {
+          "label": "Outro (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "macroscopic_mesorectum": {
+        "label": "Avaliação macroscópica do mesorecto",
+        "type": "select",
+        "options": [
+          "Não aplicável",
+          "Completo",
+          "Quase completo",
+          "Incompleto",
+          "Não é possível determinar"
+        ],
+        "value": "",
+        "cannot_be_determined_specify": {
+          "label": "Não é possível determinar (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      }
+    }
+  },
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "tumor_site": {
+        "label": "Local do tumor",
+        "type": "multi_select",
+        "options": [
+          "Cego",
+          "Válvula ileocecal",
+          "Cólon ascendente",
+          "Ângulo hepático",
+          "Cólon transverso",
+          "Ângulo esplénico",
+          "Cólon descendente",
+          "Cólon sigmoide",
+          "Rectossigmoide",
+          "Recto",
+          "Cólon, SOE",
+          "Não é possível determinar"
+        ],
+        "value": []
+      },
+      "rectal_tumor_location": {
+        "label": "Localização do tumor rectal",
+        "type": "select",
+        "options": [
+          "Não aplicável",
+          "Inteiramente acima da reflexão peritoneal anterior",
+          "Inteiramente abaixo da reflexão peritoneal anterior",
+          "A cavalo sobre a reflexão peritoneal anterior",
+          "Não especificado"
+        ],
+        "value": ""
+      },
+      "histologic_type": {
+        "label": "Tipo histológico",
+        "type": "select",
+        "options": [
+          "Adenocarcinoma",
+          "Adenocarcinoma mucinoso",
+          "Carcinoma pouco coeso",
+          "Carcinoma de células em anel de sinete",
+          "Carcinoma medular",
+          "Adenocarcinoma serrilhado",
+          "Adenocarcinoma micropapilar",
+          "Adenocarcinoma semelhante a adenoma",
+          "Carcinoma adenoescamoso",
+          "Carcinoma indiferenciado, SOE",
+          "Carcinoma com componente sarcomatoide",
+          "Carcinoma neuroendócrino de grandes células",
+          "Carcinoma neuroendócrino de pequenas células",
+          "Neoplasia mista neuroendócrina e não neuroendócrina (MiNEN)",
+          "Carcinoma, tipo não determinável"
+        ],
+        "value": "",
+        "specify_components": {
+          "label": "Especificar componentes",
+          "type": "text",
+          "value": ""
+        },
+        "comment": {
+          "label": "Comentário",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "histologic_grade": {
+        "label": "Grau histológico",
+        "type": "select",
+        "options": [
+          "G1, bem diferenciado",
+          "G2, moderadamente diferenciado",
+          "G3, pouco diferenciado",
+          "G4, indiferenciado",
+          "Outro",
+          "GX, não é possível avaliar",
+          "Não aplicável"
+        ],
+        "value": "",
+        "other_specify": {
+          "label": "Outro (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_assessed_specify": {
+          "label": "Não é possível avaliar (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "not_applicable_specify": {
+          "label": "Não aplicável (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "tumor_size": {
+        "label": "Tamanho do tumor",
+        "fields": {
+          "greatest_dimension_cm": {
+            "label": "Maior dimensão (cm)",
+            "type": "number",
+            "value": ""
+          },
+          "additional_dimensions_cm": {
+            "label": "Dimensões adicionais (cm)",
+            "type": "measurement_2d",
+            "value": ""
+          },
+          "cannot_be_determined_explain": {
+            "label": "Não é possível determinar (explicar)",
+            "type": "text",
+            "value": ""
+          }
+        }
+      },
+      "multiple_primary_sites": {
+        "label": "Locais primários múltiplos",
+        "type": "select",
+        "options": ["Não aplicável", "Presente"],
+        "value": "",
+        "present_specify": {
+          "label": "Presente (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "tumor_extent": {
+        "label": "Extensão do tumor",
+        "type": "select",
+        "options": [
+          "Sem invasão (displasia de alto grau)",
+          "Invade a lamina propria / muscularis mucosae",
+          "Invade a submucosa",
+          "Invade a muscularis propria",
+          "Invade através da muscularis propria para os tecidos pericólicos ou perirrectais",
+          "Invade o peritoneu visceral",
+          "Invade directamente ou adere a estruturas adjacentes",
+          "Não é possível determinar",
+          "Sem evidência de tumor primário"
+        ],
+        "value": "",
+        "adjacent_structure_specify": {
+          "label": "Estrutura adjacente (especificar)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_specify": {
+          "label": "Não é possível determinar (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "submucosal_invasion": {
+        "label": "Invasão submucosa (apenas pT1)",
+        "fields": {
+          "status": {
+            "label": "Invasão submucosa",
+            "type": "select",
+            "options": ["Não aplicável (não é um tumor pT1)", "Presente"],
+            "value": ""
+          },
+          "depth": {
+            "label": "Profundidade da invasão submucosa",
+            "type": "select",
+            "options": [
+              "Inferior a 1 mm",
+              "Igual ou superior a 1 mm e inferior a 2 mm",
+              "Superior a 2 mm",
+              "Profundidade exacta em milímetros",
+              "Não é possível determinar"
+            ],
+            "value": "",
+            "exact_depth_mm": {
+              "label": "Profundidade exacta (mm)",
+              "type": "text",
+              "value": ""
+            },
+            "cannot_be_determined_specify": {
+              "label": "Não é possível determinar (especificar)",
+              "type": "text",
+              "value": ""
+            }
+          },
+          "extent": {
+            "label": "Extensão da invasão submucosa",
+            "type": "select",
+            "options": [
+              "Terço superior",
+              "Terço médio",
+              "Terço inferior",
+              "Não é possível determinar"
+            ],
+            "value": ""
+          }
+        }
+      },
+      "macroscopic_tumor_perforation": {
+        "label": "Perfuração tumoral macroscópica",
+        "type": "select",
+        "options": ["Não identificada", "Presente", "Não é possível determinar"],
+        "value": ""
+      },
+      "lymphovascular_invasion": {
+        "label": "Invasão linfática e/ou vascular",
+        "type": "multi_select",
+        "options": [
+          "Não identificada",
+          "Vaso pequeno",
+          "Vaso de grande calibre (venoso), intramural",
+          "Vaso de grande calibre (venoso), extramural",
+          "Presente, SOE",
+          "Não é possível determinar"
+        ],
+        "value": []
+      },
+      "perineural_invasion": {
+        "label": "Invasão perineural",
+        "type": "select",
+        "options": ["Não identificada", "Presente", "Não é possível determinar"],
+        "value": ""
+      },
+      "tumor_budding_score": {
+        "label": "Pontuação de budding tumoral",
+        "type": "select",
+        "options": [
+          "Não aplicável",
+          "Baixo (0-4)",
+          "Intermédio (5-9)",
+          "Alto (10 ou mais)",
+          "Não é possível determinar"
+        ],
+        "value": ""
+      },
+      "number_of_tumor_buds": {
+        "label": "Número de buds tumorais por campo hotspot",
+        "type": "text",
+        "value": ""
+      },
+      "polyp_origin": {
+        "label": "Tipo de pólipo em que surgiu o carcinoma invasivo",
+        "type": "select",
+        "options": [
+          "Nenhum identificado",
+          "Adenoma tubular",
+          "Adenoma viloso",
+          "Adenoma tubuloviloso",
+          "Adenoma serrilhado tradicional",
+          "Adenoma serrilhado séssil / pólipo serrilhado séssil",
+          "Pólipo hamartomatoso",
+          "Outro"
+        ],
+        "value": "",
+        "other_specify": {
+          "label": "Outro (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "treatment_effect": {
+        "label": "Efeito do tratamento",
+        "type": "select",
+        "options": [
+          "Sem terapia pré-cirúrgica conhecida",
+          "Resposta completa (pontuação 0)",
+          "Resposta quase completa (pontuação 1)",
+          "Resposta parcial (pontuação 2)",
+          "Presente, SOE",
+          "Resposta fraca ou ausente (pontuação 3)",
+          "Não é possível determinar"
+        ],
+        "value": ""
+      },
+      "tumor_comment": {
+        "label": "Comentário sobre o tumor",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+  "margins": {
+    "label": "Margens",
+    "fields": {
+      "margin_status_invasive": {
+        "label": "Estado das margens para carcinoma invasivo",
+        "type": "select",
+        "options": [
+          "Todas as margens negativas para carcinoma invasivo",
+          "Carcinoma invasivo presente na margem",
+          "Não aplicável"
+        ],
+        "value": ""
+      },
+      "closest_margin": {
+        "label": "Margem(ns) mais próxima(s) ao carcinoma invasivo",
+        "type": "multi_select",
+        "options": [
+          "Proximal",
+          "Distal",
+          "Radial (circunferencial)",
+          "Mesentérica",
+          "Profunda",
+          "Mucosa",
+          "Outro",
+          "Não é possível determinar"
+        ],
+        "value": []
+      },
+      "distance_to_closest_margin": {
+        "label": "Distância do carcinoma invasivo à margem mais próxima",
+        "type": "text",
+        "value": ""
+      },
+      "distance_to_radial_margin_rectum": {
+        "label": "Distância à margem radial (apenas tumores do recto)",
+        "type": "text",
+        "value": ""
+      },
+      "distance_to_distal_margin_rectum": {
+        "label": "Distância à margem distal (apenas tumores do recto)",
+        "type": "text",
+        "value": ""
+      },
+      "non_invasive_margin_status": {
+        "label": "Estado das margens para tumor não invasivo",
+        "type": "multi_select",
+        "options": [
+          "Todas as margens negativas para displasia de alto grau / carcinoma intramucosal e displasia de baixo grau",
+          "Displasia de alto grau / carcinoma intramucosal presente na margem",
+          "Displasia de baixo grau presente na margem",
+          "Não aplicável"
+        ],
+        "value": []
+      },
+      "margin_comment": {
+        "label": "Comentário sobre as margens",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+  "regional_lymph_nodes": {
+    "label": "Gânglios linfáticos regionais",
+    "fields": {
+      "status": {
+        "label": "Estado dos gânglios linfáticos regionais",
+        "type": "select",
+        "options": [
+          "Não aplicável",
+          "Gânglios linfáticos regionais presentes",
+          "Todos os gânglios linfáticos regionais negativos para tumor",
+          "Tumor presente em gânglio(s) linfático(s) regional(is)"
+        ],
+        "value": ""
+      },
+      "number_with_tumor": {
+        "label": "Número de gânglios linfáticos com tumor",
+        "type": "text",
+        "value": ""
+      },
+      "number_examined": {
+        "label": "Número de gânglios linfáticos examinados",
+        "type": "text",
+        "value": ""
+      },
+      "tumor_deposits": {
+        "label": "Depósitos tumorais",
+        "type": "select",
+        "options": ["Não identificados", "Presentes", "Não é possível determinar"],
+        "value": ""
+      },
+      "number_of_tumor_deposits": {
+        "label": "Número de depósitos tumorais",
+        "type": "text",
+        "value": ""
+      },
+      "comment": {
+        "label": "Comentário sobre os gânglios linfáticos regionais",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+  "distant_metastasis": {
+    "label": "Metástases à distância",
+    "fields": {
+      "sites": {
+        "label": "Local(is) à distância envolvido(s)",
+        "type": "multi_select",
+        "options": [
+          "Não aplicável",
+          "Gânglio(s) linfático(s) não regional(is)",
+          "Fígado",
+          "Outro",
+          "Não é possível determinar"
+        ],
+        "value": []
+      }
+    }
+  },
+  "ptnm": {
+    "label": "Classificação pTNM (AJCC 8ª Edição)",
+    "note": "A notificação das categorias pT, pN e, quando aplicável, pM baseia-se nas informações disponíveis para o patologista no momento da emissão do relatório. Conforme o AJCC (Capítulo 1, 8ª Ed.), cabe ao médico responsável estabelecer o estadiamento patológico final com base em todas as informações pertinentes, incluindo, mas não se limitando a, este relatório de anatomia patológica.",
+    "fields": {
+      "modified_classification": {
+        "label": "Classificação modificada",
+        "type": "multi_select",
+        "options": ["Não aplicável", "y (pós-terapia neoadjuvante)", "r (recidiva)"],
+        "value": []
+      },
+      "pT_category": {
+        "label": "Categoria pT",
+        "type": "select",
+        "options": [
+          "pT não atribuído (não é possível determinar com base nas informações patológicas disponíveis)",
+          "pT0: Sem evidência de tumor primário",
+          "pTis: Carcinoma in situ, carcinoma intramucosal (envolvimento da lamina propria sem extensão através da muscularis mucosae)",
+          "pT1: Tumor invade a submucosa (através da muscularis mucosae mas não a muscularis propria)",
+          "pT2: Tumor invade a muscularis propria",
+          "pT3: Tumor invade através da muscularis propria para os tecidos pericolorectais",
+          "pT4a: Tumor invade através do peritoneu visceral (incluindo perfuração grosseira do intestino pelo tumor e invasão contínua do tumor através de áreas de inflamação até à superfície do peritoneu visceral)",
+          "pT4b: Tumor invade directamente ou adere a órgãos ou estruturas adjacentes",
+          "pT4 (subcategoria não determinável)"
+        ],
+        "value": ""
+      },
+      "T_suffix": {
+        "label": "Sufixo T",
+        "type": "select",
+        "options": ["Não aplicável", "(m) tumores primários síncronos múltiplos num único órgão"],
+        "value": ""
+      },
+      "pN_category": {
+        "label": "Categoria pN",
+        "type": "select",
+        "options": [
+          "pN não atribuído (nenhum gânglio submetido ou encontrado)",
+          "pN não atribuído (não é possível determinar com base nas informações patológicas disponíveis)",
+          "pN0: Sem metástase em gânglio linfático regional",
+          "pN1a: Um gânglio linfático regional é positivo",
+          "pN1b: Dois ou três gânglios linfáticos regionais são positivos",
+          "pN1c: Nenhum gânglio linfático regional é positivo, mas existem depósitos tumorais na subserosa, mesentério, tecidos pericólicos ou perirrectais / mesorectais não peritonealizados",
+          "pN1 (subcategoria não determinável)",
+          "pN2a: Quatro a seis gânglios linfáticos regionais são positivos",
+          "pN2b: Sete ou mais gânglios linfáticos regionais são positivos",
+          "pN2 (subcategoria não avaliável)"
+        ],
+        "value": ""
+      },
+      "pM_category": {
+        "label": "Categoria pM",
+        "type": "select",
+        "options": [
+          "Não aplicável — pM não pode ser determinado a partir do(s) espécime(s) submetido(s)",
+          "pM1a: Metástase num único local ou órgão identificada sem metástase peritoneal",
+          "pM1b: Metástases em dois ou mais locais ou órgãos identificadas sem metástase peritoneal",
+          "pM1c: Metástase na superfície peritoneal identificada isoladamente ou com metástases noutros locais ou órgãos",
+          "pM1 (subcategoria não determinável)"
+        ],
+        "value": ""
+      }
+    }
+  },
+  "additional_findings": {
+    "label": "Achados adicionais",
+    "fields": {
+      "findings": {
+        "label": "Achados adicionais",
+        "type": "multi_select",
+        "options": [
+          "Nenhum identificado",
+          "Adenoma(s)",
+          "Colite ulcerosa",
+          "Doença de Crohn",
+          "Diverticulose",
+          "Displasia associada a doença inflamatória intestinal",
+          "Outro"
+        ],
+        "value": [],
+        "other_specify": {
+          "label": "Outro (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      }
+    }
+  },
+  "comments": {
+    "label": "Comentários",
+    "fields": {
+      "comment": {
+        "label": "Comentário(s)",
+        "type": "text",
+        "value": ""
+      }
+    }
+  }
+}

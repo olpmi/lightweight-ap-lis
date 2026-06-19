@@ -1,12 +1,17 @@
 {
   "template_id": "lung_tumor_biopsy_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "protocol_posting_date": "September 2025",
   "lang": "fr",
+  "standards": ["AJCC 9"],
   "title": "Tumeur pulmonaire, biopsie",
   "tumor": {
     "label": "Tumeur",
     "fields": {
       "histologic_type": {
         "label": "Type histologique",
+        "type": "select",
         "options": [
           "Adénocarcinome lépidique invasif",
           "Adénocarcinome acinaire invasif",
@@ -36,15 +41,41 @@
           "Autre type histologique non listé",
           "Aucune tumeur viable présente"
         ],
-        "combined_small_cell_non_small_cell_component_specify": "Composante combinée à petites cellules / non à petites cellules, préciser",
-        "combined_large_cell_neuroendocrine_other_component_specify": "Composante combinée à grandes cellules neuroendocrine / autre, préciser",
-        "carcinoma_type_cannot_be_determined_specify": "Type de carcinome ne peut être déterminé, préciser",
-        "non_small_cell_subtype_cannot_be_determined_specify": "Sous-type non à petites cellules ne peut être déterminé, préciser",
-        "other_histologic_type_specify": "Autre type histologique, préciser",
-        "no_viable_tumor_present_explain": "Pas de tumeur viable présente, expliquer"
+        "value": "",
+        "combined_small_cell_non_small_cell_component_specify": {
+          "label": "Composante combinée à petites cellules / non à petites cellules (préciser)",
+          "type": "text",
+          "value": ""
+        },
+        "combined_large_cell_neuroendocrine_other_component_specify": {
+          "label": "Composante combinée neuroendocrine à grandes cellules / autre composante (préciser)",
+          "type": "text",
+          "value": ""
+        },
+        "carcinoma_type_cannot_be_determined_specify": {
+          "label": "Type de carcinome indéterminable (préciser)",
+          "type": "text",
+          "value": ""
+        },
+        "non_small_cell_subtype_cannot_be_determined_specify": {
+          "label": "Sous-type de carcinome non à petites cellules indéterminable (préciser)",
+          "type": "text",
+          "value": ""
+        },
+        "other_histologic_type_specify": {
+          "label": "Autre type histologique (préciser)",
+          "type": "text",
+          "value": ""
+        },
+        "no_viable_tumor_present_explain": {
+          "label": "Aucune tumeur viable présente (expliquer)",
+          "type": "text",
+          "value": ""
+        }
       },
       "histologic_patterns": {
         "label": "Patterns histologiques (applicables aux adénocarcinomes non mucineux uniquement)",
+        "type": "multi_select",
         "options": [
           "Non applicable",
           "Acinaire",
@@ -54,35 +85,48 @@
           "Micropapillaire",
           "Glandes complexes (cribriformes et fusionnées)",
           "Autre"
-        ]
+        ],
+        "value": []
       },
       "histologic_grade": {
         "label": "Grade histologique",
-        "other_specify": "Autre, préciser",
-        "cannot_be_assessed_specify": "Ne peut pas être évalué, préciser",
-        "not_applicable_specify": "Non applicable, préciser"
+        "note": "Les patterns de haut grade dans l'adénocarcinome non mucineux invasif incluent les patterns solide, micropapillaire, cribriforme et glandes fusionnées.",
+        "type": "select",
+        "options": [
+          "G1, bien différencié (inclut l'adénocarcinome lépidique invasif avec moins de 20 % de pattern de haut grade ; tumeur carcinoïde typique)",
+          "G2, modérément différencié (inclut l'adénocarcinome acinaire et papillaire invasif avec moins de 20 % de pattern de haut grade ; tumeur carcinoïde atypique)",
+          "G3, peu différencié (inclut l'adénocarcinome non mucineux invasif avec 20 % ou plus de pattern de haut grade)",
+          "G4, indifférencié (inclut le carcinome à petites cellules ; le carcinome à grandes cellules)",
+          "Autre",
+          "GX, ne peut pas être évalué",
+          "Non applicable"
+        ],
+        "value": "",
+        "other_specify": "Autre (préciser)",
+        "cannot_be_assessed_specify": "Ne peut pas être évalué (préciser)",
+        "not_applicable_specify": "Non applicable (préciser)"
       },
       "lymphovascular_invasion": {
         "label": "Invasion lymphatique et / ou vasculaire",
         "fields": {
           "status": {
             "label": "Invasion lymphatique et/ou vasculaire",
-            "options": [
-              "Non identifié",
-              "Présent",
-              "Ne peut pas être déterminé"
-            ],
-            "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
+            "type": "select",
+            "options": ["Non identifiée", "Présente", "Ne peut pas être déterminée"],
+            "value": "",
+            "cannot_be_determined_specify": "Ne peut pas être déterminée (préciser)"
           },
           "subtypes": {
             "label": "Sous-type(s) d'invasion",
+            "type": "multi_select",
             "options": [
               "Invasion lymphatique présente",
               "Invasion artérielle présente",
               "Invasion veineuse présente",
-              "Other"
+              "Autre"
             ],
-            "other_specify": "Autre, préciser"
+            "value": [],
+            "other_specify": "Autre (préciser)"
           }
         }
       }
@@ -91,11 +135,43 @@
   "additional_findings": {
     "label": "Constatations supplémentaires",
     "fields": {
-      "findings": {},
-      "atypical_adenomatous_hyperplasia_specify": {},
-      "granulomatous_inflammation_specify": {},
-      "fibrosis_specify_pattern": {},
-      "other_specify": {}
+      "findings": {
+        "label": "Constatations supplémentaires",
+        "type": "multi_select",
+        "options": [
+          "Aucune identifiée",
+          "Hyperplasie adénomateuse atypique",
+          "Dysplasie épidermoïde",
+          "Hyperplasie neuroendocrine diffuse",
+          "Changements au site de biopsie",
+          "Inflammation granulomateuse",
+          "Changements post-obstructifs",
+          "Fibrose",
+          "Emphysème",
+          "Autre"
+        ],
+        "value": []
+      },
+      "atypical_adenomatous_hyperplasia_specify": {
+        "label": "Hyperplasie adénomateuse atypique",
+        "type": "text",
+        "value": ""
+      },
+      "granulomatous_inflammation_specify": {
+        "label": "Inflammation granulomateuse (préciser si nécrosante ou non nécrosante si discernable)",
+        "type": "text",
+        "value": ""
+      },
+      "fibrosis_specify_pattern": {
+        "label": "Fibrose (préciser le pattern si discernable)",
+        "type": "text",
+        "value": ""
+      },
+      "other_specify": {
+        "label": "Autre (préciser)",
+        "type": "text",
+        "value": ""
+      }
     }
   }
 }

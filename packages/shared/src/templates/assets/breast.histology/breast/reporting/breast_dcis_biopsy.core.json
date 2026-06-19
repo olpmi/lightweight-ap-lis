@@ -1,23 +1,16 @@
 {
   "template_id": "breast_dcis_biopsy_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "title": "Breast DCIS, Biopsy",
   "protocol_posting_date": "June 2021",
-  "case_summary": {
-    "label": "Case Summary (DCIS of the Breast: Biopsy)"
-  },
   "specimen": {
     "label": "Specimen",
     "fields": {
       "procedure": {
         "label": "Procedure",
         "type": "select",
-        "options": [
-          "Needle biopsy",
-          "Fine needle aspiration",
-          "Other",
-          "Not specified"
-        ],
+        "options": ["Needle biopsy", "Fine needle aspiration", "Other", "Not specified"],
         "value": "",
         "other_specify": ""
       },

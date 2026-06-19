@@ -1,12 +1,17 @@
 {
   "template_id": "uterine_cervix_resection_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "protocol_posting_date": "March 2023",
   "lang": "fr",
-  "title": "MODÈLE DE COMPTE RENDU : RÉSECTION DU COL UTÉRIN",
+  "standards": ["FIGO Cancer Report 2018", "AJCC-UICC 9"],
+  "title": "Modèle de compte rendu : résection du col utérin",
   "tumor": {
-    "label": "Invasion lymphatique et/ou vasculaire",
+    "label": "Tumeur",
     "fields": {
       "histologic_type": {
         "label": "Type histologique",
+        "type": "select",
         "options": [
           "Carcinome épidermoïde associé au HPV",
           "Carcinome épidermoïde indépendant du HPV",
@@ -30,92 +35,121 @@
           "Carcinome neuroendocrine à grandes cellules, haut grade",
           "Carcinome neuroendocrine, SAI",
           "Carcinome mixte neuroendocrine et non neuroendocrine",
-          "Autre type histologique non listé (préciser)",
+          "Autre type histologique non listé",
           "Carcinome, type ne pouvant être déterminé"
-        ]
+        ],
+        "value": ""
       },
       "histologic_grade": {
         "label": "Grade histologique",
+        "type": "select",
         "options": [
           "G1, bien différencié",
           "G2, modérément différencié",
           "G3, peu différencié",
           "GX, ne peut être évalué",
           "Non applicable"
-        ]
+        ],
+        "value": ""
       },
       "stromal_invasion_depth": {
-        "label": "Profondeur de l’invasion stromale",
+        "label": "Profondeur d'invasion stromale",
+        "type": "select",
         "options": [
           "Préciser en millimètres (mm)",
           "Pas plus de 3 mm",
           "Supérieure à 3 mm mais pas plus de 5 mm",
           "Supérieure à 5 mm",
-          "Ne peut être déterminée (expliquer)"
-        ]
+          "Ne peut être déterminée"
+        ],
+        "value": ""
       },
       "stromal_invasion_extent": {
-        "options": [
-          "Tiers superficiel",
-          "Tiers moyen",
-          "Tiers profond",
-          "Ne peut être déterminée"
-        ]
+        "label": "Étendue de la profondeur d'invasion stromale",
+        "type": "select",
+        "options": ["Tiers superficiel", "Tiers moyen", "Tiers profond", "Ne peut être déterminée"],
+        "value": ""
       },
       "horizontal_extent": {
-        "label": "Étendue horizontale de l’invasion stromale",
-        "options": [
-          "Non applicable (pour les tumeurs plus volumineuses mesurables macroscopiquement)",
-          "Préciser en millimètres (mm)",
-          "Estimée à 7 mm ou moins",
-          "Estimée à plus de 7 mm",
-          "Nombre de blocs concernés",
-          "Ne peut être déterminée (expliquer)"
-        ]
+        "label": "Étendue horizontale de l'invasion stromale",
+        "type": "text",
+        "value": ""
       },
       "silva_system": {
-        "label": "Système de Silva pour l’invasion",
+        "label": "Système de Silva pour l'invasion",
+        "type": "select",
+        "options": ["Non applicable", "Profil A", "Profil B", "Profil C"],
+        "value": ""
+      },
+      "other_tissue_involvement": {
+        "label": "Atteinte d'autres tissus / organes",
+        "type": "multi_select",
         "options": [
           "Non applicable",
-          "Profil A",
-          "Profil B",
-          "Profil C"
-        ]
+          "Non identifiée",
+          "Paramètre utérin",
+          "Vagin (deux tiers supérieurs)",
+          "Vagin (tiers inférieur)",
+          "Paroi pelvienne",
+          "Paroi vésicale",
+          "Muqueuse vésicale",
+          "Paroi rectale",
+          "Muqueuse intestinale",
+          "Autre",
+          "Ne peut être déterminée"
+        ],
+        "value": []
       },
-      "other_tissue_involvement": {},
-      "lymphovascular_invasion": {}
+      "lymphovascular_invasion": {
+        "label": "Invasion lymphatique et / ou vasculaire",
+        "type": "select",
+        "options": ["Non identifiée", "Présente", "Équivoque", "Ne peut être déterminée"],
+        "value": ""
+      }
     }
   },
   "margins": {
     "label": "Marges",
     "fields": {
       "margin_status_invasive": {
+        "label": "Statut des marges pour le carcinome invasif",
+        "type": "select",
         "options": [
-          "Toutes les marges sont négatives pour le carcinome invasif",
+          "Toutes les marges négatives",
           "Carcinome invasif présent à la marge",
           "Non applicable"
-        ]
+        ],
+        "value": ""
+      },
+      "closest_margin": {
+        "label": "Marge(s) la/les plus proche(s)",
+        "type": "multi_select",
+        "options": [
+          "Ectocervicale",
+          "Radiale / circonférentielle",
+          "Endocervicale / segment utérin inférieur",
+          "Manchon vaginal",
+          "Autre",
+          "Ne peut être déterminée"
+        ],
+        "value": []
       },
       "distance_to_margin": {
-        "options": [
-          "Distance exacte : mm",
-          "Supérieure à",
-          "Au moins",
-          "Inférieure à",
-          "Inférieure à 1 mm",
-          "Autre (préciser)",
-          "Ne peut être déterminée"
-        ]
+        "label": "Distance du carcinome invasif à la marge la plus proche",
+        "type": "text",
+        "value": ""
       },
       "hsil_ais_margin_status": {
+        "label": "Statut des marges pour HSIL / AIS",
+        "type": "multi_select",
         "options": [
-          "Toutes les marges sont négatives pour HSIL et/ou AIS",
+          "Toutes les marges négatives",
           "HSIL présent à la marge",
           "AIS présent à la marge",
           "Non applicable"
-        ]
-      },
-      "closest_margin": {}
+        ],
+        "value": []
+      }
     }
   },
   "regional_lymph_nodes": {
@@ -123,114 +157,152 @@
     "fields": {
       "status": {
         "label": "Statut des ganglions lymphatiques régionaux",
+        "type": "select",
         "options": [
           "Non applicable (aucun ganglion régional soumis ou retrouvé)",
           "Ganglions régionaux présents",
-          "Tous les ganglions régionaux sont négatifs pour les cellules tumorales",
+          "Tous négatifs",
           "Tumeur présente dans les ganglions pelviens",
-          "Tumeur présente dans les ganglions para-aortiques",
-          "Autre (préciser)",
-          "Ne peut être déterminé (expliquer)"
-        ]
+          "Tumeur présente dans les ganglions para-aortiques"
+        ],
+        "value": ""
       },
-      "pelvic_nodes_examined": {},
-      "para_aortic_nodes_examined": {}
+      "pelvic_nodes_examined": {
+        "label": "Nombre total de ganglions pelviens examinés",
+        "type": "text",
+        "value": ""
+      },
+      "para_aortic_nodes_examined": {
+        "label": "Nombre total de ganglions para-aortiques examinés",
+        "type": "text",
+        "value": ""
+      }
     }
   },
   "distant_metastasis": {
     "label": "Métastases à distance",
     "fields": {
       "sites": {
-        "label": "",
+        "label": "Site(s) à distance atteint(s)",
+        "type": "multi_select",
         "options": [
           "Non applicable",
           "Séreuse utérine",
           "Annexes",
           "Ganglion(s) inguinaux",
-          "Épiploon",
-          "Péritoine extrapélvien",
+          "Grand épiploon",
+          "Péritoine extrapelvien",
           "Poumon",
           "Foie",
           "Os",
-          "Autre (préciser)",
+          "Autre",
           "Ne peut être déterminé"
-        ]
+        ],
+        "value": []
       }
     }
   },
   "pathologic_stage": {
-    "label": "Stade FIGO",
+    "label": "Classification anatomopathologique (AJCC 9e édition)",
     "fields": {
       "pT_category": {
         "label": "Catégorie pT",
+        "type": "select",
         "options": [
           "pT non attribué (ne peut être déterminé selon les informations pathologiques disponibles)",
           "pT0 : aucun signe de tumeur primaire",
-          "pT1 : le carcinome est strictement limité au col utérin (l’extension au corps utérin doit être ignorée)",
-          "pT1a : carcinome invasif diagnostiqué uniquement au microscope, avec profondeur maximale d’invasion ≤5 mm",
-          "pT1a1 : invasion stromale mesurée ≤3 mm de profondeur",
-          "pT1a2 : invasion stromale mesurée >3 mm et ≤5 mm de profondeur",
+          "pT1 : le carcinome est strictement limité au col utérin (l'extension au corps utérin doit être ignorée)",
+          "pT1a : carcinome invasif diagnostiqué uniquement au microscope, avec profondeur maximale d'invasion ≤ 5 mm",
+          "pT1a1 : invasion stromale mesurée ≤ 3 mm de profondeur",
+          "pT1a2 : invasion stromale mesurée > 3 mm et ≤ 5 mm de profondeur",
           "pT1a (sous-catégorie ne pouvant être déterminée)",
-          "pT1b : carcinome invasif avec invasion la plus profonde mesurée >5 mm; lésion limitée au col utérin, taille mesurée par le plus grand diamètre tumoral",
-          "pT1b1 : carcinome invasif avec profondeur d’invasion stromale >5 mm et plus grande dimension ≤2 cm",
-          "pT1b2 : carcinome invasif >2 cm et ≤4 cm dans sa plus grande dimension",
-          "pT1b3 : carcinome invasif >4 cm dans sa plus grande dimension",
+          "pT1b : carcinome invasif avec invasion la plus profonde mesurée > 5 mm ; lésion limitée au col utérin, taille mesurée par le plus grand diamètre tumoral",
+          "pT1b1 : carcinome invasif avec profondeur d'invasion stromale > 5 mm et plus grande dimension ≤ 2 cm",
+          "pT1b2 : carcinome invasif > 2 cm et ≤ 4 cm dans sa plus grande dimension",
+          "pT1b3 : carcinome invasif > 4 cm dans sa plus grande dimension",
           "pT1b (sous-catégorie ne pouvant être déterminée)",
           "pT1 (sous-catégorie ne pouvant être déterminée)",
-          "pT2 : le carcinome envahit au-delà de l’utérus, sans atteindre le tiers inférieur du vagin ni la paroi pelvienne",
+          "pT2 : le carcinome envahit au-delà de l'utérus, sans atteindre le tiers inférieur du vagin ni la paroi pelvienne",
           "pT2a : atteinte limitée aux deux tiers supérieurs du vagin sans invasion paramétriale",
-          "pT2a1 : carcinome invasif ≤4 cm dans sa plus grande dimension",
-          "pT2a2 : carcinome invasif >4 cm dans sa plus grande dimension",
+          "pT2a1 : carcinome invasif ≤ 4 cm dans sa plus grande dimension",
+          "pT2a2 : carcinome invasif > 4 cm dans sa plus grande dimension",
           "pT2a (sous-catégorie ne pouvant être déterminée)",
           "pT2b : invasion paramétriale sans atteindre la paroi pelvienne",
           "pT2 (sous-catégorie ne pouvant être déterminée)",
-          "pT3 : le carcinome atteint le tiers inférieur du vagin et/ou s’étend à la paroi pelvienne et/ou entraîne une hydronéphrose ou un rein non fonctionnel",
+          "pT3 : le carcinome atteint le tiers inférieur du vagin et/ou s'étend à la paroi pelvienne et/ou entraîne une hydronéphrose ou un rein non fonctionnel",
           "pT3a : carcinome atteignant le tiers inférieur du vagin, sans extension à la paroi pelvienne",
           "pT3b : extension à la paroi pelvienne et/ou hydronéphrose ou rein non fonctionnel (sauf cause autre connue)",
           "pT3 (sous-catégorie ne pouvant être déterminée)",
-          "pT4 : carcinome atteignant la muqueuse vésicale ou rectale confirmée par biopsie, ou s’étendant aux organes adjacents"
-        ]
+          "pT4 : carcinome atteignant la muqueuse vésicale ou rectale confirmée par biopsie, ou s'étendant aux organes adjacents"
+        ],
+        "value": ""
       },
       "pN_category": {
         "label": "Catégorie pN",
+        "type": "select",
         "options": [
           "pN non attribué (aucun ganglion soumis ou retrouvé)",
           "pN non attribué (ne peut être déterminé selon les informations pathologiques disponibles)",
           "pN0 : aucune métastase ganglionnaire régionale",
-          "pN0(i+) : cellules tumorales isolées dans les ganglions régionaux, ≤0,2 mm, ou cellules isolées/amas ≤200 cellules dans une coupe ganglionnaire",
+          "pN0(i+) : cellules tumorales isolées dans les ganglions régionaux ≤ 0,2 mm, ou cellules isolées/amas ≤ 200 cellules dans une coupe ganglionnaire",
           "pN1 : métastase ganglionnaire régionale limitée aux ganglions pelviens",
-          "pN1mi : métastase ganglionnaire régionale (>0,2 mm mais ≤2,0 mm) aux ganglions pelviens",
-          "pN1a : métastase ganglionnaire régionale (>2,0 mm de diamètre) aux ganglions pelviens",
+          "pN1mi : métastase ganglionnaire régionale (> 0,2 mm mais ≤ 2,0 mm) aux ganglions pelviens",
+          "pN1a : métastase ganglionnaire régionale (> 2,0 mm de diamètre) aux ganglions pelviens",
           "pN1 (sous-catégorie ne pouvant être déterminée)",
           "pN2 : métastase ganglionnaire régionale aux ganglions para-aortiques, avec ou sans ganglions pelviens positifs",
-          "pN2mi : métastase aux ganglions para-aortiques (>0,2 mm mais ≤2,0 mm), avec ou sans ganglions pelviens positifs",
-          "pN2a : métastase aux ganglions para-aortiques (>2,0 mm de diamètre), avec ou sans ganglions pelviens positifs",
+          "pN2mi : métastase aux ganglions para-aortiques (> 0,2 mm mais ≤ 2,0 mm), avec ou sans ganglions pelviens positifs",
+          "pN2a : métastase aux ganglions para-aortiques (> 2,0 mm de diamètre), avec ou sans ganglions pelviens positifs",
           "pN2 (sous-catégorie ne pouvant être déterminée)"
-        ]
+        ],
+        "value": ""
       },
       "pM_category": {
         "label": "Catégorie pM",
+        "type": "select",
         "options": [
-          "Non applicable - pM ne peut être déterminé à partir des spécimens soumis",
-          "pM1 : métastase à distance (incluant métastase aux ganglions inguinaux, maladie intrapéritonéale, poumon, foie ou os; excluant métastase aux ganglions pelviens ou para-aortiques, ou au vagin)"
-        ]
+          "Non applicable — pM ne peut être déterminé à partir des prélèvements soumis",
+          "pM1 : métastase à distance (incluant métastase aux ganglions inguinaux, maladie intrapéritonéale, poumon, foie ou os ; excluant métastase aux ganglions pelviens ou para-aortiques, ou au vagin)"
+        ],
+        "value": ""
       },
-      "figo_stage": {}
+      "figo_stage": {
+        "label": "Stade FIGO",
+        "type": "select",
+        "options": [
+          "IA1 : carcinome invasif diagnostiqué uniquement au microscope ; invasion stromale ≤ 3 mm de profondeur",
+          "IA2 : carcinome invasif diagnostiqué uniquement au microscope ; invasion stromale > 3 mm et ≤ 5 mm de profondeur",
+          "IB1 : carcinome invasif avec invasion la plus profonde > 5 mm (supérieur à IA) ; lésion limitée au col utérin ; ≤ 2 cm dans sa plus grande dimension",
+          "IB2 : carcinome invasif avec invasion la plus profonde > 5 mm (supérieur à IA) ; lésion limitée au col utérin ; > 2 cm et ≤ 4 cm dans sa plus grande dimension",
+          "IB3 : carcinome invasif avec invasion la plus profonde > 5 mm (supérieur à IA) ; lésion limitée au col utérin ; > 4 cm dans sa plus grande dimension",
+          "IIA1 : carcinome atteignant les deux tiers supérieurs du vagin sans invasion paramétriale ; ≤ 4 cm dans sa plus grande dimension",
+          "IIA2 : carcinome atteignant les deux tiers supérieurs du vagin sans invasion paramétriale ; > 4 cm dans sa plus grande dimension",
+          "IIB : carcinome avec invasion paramétriale sans atteindre la paroi pelvienne",
+          "IIIA : carcinome atteignant le tiers inférieur du vagin, sans extension à la paroi pelvienne",
+          "IIIB : carcinome s'étendant à la paroi pelvienne et/ou entraînant une hydronéphrose ou un rein non fonctionnel (sauf cause autre connue)",
+          "IIIC1 : métastase aux ganglions pelviens uniquement",
+          "IIIC2 : métastase aux ganglions para-aortiques, avec ou sans ganglions pelviens positifs",
+          "IVA : carcinome envahissant la muqueuse vésicale ou rectale et/ou extension au-delà du pelvis vrai (l'œdème bulleux ne justifie pas le classement en stade IVA)",
+          "IVB : métastase à distance (incluant dissémination péritonéale, atteinte des ganglions sus-claviculaires, médiastinaux ou distants ; poumon ; foie ; ou os)"
+        ],
+        "value": ""
+      }
     }
   },
   "additional_findings": {
     "label": "Constatations supplémentaires",
     "fields": {
       "findings": {
-        "label": "",
+        "label": "Constatations supplémentaires",
+        "type": "multi_select",
         "options": [
           "Aucune identifiée",
-          "Lésion malpighienne intraépithéliale de bas grade (CIN 1)",
-          "Lésion malpighienne intraépithéliale de haut grade (CIN 2 ou 3)",
+          "Lésion intraépithéliale épidermoïde de bas grade (CIN 1)",
+          "Lésion intraépithéliale épidermoïde de haut grade (CIN 2 ou 3)",
           "Adénocarcinome endocervical in situ",
           "Inflammation",
-          "Autre (préciser)"
-        ]
+          "Autre"
+        ],
+        "value": []
       }
     }
   }

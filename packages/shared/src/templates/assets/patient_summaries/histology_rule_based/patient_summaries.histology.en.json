@@ -1,0 +1,272 @@
+{
+  "metadata": {
+    "id": "patient_summaries.histology.en",
+    "language": "en",
+    "version": "1.0.0",
+    "title": "Histology Patient-Facing Summaries",
+    "description": "English rule-based patient-facing summaries for the current histology templates. These summaries use simple language and are intended to help patients understand the broad meaning of their pathology result.",
+    "scope": [
+      "Breast invasive carcinoma biopsy",
+      "Breast invasive carcinoma resection",
+      "Breast DCIS biopsy",
+      "Breast DCIS resection",
+      "Breast biomarker status",
+      "Cervix biopsy",
+      "Cervix resection",
+      "Endometrium",
+      "Ovary, fallopian tube, and primary peritoneum",
+      "General tumor biopsy",
+      "General tumor resection",
+      "Colorectal malignant tumor resection",
+      "Esophagus tumor",
+      "Gastrointestinal stromal tumor",
+      "Stomach tumor resection",
+      "Prostate core biopsy",
+      "Prostatectomy",
+      "Lung tumor biopsy"
+    ],
+    "note": "This file does not include lymphoma, benign tumor, or inflammatory condition summaries, because those are outside the current histology template set supplied."
+  },
+  "global_disclaimer": "This summary is written in simpler language to help you understand the pathology report. It does not replace discussion with your doctor or clinical care team, who will explain what the result means for your care.",
+  "common_terms": {
+    "biopsy": "A biopsy is a small sample of tissue removed so that it can be examined under the microscope.",
+    "resection": "A resection is an operation where a larger piece of tissue, or an organ, is removed and examined.",
+    "malignant": "Malignant means cancerous.",
+    "invasive": "Invasive means the cancer has grown into surrounding tissue and is not only sitting on the surface lining.",
+    "in_situ": "In situ means abnormal cells are present but have not invaded into the surrounding tissue.",
+    "grade": "Grade describes how abnormal the cancer cells look under the microscope. Higher grade tumors often behave more aggressively.",
+    "margin": "A margin is the edge of the tissue removed during surgery. If tumor is at the margin, more treatment may sometimes be needed.",
+    "lymph_node": "Lymph nodes are small immune system glands that can sometimes contain cancer cells if cancer has spread.",
+    "lymphovascular_invasion": "Lymphovascular invasion means cancer cells are seen inside small blood vessels or lymphatic channels.",
+    "perineural_invasion": "Perineural invasion means cancer cells are seen around or along nerves.",
+    "biomarker": "A biomarker is a special test result that can help guide treatment."
+  },
+  "grade_language": {
+    "grade_1": "low grade, meaning the cancer cells look less abnormal and may grow more slowly",
+    "grade_2": "intermediate grade",
+    "grade_3": "high grade, meaning the cancer cells look more abnormal and may behave more aggressively",
+    "well_differentiated": "well differentiated, meaning the tumor cells still look somewhat like the normal cells they came from",
+    "moderately_differentiated": "moderately differentiated, meaning the tumor cells show an intermediate level of abnormality",
+    "poorly_differentiated": "poorly differentiated, meaning the tumor cells look very abnormal and may behave more aggressively",
+    "undifferentiated": "undifferentiated, meaning the tumor cells look very abnormal and no longer resemble the normal cells they came from",
+    "low_grade": "low grade, meaning the tumor cells look less abnormal and may grow more slowly",
+    "high_grade": "high grade, meaning the tumor cells look very abnormal and may behave more aggressively",
+    "not_applicable": "not assigned a standard grade in this report",
+    "cannot_be_assessed": "not able to be assessed in this sample",
+    "not_specified": "not specified in this report"
+  },
+  "shared_sentence_blocks": {
+    "biopsy_limited_sample": "Because this is a small tissue sample, the full size and extent of the tumor may need to be assessed on a larger surgery specimen or with imaging and other clinical information.",
+    "resection_more_information": "Because this is a larger surgical specimen, the report may include information such as tumor size, margins, lymph nodes, and whether the tumor has spread into nearby tissues.",
+    "additional_tests": "Additional tests may be performed to better classify the tumor or help guide treatment.",
+    "team_interpretation": "Your clinical team will interpret this result together with your examination findings, imaging, and other test results."
+  },
+  "template_groups": {
+    "breast": {
+      "invasive_carcinoma_biopsy": {
+        "label": "Breast invasive carcinoma, biopsy",
+        "summary": "The breast biopsy shows invasive breast cancer. This means cancer cells are present and have grown into the surrounding breast tissue. The report may describe the type of breast cancer and its grade, which helps show how abnormal the cells look under the microscope. Breast biomarker tests such as ER, PR, HER2, and Ki67 are often used to help guide treatment. {biopsy_limited_sample}"
+      },
+      "invasive_carcinoma_resection": {
+        "label": "Breast invasive carcinoma, resection",
+        "summary": "The breast surgery specimen shows invasive breast cancer. This means cancer cells were present and had grown into the surrounding breast tissue. The report may describe the tumor type, grade, size, whether lymph nodes are involved, and whether the tumor is close to or present at the surgical margins. Breast biomarker tests such as ER, PR, HER2, and Ki67 help guide treatment decisions. {resection_more_information}"
+      },
+      "dcis_biopsy": {
+        "label": "Breast DCIS, biopsy",
+        "summary": "The breast biopsy shows ductal carcinoma in situ, also called DCIS. DCIS means abnormal cancer-like cells are present inside the breast ducts, but they have not invaded into the surrounding breast tissue in this sample. The report may describe the grade, pattern, and whether necrosis or calcifications are present. {biopsy_limited_sample}"
+      },
+      "dcis_resection": {
+        "label": "Breast DCIS, resection",
+        "summary": "The breast surgery specimen shows ductal carcinoma in situ, also called DCIS. DCIS means abnormal cancer-like cells are present inside the breast ducts, but they have not invaded into the surrounding breast tissue. The report may describe the size of DCIS, the grade, whether necrosis is present, and whether the DCIS is close to or present at the surgical margins."
+      },
+      "biomarker_status": {
+        "label": "Breast biomarker status",
+        "summary": "This part of the report gives special test results on the breast tumor. ER and PR show whether the tumor may respond to hormone-based treatment. HER2 shows whether HER2-targeted treatment may be useful. Ki67 gives an estimate of how actively the tumor cells are growing. Your oncology team will use these results together with the diagnosis, grade, stage, and other clinical information."
+      }
+    },
+    "gynecologic": {
+      "cervix_biopsy": {
+        "label": "Uterine cervix, biopsy",
+        "summary": "The cervix biopsy shows a tumor or abnormal cells in the cervix. The report may describe the tumor type, such as squamous cell carcinoma, adenocarcinoma, or neuroendocrine carcinoma, and may include grade or other features. Because this is a biopsy, it gives important diagnostic information but may not show the full size or extent of disease. {team_interpretation}"
+      },
+      "cervix_resection": {
+        "label": "Uterine cervix, resection",
+        "summary": "The cervix surgery specimen shows a tumor or abnormal cells in the cervix. The report may describe the tumor type, grade, depth of invasion, whether nearby tissues are involved, whether cancer is present at the margins, and whether lymph nodes contain tumor. These features help guide staging and treatment planning."
+      },
+      "endometrium": {
+        "label": "Endometrium",
+        "summary": "The uterus lining, called the endometrium, shows a tumor. The report may describe the tumor type, such as endometrioid carcinoma, serous carcinoma, clear cell carcinoma, carcinosarcoma, or another type. It may also describe grade, how deeply the tumor grows into the uterine muscle, whether the cervix or other organs are involved, and whether lymphovascular invasion is present. These features help guide staging and treatment."
+      },
+      "ovary_fallopian_tube_primary_peritoneum": {
+        "label": "Ovary, fallopian tube, or primary peritoneum",
+        "summary": "The tissue shows a tumor involving the ovary, fallopian tube, or peritoneum. The report may describe the tumor type, such as serous carcinoma, mucinous carcinoma, endometrioid carcinoma, clear cell carcinoma, borderline tumor, sex cord-stromal tumor, germ cell tumor, or another tumor type. It may also describe tumor size, grade where applicable, surface involvement, spread to other tissues, and lymph node findings. These details help guide staging and treatment."
+      }
+    },
+    "gastrointestinal": {
+      "colorectal_malignant_resection": {
+        "label": "Colorectal malignant tumor, resection",
+        "summary": "The colon or rectum surgery specimen shows a malignant tumor, most commonly a type called adenocarcinoma. The report may describe the tumor type, grade, size, how deeply it has grown into the bowel wall or nearby tissues, whether lymphovascular or perineural invasion is present, whether lymph nodes contain tumor, and whether the surgical margins are clear. These findings help determine stage and guide further treatment."
+      },
+      "stomach_tumor_resection": {
+        "label": "Stomach tumor, resection",
+        "summary": "The stomach surgery specimen shows a tumor. The report may describe the tumor type, such as adenocarcinoma, poorly cohesive carcinoma, mucinous carcinoma, squamous cell carcinoma, neuroendocrine carcinoma, or another type. It may also describe grade, tumor size, depth of invasion, spread to nearby organs, margin status, and lymph node findings. These features help guide staging and treatment."
+      },
+      "esophagus_tumor": {
+        "label": "Esophagus tumor",
+        "summary": "The esophagus specimen shows a tumor. The report may describe the tumor type, such as adenocarcinoma, squamous cell carcinoma, neuroendocrine tumor, or another type. It may also describe grade, tumor size, depth of invasion, whether nearby structures are involved, lymph node findings, and margin status. These details help guide staging and treatment planning."
+      },
+      "gist": {
+        "label": "Gastrointestinal stromal tumor",
+        "summary": "The specimen shows a gastrointestinal stromal tumor, also called GIST. GIST is a tumor that arises from specialized supporting cells in the digestive tract. The report may describe the tumor site, size, cell type, mitotic rate, grade, necrosis, margins, and risk category. These features help estimate how the tumor may behave and whether additional treatment may be needed."
+      }
+    },
+    "genitourinary": {
+      "prostate_core_biopsy": {
+        "label": "Prostate core biopsy",
+        "summary": "The prostate biopsy shows whether prostate cancer is present in one or more sampled areas. If cancer is present, the report may describe the tumor type, grade group, Gleason score, how much of each core is involved, and whether features such as cribriform glands or intraductal carcinoma are seen. These findings help estimate how aggressive the cancer may be and guide treatment discussions."
+      },
+      "prostatectomy": {
+        "label": "Radical prostatectomy",
+        "summary": "The prostate surgery specimen shows prostate tissue removed during surgery. If prostate cancer is present, the report may describe the tumor type, grade group, Gleason score, how much of the prostate is involved, whether the tumor has extended outside the prostate, whether margins are involved, and whether lymph nodes contain tumor. These findings help determine stage and guide follow-up care."
+      }
+    },
+    "thoracic": {
+      "lung_tumor_biopsy": {
+        "label": "Lung tumor, biopsy",
+        "summary": "The lung biopsy shows a tumor in the lung. The report may describe the tumor type, such as adenocarcinoma, squamous cell carcinoma, small cell carcinoma, large cell neuroendocrine carcinoma, carcinoid tumor, or another type. Because this is a biopsy, it may not show the full size or extent of disease. Additional biomarker or molecular tests may be performed to help guide treatment."
+      }
+    },
+    "general": {
+      "general_tumor_biopsy": {
+        "label": "General tumor biopsy",
+        "summary": "The biopsy shows a tumor in the sampled tissue. The report may describe the tumor type, grade, and features such as lymphovascular invasion or perineural invasion. Because this is a small tissue sample, additional tests or a larger specimen may sometimes be needed to provide more complete information."
+      },
+      "general_tumor_resection": {
+        "label": "General tumor resection",
+        "summary": "The surgery specimen shows a tumor in the removed tissue. The report may describe the tumor type, grade, size, extent, necrosis, lymphovascular invasion, treatment effect, margin status, and lymph node findings. These features help your clinical team understand the tumor and plan further care."
+      }
+    }
+  },
+  "diagnosis_key_map": {
+    "invasive_carcinoma_of_no_special_type_ductal": {
+      "template_group": "breast",
+      "template_key": "invasive_carcinoma_biopsy",
+      "patient_label": "invasive breast cancer"
+    },
+    "invasive_lobular_carcinoma": {
+      "template_group": "breast",
+      "template_key": "invasive_carcinoma_biopsy",
+      "patient_label": "invasive lobular breast cancer"
+    },
+    "ductal_carcinoma_in_situ": {
+      "template_group": "breast",
+      "template_key": "dcis_biopsy",
+      "patient_label": "ductal carcinoma in situ"
+    },
+    "squamous_cell_carcinoma_cervix": {
+      "template_group": "gynecologic",
+      "template_key": "cervix_biopsy",
+      "patient_label": "squamous cell carcinoma of the cervix"
+    },
+    "adenocarcinoma_cervix": {
+      "template_group": "gynecologic",
+      "template_key": "cervix_biopsy",
+      "patient_label": "adenocarcinoma of the cervix"
+    },
+    "endometrioid_carcinoma_endometrium": {
+      "template_group": "gynecologic",
+      "template_key": "endometrium",
+      "patient_label": "endometrioid carcinoma of the uterus lining"
+    },
+    "serous_carcinoma_endometrium": {
+      "template_group": "gynecologic",
+      "template_key": "endometrium",
+      "patient_label": "serous carcinoma of the uterus lining"
+    },
+    "high_grade_serous_carcinoma_ovary_fallopian_tube_peritoneum": {
+      "template_group": "gynecologic",
+      "template_key": "ovary_fallopian_tube_primary_peritoneum",
+      "patient_label": "high-grade serous carcinoma"
+    },
+    "low_grade_serous_carcinoma_ovary_fallopian_tube_peritoneum": {
+      "template_group": "gynecologic",
+      "template_key": "ovary_fallopian_tube_primary_peritoneum",
+      "patient_label": "low-grade serous carcinoma"
+    },
+    "colorectal_adenocarcinoma": {
+      "template_group": "gastrointestinal",
+      "template_key": "colorectal_malignant_resection",
+      "patient_label": "colorectal adenocarcinoma"
+    },
+    "gastric_adenocarcinoma": {
+      "template_group": "gastrointestinal",
+      "template_key": "stomach_tumor_resection",
+      "patient_label": "stomach adenocarcinoma"
+    },
+    "esophageal_adenocarcinoma": {
+      "template_group": "gastrointestinal",
+      "template_key": "esophagus_tumor",
+      "patient_label": "esophageal adenocarcinoma"
+    },
+    "esophageal_squamous_cell_carcinoma": {
+      "template_group": "gastrointestinal",
+      "template_key": "esophagus_tumor",
+      "patient_label": "squamous cell carcinoma of the esophagus"
+    },
+    "gastrointestinal_stromal_tumor": {
+      "template_group": "gastrointestinal",
+      "template_key": "gist",
+      "patient_label": "gastrointestinal stromal tumor"
+    },
+    "prostate_acinar_adenocarcinoma": {
+      "template_group": "genitourinary",
+      "template_key": "prostate_core_biopsy",
+      "patient_label": "prostate adenocarcinoma"
+    },
+    "lung_adenocarcinoma": {
+      "template_group": "thoracic",
+      "template_key": "lung_tumor_biopsy",
+      "patient_label": "lung adenocarcinoma"
+    },
+    "lung_squamous_cell_carcinoma": {
+      "template_group": "thoracic",
+      "template_key": "lung_tumor_biopsy",
+      "patient_label": "squamous cell carcinoma of the lung"
+    },
+    "small_cell_carcinoma_lung": {
+      "template_group": "thoracic",
+      "template_key": "lung_tumor_biopsy",
+      "patient_label": "small cell carcinoma of the lung"
+    }
+  },
+  "biomarker_summaries": {
+    "breast_er_positive": "The tumor is estrogen receptor positive. This means hormone-based treatment may be useful.",
+    "breast_er_negative": "The tumor is estrogen receptor negative. This means estrogen hormone treatment may be less useful for this tumor.",
+    "breast_pr_positive": "The tumor is progesterone receptor positive. This may support the use of hormone-based treatment.",
+    "breast_pr_negative": "The tumor is progesterone receptor negative.",
+    "breast_her2_negative_0": "HER2 is negative with a score of 0. This means HER2-targeted treatment is usually not indicated based on this result.",
+    "breast_her2_negative_1": "HER2 is negative with a score of 1+. This is still considered HER2 negative by standard reporting.",
+    "breast_her2_equivocal_2": "HER2 is equivocal with a score of 2+. Additional testing may be needed to clarify the HER2 status.",
+    "breast_her2_positive_3": "HER2 is positive with a score of 3+. This may make HER2-targeted treatment relevant.",
+    "breast_ki67_low": "Ki67 is low, suggesting a lower level of tumor cell growth activity.",
+    "breast_ki67_high": "Ki67 is high, suggesting a higher level of tumor cell growth activity.",
+    "pdl1_positive": "PD-L1 is positive. This may be relevant when considering immunotherapy.",
+    "pdl1_negative": "PD-L1 is negative by the test performed.",
+    "mismatch_repair_intact": "Mismatch repair proteins are retained. Your clinical team will interpret this result together with other findings.",
+    "mismatch_repair_deficient": "One or more mismatch repair proteins are lost. This may have implications for further testing and treatment planning.",
+    "gist_cd117_positive": "CD117 is positive, a result that can support the diagnosis of GIST.",
+    "gist_dog1_positive": "DOG1 is positive, a result that can support the diagnosis of GIST."
+  },
+  "optional_result_modifiers": {
+    "negative_margins": "The margins are negative, meaning tumor was not seen at the cut edge of the removed tissue.",
+    "positive_margins": "Tumor is present at the margin, meaning tumor cells are seen at the cut edge of the removed tissue.",
+    "lymph_nodes_negative": "The lymph nodes examined do not show tumor.",
+    "lymph_nodes_positive": "One or more lymph nodes examined contain tumor.",
+    "lvi_present": "Lymphovascular invasion is present, meaning tumor cells are seen within small vessels or lymphatic channels.",
+    "lvi_absent": "Lymphovascular invasion is not identified.",
+    "pni_present": "Perineural invasion is present, meaning tumor cells are seen around or along nerves.",
+    "pni_absent": "Perineural invasion is not identified.",
+    "treatment_effect_present": "There are changes suggesting the tumor has responded to treatment given before surgery.",
+    "treatment_effect_absent": "No clear treatment effect is identified in the tissue examined."
+  }
+}

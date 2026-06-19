@@ -1,7 +1,10 @@
 {
   "template_id": "prostate_needle_biopsy_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "protocol_posting_date": "September 2023",
   "lang": "fr",
-  "title": "Prostate : biopsie à l’aiguille",
+  "title": "Prostate : biopsie à l'aiguille",
   "tumor": {
     "label": "Tumeur",
     "fields": {
@@ -10,29 +13,41 @@
         "fields": {
           "effects": {
             "label": "Effet du traitement",
+            "type": "multi_select",
             "options": [
               "Aucun traitement présurgical connu",
               "Non identifié",
               "Effet de la radiothérapie présent",
-              "Effet de l’hormonothérapie présent",
+              "Effet de l'hormonothérapie présent",
               "Autre(s) effet(s) thérapeutique(s) présent(s)",
               "Ne peut pas être déterminé"
-            ]
+            ],
+            "value": []
           },
           "radiation_therapy_effect_specify": {
-            "label": "Effet de la radiothérapie présent"
+            "label": "Effet de la radiothérapie présent",
+            "type": "text",
+            "value": ""
           },
           "hormonal_therapy_effect_specify": {
-            "label": "Effet de l’hormonothérapie présent"
+            "label": "Effet de l'hormonothérapie présent",
+            "type": "text",
+            "value": ""
           },
           "other_therapy_effects_specify": {
-            "label": "Autre(s) effet(s) thérapeutique(s) présent(s)"
+            "label": "Autre(s) effet(s) thérapeutique(s) présent(s)",
+            "type": "text",
+            "value": ""
           },
           "cannot_be_determined_specify": {
-            "label": "Ne peut pas être déterminé"
+            "label": "Ne peut pas être déterminé",
+            "type": "text",
+            "value": ""
           },
           "comment": {
-            "label": "Commentaire sur l’effet du traitement"
+            "label": "Commentaire sur l'effet du traitement",
+            "type": "text",
+            "value": ""
           }
         }
       }
@@ -40,10 +55,12 @@
   },
   "positive_specimens": {
     "label": "Prélèvement ou zone positive",
+    "type": "repeatable_group",
     "item_label": "Prélèvement positif",
     "fields": {
       "positive_specimen_location": {
         "label": "Localisation du prélèvement positif",
+        "type": "select",
         "options": [
           "Droite",
           "Base droite (RB)",
@@ -71,23 +88,27 @@
           "Biopsie guidée par IRM",
           "Non précisé"
         ],
-        "location_specify": "Localisation, préciser"
+        "value": "",
+        "location_specify": { "label": "Localisation (préciser)", "type": "text", "value": "" }
       },
       "histologic_type": {
         "label": "Type histologique",
         "fields": {
           "category": {
             "label": "Catégorie",
+            "type": "select",
             "options": [
               "Glandulaire",
               "Malpighienne",
               "Neuroendocrine",
               "Autre type histologique non listé",
               "Carcinome, type indéterminable"
-            ]
+            ],
+            "value": ""
           },
           "type": {
             "label": "Type histologique",
+            "type": "select",
             "options": [
               "Adénocarcinome acinaire, conventionnel (habituel)",
               "Adénocarcinome acinaire, à cellules en bague à chaton",
@@ -106,11 +127,18 @@
               "Autre type histologique non listé",
               "Carcinome, type indéterminable"
             ],
-            "other_specify": "Autre, préciser",
-            "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
+            "value": "",
+            "other_specify": { "label": "Autre (préciser)", "type": "text", "value": "" },
+            "cannot_be_determined_specify": {
+              "label": "Ne peut pas être déterminé (préciser)",
+              "type": "text",
+              "value": ""
+            }
           },
           "comment": {
-            "label": "Commentaire sur le type histologique"
+            "label": "Commentaire sur le type histologique",
+            "type": "text",
+            "value": ""
           }
         }
       },
@@ -119,23 +147,29 @@
         "fields": {
           "grade_status": {
             "label": "Grade",
-            "options": [
-              "Non applicable",
-              "Ne peut pas être évalué",
-              "Évaluable"
-            ],
-            "not_applicable_specify": "Non applicable, préciser",
-            "cannot_be_assessed_specify": "Ne peut pas être évalué, préciser"
+            "type": "select",
+            "options": ["Non applicable", "Ne peut pas être évalué", "Évaluable"],
+            "value": "",
+            "not_applicable_specify": {
+              "label": "Non applicable (préciser)",
+              "type": "text",
+              "value": ""
+            },
+            "cannot_be_assessed_specify": {
+              "label": "Ne peut pas être évalué (préciser)",
+              "type": "text",
+              "value": ""
+            }
           },
           "tumor_microfocus": {
             "label": "Microfoyer tumoral",
-            "options": [
-              "Non identifié",
-              "Présent"
-            ]
+            "type": "select",
+            "options": ["Non identifié", "Présent"],
+            "value": ""
           },
           "grade_group": {
             "label": "Groupe de grade",
+            "type": "select",
             "options": [
               "Groupe de grade 1 (score de Gleason 3 + 3 = 6)",
               "Groupe de grade 2 (score de Gleason 3 + 4 = 7)",
@@ -146,36 +180,45 @@
               "Groupe de grade 5 (score de Gleason 4 + 5 = 9)",
               "Groupe de grade 5 (score de Gleason 5 + 4 = 9)",
               "Groupe de grade 5 (score de Gleason 5 + 5 = 10)"
-            ]
+            ],
+            "value": ""
           },
           "pattern_4_percentage_for_grade_group_2": {
             "label": "Pourcentage du pattern 4 pour le groupe de grade 2",
+            "type": "select",
             "options": [
-              "Non applicable (d’autres prélèvements de ce cas ont des scores de Gleason de 8 ou plus)",
+              "Non applicable (d'autres prélèvements de ce cas ont des scores de Gleason de 8 ou plus)",
               "Inférieur ou égal à 5 %",
               "6 - 10 %",
               "11 - 20 %",
               "21 - 30 %",
               "31 - 40 %",
               "Supérieur à 40 %"
-            ]
+            ],
+            "value": ""
           },
           "pattern_4_percentage_for_grade_group_3": {
             "label": "Pourcentage du pattern 4 pour le groupe de grade 3",
+            "type": "select",
             "options": [
-              "Non applicable (d’autres prélèvements de ce cas ont des scores de Gleason de 8 ou plus)",
+              "Non applicable (d'autres prélèvements de ce cas ont des scores de Gleason de 8 ou plus)",
               "Inférieur à 61 %",
               "61 - 70 %",
               "71 - 80 %",
               "81 - 90 %",
               "Supérieur à 90 %"
-            ]
+            ],
+            "value": ""
           },
           "pattern_4_percentage_for_gleason_8_and_above": {
-            "label": "Pourcentage du pattern 4 (score de Gleason 8 et plus)"
+            "label": "Pourcentage du pattern 4 (score de Gleason 8 et plus)",
+            "type": "number",
+            "value": ""
           },
           "pattern_5_percentage_for_gleason_8_and_above": {
-            "label": "Pourcentage du pattern 5 (score de Gleason 8 et plus)"
+            "label": "Pourcentage du pattern 5 (score de Gleason 8 et plus)",
+            "type": "number",
+            "value": ""
           }
         }
       },
@@ -184,19 +227,20 @@
         "fields": {
           "status": {
             "label": "CIC",
-            "options": [
-              "Non identifié",
-              "Présent"
-            ]
+            "type": "select",
+            "options": ["Non identifié", "Présent"],
+            "value": ""
           },
           "incorporated_into_grade": {
             "label": "IDC intégré au grade",
-            "options": [
-              "Oui",
-              "Non",
-              "Ne peut pas être déterminé"
-            ],
-            "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
+            "type": "select",
+            "options": ["Oui", "Non", "Ne peut pas être déterminé"],
+            "value": "",
+            "cannot_be_determined_specify": {
+              "label": "Ne peut pas être déterminé (préciser)",
+              "type": "text",
+              "value": ""
+            }
           }
         }
       },
@@ -205,6 +249,7 @@
         "fields": {
           "status": {
             "label": "Glandes cribriformes",
+            "type": "select",
             "options": [
               "Non applicable",
               "Non identifiées",
@@ -212,9 +257,14 @@
               "Équivoques",
               "Ne peut pas être déterminé"
             ],
-            "present_specify": "Présent, préciser",
-            "equivocal_explain": "Équivoque, expliquer",
-            "cannot_be_determined_explain": "Ne peut pas être déterminé, expliquer"
+            "value": "",
+            "present_specify": { "label": "Présentes (préciser)", "type": "text", "value": "" },
+            "equivocal_explain": { "label": "Equivoque (préciser)", "type": "text", "value": "" },
+            "cannot_be_determined_explain": {
+              "label": "Ne peut pas être déterminé (préciser)",
+              "type": "text",
+              "value": ""
+            }
           }
         }
       },
@@ -223,30 +273,31 @@
         "fields": {
           "total_number_of_cores": {
             "label": "Nombre total de carottes",
-            "options": [
-              "Préciser le nombre",
-              "Ne peut pas être déterminé"
-            ],
-            "number": "Nombre"
+            "type": "select",
+            "options": ["Préciser le nombre", "Ne peut pas être déterminé"],
+            "value": "",
+            "number": ""
           },
           "number_of_positive_cores": {
             "label": "Nombre de carottes positives",
-            "options": [
-              "Préciser le nombre",
-              "Ne peut pas être déterminé"
-            ],
-            "number": "Nombre"
+            "type": "select",
+            "options": ["Préciser le nombre", "Ne peut pas être déterminé"],
+            "value": "",
+            "number": ""
           },
           "tumor_measurement_technique": {
             "label": "Technique de mesure tumorale",
+            "type": "multi_select",
             "options": [
               "Foyer continu unique",
               "Considérer plusieurs foyers comme une tumeur continue",
               "Considérer plusieurs foyers comme une tumeur discontinue"
-            ]
+            ],
+            "value": []
           },
           "percentage_of_prostatic_tissue_involved": {
             "label": "Pourcentage du tissu prostatique envahi par la tumeur",
+            "type": "select",
             "options": [
               "Inférieur à 1 %",
               "1 - 5 %",
@@ -262,63 +313,70 @@
               "Supérieur à 90 %",
               "Ne peut pas être déterminé"
             ],
-            "cannot_be_determined_explain": "Ne peut pas être déterminé, expliquer"
+            "value": "",
+            "cannot_be_determined_explain": {
+              "label": "Ne peut pas être déterminé (préciser)",
+              "type": "text",
+              "value": ""
+            }
           },
           "length_of_prostatic_tissue_involved": {
             "label": "Longueur du tissu prostatique envahi par la tumeur",
-            "options": [
-              "Préciser en millimètres (mm)",
-              "Inférieure à 1 mm"
-            ],
-            "length_mm": "Longueur (mm)"
+            "type": "select",
+            "options": ["Préciser en millimètres (mm)", "Inférieure à 1 mm"],
+            "value": "",
+            "length_mm": ""
           }
         }
       },
       "periprostatic_fat_invasion": {
         "label": "Invasion de la graisse périprostatique",
-        "options": [
-          "Non identifiée",
-          "Présente",
-          "Équivoque",
-          "Ne peut pas être déterminée"
-        ],
-        "equivocal_explain": "Équivoque, expliquer",
-        "cannot_be_determined_explain": "Ne peut pas être déterminé, expliquer"
+        "type": "select",
+        "options": ["Non identifiée", "Présente", "Équivoque", "Ne peut pas être déterminée"],
+        "value": "",
+        "equivocal_explain": { "label": "Équivoque (préciser)", "type": "text", "value": "" },
+        "cannot_be_determined_explain": {
+          "label": "Ne peut pas être déterminé (préciser)",
+          "type": "text",
+          "value": ""
+        }
       },
       "seminal_vesicle_or_ejaculatory_duct_invasion": {
         "label": "Invasion des vésicules séminales / des canaux éjaculateurs",
-        "options": [
-          "Non identifiée",
-          "Présente",
-          "Équivoque",
-          "Ne peut pas être déterminée"
-        ],
-        "equivocal_explain": "Équivoque, expliquer",
-        "cannot_be_determined_explain": "Ne peut pas être déterminé, expliquer"
+        "type": "select",
+        "options": ["Non identifiée", "Présente", "Équivoque", "Ne peut pas être déterminée"],
+        "value": "",
+        "equivocal_explain": { "label": "Équivoque (préciser)", "type": "text", "value": "" },
+        "cannot_be_determined_explain": {
+          "label": "Ne peut pas être déterminé (préciser)",
+          "type": "text",
+          "value": ""
+        }
       },
       "lymphovascular_invasion": {
         "label": "Invasion lymphatique et / ou vasculaire",
-        "options": [
-          "Non identifiée",
-          "Présente",
-          "Équivoque",
-          "Ne peut pas être déterminée"
-        ],
-        "equivocal_explain": "Équivoque, expliquer",
-        "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
+        "type": "select",
+        "options": ["Non identifiée", "Présente", "Équivoque", "Ne peut pas être déterminée"],
+        "value": "",
+        "equivocal_explain": { "label": "Équivoque (préciser)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "Ne peut pas être déterminé (préciser)",
+          "type": "text",
+          "value": ""
+        }
       },
       "perineural_invasion": {
         "label": "Invasion périnerveuse",
-        "options": [
-          "Non identifiée",
-          "Présente"
-        ]
+        "type": "select",
+        "options": ["Non identifiée", "Présente"],
+        "value": ""
       },
       "additional_findings": {
         "label": "Constatations supplémentaires",
         "fields": {
           "findings": {
             "label": "Constatations supplémentaires",
+            "type": "multi_select",
             "options": [
               "Aucune identifiée",
               "Prolifération intracanalaire atypique (AIP)",
@@ -326,22 +384,33 @@
               "Prolifération acinaire atypique de petite taille / petit foyer de glandes atypiques (ASAP / ATYP)",
               "Inflammation",
               "Autre"
-            ]
+            ],
+            "value": []
           },
           "none_identified_specify": {
-            "label": "Aucune identifiée"
+            "label": "Aucune identifiée",
+            "type": "text",
+            "value": ""
           },
           "pin_specify": {
-            "label": "Néoplasie intraépithéliale prostatique de haut grade (PIN)"
+            "label": "Néoplasie intraépithéliale prostatique de haut grade (PIN)",
+            "type": "text",
+            "value": ""
           },
           "asap_atyp_specify": {
-            "label": "Prolifération acinaire atypique de petite taille / petit foyer de glandes atypiques (ASAP / ATYP)"
+            "label": "Prolifération acinaire atypique de petite taille / petit foyer de glandes atypiques (ASAP / ATYP)",
+            "type": "text",
+            "value": ""
           },
           "inflammation_specify_type": {
-            "label": "Inflammation (préciser le type)"
+            "label": "Inflammation (préciser le type)",
+            "type": "text",
+            "value": ""
           },
           "other_specify": {
-            "label": "Autre (préciser)"
+            "label": "Autre (préciser)",
+            "type": "text",
+            "value": ""
           }
         }
       }
@@ -351,7 +420,9 @@
     "label": "Commentaires",
     "fields": {
       "comment_text": {
-        "label": "Commentaire(s)"
+        "label": "Commentaire(s)",
+        "type": "text",
+        "value": ""
       }
     }
   }

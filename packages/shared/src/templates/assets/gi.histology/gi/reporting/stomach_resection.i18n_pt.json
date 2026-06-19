@@ -1,0 +1,347 @@
+{
+  "template_id": "stomach_tumor_resection_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "title": "Tumor do estômago, ressecção",
+  "protocol_posting_date": "March 2023",
+  "lang": "pt",
+  "standards": ["AJCC-UICC 8"],
+  "specimen": {
+    "label": "Espécime",
+    "fields": {
+      "procedure": {
+        "label": "Procedimento",
+        "type": "select",
+        "options": [
+          "Ressecção endoscópica",
+          "Gastrectomia parcial, proximal",
+          "Gastrectomia parcial, distal",
+          "Gastrectomia parcial, outra",
+          "Gastrectomia total",
+          "Outro",
+          "Não especificado"
+        ],
+        "value": ""
+      }
+    }
+  },
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "tumor_site": {
+        "label": "Local do tumor",
+        "type": "multi_select",
+        "options": [
+          "Cárdia",
+          "Fundo",
+          "Corpo",
+          "Antro",
+          "Piloro",
+          "Parede anterior",
+          "Parede posterior",
+          "Pequena curvatura",
+          "Grande curvatura",
+          "Outro",
+          "Não especificado"
+        ],
+        "value": []
+      },
+      "histologic_type": {
+        "label": "Tipo histológico",
+        "type": "select",
+        "options": [
+          "Adenocarcinoma",
+          "Adenocarcinoma tubular",
+          "Carcinoma pouco coeso",
+          "Adenocarcinoma mucinoso",
+          "Adenocarcinoma papilar",
+          "Carcinoma misto",
+          "Adenocarcinoma hepatoide",
+          "Carcinoma com estroma linfóide",
+          "Adenocarcinoma micropapilar",
+          "Adenocarcinoma de tipo glândulas fúndicas",
+          "Carcinoma de células escamosas",
+          "Carcinoma adenoescamoso",
+          "Carcinoma indiferenciado",
+          "Gastroblastoma",
+          "Carcinoma neuroendócrino de grandes células",
+          "Carcinoma neuroendócrino de pequenas células",
+          "Carcinoma neuroendócrino",
+          "Carcinoma misto de adenocarcinoma-neuroendócrino",
+          "Tumor misto de adenocarcinoma-neuroendócrino",
+          "Outro"
+        ],
+        "value": ""
+      },
+      "lauren_classification": {
+        "label": "Classificação de Lauren",
+        "type": "select",
+        "options": [
+          "Tipo intestinal",
+          "Tipo difuso",
+          "Misto",
+          "Outro",
+          "Não é possível determinar"
+        ],
+        "value": ""
+      },
+      "histologic_grade": {
+        "label": "Grau histológico",
+        "type": "select",
+        "options": [
+          "G1, bem diferenciado",
+          "G2, moderadamente diferenciado",
+          "G3, pouco diferenciado / indiferenciado",
+          "Outro",
+          "GX, não é possível avaliar",
+          "Não aplicável"
+        ],
+        "value": ""
+      },
+      "tumor_size": {
+        "label": "Tamanho do tumor",
+        "type": "text",
+        "value": ""
+      },
+      "tumor_extent": {
+        "label": "Extensão do tumor",
+        "type": "select",
+        "options": [
+          "Carcinoma in situ",
+          "Invade a lamina propria",
+          "Invade a muscularis mucosae",
+          "Invade a submucosa",
+          "Invade a muscularis propria",
+          "Penetra o tecido conjuntivo subseroso",
+          "Invade a serosa",
+          "Invade directamente estruturas adjacentes",
+          "Não é possível avaliar",
+          "Sem evidência de tumor primário"
+        ],
+        "value": ""
+      },
+      "adjacent_structures": {
+        "label": "Estruturas adjacentes envolvidas",
+        "type": "multi_select",
+        "options": [
+          "Baço",
+          "Cólon transverso",
+          "Fígado",
+          "Diafragma",
+          "Pâncreas",
+          "Parede abdominal",
+          "Glândula suprarrenal",
+          "Rim",
+          "Intestino delgado",
+          "Retroperitoneu",
+          "Outro"
+        ],
+        "value": []
+      },
+      "treatment_effect": {
+        "label": "Efeito do tratamento",
+        "type": "select",
+        "options": [
+          "Sem terapia pré-cirúrgica conhecida",
+          "Resposta completa (pontuação 0)",
+          "Resposta quase completa (pontuação 1)",
+          "Resposta parcial (pontuação 2)",
+          "Presente, SOE",
+          "Resposta fraca ou ausente (pontuação 3)",
+          "Não é possível determinar"
+        ],
+        "value": ""
+      },
+      "lymphovascular_invasion": {
+        "label": "Invasão linfática e/ou vascular",
+        "type": "select",
+        "options": ["Não identificada", "Presente", "Não é possível determinar"],
+        "value": ""
+      },
+      "perineural_invasion": {
+        "label": "Invasão perineural",
+        "type": "select",
+        "options": ["Não identificada", "Presente", "Não é possível determinar"],
+        "value": ""
+      }
+    }
+  },
+  "margins": {
+    "label": "Margens",
+    "fields": {
+      "margin_status_invasive": {
+        "label": "Estado das margens para carcinoma invasivo",
+        "type": "select",
+        "options": [
+          "Todas as margens negativas",
+          "Carcinoma invasivo presente na margem",
+          "Não aplicável"
+        ],
+        "value": ""
+      },
+      "closest_margins": {
+        "label": "Margem(ns) mais próxima(s)",
+        "type": "multi_select",
+        "options": [
+          "Proximal",
+          "Distal",
+          "Omental (radial)",
+          "Mucosa",
+          "Profunda",
+          "Outro",
+          "Não é possível determinar"
+        ],
+        "value": []
+      },
+      "distance_to_closest_margin": {
+        "label": "Distância à margem mais próxima",
+        "type": "text",
+        "value": ""
+      },
+      "margin_status_dysplasia": {
+        "label": "Estado das margens para displasia",
+        "type": "multi_select",
+        "options": [
+          "Todas as margens negativas para displasia",
+          "Carcinoma in situ presente na margem",
+          "Displasia de baixo grau presente na margem",
+          "Não aplicável"
+        ],
+        "value": []
+      },
+      "margin_comment": {
+        "label": "Comentário sobre as margens",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+  "regional_lymph_nodes": {
+    "label": "Gânglios linfáticos regionais",
+    "fields": {
+      "status": {
+        "label": "Estado dos gânglios linfáticos regionais",
+        "type": "select",
+        "options": [
+          "Não aplicável",
+          "Gânglios linfáticos regionais presentes",
+          "Todos negativos para tumor",
+          "Tumor presente em gânglio(s) linfático(s) regional(is)"
+        ],
+        "value": ""
+      },
+      "number_with_tumor": {
+        "label": "Número de gânglios linfáticos com tumor",
+        "type": "text",
+        "value": ""
+      },
+      "number_examined": {
+        "label": "Número de gânglios linfáticos examinados",
+        "type": "text",
+        "value": ""
+      },
+      "comment": {
+        "label": "Comentário sobre os gânglios linfáticos regionais",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+  "distant_metastasis": {
+    "label": "Metástases à distância",
+    "fields": {
+      "sites": {
+        "label": "Local(is) à distância envolvido(s)",
+        "type": "multi_select",
+        "options": [
+          "Não aplicável",
+          "Gânglio(s) linfático(s) não regional(is)",
+          "Fígado",
+          "Outro",
+          "Não é possível determinar"
+        ],
+        "value": []
+      }
+    }
+  },
+  "ptnm": {
+    "label": "Classificação pTNM (AJCC 8ª Edição)",
+    "note": "A notificação das categorias pT, pN e, quando aplicável, pM baseia-se nas informações disponíveis para o patologista no momento da emissão do relatório. Conforme o AJCC (Capítulo 1, 8ª Ed.), cabe ao médico responsável estabelecer o estadiamento patológico final com base em todas as informações pertinentes, incluindo, mas não se limitando a, este relatório de anatomia patológica.",
+    "fields": {
+      "modified_classification": {
+        "label": "Classificação modificada",
+        "type": "multi_select",
+        "options": [
+          "y (pós-terapia neoadjuvante)",
+          "r (recidiva)",
+          "m (tumores primários síncronos múltiplos)"
+        ],
+        "value": []
+      },
+      "pT_category": {
+        "label": "Categoria pT",
+        "type": "select",
+        "options": [
+          "pTX: Tumor primário não avaliável",
+          "pT0: Sem evidência de tumor primário",
+          "pTis: Carcinoma in situ: tumor intraepitelial sem invasão da lamina propria, displasia de alto grau",
+          "pT1: Tumor invade a lamina propria, a muscularis mucosae ou a submucosa",
+          "pT1a: Tumor invade a lamina propria ou a muscularis mucosae",
+          "pT1b: Tumor invade a submucosa",
+          "pT2: Tumor invade a muscularis propria",
+          "pT3: Tumor penetra o tecido conjuntivo subseroso sem invasão do peritoneu visceral ou estruturas adjacentes",
+          "pT4: Tumor invade a serosa (peritoneu visceral) ou estruturas adjacentes",
+          "pT4a: Tumor invade a serosa (peritoneu visceral)",
+          "pT4b: Tumor invade estruturas ou órgãos adjacentes"
+        ],
+        "value": ""
+      },
+      "T_suffix": {
+        "label": "Sufixo T",
+        "type": "select",
+        "options": ["Não aplicável", "(m) tumores primários síncronos múltiplos"],
+        "value": ""
+      },
+      "pN_category": {
+        "label": "Categoria pN",
+        "type": "select",
+        "options": [
+          "pNX: Os gânglios linfáticos regionais não podem ser avaliados",
+          "pN0: Sem metástase em gânglio linfático regional",
+          "pN1: Metástase num ou dois gânglios linfáticos regionais",
+          "pN2: Metástase em três a seis gânglios linfáticos regionais",
+          "pN3: Metástase em sete ou mais gânglios linfáticos regionais",
+          "pN3a: Metástase em sete a 15 gânglios linfáticos regionais",
+          "pN3b: Metástase em 16 ou mais gânglios linfáticos regionais"
+        ],
+        "value": ""
+      },
+      "pM_category": {
+        "label": "Categoria pM",
+        "type": "select",
+        "options": ["Não aplicável", "pM1: Metástase à distância"],
+        "value": ""
+      }
+    }
+  },
+  "additional_findings": {
+    "label": "Achados adicionais",
+    "fields": {
+      "findings": {
+        "label": "Achados adicionais",
+        "type": "multi_select",
+        "options": [
+          "Nenhum identificado",
+          "Metaplasia intestinal",
+          "Displasia de baixo grau",
+          "Displasia de alto grau",
+          "Gastrite de tipo Helicobacter pylori",
+          "Gastrite crónica atrófica autoimune",
+          "Pólipo(s)",
+          "Outro"
+        ],
+        "value": []
+      }
+    }
+  }
+}

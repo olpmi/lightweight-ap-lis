@@ -1,15 +1,22 @@
 {
-  "templateName": "قالب تقرير سيتولوجيا السوائل (النظام الدولي الحالي لتقرير سيتوباثولوجيا السوائل المصلية)",
+  "templateId": "fluid_cytology_international_serous_fluid",
+  "templateName": "قالب تقرير سيتولوجيا السوائل (النظام الدولي لتقرير سيتوباثولوجيا السوائل المصلية)",
   "language": "ar",
   "direction": "rtl",
   "rtl": true,
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategory": "serous_fluid",
+    "organSystem": "fluid_cytology",
+    "reportingSystem": "International system for reporting serous fluid cytology"
+  },
   "sections": {
     "specimen": "العينة",
     "preparation_methods": "طرق التحضير",
     "adequacy": "الكفاية",
     "diagnostic_category": "الفئة التشخيصية",
     "microscopic_description": "الوصف المجهري",
-    "malignant_suspicious_favor": "إذا كان خبيثًا / مشتبهًا به، يُرجَّح",
+    "malignant_suspicious_favor": "إذا كان خبيثاً / مشتبهاً به، يُرجَّح",
     "ancillary_studies": "الدراسات المساندة (إن أُجريت)",
     "comment": "التعليق"
   },
@@ -19,13 +26,13 @@
     "volume_received_ml": "الحجم المستلم (مل)",
     "appearance": "المظهر",
     "preparation_methods_used": "طرق التحضير",
-    "cell_block_prepared": "تم تحضير بلوك خلوي",
+    "cell_block_prepared": "تم تحضير بلوك الخلايا",
     "adequacy_status": "الكفاية",
     "diagnostic_category": "الفئة التشخيصية",
     "microscopic_description_brief": "الوصف المجهري (مختصر)",
-    "favor_diagnosis": "إذا كان خبيثًا / مشتبهًا به، يُرجَّح",
+    "favor_diagnosis": "إذا كان خبيثاً / مشتبهاً به، يُرجَّح",
     "favor_other": "أخرى",
-    "cell_block_immunocytochemistry": "الكيمياء المناعية الخلوية على البلوك الخلوي",
+    "cell_block_immunocytochemistry": "الكيمياء المناعية الخلوية على بلوك الخلايا",
     "flow_cytometry": "قياس التدفق الخلوي",
     "molecular_studies": "الدراسات الجزيئية",
     "comment_text": "التعليق"
@@ -34,7 +41,7 @@
     "Pleural": "جنبي",
     "Peritoneal": "صفاقي",
     "Ascitic": "استسقائي",
-    "Pericardial": "تاموري",
+    "Pericardial": "تأموري",
     "Other": "أخرى",
     "Right": "أيمن",
     "Left": "أيسر",
@@ -44,7 +51,7 @@
     "Hemorrhagic": "نزفي",
     "Turbid": "عكر",
     "Conventional smear": "لطاخة تقليدية",
-    "Cytospin": "سايتوسبين",
+    "Cytospin": "سيتوسبين",
     "Liquid-based preparation": "تحضير قائم على السائل",
     "Yes": "نعم",
     "No": "لا",
@@ -59,9 +66,10 @@
     "Metastatic adenocarcinoma": "سرطان غدي نقائلي",
     "Mesothelioma": "ورم المتوسطة",
     "Hematolymphoid malignancy": "خباثة دموية لمفاوية",
-    "Poorly differentiated carcinoma": "سرطان ضعيف التمايز"
+    "Poorly differentiated carcinoma": "سرطان ضعيف التمايز",
+    "Other (favor)": "أخرى"
   },
   "defaults": {
-    "comment_text": "تُربط النتيجة بالقصة السريرية والتصوير والفحوصات المرضية السابقة. قد يوصى بأخذ عينة نسيجية إضافية إذا كان ذلك مناسبًا سريريًا."
+    "comment_text": "تُربط النتيجة بالقصة السريرية والتصوير والفحوصات المرضية السابقة. قد يوصى بأخذ عينة نسيجية إضافية إذا كان ذلك مناسباً سريرياً."
   }
 }

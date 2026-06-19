@@ -1,7 +1,13 @@
 {
   "templateId": "salivary_gland_cytology_milan",
-  "templateName": "SALIVARY GLAND CYTOLOGY REPORTING TEMPLATE (MILAN SYSTEM FOR REPORTING SALIVARY GLAND CYTOPATHOLOGY)",
+  "templateName": "Salivary Gland cytology reporting Template (Milan System for Reporting Salivary Gland Cytopathology)",
   "language": "en",
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategories": ["fna"],
+    "organ": "salivary_gland",
+    "reportingSystem": "Milan"
+  },
   "sections": [
     {
       "id": "specimen",
@@ -11,12 +17,7 @@
           "id": "salivary_gland_fna_site",
           "label": "Salivary gland FNA (select appropriate)",
           "type": "select",
-          "options": [
-            "Parotid",
-            "Submandibular",
-            "Minor salivary gland",
-            "Other"
-          ]
+          "options": ["Parotid", "Submandibular", "Minor salivary gland", "Other"]
         },
         {
           "id": "laterality",

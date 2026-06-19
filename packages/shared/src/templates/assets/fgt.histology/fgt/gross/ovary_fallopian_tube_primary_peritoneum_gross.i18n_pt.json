@@ -1,0 +1,269 @@
+{
+  "template_id": "ovary_fallopian_tube_primary_peritoneum_gross_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "lang": "pt",
+  "title": "Ovário ou trompa de Falópio ou peritoneu primário",
+
+  "specimen": {
+    "label": "Espécime",
+    "fields": {
+      "procedure": {
+        "label": "Procedimento",
+        "type": "multi_select",
+        "options": [
+          "Histerectomia total e salpingo-ooforectomia bilateral",
+          "Histerectomia radical",
+          "Histerectomia simples",
+          "Histerectomia supracervical",
+          "Salpingo-ooforectomia bilateral",
+          "Salpingo-ooforectomia direita",
+          "Salpingo-ooforectomia esquerda",
+          "Salpingo-ooforectomia, lado não especificado",
+          "Ooforectomia direita",
+          "Ooforectomia esquerda",
+          "Ooforectomia, lado não especificado",
+          "Salpingectomia bilateral",
+          "Salpingectomia direita",
+          "Salpingectomia esquerda",
+          "Salpingectomia, lado não especificado",
+          "Omentectomia",
+          "Biópsias peritoneais",
+          "Citorredução peritoneal",
+          "Lavado peritoneal",
+          "Lavado pélvico",
+          "Líquido ascítico",
+          "Pleurocêntese (líquido pleural)",
+          "Outro"
+        ],
+        "value": [],
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" }
+      },
+
+      "hysterectomy_type": {
+        "label": "Tipo de histerectomia",
+        "type": "select",
+        "options": [
+          "Abdominal",
+          "Vaginal",
+          "Vaginal assistida por laparoscopia",
+          "Laparoscópica",
+          "Laparoscópica assistida por robótica",
+          "Outro",
+          "Não especificado"
+        ],
+        "value": "",
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" }
+      },
+
+      "specimen_integrity_note": {
+        "label": "Nota sobre a integridade do espécime",
+        "type": "text",
+        "value": "Para tumores ováricos primários: se o ovário contendo o tumor primário for removido intacto num saco de laparoscopia e roturado no interior do saco pelo cirurgião, sem derrame para a cavidade peritoneal, a integridade do espécime deve ser registada como cápsula intacta, com um comentário explicativo no relatório. Para tumores peritoneais primários em mulheres com salpingo-ooforectomia prévia, seleccionar não aplicável."
+      },
+
+      "specimen_integrity_applicability": {
+        "label": "Aplicabilidade da integridade do espécime",
+        "type": "select",
+        "options": ["Não aplicável"],
+        "value": ""
+      }
+    }
+  },
+
+  "ovarian_integrity": {
+    "label": "Integridade ovárica",
+    "fields": {
+      "right_ovary_present": {
+        "label": "Ovário direito",
+        "type": "boolean",
+        "value": false
+      },
+      "right_ovary_integrity": {
+        "label": "Integridade do ovário direito",
+        "type": "select",
+        "options": ["Cápsula intacta", "Cápsula roturada", "Fragmentado", "Outro"],
+        "value": "",
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" }
+      },
+      "right_ovary_time_of_rupture": {
+        "label": "Momento da rotura do ovário direito",
+        "type": "select",
+        "options": ["Pré-operatório", "Intraoperatório", "Desconhecido"],
+        "value": ""
+      },
+
+      "left_ovary_present": {
+        "label": "Ovário esquerdo",
+        "type": "boolean",
+        "value": false
+      },
+      "left_ovary_integrity": {
+        "label": "Integridade do ovário esquerdo",
+        "type": "select",
+        "options": ["Cápsula intacta", "Cápsula roturada", "Fragmentado", "Outro"],
+        "value": "",
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" }
+      },
+      "left_ovary_time_of_rupture": {
+        "label": "Momento da rotura do ovário esquerdo",
+        "type": "select",
+        "options": ["Pré-operatório", "Intraoperatório", "Desconhecido"],
+        "value": ""
+      },
+
+      "ovary_laterality_not_specified_present": {
+        "label": "Ovário, lateralidade não especificada",
+        "type": "boolean",
+        "value": false
+      },
+      "ovary_laterality_not_specified_integrity": {
+        "label": "Integridade do ovário",
+        "type": "select",
+        "options": ["Cápsula intacta", "Cápsula roturada", "Fragmentado", "Outro"],
+        "value": "",
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" }
+      },
+      "ovary_laterality_not_specified_time_of_rupture": {
+        "label": "Momento da rotura",
+        "type": "select",
+        "options": ["Pré-operatório", "Intraoperatório", "Desconhecido"],
+        "value": ""
+      }
+    }
+  },
+
+  "fallopian_tube_integrity": {
+    "label": "Integridade da trompa de Falópio",
+    "fields": {
+      "right_fallopian_tube_present": {
+        "label": "Trompa de Falópio direita",
+        "type": "boolean",
+        "value": false
+      },
+      "right_fallopian_tube_integrity": {
+        "label": "Integridade da trompa de Falópio direita",
+        "type": "select",
+        "options": ["Serosa intacta", "Serosa roturada", "Fragmentada", "Outro"],
+        "value": "",
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" }
+      },
+
+      "left_fallopian_tube_present": {
+        "label": "Trompa de Falópio esquerda",
+        "type": "boolean",
+        "value": false
+      },
+      "left_fallopian_tube_integrity": {
+        "label": "Integridade da trompa de Falópio esquerda",
+        "type": "select",
+        "options": ["Serosa intacta", "Serosa roturada", "Fragmentada", "Outro"],
+        "value": "",
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" }
+      },
+
+      "fallopian_tube_laterality_not_specified_present": {
+        "label": "Trompa de Falópio, lateralidade não especificada",
+        "type": "boolean",
+        "value": false
+      },
+      "fallopian_tube_laterality_not_specified_integrity": {
+        "label": "Integridade da trompa de Falópio",
+        "type": "select",
+        "options": ["Serosa intacta", "Serosa roturada", "Fragmentada", "Outro"],
+        "value": "",
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" }
+      }
+    }
+  },
+
+  "uterus_integrity": {
+    "label": "Integridade do útero",
+    "fields": {
+      "status": {
+        "label": "Integridade do útero",
+        "type": "select",
+        "options": ["Intacto", "Aberto", "Morcelado", "Outro"],
+        "value": "",
+        "other_specify": { "label": "Outro (especificar)", "type": "text", "value": "" }
+      }
+    }
+  },
+
+  "block_allocation_key": {
+    "label": "Chave de alocação de blocos",
+    "fields": {
+      "tumor_representative_sections": {
+        "label": "Tumor (cortes representativos — áreas sólidas, císticas e papilares)",
+        "type": "text",
+        "value": ""
+      },
+      "tumor_capsule_interface": {
+        "label": "Interface tumor-cápsula",
+        "type": "text",
+        "value": ""
+      },
+      "capsule_non_tumor_areas": {
+        "label": "Cápsula (áreas sem tumor)",
+        "type": "text",
+        "value": ""
+      },
+      "fallopian_tube_fimbrial_end": {
+        "label": "Trompa de Falópio (extremidade fimbrial)",
+        "type": "text",
+        "value": ""
+      },
+      "fallopian_tube_cross_sections": {
+        "label": "Trompa de Falópio (cortes transversais)",
+        "type": "text",
+        "value": ""
+      },
+      "contralateral_ovary_if_present": {
+        "label": "Ovário contralateral (se presente)",
+        "type": "text",
+        "value": ""
+      },
+      "endometrium": {
+        "label": "Endométrio",
+        "type": "text",
+        "value": ""
+      },
+      "myometrium": {
+        "label": "Miométrio",
+        "type": "text",
+        "value": ""
+      },
+      "cervix": {
+        "label": "Colo do útero",
+        "type": "text",
+        "value": ""
+      },
+      "omentum": {
+        "label": "Omento",
+        "type": "text",
+        "value": ""
+      },
+      "lymph_nodes": {
+        "label": "Gânglios linfáticos",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+
+  "grossing": {
+    "label": "Exame macroscópico",
+    "fields": {
+      "grossed_by": {
+        "label": "Exame macroscópico realizado por (iniciais)",
+        "type": "text",
+        "value": ""
+      },
+      "date": {
+        "label": "Data",
+        "type": "date",
+        "value": ""
+      }
+    }
+  }
+}

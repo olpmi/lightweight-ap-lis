@@ -1,338 +1,319 @@
 {
   "template_id": "gist_resection_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "protocol_posting_date": "December 2022",
   "lang": "sw",
-  "title": "Kiolezo cha kuripoti: uvimbe wa stromal wa njia ya chakula (GIST): resection",
+  "standards": ["AJCC-UICC 8"],
+  "title": "Uvimbe wa stromal wa njia ya chakula (GIST): uondoaji",
   "clinical": {
-    "label": "KLINIKI",
+    "label": "Kliniki",
     "fields": {
       "preresection_treatment": {
-        "label": "Matibabu kabla ya resection (chagua yote yanayohusika)",
+        "label": "Matibabu kabla ya uondoaji",
+        "type": "multi_select",
         "options": [
-          "Hakuna tiba inayojulikana kabla ya resection",
-          "Biopsy au upasuaji wa awali (taja)",
-          "Tiba ya mfumo mzima imefanyika (taja aina)",
+          "Hakuna tiba inayojulikana kabla ya uondoaji",
+          "Biopsi au upasuaji wa awali",
+          "Tiba ya mfumo mzima imefanyika",
           "Tiba imefanyika, aina haijabainishwa",
           "Haijabainishwa"
-        ]
+        ],
+        "value": []
       }
     }
   },
   "specimen": {
-    "label": "SPECIMEN",
+    "label": "Sampuli",
     "fields": {
       "procedure": {
         "label": "Utaratibu",
+        "type": "select",
         "options": [
           "Uondoaji wa eneo dogo",
-          "Resection (taja aina, mfano partial gastrectomy)",
-          "Metastasectomy",
-          "Nyingine (taja)",
+          "Uondoaji",
+          "Metastasektomia",
+          "Nyingine",
           "Haijabainishwa"
-        ]
+        ],
+        "value": ""
       }
     }
   },
   "tumor": {
-    "label": "UVIMBE",
+    "label": "Uvimbe",
     "fields": {
       "tumor_focality": {
-        "label": "Focality ya uvimbe",
-        "options": [
-          "Unifocal",
-          "Multifocal"
-        ]
+        "label": "Idadi ya maeneo ya uvimbe",
+        "type": "select",
+        "options": ["Sehemu moja", "Sehemu nyingi"],
+        "value": ""
       },
       "number_of_tumors": {
         "label": "Idadi ya vivimbe",
-        "options": [
-          "Taja idadi",
-          "Nyingine (taja)",
-          "Haiwezi kubainishwa"
-        ]
+        "type": "text",
+        "value": ""
       },
       "sizes_of_tumors": {
         "label": "Ukubwa wa vivimbe",
-        "options": [
-          "Haiwezi kubainishwa"
-        ]
+        "type": "text",
+        "value": ""
       },
       "multiple_primary_sites": {
-        "label": "Maeneo mengi ya msingi (mfano tumbo na utumbo mwembamba)",
-        "options": [
-          "Haifai (hakuna eneo/maeneo ya ziada ya msingi)",
-          "Yapo"
-        ]
+        "label": "Maeneo mengi ya msingi",
+        "type": "select",
+        "options": ["Haihusiki (hakuna maeneo ya ziada ya msingi)", "Yapo"],
+        "value": ""
       },
       "tumor_site": {
         "label": "Eneo la uvimbe",
+        "type": "multi_select",
         "options": [
-          "Umio (taja eneo)",
+          "Umio",
           "Makutano ya umio na tumbo",
-          "Tumbo (taja eneo)",
-          "Utumbo mwembamba",
-          "Duodenum",
-          "Jejunum",
-          "Ileum (bila valvu ya ileocecal)",
-          "Diverticulum ya Meckel (eneo la neoplasm)",
+          "Tumbo",
+          "Duodeniamu",
+          "Jejunamu",
+          "Ileamu (bila valvu ya ileosekali)",
+          "Divertikuli ya Meckel",
           "Utumbo mwembamba, NOS",
-          "Appendix",
-          "Valvu ya ileocecal",
-          "Utumbo mpana",
-          "Cecum",
+          "Apendiksi",
+          "Valvu ya ileosekali",
+          "Caecum",
           "Koloni inayopanda",
-          "Hepatic flexure ya koloni",
-          "Koloni ya transverse",
-          "Splenic flexure ya koloni",
+          "Mpindo wa hepatiki wa koloni",
+          "Koloni ya kuvuka",
+          "Mpindo wa spleniki wa koloni",
           "Koloni inayoshuka",
-          "Koloni sigmoid",
-          "Makutano ya rectosigmoid",
-          "Rectum",
+          "Koloni ya sigmoidi",
+          "Makutano ya rektosigmoidi",
+          "Rektamu",
           "Utumbo mpana, NOS",
-          "Retroperitoneum",
-          "Peritoneum / abdomen (taja eneo)",
-          "Nyingine (taja)",
-          "Haiwezi kubainishwa",
+          "Nyuma ya peritonemu",
+          "Peritonemu / tumbo",
+          "Nyingine",
+          "Haiwezi kuamuliwa",
           "Haijabainishwa"
-        ]
+        ],
+        "value": []
       },
       "histologic_type": {
         "label": "Aina ya kihistolojia",
+        "type": "select",
         "options": [
           "Uvimbe wa stromal wa njia ya chakula, aina ya spindle cell",
           "Uvimbe wa stromal wa njia ya chakula, aina ya epithelioid",
           "Uvimbe wa stromal wa njia ya chakula, mchanganyiko",
-          "Uvimbe wa stromal wa njia ya chakula, nyingine (taja)"
-        ]
-      },
-      "histologic_type_comment": {
-        "label": "Maoni kuhusu aina ya kihistolojia"
+          "Uvimbe wa stromal wa njia ya chakula, nyingine"
+        ],
+        "value": ""
       },
       "tumor_size": {
-        "label": "Ukubwa wa uvimbe (kulingana na makadirio ya kliniki/radiolojia)",
-        "options": [
-          "Kipimo kikubwa zaidi kwa sentimita (cm)",
-          "Kipimo cha ziada kwa sentimita (cm)",
-          "Haiwezi kubainishwa (eleza)"
-        ]
+        "label": "Ukubwa wa uvimbe (kulingana na makadirio ya kliniki / radiolojia)",
+        "type": "text",
+        "value": ""
       },
       "mitotic_rate": {
-        "label": "Kiwango cha mitoses",
-        "options": [
-          "Taja kiwango cha mitoses kwa 5 mm²",
-          "Nyingine (taja)",
-          "Haiwezi kubainishwa (eleza)"
-        ]
+        "label": "Kiwango cha mitoses kwa 5 mm²",
+        "type": "text",
+        "value": ""
       },
       "histologic_grade": {
         "label": "Daraja la kihistolojia",
+        "type": "select",
         "options": [
           "G1, daraja la chini (kiwango cha mitoses ≤5 kwa 5 mm²)",
           "G2, daraja la juu (kiwango cha mitoses >5 kwa 5 mm²)",
-          "Nyingine (taja)",
+          "Nyingine",
           "GX, haiwezi kutathminiwa"
-        ]
+        ],
+        "value": ""
       },
       "necrosis": {
-        "label": "Necrosis",
-        "options": [
-          "Haijatambuliwa",
-          "Ipo"
-        ]
+        "label": "Nekrosi",
+        "type": "select",
+        "options": ["Haijaonekana", "Ipo"],
+        "value": ""
       },
       "extent_of_necrosis": {
-        "label": "Kiwango cha necrosis",
-        "options": [
-          "Taja asilimia",
-          "Nyingine (taja)",
-          "Haiwezi kubainishwa",
-          "Haiwezi kubainishwa"
-        ]
+        "label": "Kiwango cha nekrosi",
+        "type": "text",
+        "value": ""
       },
       "treatment_effect": {
         "label": "Athari ya matibabu",
-        "options": [
-          "Hakuna tiba inayojulikana kabla ya upasuaji",
-          "Haijatambuliwa",
-          "Ipo"
-        ]
+        "type": "select",
+        "options": ["Hakuna tiba inayojulikana kabla ya upasuaji", "Haijaonekana", "Ipo"],
+        "value": ""
       },
       "percentage_viable_tumor": {
         "label": "Asilimia ya uvimbe ulio hai",
-        "options": [
-          "Taja asilimia",
-          "Nyingine (taja)",
-          "Haiwezi kubainishwa",
-          "Haiwezi kubainishwa"
-        ]
+        "type": "text",
+        "value": ""
       },
       "risk_assessment": {
         "label": "Tathmini ya hatari",
+        "type": "select",
         "options": [
           "Hakuna",
           "Hatari ya chini sana",
           "Hatari ya chini",
           "Hatari ya wastani",
           "Hatari ya juu",
-          "Dhahiri malignant / metastatic",
-          "Haiwezi kubainishwa"
-        ]
+          "Dhahiri mbaya / na metastasi",
+          "Haiwezi kuamuliwa"
+        ],
+        "value": ""
       },
       "tumor_comment": {
-        "label": "Maoni kuhusu uvimbe"
+        "label": "Maoni kuhusu uvimbe",
+        "type": "text",
+        "value": ""
       }
     }
   },
   "margins": {
-    "label": "MIPAKA",
+    "label": "Pembezo",
     "fields": {
       "margin_status": {
-        "label": "Hali ya mipaka",
-        "options": [
-          "Mipaka yote haina GIST"
-        ]
-      },
-      "distance_to_closest_margin": {
-        "label": "Umbali kutoka GIST hadi mpaka wa karibu zaidi",
-        "options": [
-          "Umbali kamili kwa cm",
-          "Zaidi ya 1 cm",
-          "Umbali kamili kwa mm",
-          "Zaidi ya 10 mm",
-          "Nyingine (taja)",
-          "Haiwezi kubainishwa"
-        ]
-      },
-      "gist_present_at_margin": {
-        "label": "GIST ipo kwenye mpaka"
+        "label": "Hali ya pembezo",
+        "type": "select",
+        "options": ["Pembezo zote hazina GIST", "GIST ipo kwenye pembezo", "Haihusiki"],
+        "value": ""
       },
       "closest_margins": {
-        "label": "Mipaka iliyo karibu zaidi na GIST (chagua yote yanayohusika)",
+        "label": "Pembezo iliyo karibu zaidi na GIST",
+        "type": "multi_select",
         "options": [
-          "Proximal",
-          "Distal",
+          "Proksimali",
+          "Distali",
           "Omental (radial)",
-          "Mucosal",
-          "Deep",
-          "Nyingine (taja)",
-          "Haiwezi kubainishwa"
-        ]
+          "Mukosa",
+          "Kina",
+          "Nyingine",
+          "Haiwezi kuamuliwa"
+        ],
+        "value": []
+      },
+      "distance_to_closest_margin": {
+        "label": "Umbali kutoka GIST hadi pembezo iliyo karibu zaidi",
+        "type": "text",
+        "value": ""
       },
       "margins_involved": {
-        "label": "Mipaka iliyoathiriwa na GIST (chagua yote yanayohusika)",
+        "label": "Pembezo iliyoathiriwa na GIST",
+        "type": "multi_select",
         "options": [
-          "Proximal",
-          "Distal",
+          "Proksimali",
+          "Distali",
           "Omental (radial)",
-          "Mucosal",
-          "Deep",
-          "Nyingine (taja)",
-          "Haiwezi kubainishwa",
-          "Nyingine (taja)",
-          "Haiwezi kubainishwa (eleza)",
-          "Haifai"
-        ]
+          "Mukosa",
+          "Kina",
+          "Nyingine",
+          "Haiwezi kuamuliwa"
+        ],
+        "value": []
       }
     }
   },
   "regional_lymph_nodes": {
-    "label": "NODI ZA LIMFU ZA ENEO",
+    "label": "Nodi za limfu za kikanda",
     "fields": {
       "status": {
-        "label": "Hali ya nodi za limfu za eneo",
+        "label": "Hali ya nodi za limfu za kikanda",
+        "type": "select",
         "options": [
-          "Haifai (hakuna nodi za limfu za eneo zilizowasilishwa au kupatikana)",
-          "Nodi za limfu za eneo zipo",
-          "Nodi zote za limfu za eneo hazina uvimbe",
-          "Uvimbe upo kwenye nodi za limfu za eneo"
-        ]
+          "Haihusiki (hakuna nodi za limfu za kikanda zilizowasilishwa au kupatikana)",
+          "Nodi za limfu za kikanda zipo",
+          "Nodi zote za limfu za kikanda hazina uvimbe",
+          "Uvimbe upo katika nodi za limfu za kikanda"
+        ],
+        "value": ""
       },
       "number_with_tumor": {
         "label": "Idadi ya nodi za limfu zenye uvimbe",
-        "options": [
-          "Idadi kamili (taja)",
-          "Angalau (taja)",
-          "Nyingine (taja)",
-          "Haiwezi kubainishwa (eleza)",
-          "Nyingine (taja)"
-        ]
+        "type": "text",
+        "value": ""
       },
       "number_examined": {
         "label": "Idadi ya nodi za limfu zilizochunguzwa",
-        "options": [
-          "Idadi kamili (taja)",
-          "Angalau (taja)",
-          "Nyingine (taja)",
-          "Haiwezi kubainishwa (eleza)"
-        ]
+        "type": "text",
+        "value": ""
       }
     }
   },
   "distant_metastasis": {
-    "label": "METASTASIS YA MBALI",
+    "label": "Metastasi ya mbali",
     "fields": {
       "sites": {
-        "label": "Maeneo ya mbali yaliyoathiriwa, ikiwa yapo (chagua yote yanayohusika)",
-        "options": [
-          "Haifai",
-          "Ini",
-          "Nyingine (taja)",
-          "Haiwezi kubainishwa"
-        ]
+        "label": "Maeneo ya mbali yaliyoathiriwa",
+        "type": "multi_select",
+        "options": ["Haihusiki", "Ini", "Nyingine", "Haiwezi kuamuliwa"],
+        "value": []
       }
     }
   },
   "ptnm": {
-    "label": "UAINISHAJI WA pTNM (AJCC toleo la 8)",
+    "label": "Uainishaji wa pTNM (Toleo la 8 la AJCC)",
+    "note": "Kuripoti makundi ya pT, pN, na pM inapohusika kunategemea taarifa zinazopatikana kwa daktari wa patholojia wakati ripoti inapotolewa. Kulingana na Toleo la 8 la AJCC (Sura ya 1), ni jukumu la daktari anayehusika kuanzisha hatua ya mwisho ya kipatholojia.",
     "fields": {
       "modified_classification": {
-        "label": "Uainishaji uliorekebishwa (unahitajika tu inapohusika) (chagua yote yanayohusika)",
-        "options": [
-          "Haifai",
-          "y (baada ya tiba ya neoadjuvant)",
-          "r (kurudia kwa ugonjwa)"
-        ]
+        "label": "Uainishaji uliorekebishwa",
+        "type": "multi_select",
+        "options": ["Haihusiki", "y (baada ya tiba ya neoadjuvant)", "r (kurudi kwa ugonjwa)"],
+        "value": []
       },
       "pT_category": {
-        "label": "Kategoria ya pT",
+        "label": "Kundi la pT",
+        "type": "select",
         "options": [
-          "pT haijapewa (haiwezi kubainishwa kutokana na taarifa za patholojia zilizopo)",
+          "pT haijatengwa (haiwezi kuamuliwa kulingana na taarifa za kipatholojia zilizopo)",
           "pT0: Hakuna ushahidi wa uvimbe wa msingi",
           "pT1: Uvimbe cm 2 au chini",
           "pT2: Uvimbe zaidi ya cm 2 lakini si zaidi ya cm 5",
           "pT3: Uvimbe zaidi ya cm 5 lakini si zaidi ya cm 10",
           "pT4: Uvimbe zaidi ya cm 10 katika kipimo kikubwa zaidi"
-        ]
+        ],
+        "value": ""
       },
       "T_suffix": {
-        "label": "Kiambishi cha T (kinahitajika tu inapohusika)",
+        "label": "Kiambishi cha T",
+        "type": "select",
         "options": [
-          "Haifai",
-          "(m) Vivimbe vingi vya msingi vinavyotokea kwa wakati mmoja katika kiungo kimoja"
-        ]
+          "Haihusiki",
+          "(m) vivimbe vingi vya msingi vinavyotokea wakati mmoja katika kiungo kimoja"
+        ],
+        "value": ""
       },
       "pN_category": {
-        "label": "Kategoria ya pN",
+        "label": "Kundi la pN",
+        "type": "select",
         "options": [
-          "pN haijapewa (hakuna nodi zilizowasilishwa au kupatikana)",
-          "pN haijapewa (haiwezi kubainishwa kutokana na taarifa za patholojia zilizopo)",
-          "pN0: Hakuna metastasis katika nodi za limfu za eneo",
-          "pN1: Metastasis katika nodi za limfu za eneo"
-        ]
+          "pN haijatengwa (hakuna nodi zilizowasilishwa au kupatikana)",
+          "pN haijatengwa (haiwezi kuamuliwa kulingana na taarifa za kipatholojia zilizopo)",
+          "pN0: Hakuna metastasi katika nodi za limfu za kikanda",
+          "pN1: Metastasi katika nodi za limfu za kikanda"
+        ],
+        "value": ""
       },
       "pM_category": {
-        "label": "Kategoria ya pM (inahitajika tu ikiwa imethibitishwa pathologically)",
+        "label": "Kundi la pM",
+        "type": "select",
         "options": [
-          "Haifai - pM haiwezi kubainishwa kutoka specimen zilizowasilishwa",
-          "pM1: Metastasis ya mbali"
-        ]
+          "Haihusiki — pM haiwezi kubainishwa kutokana na vielelezo vilivyowasilishwa",
+          "pM1: Metastasi ya mbali"
+        ],
+        "value": ""
       }
     }
   },
   "additional_findings": {
-    "label": "MATOKEO YA ZIADA",
+    "label": "Matokeo ya ziada",
     "fields": {
       "findings": {
-        "label": "Matokeo ya ziada (taja)"
+        "label": "Matokeo ya ziada",
+        "type": "text",
+        "value": ""
       }
     }
   }

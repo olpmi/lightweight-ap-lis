@@ -1,0 +1,283 @@
+{
+  "templateId": "urine_cytology_paris_system",
+  "templateName": "Kiolezo cha ripoti ya saitolojia ya mkojo (Mfumo wa Paris wa Kuripoti Saitolojia ya Njia ya Mkojo)",
+  "language": "sw",
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategory": "urine_cytology",
+    "organSystem": "urinary_tract",
+    "reportingSystem": "Paris System for Reporting Urinary Cytology"
+  },
+  "sections": [
+    {
+      "id": "specimen",
+      "title": "Sampuli",
+      "fields": [
+        {
+          "id": "specimen_type",
+          "label": "Aina ya sampuli",
+          "type": "select",
+          "options": [
+            "Mkojo wa kawaida",
+            "Mkojo uliopatikana kwa katheta",
+            "Usafishaji wa kibofu cha mkojo",
+            "Barbotaji ya kibofu cha mkojo",
+            "Usafishaji wa ureta",
+            "Usafishaji wa pelvisi ya figo",
+            "Mkojo wa ileal conduit",
+            "Nyingine"
+          ]
+        },
+        {
+          "id": "specimen_site",
+          "label": "Eneo la sampuli",
+          "type": "select",
+          "options": [
+            "Kibofu cha mkojo",
+            "Ureta wa kulia",
+            "Ureta wa kushoto",
+            "Pelvisi ya figo ya kulia",
+            "Pelvisi ya figo ya kushoto",
+            "Njia ya juu ya mkojo, haijabainishwa",
+            "Njia ya mkojo, haijabainishwa",
+            "Nyingine"
+          ]
+        },
+        {
+          "id": "laterality",
+          "label": "Upande (ikiwa inatumika)",
+          "type": "select",
+          "options": ["Kulia", "Kushoto", "Pande zote mbili", "Haitumiki"]
+        },
+        {
+          "id": "clinical_indication",
+          "label": "Dalili ya kitabibu",
+          "type": "multiselect",
+          "options": [
+            "Hematuria (damu kwenye mkojo)",
+            "Ufuatiliaji wa saratani ya urothelial",
+            "Historia ya neoplasia ya urothelial ya daraja la chini",
+            "Historia ya saratani ya urothelial ya daraja la juu",
+            "Matokeo yanayotia shaka kwenye picha au cystoscopy",
+            "Dalili za kuwashwa kwa njia ya mkojo",
+            "Nyingine"
+          ]
+        },
+        {
+          "id": "clinical_indication_other",
+          "label": "Dalili nyingine ya kitabibu",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "preparation_methods",
+      "title": "Mbinu za maandalizi",
+      "fields": [
+        {
+          "id": "preparation_methods_used",
+          "label": "Mbinu za maandalizi",
+          "type": "multiselect",
+          "options": [
+            "Smia za kawaida",
+            "Cytospin",
+            "Maandalizi ya msingi wa kimiminika",
+            "Cell block"
+          ]
+        },
+        {
+          "id": "cell_block_prepared",
+          "label": "Cell block imeandaliwa",
+          "type": "select",
+          "options": ["Ndiyo", "Hapana"]
+        }
+      ]
+    },
+    {
+      "id": "adequacy",
+      "title": "Utoshelevu wa sampuli",
+      "fields": [
+        {
+          "id": "adequacy_status",
+          "label": "Utoshelevu wa sampuli",
+          "type": "select",
+          "options": [
+            "Inatosha kwa tathmini",
+            "Seli chache lakini zinatosha",
+            "Hairidhishi / si ya uchunguzi"
+          ]
+        },
+        {
+          "id": "unsatisfactory_reason",
+          "label": "Sababu ya kutotosha",
+          "type": "multiselect",
+          "options": [
+            "Seli za urothelial chache",
+            "Uharibifu au uhifadhi duni",
+            "Imefunikwa na damu",
+            "Imefunikwa na uchochezi",
+            "Imefunikwa na uchafu au vilainishi",
+            "Kiasi cha sampuli hakitoshi",
+            "Nyingine"
+          ]
+        },
+        {
+          "id": "unsatisfactory_reason_other",
+          "label": "Sababu nyingine",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "diagnostic_category",
+      "title": "Kategoria ya uchunguzi (Mfumo wa Paris)",
+      "fields": [
+        {
+          "id": "paris_category",
+          "label": "Kategoria ya uchunguzi",
+          "type": "select",
+          "options": [
+            "I. Isiyo ya uchunguzi / Hairidhishi",
+            "II. Haina ushahidi wa saratani ya urothelial ya daraja la juu (NHGUC)",
+            "III. Seli za urothelial zisizo za kawaida (AUC)",
+            "IV. Inatia shaka kwa saratani ya urothelial ya daraja la juu (SHGUC)",
+            "V. Saratani ya urothelial ya daraja la juu (HGUC)",
+            "VI. Saratani nyingine za msingi au zilizosambaa kutoka sehemu nyingine"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "negative_findings",
+      "title": "Iwapo hakuna ushahidi wa saratani ya urothelial ya daraja la juu",
+      "fields": [
+        {
+          "id": "negative_findings_options",
+          "label": "Matokeo",
+          "type": "multiselect",
+          "options": [
+            "Seli za urothelial za kawaida",
+            "Seli za urothelial zenye mabadiliko ya mwitikio",
+            "Mabadiliko ya kudhoofika",
+            "Uchochezi",
+            "Fuwele",
+            "Mabadiliko yanayohusiana na mawe",
+            "Athari za virusi vya Polyoma",
+            "Mabadiliko yanayohusiana na vifaa vya kitabibu",
+            "Neoplasia ya urothelial ya daraja la chini imeonekana au haiwezi kuondolewa",
+            "Nyingine"
+          ]
+        },
+        {
+          "id": "negative_findings_other",
+          "label": "Matokeo mengine",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "atypical_suspicious_features",
+      "title": "Sifa za saitolojia zisizo za kawaida au zinazotia shaka",
+      "fields": [
+        {
+          "id": "cytologic_features",
+          "label": "Sifa zilizopo",
+          "type": "multiselect",
+          "options": [
+            "Uwiano mkubwa wa kiini dhidi ya saitoplazimu",
+            "Hyperchromasia ya kiini",
+            "Utando wa kiini usio wa kawaida",
+            "Kromatini nzito au iliyogandamana",
+            "Pleomorphism ya seli",
+            "Nukleoli zilizo wazi",
+            "Nekrosisi",
+            "Mitosi",
+            "Makundi ya seli ya pande tatu",
+            "Nyingine"
+          ]
+        },
+        {
+          "id": "cytologic_features_other",
+          "label": "Sifa nyingine",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "microscopic_description",
+      "title": "Maelezo ya hadubini",
+      "fields": [
+        {
+          "id": "microscopic_description_text",
+          "label": "Maelezo ya hadubini",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "id": "malignancy_subtype",
+      "title": "Iwapo ni saratani au uvimbe mwingine mbaya, elekeza zaidi kwa",
+      "fields": [
+        {
+          "id": "malignancy_favor",
+          "label": "Inaelekea kuwa",
+          "type": "multiselect",
+          "options": [
+            "Saratani ya urothelial ya daraja la juu",
+            "Saratani ya urothelial yenye utofautishaji wa squamous",
+            "Saratani ya urothelial yenye utofautishaji wa glandular",
+            "Saratani ya squamous cell",
+            "Adenokarsinoma",
+            "Saratani ya seli ndogo / neoplasia ya neuroendocrine",
+            "Saratani iliyosambaa kutoka sehemu nyingine",
+            "Neoplasia ya hematolymphoid",
+            "Nyingine"
+          ]
+        },
+        {
+          "id": "malignancy_favor_other",
+          "label": "Saratani nyingine",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "ancillary_studies",
+      "title": "Vipimo vya ziada (ikiwa vimefanywa)",
+      "fields": [
+        {
+          "id": "urovysion_fish",
+          "label": "Uchunguzi wa UroVysion FISH",
+          "type": "select",
+          "options": ["Haujafanywa", "Bado unasubiriwa", "Hasi", "Chanya", "Haueleweki"]
+        },
+        {
+          "id": "immunocytochemistry",
+          "label": "Immunocytochemistry",
+          "type": "text"
+        },
+        {
+          "id": "molecular_studies",
+          "label": "Vipimo vya molekuli",
+          "type": "text"
+        },
+        {
+          "id": "microbiology_stains_cultures",
+          "label": "Rangi au tamaduni za mikrobiolojia",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "comment_recommendation",
+      "title": "Maoni / Pendekezo",
+      "fields": [
+        {
+          "id": "comment_text",
+          "label": "Maoni / Pendekezo",
+          "type": "textarea"
+        }
+      ]
+    }
+  ]
+}

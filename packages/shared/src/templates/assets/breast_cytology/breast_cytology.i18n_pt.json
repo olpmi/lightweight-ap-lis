@@ -1,0 +1,208 @@
+{
+  "templateId": "breast_cytology_yokohama",
+  "templateName": "Modelo de relatório de citologia mamária (Sistema de Yokohama para relatório de citopatologia de biópsia aspirativa por agulha fina da mama)",
+  "language": "pt",
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategory": "fna",
+    "organSystem": "breast",
+    "reportingSystem": "Yokohama"
+  },
+  "sections": [
+    {
+      "id": "specimen",
+      "title": "Espécime",
+      "fields": [
+        {
+          "id": "breast_side",
+          "label": "PAAF da mama",
+          "type": "select",
+          "options": ["Direita", "Esquerda"]
+        },
+        {
+          "id": "site",
+          "label": "Local",
+          "type": "select",
+          "options": [
+            "Quadrante superior externo",
+            "Quadrante superior interno",
+            "Quadrante inferior externo",
+            "Quadrante inferior interno",
+            "Central",
+            "Prolongamento axilar",
+            "Outro"
+          ]
+        },
+        {
+          "id": "lesion_size_cm",
+          "label": "Tamanho da lesão (cm)",
+          "type": "text"
+        },
+        {
+          "id": "imaging_category",
+          "label": "Categoria de imagem (se fornecida)",
+          "type": "text"
+        },
+        {
+          "id": "guidance",
+          "label": "Orientação",
+          "type": "select",
+          "options": ["Palpação", "Guiado por ultrassom", "Outro"]
+        }
+      ]
+    },
+    {
+      "id": "specimen_adequacy",
+      "title": "Adequação da espécime",
+      "fields": [
+        {
+          "id": "adequacy_status",
+          "label": "Adequação da espécime (selecionar a opção apropriada)",
+          "type": "select",
+          "options": [
+            "Satisfatória para avaliação",
+            "Celularidade limitada, mas adequada",
+            "Inadequada / não diagnóstica"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "diagnostic_category",
+      "title": "Categoria diagnóstica (Yokohama)",
+      "fields": [
+        {
+          "id": "yokohama_category",
+          "label": "Categoria diagnóstica (Yokohama)",
+          "type": "select",
+          "options": [
+            "I: Insuficiente / Inadequada",
+            "II: Benigna",
+            "III: Atípica",
+            "IV: Suspeita de malignidade",
+            "V: Maligna"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "microscopic_description",
+      "title": "Descrição microscópica",
+      "fields": [
+        {
+          "id": "microscopic_description_text",
+          "label": "Descrição microscópica (texto livre)",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "id": "final_interpretation",
+      "title": "Interpretação final",
+      "fields": [
+        {
+          "id": "final_interpretation_category",
+          "label": "Categoria de interpretação final",
+          "type": "select",
+          "options": ["Benigna", "Atípica", "Suspeita", "Maligna"]
+        },
+        {
+          "id": "benign_interpretation",
+          "label": "Benigna",
+          "type": "multiselect",
+          "options": [
+            "Alteração fibrocística",
+            "Fibroadenoma",
+            "Lesão inflamatória",
+            "Necrose gordurosa",
+            "Galactocele"
+          ]
+        },
+        {
+          "id": "atypical_interpretation",
+          "label": "Atípica",
+          "type": "multiselect",
+          "options": [
+            "Lesão epitelial proliferativa com atipia",
+            "Células atípicas em quantidade limitada"
+          ]
+        },
+        {
+          "id": "suspicious_interpretation",
+          "label": "Suspeita",
+          "type": "multiselect",
+          "options": [
+            "Fortemente suspeita de carcinoma, mas quantitativa e/ou qualitativamente limitada"
+          ]
+        },
+        {
+          "id": "malignant_interpretation",
+          "label": "Maligna",
+          "type": "multiselect",
+          "options": [
+            "Carcinoma (sem tipo especial)",
+            "Carcinoma metastático",
+            "Linfoma",
+            "Outra malignidade"
+          ]
+        },
+        {
+          "id": "malignant_other",
+          "label": "Outra malignidade",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "ancillary_studies",
+      "title": "Estudos complementares (se realizados)",
+      "fields": [
+        {
+          "id": "cell_block",
+          "label": "Bloco celular",
+          "type": "select",
+          "options": ["Sim", "Não"]
+        },
+        {
+          "id": "immunocytochemistry",
+          "label": "Imuno-citoquímica",
+          "type": "text"
+        },
+        {
+          "id": "biomarker_testing",
+          "label": "Teste de biomarcadores (RE / RP / HER2 se validado)",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "risk_of_malignancy",
+      "title": "Risco de malignidade (aproximado)",
+      "fields": [
+        {
+          "id": "risk_of_malignancy_category",
+          "label": "Risco de malignidade (aproximado)",
+          "type": "select",
+          "options": [
+            "Categoria 1: Baixo, mas não nulo / requer nova espécimegem",
+            "Categoria 2: Muito baixo",
+            "Categoria 3: Intermediário",
+            "Categoria 4: Alto",
+            "Categoria 5: Muito alto"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "comment_recommendation",
+      "title": "Comentário / Recomendação",
+      "fields": [
+        {
+          "id": "comment_text",
+          "label": "Comentário / Recomendação",
+          "type": "textarea"
+        }
+      ]
+    }
+  ]
+}

@@ -1,62 +1,98 @@
 {
   "template_id": "ovary_fallopian_tube_primary_peritoneum_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "protocol_posting_date": "June 2024",
   "lang": "sw",
-  "title": "KIELELEZO CHA RIPOTI: OVARI au MIRIJA YA FALOPIO au PERITONIAMU YA MSINGI",
-  "distant_metastasis": {
-    "fields": {
-      "distant_sites_involved": {
-        "label": "Maeneo ya mbali yaliyohusika, ikiwa inafaa",
-        "pleural_effusion_specify": "Maji ya pleura, taja",
-        "liver_parenchyma_specify": "Parenkimu ya ini, taja",
-        "splenic_parenchyma_specify": "Parenkimu ya wengu, taja",
-        "extra_abdominal_organs_specify": "Viungo vya nje ya tumbo, taja",
-        "inguinal_lymph_nodes_specify": "Nodi za lymph za kinena, taja",
-        "transmural_involvement_specify": "Uhusika wa transmuralisi, taja",
-        "other_specify": "Nyingine, taja",
-        "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
-      }
-    }
-  },
-  "figo_stage": {
-    "label": "Hatua ya FIGO (Ripoti ya Saratani ya FIGO 2021)",
-    "fields": {
-      "figo_stage_2021": {}
-    }
-  },
-  "additional_findings": {
-    "label": "Matokeo ya ziada",
-    "fields": {
-      "findings": {
-        "other_specify": "Nyingine, taja"
-      }
-    }
-  },
+  "title": "Kiolezo cha ripoti – Ovari au mrija wa fallopian au peritonemu ya msingi",
   "tumor": {
+    "label": "Uvimbe wa saratani",
     "fields": {
       "tumor_site": {
-        "right_ovary_specify": "Ovari ya kulia, taja",
-        "left_ovary_specify": "Ovari ya kushoto, taja",
-        "bilateral_ovaries_specify": "Ovari zote mbili, taja",
-        "ovary_laterality_cannot_be_determined_explain": "Upande wa ovari hauwezi kuamuliwa, eleza",
-        "right_fallopian_tube_specify": "Bomba la uzazi la kulia, taja",
-        "left_fallopian_tube_specify": "Bomba la uzazi la kushoto, taja",
-        "bilateral_fallopian_tubes_specify": "Bomba la uzazi zote mbili, taja",
-        "fallopian_tube_laterality_cannot_be_determined_explain": "Upande wa bomba la uzazi hauwezi kuamuliwa, eleza",
-        "right_tubo_ovarian_specify": "Tubo-ovarial ya kulia, taja",
-        "left_tubo_ovarian_specify": "Tubo-ovarial ya kushoto, taja",
-        "bilateral_tubo_ovarian_specify": "Tubo-ovarial zote mbili, taja",
-        "tubo_ovarian_laterality_cannot_be_determined_explain": "Upande wa tubo-ovarial hauwezi kuamuliwa, eleza",
-        "primary_peritoneum_specify": "Peritoneum ya msingi, taja",
-        "other_specify": "Nyingine, taja"
+        "label": "Eneo la uvimbe",
+        "note": "Tafadhali chagua eneo la chanzo cha uvimbe wa msingi pekee.",
+        "options": [
+          "Ovari ya kulia",
+          "Ovari ya kushoto",
+          "Ovari zote mbili",
+          "Ovari, upande hauwezi kuamuliwa",
+          "Mrija wa fallopian wa kulia",
+          "Mrija wa fallopian wa kushoto",
+          "Mirija ya fallopian yote miwili",
+          "Mrija wa fallopian, upande hauwezi kuamuliwa",
+          "Tubo-ovarial ya kulia",
+          "Tubo-ovarial ya kushoto",
+          "Tubo-ovarial zote mbili",
+          "Tubo-ovarial, upande hauwezi kuamuliwa",
+          "Peritonemu ya msingi",
+          "Nyingine"
+        ],
+        "right_ovary_specify": { "label": "Ovari ya kulia (taja)", "type": "text", "value": "" },
+        "left_ovary_specify": { "label": "Ovari ya kushoto (taja)", "type": "text", "value": "" },
+        "bilateral_ovaries_specify": {
+          "label": "Ovari zote mbili (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "ovary_laterality_cannot_be_determined_explain": {
+          "label": "Upande wa ovari hauwezi kuamuliwa (eleza)",
+          "type": "text",
+          "value": ""
+        },
+        "right_fallopian_tube_specify": {
+          "label": "Mrija wa fallopian wa kulia (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "left_fallopian_tube_specify": {
+          "label": "Mrija wa fallopian wa kushoto (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "bilateral_fallopian_tubes_specify": {
+          "label": "Mirija ya fallopian yote miwili (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "fallopian_tube_laterality_cannot_be_determined_explain": {
+          "label": "Upande wa mrija wa fallopian hauwezi kuamuliwa (eleza)",
+          "type": "text",
+          "value": ""
+        },
+        "right_tubo_ovarian_specify": {
+          "label": "Muundo wa tubo-ovarian wa kulia (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "left_tubo_ovarian_specify": {
+          "label": "Muundo wa tubo-ovarian wa kushoto (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "bilateral_tubo_ovarian_specify": {
+          "label": "Muundo wa tubo-ovarian wa pande zote (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "tubo_ovarian_laterality_cannot_be_determined_explain": {
+          "label": "Upande wa muundo wa tubo-ovarian hauwezi kuamuliwa (eleza)",
+          "type": "text",
+          "value": ""
+        },
+        "primary_peritoneum_specify": {
+          "label": "Peritonemu ya msingi (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": { "label": "Nyingine (taja)", "type": "text", "value": "" }
       },
       "tumor_size": {
+        "label": "Ukubwa wa uvimbe",
+        "note": "Kwa uvimbe wa pande zote mbili, ripoti dimensi kubwa zaidi ya uvimbe mkubwa wa mpakani au mbaya. Kwa karsinoma zinazotokana na uvimbe wa mpakani, ripoti sehemu ya karsinoma tu.",
         "fields": {
           "size_type": {
             "label": "Ukubwa wa uvimbe",
-            "options": [
-              "Greatest dimension in centimeters (cm)",
-              "Haiwezi kuamuliwa"
-            ]
+            "options": ["Dimensi kubwa zaidi kwa sentimita (cm)", "Haiwezi kuamuliwa"]
           },
           "greatest_dimension_cm": {
             "label": "Dimensi kubwa zaidi (cm)"
@@ -70,27 +106,111 @@
         }
       },
       "histologic_type": {
-        "mixed_epithelial_borderline_tumor_specify": "Uvimbe wa mpakani wa epitheliamu iliyochanganywa, taja",
-        "mixed_carcinoma_specify": "Karsinoma iliyochanganywa, taja",
-        "other_sex_cord_stromal_tumor_specify": "Uvimbe mwingine wa kamba za ngono, taja",
-        "teratoma_with_malignant_transformation_specify": "Teratoma yenye mabadiliko mabaya, taja",
-        "malignant_struma_ovarii_specify": "Struma ovarii mbaya, taja",
-        "mixed_malignant_germ_cell_tumor_specify": "Uvimbe mbaya wa seli za vijidudu iliyochanganywa, taja",
-        "other_histologic_type_specify": "Aina nyingine ya kihistolojia, taja",
-        "comment": "Maoni"
+        "label": "Aina ya histolojia",
+        "options": [
+          "Uvimbe wa mpakani wa serous",
+          "Uvimbe wa mpakani wa serous, aina ya micropapillary / cribriform",
+          "Uvimbe wa mpakani wa serous na uvamizi mdogo",
+          "Karsinoma ya serous ya daraja la chini yenye uvamizi mdogo",
+          "Karsinoma ya serous ya daraja la chini",
+          "Karsinoma ya serous ya daraja la juu",
+          "Uvimbe wa mpakani wa mucinous",
+          "Uvimbe wa mpakani wa mucinous na karsinoma ya ndani ya epitheliamu",
+          "Uvimbe wa mpakani wa mucinous na uvamizi mdogo",
+          "Adenokarsinoma ya mucinous yenye uvamizi mdogo",
+          "Adenokarsinoma ya mucinous",
+          "Uvimbe wa mpakani wa endometrioid",
+          "Karsinoma ya endometrioid",
+          "Karsinoma ya endometrioid, aina ya seromucinous",
+          "Uvimbe wa mpakani wa seromucinous",
+          "Uvimbe wa mpakani wa seli angavu",
+          "Karsinoma ya seli angavu",
+          "Uvimbe wa Brenner wa mpakani",
+          "Uvimbe wa Brenner mbaya",
+          "Adenokarsinoma inayofanana na mesonephric",
+          "Karsinoma ya seli ndogo, aina ya hypercalcemia",
+          "Karsinoma iliyopoteza utofautishaji",
+          "Karsinoma isiyotofautishwa, NOS",
+          "Karsinosarkoma",
+          "Karsinoma, aina ndogo haiwezi kuamuliwa",
+          "Uvimbe wa mpakani wa epitheliamu mchanganyiko",
+          "Karsinoma mchanganyiko",
+          "Sarkoma ya stroma ya endometrioid, daraja la chini",
+          "Sarkoma ya stroma ya endometrioid, daraja la juu",
+          "Adenosarkoma",
+          "Leomyosarkoma",
+          "Fibrosarkoma",
+          "Uvimbe wa seli za granulosa, aina ya watu wazima",
+          "Uvimbe wa seli za granulosa, aina ya watoto",
+          "Uvimbe wa seli za steroidi, NOS",
+          "Uvimbe wa seli za steroidi, mbaya",
+          "Uvimbe wa Sertoli-Leydig",
+          "Uvimbe mwingine wa kamba za ngono",
+          "Teratoma isiyoiva",
+          "Teratoma yenye mabadiliko mabaya",
+          "Struma ovarii mbaya",
+          "Dysgerminoma",
+          "Uvimbe wa kifuko cha yai",
+          "Karsinoma ya kiinitete",
+          "Gonadoblastoma",
+          "Koriokarsinoma, aina isiyo ya ujauzito",
+          "Uvimbe mbaya mchanganyiko wa seli za vijidudu",
+          "Uvimbe wa stroma ya utumbo",
+          "Uvimbe wa nyuzi peke yake, mbaya",
+          "Uvimbe wa seli ndogo za duara wa desmoplastic",
+          "Aina nyingine ya histolojia isiyoorodheshwa"
+        ],
+        "mixed_epithelial_borderline_tumor_specify": {
+          "label": "Uvimbe wa mpakani wa epitheliamu, aina ya border-line (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "mixed_carcinoma_specify": {
+          "label": "Karsinoma mchanganyiko (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "other_sex_cord_stromal_tumor_specify": {
+          "label": "Uvimbe nyingine ya sex cord stromal (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "teratoma_with_malignant_transformation_specify": {
+          "label": "Teratoma yenye mabadiliko mabaya (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "malignant_struma_ovarii_specify": {
+          "label": "Struma ovarii mbaya (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "mixed_malignant_germ_cell_tumor_specify": {
+          "label": "Uvimbe mchanganyiko wa seli za kifuko cha yai (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "other_histologic_type_specify": {
+          "label": "Aina nyingine ya histolojia isiyoorodheshwa (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "comment": { "label": "Maoni", "type": "text", "value": "" }
       },
       "histologic_grade": {
+        "label": "Daraja la histolojia",
+        "note": "Inahitajika kwa karsinoma za endometrioid na mucinous, teratoma zisizoiva, na uvimbe wa Sertoli-Leydig.",
         "fields": {
           "grade_system": {
             "label": "Mfumo wa kugawa daraja",
             "options": [
               "Haihusiki",
-              "WHO Grading System",
-              "FIGO Grading System",
-              "Silverberg Grading System",
-              "Growth Pattern-based Grading",
-              "2-Tier Grading System",
-              "3-Tier Grading System"
+              "Mfumo wa Daraja la WHO",
+              "Mfumo wa Daraja la FIGO",
+              "Mfumo wa Daraja la Silverberg",
+              "Ugawaji kulingana na muundo wa ukuaji",
+              "Mfumo wa viwango viwili",
+              "Mfumo wa viwango vitatu"
             ]
           },
           "grade_value": {
@@ -126,61 +246,217 @@
         }
       },
       "ovarian_surface_involvement": {
-        "cannot_be_determined_explain": "Haiwezi kuamuliwa, eleza"
+        "label": "Ushiriki wa uso wa ovari",
+        "options": [
+          "Haihusiki",
+          "Haijaonekana",
+          "Upo, kulia",
+          "Upo, kushoto",
+          "Upo, kulia na kushoto",
+          "Upo",
+          "Haiwezi kuamuliwa"
+        ],
+        "cannot_be_determined_explain": {
+          "label": "Haiwezi kuamuliwa (eleza)",
+          "type": "text",
+          "value": ""
+        }
       },
       "fallopian_tube_surface_involvement": {
-        "cannot_be_determined_explain": "Haiwezi kuamuliwa, eleza"
+        "label": "Ushiriki wa uso wa mrija wa fallopian",
+        "options": [
+          "Haihusiki",
+          "Haijaonekana",
+          "Upo, kulia",
+          "Upo, kushoto",
+          "Upo, kulia na kushoto",
+          "Upo",
+          "Haiwezi kuamuliwa"
+        ],
+        "cannot_be_determined_explain": {
+          "label": "Haiwezi kuamuliwa (eleza)",
+          "type": "text",
+          "value": ""
+        }
       },
       "implants": {
-        "present_specify_sites": "Ipo, taja maeneo"
+        "label": "Implanti",
+        "note": "Inahitajika tu kwa uvimbe wa mpakani wa serous / seromucinous wa hatua ya juu.",
+        "options": ["Haihusiki", "Haikuchukuliwa sampuli", "Haijaonekana", "Ipo", "Haijulikani"],
+        "present_specify_sites": { "label": "Ipo (taja vikundi)", "type": "text", "value": "" }
       },
       "other_tissue_organ_involvement": {
-        "other_organs_tissue_specify": "Viungo/tishu vingine, taja",
-        "cannot_be_determined_explain": "Haiwezi kuamuliwa, eleza"
+        "label": "Ushiriki wa tishu / kiungo kingine",
+        "options": [
+          "Haihusiki",
+          "Haijaonekana",
+          "Ovari ya kulia",
+          "Ovari ya kushoto",
+          "Ovari (upande haujabainishwa)",
+          "Mrija wa fallopian wa kulia",
+          "Mrija wa fallopian wa kushoto",
+          "Mrija wa fallopian (upande haujabainishwa)",
+          "Mwili wa mfuko wa uzazi",
+          "Mlango wa mfuko wa uzazi",
+          "Peritonemu ya nyonga",
+          "Peritonemu ya tumbo",
+          "Omentamu",
+          "Viungo / tishu nyingine",
+          "Haiwezi kuamuliwa"
+        ],
+        "other_organs_tissue_specify": {
+          "label": "Kiungo / tishu nyingine (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_explain": {
+          "label": "Haiwezi kuamuliwa (eleza)",
+          "type": "text",
+          "value": ""
+        }
       },
       "largest_extrapelvic_peritoneal_focus": {
-        "macroscopic_2cm_or_less_specify_site": "Makroskopia ≤ 2 mm, taja eneo",
-        "macroscopic_greater_than_2cm_specify_site": "Makroskopia > 2 mm, taja eneo",
-        "cannot_be_determined_explain": "Haiwezi kuamuliwa, eleza"
+        "label": "Lengo kubwa zaidi la peritonemu nje ya nyonga",
+        "options": [
+          "Haihusiki",
+          "La mikroskopiki",
+          "La makroskopiki (sm 2 au chini)",
+          "La makroskopiki (zaidi ya sm 2)",
+          "Haiwezi kuamuliwa"
+        ],
+        "macroscopic_2cm_or_less_specify_site": {
+          "label": "La makroskopiki (sm 2 au chini) (taja eneo)",
+          "type": "text",
+          "value": ""
+        },
+        "macroscopic_greater_than_2cm_specify_site": {
+          "label": "La makroskopiki (zaidi ya sm 2) (taja eneo)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_explain": {
+          "label": "Haiwezi kuamuliwa (eleza)",
+          "type": "text",
+          "value": ""
+        }
       },
       "peritoneal_ascitic_fluid_involvement": {
-        "atypical_explain": "Atipiki, eleza",
-        "other_specify": "Nyingine, taja",
-        "suspicious_explain": "Mashaka, eleza",
-        "cannot_be_determined_explain": "Haiwezi kuamuliwa, eleza"
+        "label": "Ushiriki wa maji ya peritonemu / ascites",
+        "options": [
+          "Haijawasilishwa / haijulikani",
+          "Hasi kwa seli za saratani",
+          "Atipiki",
+          "Seli za uvimbe zipo (uvimbe wa serous, daraja la chini, angalia sampuli ya upasuaji inayolingana)",
+          "Nyingine",
+          "Inatia shaka",
+          "Seli za saratani zipo",
+          "Haiwezi kuamuliwa",
+          "Matokeo yanasubiriwa"
+        ],
+        "atypical_explain": { "label": "Atipiki (eleza)", "type": "text", "value": "" },
+        "other_specify": { "label": "Nyingine (taja)", "type": "text", "value": "" },
+        "suspicious_explain": { "label": "Inatia shaka (eleza)", "type": "text", "value": "" },
+        "cannot_be_determined_explain": {
+          "label": "Haiwezi kuamuliwa (eleza)",
+          "type": "text",
+          "value": ""
+        }
       },
       "chemotherapy_response_score": {
-        "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
+        "label": "Alama ya majibu ya chemotherapy (CRS)",
+        "note": "Inahitajika tu kwa karsinoma za serous za daraja la juu.",
+        "options": [
+          "Haihusiki",
+          "Hakuna tiba inayojulikana kabla ya upasuaji",
+          "CRS1 (hakuna jibu au jibu dogo sana)",
+          "CRS2 (jibu la wastani)",
+          "CRS3 (jibu kubwa bila saratani iliyobaki au kidogo sana)",
+          "Haiwezi kuamuliwa"
+        ],
+        "cannot_be_determined_specify": {
+          "label": "Haiwezi kuamuliwa (taja)",
+          "type": "text",
+          "value": ""
+        }
       },
-      "tumor_comment": {}
+      "tumor_comment": {
+        "label": "Maoni ya uvimbe"
+      }
     }
   },
   "regional_lymph_nodes": {
+    "label": "Nodi za limfu za eneo",
     "fields": {
-      "regional_lymph_node_status": {},
-      "nodes_with_metastasis_gt_10mm": {},
-      "nodes_with_metastasis_10mm_or_less": {},
-      "nodes_with_itcs": {},
+      "regional_lymph_node_status": {
+        "label": "Hali ya nodi za limfu za eneo",
+        "options": [
+          "Haihusiki (hakuna nodi za limfu za eneo zilizowasilishwa au kupatikana)",
+          "Nodi za limfu za eneo zipo",
+          "Nodi zote za eneo hasi kwa seli za uvimbe",
+          "Uvimbe upo katika nodi za limfu za eneo"
+        ]
+      },
+      "nodes_with_metastasis_gt_10mm": {
+        "label": "Idadi ya nodi zenye metastasi zaidi ya mm 10"
+      },
+      "nodes_with_metastasis_10mm_or_less": {
+        "label": "Idadi ya nodi zenye metastasi mm 10 au chini"
+      },
+      "nodes_with_itcs": {
+        "label": "Idadi ya nodi zenye seli za uvimbe zilizotengwa (ITC)"
+      },
       "nodal_sites_with_tumor": {
-        "right_pelvic_specify": "Pelvic ya kulia, taja",
-        "left_pelvic_specify": "Pelvic ya kushoto, taja",
-        "pelvic_nos_specify": "Pelvic SAI, taja",
-        "right_para_aortic_specify": "Para-aortiki ya kulia, taja",
-        "left_para_aortic_specify": "Para-aortiki ya kushoto, taja",
-        "para_aortic_nos_specify": "Para-aortiki SAI, taja",
-        "other_specify": "Nyingine, taja",
-        "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
+        "label": "Eneo/maeneo ya nodi zenye uvimbe",
+        "options": [
+          "Pelviki ya kulia",
+          "Pelviki ya kushoto",
+          "Pelviki, NOS",
+          "Para-aortiki ya kulia",
+          "Para-aortiki ya kushoto",
+          "Para-aortiki, NOS",
+          "Nyingine",
+          "Haiwezi kuamuliwa"
+        ],
+        "right_pelvic_specify": { "label": "Pelviki ya kulia (taja)", "type": "text", "value": "" },
+        "left_pelvic_specify": {
+          "label": "Pelviki ya kushoto (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "pelvic_nos_specify": { "label": "Pelviki, NOS (taja)", "type": "text", "value": "" },
+        "right_para_aortic_specify": {
+          "label": "Para-aortiki ya kulia (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "left_para_aortic_specify": {
+          "label": "Para-aortiki ya kushoto (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "para_aortic_nos_specify": {
+          "label": "Para-aortiki, NOS (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": { "label": "Nyingine (taja)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "Haiwezi kuamuliwa (taja)",
+          "type": "text",
+          "value": ""
+        }
       },
       "size_of_largest_nodal_metastatic_deposit": {
+        "label": "Ukubwa wa amana kubwa zaidi ya metastasi ya nodi",
         "fields": {
           "size_type": {
             "label": "Aina ya kipimo",
             "options": [
-              "Exact size",
+              "Ukubwa halisi",
               "Angalau",
-              "Greater than",
+              "Zaidi ya",
               "Chini ya",
-              "Other",
+              "Nyingine",
               "Haiwezi kuamuliwa"
             ]
           },
@@ -196,38 +472,265 @@
         }
       },
       "location_of_largest_nodal_metastatic_deposit": {
-        "right_pelvic_specify": "Pelvic ya kulia, taja",
-        "left_pelvic_specify": "Pelvic ya kushoto, taja",
-        "pelvic_nos_specify": "Pelvic SAI, taja",
-        "right_para_aortic_specify": "Para-aortiki ya kulia, taja",
-        "left_para_aortic_specify": "Para-aortiki ya kushoto, taja",
-        "para_aortic_nos_specify": "Para-aortiki SAI, taja",
-        "other_specify": "Nyingine, taja",
-        "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja",
-        "cannot_be_determined_explain": "Haiwezi kuamuliwa, eleza"
+        "label": "Eneo la amana kubwa zaidi ya metastasi ya nodi",
+        "options": [
+          "Pelviki ya kulia",
+          "Pelviki ya kushoto",
+          "Pelviki, NOS",
+          "Para-aortiki ya kulia",
+          "Para-aortiki ya kushoto",
+          "Para-aortiki, NOS",
+          "Nyingine",
+          "Haiwezi kuamuliwa"
+        ],
+        "right_pelvic_specify": { "label": "Pelviki ya kulia (taja)", "type": "text", "value": "" },
+        "left_pelvic_specify": {
+          "label": "Pelviki ya kushoto (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "pelvic_nos_specify": { "label": "Pelviki, NOS (taja)", "type": "text", "value": "" },
+        "right_para_aortic_specify": {
+          "label": "Para-aortiki ya kulia (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "left_para_aortic_specify": {
+          "label": "Para-aortiki ya kushoto (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "para_aortic_nos_specify": {
+          "label": "Para-aortiki, NOS (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": { "label": "Nyingine (taja)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "Haiwezi kuamuliwa (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "cannot_be_determined_explain": {
+          "label": "Haiwezi kuamuliwa (eleza)",
+          "type": "text",
+          "value": ""
+        }
       },
-      "number_of_lymph_nodes_examined": {},
+      "number_of_lymph_nodes_examined": {
+        "label": "Idadi ya nodi za limfu zilizochunguzwa"
+      },
       "nodal_sites_examined": {
-        "right_pelvic_specify": "Pelvic ya kulia, taja",
-        "left_pelvic_specify": "Pelvic ya kushoto, taja",
-        "pelvic_nos_specify": "Pelvic SAI, taja",
-        "right_para_aortic_specify": "Para-aortiki ya kulia, taja",
-        "left_para_aortic_specify": "Para-aortiki ya kushoto, taja",
-        "para_aortic_nos_specify": "Para-aortiki SAI, taja",
-        "other_specify": "Nyingine, taja",
-        "cannot_be_determined_specify": "Haiwezi kuamuliwa, taja"
+        "label": "Eneo/maeneo ya nodi zilizochunguzwa",
+        "options": [
+          "Pelviki ya kulia",
+          "Pelviki ya kushoto",
+          "Pelviki, NOS",
+          "Para-aortiki ya kulia",
+          "Para-aortiki ya kushoto",
+          "Para-aortiki, NOS",
+          "Nyingine",
+          "Haiwezi kuamuliwa"
+        ],
+        "right_pelvic_specify": { "label": "Pelviki ya kulia (taja)", "type": "text", "value": "" },
+        "left_pelvic_specify": {
+          "label": "Pelviki ya kushoto (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "pelvic_nos_specify": { "label": "Pelviki, NOS (taja)", "type": "text", "value": "" },
+        "right_para_aortic_specify": {
+          "label": "Para-aortiki ya kulia (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "left_para_aortic_specify": {
+          "label": "Para-aortiki ya kushoto (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "para_aortic_nos_specify": {
+          "label": "Para-aortiki, NOS (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": { "label": "Nyingine (taja)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "Haiwezi kuamuliwa (taja)",
+          "type": "text",
+          "value": ""
+        }
       },
-      "regional_lymph_node_comment": {}
+      "regional_lymph_node_comment": {
+        "label": "Maoni ya nodi za limfu za eneo"
+      }
+    }
+  },
+  "distant_metastasis": {
+    "label": "Metastasi za mbali",
+    "fields": {
+      "distant_sites_involved": {
+        "label": "Maeneo ya mbali yaliyohusika",
+        "options": [
+          "Haihusiki",
+          "Maji ya pleura yenye seli za saratani",
+          "Parenkimu ya ini",
+          "Parenkimu ya wengu",
+          "Kiungo/viungo vya nje ya tumbo",
+          "Nodi za limfu za kinena na nodi nje ya tumbo",
+          "Uhusika wa transmuralisi wa utumbo",
+          "Nyingine",
+          "Haiwezi kuamuliwa"
+        ],
+        "pleural_effusion_specify": {
+          "label": "Maji ya pleura (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "liver_parenchyma_specify": {
+          "label": "Parenkimu ya ini (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "splenic_parenchyma_specify": {
+          "label": "Parenkimu ya wengu (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "extra_abdominal_organs_specify": {
+          "label": "Kiungo/viungo vya nje ya tumbo (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "inguinal_lymph_nodes_specify": {
+          "label": "Nodi za limfu za kinena (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "transmural_involvement_specify": {
+          "label": "Uhusika wa transmuralisi (taja)",
+          "type": "text",
+          "value": ""
+        },
+        "other_specify": { "label": "Nyingine (taja)", "type": "text", "value": "" },
+        "cannot_be_determined_specify": {
+          "label": "Haiwezi kuamuliwa (taja)",
+          "type": "text",
+          "value": ""
+        }
+      }
     }
   },
   "ptnm_classification": {
+    "label": "Uainishaji wa pTNM (AJCC Toleo la 8)",
     "fields": {
-      "modified_classification": {},
-      "pT_category": {},
-      "T_suffix": {},
-      "pN_category": {},
-      "N_suffix": {},
-      "pM_category": {}
+      "modified_classification": {
+        "label": "Uainishaji uliorekebishwa",
+        "options": ["Haihusiki", "y (baada ya tiba ya neoadjuvant)", "r (kurudi tena)"]
+      },
+      "pT_category": {
+        "label": "Kundi la pT",
+        "options": [
+          "pT haijapewa",
+          "pT0: Hakuna ushahidi wa uvimbe wa msingi",
+          "pT1a: Uvimbe umefungwa kwenye ovari moja (kapsuli haijapasuka) au mrija wa fallopian (serosa haijapasuka); hakuna uvimbe kwenye uso wa ovari au mrija wa fallopian; hakuna seli za saratani kwenye maji ya ascites au uoshaji wa peritonemu",
+          "pT1b: Uvimbe umefungwa kwenye ovari zote mbili (kapsuli haijapasuka) au mirija ya fallopian (serosa haijapasuka); hakuna uvimbe kwenye uso wa ovari au mrija wa fallopian; hakuna seli za saratani kwenye maji ya ascites au uoshaji wa peritonemu",
+          "pT1c1: Kumwagika kwa upasuaji",
+          "pT1c2: Kapsuli ilipasuka kabla ya upasuaji au uvimbe kwenye uso wa ovari au mrija wa fallopian",
+          "pT1c3: Seli za saratani kwenye maji ya ascites au uoshaji wa peritonemu",
+          "pT1: Uvimbe umefungwa kwenye ovari au mirija ya fallopian (kikundi kidogo haiwezi kuamuliwa)",
+          "pT2a: Upanuzi na/au implanti kwenye mfuko wa uzazi na/au mirija ya fallopian na/au ovari",
+          "pT2b: Upanuzi na/au implanti kwenye tishu nyingine za ndani ya nyonga",
+          "pT2: Uvimbe unahusika kwenye ovari moja au zote mbili au mrija wa fallopian na upanuzi wa nyonga (kikundi kidogo haiwezi kuamuliwa)",
+          "pT3a: Uhusika wa peritonemu ya mikroskopiki nje ya nyonga (juu ya ukingo wa nyonga) pamoja au bila nodi za limfu za nyuma ya peritonemu zilizo chanya",
+          "pT3b: Metastasi ya peritonemu ya makroskopiki nje ya nyonga ≤ sm 2 katika dimensi kubwa zaidi pamoja au bila nodi za limfu za nyuma ya peritonemu zilizo chanya",
+          "pT3c: Metastasi ya peritonemu ya makroskopiki nje ya nyonga > sm 2 katika dimensi kubwa zaidi pamoja au bila nodi za limfu za nyuma ya peritonemu zilizo chanya (inajumuisha upanuzi wa uvimbe hadi kwenye kapsuli ya ini na wengu bila uhusika wa parenkimu)",
+          "pT3: Metastasi ya peritonemu nje ya nyonga na/au metastasi ya nodi za limfu za eneo (kikundi kidogo haiwezi kuamuliwa)"
+        ]
+      },
+      "T_suffix": {
+        "label": "Kiambishi cha T",
+        "options": [
+          "Haihusiki",
+          "(m) uvimbe mwingi wa msingi unaotokea wakati mmoja katika kiungo kimoja"
+        ]
+      },
+      "pN_category": {
+        "label": "Kundi la pN",
+        "options": [
+          "pN haijapewa (hakuna nodi zilizowasilishwa au kupatikana)",
+          "pN haijapewa (haiwezi kuamuliwa kulingana na taarifa za kipatholojia zinazopatikana)",
+          "pN0: Hakuna metastasi ya nodi za limfu za eneo",
+          "pN0(i+): Seli za uvimbe zilizotengwa kwenye nodi za limfu za eneo ≤ mm 0.2",
+          "pN1a: Metastasi ya nodi za limfu za eneo > mm 0.2 lakini si > mm 10 katika dimensi kubwa zaidi",
+          "pN1b: Metastasi ya nodi za limfu za eneo > mm 10 katika dimensi kubwa zaidi",
+          "pN1: Metastasi ya nodi za limfu za eneo ipo (kikundi kidogo haiwezi kuamuliwa)"
+        ]
+      },
+      "N_suffix": {
+        "label": "Kiambishi cha N",
+        "options": [
+          "Haihusiki",
+          "(sn) metastasi inabainika tu kwa biopsi ya nodi sentinel",
+          "(f) metastasi inabainika tu kwa FNA au biopsi ya sindano"
+        ]
+      },
+      "pM_category": {
+        "label": "Kundi la pM",
+        "options": [
+          "Haihusiki — pM haiwezi kuamuliwa kutoka kwa sampuli zilizowasilishwa",
+          "pM1a: Maji ya pleura yenye seli za saratani",
+          "pM1b: Metastasi ya parenkimu ya ini na/au wengu, metastasi kwenye viungo vya nje ya tumbo (ikijumuisha nodi za limfu za kinena na nodi nje ya tumbo)",
+          "pM1: Metastasi ya mbali (kikundi kidogo haiwezi kuamuliwa)"
+        ]
+      }
+    }
+  },
+  "figo_stage": {
+    "label": "Hatua ya FIGO (Ripoti ya Saratani ya FIGO 2021)",
+    "fields": {
+      "figo_stage_2021": {
+        "label": "Hatua ya FIGO (Ripoti ya Saratani ya FIGO 2021)",
+        "options": [
+          "IA: Uvimbe umefungwa kwenye ovari moja (kapsuli haijapasuka) au mrija wa fallopian; hakuna uvimbe kwenye uso wa ovari au mrija wa fallopian; uoshaji hasi",
+          "IB: Uvimbe unahusika ovari zote mbili au mirija ya fallopian (kapsuli haijapasuka); hakuna uvimbe kwenye uso; uoshaji hasi",
+          "IC1: Kumwagika kwa upasuaji",
+          "IC2: Kapsuli ilipasuka kabla ya upasuaji au uvimbe kwenye uso wa ovari au mrija wa fallopian",
+          "IC3: Seli za saratani kwenye maji ya ascites au uoshaji wa peritonemu",
+          "IC: Uvimbe umefungwa kwenye ovari moja au zote mbili, na mojawapo ya IC1–IC3 (kikundi kidogo haiwezi kuamuliwa)",
+          "IIA: Upanuzi na/au implanti kwenye mfuko wa uzazi na/au mirija ya fallopian na/au ovari",
+          "IIB: Upanuzi na/au implanti kwenye tishu nyingine za ndani ya nyonga",
+          "IIIA1: Nodi za limfu za nyuma ya peritonemu zilizo chanya pekee (zimethibitishwa kwa cytolojia au histolojia)",
+          "IIIA1(i): Metastasi ≤ mm 10",
+          "IIIA1(ii): Metastasi > mm 10",
+          "IIIA2: Uhusika wa peritonemu ya mikroskopiki nje ya nyonga pamoja au bila nodi za limfu za nyuma ya peritonemu zilizo chanya",
+          "IIIB: Metastasi ya peritonemu ya makroskopiki nje ya nyonga ≤ sm 2 katika dimensi kubwa zaidi, pamoja au bila nodi za limfu za nyuma ya peritonemu zilizo chanya",
+          "IIIC: Metastasi ya peritonemu nje ya nyonga > sm 2 katika dimensi kubwa zaidi, pamoja au bila nodi za limfu zilizo chanya (inajumuisha upanuzi hadi kapsuli ya ini na wengu bila uhusika wa parenkimu)",
+          "IVA: Maji ya pleura yenye seli za saratani",
+          "IVB: Metastasi ya parenkimu ya ini na/au wengu, metastasi kwenye viungo vya nje ya tumbo (ikijumuisha nodi za limfu za kinena na nodi nje ya tumbo)"
+        ]
+      }
+    }
+  },
+  "additional_findings": {
+    "label": "Matokeo ya ziada",
+    "fields": {
+      "findings": {
+        "label": "Matokeo ya ziada",
+        "options": [
+          "Hakuna yaliyopatikana",
+          "Karsinoma ya ndani ya epitheliamu ya serous ya mrija wa fallopian (STIC)",
+          "Endometriosi",
+          "Endosalpingiosi",
+          "Nyingine"
+        ],
+        "stic_left": false,
+        "stic_right": false,
+        "stic_bilateral": false,
+        "endometriosis_within_tumor": false,
+        "endometriosis_outside_of_tumor": false,
+        "other_specify": ""
+      }
     }
   }
 }

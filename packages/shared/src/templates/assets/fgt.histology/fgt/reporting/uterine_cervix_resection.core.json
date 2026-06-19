@@ -1,10 +1,11 @@
 {
   "template_id": "uterine_cervix_resection_v1",
   "domain": "anatomic_pathology",
-  "title": "Uterine Cervix Resection",
+  "case_type": "histology",
   "protocol_posting_date": "March 2023",
+  "lang": "en",
   "standards": ["FIGO Cancer Report 2018", "AJCC-UICC 9"],
-
+  "title": "Uterine Cervix Resection",
   "tumor": {
     "label": "Tumor",
     "fields": {
@@ -39,7 +40,6 @@
         ],
         "value": ""
       },
-
       "histologic_grade": {
         "label": "Histologic grade",
         "type": "select",
@@ -52,7 +52,6 @@
         ],
         "value": ""
       },
-
       "stromal_invasion_depth": {
         "label": "Depth of stromal invasion",
         "type": "select",
@@ -65,7 +64,6 @@
         ],
         "value": ""
       },
-
       "stromal_invasion_extent": {
         "label": "Extent of depth of stromal invasion",
         "type": "select",
@@ -77,20 +75,17 @@
         ],
         "value": ""
       },
-
       "horizontal_extent": {
         "label": "Horizontal extent of stromal invasion",
         "type": "text",
         "value": ""
       },
-
       "silva_system": {
         "label": "Silva system for invasion",
         "type": "select",
         "options": ["Not applicable", "Pattern A", "Pattern B", "Pattern C"],
         "value": ""
       },
-
       "other_tissue_involvement": {
         "label": "Other tissue / organ involvement",
         "type": "multi_select",
@@ -110,21 +105,14 @@
         ],
         "value": []
       },
-
       "lymphovascular_invasion": {
         "label": "Lymphatic and / or vascular invasion",
         "type": "select",
-        "options": [
-          "Not identified",
-          "Present",
-          "Equivocal",
-          "Cannot be determined"
-        ],
+        "options": ["Not identified", "Present", "Equivocal", "Cannot be determined"],
         "value": ""
       }
     }
   },
-
   "margins": {
     "label": "Margins",
     "fields": {
@@ -138,7 +126,6 @@
         ],
         "value": ""
       },
-
       "closest_margin": {
         "label": "Closest margin(s)",
         "type": "multi_select",
@@ -152,13 +139,11 @@
         ],
         "value": []
       },
-
       "distance_to_margin": {
         "label": "Distance from invasive carcinoma to closest margin",
         "type": "text",
         "value": ""
       },
-
       "hsil_ais_margin_status": {
         "label": "Margin status for HSIL / AIS",
         "type": "multi_select",
@@ -172,7 +157,6 @@
       }
     }
   },
-
   "regional_lymph_nodes": {
     "label": "Regional Lymph Nodes",
     "fields": {
@@ -188,13 +172,11 @@
         ],
         "value": ""
       },
-
       "pelvic_nodes_examined": {
         "label": "Total pelvic nodes examined",
         "type": "text",
         "value": ""
       },
-
       "para_aortic_nodes_examined": {
         "label": "Total para-aortic nodes examined",
         "type": "text",
@@ -202,7 +184,6 @@
       }
     }
   },
-
   "distant_metastasis": {
     "label": "Distant Metastasis",
     "fields": {
@@ -226,7 +207,6 @@
       }
     }
   },
-
   "pathologic_stage": {
     "label": "Pathologic Stage Classification",
     "fields": {
@@ -234,60 +214,85 @@
         "label": "pT category",
         "type": "select",
         "options": [
-          "pT0",
-          "pT1a1",
-          "pT1a2",
-          "pT1b1",
-          "pT1b2",
-          "pT1b3",
-          "pT2a1",
-          "pT2a2",
-          "pT2b",
-          "pT3a",
-          "pT3b",
-          "pT4"
+          "pT not assigned (cannot be determined based on available pathological information)",
+          "pT0: No evidence of primary tumor",
+          "pT1: Carcinoma is strictly confined to the cervix (extension to the uterine corpus should be disregarded)",
+          "pT1a: Invasive carcinoma diagnosed only by microscopy, with maximum depth of invasion 5 mm or less",
+          "pT1a1: Measured stromal invasion 3 mm or less in depth",
+          "pT1a2: Measured stromal invasion greater than 3 mm and 5 mm or less in depth",
+          "pT1a (subcategory cannot be determined)",
+          "pT1b: Invasive carcinoma with deepest invasion measured greater than 5 mm; lesion limited to the cervix uteri, size measured by the largest tumor diameter",
+          "pT1b1: Invasive carcinoma with depth of stromal invasion greater than 5 mm and greatest dimension 2 cm or less",
+          "pT1b2: Invasive carcinoma greater than 2 cm and 4 cm or less in greatest dimension",
+          "pT1b3: Invasive carcinoma greater than 4 cm in greatest dimension",
+          "pT1b (subcategory cannot be determined)",
+          "pT1 (subcategory cannot be determined)",
+          "pT2: Carcinoma invades beyond the uterus, but has not extended to the lower third of the vagina or to the pelvic wall",
+          "pT2a: Involvement limited to the upper two-thirds of the vagina without parametrial invasion",
+          "pT2a1: Invasive carcinoma 4 cm or less in greatest dimension",
+          "pT2a2: Invasive carcinoma greater than 4 cm in greatest dimension",
+          "pT2a (subcategory cannot be determined)",
+          "pT2b: With parametrial invasion but not up to the pelvic wall",
+          "pT2 (subcategory cannot be determined)",
+          "pT3: Carcinoma involves lower third of vagina and/or extends to pelvic wall and/or causes hydronephrosis or non-functioning kidney",
+          "pT3a: Carcinoma involves lower third of vagina, without extension to the pelvic wall",
+          "pT3b: Extension to pelvic wall and/or hydronephrosis or non-functioning kidney (unless known to be due to another cause)",
+          "pT3 (subcategory cannot be determined)",
+          "pT4: Carcinoma has involved the mucosa of the bladder or rectum confirmed by biopsy, or has extended to adjacent organs"
         ],
         "value": ""
       },
-
       "pN_category": {
         "label": "pN category",
         "type": "select",
-        "options": ["pN0", "pN0(i+)", "pN1mi", "pN1a", "pN2mi", "pN2a"],
+        "options": [
+          "pN not assigned (no nodes submitted or found)",
+          "pN not assigned (cannot be determined based on available pathological information)",
+          "pN0: No regional lymph node metastasis",
+          "pN0(i+): Isolated tumor cells in regional lymph node(s), 0.2 mm or less, or single cells or clusters not exceeding 200 cells in a single lymph node cross-section",
+          "pN1: Regional lymph node metastasis to pelvic lymph nodes only",
+          "pN1mi: Regional lymph node metastasis (greater than 0.2 mm but 2.0 mm or less) to pelvic lymph nodes",
+          "pN1a: Regional lymph node metastasis (diameter greater than 2.0 mm) to pelvic lymph nodes",
+          "pN1 (subcategory cannot be determined)",
+          "pN2: Regional lymph node metastasis to para-aortic lymph nodes, with or without positive pelvic lymph nodes",
+          "pN2mi: Metastasis to para-aortic lymph nodes (greater than 0.2 mm but 2.0 mm or less), with or without positive pelvic lymph nodes",
+          "pN2a: Metastasis to para-aortic lymph nodes (diameter greater than 2.0 mm), with or without positive pelvic lymph nodes",
+          "pN2 (subcategory cannot be determined)"
+        ],
         "value": ""
       },
-
       "pM_category": {
         "label": "pM category",
         "type": "select",
-        "options": ["Not applicable", "pM1"],
+        "options": [
+          "Not applicable - pM cannot be determined from the submitted specimen(s)",
+          "pM1: Distant metastasis (includes metastasis to inguinal lymph nodes, intraperitoneal disease, lung, liver, or bone; excludes metastasis to pelvic or para-aortic lymph nodes, or vagina)"
+        ],
         "value": ""
       },
-
       "figo_stage": {
         "label": "FIGO stage",
         "type": "select",
         "options": [
-          "IA1",
-          "IA2",
-          "IB1",
-          "IB2",
-          "IB3",
-          "IIA1",
-          "IIA2",
-          "IIB",
-          "IIIA",
-          "IIIB",
-          "IIIC1",
-          "IIIC2",
-          "IVA",
-          "IVB"
+          "IA1: Invasive carcinoma diagnosed only by microscopy; stromal invasion 3 mm or less in depth",
+          "IA2: Invasive carcinoma diagnosed only by microscopy; stromal invasion greater than 3 mm and 5 mm or less in depth",
+          "IB1: Invasive carcinoma with deepest invasion greater than 5 mm (greater than IA); lesion limited to the cervix uteri; 2 cm or less in greatest dimension",
+          "IB2: Invasive carcinoma with deepest invasion greater than 5 mm (greater than IA); lesion limited to the cervix uteri; greater than 2 cm and 4 cm or less in greatest dimension",
+          "IB3: Invasive carcinoma with deepest invasion greater than 5 mm (greater than IA); lesion limited to the cervix uteri; greater than 4 cm in greatest dimension",
+          "IIA1: Carcinoma involving the upper two-thirds of the vagina without parametrial invasion; 4 cm or less in greatest dimension",
+          "IIA2: Carcinoma involving the upper two-thirds of the vagina without parametrial invasion; greater than 4 cm in greatest dimension",
+          "IIB: Carcinoma with parametrial invasion but not up to the pelvic wall",
+          "IIIA: Carcinoma involving the lower third of the vagina, without extension to the pelvic wall",
+          "IIIB: Carcinoma extending to the pelvic wall and/or causing hydronephrosis or non-functioning kidney (unless known to be due to another cause)",
+          "IIIC1: Pelvic lymph node metastasis only",
+          "IIIC2: Para-aortic lymph node metastasis, with or without pelvic lymph node metastasis",
+          "IVA: Carcinoma invading the mucosa of the bladder or rectum and/or extension beyond the true pelvis (bullous edema does not allow a case to be allotted to stage IVA)",
+          "IVB: Distant metastasis (including peritoneal spread or involvement of the supraclavicular, mediastinal or distant lymph nodes; lung; liver; or bone)"
         ],
         "value": ""
       }
     }
   },
-
   "additional_findings": {
     "label": "Additional Findings",
     "fields": {

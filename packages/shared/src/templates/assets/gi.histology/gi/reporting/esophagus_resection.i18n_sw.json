@@ -1,51 +1,69 @@
 {
   "template_id": "esophagus_resection_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "protocol_posting_date": "June 2021",
   "lang": "sw",
-  "title": "KIOLEZO CHA RIPOTI – UMIO",
+  "standards": ["AJCC-UICC 8"],
+  "title": "Umio",
   "specimen": {
-    "label": "SAMPULI",
+    "label": "Sampuli",
     "fields": {
       "procedure": {
         "label": "Utaratibu",
+        "type": "select",
         "options": [
+          "Uondoaji kwa endoskopia",
           "Uondoaji wa umio",
           "Uondoaji wa umio na tumbo",
-          "Uondoaji kwa endoskopia"
+          "Nyingine",
+          "Haijabainishwa"
         ],
-        "other_specify": "Nyingine, taja"
+        "value": "",
+        "other_specify": { "label": "Nyingine (taja)", "type": "text", "value": "" }
       }
     }
   },
   "tumor": {
-    "label": "UVIMBE",
+    "label": "Uvimbe",
     "fields": {
       "tumor_site": {
-        "label": "Eneo la uvimbe (chagua yote yanayohusika)",
+        "label": "Eneo la uvimbe",
+        "type": "multi_select",
         "options": [
-          "Umio wa sevikali/proksimali",
+          "Umio wa sevikali (proksimali)",
           "Umio wa kati, sehemu ya juu ya kifua",
           "Umio wa kati, sehemu ya kati ya kifua",
-          "Umio wa kati, bila kubainishwa zaidi",
-          "Umio wa distali/sehemu ya chini ya kifua",
+          "Umio wa kati, NOS",
+          "Umio wa distali (sehemu ya chini ya kifua)",
           "Makutano ya umio na tumbo (EGJ)",
-          "Tumbo la proksimali/kardia",
+          "Tumbo la proksimali / kardia",
+          "Nyingine",
           "Umio, NOS"
-        ]
+        ],
+        "value": []
       },
       "relationship_to_egj": {
         "label": "Uhusiano wa uvimbe na makutano ya umio na tumbo",
+        "type": "select",
         "options": [
           "Uvimbe uko wote ndani ya umio wa mirija na hauhusishi EGJ",
           "Kituo cha uvimbe kiko umio wa distali NA uvimbe unahusisha EGJ",
           "Kituo cha uvimbe kiko kwenye EGJ",
-          "Kituo cha uvimbe kiko sm 2 au chini ndani ya tumbo la proksimali/kardia na uvimbe unahusisha EGJ"
-        ]
+          "Kituo cha uvimbe kiko sm 2 au chini ndani ya tumbo la proksimali au kardia na uvimbe unahusisha EGJ",
+          "Haijabainishwa",
+          "Haiwezi kuamuliwa"
+        ],
+        "value": ""
       },
       "distance_of_center_from_egj": {
-        "label": "Umbali wa kituo cha uvimbe kutoka EGJ"
+        "label": "Umbali wa kituo cha uvimbe kutoka EGJ",
+        "type": "text",
+        "value": ""
       },
       "histologic_type": {
         "label": "Aina ya kihistolojia",
+        "type": "select",
         "options": [
           "Adenokarsinoma",
           "Karsinoma adenoidi-sistiki",
@@ -57,34 +75,42 @@
           "Karsinoma skwamasi verrukosi",
           "Karsinoma isiyotofautishwa",
           "Karsinoma inayofanana na lymphoepithelioma",
-          "Karsinoma neuroendokrini ya seli kubwa",
-          "Karsinoma neuroendokrini ya seli ndogo",
-          "Karsinoma neuroendokrini (iliyotofautishwa vibaya)",
-          "Karsinoma mchanganyiko ya skwamasi-neuroendokrini",
-          "Karsinoma mchanganyiko ya adenokarsinoma-neuroendokrini",
-          "Uvimbe mchanganyiko wa adenokarsinoma-neuroendokrini",
-          "G1, uvimbe neuroendokrini uliotofautishwa vizuri",
-          "G2, uvimbe neuroendokrini uliotofautishwa vizuri",
-          "G3, uvimbe neuroendokrini uliotofautishwa vizuri",
-          "Aina nyingine ya kihistolojia ambayo haijaorodheshwa (taja)",
+          "Karsinoma ya neuroendocrine ya seli kubwa",
+          "Karsinoma ya neuroendocrine ya seli ndogo",
+          "Karsinoma ya neuroendocrine (iliyotofautishwa vibaya)",
+          "Karsinoma mchanganyiko ya skwamasi-neuroendocrine",
+          "Karsinoma mchanganyiko ya adenokarsinoma-neuroendocrine",
+          "Uvimbe mchanganyiko wa adenokarsinoma-neuroendocrine",
+          "G1, uvimbe wa neuroendocrine uliotofautishwa vizuri",
+          "G2, uvimbe wa neuroendocrine uliotofautishwa vizuri",
+          "G3, uvimbe wa neuroendocrine uliotofautishwa vizuri",
+          "Aina nyingine ya kihistolojia ambayo haijaorodheshwa",
           "Karsinoma, aina haiwezi kubainishwa"
         ],
-        "comment": "Maoni"
+        "value": "",
+        "comment": { "label": "Maoni", "type": "text", "value": "" }
       },
       "histologic_grade": {
         "label": "Daraja la kihistolojia",
+        "type": "select",
         "options": [
           "G1, imetofautishwa vizuri",
           "G2, imetofautishwa kwa wastani",
           "G3, imetofautishwa vibaya, haijatofautishwa",
-          "GX, haiwezi kutathminiwa"
-        ]
+          "Nyingine",
+          "GX, haiwezi kutathminiwa",
+          "Haihusiki"
+        ],
+        "value": ""
       },
       "tumor_size": {
-        "label": "Ukubwa wa uvimbe"
+        "label": "Ukubwa wa uvimbe",
+        "type": "text",
+        "value": ""
       },
       "tumor_extent": {
         "label": "Kiwango cha uvimbe",
+        "type": "select",
         "options": [
           "Dysplasia ya daraja la juu / karsinoma in situ",
           "Huvamia lamina propria",
@@ -93,155 +119,236 @@
           "Huvamia muscularis propria",
           "Huvamia adventitia",
           "Huvamia miundo au viungo jirani",
+          "Haiwezi kuamuliwa",
+          "Hakuna ushahidi wa uvimbe wa msingi"
+        ],
+        "value": ""
+      },
+      "adjacent_structures": {
+        "label": "Miundo jirani iliyohusika",
+        "type": "multi_select",
+        "options": [
           "Pleura",
-          "Perikadiamu",
+          "Perikadi",
           "Mshipa wa azygos",
-          "Diaframu",
-          "Peritoneamu",
+          "Diafragmu",
+          "Peritonemu",
           "Aota",
           "Mwili wa vertebra",
           "Njia ya hewa",
-          "Hakuna ushahidi wa uvimbe wa msingi"
-        ]
+          "Nyingine"
+        ],
+        "value": []
       },
       "treatment_effect": {
         "label": "Athari ya matibabu",
+        "type": "select",
         "options": [
           "Hakuna tiba ya kabla ya upasuaji inayojulikana",
           "Ipo, hakuna seli hai za saratani (mwitikio kamili, alama 0)",
           "Ipo, seli moja moja au vikundi vidogo adimu vya seli za saratani (karibu mwitikio kamili, alama 1)",
-          "Ipo, saratani iliyobaki inaonyesha kurudi nyuma kwa uvimbe (mwitikio sehemu, alama 2)",
+          "Ipo, saratani iliyobaki ikionyesha kurudi nyuma kwa uvimbe wazi, lakini zaidi ya seli moja moja au vikundi vidogo adimu (mwitikio sehemu, alama 2)",
           "Ipo (haijabainishwa zaidi)",
-          "Haipo, saratani nyingi iliyobaki bila kurudi nyuma kwa uvimbe (mwitikio duni au hakuna, alama 3)"
-        ]
+          "Haipo, saratani nyingi iliyobaki bila kurudi nyuma kwa uvimbe wazi (mwitikio duni au hakuna, alama 3)",
+          "Haiwezi kuamuliwa"
+        ],
+        "value": ""
       },
       "lymphovascular_invasion": {
-        "label": "Uvamizi wa limfu/mishipa"
+        "label": "Uvamizi wa limfu na mishipa",
+        "type": "select",
+        "options": ["Haijaonekana", "Ipo", "Haiwezi kuamuliwa"],
+        "value": ""
       },
       "perineural_invasion": {
-        "label": "Uvamizi wa neva"
+        "label": "Uvamizi wa perinerali",
+        "type": "select",
+        "options": ["Haijaonekana", "Ipo", "Haiwezi kuamuliwa"],
+        "value": ""
       },
       "tumor_comment": {
-        "label": "Maoni kuhusu uvimbe"
-      },
-      "adjacent_structures": {}
+        "label": "Maoni kuhusu uvimbe",
+        "type": "text",
+        "value": ""
+      }
     }
   },
   "margins": {
-    "label": "PEMBEZO",
+    "label": "Pembezo",
     "fields": {
       "margin_status_invasive": {
         "label": "Hali ya pembezo kwa karsinoma vamizi",
+        "type": "select",
         "options": [
           "Pembezo zote hazina karsinoma vamizi",
-          "Dysplasia ya skwamasi ya daraja la chini iko kwenye pembezo",
-          "Dysplasia ya skwamasi ya daraja la juu iko kwenye pembezo",
-          "Dysplasia ya tezi ya daraja la chini iko kwenye pembezo",
-          "Dysplasia ya tezi ya daraja la juu iko kwenye pembezo",
-          "Metaplasia ya matumbo (Barrett esophagus) bila dysplasia iko kwenye pembezo"
-        ]
+          "Karsinoma vamizi ipo kwenye pembezo",
+          "Haihusiki"
+        ],
+        "value": ""
       },
       "closest_margins": {
-        "label": "Pembezo iliyo karibu zaidi na karsinoma vamizi (chagua zote zinazohusika)",
+        "label": "Pembezo iliyo karibu zaidi",
+        "type": "multi_select",
         "options": [
           "Proksimali",
           "Distali",
           "Radial",
           "Mukosa",
           "Kina",
-          "Nyingine (taja)",
-          "Haiwezi kubainishwa",
-          "Dysplasia ya skwamasi ya daraja la chini iko kwenye pembezo",
-          "Dysplasia ya skwamasi ya daraja la juu iko kwenye pembezo",
-          "Dysplasia ya tezi ya daraja la chini iko kwenye pembezo",
-          "Dysplasia ya tezi ya daraja la juu iko kwenye pembezo",
-          "Metaplasia ya matumbo (Barrett esophagus) bila dysplasia iko kwenye pembezo"
-        ]
+          "Nyingine",
+          "Haiwezi kuamuliwa"
+        ],
+        "value": []
       },
       "distance_to_closest_margin": {
-        "label": "Umbali kutoka karsinoma vamizi hadi pembezo iliyo karibu zaidi"
+        "label": "Umbali kutoka karsinoma vamizi hadi pembezo iliyo karibu zaidi",
+        "type": "text",
+        "value": ""
       },
       "dysplasia_and_barrett_margins": {
-        "label": "Hali ya pembezo kwa dysplasia na metaplasia ya matumbo (chagua yote yanayohusika)",
+        "label": "Hali ya pembezo kwa dysplasia na metaplasia ya matumbo",
+        "type": "multi_select",
         "options": [
           "Pembezo zote hazina dysplasia",
-          "Dysplasia ya skwamasi ya daraja la chini iko kwenye pembezo",
-          "Dysplasia ya skwamasi ya daraja la juu iko kwenye pembezo",
-          "Dysplasia ya tezi ya daraja la chini iko kwenye pembezo",
-          "Dysplasia ya tezi ya daraja la juu iko kwenye pembezo",
-          "Metaplasia ya matumbo (Barrett esophagus) bila dysplasia iko kwenye pembezo"
-        ]
+          "Dysplasia ya skwamasi ya daraja la chini ipo kwenye pembezo",
+          "Dysplasia ya skwamasi ya daraja la juu ipo kwenye pembezo",
+          "Dysplasia ya tezi ya daraja la chini ipo kwenye pembezo",
+          "Dysplasia ya tezi ya daraja la juu ipo kwenye pembezo",
+          "Metaplasia ya matumbo (Barrett esophagus) bila dysplasia ipo kwenye pembezo",
+          "Haihusiki"
+        ],
+        "value": []
       },
       "margin_comment": {
-        "label": "Maoni kuhusu pembezo"
+        "label": "Maoni kuhusu pembezo",
+        "type": "text",
+        "value": ""
       }
     }
   },
   "regional_lymph_nodes": {
-    "label": "NODI ZA LIMFU ZA KIKANDA",
+    "label": "Nodi za limfu za kikanda",
     "fields": {
       "status": {
         "label": "Hali ya nodi za limfu za kikanda",
+        "type": "select",
         "options": [
           "Haihusiki (hakuna nodi za limfu za kikanda zilizowasilishwa au kupatikana)",
           "Nodi za limfu za kikanda zipo",
           "Nodi zote za limfu za kikanda hazina uvimbe",
-          "Uvimbe upo kwenye nodi za limfu za kikanda"
-        ]
+          "Uvimbe upo katika nodi za limfu za kikanda"
+        ],
+        "value": ""
       },
       "number_with_tumor": {
-        "label": "Idadi ya nodi za limfu zenye uvimbe"
+        "label": "Idadi ya nodi za limfu zenye uvimbe",
+        "type": "text",
+        "value": ""
       },
       "number_examined": {
-        "label": "Idadi ya nodi za limfu zilizochunguzwa"
+        "label": "Idadi ya nodi za limfu zilizochunguzwa",
+        "type": "text",
+        "value": ""
       },
       "comment": {
-        "label": "Maoni kuhusu nodi za limfu za kikanda"
+        "label": "Maoni kuhusu nodi za limfu za kikanda",
+        "type": "text",
+        "value": ""
       }
     }
   },
   "distant_metastasis": {
-    "label": "METASTASI YA MBALI",
+    "label": "Metastasi ya mbali",
     "fields": {
       "sites": {
-        "label": "Maeneo ya mbali yaliyoathiriwa, ikiwa inahusika (chagua yote yanayohusika)",
+        "label": "Maeneo ya mbali yaliyoathiriwa",
+        "type": "multi_select",
         "options": [
+          "Haihusiki",
+          "Nodi za limfu zisizo za kikanda",
           "Ini",
-          "Nodi za limfu zisizo za kikanda"
-        ]
+          "Nyingine",
+          "Haiwezi kuamuliwa"
+        ],
+        "value": []
       }
     }
   },
   "pathologic_stage": {
-    "label": "UAINISHAJI WA HATUA YA KIPATHOLOJIA (pTNM, AJCC toleo la 8)",
+    "label": "Uainishaji wa hatua ya kipatholojia (pTNM, AJCC toleo la 8)",
+    "note": "Kuripoti makundi ya pT, pN, na pM inapohusika kunategemea taarifa zinazopatikana kwa daktari wa patholojia wakati ripoti inapotolewa. Kulingana na Toleo la 8 la AJCC (Sura ya 1), ni jukumu la daktari anayehusika kuanzisha hatua ya mwisho ya kipatholojia.",
     "fields": {
       "tnm_descriptors": {
-        "label": "Viashiria vya TNM (chagua yote yanayohusika)",
+        "label": "Viashiria vya TNM",
+        "type": "multi_select",
         "options": [
+          "Haihusiki",
           "m (uvimbe msingi mwingi)",
           "r (kurudia)",
           "y (baada ya matibabu)"
-        ]
+        ],
+        "value": []
       },
-      "pT_category": {},
-      "pN_category": {},
-      "pM_category": {}
+      "pT_category": {
+        "label": "Kundi la pT",
+        "type": "select",
+        "options": [
+          "pT haijatengwa (haiwezi kuamuliwa kulingana na taarifa za kipatholojia zilizopo)",
+          "pT0: Hakuna ushahidi wa uvimbe wa msingi",
+          "pTis: Dysplasia ya daraja la juu, inafafanuliwa kama seli mbaya zilizozuiliwa katika epitheliamu na utando wa msingi",
+          "pT1a: Uvimbe huvamia lamina propria au muscularis mucosae",
+          "pT1b: Uvimbe huvamia submukosa",
+          "pT1 (kikundi kidogo hakiwezi kubainishwa)",
+          "pT2: Uvimbe huvamia muscularis propria",
+          "pT3: Uvimbe huvamia adventitia",
+          "pT4a: Uvimbe huvamia pleura, perikadi, mshipa wa azygos, diafragmu, au peritonemu",
+          "pT4b: Uvimbe huvamia miundo mingine jirani kama aota, mwili wa vertebra, au njia ya hewa",
+          "pT4 (kikundi kidogo hakiwezi kubainishwa)"
+        ],
+        "value": ""
+      },
+      "pN_category": {
+        "label": "Kundi la pN",
+        "type": "select",
+        "options": [
+          "pN haijatengwa (hakuna nodi zilizowasilishwa au kupatikana)",
+          "pN haijatengwa (haiwezi kuamuliwa kulingana na taarifa za kipatholojia zilizopo)",
+          "pN0: Hakuna metastasi katika nodi za limfu za kikanda",
+          "pN1: Metastasi katika nodi moja au mbili za limfu za kikanda",
+          "pN2: Metastasi katika nodi tatu hadi sita za limfu za kikanda",
+          "pN3: Metastasi katika nodi saba au zaidi za limfu za kikanda"
+        ],
+        "value": ""
+      },
+      "pM_category": {
+        "label": "Kundi la pM",
+        "type": "select",
+        "options": [
+          "Haihusiki — pM haiwezi kubainishwa kutokana na vielelezo vilivyowasilishwa",
+          "pM1: Metastasi ya mbali"
+        ],
+        "value": ""
+      }
     }
   },
   "additional_findings": {
-    "label": "MATOKEO YA ZIADA",
+    "label": "Matokeo ya ziada",
     "fields": {
       "findings": {
-        "label": "Matokeo ya ziada (chagua yote yanayohusika)",
+        "label": "Matokeo ya ziada",
+        "type": "multi_select",
         "options": [
-          "Esophagitis (taja aina)",
-          "Gastritis (taja aina)",
+          "Hakuna iliyopatikana",
           "Metaplasia ya matumbo (Barrett esophagus)",
           "Dysplasia ya skwamasi ya daraja la chini",
           "Dysplasia ya skwamasi ya daraja la juu",
           "Dysplasia ya tezi ya daraja la chini",
-          "Dysplasia ya tezi ya daraja la juu"
-        ]
+          "Dysplasia ya tezi ya daraja la juu",
+          "Esofajitisi",
+          "Gastritisi",
+          "Nyingine"
+        ],
+        "value": []
       }
     }
   }

@@ -1,0 +1,274 @@
+{
+  "templateId": "urine_cytology_paris_system",
+  "templateName": "نموذج تقرير علم الخلايا البولية (نظام باريس لتقارير علم الخلايا البولية)",
+  "language": "ar",
+  "metadata": {
+    "caseType": "cytology",
+    "specimenCategory": "urine_cytology",
+    "organSystem": "urinary_tract",
+    "reportingSystem": "Paris System for Reporting Urinary Cytology"
+  },
+  "sections": [
+    {
+      "id": "specimen",
+      "title": "العينة",
+      "fields": [
+        {
+          "id": "specimen_type",
+          "label": "نوع العينة",
+          "type": "select",
+          "options": [
+            "بول مطروح تلقائياً",
+            "بول بالقسطرة",
+            "غسل المثانة",
+            "باربوتاج المثانة",
+            "غسل الحالب",
+            "غسل حويضة الكلية",
+            "بول تحويلة لفائف اللفائفي",
+            "أخرى"
+          ]
+        },
+        {
+          "id": "specimen_site",
+          "label": "موقع العينة",
+          "type": "select",
+          "options": [
+            "المثانة",
+            "الحالب الأيمن",
+            "الحالب الأيسر",
+            "حويضة الكلية اليمنى",
+            "حويضة الكلية اليسرى",
+            "السبيل البولي العلوي، غير محدد",
+            "السبيل البولي، غير محدد",
+            "أخرى"
+          ]
+        },
+        {
+          "id": "laterality",
+          "label": "الجانب (إن وجد)",
+          "type": "select",
+          "options": ["أيمن", "أيسر", "ثنائي الجانب", "غير منطبق"]
+        },
+        {
+          "id": "clinical_indication",
+          "label": "الدواعي السريرية",
+          "type": "multiselect",
+          "options": [
+            "بيلة دموية",
+            "متابعة سرطان الظهارة البولية",
+            "تاريخ مرضي لورم بولي منخفض الدرجة",
+            "تاريخ مرضي لسرطان بولي عالي الدرجة",
+            "تصوير أو تنظير مثانة مشبوه",
+            "أعراض بولية مهيجة",
+            "أخرى"
+          ]
+        },
+        {
+          "id": "clinical_indication_other",
+          "label": "دواعٍ سريرية أخرى",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "preparation_methods",
+      "title": "طرق التحضير",
+      "fields": [
+        {
+          "id": "preparation_methods_used",
+          "label": "طرق التحضير المستخدمة",
+          "type": "multiselect",
+          "options": ["لطاخات تقليدية", "سيتوسبين", "تحضير قائم على السائل", "بلوك خلوي"]
+        },
+        {
+          "id": "cell_block_prepared",
+          "label": "تم تحضير بلوك خلوي",
+          "type": "select",
+          "options": ["نعم", "لا"]
+        }
+      ]
+    },
+    {
+      "id": "adequacy",
+      "title": "كفاية العينة",
+      "fields": [
+        {
+          "id": "adequacy_status",
+          "label": "كفاية العينة",
+          "type": "select",
+          "options": ["كافية للتقييم", "خلوية محدودة ولكنها كافية", "غير كافية / غير تشخيصية"]
+        },
+        {
+          "id": "unsatisfactory_reason",
+          "label": "سبب عدم الكفاية",
+          "type": "multiselect",
+          "options": [
+            "قلة الخلايا البولية",
+            "سوء الحفظ أو التنكس",
+            "حجب بواسطة الدم",
+            "حجب بواسطة الالتهاب",
+            "حجب بواسطة مواد ملوثة أو مزلقات",
+            "حجم غير كافٍ",
+            "أخرى"
+          ]
+        },
+        {
+          "id": "unsatisfactory_reason_other",
+          "label": "سبب آخر",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "diagnostic_category",
+      "title": "الفئة التشخيصية (نظام باريس)",
+      "fields": [
+        {
+          "id": "paris_category",
+          "label": "الفئة التشخيصية",
+          "type": "select",
+          "options": [
+            "I. غير تشخيصي / غير كافٍ",
+            "II. سلبي لسرطان الظهارة البولية عالي الدرجة (NHGUC)",
+            "III. خلايا بولية غير نمطية (AUC)",
+            "IV. مشتبه بسرطان الظهارة البولية عالي الدرجة (SHGUC)",
+            "V. سرطان الظهارة البولية عالي الدرجة (HGUC)",
+            "VI. أورام خبيثة أخرى أولية أو نقيلية"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "negative_findings",
+      "title": "في حال كانت النتيجة سلبية لسرطان الظهارة البولية عالي الدرجة",
+      "fields": [
+        {
+          "id": "negative_findings_options",
+          "label": "النتائج",
+          "type": "multiselect",
+          "options": [
+            "خلايا بولية حميدة",
+            "خلايا بولية تفاعلية",
+            "تغيرات تنكسية",
+            "التهاب",
+            "بلورات",
+            "تغيرات مرتبطة بالحصيات",
+            "تأثير خلوي لفيروس البوليوما",
+            "تغيرات مرتبطة بالإجراءات الطبية",
+            "ورم بولي منخفض الدرجة أو لا يمكن استبعاده",
+            "أخرى"
+          ]
+        },
+        {
+          "id": "negative_findings_other",
+          "label": "نتيجة أخرى",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "atypical_suspicious_features",
+      "title": "السمات الخلوية غير النمطية أو المشبوهة",
+      "fields": [
+        {
+          "id": "cytologic_features",
+          "label": "السمات الخلوية الموجودة",
+          "type": "multiselect",
+          "options": [
+            "زيادة نسبة النواة إلى السيتوبلازم",
+            "فرط تصبغ النواة",
+            "عدم انتظام أغشية النواة",
+            "كروماتين خشن أو متكتل",
+            "تعدد الأشكال الخلوية",
+            "نويات بارزة",
+            "تنخر",
+            "انقسامات خلوية",
+            "تجمعات خلوية ثلاثية الأبعاد",
+            "أخرى"
+          ]
+        },
+        {
+          "id": "cytologic_features_other",
+          "label": "سمة خلوية أخرى",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "microscopic_description",
+      "title": "الوصف المجهري",
+      "fields": [
+        {
+          "id": "microscopic_description_text",
+          "label": "الوصف المجهري",
+          "type": "textarea"
+        }
+      ]
+    },
+    {
+      "id": "malignancy_subtype",
+      "title": "في حال الخباثة أو الأورام الأخرى، يُرجّح",
+      "fields": [
+        {
+          "id": "malignancy_favor",
+          "label": "يُرجّح",
+          "type": "multiselect",
+          "options": [
+            "سرطان ظهارة بولية عالي الدرجة",
+            "سرطان ظهارة بولية مع تمايز حرشفي",
+            "سرطان ظهارة بولية مع تمايز غدي",
+            "سرطان حرشفي الخلايا",
+            "سرطان غدي",
+            "سرطان صغير الخلايا / ورم عصبي صماوي",
+            "سرطان نقيلي",
+            "ورم دموي أو لمفاوي",
+            "أخرى"
+          ]
+        },
+        {
+          "id": "malignancy_favor_other",
+          "label": "ورم خبيث آخر",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "ancillary_studies",
+      "title": "الدراسات المساندة (إن أُجريت)",
+      "fields": [
+        {
+          "id": "urovysion_fish",
+          "label": "اختبار UroVysion FISH",
+          "type": "select",
+          "options": ["لم يُجرَ", "قيد الانتظار", "سلبي", "إيجابي", "غير حاسم"]
+        },
+        {
+          "id": "immunocytochemistry",
+          "label": "الكيمياء المناعية الخلوية",
+          "type": "text"
+        },
+        {
+          "id": "molecular_studies",
+          "label": "الدراسات الجزيئية",
+          "type": "text"
+        },
+        {
+          "id": "microbiology_stains_cultures",
+          "label": "صبغات أو مزروعات الأحياء الدقيقة",
+          "type": "text"
+        }
+      ]
+    },
+    {
+      "id": "comment_recommendation",
+      "title": "التعليق / التوصية",
+      "fields": [
+        {
+          "id": "comment_text",
+          "label": "التعليق / التوصية",
+          "type": "textarea"
+        }
+      ]
+    }
+  ]
+}

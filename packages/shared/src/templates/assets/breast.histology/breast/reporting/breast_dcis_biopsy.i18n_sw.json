@@ -1,11 +1,10 @@
 {
   "template_id": "breast_dcis_biopsy_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "protocol_posting_date": "June 2021",
   "lang": "sw",
   "title": "DCIS ya titi, biopsy",
-  "case_summary": {
-    "label": "Muhtasari wa kesi (DCIS ya titi: biopsy)",
-    "fields": {}
-  },
   "specimen": {
     "label": "Sampuli",
     "fields": {
@@ -13,19 +12,19 @@
         "label": "Utaratibu",
         "options": [
           "Biopsy ya sindano",
-          "Fine needle aspiration",
+          "Aspiration ya sindano nyembamba",
           "Nyingine",
           "Haijabainishwa"
         ],
-        "other_specify": "Eleza nyingine"
+        "type": "select",
+        "value": "",
+        "other_specify": "Nyingine (taja)"
       },
       "laterality": {
         "label": "Upande wa sampuli",
-        "options": [
-          "Kulia",
-          "Kushoto",
-          "Haijabainishwa"
-        ]
+        "options": ["Kulia", "Kushoto", "Haijabainishwa"],
+        "type": "select",
+        "value": ""
       }
     }
   },
@@ -35,25 +34,29 @@
       "tumor_site": {
         "label": "Eneo la uvimbe",
         "options": [
-          "Quadrant ya juu ya nje",
-          "Quadrant ya chini ya nje",
-          "Quadrant ya juu ya ndani",
-          "Quadrant ya chini ya ndani",
+          "Robo ya juu ya nje",
+          "Robo ya chini ya nje",
+          "Robo ya juu ya ndani",
+          "Robo ya chini ya ndani",
           "Katikati",
           "Chuchu",
           "Nafasi ya saa",
           "Haijabainishwa"
         ],
-        "clock_position_specify": "Eleza nafasi ya saa"
+        "type": "multi_select",
+        "value": [],
+        "clock_position_specify": { "label": "Nafasi ya saa (taja)", "type": "text", "value": "" }
       },
       "histologic_type": {
         "label": "Aina ya histolojia",
         "options": [
           "Ductal carcinoma in situ (DCIS)",
           "Ugonjwa wa Paget",
-          "Encapsulated papillary carcinoma bila carcinoma vamizi",
-          "Solid papillary carcinoma bila carcinoma vamizi"
-        ]
+          "Karsinoma ya papillary iliyofungwa bila karsinoma vamizi (encapsulated papillary carcinoma without invasive carcinoma)",
+          "Karsinoma ya papillary ngumu bila karsinoma vamizi (solid papillary carcinoma without invasive carcinoma)"
+        ],
+        "type": "select",
+        "value": ""
       },
       "architectural_patterns": {
         "label": "Miundo ya usanifu",
@@ -66,7 +69,9 @@
           "Solid",
           "Nyingine"
         ],
-        "other_specify": "Eleza mfumo mwingine"
+        "type": "multi_select",
+        "value": [],
+        "other_specify": "Nyingine (taja)"
       },
       "nuclear_grade": {
         "label": "Daraja la nyuklia",
@@ -77,8 +82,10 @@
           "Nyingine",
           "Haiwezi kubainishwa"
         ],
-        "other_specify": "Eleza daraja jingine",
-        "cannot_be_determined_specify": "Eleza 'haiwezi kubainishwa'"
+        "type": "select",
+        "value": "",
+        "other_specify": "Nyingine (taja)",
+        "cannot_be_determined_specify": "Haiwezi kuamuliwa (taja)"
       },
       "necrosis": {
         "label": "Nekrosisi",
@@ -89,8 +96,10 @@
           "Nyingine",
           "Haiwezi kubainishwa"
         ],
-        "other_specify": "Eleza kidonda kingine cha necrosis",
-        "cannot_be_determined_specify": "Eleza 'haiwezi kubainishwa'"
+        "type": "select",
+        "value": "",
+        "other_specify": "Nyingine (taja)",
+        "cannot_be_determined_specify": "Haiwezi kuamuliwa (taja)"
       },
       "microcalcifications": {
         "label": "Mikrokalsifikesheni",
@@ -100,7 +109,9 @@
           "Zipo katika tishu isiyo ya neoplasia",
           "Nyingine"
         ],
-        "other_specify": "Eleza kalcifikesheni nyingine"
+        "type": "multi_select",
+        "value": [],
+        "other_specify": "Nyingine (taja)"
       }
     }
   },
@@ -108,14 +119,10 @@
     "label": "Matokeo ya ziada",
     "fields": {
       "findings": {
-        "label": "Matokeo ya ziada"
+        "label": "Matokeo ya ziada",
+        "type": "text",
+        "value": ""
       }
     }
-  },
-  "domain": {
-    "fields": {}
-  },
-  "protocol_posting_date": {
-    "fields": {}
   }
 }

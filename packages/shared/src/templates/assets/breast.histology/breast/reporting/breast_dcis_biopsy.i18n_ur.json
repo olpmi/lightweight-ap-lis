@@ -1,31 +1,28 @@
 {
   "template_id": "breast_dcis_biopsy_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "protocol_posting_date": "June 2021",
   "lang": "ur",
-  "title": "بریسٹ DCIS، بایوپسی",
-  "case_summary": {
-    "label": "کیس خلاصہ (بریسٹ DCIS: بایوپسی)",
-    "fields": {}
+  "ui": {
+    "direction": "rtl"
   },
+  "title": "بریسٹ DCIS، بایوپسی",
   "specimen": {
     "label": "نمونہ",
     "fields": {
       "procedure": {
         "label": "طریقۂ کار",
-        "options": [
-          "نیڈل بایوپسی",
-          "فائن نیڈل ایسپیریشن",
-          "دیگر",
-          "واضح نہیں"
-        ],
-        "other_specify": "دوسرا بتائیں"
+        "options": ["نیڈل بایوپسی", "فائن نیڈل ایسپیریشن", "دیگر", "غیر متعین"],
+        "type": "select",
+        "value": "",
+        "other_specify": "دیگر (وضاحت کریں)"
       },
       "laterality": {
         "label": "نمونے کی جانب",
-        "options": [
-          "دائیں",
-          "بائیں",
-          "واضح نہیں"
-        ]
+        "options": ["دائیں", "بائیں", "غیر متعین"],
+        "type": "select",
+        "value": ""
       }
     }
   },
@@ -42,9 +39,15 @@
           "مرکزی",
           "نپل",
           "گھڑی کی پوزیشن",
-          "واضح نہیں"
+          "غیر متعین"
         ],
-        "clock_position_specify": "گھڑی کی پوزیشن بتائیں"
+        "type": "multi_select",
+        "value": [],
+        "clock_position_specify": {
+          "label": "گھڑی کی پوزیشن (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        }
       },
       "histologic_type": {
         "label": "ہسٹولوجک قسم",
@@ -53,7 +56,9 @@
           "پیجٹ بیماری",
           "انکیپسولیٹڈ پیپلری کارسینوما بغیر اِنویسیو کارسینوما",
           "سولڈ پیپلری کارسینوما بغیر اِنویسیو کارسینوما"
-        ]
+        ],
+        "type": "select",
+        "value": ""
       },
       "architectural_patterns": {
         "label": "معماری پیٹرن",
@@ -66,7 +71,9 @@
           "سولڈ",
           "دیگر"
         ],
-        "other_specify": "دوسرا آرکیٹیکچرل پیٹرن بتائیں"
+        "type": "multi_select",
+        "value": [],
+        "other_specify": "دیگر (وضاحت کریں)"
       },
       "nuclear_grade": {
         "label": "نیوکلیئر گریڈ",
@@ -77,8 +84,14 @@
           "دیگر",
           "متعین نہیں کیا جا سکتا"
         ],
-        "other_specify": "دوسرا نیوکلیئر گریڈ بتائیں",
-        "cannot_be_determined_specify": "'متعین نہیں' کی وضاحت"
+        "type": "select",
+        "value": "",
+        "other_specify": "دیگر (وضاحت کریں)",
+        "cannot_be_determined_specify": {
+          "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        }
       },
       "necrosis": {
         "label": "نیکروسس",
@@ -89,18 +102,25 @@
           "دیگر",
           "متعین نہیں کیا جا سکتا"
         ],
-        "other_specify": "دوسری نیکروسس بتائیں",
-        "cannot_be_determined_specify": "'متعین نہیں' کی وضاحت"
+        "type": "select",
+        "value": "",
+        "other_specify": "دیگر (وضاحت کریں)",
+        "cannot_be_determined_specify": {
+          "label": "متعین نہیں کیا جا سکتا (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        }
       },
       "microcalcifications": {
         "label": "مائیکروکیلسیفیکیشنز",
-        "options": [
-          "شناخت نہیں ہوئیں",
-          "DCIS میں موجود",
-          "غیر نیوپلاسٹک ٹشو میں موجود",
-          "دیگر"
-        ],
-        "other_specify": "دیگر مائیکرو کیلشیفیکیشنز بتائیں"
+        "options": ["شناخت نہیں ہوئیں", "DCIS میں موجود", "غیر نیوپلاسٹک ٹشو میں موجود", "دیگر"],
+        "type": "multi_select",
+        "value": [],
+        "other_specify": {
+          "label": "دیگر (وضاحت کریں)",
+          "type": "text",
+          "value": ""
+        }
       }
     }
   },
@@ -108,14 +128,10 @@
     "label": "اضافی مشاہدات",
     "fields": {
       "findings": {
-        "label": "اضافی مشاہدات"
+        "label": "اضافی مشاہدات",
+        "type": "text",
+        "value": ""
       }
     }
-  },
-  "domain": {
-    "fields": {}
-  },
-  "protocol_posting_date": {
-    "fields": {}
   }
 }

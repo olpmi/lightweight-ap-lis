@@ -1,6 +1,7 @@
 {
   "template_id": "breast_invasive_carcinoma_resection_v1",
   "domain": "anatomic_pathology",
+  "case_type": "histology",
   "title": "Breast Invasive Carcinoma, Resection",
   "protocol_posting_date": "June 2024",
   "standards": ["AJCC-UICC 8"],

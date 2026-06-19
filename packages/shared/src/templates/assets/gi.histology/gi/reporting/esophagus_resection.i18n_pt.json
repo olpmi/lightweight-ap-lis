@@ -1,0 +1,363 @@
+{
+  "template_id": "esophagus_resection_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "protocol_posting_date": "June 2021",
+  "lang": "pt",
+  "standards": ["AJCC-UICC 8"],
+  "title": "Esófago",
+  "specimen": {
+    "label": "Espécime",
+    "fields": {
+      "procedure": {
+        "label": "Procedimento",
+        "type": "select",
+        "options": [
+          "Ressecção endoscópica",
+          "Esofagectomia",
+          "Esofagogastrectomia",
+          "Outro",
+          "Não especificado"
+        ],
+        "value": "",
+        "other_specify": {
+          "label": "Outro (especificar)",
+          "type": "text",
+          "value": ""
+        }
+      }
+    }
+  },
+  "tumor": {
+    "label": "Tumor",
+    "fields": {
+      "tumor_site": {
+        "label": "Local do tumor",
+        "type": "multi_select",
+        "options": [
+          "Esófago cervical (proximal)",
+          "Esófago médio, torácico superior",
+          "Esófago médio, torácico médio",
+          "Esófago médio, SOE",
+          "Esófago distal",
+          "Junção esofagogástrica (JEG)",
+          "Estômago proximal / cárdia",
+          "Outro",
+          "Esófago, SOE"
+        ],
+        "value": []
+      },
+      "relationship_to_egj": {
+        "label": "Relação do tumor com a junção esofagogástrica",
+        "type": "select",
+        "options": [
+          "Inteiramente dentro do esófago tubular sem envolvimento da JEG",
+          "Ponto médio do tumor no esófago distal e envolve a JEG",
+          "Ponto médio do tumor localizado na JEG",
+          "Ponto médio do tumor a 2 cm ou menos no estômago proximal/cárdia e envolve a JEG",
+          "Não especificado",
+          "Não é possível determinar"
+        ],
+        "value": ""
+      },
+      "distance_of_center_from_egj": {
+        "label": "Distância do centro do tumor à JEG",
+        "type": "text",
+        "value": ""
+      },
+      "histologic_type": {
+        "label": "Tipo histológico",
+        "type": "select",
+        "options": [
+          "Adenocarcinoma",
+          "Carcinoma adenoide cístico",
+          "Carcinoma mucoepidermoide",
+          "Carcinoma adenoescamoso",
+          "Carcinoma de células escamosas",
+          "Carcinoma de células escamosas basaloide",
+          "Carcinoma de células escamosas de células fusiformes",
+          "Carcinoma de células escamosas verrucoso",
+          "Carcinoma indiferenciado",
+          "Carcinoma semelhante a linfoepitelioma",
+          "Carcinoma neuroendócrino de grandes células",
+          "Carcinoma neuroendócrino de pequenas células",
+          "Carcinoma neuroendócrino (pouco diferenciado)",
+          "Carcinoma misto de células escamosas-neuroendócrino",
+          "Carcinoma misto de adenocarcinoma-neuroendócrino",
+          "Tumor misto de adenocarcinoma-neuroendócrino",
+          "Tumor neuroendócrino bem diferenciado G1",
+          "Tumor neuroendócrino bem diferenciado G2",
+          "Tumor neuroendócrino bem diferenciado G3",
+          "Outro",
+          "Carcinoma, tipo não determinável"
+        ],
+        "value": "",
+        "comment": {
+          "label": "Comentário",
+          "type": "text",
+          "value": ""
+        }
+      },
+      "histologic_grade": {
+        "label": "Grau histológico",
+        "type": "select",
+        "options": [
+          "G1, bem diferenciado",
+          "G2, moderadamente diferenciado",
+          "G3, pouco diferenciado / indiferenciado",
+          "Outro",
+          "GX, não é possível avaliar",
+          "Não aplicável"
+        ],
+        "value": ""
+      },
+      "tumor_size": {
+        "label": "Tamanho do tumor",
+        "type": "text",
+        "value": ""
+      },
+      "tumor_extent": {
+        "label": "Extensão do tumor",
+        "type": "select",
+        "options": [
+          "Displasia de alto grau / carcinoma in situ",
+          "Invade a lamina propria",
+          "Invade a muscularis mucosae",
+          "Invade a submucosa",
+          "Invade a muscularis propria",
+          "Invade a adventícia",
+          "Invade estruturas ou órgãos adjacentes",
+          "Não é possível determinar",
+          "Sem evidência de tumor primário"
+        ],
+        "value": ""
+      },
+      "adjacent_structures": {
+        "label": "Estruturas adjacentes envolvidas",
+        "type": "multi_select",
+        "options": [
+          "Pleura",
+          "Pericárdio",
+          "Veia ázigos",
+          "Diafragma",
+          "Peritoneu",
+          "Aorta",
+          "Corpo vertebral",
+          "Via aérea",
+          "Outro"
+        ],
+        "value": []
+      },
+      "treatment_effect": {
+        "label": "Efeito do tratamento",
+        "type": "select",
+        "options": [
+          "Sem terapia pré-cirúrgica conhecida",
+          "Resposta completa (pontuação 0)",
+          "Resposta quase completa (pontuação 1)",
+          "Resposta parcial (pontuação 2)",
+          "Presente, SOE",
+          "Resposta fraca ou ausente (pontuação 3)",
+          "Não é possível determinar"
+        ],
+        "value": ""
+      },
+      "lymphovascular_invasion": {
+        "label": "Invasão linfovascular",
+        "type": "select",
+        "options": ["Não identificada", "Presente", "Não é possível determinar"],
+        "value": ""
+      },
+      "perineural_invasion": {
+        "label": "Invasão perineural",
+        "type": "select",
+        "options": ["Não identificada", "Presente", "Não é possível determinar"],
+        "value": ""
+      },
+      "tumor_comment": {
+        "label": "Comentário sobre o tumor",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+  "margins": {
+    "label": "Margens",
+    "fields": {
+      "margin_status_invasive": {
+        "label": "Estado das margens para carcinoma invasivo",
+        "type": "select",
+        "options": [
+          "Todas as margens negativas para carcinoma invasivo",
+          "Carcinoma invasivo presente na margem",
+          "Não aplicável"
+        ],
+        "value": ""
+      },
+      "closest_margins": {
+        "label": "Margem(ns) mais próxima(s)",
+        "type": "multi_select",
+        "options": [
+          "Proximal",
+          "Distal",
+          "Radial",
+          "Mucosa",
+          "Profunda",
+          "Outro",
+          "Não é possível determinar"
+        ],
+        "value": []
+      },
+      "distance_to_closest_margin": {
+        "label": "Distância à margem mais próxima",
+        "type": "text",
+        "value": ""
+      },
+      "dysplasia_and_barrett_margins": {
+        "label": "Estado das margens para displasia / metaplasia intestinal",
+        "type": "multi_select",
+        "options": [
+          "Todas as margens negativas para displasia",
+          "Displasia escamosa de baixo grau na margem",
+          "Displasia escamosa de alto grau na margem",
+          "Displasia glandular de baixo grau na margem",
+          "Displasia glandular de alto grau na margem",
+          "Metaplasia intestinal (esófago de Barrett) na margem",
+          "Não aplicável"
+        ],
+        "value": []
+      },
+      "margin_comment": {
+        "label": "Comentário sobre as margens",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+  "regional_lymph_nodes": {
+    "label": "Gânglios linfáticos regionais",
+    "fields": {
+      "status": {
+        "label": "Estado dos gânglios linfáticos regionais",
+        "type": "select",
+        "options": [
+          "Não aplicável",
+          "Gânglios linfáticos regionais presentes",
+          "Todos os gânglios linfáticos regionais negativos para tumor",
+          "Tumor presente em gânglio(s) linfático(s) regional(is)"
+        ],
+        "value": ""
+      },
+      "number_with_tumor": {
+        "label": "Número de gânglios linfáticos com tumor",
+        "type": "text",
+        "value": ""
+      },
+      "number_examined": {
+        "label": "Número de gânglios linfáticos examinados",
+        "type": "text",
+        "value": ""
+      },
+      "comment": {
+        "label": "Comentário sobre os gânglios linfáticos regionais",
+        "type": "text",
+        "value": ""
+      }
+    }
+  },
+  "distant_metastasis": {
+    "label": "Metástases à distância",
+    "fields": {
+      "sites": {
+        "label": "Local(is) à distância envolvido(s)",
+        "type": "multi_select",
+        "options": [
+          "Não aplicável",
+          "Gânglio(s) linfático(s) não regional(is)",
+          "Fígado",
+          "Outro",
+          "Não é possível determinar"
+        ],
+        "value": []
+      }
+    }
+  },
+  "pathologic_stage": {
+    "label": "Classificação do estadiamento patológico (pTNM, AJCC 8ª Edição)",
+    "note": "A notificação das categorias pT, pN e, quando aplicável, pM baseia-se nas informações disponíveis para o patologista no momento da emissão do relatório. Conforme o AJCC (Capítulo 1, 8ª Ed.), cabe ao médico responsável estabelecer o estadiamento patológico final com base em todas as informações pertinentes, incluindo, mas não se limitando a, este relatório de anatomia patológica.",
+    "fields": {
+      "tnm_descriptors": {
+        "label": "Descritores TNM",
+        "type": "multi_select",
+        "options": [
+          "Não aplicável",
+          "m (tumores primários múltiplos)",
+          "r (recidiva)",
+          "y (pós-tratamento)"
+        ],
+        "value": []
+      },
+      "pT_category": {
+        "label": "Categoria pT",
+        "type": "select",
+        "options": [
+          "pT não atribuído (não é possível determinar com base nas informações patológicas disponíveis)",
+          "pT0: Sem evidência de tumor primário",
+          "pTis: Displasia de alto grau, definida como células malignas confinadas ao epitélio pela membrana basal",
+          "pT1a: Tumor invade a lamina propria ou a muscularis mucosae",
+          "pT1b: Tumor invade a submucosa",
+          "pT1 (subcategoria não determinável)",
+          "pT2: Tumor invade a muscularis propria",
+          "pT3: Tumor invade a adventícia",
+          "pT4a: Tumor invade a pleura, o pericárdio, a veia ázigos, o diafragma ou o peritoneu",
+          "pT4b: Tumor invade outras estruturas adjacentes, como a aorta, o corpo vertebral ou a via aérea",
+          "pT4 (subcategoria não determinável)"
+        ],
+        "value": ""
+      },
+      "pN_category": {
+        "label": "Categoria pN",
+        "type": "select",
+        "options": [
+          "pN não atribuído (nenhum gânglio submetido ou encontrado)",
+          "pN não atribuído (não é possível determinar com base nas informações patológicas disponíveis)",
+          "pN0: Sem metástase em gânglio linfático regional",
+          "pN1: Metástase num ou dois gânglios linfáticos regionais",
+          "pN2: Metástase em três a seis gânglios linfáticos regionais",
+          "pN3: Metástase em sete ou mais gânglios linfáticos regionais"
+        ],
+        "value": ""
+      },
+      "pM_category": {
+        "label": "Categoria pM",
+        "type": "select",
+        "options": [
+          "Não aplicável — pM não pode ser determinado a partir do(s) espécime(s) submetido(s)",
+          "pM1: Metástase à distância"
+        ],
+        "value": ""
+      }
+    }
+  },
+  "additional_findings": {
+    "label": "Achados adicionais",
+    "fields": {
+      "findings": {
+        "label": "Achados adicionais",
+        "type": "multi_select",
+        "options": [
+          "Nenhum identificado",
+          "Metaplasia intestinal (esófago de Barrett)",
+          "Displasia escamosa de baixo grau",
+          "Displasia escamosa de alto grau",
+          "Displasia glandular de baixo grau",
+          "Displasia glandular de alto grau",
+          "Esofagite",
+          "Gastrite",
+          "Outro"
+        ],
+        "value": []
+      }
+    }
+  }
+}

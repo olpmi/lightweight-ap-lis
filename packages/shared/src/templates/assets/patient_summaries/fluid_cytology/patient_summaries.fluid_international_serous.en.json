@@ -1,0 +1,50 @@
+{
+  "templateId": "fluid_cytology_international_system_serous_fluid",
+  "summaryType": "rule_based_patient_facing_summary",
+  "version": "1.0",
+  "language": "en",
+  "system": "International System for Reporting Serous Fluid Cytopathology",
+  "triggerField": "diagnostic_category",
+  "summaries": {
+    "isrsfc_i_non_diagnostic": {
+      "professionalLabel": "Category I: Non-diagnostic (ND)",
+      "patientTitle": "The fluid sample was not enough for a clear diagnosis",
+      "plainLanguageSummary": "The fluid sample did not contain enough useful cells, or the sample quality was limited, so a clear diagnosis could not be made.",
+      "whatThisMeans": "This does not mean cancer was found. It means the sample was not adequate enough to provide a reliable answer.",
+      "possibleNextSteps": "Your doctor may recommend repeat sampling or further tests depending on your symptoms, imaging, and clinical history.",
+      "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
+    },
+    "isrsfc_ii_negative_for_malignancy": {
+      "professionalLabel": "Category II: Negative for Malignancy (NFM)",
+      "patientTitle": "No cancer cells seen in the fluid sample",
+      "plainLanguageSummary": "The fluid sample did not show cancer cells.",
+      "whatThisMeans": "This is reassuring, but the cause of the fluid collection still needs to be interpreted together with your clinical findings.",
+      "possibleNextSteps": "Your doctor may continue to investigate or treat non-cancer causes such as infection, inflammation, heart, liver, kidney, or other medical conditions.",
+      "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
+    },
+    "isrsfc_iii_aus": {
+      "professionalLabel": "Category III: Atypia of Undetermined Significance (AUS)",
+      "patientTitle": "Some unusual cells seen",
+      "plainLanguageSummary": "The fluid sample shows some cells that look unusual, but the findings are not enough to diagnose cancer.",
+      "whatThisMeans": "This is an indeterminate result. Further assessment may be needed, especially if there is clinical or imaging concern.",
+      "possibleNextSteps": "Your doctor may recommend repeat fluid testing, cell block studies, imaging review, or tissue biopsy depending on the situation.",
+      "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
+    },
+    "isrsfc_iv_suspicious_for_malignancy": {
+      "professionalLabel": "Category IV: Suspicious for Malignancy (SFM)",
+      "patientTitle": "Suspicious cells seen in the fluid sample",
+      "plainLanguageSummary": "The fluid sample shows cells that are suspicious for cancer, but the findings may not be complete enough for a definite diagnosis.",
+      "whatThisMeans": "There is significant concern, and further evaluation is usually needed.",
+      "possibleNextSteps": "Your doctor may recommend additional tests, tissue biopsy, imaging, or specialist referral.",
+      "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
+    },
+    "isrsfc_v_malignant": {
+      "professionalLabel": "Category V: Malignant (MAL)",
+      "patientTitle": "Cancer cells identified in the fluid sample",
+      "plainLanguageSummary": "The fluid sample shows malignant cells, meaning cancer cells were identified.",
+      "whatThisMeans": "This result may indicate that cancer is present in or involving the body cavity from which the fluid was taken.",
+      "possibleNextSteps": "Your doctor will interpret this with your history and imaging and may arrange further tests or treatment planning.",
+      "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
+    }
+  }
+}

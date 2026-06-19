@@ -1,0 +1,134 @@
+{
+  "template_id": "gastric_tumor_resection_gross_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "lang": "ur",
+  "ui": {
+    "direction": "rtl"
+  },
+  "title": "معدہ کی رسولی ریسیکشن (ظاہری معائنہ ٹیمپلیٹ)",
+  "specimen": {
+    "label": "نمونہ",
+    "fields": {
+      "type_of_resection": {
+        "label": "ریسیکشن کی قسم",
+        "options": [
+          "ایسوفاگو-گیسٹریکٹومی",
+          "مکمل گیسٹریکٹومی",
+          "جزوی گیسٹریکٹومی، قریبی حصہ",
+          "جزوی گیسٹریکٹومی، بعیدی حصہ",
+          "دیگر"
+        ],
+        "other_specify": ""
+      },
+      "stomach_greater_curvature_mm": {
+        "label": "معدہ، بڑا خم (ملی میٹر)"
+      },
+      "stomach_lesser_curvature_mm": {
+        "label": "معدہ، چھوٹا خم (ملی میٹر)"
+      },
+      "esophagus_mm": {
+        "label": "غذائی نالی (ملی میٹر)"
+      },
+      "duodenum_mm": {
+        "label": "گرہنی (ملی میٹر)"
+      }
+    }
+  },
+  "tumor": {
+    "label": "رسولی",
+    "fields": {
+      "macroscopic_tumor_site": {
+        "label": "رسولی کا ظاہری مقام",
+        "options": [
+          "کارڈیا",
+          "فنڈس",
+          "جسم",
+          "اینٹرم",
+          "پائلورس",
+          "چھوٹا خم",
+          "بڑا خم",
+          "اگلی دیوار",
+          "پچھلی دیوار"
+        ]
+      },
+      "morphologic_classification": {
+        "label": "مورفولوجیکل درجہ بندی",
+        "options": [
+          "قسم 0-I (ابھری ہوئی)",
+          "قسم 0-IIa (بلند)",
+          "قسم 0-IIb (چپٹی)",
+          "قسم 0-IIc (دبی ہوئی)",
+          "قسم 0-III (کھدی ہوئی)",
+          "قسم I (پولیپ نما)",
+          "قسم II (فنجی نما)",
+          "قسم III (زخم دار)",
+          "قسم IV (نفوذ کرنے والی)"
+        ]
+      },
+      "tumor_dimensions_mm": {
+        "label": "رسولی کی پیمائشیں (ملی میٹر)"
+      },
+      "distance_to_proximal_margin_mm": {
+        "label": "قریبی حاشیے تک فاصلہ (ملی میٹر)"
+      },
+      "distance_to_distal_margin_mm": {
+        "label": "دور حاشیے تک فاصلہ (ملی میٹر)"
+      },
+      "distance_to_lesser_curvature_margin_mm": {
+        "label": "چھوٹے خم کے حاشیے تک فاصلہ (ملی میٹر)"
+      },
+      "distance_to_greater_curvature_margin_mm": {
+        "label": "بڑے خم کے حاشیے تک فاصلہ (ملی میٹر)"
+      }
+    }
+  },
+  "lymph_nodes": {
+    "label": "لمف نوڈز",
+    "fields": {
+      "number_identified": {
+        "label": "شناخت شدہ تعداد"
+      },
+      "size_range_min_mm": {
+        "label": "سائز کی کم از کم حد (ملی میٹر)"
+      },
+      "size_range_max_mm": {
+        "label": "سائز کی زیادہ سے زیادہ حد (ملی میٹر)"
+      }
+    }
+  },
+  "block_identification_key": {
+    "label": "بلاک شناختی کلید",
+    "fields": {
+      "tumor_representative_sections": {
+        "label": "رسولی (نمائندہ حصے)"
+      },
+      "proximal_margin": {
+        "label": "قریبی حاشیہ"
+      },
+      "distal_margin": {
+        "label": "دور حاشیہ"
+      },
+      "circumferential_non_peritonealised_margin": {
+        "label": "محیطی / غیر پیریٹونیلائزڈ حاشیہ"
+      },
+      "non_neoplastic_stomach": {
+        "label": "غیر رسولی معدہ"
+      },
+      "lymph_nodes": {
+        "label": "لمف نوڈز"
+      }
+    }
+  },
+  "grossing": {
+    "label": "ظاہری معائنہ",
+    "fields": {
+      "grossed_by": {
+        "label": "ظاہری معائنہ کرنے والا"
+      },
+      "date": {
+        "label": "تاریخ"
+      }
+    }
+  }
+}

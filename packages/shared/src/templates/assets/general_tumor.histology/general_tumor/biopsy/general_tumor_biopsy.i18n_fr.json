@@ -1,5 +1,8 @@
 {
   "template_id": "general_tumor_biopsy_v1",
+  "domain": "anatomic_pathology",
+  "case_type": "histology",
+  "protocol_posting_date": "June 2021",
   "lang": "fr",
   "title": "Biopsie tumorale générale",
   "clinical": {
@@ -7,48 +10,50 @@
     "fields": {
       "treatment_history": {
         "label": "Antécédents thérapeutiques",
+        "type": "select",
         "options": [
           "Aucun traitement antérieur connu",
           "Traitement antérieur administré",
           "Non précisé"
         ],
-        "prior_treatment_specify": "Traitement antérieur, préciser"
+        "value": "",
+        "prior_treatment_specify": "Traitement antérieur administré, préciser"
       }
     }
   },
   "specimen": {
-    "label": "Pièce",
+    "label": "Prélèvement",
     "fields": {
       "site": {
-        "label": "Site du prélèvement"
+        "label": "Site du prélèvement",
+        "type": "text",
+        "value": ""
       },
       "laterality": {
         "label": "Latéralité du prélèvement",
-        "options": [
-          "Droite",
-          "Gauche",
-          "Non précisé",
-          "Non applicable"
-        ]
+        "type": "select",
+        "options": ["Droite", "Gauche", "Non précisé", "Non applicable"],
+        "value": ""
       },
       "procedure": {
         "label": "Procédure",
+        "type": "select",
         "options": [
-          "Biopsie à l’aiguille",
+          "Biopsie à l'aiguille",
           "Biopsie incisionnelle",
           "Biopsie excisionnelle",
-          "Ponction à l’aiguille fine",
+          "Ponction à l'aiguille fine",
           "Biopsie, sans autre précision",
           "Autre"
         ],
+        "value": "",
         "other_specify": "Autre, préciser"
       },
       "adequacy": {
         "label": "Adéquation du prélèvement",
-        "options": [
-          "Adéquat",
-          "Sous-optimal"
-        ],
+        "type": "select",
+        "options": ["Adéquat", "Sous-optimal"],
+        "value": "",
         "suboptimal_explain": "Sous-optimal, expliquer"
       }
     }
@@ -57,31 +62,33 @@
     "label": "Tumeur",
     "fields": {
       "histologic_type": {
-        "label": "Type histologique"
+        "label": "Type histologique",
+        "type": "text",
+        "value": ""
       },
       "histologic_grade": {
-        "label": "Grade histologique"
+        "label": "Grade histologique",
+        "type": "text",
+        "value": ""
       },
       "lymphovascular_invasion": {
         "label": "Invasion lymphovasculaire",
-        "options": [
-          "Non identifiée",
-          "Présente",
-          "Ne peut pas être déterminée"
-        ],
-        "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
+        "type": "select",
+        "options": ["Non identifiée", "Présente", "Ne peut pas être déterminée"],
+        "value": "",
+        "cannot_be_determined_specify": "Ne peut pas être déterminée, préciser"
       },
       "perineural_invasion": {
         "label": "Invasion périnerveuse",
-        "options": [
-          "Non identifiée",
-          "Présente",
-          "Ne peut pas être déterminée"
-        ],
-        "cannot_be_determined_specify": "Ne peut pas être déterminé, préciser"
+        "type": "select",
+        "options": ["Non identifiée", "Présente", "Ne peut pas être déterminée"],
+        "value": "",
+        "cannot_be_determined_specify": "Ne peut pas être déterminée, préciser"
       },
       "additional_pathologic_findings": {
-        "label": "Résultats pathologiques supplémentaires"
+        "label": "Résultats pathologiques supplémentaires",
+        "type": "text",
+        "value": ""
       }
     }
   }

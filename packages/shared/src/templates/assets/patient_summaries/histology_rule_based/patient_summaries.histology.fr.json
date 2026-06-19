@@ -1,0 +1,272 @@
+{
+  "metadata": {
+    "id": "patient_summaries.histology.fr",
+    "language": "fr",
+    "version": "1.0.0",
+    "title": "Résumés d'histologie à l'intention des patients",
+    "description": "Résumés en français basés sur des règles, à l'intention des patients, pour les modèles d'histologie actuels. Ces résumés utilisent un langage simple et visent à aider les patients à comprendre la signification générale de leur résultat anatomopathologique.",
+    "scope": [
+      "Biopsie de carcinome invasif du sein",
+      "Résection de carcinome invasif du sein",
+      "Biopsie de CCIS du sein",
+      "Résection de CCIS du sein",
+      "Statut des biomarqueurs du sein",
+      "Biopsie du col de l'utérus",
+      "Résection du col de l'utérus",
+      "Endomètre",
+      "Ovaire, trompe de Fallope et péritoine primaire",
+      "Biopsie de tumeur générale",
+      "Résection de tumeur générale",
+      "Résection de tumeur maligne colorectale",
+      "Tumeur de l'œsophage",
+      "Tumeur stromale gastro-intestinale",
+      "Résection de tumeur gastrique",
+      "Biopsie de prostate par carotte",
+      "Prostatectomie",
+      "Biopsie de tumeur pulmonaire"
+    ],
+    "note": "Ce fichier n'inclut pas les résumés relatifs aux lymphomes, aux tumeurs bénignes ou aux affections inflammatoires, car ceux-ci sont hors du périmètre de l'ensemble de modèles d'histologie fourni."
+  },
+  "global_disclaimer": "Ce résumé est rédigé dans un langage plus simple pour vous aider à comprendre le compte rendu anatomopathologique. Il ne remplace pas la discussion avec votre médecin ou votre équipe soignante, qui vous expliqueront ce que le résultat signifie pour votre prise en charge.",
+  "common_terms": {
+    "biopsy": "Une biopsie est un petit prélèvement de tissu effectué afin d'être examiné au microscope.",
+    "resection": "Une résection est une intervention chirurgicale au cours de laquelle un fragment de tissu plus important, ou un organe, est retiré et examiné.",
+    "malignant": "Malin signifie cancéreux.",
+    "invasive": "Invasif signifie que le cancer a envahi les tissus environnants et ne se limite pas à la surface de la muqueuse.",
+    "in_situ": "In situ signifie que des cellules anormales sont présentes mais n'ont pas envahi les tissus environnants.",
+    "grade": "Le grade décrit l'aspect des cellules cancéreuses au microscope. Les tumeurs de grade élevé ont souvent un comportement plus agressif.",
+    "margin": "La marge est le bord du tissu retiré lors de l'intervention chirurgicale. Si la tumeur est présente à la marge, un traitement complémentaire peut parfois être nécessaire.",
+    "lymph_node": "Les ganglions lymphatiques sont de petites glandes du système immunitaire qui peuvent parfois contenir des cellules cancéreuses si le cancer s'est propagé.",
+    "lymphovascular_invasion": "L'invasion lymphovasculaire signifie que des cellules cancéreuses sont observées à l'intérieur de petits vaisseaux sanguins ou canaux lymphatiques.",
+    "perineural_invasion": "L'invasion périneurale signifie que des cellules cancéreuses sont observées autour ou le long des nerfs.",
+    "biomarker": "Un biomarqueur est un résultat de test spécifique qui peut aider à orienter le traitement."
+  },
+  "grade_language": {
+    "grade_1": "grade 1, ce qui signifie que les cellules cancéreuses semblent peu anormales et peuvent croître plus lentement",
+    "grade_2": "grade intermédiaire",
+    "grade_3": "grade 3, ce qui signifie que les cellules cancéreuses semblent très anormales et peuvent avoir un comportement plus agressif",
+    "well_differentiated": "bien différencié, ce qui signifie que les cellules tumorales ressemblent encore quelque peu aux cellules normales dont elles sont issues",
+    "moderately_differentiated": "moyennement différencié, ce qui signifie que les cellules tumorales présentent un degré intermédiaire d'anomalie",
+    "poorly_differentiated": "peu différencié, ce qui signifie que les cellules tumorales semblent très anormales et peuvent avoir un comportement plus agressif",
+    "undifferentiated": "indifférencié, ce qui signifie que les cellules tumorales semblent très anormales et ne ressemblent plus aux cellules normales dont elles sont issues",
+    "low_grade": "bas grade, ce qui signifie que les cellules tumorales semblent peu anormales et peuvent croître plus lentement",
+    "high_grade": "haut grade, ce qui signifie que les cellules tumorales semblent très anormales et peuvent avoir un comportement plus agressif",
+    "not_applicable": "aucun grade standard n'a été attribué dans ce compte rendu",
+    "cannot_be_assessed": "ne peut pas être évalué sur cet échantillon",
+    "not_specified": "non précisé dans ce compte rendu"
+  },
+  "shared_sentence_blocks": {
+    "biopsy_limited_sample": "Ce prélèvement étant un petit échantillon de tissu, la taille et l'étendue complètes de la tumeur pourront nécessiter une évaluation sur une pièce opératoire plus volumineuse, ou à l'aide de l'imagerie et d'autres données cliniques.",
+    "resection_more_information": "Cette pièce opératoire étant plus volumineuse, le compte rendu peut inclure des informations telles que la taille de la tumeur, les marges, les ganglions lymphatiques et la présence d'une extension aux tissus voisins.",
+    "additional_tests": "Des examens complémentaires pourront être réalisés afin de mieux caractériser la tumeur ou d'aider à orienter le traitement.",
+    "team_interpretation": "Votre équipe soignante interprétera ce résultat en tenant compte des données de votre examen clinique, de l'imagerie et des autres résultats d'analyses."
+  },
+  "template_groups": {
+    "breast": {
+      "invasive_carcinoma_biopsy": {
+        "label": "Carcinome invasif du sein, biopsie",
+        "summary": "La biopsie du sein révèle un cancer du sein invasif. Cela signifie que des cellules cancéreuses sont présentes et ont envahi le tissu mammaire environnant. Le compte rendu peut décrire le type de cancer du sein et son grade, qui indique l'aspect des cellules au microscope. Des tests de biomarqueurs du sein tels que les récepteurs aux œstrogènes (RE), les récepteurs à la progestérone (RP), HER2 et Ki67 sont souvent utilisés pour orienter le traitement. {biopsy_limited_sample}"
+      },
+      "invasive_carcinoma_resection": {
+        "label": "Carcinome invasif du sein, résection",
+        "summary": "La pièce opératoire mammaire révèle un cancer du sein invasif. Cela signifie que des cellules cancéreuses étaient présentes et avaient envahi le tissu mammaire environnant. Le compte rendu peut décrire le type de tumeur, le grade, la taille, l'atteinte éventuelle des ganglions lymphatiques et la proximité ou la présence de la tumeur aux marges chirurgicales. Les tests de biomarqueurs du sein tels que RE, RP, HER2 et Ki67 aident à guider les décisions thérapeutiques. {resection_more_information}"
+      },
+      "dcis_biopsy": {
+        "label": "CCIS du sein, biopsie",
+        "summary": "La biopsie du sein révèle un carcinome canalaire in situ, également appelé CCIS. Le CCIS signifie que des cellules anormales de type cancéreux sont présentes à l'intérieur des canaux mammaires, mais n'ont pas envahi le tissu mammaire environnant dans cet échantillon. Le compte rendu peut décrire le grade, le type architectural et la présence éventuelle de nécrose ou de calcifications. {biopsy_limited_sample}"
+      },
+      "dcis_resection": {
+        "label": "CCIS du sein, résection",
+        "summary": "La pièce opératoire mammaire révèle un carcinome canalaire in situ, également appelé CCIS. Le CCIS signifie que des cellules anormales de type cancéreux sont présentes à l'intérieur des canaux mammaires, mais n'ont pas envahi le tissu mammaire environnant. Le compte rendu peut décrire la taille du CCIS, le grade, la présence éventuelle de nécrose et la proximité ou la présence du CCIS aux marges chirurgicales."
+      },
+      "biomarker_status": {
+        "label": "Statut des biomarqueurs du sein",
+        "summary": "Cette partie du compte rendu présente les résultats de tests spéciaux réalisés sur la tumeur mammaire. Les récepteurs aux œstrogènes (RE) et à la progestérone (RP) indiquent si la tumeur est susceptible de répondre à un traitement hormonal. HER2 indique si un traitement ciblant HER2 pourrait être utile. Ki67 fournit une estimation de l'activité proliférative des cellules tumorales. Votre équipe d'oncologie utilisera ces résultats conjointement avec le diagnostic, le grade, le stade et d'autres données cliniques."
+      }
+    },
+    "gynecologic": {
+      "cervix_biopsy": {
+        "label": "Col de l'utérus, biopsie",
+        "summary": "La biopsie du col de l'utérus révèle une tumeur ou des cellules anormales au niveau du col. Le compte rendu peut décrire le type de tumeur, tel qu'un carcinome épidermoïde, un adénocarcinome ou un carcinome neuroendocrine, et peut inclure le grade ou d'autres caractéristiques. Cette biopsie fournit des informations diagnostiques importantes mais peut ne pas rendre compte de la taille ou de l'étendue complètes de la maladie. {team_interpretation}"
+      },
+      "cervix_resection": {
+        "label": "Col de l'utérus, résection",
+        "summary": "La pièce opératoire du col de l'utérus révèle une tumeur ou des cellules anormales au niveau du col. Le compte rendu peut décrire le type de tumeur, le grade, la profondeur d'invasion, l'atteinte éventuelle des tissus voisins, la présence du cancer aux marges et l'envahissement éventuel des ganglions lymphatiques. Ces éléments aident à orienter la stadification et la planification thérapeutique."
+      },
+      "endometrium": {
+        "label": "Endomètre",
+        "summary": "La muqueuse utérine, appelée endomètre, présente une tumeur. Le compte rendu peut décrire le type de tumeur, tel qu'un carcinome endométrioïde, un carcinome séreux, un carcinome à cellules claires, un carcinosarcome ou un autre type. Il peut également décrire le grade, la profondeur d'invasion dans le muscle utérin, l'atteinte éventuelle du col ou d'autres organes, et la présence d'une invasion lymphovasculaire. Ces éléments aident à orienter la stadification et le traitement."
+      },
+      "ovary_fallopian_tube_primary_peritoneum": {
+        "label": "Ovaire, trompe de Fallope ou péritoine primaire",
+        "summary": "Le tissu révèle une tumeur intéressant l'ovaire, la trompe de Fallope ou le péritoine. Le compte rendu peut décrire le type de tumeur, tel qu'un carcinome séreux, un carcinome mucineux, un carcinome endométrioïde, un carcinome à cellules claires, une tumeur borderline, une tumeur des cordons sexuels et du stroma, une tumeur germinale ou un autre type tumoral. Il peut également décrire la taille de la tumeur, le grade le cas échéant, l'atteinte de la surface, l'extension aux autres tissus et les résultats ganglionnaires. Ces données aident à orienter la stadification et le traitement."
+      }
+    },
+    "gastrointestinal": {
+      "colorectal_malignant_resection": {
+        "label": "Tumeur maligne colorectale, résection",
+        "summary": "La pièce opératoire du côlon ou du rectum révèle une tumeur maligne, le plus souvent un adénocarcinome. Le compte rendu peut décrire le type de tumeur, le grade, la taille, la profondeur d'invasion dans la paroi intestinale ou les tissus voisins, la présence d'une invasion lymphovasculaire ou périneurale, l'envahissement éventuel des ganglions lymphatiques et la qualité des marges chirurgicales. Ces résultats aident à déterminer le stade et à orienter le traitement complémentaire."
+      },
+      "stomach_tumor_resection": {
+        "label": "Tumeur gastrique, résection",
+        "summary": "La pièce opératoire gastrique révèle une tumeur. Le compte rendu peut décrire le type de tumeur, tel qu'un adénocarcinome, un carcinome peu cohésif, un carcinome mucineux, un carcinome épidermoïde, un carcinome neuroendocrine ou un autre type. Il peut également décrire le grade, la taille de la tumeur, la profondeur d'invasion, l'extension aux organes voisins, le statut des marges et les résultats ganglionnaires. Ces éléments aident à orienter la stadification et le traitement."
+      },
+      "esophagus_tumor": {
+        "label": "Tumeur de l'œsophage",
+        "summary": "La pièce opératoire œsophagienne révèle une tumeur. Le compte rendu peut décrire le type de tumeur, tel qu'un adénocarcinome, un carcinome épidermoïde, une tumeur neuroendocrine ou un autre type. Il peut également décrire le grade, la taille de la tumeur, la profondeur d'invasion, l'atteinte éventuelle des structures voisines, les résultats ganglionnaires et le statut des marges. Ces données aident à orienter la stadification et la planification thérapeutique."
+      },
+      "gist": {
+        "label": "Tumeur stromale gastro-intestinale (GIST)",
+        "summary": "La pièce révèle une tumeur stromale gastro-intestinale, également appelée GIST. La GIST est une tumeur qui prend naissance dans des cellules de soutien spécialisées du tube digestif. Le compte rendu peut décrire le siège de la tumeur, la taille, le type cellulaire, l'index mitotique, le grade, la nécrose, les marges et la catégorie de risque. Ces éléments aident à estimer le comportement potentiel de la tumeur et la nécessité éventuelle d'un traitement complémentaire."
+      }
+    },
+    "genitourinary": {
+      "prostate_core_biopsy": {
+        "label": "Biopsie de prostate par carotte",
+        "summary": "La biopsie de prostate indique si un cancer de la prostate est présent dans une ou plusieurs zones prélevées. En cas de cancer, le compte rendu peut décrire le type tumoral, le groupe de grade, le score de Gleason, la proportion de chaque carotte atteinte et la présence éventuelle de glandes cribriformes ou d'un carcinome intracanalaire. Ces résultats aident à estimer l'agressivité du cancer et à orienter les discussions thérapeutiques."
+      },
+      "prostatectomy": {
+        "label": "Prostatectomie radicale",
+        "summary": "La pièce opératoire prostatique correspond au tissu prostatique retiré lors de l'intervention chirurgicale. En cas de cancer de la prostate, le compte rendu peut décrire le type tumoral, le groupe de grade, le score de Gleason, l'étendue de l'atteinte prostatique, l'extension éventuelle hors de la prostate, l'atteinte des marges et l'envahissement éventuel des ganglions lymphatiques. Ces résultats aident à déterminer le stade et à orienter le suivi."
+      }
+    },
+    "thoracic": {
+      "lung_tumor_biopsy": {
+        "label": "Tumeur pulmonaire, biopsie",
+        "summary": "La biopsie pulmonaire révèle une tumeur dans le poumon. Le compte rendu peut décrire le type de tumeur, tel qu'un adénocarcinome, un carcinome épidermoïde, un carcinome à petites cellules, un carcinome neuroendocrine à grandes cellules, une tumeur carcinoïde ou un autre type. Cette biopsie peut ne pas rendre compte de la taille ou de l'étendue complètes de la maladie. Des tests complémentaires de biomarqueurs ou d'analyses moléculaires pourront être réalisés pour aider à orienter le traitement."
+      }
+    },
+    "general": {
+      "general_tumor_biopsy": {
+        "label": "Biopsie de tumeur, type général",
+        "summary": "La biopsie révèle une tumeur dans le tissu prélevé. Le compte rendu peut décrire le type de tumeur, le grade et des caractéristiques telles que l'invasion lymphovasculaire ou périneurale. Ce prélèvement étant un petit échantillon de tissu, des examens complémentaires ou un prélèvement plus important peuvent parfois être nécessaires pour obtenir des informations plus complètes."
+      },
+      "general_tumor_resection": {
+        "label": "Résection de tumeur, type général",
+        "summary": "La pièce opératoire révèle une tumeur dans le tissu retiré. Le compte rendu peut décrire le type de tumeur, le grade, la taille, l'étendue, la nécrose, l'invasion lymphovasculaire, l'effet du traitement, le statut des marges et les résultats ganglionnaires. Ces éléments aident votre équipe soignante à comprendre la tumeur et à planifier la prise en charge."
+      }
+    }
+  },
+  "diagnosis_key_map": {
+    "invasive_carcinoma_of_no_special_type_ductal": {
+      "template_group": "breast",
+      "template_key": "invasive_carcinoma_biopsy",
+      "patient_label": "cancer du sein invasif"
+    },
+    "invasive_lobular_carcinoma": {
+      "template_group": "breast",
+      "template_key": "invasive_carcinoma_biopsy",
+      "patient_label": "carcinome lobulaire invasif du sein"
+    },
+    "ductal_carcinoma_in_situ": {
+      "template_group": "breast",
+      "template_key": "dcis_biopsy",
+      "patient_label": "carcinome canalaire in situ"
+    },
+    "squamous_cell_carcinoma_cervix": {
+      "template_group": "gynecologic",
+      "template_key": "cervix_biopsy",
+      "patient_label": "carcinome épidermoïde du col de l'utérus"
+    },
+    "adenocarcinoma_cervix": {
+      "template_group": "gynecologic",
+      "template_key": "cervix_biopsy",
+      "patient_label": "adénocarcinome du col de l'utérus"
+    },
+    "endometrioid_carcinoma_endometrium": {
+      "template_group": "gynecologic",
+      "template_key": "endometrium",
+      "patient_label": "carcinome endométrioïde de l'endomètre"
+    },
+    "serous_carcinoma_endometrium": {
+      "template_group": "gynecologic",
+      "template_key": "endometrium",
+      "patient_label": "carcinome séreux de l'endomètre"
+    },
+    "high_grade_serous_carcinoma_ovary_fallopian_tube_peritoneum": {
+      "template_group": "gynecologic",
+      "template_key": "ovary_fallopian_tube_primary_peritoneum",
+      "patient_label": "carcinome séreux de haut grade"
+    },
+    "low_grade_serous_carcinoma_ovary_fallopian_tube_peritoneum": {
+      "template_group": "gynecologic",
+      "template_key": "ovary_fallopian_tube_primary_peritoneum",
+      "patient_label": "carcinome séreux de bas grade"
+    },
+    "colorectal_adenocarcinoma": {
+      "template_group": "gastrointestinal",
+      "template_key": "colorectal_malignant_resection",
+      "patient_label": "adénocarcinome colorectal"
+    },
+    "gastric_adenocarcinoma": {
+      "template_group": "gastrointestinal",
+      "template_key": "stomach_tumor_resection",
+      "patient_label": "adénocarcinome gastrique"
+    },
+    "esophageal_adenocarcinoma": {
+      "template_group": "gastrointestinal",
+      "template_key": "esophagus_tumor",
+      "patient_label": "adénocarcinome de l'œsophage"
+    },
+    "esophageal_squamous_cell_carcinoma": {
+      "template_group": "gastrointestinal",
+      "template_key": "esophagus_tumor",
+      "patient_label": "carcinome épidermoïde de l'œsophage"
+    },
+    "gastrointestinal_stromal_tumor": {
+      "template_group": "gastrointestinal",
+      "template_key": "gist",
+      "patient_label": "tumeur stromale gastro-intestinale"
+    },
+    "prostate_acinar_adenocarcinoma": {
+      "template_group": "genitourinary",
+      "template_key": "prostate_core_biopsy",
+      "patient_label": "adénocarcinome de la prostate"
+    },
+    "lung_adenocarcinoma": {
+      "template_group": "thoracic",
+      "template_key": "lung_tumor_biopsy",
+      "patient_label": "adénocarcinome pulmonaire"
+    },
+    "lung_squamous_cell_carcinoma": {
+      "template_group": "thoracic",
+      "template_key": "lung_tumor_biopsy",
+      "patient_label": "carcinome épidermoïde du poumon"
+    },
+    "small_cell_carcinoma_lung": {
+      "template_group": "thoracic",
+      "template_key": "lung_tumor_biopsy",
+      "patient_label": "carcinome à petites cellules du poumon"
+    }
+  },
+  "biomarker_summaries": {
+    "breast_er_positive": "La tumeur est positive aux récepteurs aux œstrogènes. Cela signifie qu'un traitement hormonal pourrait être utile.",
+    "breast_er_negative": "La tumeur est négative aux récepteurs aux œstrogènes. Cela signifie qu'un traitement hormonal à base d'œstrogènes pourrait être moins efficace pour cette tumeur.",
+    "breast_pr_positive": "La tumeur est positive aux récepteurs à la progestérone. Cela peut conforter le recours à un traitement hormonal.",
+    "breast_pr_negative": "La tumeur est négative aux récepteurs à la progestérone.",
+    "breast_her2_negative_0": "HER2 est négatif avec un score de 0. Cela signifie qu'un traitement ciblant HER2 n'est généralement pas indiqué au vu de ce résultat.",
+    "breast_her2_negative_1": "HER2 est négatif avec un score de 1+. Ce résultat est toujours considéré comme négatif pour HER2 selon les critères de compte rendu standard.",
+    "breast_her2_equivocal_2": "HER2 est équivoque avec un score de 2+. Des examens complémentaires peuvent être nécessaires pour clarifier le statut HER2.",
+    "breast_her2_positive_3": "HER2 est positif avec un score de 3+. Un traitement ciblant HER2 peut donc être envisagé.",
+    "breast_ki67_low": "Ki67 est faible, ce qui suggère un faible niveau d'activité proliférative des cellules tumorales.",
+    "breast_ki67_high": "Ki67 est élevé, ce qui suggère un niveau élevé d'activité proliférative des cellules tumorales.",
+    "pdl1_positive": "PD-L1 est positif. Ce résultat peut être pertinent dans le cadre d'une réflexion sur l'immunothérapie.",
+    "pdl1_negative": "PD-L1 est négatif selon le test réalisé.",
+    "mismatch_repair_intact": "Les protéines du système de réparation des mésappariements de l'ADN sont conservées. Votre équipe soignante interprétera ce résultat en tenant compte des autres données.",
+    "mismatch_repair_deficient": "Une ou plusieurs protéines du système de réparation des mésappariements de l'ADN sont perdues. Ce résultat peut avoir des implications pour des examens complémentaires et la planification du traitement.",
+    "gist_cd117_positive": "CD117 est positif, résultat qui peut conforter le diagnostic de GIST.",
+    "gist_dog1_positive": "DOG1 est positif, résultat qui peut conforter le diagnostic de GIST."
+  },
+  "optional_result_modifiers": {
+    "negative_margins": "Les marges sont négatives, ce qui signifie qu'aucune tumeur n'a été observée au bord du tissu retiré.",
+    "positive_margins": "La tumeur est présente à la marge, ce qui signifie que des cellules tumorales sont observées au bord du tissu retiré.",
+    "lymph_nodes_negative": "Les ganglions lymphatiques examinés ne montrent pas de tumeur.",
+    "lymph_nodes_positive": "Un ou plusieurs ganglions lymphatiques examinés contiennent des cellules tumorales.",
+    "lvi_present": "Une invasion lymphovasculaire est présente, ce qui signifie que des cellules tumorales sont observées à l'intérieur de petits vaisseaux ou canaux lymphatiques.",
+    "lvi_absent": "Aucune invasion lymphovasculaire n'est identifiée.",
+    "pni_present": "Une invasion périneurale est présente, ce qui signifie que des cellules tumorales sont observées autour ou le long des nerfs.",
+    "pni_absent": "Aucune invasion périneurale n'est identifiée.",
+    "treatment_effect_present": "Des modifications évocatrices d'une réponse tumorale au traitement administré avant l'intervention chirurgicale sont présentes.",
+    "treatment_effect_absent": "Aucun effet thérapeutique net n'est identifié dans le tissu examiné."
+  }
+}

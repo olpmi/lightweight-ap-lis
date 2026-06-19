@@ -1,5 +1,6 @@
 {
   "template_id": "breast_biomarker_status_v1",
+  "domain": "anatomic_pathology",
   "lang": "fr",
   "title": "Statut des biomarqueurs mammaires",
   "er_status": {
@@ -8,21 +9,25 @@
       "percentage_nuclear_positivity": {
         "label": "Pourcentage de cellules avec positivité nucléaire",
         "options": [
-          "Less than 1%",
-          "1-10%",
-          "11-20%",
-          "21-30%",
-          "31-40%",
-          "41-50%",
-          "51-60%",
-          "61-70%",
-          "71-80%",
-          "81-90%",
-          "91-100%"
-        ]
+          "Moins de 1 %",
+          "1-10 %",
+          "11-20 %",
+          "21-30 %",
+          "31-40 %",
+          "41-50 %",
+          "51-60 %",
+          "61-70 %",
+          "71-80 %",
+          "81-90 %",
+          "91-100 %"
+        ],
+        "type": "select",
+        "value": ""
       },
       "average_intensity": {
-        "label": "Intensité moyenne du marquage"
+        "label": "Intensité moyenne du marquage",
+        "type": "text",
+        "value": ""
       }
     }
   },
@@ -32,27 +37,31 @@
       "percentage_nuclear_positivity": {
         "label": "Pourcentage de cellules avec positivité nucléaire",
         "options": [
-          "Less than 1%",
-          "1-10%",
-          "11-20%",
-          "21-30%",
-          "31-40%",
-          "41-50%",
-          "51-60%",
-          "61-70%",
-          "71-80%",
-          "81-90%",
-          "91-100%"
-        ]
+          "Moins de 1 %",
+          "1-10 %",
+          "11-20 %",
+          "21-30 %",
+          "31-40 %",
+          "41-50 %",
+          "51-60 %",
+          "61-70 %",
+          "71-80 %",
+          "81-90 %",
+          "91-100 %"
+        ],
+        "type": "select",
+        "value": ""
       },
       "average_intensity": {
-        "label": "Intensité moyenne du marquage"
+        "label": "Intensité moyenne du marquage",
+        "type": "text",
+        "value": ""
       }
     }
   },
   "her2_ihc_status": {
     "label": "Statut HER2 par immunohistochimie (IHC)",
-    "comment": "Les cancers du sein avec des scores HER2 IHC de 0+, 1+ ou 2+ (ISH négatif) peuvent être éligibles à un traitement ciblant des niveaux non amplifiés d’expression de HER2 dans le contexte métastatique. Actuellement, les patientes sans marquage membranaire par IHC (0) sont inéligibles ou exclues. Envisager l’utilisation du commentaire standardisé optionnel du rapport HER2 IHC pour expliquer la pertinence clinique des faibles niveaux de marquage HER2 IHC en situation métastatique ainsi que les définitions de HER2 ultrafaible et faible utilisées dans les essais cliniques.",
+    "comment": "Les cancers du sein avec des scores HER2 IHC de 0+, 1+ ou 2+ (ISH négatif) peuvent être éligibles à un traitement ciblant des niveaux non amplifiés d'expression de HER2 dans le contexte métastatique. Actuellement, les patientes sans marquage membranaire par IHC (0) sont inéligibles ou exclues. Envisager l'utilisation du commentaire standardisé optionnel du rapport HER2 IHC pour expliquer la pertinence clinique des faibles niveaux de marquage HER2 IHC en situation métastatique ainsi que les définitions de HER2 ultrafaible et faible utilisées dans les essais cliniques.",
     "fields": {
       "overall_score": {
         "label": "Score global HER2 IHC",
@@ -61,7 +70,9 @@
           "Négatif (Score 1+)",
           "Équivoque (Score 2+)",
           "Positif (Score 3+)"
-        ]
+        ],
+        "type": "select",
+        "value": ""
       },
       "score_0_pattern": {
         "label": "Profil du score 0",
@@ -70,7 +81,9 @@
           "Marquage membranaire incomplet, faible ou à peine perceptible, dans moins de ou égal à 10 % des cellules tumorales (0+ / avec marquage membranaire)",
           "Autre"
         ],
-        "other_specify": "Précisez (autre)"
+        "other_specify": "Autre (préciser)",
+        "type": "select",
+        "value": ""
       },
       "score_1_pattern": {
         "label": "Profil du score 1+",
@@ -78,18 +91,22 @@
           "Marquage membranaire incomplet, faible ou à peine perceptible, dans plus de 10 % des cellules tumorales",
           "Autre"
         ],
-        "other_specify": "Précisez (autre)"
+        "other_specify": "Autre (préciser)",
+        "type": "select",
+        "value": ""
       },
       "score_2_pattern": {
         "label": "Profil du score 2+",
         "options": [
           "Marquage membranaire complet faible à modéré observé dans plus de 10 % des cellules tumorales",
           "Marquage membranaire incomplet modéré à intense (basolatéral)",
-          "Moins de ou égal à 10 % du cancer présente un marquage circonférentiel complet et intense (3+) (hétérogène mais très limité en étendue ; envisager les résultats d’échantillons supplémentaires)",
-          "Marquage cytoplasmique abondant masquant l’évaluation de l’intensité du marquage membranaire",
+          "Moins de ou égal à 10 % du cancer présente un marquage circonférentiel complet et intense (3+) (hétérogène mais très limité en étendue ; envisager les résultats d'échantillons supplémentaires)",
+          "Marquage cytoplasmique abondant masquant l'évaluation de l'intensité du marquage membranaire",
           "Autre"
         ],
-        "other_specify": "Précisez (autre)"
+        "other_specify": "Autre (préciser)",
+        "type": "select",
+        "value": ""
       },
       "score_3_pattern": {
         "label": "Profil du score 3+",
@@ -97,7 +114,9 @@
           "Marquage membranaire circonférentiel complet, intense, et dans plus de 10 % des cellules tumorales",
           "Autre"
         ],
-        "other_specify": "Précisez (autre)"
+        "other_specify": "Autre (préciser)",
+        "type": "select",
+        "value": ""
       }
     }
   },
@@ -107,18 +126,20 @@
       "value": {
         "label": "Indice de prolifération Ki-67",
         "options": [
-          "Less than 1%",
-          "1-10%",
-          "11-20%",
-          "21-30%",
-          "31-40%",
-          "41-50%",
-          "51-60%",
-          "61-70%",
-          "71-80%",
-          "81-90%",
-          "91-100%"
-        ]
+          "Moins de 1 %",
+          "1-10 %",
+          "11-20 %",
+          "21-30 %",
+          "31-40 %",
+          "41-50 %",
+          "51-60 %",
+          "61-70 %",
+          "71-80 %",
+          "81-90 %",
+          "91-100 %"
+        ],
+        "type": "select",
+        "value": ""
       }
     }
   },
@@ -126,29 +147,40 @@
     "label": "Méthodes",
     "fields": {
       "block_numbers": {
-        "label": "Test effectué sur le(s) bloc(s) numéro(s)"
+        "label": "Test effectué sur le(s) bloc(s) numéro(s)",
+        "type": "text",
+        "value": ""
       },
       "er_primary_antibody": {
-        "label": "Récepteur aux œstrogènes : anticorps primaire"
+        "label": "Récepteur aux œstrogènes : anticorps primaire",
+        "type": "text",
+        "value": ""
       },
       "pgr_primary_antibody": {
-        "label": "Récepteur à la progestérone : anticorps primaire"
+        "label": "Récepteur à la progestérone : anticorps primaire",
+        "type": "text",
+        "value": ""
       },
       "er_pgr_reporting_guideline": {
-        "label": "Compte rendu de ER et PgR"
+        "label": "Compte rendu de ER et PgR",
+        "type": "fixed_text",
+        "value": "ASCO/CAP 2020 Guideline"
       },
       "her2_primary_antibody": {
-        "label": "HER2 (par immunohistochimie) : anticorps primaire"
+        "label": "HER2 (par immunohistochimie) : anticorps primaire",
+        "type": "text",
+        "value": ""
       },
       "her2_reporting_guideline": {
-        "label": "Compte rendu du test HER2 par immunohistochimie (IHC)"
+        "label": "Compte rendu du test HER2 par immunohistochimie (IHC)",
+        "type": "fixed_text",
+        "value": "ASCO/CAP 2025 Guideline"
       },
       "ki67_primary_antibody": {
-        "label": "Indice Ki-67 : anticorps primaire"
+        "label": "Indice Ki-67 : anticorps primaire",
+        "type": "fixed_text",
+        "value": "MIB-1"
       }
     }
-  },
-  "domain": {
-    "fields": {}
   }
 }
