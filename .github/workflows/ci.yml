@@ -255,6 +255,11 @@ jobs:
           pnpm exec prisma migrate deploy --schema=prisma/schema.prisma
           pnpm exec tsx prisma/seed.ts
 
+      # Must run before the E2E suite, which creates additional cases and would
+      # otherwise be counted as part of the published synthetic corpus.
+      - name: Characterize synthetic dataset
+        run: pnpm db:characterize
+
       - name: Build backend
         run: pnpm --filter @lis/backend build
 
@@ -285,6 +290,26 @@ jobs:
           CI: true
           PLAYWRIGHT_BASE_URL: http://localhost:5173
           PLAYWRIGHT_BACKEND_URL: http://localhost:3001
+
+      # Aggregates every suite into one table so figures cited in the manuscript
+      # trace back to a specific CI run rather than to a developer's machine.
+      - name: Generate verification report
+        if: always()
+        run: pnpm verify:report
+        env:
+          DATABASE_URL: postgresql://lis_user:lis_password@localhost:5432/lis_e2e
+          SESSION_SECRET: test-ci-e2e-secret
+
+      - name: Regenerate repository metrics
+        if: always()
+        run: pnpm metrics:system
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: verification-artifacts
+          path: docs/verification/
+          if-no-files-found: warn
 
       - uses: actions/upload-artifact@v4
         if: failure()
