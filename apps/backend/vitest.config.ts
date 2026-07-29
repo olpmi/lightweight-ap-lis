@@ -5,6 +5,13 @@ export default defineConfig({
     globals: true,
     environment: 'node',
     include: ['src/tests/**/*.test.ts'],
+    // Integration tests share a single PostgreSQL instance and contend on shared
+    // fixtures (the `pathologist` role, the `Test Site` body site) and on the
+    // per-prefix accession-number sequence row. Running files in parallel makes
+    // those setups race, which surfaced as whole suites failing in `beforeAll`
+    // roughly one run in two. Serialising files makes the suite deterministic;
+    // it costs a few seconds because the suite is small.
+    fileParallelism: false,
     coverage: {
       provider: 'v8',
       reporter: ['text', 'lcov', 'json-summary'],

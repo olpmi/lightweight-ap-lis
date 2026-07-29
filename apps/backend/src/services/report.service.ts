@@ -16,6 +16,7 @@ import { getPatientSummaryDefinition } from '@lis/shared/patient-summaries/serve
 import { PdfService } from './pdf.service.js';
 import { PdfLayoutService, type ReportLayoutData } from './pdf.layout.service.js';
 import { ConfigReportLayoutService } from './config.reportLayout.service.js';
+import { OrderLockService } from './orderLock.service.js';
 import fs from 'fs';
 import path from 'path';
 import { GENERATED_PDFS_DIR } from '../utils/storageDirs.js';
@@ -23,6 +24,7 @@ import { GENERATED_PDFS_DIR } from '../utils/storageDirs.js';
 const pdfService = new PdfService();
 const pdfLayoutService = new PdfLayoutService();
 const layoutConfigService = new ConfigReportLayoutService();
+const orderLockService = new OrderLockService();
 
 type RawRecord = Record<string, unknown>;
 
@@ -153,7 +155,15 @@ export class ReportService {
     });
   }
 
-  async createDraft(orderId: string, data: CreateDraftReportInput): Promise<object> {
+  /**
+   * @param employeeId Session employee, checked against the pessimistic edit
+   *   lock. Omit only for callers with no session (none at present).
+   */
+  async createDraft(
+    orderId: string,
+    data: CreateDraftReportInput,
+    employeeId?: number,
+  ): Promise<object> {
     const order = await prisma.order.findUnique({ where: { orderId } });
     if (!order) throw new AppError(404, 'NOT_FOUND', `Order ${orderId} not found`);
 
@@ -170,6 +180,13 @@ export class ReportService {
     try {
       return await prisma.$transaction(
         async (tx) => {
+          // Defence in depth on top of the optimistic guards below: reject the
+          // write outright if another user currently holds the case's edit lock.
+          // No-ops when no lock is held or the lease has lapsed.
+          if (employeeId != null) {
+            await orderLockService.assertHolder(tx, orderId, employeeId);
+          }
+
           const existingDraft = await tx.report.findFirst({
             where: { orderId, isFinal: false, isPrelim: false },
             orderBy: { versionNumber: 'desc' },
@@ -241,7 +258,12 @@ export class ReportService {
     }
   }
 
-  async signOut(reportId: number, data: SignOutReportInput): Promise<object> {
+  /** @param employeeId Session employee, checked against the edit lock. */
+  async signOut(
+    reportId: number,
+    data: SignOutReportInput,
+    employeeId?: number,
+  ): Promise<object> {
     const report = await prisma.report.findUnique({
       where: { reportId: BigInt(reportId) },
       include: REPORT_INCLUDE,
@@ -286,6 +308,12 @@ export class ReportService {
     const signed = await prisma.$transaction(
       async (tx) => {
         try {
+          // Reject if another user holds the case's edit lock. No-ops when the
+          // lock is unheld or its lease has lapsed.
+          if (employeeId != null) {
+            await orderLockService.assertHolder(tx, report.orderId, employeeId);
+          }
+
           const updated = await tx.report.update({
             where: expected
               ? { reportId: BigInt(reportId), isFinal: false, updatedAt: expected }
@@ -380,7 +408,12 @@ export class ReportService {
     return signed;
   }
 
-  async signPrelim(reportId: number, data: SignOutReportInput): Promise<object> {
+  /** @param employeeId Session employee, checked against the edit lock. */
+  async signPrelim(
+    reportId: number,
+    data: SignOutReportInput,
+    employeeId?: number,
+  ): Promise<object> {
     const report = await prisma.report.findUnique({
       where: { reportId: BigInt(reportId) },
       include: REPORT_INCLUDE,
@@ -401,6 +434,11 @@ export class ReportService {
     const prelim = await prisma.$transaction(
       async (tx) => {
         try {
+          // Reject if another user holds the case's edit lock.
+          if (employeeId != null) {
+            await orderLockService.assertHolder(tx, report.orderId, employeeId);
+          }
+
           const updated = await tx.report.update({
             where: expectedPrelim
               ? { reportId: BigInt(reportId), isPrelim: false, isFinal: false, updatedAt: expectedPrelim }
@@ -516,7 +554,12 @@ export class ReportService {
     return prelim;
   }
 
-  async reactivate(orderId: string, data: ReactivateOrderInput): Promise<object> {
+  /** @param employeeId Session employee, checked against the edit lock. */
+  async reactivate(
+    orderId: string,
+    data: ReactivateOrderInput,
+    employeeId?: number,
+  ): Promise<object> {
     const order = await prisma.order.findUnique({ where: { orderId } });
     if (!order) throw new AppError(404, 'NOT_FOUND', `Order ${orderId} not found`);
 
@@ -527,6 +570,12 @@ export class ReportService {
     try {
       return await prisma.$transaction(
         async (tx) => {
+          // Amending is a mutation on the case like any other, so it honours
+          // the same edit lock.
+          if (employeeId != null) {
+            await orderLockService.assertHolder(tx, orderId, employeeId);
+          }
+
           const latestFinal = await tx.report.findFirst({
             where: { orderId, isFinal: true },
             orderBy: { versionNumber: 'desc' },

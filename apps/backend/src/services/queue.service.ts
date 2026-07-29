@@ -111,14 +111,36 @@ export class QueueService {
       ],
     };
 
-    // No final signed-out report
-    const notSignedOut = {
-      reports: {
-        none: {
-          isFinal: true,
-          signedOutDatetime: { not: null },
+    // Awaiting a pathologist: either never signed out, or signed out and since
+    // amended with an amendment that is still unsigned.
+    //
+    // The first clause alone used to be the whole condition, which meant an
+    // amended case never came back: its superseded version still satisfies
+    // "has a signed-out final report", so the case stayed off the queue even
+    // though its new version was an unsigned draft waiting to be worked.
+    //
+    // The second clause is deliberately narrow. `createDraft` updates the open
+    // draft in place rather than adding a row per save, and `signOut` flips
+    // that same row to isFinal, so a re-signed case has no open draft left and
+    // leaves the queue again. Excluding isPrelim keeps preliminary reports from
+    // pulling a signed-out case back in.
+    const awaitingSignOut = {
+      OR: [
+        {
+          reports: {
+            none: {
+              isFinal: true,
+              signedOutDatetime: { not: null },
+            },
+          },
         },
-      },
+        {
+          AND: [
+            { isReactivated: true },
+            { reports: { some: { isFinal: false, isPrelim: false } } },
+          ],
+        },
+      ],
     };
 
     const searchFilter = search
@@ -132,7 +154,7 @@ export class QueueService {
         }
       : {};
 
-    const where = { AND: [hasMaterials, notSignedOut, searchFilter] };
+    const where = { AND: [hasMaterials, awaitingSignOut, searchFilter] };
 
     const [data, total] = await Promise.all([
       prisma.order.findMany({

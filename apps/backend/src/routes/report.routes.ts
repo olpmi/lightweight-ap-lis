@@ -79,7 +79,7 @@ router.get('/:reportId/patient-summary.pdf', requireAuth, async (req: Request, r
 router.post('/:reportId/signout', requireAuth, validateBody(signOutReportSchema), async (req: Request, res: Response, next: NextFunction) => {
   try {
     const reportId = parseReportId(req.params.reportId);
-    const data = await service.signOut(reportId, req.body);
+    const data = await service.signOut(reportId, req.body, req.session.employeeId);
     res.json({ data });
   } catch (err) {
     next(err);
@@ -90,7 +90,7 @@ router.post('/:reportId/signout', requireAuth, validateBody(signOutReportSchema)
 router.post('/:reportId/signprelim', requireAuth, validateBody(signOutReportSchema), async (req: Request, res: Response, next: NextFunction) => {
   try {
     const reportId = parseReportId(req.params.reportId);
-    const data = await service.signPrelim(reportId, req.body);
+    const data = await service.signPrelim(reportId, req.body, req.session.employeeId);
     res.json({ data });
   } catch (err) {
     next(err);

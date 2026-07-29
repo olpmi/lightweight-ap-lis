@@ -189,13 +189,20 @@ export class PdfLayoutService {
     return puppeteer.launch({
       executablePath,
       headless: true,
+      // `--no-zygote` and `--single-process` were previously included here. Modern
+      // Chromium crashes on startup under that combination — the browser process
+      // exits immediately and puppeteer reports
+      // "Protocol error (Target.createTarget): Target closed". Because
+      // ReportService.signOut catches PDF errors so they cannot block sign-out,
+      // the failure was silent: cases signed out successfully but no report PDF
+      // was ever produced and no ReportFile row was written. Verified in the
+      // production container image: with these two flags a render fails, without
+      // them the same call returns a valid PDF.
       args: [
         '--no-sandbox',
         '--disable-setuid-sandbox',
         '--disable-dev-shm-usage',
         '--disable-gpu',
-        '--no-zygote',
-        '--single-process',
       ],
     });
   }
