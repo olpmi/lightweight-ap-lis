@@ -289,16 +289,35 @@ export default function TemplateEditorPanel({ entry }: TemplateEditorPanelProps)
         </Tabs>
       </Box>
 
-      {/* Main body: editor + preview side by side */}
-      <Box display="flex" flex={1} overflow="hidden" minHeight={0}>
+      {/* Main body: editor and preview, side by side only when there is room.
+          The preview is a fixed 380px that cannot shrink, and this panel already
+          sits beside the template tree, so side by side needs roughly 1500px of
+          window. Below that the editor was being squeezed to a few pixels — and
+          Monaco, which positions its content absolutely, then painted that
+          content outside its own box and across the page. Stacked below xl the
+          editor gets a usable fixed height and the pane scrolls. */}
+      <Box
+        display="flex"
+        flex={1}
+        minHeight={0}
+        sx={{
+          flexDirection: { xs: 'column', xl: 'row' },
+          overflow: { xs: 'auto', xl: 'hidden' },
+        }}
+      >
         {/* Monaco editor */}
         <Box
-          flex={1}
-          minWidth={0}
           display="flex"
           flexDirection="column"
-          borderRight={1}
+          flexShrink={0}
           borderColor="divider"
+          sx={{
+            flex: { xl: 1 },
+            minWidth: { xl: 340 },
+            height: { xs: 360, xl: 'auto' },
+            borderRight: { xl: 1 },
+            borderBottom: { xs: 1, xl: 0 },
+          }}
         >
           {activeTabHasError && (
             <Alert severity="error" sx={{ m: 1, py: 0 }}>
@@ -321,12 +340,11 @@ export default function TemplateEditorPanel({ entry }: TemplateEditorPanelProps)
           </Box>
         </Box>
 
-        {/* Preview pane */}
+        {/* Preview pane: fixed beside the editor, full width beneath it. */}
         <Box
-          width={380}
           flexShrink={0}
           overflow="auto"
-          sx={{ bgcolor: 'grey.50' }}
+          sx={{ bgcolor: 'grey.50', width: { xs: '100%', xl: 380 } }}
           p={1}
         >
           <Typography variant="caption" color="text.secondary" display="block" mb={1} px={1}>
