@@ -33,9 +33,22 @@ interface SuiteResult {
   skipped: number;
   /** Files whose setup hook threw, so their tests never ran. See parseVitestReport. */
   erroredFiles: number;
+  /**
+   * Which tests failed, and why. A table that reports a count without naming the
+   * failures cannot be acted on: the run that produced it is gone, and the only
+   * copy of Vitest's own output was the JSON this script consumed.
+   */
+  failures: TestFailure[];
   durationSeconds: number;
   executed: boolean;
   note?: string;
+}
+
+/** One failing test, named and attributed to its file. */
+interface TestFailure {
+  file: string;
+  test: string;
+  message: string;
 }
 
 interface CoverageResult {
@@ -50,6 +63,9 @@ interface CoverageResult {
 interface VitestAssertionResult {
   status?: string;
   title?: string;
+  fullName?: string;
+  ancestorTitles?: string[];
+  failureMessages?: string[];
 }
 
 interface VitestFileResult {
@@ -84,6 +100,7 @@ function parseVitestReport(report: VitestJsonReport): {
   skipped: number;
   erroredFiles: number;
   erroredNames: string[];
+  failures: TestFailure[];
 } {
   const files = report.testResults ?? [];
   let passed = 0;
@@ -91,6 +108,7 @@ function parseVitestReport(report: VitestJsonReport): {
   let skipped = 0;
   let erroredFiles = 0;
   const erroredNames: string[] = [];
+  const failures: TestFailure[] = [];
 
   for (const file of files) {
     const assertions = file.assertionResults ?? [];
@@ -101,10 +119,32 @@ function parseVitestReport(report: VitestJsonReport): {
         case 'passed':
           passed += 1;
           break;
-        case 'failed':
+        case 'failed': {
           failed += 1;
           failedInFile += 1;
+          const title = (
+            assertion.fullName ??
+            [...(assertion.ancestorTitles ?? []), assertion.title ?? 'unnamed test']
+              .filter(Boolean)
+              .join(' > ')
+          )
+            // Vitest's fullName concatenates the describe chain with spaces and can
+            // arrive with leading or doubled ones.
+            .replace(/\s+/g, ' ')
+            .trim();
+          // First line only: enough to identify the failure without pasting a
+          // whole stack trace into a published table.
+          const message = (assertion.failureMessages ?? [])
+            .flatMap((failureMessage) => failureMessage.split(/\r?\n/))
+            .map((line) => line.trim())
+            .find((line) => line.length > 0);
+          failures.push({
+            file: path.basename(file.name ?? 'unknown'),
+            test: title,
+            message: message ?? 'no failure message reported',
+          });
           break;
+        }
         default:
           // 'pending', 'skipped', 'todo'
           skipped += 1;
@@ -125,6 +165,7 @@ function parseVitestReport(report: VitestJsonReport): {
     skipped,
     erroredFiles,
     erroredNames,
+    failures,
   };
 }
 
@@ -199,6 +240,7 @@ function runVitestSuite(
         failed: 0,
         skipped: 0,
         erroredFiles: 0,
+        failures: [],
         durationSeconds,
         executed: false,
         note: `Runner produced no JSON report (exit code ${run.status ?? 'unknown'}).`,
@@ -243,6 +285,7 @@ function runVitestSuite(
       failed: counts.failed,
       skipped: counts.skipped,
       erroredFiles: counts.erroredFiles,
+      failures: counts.failures,
       durationSeconds,
       executed: true,
       note: notes.length > 0 ? notes.join(' ') : undefined,
@@ -299,6 +342,7 @@ function runPlaywrightSuite(scratchDir: string): SuiteResult {
       failed: 0,
       skipped: 0,
       erroredFiles: 0,
+      failures: [],
       executed: false,
       note: `Runner produced no JSON report (exit code ${run.status ?? 'unknown'}). Playwright requires a running stack; see .github/workflows/ci.yml for the exact startup sequence.`,
     };
@@ -316,6 +360,9 @@ function runPlaywrightSuite(scratchDir: string): SuiteResult {
     failed,
     skipped,
     erroredFiles: 0,
+    // Playwright's JSON stats carry counts only; the per-test detail lives in its
+    // own HTML report, which CI uploads on failure.
+    failures: [],
     executed: true,
     note: report.stats.flaky ? `${report.stats.flaky} flaky (passed on retry).` : undefined,
   };
@@ -396,6 +443,22 @@ function renderMarkdown(
   if (notes.length > 0) {
     lines.push('Notes:', '');
     for (const result of notes) lines.push(`- ${result.suite}: ${result.note}`);
+    lines.push('');
+  }
+
+  // Name the failures. A published count of failing tests that does not say
+  // which ones failed cannot be acted on later, and the run that produced it is
+  // usually gone by the time anyone reads the table.
+  const failures = results.flatMap((result) =>
+    result.failures.map((failure) => ({ suite: result.suite, ...failure }))
+  );
+  if (failures.length > 0) {
+    lines.push('## Failing tests', '', '| Suite | File | Test | First error line |', '| --- | --- | --- | --- |');
+    for (const failure of failures) {
+      // Pipes and newlines would break the table; the full text is in the JSON.
+      const message = failure.message.replace(/\|/g, '\\|').slice(0, 200);
+      lines.push(`| ${failure.suite} | \`${failure.file}\` | ${failure.test} | ${message} |`);
+    }
     lines.push('');
   }
 
@@ -497,6 +560,12 @@ function main(): void {
           : `${result.suite}: not executed — ${result.note ?? ''}`
       );
       if (result.note && result.executed) console.log(`  ! ${result.note}`);
+      // Echoed, not just written to the report: on CI the report is an artifact
+      // someone has to download, while this lands in the log next to the failure.
+      for (const failure of result.failures) {
+        console.log(`  × ${failure.file} › ${failure.test}`);
+        console.log(`      ${failure.message}`);
+      }
     }
 
     console.log('\nWrote docs/verification/verification-report.md and .json');
