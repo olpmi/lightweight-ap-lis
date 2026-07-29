@@ -7,6 +7,13 @@
   "triggerField": "diagnostic_category",
   "summaries": {
     "general_non_diagnostic_unsatisfactory": {
+      "match": {
+        "diagnostic_category": {
+          "equals": [
+            "Non-diagnostic / Unsatisfactory"
+          ]
+        }
+      },
       "professionalLabel": "Non-diagnostic / Unsatisfactory",
       "patientTitle": "The sample was not enough for a clear diagnosis",
       "plainLanguageSummary": "The cytology sample did not contain enough useful cells, or the sample quality was limited, so a clear diagnosis could not be made.",
@@ -15,6 +22,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
     },
     "general_negative_for_malignancy_benign": {
+      "match": {
+        "diagnostic_category": {
+          "equals": [
+            "Negative for malignancy / Benign"
+          ]
+        }
+      },
       "professionalLabel": "Negative for malignancy / Benign",
       "patientTitle": "No cancer cells seen",
       "plainLanguageSummary": "The sample did not show cancer cells and appears benign in the material examined.",
@@ -23,6 +37,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
     },
     "general_atypical_cells_present": {
+      "match": {
+        "diagnostic_category": {
+          "equals": [
+            "Atypical cells present"
+          ]
+        }
+      },
       "professionalLabel": "Atypical cells present",
       "patientTitle": "Some unusual cells seen",
       "plainLanguageSummary": "The sample shows some cells that look unusual, but the findings are not enough to diagnose cancer.",
@@ -31,6 +52,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
     },
     "general_suspicious_for_malignancy": {
+      "match": {
+        "diagnostic_category": {
+          "equals": [
+            "Suspicious for malignancy"
+          ]
+        }
+      },
       "professionalLabel": "Suspicious for malignancy",
       "patientTitle": "Suspicious cells seen",
       "plainLanguageSummary": "The sample shows cells that are suspicious for cancer, but may not be enough for a definite diagnosis.",
@@ -39,6 +67,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
     },
     "general_positive_for_malignancy": {
+      "match": {
+        "diagnostic_category": {
+          "equals": [
+            "Positive for malignancy"
+          ]
+        }
+      },
       "professionalLabel": "Positive for malignancy",
       "patientTitle": "Cancer cells identified",
       "plainLanguageSummary": "The sample shows malignant cells, meaning cancer cells were identified.",
@@ -47,6 +82,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
     },
     "general_neoplasm_benign_low_grade_malignant": {
+      "match": {
+        "diagnostic_category": {
+          "equals": [
+            "Neoplasm present (benign / low grade / malignant)"
+          ]
+        }
+      },
       "professionalLabel": "Neoplasm present: benign / low grade / malignant",
       "patientTitle": "A growth or tumor is present",
       "plainLanguageSummary": "The sample shows a neoplasm, which means an abnormal growth of cells. The report should specify whether it appears benign, low grade, or malignant where possible.",
@@ -55,6 +97,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
     },
     "general_other": {
+      "match": {
+        "diagnostic_category": {
+          "equals": [
+            "Other"
+          ]
+        }
+      },
       "professionalLabel": "Other",
       "patientTitle": "Other cytology finding",
       "plainLanguageSummary": "The report describes a finding that does not fit into the standard diagnostic categories.",
