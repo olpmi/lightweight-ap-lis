@@ -34,3 +34,10 @@ apps/frontend/i18n-audit.json
 apps/frontend/cookies.txt
 cookies.txt
 e2e-debug*/
+
+# Generated manuscript figures. Rebuild with:
+#   GENERATE_MANUSCRIPT_FIGURES=1 pnpm figures:manuscript && pnpm figures:compose
+# The panels, composites and their captions are all reproducible output, so only
+# the code that generates them is tracked. The figure change record lives in
+# docs/manuscript_figures_changes.md.
+docs/manuscript/

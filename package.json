@@ -21,7 +21,9 @@
     "verify:report": "tsx scripts/verification-report.ts",
     "bench": "tsx scripts/benchmark.ts",
     "db:studio": "prisma studio --schema=prisma/schema.prisma",
-    "db:reset": "prisma migrate reset --schema=prisma/schema.prisma"
+    "db:reset": "prisma migrate reset --schema=prisma/schema.prisma",
+    "figures:manuscript": "pnpm --filter @lis/frontend exec playwright test src/tests/e2e/manuscript",
+    "figures:compose": "tsx scripts/build-manuscript-figures.ts"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3"
