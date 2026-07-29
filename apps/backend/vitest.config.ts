@@ -12,6 +12,18 @@ export default defineConfig({
     // roughly one run in two. Serialising files makes the suite deterministic;
     // it costs a few seconds because the suite is small.
     fileParallelism: false,
+    // Vitest's 5s default is a unit-test budget. Most tests here are integration
+    // tests that drive a dozen or more sequential HTTP round-trips through
+    // Supertest and Prisma against a real database — the amendment test alone
+    // accessions a case, creates its materials, drafts, signs out and reactivates.
+    // They take a few hundred milliseconds each on an idle machine, but the CI job
+    // that regenerates the verification report runs them while a backend server,
+    // Postgres and a just-finished Playwright suite share the same runner, and
+    // there the default fired as a timeout. A test that fails because the machine
+    // was busy is a flaky test, not a finding. 30s leaves ample headroom while
+    // still failing a genuine hang.
+    testTimeout: 30_000,
+    hookTimeout: 30_000,
     coverage: {
       provider: 'v8',
       reporter: ['text', 'lcov', 'json-summary'],
