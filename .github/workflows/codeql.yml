@@ -2,7 +2,7 @@ name: CodeQL
 
 on:
   push:
-    branches: [main, develop, dev]
+    branches: [main, dev]
   # Removed from pull_request: this repo has no GitHub Advanced Security licence
   # so codeql-action/init always fails with "HttpError: Requires authentication".
   # The analysis still runs on push to main/dev and on the weekly schedule.

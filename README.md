@@ -246,6 +246,8 @@ docker exec lis-postgres-standby psql -U $POSTGRES_USER \
 
 **Never commit directly to `main`.** All changes go through `dev` first. This prevents `main`'s package.json and lockfile drifting out of sync, which breaks `pnpm install --frozen-lockfile` in CI for both branches.
 
+> **This is convention, not enforcement.** Branch protection and rulesets are unavailable on this repository — the GitHub API returns `403 Upgrade to GitHub Pro or make this repository public`, because it is a private repo on a free personal account. Nothing server-side prevents a direct push to `main`, a squashed promotion, or a merge with red CI. Enforcement (protected branches, required status checks, `CODEOWNERS` review routing) becomes possible only if the account is upgraded or the repo is made public.
+
 ### Environment-driven behaviour
 
 The backend and frontend **images are identical** in both stacks. Runtime and build-time environment variables switch behaviour between dev and prod:
@@ -267,6 +269,6 @@ feature branch → dev (CI: lint, unit tests, e2e, Prisma drift check)
 
 1. Work on a feature branch or directly on `dev`.
 2. Open a PR targeting `dev`; CI must pass.
-3. When ready to release, open a PR `dev → main`; merge once CI is green.
+3. When ready to release, open a PR `dev → main`; merge once CI is green. **Use a merge commit** (`gh pr merge <n> --merge`) — squashing rewrites the promoted commits into a new SHA and diverges `main` from `dev`, forcing a reverse merge back into `dev`.
 4. Deploy from `main` using `docker-compose.prod.yml`.
 
