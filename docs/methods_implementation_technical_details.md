@@ -620,6 +620,11 @@ pnpm verify:report          # Vitest suites
 pnpm verify:report --e2e    # additionally run Playwright against a running stack
 ```
 
+The published copies come from the manual **Verification Report** workflow
+(`.github/workflows/verification.yml`), which seeds its own database, starts the stack
+and runs the `--e2e` form once, so the report records the CI run that produced it.
+Per-push CI gates only; it no longer regenerates these files.
+
 This writes `docs/verification/verification-report.{md,json}` with per-suite files, cases, passed, failed, skipped, setup errors, and coverage. At commit `d83f39b` the suite comprised 154 cases across 26 files: 147 passed, 0 failed, 7 skipped. Backend statement coverage was 61.8%, frontend 40.8%.
 
 The skipped count matters and is reported deliberately. Six skips are opt-in Playwright specs (`RUN_DEMO`, `RUN_I18N_AUDIT`) that record demos and audit translations rather than verify behaviour. One is a report render gated on a launchable Chromium, which is present only in the backend container image.
