@@ -16,12 +16,11 @@ export default defineConfig({
     // tests that drive a dozen or more sequential HTTP round-trips through
     // Supertest and Prisma against a real database — the amendment test alone
     // accessions a case, creates its materials, drafts, signs out and reactivates.
-    // They take a few hundred milliseconds each on an idle machine, but the CI job
-    // that regenerates the verification report runs them while a backend server,
-    // Postgres and a just-finished Playwright suite share the same runner, and
-    // there the default fired as a timeout. A test that fails because the machine
-    // was busy is a flaky test, not a finding. 30s leaves ample headroom while
-    // still failing a genuine hang.
+    // They take a few hundred milliseconds each on an idle machine, but on a shared
+    // CI runner talking to a Postgres service container the default fired as a
+    // timeout, and a test that fails because the machine was busy is a flaky test
+    // rather than a finding. 30s leaves ample headroom while still failing a
+    // genuine hang.
     testTimeout: 30_000,
     hookTimeout: 30_000,
     coverage: {

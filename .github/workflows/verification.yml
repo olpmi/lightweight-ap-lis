@@ -1,0 +1,105 @@
+name: Verification Report
+
+# Manual only, and deliberately so.
+#
+# This produces the verification evidence cited in the manuscript: the suite
+# results table, the synthetic-corpus characterisation and the repository metrics.
+# It used to be a handful of steps bolted onto the end of the E2E job in ci.yml,
+# which was wrong in three ways: it re-ran the unit and integration suites against
+# a database the Playwright suite had already mutated, with a backend server still
+# running against it, so timeouts were reported as test failures; it duplicated the
+# suites the gating jobs had already run, so the published table described a
+# different execution than the one that gated the pull request; and because it ran
+# without --e2e it silently omitted the Playwright row the manuscript cites.
+#
+# The evidence is a deliberate artifact, not a per-push byproduct — the same
+# conclusion already reached for the manuscript figures. Per-push CI gates; this
+# workflow produces the numbers, once, on a clean stack, when someone asks for them.
+on:
+  workflow_dispatch:
+
+jobs:
+  verification:
+    name: Generate verification evidence
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: lis_user
+          POSTGRES_PASSWORD: lis_password
+          POSTGRES_DB: lis_verify
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      DATABASE_URL: postgresql://lis_user:lis_password@localhost:5432/lis_verify
+      SESSION_SECRET: verification-ci-secret
+      PORT: 3001
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+
+      - name: Apply migrations and seed the deterministic corpus
+        run: |
+          pnpm exec prisma migrate deploy --schema=prisma/schema.prisma
+          pnpm exec tsx prisma/seed.ts
+
+      # Before anything else touches the database. The E2E suite below accessions
+      # its own cases, and counting those as part of the published corpus would
+      # overstate it.
+      - name: Characterize the synthetic corpus
+        run: pnpm db:characterize
+
+      - name: Build backend
+        run: pnpm --filter @lis/backend build
+
+      # Not NODE_ENV=production: the login route is rate-limited to 20 attempts per
+      # IP per 15 minutes there, and the E2E suite signs in repeatedly. The limiter
+      # is written to skip outside production for exactly this reason.
+      - name: Start backend in background
+        run: node apps/backend/dist/server.js &
+
+      - name: Build frontend
+        run: pnpm --filter @lis/frontend build
+        env:
+          VITE_PASSWORD_AUTH: 'true'
+
+      - name: Serve built frontend on :5173
+        run: pnpm --filter @lis/frontend exec vite preview --host 0.0.0.0 --port 5173 --strictPort &
+
+      - name: Wait for backend + frontend to be ready
+        run: pnpm dlx wait-on@7 http://localhost:3001/health http://localhost:5173 --timeout 60000
+
+      - name: Install the pinned Chromium
+        run: pnpm --filter @lis/frontend exec playwright install --with-deps chromium
+
+      # One authoritative run of all three suites, including Playwright. `always()`
+      # because a failing suite is a result to publish, not a reason to withhold the
+      # table — the script exits non-zero on failures, so the job still goes red.
+      - name: Generate verification report
+        if: always()
+        run: pnpm verify:report --e2e
+        env:
+          PLAYWRIGHT_BASE_URL: http://localhost:5173
+          PLAYWRIGHT_BACKEND_URL: http://localhost:3001
+
+      - name: Regenerate repository metrics
+        if: always()
+        run: pnpm metrics:system
+
+      # Every value here derives from prisma/seed.ts or from the repository itself,
+      # so the artifact carries no clinical data or secrets.
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: verification-artifacts
+          path: docs/verification/
+          if-no-files-found: warn

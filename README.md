@@ -58,6 +58,20 @@ Output lands in [docs/verification/](docs/verification/). See
 [manuscript_verification_section.md](docs/verification/manuscript_verification_section.md)
 for how these map onto the paper.
 
+The committed copies are produced by the **Verification Report** workflow
+([.github/workflows/verification.yml](.github/workflows/verification.yml)), run manually:
+
+```bash
+gh workflow run "Verification Report" --ref <branch>
+```
+
+It seeds its own database, brings up the stack, runs all three suites once via
+`pnpm verify:report --e2e`, and uploads `docs/verification/` as an artifact — so the
+numbers name the run that produced them. Per-push CI does not regenerate them: it
+ran the suites a second time against a database the E2E suite had already mutated,
+which reported contention as test failures and published a table describing a
+different execution than the one that gated the change.
+
 ## Manuscript figures
 
 Publication figures are captured from the running application against the
