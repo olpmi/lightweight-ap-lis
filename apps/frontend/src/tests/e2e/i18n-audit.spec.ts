@@ -22,7 +22,7 @@ const REPORT_PATH = path.resolve(__dirname, '../../../i18n-audit.json');
 
 const RUN = !!process.env.RUN_I18N_AUDIT;
 
-const LANGS = ['fr', 'sw', 'ar', 'ur'] as const;
+const LANGS = ['fr', 'sw', 'ar', 'ur', 'pt'] as const;
 type Lang = (typeof LANGS)[number];
 
 const ROUTES = [
@@ -188,7 +188,12 @@ test('i18n audit', async ({ browser }) => {
   // Group by text for readability.
   const grouped: Record<string, { reason: string; routes: Record<Lang, string[]> }> = {};
   for (const f of allFindings) {
-    if (!grouped[f.text]) grouped[f.text] = { reason: f.reason, routes: { fr: [], sw: [], ar: [], ur: [] } };
+    if (!grouped[f.text]) {
+      // Seed one bucket per audited language so the report shape stays in step
+      // with LANGS as languages are added.
+      const routes = Object.fromEntries(LANGS.map((lang) => [lang, [] as string[]])) as Record<Lang, string[]>;
+      grouped[f.text] = { reason: f.reason, routes };
+    }
     if (!grouped[f.text].routes[f.lang].includes(f.route)) grouped[f.text].routes[f.lang].push(f.route);
   }
   await fs.writeFile(REPORT_PATH, JSON.stringify(grouped, null, 2), 'utf8');

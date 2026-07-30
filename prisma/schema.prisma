@@ -146,6 +146,21 @@ model OrderSequenceYear {
   @@map("order_sequence_year")
 }
 
+/// Single-row counter backing patient-identifier allocation.
+///
+/// Patient IDs were previously derived from `Date.now()` truncated to seven
+/// digits, which repeats roughly every 2.8 hours; combined with a
+/// find-then-create lookup that ignored demographics, a new patient could be
+/// silently merged into an unrelated existing record. Allocation now comes from
+/// this counter via a single atomic increment, so identifiers are unique and
+/// monotonic. Seeded above the highest pre-existing ID by its migration.
+model PatientSequence {
+  id        Int @id @default(1)
+  lastValue Int @default(0) @map("last_value")
+
+  @@map("patient_sequence")
+}
+
 model Order {
   orderId                 String    @id @map("order_id") @db.Char(11)
   patientId               String    @map("patient_id") @db.VarChar(50)

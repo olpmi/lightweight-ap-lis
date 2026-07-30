@@ -1,5 +1,5 @@
 {
-  "templateId": "fluid_cytology_international_system_serous_fluid",
+  "templateId": "fluid_cytology_international_serous_fluid",
   "summaryType": "rule_based_patient_facing_summary",
   "version": "1.0",
   "language": "en",
@@ -7,6 +7,13 @@
   "triggerField": "diagnostic_category",
   "summaries": {
     "isrsfc_i_non_diagnostic": {
+      "match": {
+        "diagnostic_category": {
+          "equals": [
+            "I. Non-diagnostic (ND)"
+          ]
+        }
+      },
       "professionalLabel": "Category I: Non-diagnostic (ND)",
       "patientTitle": "The fluid sample was not enough for a clear diagnosis",
       "plainLanguageSummary": "The fluid sample did not contain enough useful cells, or the sample quality was limited, so a clear diagnosis could not be made.",
@@ -15,6 +22,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
     },
     "isrsfc_ii_negative_for_malignancy": {
+      "match": {
+        "diagnostic_category": {
+          "equals": [
+            "II. Negative for Malignancy (NFM)"
+          ]
+        }
+      },
       "professionalLabel": "Category II: Negative for Malignancy (NFM)",
       "patientTitle": "No cancer cells seen in the fluid sample",
       "plainLanguageSummary": "The fluid sample did not show cancer cells.",
@@ -23,6 +37,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
     },
     "isrsfc_iii_aus": {
+      "match": {
+        "diagnostic_category": {
+          "equals": [
+            "III. Atypia of Undetermined Significance (AUS)"
+          ]
+        }
+      },
       "professionalLabel": "Category III: Atypia of Undetermined Significance (AUS)",
       "patientTitle": "Some unusual cells seen",
       "plainLanguageSummary": "The fluid sample shows some cells that look unusual, but the findings are not enough to diagnose cancer.",
@@ -31,6 +52,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
     },
     "isrsfc_iv_suspicious_for_malignancy": {
+      "match": {
+        "diagnostic_category": {
+          "equals": [
+            "IV. Suspicious for Malignancy (SFM)"
+          ]
+        }
+      },
       "professionalLabel": "Category IV: Suspicious for Malignancy (SFM)",
       "patientTitle": "Suspicious cells seen in the fluid sample",
       "plainLanguageSummary": "The fluid sample shows cells that are suspicious for cancer, but the findings may not be complete enough for a definite diagnosis.",
@@ -39,6 +67,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
     },
     "isrsfc_v_malignant": {
+      "match": {
+        "diagnostic_category": {
+          "equals": [
+            "V. Malignant (MAL)"
+          ]
+        }
+      },
       "professionalLabel": "Category V: Malignant (MAL)",
       "patientTitle": "Cancer cells identified in the fluid sample",
       "plainLanguageSummary": "The fluid sample shows malignant cells, meaning cancer cells were identified.",

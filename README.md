@@ -31,11 +31,65 @@ A lightweight **Anatomic Pathology Laboratory Information System** prototype imp
     shared/            Shared TypeScript types, Zod schemas, ID helpers
   prisma/
     schema.prisma      Database schema
-    seed.ts            Synthetic demo seed (~300 orders)
+    seed.ts            Synthetic demo seed (300 orders, deterministic)
+  scripts/
+    system-characteristics.ts   Repository counts (templates, catalog, data model)
+    dataset-characteristics.ts  Synthetic-corpus composition, measured from the DB
+    verification-report.ts      Aggregated test results and coverage
+    benchmark.ts                Performance benchmark against a running stack
+  docs/verification/   Generated verification and benchmark artifacts
   docker/              Dockerfiles + nginx config
   .github/workflows/   CI pipeline
   docker-compose.yml
 ```
+
+## Verification artifacts
+
+Figures describing this system are generated, not hand-maintained:
+
+```bash
+pnpm metrics:system        # template, catalog, and data-model counts
+pnpm db:characterize       # synthetic-corpus composition (needs a seeded DB)
+pnpm verify:report         # test results + coverage; --e2e adds Playwright
+pnpm bench                 # performance benchmark (needs a running backend)
+```
+
+Output lands in [docs/verification/](docs/verification/). See
+[manuscript_verification_section.md](docs/verification/manuscript_verification_section.md)
+for how these map onto the paper.
+
+## Manuscript figures
+
+Publication figures are captured from the running application against the
+deterministic seed, then composed by script:
+
+```bash
+# with a seeded database, the backend running and the built frontend served:
+GENERATE_MANUSCRIPT_FIGURES=1 pnpm figures:manuscript   # source panels
+pnpm figures:compose                                    # composites, captions, README
+```
+
+PowerShell:
+
+```powershell
+$env:GENERATE_MANUSCRIPT_FIGURES = "1"; pnpm figures:manuscript
+pnpm figures:compose
+```
+
+Figures 3 and 4 follow one synthetic case created through the API by
+[figure-case.ts](apps/frontend/src/tests/e2e/manuscript/helpers/figure-case.ts) —
+the seeded corpus has no immunohistochemistry order and no case combining
+multiple specimens, an amendment and a patient summary. Each figure is written
+twice from one shared layout: PNG for journal upload, and vector PDF for editing
+in Illustrator or similar.
+
+Output, per-panel metadata, captions and checksums land in
+[docs/manuscript/figures/](docs/manuscript/figures/); see its README for the full
+reproduction recipe and the synthetic case used.
+
+The capture specs are opt-in (`GENERATE_MANUSCRIPT_FIGURES=1`) so they stay out of
+the CI end-to-end run and do not inflate the verification test count;
+`.github/workflows/manuscript-figures.yml` regenerates everything on demand.
 
 ## Prerequisites
 
@@ -70,7 +124,7 @@ The backend API at **http://localhost:3001**
 This stack will automatically:
 1. Start PostgreSQL
 2. Run Prisma migrations (`prisma migrate deploy`)
-3. Seed the database with ~300 synthetic cases
+3. Seed the database with 300 synthetic cases (deterministic; see `pnpm db:characterize`)
 4. Start the backend and serve the built frontend with nginx
 
 To stop it:

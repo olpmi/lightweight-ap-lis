@@ -25,12 +25,21 @@ export default function ResultPatientSummaryTab({
   onOpenPdf,
   onDownloadPdf,
 }: Props) {
-  const { t } = useLanguage();
+  const { tIn } = useLanguage();
+
+  // Everything the patient sees follows the summary's language, not the
+  // interface's: the summary is written for the patient, and a Kiswahili summary
+  // under English headings is neither one thing nor the other. That includes the
+  // PDF actions, since the PDF they produce is the document handed to the patient.
+  // Only the EN/SW codes on the language toggle stay as they are — they name the
+  // languages themselves, so translating them would defeat the purpose.
+  const tPatient = (key: Parameters<typeof tIn>[1]) => tIn(patientSummaryLanguage, key);
+
   return (
     <Paper variant="outlined" sx={{ p: 2 }}>
       <Box display="flex" justifyContent="space-between" alignItems="flex-start" gap={2} flexWrap="wrap" mb={1.5}>
         <Box>
-          <Typography variant="subtitle2" color="text.secondary">{t('ps_title')}</Typography>
+          <Typography variant="subtitle2" color="text.secondary">{tPatient('ps_title')}</Typography>
           <Typography variant="caption" color="text.secondary" display="block">
             {resolvedPatientSummary.professionalLabel}
           </Typography>
@@ -58,7 +67,7 @@ export default function ResultPatientSummaryTab({
             onClick={onOpenPdf}
             disabled={!canOpenPdf || pdfPending}
           >
-            {t('ps_openPdf')}
+            {tPatient('ps_openPdf')}
           </Button>
           <Button
             size="small"
@@ -67,22 +76,22 @@ export default function ResultPatientSummaryTab({
             onClick={onDownloadPdf}
             disabled={!canOpenPdf || pdfPending}
           >
-            {t('ps_downloadPdf')}
+            {tPatient('ps_downloadPdf')}
           </Button>
         </Stack>
       </Box>
 
       <Stack spacing={1.5}>
         <Box>
-          <Typography variant="overline" color="text.secondary">{t('ps_summary')}</Typography>
+          <Typography variant="overline" color="text.secondary">{tPatient('ps_summary')}</Typography>
           <Typography variant="body2">{resolvedPatientSummary.plainLanguageSummary}</Typography>
         </Box>
         <Box>
-          <Typography variant="overline" color="text.secondary">{t('ps_whatThisMeans')}</Typography>
+          <Typography variant="overline" color="text.secondary">{tPatient('ps_whatThisMeans')}</Typography>
           <Typography variant="body2">{resolvedPatientSummary.whatThisMeans}</Typography>
         </Box>
         <Box>
-          <Typography variant="overline" color="text.secondary">{t('ps_possibleNextSteps')}</Typography>
+          <Typography variant="overline" color="text.secondary">{tPatient('ps_possibleNextSteps')}</Typography>
           <Typography variant="body2">{resolvedPatientSummary.possibleNextSteps}</Typography>
         </Box>
         <Alert severity="info">{resolvedPatientSummary.safetyNote}</Alert>

@@ -159,3 +159,48 @@ test.describe('Result / Sign-out workflow', () => {
     await expect(page.getByTestId('sign-out-btn')).not.toBeDisabled();
   });
 });
+
+/**
+ * Language switching in a real browser.
+ *
+ * demo-lifecycle.spec.ts and i18n-audit.spec.ts also cover language behaviour,
+ * but both are gated behind RUN_DEMO / RUN_I18N_AUDIT and do not run in CI.
+ * These cases keep all six languages — and the right-to-left flip — on the
+ * default CI path.
+ *
+ * The switcher is a ToggleButtonGroup of <ToggleButton value="xx">, so
+ * selecting by the `value` attribute is locale-independent.
+ */
+test.describe('Interface languages', () => {
+  const LANGUAGES = [
+    { code: 'en', direction: 'ltr' },
+    { code: 'sw', direction: 'ltr' },
+    { code: 'fr', direction: 'ltr' },
+    { code: 'pt', direction: 'ltr' },
+    { code: 'ar', direction: 'rtl' },
+    { code: 'ur', direction: 'rtl' },
+  ] as const;
+
+  test.beforeEach(async ({ page }) => {
+    await loginAsExistingEmployee(page);
+  });
+
+  for (const { code, direction } of LANGUAGES) {
+    test(`switches the interface to ${code} and applies ${direction} direction`, async ({ page }) => {
+      const button = page.locator(`button[value="${code}"]`).first();
+      await expect(button).toBeVisible();
+      await button.click();
+
+      await expect(page.locator('html')).toHaveAttribute('lang', code);
+      await expect(page.locator('html')).toHaveAttribute('dir', direction);
+    });
+  }
+
+  test('returns to left-to-right after leaving a right-to-left language', async ({ page }) => {
+    await page.locator('button[value="ar"]').first().click();
+    await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
+
+    await page.locator('button[value="en"]').first().click();
+    await expect(page.locator('html')).toHaveAttribute('dir', 'ltr');
+  });
+});

@@ -87,6 +87,10 @@ describe.skipIf(!hasDb)('Order edit-lock', () => {
     if (createdOrderIds.length) {
       const where = { orderId: { in: createdOrderIds } } as const;
       await prisma.ancillaryOrder.deleteMany({ where });
+      // The enforcement tests below create draft reports, which hold a
+      // restricting FK to the order.
+      await prisma.reportFile.deleteMany({ where: { report: { orderId: { in: createdOrderIds } } } });
+      await prisma.report.deleteMany({ where });
       await prisma.specimen.deleteMany({ where });
       await prisma.order.deleteMany({ where });
     }
@@ -192,5 +196,95 @@ describe.skipIf(!hasDb)('Order edit-lock', () => {
     expect(b.status).toBe(200);
     expect(b.body.data.ownedByRequester).toBe(true);
     expect(b.body.data.editingEmployeeId).toBe(employeeBId);
+  });
+
+  /**
+   * Enforcement on mutating endpoints.
+   *
+   * `OrderLockService.assertHolder` existed but had no call sites, so the lock
+   * was advisory: a client that skipped the lock hook could still write to a
+   * case another user was editing. It is now called inside the transactions of
+   * createDraft, signOut, signPrelim and reactivate.
+   *
+   * Draft creation is used as the representative mutation because it needs only
+   * an order, no materials.
+   */
+  describe('enforcement on mutating endpoints', () => {
+    function draftBody(pathologistEmployeeId: number): Record<string, unknown> {
+      return {
+        diagnosis: 'Lock enforcement diagnosis.',
+        gross: 'Lock enforcement gross.',
+        pathologistEmployeeId,
+      };
+    }
+
+    it('the lock holder can write to the case', async () => {
+      const orderId = await createOrder();
+      expect((await agentA.post(`/api/orders/${orderId}/lock`)).status).toBe(200);
+
+      const res = await agentA
+        .post(`/api/orders/${orderId}/reports/draft`)
+        .send(draftBody(employeeAId));
+      expect(res.status).toBe(201);
+    });
+
+    it('a non-holder is rejected with 409 LOCKED while another user holds the lock', async () => {
+      const orderId = await createOrder();
+      expect((await agentA.post(`/api/orders/${orderId}/lock`)).status).toBe(200);
+
+      const res = await agentB
+        .post(`/api/orders/${orderId}/reports/draft`)
+        .send(draftBody(employeeBId));
+
+      expect(res.status).toBe(409);
+      expect(res.body.error.code).toBe('LOCKED');
+      expect(res.body.error.details.editingEmployeeId).toBe(employeeAId);
+
+      // The rejected write must not have persisted anything.
+      expect(await prisma.report.count({ where: { orderId } })).toBe(0);
+    });
+
+    it('writes are permitted when no lock is held at all', async () => {
+      // Clients that never acquire a lock keep working; they retain only the
+      // optimistic-locking protection.
+      const orderId = await createOrder();
+
+      const res = await agentB
+        .post(`/api/orders/${orderId}/reports/draft`)
+        .send(draftBody(employeeBId));
+      expect(res.status).toBe(201);
+    });
+
+    it('another user can write once the holder releases the lock', async () => {
+      const orderId = await createOrder();
+      expect((await agentA.post(`/api/orders/${orderId}/lock`)).status).toBe(200);
+
+      const blocked = await agentB
+        .post(`/api/orders/${orderId}/reports/draft`)
+        .send(draftBody(employeeBId));
+      expect(blocked.status).toBe(409);
+
+      expect((await agentA.delete(`/api/orders/${orderId}/lock`)).status).toBe(204);
+
+      const allowed = await agentB
+        .post(`/api/orders/${orderId}/reports/draft`)
+        .send(draftBody(employeeBId));
+      expect(allowed.status).toBe(201);
+    });
+
+    it('an expired lease does not block another user', async () => {
+      const orderId = await createOrder();
+      expect((await agentA.post(`/api/orders/${orderId}/lock`)).status).toBe(200);
+
+      await prisma.order.update({
+        where: { orderId },
+        data: { editingExpiresAt: new Date(Date.now() - 60_000) },
+      });
+
+      const res = await agentB
+        .post(`/api/orders/${orderId}/reports/draft`)
+        .send(draftBody(employeeBId));
+      expect(res.status).toBe(201);
+    });
   });
 });

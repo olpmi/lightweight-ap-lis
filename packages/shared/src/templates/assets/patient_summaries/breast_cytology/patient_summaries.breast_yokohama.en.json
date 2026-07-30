@@ -4,9 +4,16 @@
   "version": "1.0",
   "language": "en",
   "system": "Yokohama System for Reporting Breast Fine Needle Aspiration Biopsy Cytopathology",
-  "triggerField": "diagnostic_category_yokohama",
+  "triggerField": "yokohama_category",
   "summaries": {
     "yokohama_i_insufficient_inadequate": {
+      "match": {
+        "yokohama_category": {
+          "equals": [
+            "I: Insufficient / Inadequate"
+          ]
+        }
+      },
       "professionalLabel": "Category I: Insufficient / Inadequate",
       "patientTitle": "The breast sample was not enough for a clear diagnosis",
       "plainLanguageSummary": "The breast sample did not contain enough useful cells, or the sample quality was limited, so a clear diagnosis could not be made.",
@@ -15,6 +22,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
     },
     "yokohama_ii_benign": {
+      "match": {
+        "yokohama_category": {
+          "equals": [
+            "II: Benign"
+          ]
+        }
+      },
       "professionalLabel": "Category II: Benign",
       "patientTitle": "Benign breast result",
       "plainLanguageSummary": "The breast sample shows benign, non-cancerous cells.",
@@ -23,6 +37,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
     },
     "yokohama_iii_atypical": {
+      "match": {
+        "yokohama_category": {
+          "equals": [
+            "III: Atypical"
+          ]
+        }
+      },
       "professionalLabel": "Category III: Atypical",
       "patientTitle": "Some atypical breast cells seen",
       "plainLanguageSummary": "The breast sample shows some cells that look unusual, but the findings are not enough to diagnose cancer.",
@@ -31,6 +52,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
     },
     "yokohama_iv_suspicious_for_malignancy": {
+      "match": {
+        "yokohama_category": {
+          "equals": [
+            "IV: Suspicious for Malignancy"
+          ]
+        }
+      },
       "professionalLabel": "Category IV: Suspicious for Malignancy",
       "patientTitle": "Suspicious breast result",
       "plainLanguageSummary": "The breast sample shows changes that are suspicious for cancer, but may not be sufficient for a definite diagnosis.",
@@ -39,6 +67,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
     },
     "yokohama_v_malignant": {
+      "match": {
+        "yokohama_category": {
+          "equals": [
+            "V: Malignant"
+          ]
+        }
+      },
       "professionalLabel": "Category V: Malignant",
       "patientTitle": "Cancer cells identified in the breast sample",
       "plainLanguageSummary": "The breast sample shows malignant cells, meaning cancer cells were identified.",

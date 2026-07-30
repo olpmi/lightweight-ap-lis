@@ -7,6 +7,13 @@
   "triggerField": "milan_category",
   "summaries": {
     "milan_i_non_diagnostic": {
+      "match": {
+        "milan_category": {
+          "equals": [
+            "I. Non-diagnostic"
+          ]
+        }
+      },
       "professionalLabel": "Milan Category I: Non-diagnostic",
       "patientTitle": "The sample was not enough for a clear diagnosis",
       "plainLanguageSummary": "The salivary gland sample did not contain enough useful material for a clear diagnosis.",
@@ -15,6 +22,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
     },
     "milan_ii_non_neoplastic": {
+      "match": {
+        "milan_category": {
+          "equals": [
+            "II. Non-neoplastic"
+          ]
+        }
+      },
       "professionalLabel": "Milan Category II: Non-neoplastic",
       "patientTitle": "No tumor identified",
       "plainLanguageSummary": "The sample shows non-tumor changes, such as inflammatory or benign reactive changes.",
@@ -23,6 +37,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
     },
     "milan_iii_aus": {
+      "match": {
+        "milan_category": {
+          "equals": [
+            "III. Atypia of Undetermined Significance (AUS)"
+          ]
+        }
+      },
       "professionalLabel": "Milan Category III: Atypia of Undetermined Significance (AUS)",
       "patientTitle": "Some mildly unusual cells seen",
       "plainLanguageSummary": "The sample shows some cells that look unusual, but the findings are not enough to classify the lesion clearly.",
@@ -31,6 +52,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
     },
     "milan_iva_benign_neoplasm": {
+      "match": {
+        "milan_category": {
+          "equals": [
+            "IVa. Benign Neoplasm"
+          ]
+        }
+      },
       "professionalLabel": "Milan Category IVa: Benign Neoplasm",
       "patientTitle": "Benign salivary gland tumor",
       "plainLanguageSummary": "The sample is most consistent with a benign, non-cancerous salivary gland tumor.",
@@ -39,6 +67,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
     },
     "milan_ivb_sump": {
+      "match": {
+        "milan_category": {
+          "equals": [
+            "IVb. Salivary Gland Neoplasm of Uncertain Malignant Potential (SUMP)"
+          ]
+        }
+      },
       "professionalLabel": "Milan Category IVb: Salivary Gland Neoplasm of Uncertain Malignant Potential (SUMP)",
       "patientTitle": "Salivary gland tumor with uncertain behavior",
       "plainLanguageSummary": "The sample shows a salivary gland tumor, but cytology alone cannot confidently determine whether it is benign or malignant.",
@@ -47,6 +82,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
     },
     "milan_v_suspicious_for_malignancy": {
+      "match": {
+        "milan_category": {
+          "equals": [
+            "V. Suspicious for Malignancy"
+          ]
+        }
+      },
       "professionalLabel": "Milan Category V: Suspicious for Malignancy",
       "patientTitle": "Suspicious salivary gland result",
       "plainLanguageSummary": "The sample shows changes that are suspicious for cancer, but may not be sufficient for a definite diagnosis.",
@@ -55,6 +97,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
     },
     "milan_vi_malignant": {
+      "match": {
+        "milan_category": {
+          "equals": [
+            "VI. Malignant"
+          ]
+        }
+      },
       "professionalLabel": "Milan Category VI: Malignant",
       "patientTitle": "Cancer cells identified in the salivary gland sample",
       "plainLanguageSummary": "The sample shows malignant cells, meaning cancer cells were identified.",

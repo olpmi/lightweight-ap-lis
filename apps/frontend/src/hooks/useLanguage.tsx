@@ -211,8 +211,8 @@ const en = {
   common_discard: 'Discard',
   label_discarded: 'Discarded',
   hc_discardSlideTooltip: 'Discard slide',
-  pc_numBlocks: '# Blocks',
-  pc_numSlides: '# Slides',
+  pc_numBlocks: 'Blocks to add',
+  pc_numSlides: 'Slides to add',
   pc_addBlock: 'Add Block',
   pc_addBlocks: 'Add Blocks',
   pc_addSlide: 'Add Slide',
@@ -745,8 +745,8 @@ const sw: Record<keyof typeof en, string> = {
   common_discard: 'Tupa',
   label_discarded: 'Imetupwa',
   hc_discardSlideTooltip: 'Tupa slaidi',
-  pc_numBlocks: 'Idadi ya Vitalu',
-  pc_numSlides: 'Idadi ya Slaidi',
+  pc_numBlocks: 'Vitalu vya kuongeza',
+  pc_numSlides: 'Slaidi za kuongeza',
   pc_addBlock: 'Ongeza Kitalu',
   pc_addBlocks: 'Ongeza Vitalu',
   pc_addSlide: 'Ongeza Slaidi',
@@ -1281,8 +1281,8 @@ const pt: Record<keyof typeof en, string> = {
   common_discard: 'Descartar',
   label_discarded: 'Descartado',
   hc_discardSlideTooltip: 'Descartar lâmina',
-  pc_numBlocks: 'Nº de Blocos',
-  pc_numSlides: 'Nº de Lâminas',
+  pc_numBlocks: 'Blocos a adicionar',
+  pc_numSlides: 'Lâminas a adicionar',
   pc_addBlock: 'Adicionar Bloco',
   pc_addBlocks: 'Adicionar Blocos',
   pc_addSlide: 'Adicionar Lâmina',
@@ -1817,8 +1817,8 @@ const fr: Record<keyof typeof en, string> = {
   common_discard: 'Rejeter',
   label_discarded: 'Rejeté',
   hc_discardSlideTooltip: 'Rejeter la lame',
-  pc_numBlocks: 'Nb de blocs',
-  pc_numSlides: 'Nb de lames',
+  pc_numBlocks: 'Blocs à ajouter',
+  pc_numSlides: 'Lames à ajouter',
   pc_addBlock: 'Ajouter un bloc',
   pc_addBlocks: 'Ajouter des blocs',
   pc_addSlide: 'Ajouter une lame',
@@ -2353,8 +2353,8 @@ const ar: Record<keyof typeof en, string> = {
   common_discard: 'استبعاد',
   label_discarded: 'مستبعد',
   hc_discardSlideTooltip: 'استبعاد الشريحة',
-  pc_numBlocks: 'عدد البلوكات',
-  pc_numSlides: 'عدد الشرائح',
+  pc_numBlocks: 'البلوكات المراد إضافتها',
+  pc_numSlides: 'الشرائح المراد إضافتها',
   pc_addBlock: 'إضافة بلوك',
   pc_addBlocks: 'إضافة بلوكات',
   pc_addSlide: 'إضافة شريحة',
@@ -2889,8 +2889,8 @@ const ur: Record<keyof typeof en, string> = {
   common_discard: 'مسترد کریں',
   label_discarded: 'مسترد',
   hc_discardSlideTooltip: 'سلائیڈ مسترد کریں',
-  pc_numBlocks: 'بلاکس کی تعداد',
-  pc_numSlides: 'سلائیڈز کی تعداد',
+  pc_numBlocks: 'شامل کرنے کے لیے بلاکس',
+  pc_numSlides: 'شامل کرنے کے لیے سلائیڈز',
   pc_addBlock: 'بلاک شامل کریں',
   pc_addBlocks: 'بلاکس شامل کریں',
   pc_addSlide: 'سلائیڈ شامل کریں',
@@ -3410,6 +3410,15 @@ interface LanguageContextValue {
   direction: 'ltr' | 'rtl';
   languageOptions: readonly LanguageOption[];
   t: (key: keyof Translations) => string;
+  /**
+   * Translates into an explicit language instead of the interface language.
+   *
+   * For content addressed to someone other than the signed-in user: a
+   * patient-facing summary is shown in the patient's language, which is chosen
+   * independently of the language the laboratory staff work in, so its own labels
+   * must follow the summary rather than the interface.
+   */
+  tIn: (language: Lang, key: keyof Translations) => string;
   tSite: (englishName: string) => string;
   tOrgan: (englishName: string) => string;
   tSpecimenType: (englishName: string) => string;
@@ -3460,6 +3469,10 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
       direction,
       languageOptions: LANGUAGE_OPTIONS,
       t,
+      // Falls back to English per key, so a language missing a dictionary or an
+      // individual string still renders text rather than `undefined`.
+      tIn: (language: Lang, key: keyof Translations) =>
+        ((DICTS[language] ?? en)[key] ?? en[key]) as string,
       tSite: tFromMap(SITE_KEY_MAP),
       tOrgan: tFromMap(ORGAN_KEY_MAP),
       tSpecimenType: tFromMap(SPECIMEN_TYPE_KEY_MAP),

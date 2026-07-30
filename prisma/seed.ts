@@ -568,6 +568,20 @@ async function main() {
     });
     patientIds.push(pid);
   }
+
+  // Advance the patient-ID counter past the demo data. Seeded IDs are random
+  // 7-digit values, so an allocator starting from zero would eventually walk
+  // into them and collide. The migration does the same thing for databases that
+  // already held patients; this covers the case where seeding happens after it.
+  const highestSeededPatientId = patientIds.reduce((highest, patientId) => {
+    const numeric = Number(patientId.slice(1));
+    return Number.isFinite(numeric) && numeric > highest ? numeric : highest;
+  }, 0);
+  await prisma.patientSequence.upsert({
+    where: { id: 1 },
+    create: { id: 1, lastValue: highestSeededPatientId },
+    update: { lastValue: highestSeededPatientId },
+  });
   console.log('  ✓ Patients');
 
   // 8. Order sequence bootstrap for year 26

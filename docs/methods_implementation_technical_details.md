@@ -502,6 +502,12 @@ This design reduces race conditions around sequence generation, version numberin
 
 Report draft update and sign-out APIs support an `expectedUpdatedAt` value. When provided, the backend includes the current report timestamp in the update condition. If another user modifies the draft first, the operation fails with a 409 conflict and a `DRAFT_STALE` error code rather than silently overwriting the other user's work.
 
+### 10.2a Pessimistic edit lock
+
+Separately from the optimistic guards, a case carries a lease-based edit lock (`OrderLockService`, 5-minute lease with a 60-second client heartbeat). The result and processing pages acquire it on mount and release it on unmount; other users opening the same case see a read-only banner naming the holder.
+
+The lock is enforced server-side, not only in the UI: `assertHolder` runs inside the transactions of draft creation, sign-out, preliminary sign-out, and amendment, rejecting a write from anyone other than the current holder with 409 `LOCKED`. It deliberately permits the write when no lock is held or the lease has expired, so a client that never acquires a lock still works and falls back to the optimistic protection alone.
+
 ### 10.3 Conflict signaling to the frontend
 
 The frontend Axios layer emits a global browser event on HTTP 409 responses. A global conflict-toast component listens for these events and can refresh query data so the UI converges quickly after optimistic-lock or concurrent-update failures.
@@ -526,13 +532,18 @@ Important server-side guards include:
 
 The current UI supports the following language codes:
 
-- `en`
-- `fr`
-- `sw`
-- `ar`
-- `ur`
+- `en` — English (left-to-right)
+- `fr` — French (left-to-right)
+- `sw` — Swahili (left-to-right)
+- `pt` — Portuguese (left-to-right)
+- `ar` — Arabic (**right-to-left**)
+- `ur` — Urdu (**right-to-left**)
 
-These correspond to English, French, Swahili, Arabic, and Urdu.
+Six languages in total. The canonical list is `APP_LANGUAGE_CODES` in `packages/shared/src/templates/index.ts`; the `AppLanguage` enum in `prisma/schema.prisma` mirrors it. Portuguese was added in migration `20260619000000_add_pt_app_language`.
+
+Language coverage and text direction are verified by `apps/frontend/src/tests/components/LanguageProvider.test.tsx`, which iterates `APP_LANGUAGE_CODES` rather than a hand-maintained list, and by the `Interface languages` block in `apps/frontend/src/tests/e2e/workflows.spec.ts`, which switches all six in a real browser and asserts `document.documentElement.dir`.
+
+Note that `apps/frontend/src/tests/e2e/demo-lifecycle.spec.ts` covers five languages, not six: it carries its own narration and PDF-label tables, for which no Portuguese translations have been authored. It is a demo recorder, not a verification test.
 
 ### 11.2 Implementation model
 
@@ -600,6 +611,36 @@ The E2E workflow applies migrations, seeds the test database, builds both applic
 
 The CI pipeline uploads backend and frontend coverage artifacts. For E2E failures, trace/video artifacts are also retained for debugging.
 
+### 12.4 Measured results
+
+Do not quote test counts from prose. Regenerate them:
+
+```bash
+pnpm verify:report          # Vitest suites
+pnpm verify:report --e2e    # additionally run Playwright against a running stack
+```
+
+This writes `docs/verification/verification-report.{md,json}` with per-suite files, cases, passed, failed, skipped, setup errors, and coverage. At commit `d83f39b` the suite comprised 154 cases across 26 files: 147 passed, 0 failed, 7 skipped. Backend statement coverage was 61.8%, frontend 40.8%.
+
+The skipped count matters and is reported deliberately. Six skips are opt-in Playwright specs (`RUN_DEMO`, `RUN_I18N_AUDIT`) that record demos and audit translations rather than verify behaviour. One is a report render gated on a launchable Chromium, which is present only in the backend container image.
+
+Two caveats worth knowing before citing numbers:
+
+- Backend integration suites are wrapped in `describe.skipIf(!hasDb)`. The guard reads `process.env.DATABASE_URL`, which Prisma populates from the repo-root `.env` on import, so on a developer machine with an `.env` the suites attempt to run rather than skip and fail against whatever database that URL points at. Set `DATABASE_URL`/`SESSION_SECRET` explicitly to the intended database.
+- Vitest's JSON reporter counts tests inside a file whose `beforeAll` threw as *passed* while reporting `numFailedTests: 0`. `scripts/verification-report.ts` therefore derives counts from the per-assertion records and reports such files separately as setup errors. Reading the reporter's top-level aggregates would publish a clean sheet for a run in which whole suites never executed.
+
+### 12.5 Test-file parallelism
+
+`apps/backend/vitest.config.ts` sets `fileParallelism: false`. The integration suites share one PostgreSQL instance and contend on shared fixtures (the `pathologist` role, the `Test Site` body site) and on the per-prefix accession-number sequence row. With files running in parallel, roughly one run in two failed in `beforeAll`. Serialising makes the suite deterministic at a cost of a few seconds.
+
+## 12A. Performance Benchmarking
+
+`scripts/benchmark.ts` (`pnpm bench`) drives a running backend over HTTP and measures concurrent authenticated sessions, case creation, query latency, the full accessioning-to-sign-out lifecycle, PDF generation, and database growth. It records host CPU, core count, memory, PostgreSQL version, Node version, and commit hash alongside the timings, and writes `docs/verification/benchmark-<timestamp>.{md,json}`.
+
+Run it on a documented fixed host rather than in CI — shared runners are too noisy for publishable timings — and against the containerised backend, which is the configuration the deployment section describes.
+
+These are loaded measurements and are distinct from the idle memory footprint reported elsewhere, which describes a stack at rest.
+
 ## 13. Reproducibility and Seed Data
 
 ### 13.1 Seed strategy
@@ -616,7 +657,35 @@ The seed script populates:
 - structured cytology examples
 - synthetic case/order data
 
-Repository documentation and code comments indicate that the development seed is intended to create approximately 300 synthetic orders/cases for demos and automated testing.
+The seed creates **300** synthetic cases (`ORDER_COUNT` in `prisma/seed.ts`), stratified across the workflow so every queue is populated, then deterministically shuffled so accession order does not encode workflow stage.
+
+Do not quote corpus figures from prose. Regenerate them against a seeded database:
+
+```bash
+pnpm db:reset && pnpm db:seed && pnpm db:characterize
+```
+
+This writes `docs/verification/dataset-characteristics.{md,json}`, measuring the realized composition rather than restating the seed's constants. At commit `d83f39b`:
+
+| Measure | n |
+| --- | ---: |
+| Cases | 300 |
+| Surgical pathology / cytology | 190 / 110 |
+| Accessioned, specimens only | 20 |
+| Blocks created, no slides | 60 |
+| Blocks and slides, awaiting sign-out | 60 |
+| Signed out | 150 |
+| Amended after sign-out | 10 |
+| Patients / specimens / blocks / slides | 50 / 595 / 1078 / 1809 |
+| Reports (all versions) | 260 |
+
+Because the generator is seeded, the corpus is byte-reproducible: two independent reseeds were confirmed to produce identical characterization JSON.
+
+Three properties of the corpus should be disclosed rather than glossed:
+
+- Body sites are drawn from the full anatomic lookup independently of case type, so some cytology cases carry anatomically implausible sites.
+- Every ancillary order in the corpus is a routine H&E order; no IHC, special-stain, molecular, or send-out orders are seeded. Those pathways are covered by automated tests, not by seeded data.
+- The corpus contains no preliminary reports and no addenda.
 
 ### 13.3 Manuscript implication
 
@@ -687,9 +756,22 @@ The following points should be disclosed or at least considered when converting 
 - The system is a lightweight prototype and not a validated commercial LIS.
 - Authentication uses password-based session login (bcrypt-hashed passwords) rather than enterprise identity management (e.g. SSO, LDAP, OAuth2).
 - Files are stored on a local/container filesystem rather than in object storage, PACS, or enterprise document management.
-- New patient identifiers are currently generated in the application layer using a timestamp-derived prototype scheme.
-- The codebase emphasizes functional workflow correctness and testability; no dedicated load-testing or formal performance-benchmark suite was identified in the repository.
+- Patient identifiers are allocated from the `patient_sequence` counter. Deployments that migrated from the earlier timestamp-derived scheme retain identifiers generated under it; the migration starts the counter above them so the two never collide.
+- A reproducible performance benchmark now exists (`pnpm bench`, §12A), covering concurrent sessions, case creation, query latency, PDF generation, and database growth. It is not a load test: it characterises latency at modest concurrency on a single host, and says nothing about sustained multi-user throughput or long-run stability.
+- Report PDF generation dominates sign-out latency (~425 ms of a ~500 ms sign-out). Errors during PDF generation are caught so they cannot block sign-out, which means a rendering fault is silent: the case signs out, reports success, and no PDF is produced. The failure mode is worth monitoring in deployment even though the defect that exposed it is fixed (§16A).
 - Queue semantics in older prose documents may differ from current code, so manuscript text should follow the implemented behavior described here.
+
+## 16A. Defects Found During Verification and Since Fixed
+
+Building the verification artifacts surfaced four defects that the test suite as it stood could not see. All are fixed; each is recorded here because the fix changes what the manuscript can claim, and because the failure modes are worth carrying into deployment monitoring.
+
+**Report PDFs were never generated.** `PdfLayoutService.getBrowser()` launched Chromium with `--single-process` and `--no-zygote`. Modern Chromium exits immediately under that combination ("Protocol error (Target.createTarget): Target closed"). Since `ReportService.signOut` catches PDF errors so they cannot block a clinical action, the failure was silent: cases signed out successfully and produced no PDF and no `ReportFile` row. Verified directly in the production container image — with the flags a render fails, without them the same call returns a valid PDF. Removing them was the fix.
+
+**Patient identifiers repeated every 2.8 hours.** `order.service.ts` generated `'P' + Date.now().toString().slice(-7)`; seven digits of milliseconds wrap every 10,000,000 ms. `patientService.findOrCreate` then returned any existing record with that identifier **without comparing name, date of birth, or sex**, so a new patient could be silently merged into an unrelated record and their case filed under the wrong person. Allocation now comes from `patient_sequence` via a single atomic increment (`PatientService.generatePatientId`), registration uses `createWithGeneratedId` with no lookup step, and a caller-supplied identifier whose demographics disagree is rejected with 409 `PATIENT_MISMATCH`. The same change removed the concurrent-registration conflicts the benchmark had measured: 25 simultaneous registrations previously produced six HTTP 409s and now produce none.
+
+**Amended cases never returned to the result queue.** `getResultQueue` excluded any order matching `reports: { none: { isFinal: true, signedOutDatetime: { not: null } } }`. After an amendment the superseded version still satisfied it, so a case awaiting a revised sign-out vanished from the worklist. The predicate now also admits a reactivated order that still holds an open draft, and drops it again once re-signed. The seeded result-queue count consequently moves from 60 to 70.
+
+**The pessimistic edit-lock was advisory.** `OrderLockService.assertHolder()` was implemented but had no call sites, so a client bypassing the UI lock could write to a case another user was editing. It is now called inside the transactions of `createDraft`, `signOut`, `signPrelim`, and `reactivate`. It no-ops when no lock is held or the lease has lapsed, so clients that never acquire a lock are unaffected and only an actively contested case is rejected with 409 `LOCKED`.
 
 ## 17. Study-specific Metadata the Authors Still Need to Add
 
