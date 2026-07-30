@@ -1,0 +1,24 @@
+# Code ownership for review routing.
+#
+# NOT ACTIVE TODAY. CODEOWNERS requires a public repository or a paid plan
+# (Pro / Team / Enterprise). This repo is private on a free personal account,
+# so GitHub will neither auto-request reviews from the owners below nor
+# enforce them — branch protection returns HTTP 403 here for the same reason.
+#
+# This file records intended ownership and starts working automatically if the
+# repo is made public or the account is upgraded. Until then, treat it as
+# documentation: these paths deserve an owner's eyes regardless of tooling.
+
+# Default owner for everything not matched below.
+*                       @olpmi
+
+# Database schema and migrations — a bad migration is hard to undo in prod,
+# where docker-compose.prod.yml runs `prisma migrate deploy` on startup.
+/prisma/                @olpmi
+
+# CI, release, and security workflows — these gate what reaches GHCR.
+/.github/               @olpmi
+
+# Production stack and container definitions.
+/docker/                @olpmi
+/docker-compose.prod.yml @olpmi
