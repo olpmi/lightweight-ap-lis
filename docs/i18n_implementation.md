@@ -2,7 +2,20 @@
 
 ## Overview
 
-The AP LIS frontend supports English (EN) and Kiswahili (SW) via a custom React context — no third-party i18n library is required.
+The AP LIS frontend supports six languages via a custom React context — no third-party i18n library is required:
+
+| Code | Language | Direction |
+| --- | --- | --- |
+| `en` | English | left-to-right |
+| `sw` | Kiswahili | left-to-right |
+| `fr` | French | left-to-right |
+| `pt` | Portuguese | left-to-right |
+| `ar` | Arabic | **right-to-left** |
+| `ur` | Urdu | **right-to-left** |
+
+The canonical list is `APP_LANGUAGE_CODES` in `packages/shared/src/templates/index.ts`. `LanguageProvider` sets `document.documentElement.lang` and `dir` from the selected language, so Arabic and Urdu render right-to-left.
+
+Coverage is verified by `apps/frontend/src/tests/components/LanguageProvider.test.tsx` and by the `Interface languages` block in `apps/frontend/src/tests/e2e/workflows.spec.ts`.
 
 ## Architecture
 

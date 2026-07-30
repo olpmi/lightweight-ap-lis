@@ -1,0 +1,382 @@
+{
+  "host": {
+    "commit": "d83f39b05f993dfa0e0c652f0efb792db2b6f5c1",
+    "node": "v22.19.0",
+    "platform": "Windows_NT 10.0.22631 (x64)",
+    "cpu": "Intel(R) Xeon(R) w5-2555X",
+    "logicalCores": "28",
+    "totalMemoryGiB": "63.25",
+    "postgres": "PostgreSQL 16.14 on x86_64-pc-linux-musl",
+    "baseUrl": "http://localhost:3012"
+  },
+  "generatedAt": "2026-07-28T00:25:48.048Z",
+  "measurements": [
+    {
+      "group": "Concurrent sessions",
+      "scenario": "Authenticated login",
+      "detail": "concurrency 1",
+      "summary": {
+        "samples": 1,
+        "errors": 0,
+        "minMs": 9,
+        "p50Ms": 9,
+        "p95Ms": 9,
+        "p99Ms": 9,
+        "maxMs": 9,
+        "meanMs": 9,
+        "throughputPerSecond": 110.7
+      }
+    },
+    {
+      "group": "Concurrent sessions",
+      "scenario": "Authenticated login",
+      "detail": "concurrency 5",
+      "summary": {
+        "samples": 5,
+        "errors": 0,
+        "minMs": 14.5,
+        "p50Ms": 32,
+        "p95Ms": 37.1,
+        "p99Ms": 37.1,
+        "maxMs": 37.1,
+        "meanMs": 27.2,
+        "throughputPerSecond": 130.9
+      }
+    },
+    {
+      "group": "Concurrent sessions",
+      "scenario": "Authenticated login",
+      "detail": "concurrency 10",
+      "summary": {
+        "samples": 10,
+        "errors": 0,
+        "minMs": 14.3,
+        "p50Ms": 21.3,
+        "p95Ms": 25.4,
+        "p99Ms": 25.4,
+        "maxMs": 25.4,
+        "meanMs": 19,
+        "throughputPerSecond": 360.5
+      }
+    },
+    {
+      "group": "Concurrent sessions",
+      "scenario": "Authenticated login",
+      "detail": "concurrency 25",
+      "summary": {
+        "samples": 25,
+        "errors": 0,
+        "minMs": 15,
+        "p50Ms": 27.8,
+        "p95Ms": 41.9,
+        "p99Ms": 42.7,
+        "maxMs": 42.7,
+        "meanMs": 27.2,
+        "throughputPerSecond": 562
+      }
+    },
+    {
+      "group": "Query latency",
+      "scenario": "Query by accession number",
+      "summary": {
+        "samples": 30,
+        "errors": 0,
+        "minMs": 7.9,
+        "p50Ms": 8.9,
+        "p95Ms": 10.1,
+        "p99Ms": 10.3,
+        "maxMs": 10.3,
+        "meanMs": 9,
+        "throughputPerSecond": 109.6
+      }
+    },
+    {
+      "group": "Query latency",
+      "scenario": "Query by patient identifier",
+      "summary": {
+        "samples": 30,
+        "errors": 0,
+        "minMs": 9.8,
+        "p50Ms": 11.3,
+        "p95Ms": 13.7,
+        "p99Ms": 14.5,
+        "maxMs": 14.5,
+        "meanMs": 11.5,
+        "throughputPerSecond": 82.9
+      }
+    },
+    {
+      "group": "Query latency",
+      "scenario": "Processing queue, first page",
+      "summary": {
+        "samples": 30,
+        "errors": 0,
+        "minMs": 16.1,
+        "p50Ms": 18.2,
+        "p95Ms": 22.3,
+        "p99Ms": 24.7,
+        "maxMs": 24.7,
+        "meanMs": 18.6,
+        "throughputPerSecond": 52
+      }
+    },
+    {
+      "group": "Query latency",
+      "scenario": "Result queue, first page",
+      "summary": {
+        "samples": 30,
+        "errors": 0,
+        "minMs": 18.6,
+        "p50Ms": 21.8,
+        "p95Ms": 35.1,
+        "p99Ms": 35.6,
+        "maxMs": 35.6,
+        "meanMs": 23.6,
+        "throughputPerSecond": 41.2
+      }
+    },
+    {
+      "group": "Query latency",
+      "scenario": "Histology queue, distributed",
+      "summary": {
+        "samples": 30,
+        "errors": 0,
+        "minMs": 23.3,
+        "p50Ms": 26.6,
+        "p95Ms": 30,
+        "p99Ms": 30.1,
+        "maxMs": 30.1,
+        "meanMs": 26.7,
+        "throughputPerSecond": 36.2
+      }
+    },
+    {
+      "group": "Case creation",
+      "scenario": "Create case, sequential",
+      "detail": "One specimen per case; accession number allocated server-side",
+      "summary": {
+        "samples": 30,
+        "errors": 0,
+        "minMs": 38.2,
+        "p50Ms": 77.8,
+        "p95Ms": 116.2,
+        "p99Ms": 127.6,
+        "maxMs": 127.6,
+        "meanMs": 77.1,
+        "throughputPerSecond": 12.9
+      }
+    },
+    {
+      "group": "Case creation",
+      "scenario": "Create case, concurrent",
+      "detail": "concurrency 1",
+      "summary": {
+        "samples": 1,
+        "errors": 0,
+        "minMs": 58.7,
+        "p50Ms": 58.7,
+        "p95Ms": 58.7,
+        "p99Ms": 58.7,
+        "maxMs": 58.7,
+        "meanMs": 58.7,
+        "throughputPerSecond": 16.9
+      }
+    },
+    {
+      "group": "Case creation",
+      "scenario": "Create case, concurrent",
+      "detail": "concurrency 5",
+      "summary": {
+        "samples": 5,
+        "errors": 0,
+        "minMs": 59.4,
+        "p50Ms": 85.7,
+        "p95Ms": 94.8,
+        "p99Ms": 94.8,
+        "maxMs": 94.8,
+        "meanMs": 81.1,
+        "throughputPerSecond": 52.5
+      }
+    },
+    {
+      "group": "Case creation",
+      "scenario": "Create case, concurrent",
+      "detail": "concurrency 10",
+      "summary": {
+        "samples": 10,
+        "errors": 0,
+        "minMs": 72.8,
+        "p50Ms": 107.3,
+        "p95Ms": 147,
+        "p99Ms": 147,
+        "maxMs": 147,
+        "meanMs": 99.8,
+        "throughputPerSecond": 67.6
+      }
+    },
+    {
+      "group": "Case creation",
+      "scenario": "Create case, concurrent",
+      "detail": "concurrency 25",
+      "summary": {
+        "samples": 25,
+        "errors": 0,
+        "minMs": 149.9,
+        "p50Ms": 216.2,
+        "p95Ms": 256.8,
+        "p99Ms": 261.1,
+        "maxMs": 261.1,
+        "meanMs": 209.2,
+        "throughputPerSecond": 95.4
+      }
+    },
+    {
+      "group": "Case lifecycle",
+      "scenario": "Create case (accessioning)",
+      "detail": "15 cases",
+      "summary": {
+        "samples": 15,
+        "errors": 0,
+        "minMs": 38.4,
+        "p50Ms": 61.4,
+        "p95Ms": 95,
+        "p99Ms": 95,
+        "maxMs": 95,
+        "meanMs": 68.8
+      }
+    },
+    {
+      "group": "Case lifecycle",
+      "scenario": "Create block",
+      "detail": "15 cases",
+      "summary": {
+        "samples": 15,
+        "errors": 0,
+        "minMs": 19.3,
+        "p50Ms": 28.9,
+        "p95Ms": 39.3,
+        "p99Ms": 39.3,
+        "maxMs": 39.3,
+        "meanMs": 29.1
+      }
+    },
+    {
+      "group": "Case lifecycle",
+      "scenario": "Create slide",
+      "detail": "15 cases",
+      "summary": {
+        "samples": 15,
+        "errors": 0,
+        "minMs": 15.7,
+        "p50Ms": 25.5,
+        "p95Ms": 34.2,
+        "p99Ms": 34.2,
+        "maxMs": 34.2,
+        "meanMs": 25.2
+      }
+    },
+    {
+      "group": "Case lifecycle",
+      "scenario": "Distribute block (H&E)",
+      "detail": "15 cases",
+      "summary": {
+        "samples": 15,
+        "errors": 0,
+        "minMs": 8.3,
+        "p50Ms": 22.2,
+        "p95Ms": 29,
+        "p99Ms": 29,
+        "maxMs": 29,
+        "meanMs": 20.3
+      }
+    },
+    {
+      "group": "Case lifecycle",
+      "scenario": "Create draft report",
+      "detail": "15 cases",
+      "summary": {
+        "samples": 15,
+        "errors": 0,
+        "minMs": 25.5,
+        "p50Ms": 34.8,
+        "p95Ms": 42.7,
+        "p99Ms": 42.7,
+        "maxMs": 42.7,
+        "meanMs": 34.4
+      }
+    },
+    {
+      "group": "Case lifecycle",
+      "scenario": "Sign out (generates report PDF)",
+      "detail": "15 cases",
+      "summary": {
+        "samples": 15,
+        "errors": 0,
+        "minMs": 471.2,
+        "p50Ms": 500.6,
+        "p95Ms": 735.2,
+        "p99Ms": 735.2,
+        "maxMs": 735.2,
+        "meanMs": 512.7
+      }
+    },
+    {
+      "group": "Case lifecycle",
+      "scenario": "Full case lifecycle, accessioning to sign-out",
+      "detail": "15 cases",
+      "summary": {
+        "samples": 15,
+        "errors": 0,
+        "minMs": 646.8,
+        "p50Ms": 668.7,
+        "p95Ms": 909.1,
+        "p99Ms": 909.1,
+        "maxMs": 909.1,
+        "meanMs": 690.4,
+        "throughputPerSecond": 1.4
+      }
+    },
+    {
+      "group": "PDF generation",
+      "scenario": "Download generated report PDF",
+      "detail": "GET /api/reports/:reportId/pdf for a report signed out during this run",
+      "summary": {
+        "samples": 30,
+        "errors": 0,
+        "minMs": 5.1,
+        "p50Ms": 5.5,
+        "p95Ms": 6.5,
+        "p99Ms": 6.6,
+        "maxMs": 6.6,
+        "meanMs": 5.6,
+        "throughputPerSecond": 170.3
+      }
+    },
+    {
+      "group": "PDF generation",
+      "scenario": "Report layout render (Handlebars + headless Chromium)",
+      "detail": "Requires PUPPETEER_EXECUTABLE_PATH to point at a Chromium binary",
+      "summary": {
+        "samples": 30,
+        "errors": 0,
+        "minMs": 386.9,
+        "p50Ms": 425,
+        "p95Ms": 473.7,
+        "p99Ms": 481.1,
+        "maxMs": 481.1,
+        "meanMs": 428.7,
+        "throughputPerSecond": 2.3
+      }
+    }
+  ],
+  "databaseGrowth": {
+    "sizeBefore": {
+      "totalBytes": 11795479,
+      "orders": 300
+    },
+    "sizeAfter": {
+      "totalBytes": 11738135,
+      "orders": 391
+    }
+  }
+}

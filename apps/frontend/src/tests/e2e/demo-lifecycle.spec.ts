@@ -34,6 +34,11 @@ import { fileURLToPath } from 'url';
 
 // ─── Config ────────────────────────────────────────────────────────────────
 
+// Portuguese is intentionally absent: this spec records narrated demo videos and
+// carries its own per-language narration and PDF-label tables, which have no
+// Portuguese translations. Portuguese UI coverage lives in the tests that run in
+// CI — workflows.spec.ts and components/LanguageProvider.test.tsx — rather than
+// in this opt-in recorder.
 const LANGS = ['en', 'fr', 'sw', 'ar', 'ur'] as const;
 type Lang = (typeof LANGS)[number];
 

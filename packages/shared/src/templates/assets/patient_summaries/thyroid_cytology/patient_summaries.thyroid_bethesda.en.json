@@ -7,6 +7,13 @@
   "triggerField": "bethesda_category",
   "summaries": {
     "bethesda_i_non_diagnostic_unsatisfactory": {
+      "match": {
+        "bethesda_category": {
+          "equals": [
+            "I. Non-diagnostic / Unsatisfactory"
+          ]
+        }
+      },
       "professionalLabel": "Bethesda Category I: Non-diagnostic / Unsatisfactory",
       "patientTitle": "The sample was not enough for a clear diagnosis",
       "plainLanguageSummary": "The thyroid sample did not contain enough useful cells, or the sample quality was limited, so a clear diagnosis could not be made.",
@@ -15,6 +22,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
     },
     "bethesda_ii_benign": {
+      "match": {
+        "bethesda_category": {
+          "equals": [
+            "II. Benign"
+          ]
+        }
+      },
       "professionalLabel": "Bethesda Category II: Benign",
       "patientTitle": "Benign thyroid result",
       "plainLanguageSummary": "The thyroid sample shows benign, non-cancerous cells.",
@@ -23,6 +37,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
     },
     "bethesda_iii_aus": {
+      "match": {
+        "bethesda_category": {
+          "equals": [
+            "III. Atypia of Undetermined Significance (AUS)"
+          ]
+        }
+      },
       "professionalLabel": "Bethesda Category III: Atypia of Undetermined Significance (AUS)",
       "patientTitle": "Mildly atypical thyroid cells",
       "plainLanguageSummary": "The thyroid sample shows some cells that look mildly unusual, but the findings are not enough to diagnose cancer or a definite tumor.",
@@ -31,6 +52,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
     },
     "bethesda_iv_follicular_neoplasm_suspicious_for_follicular_neoplasm": {
+      "match": {
+        "bethesda_category": {
+          "equals": [
+            "IV. Follicular Neoplasm / Suspicious for Follicular Neoplasm"
+          ]
+        }
+      },
       "professionalLabel": "Bethesda Category IV: Follicular Neoplasm / Suspicious for Follicular Neoplasm",
       "patientTitle": "Possible follicular thyroid tumor",
       "plainLanguageSummary": "The thyroid sample shows a pattern that may represent a follicular thyroid tumor.",
@@ -39,6 +67,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
     },
     "bethesda_v_suspicious_for_malignancy": {
+      "match": {
+        "bethesda_category": {
+          "equals": [
+            "V. Suspicious for Malignancy"
+          ]
+        }
+      },
       "professionalLabel": "Bethesda Category V: Suspicious for Malignancy",
       "patientTitle": "Suspicious thyroid result",
       "plainLanguageSummary": "The thyroid sample shows changes that are suspicious for cancer, but the findings may not be complete enough for a definite diagnosis.",
@@ -47,6 +82,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, imaging, and previous results where relevant."
     },
     "bethesda_vi_malignant": {
+      "match": {
+        "bethesda_category": {
+          "equals": [
+            "VI. Malignant"
+          ]
+        }
+      },
       "professionalLabel": "Bethesda Category VI: Malignant",
       "patientTitle": "Cancer cells identified in the thyroid sample",
       "plainLanguageSummary": "The thyroid sample shows malignant cells, meaning cancer cells were identified.",

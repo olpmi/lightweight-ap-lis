@@ -1,0 +1,106 @@
+{
+  "commit": "d83f39b05f993dfa0e0c652f0efb792db2b6f5c1",
+  "generatedAt": "2026-07-28T00:39:07.260Z",
+  "groups": [
+    {
+      "group": "Structured reporting content",
+      "metrics": [
+        {
+          "characteristic": "Gross examination templates, malignant resection specimens",
+          "value": 9,
+          "rule": "Count of `*.core.json` files under packages/shared/src/templates/assets (language overlay files excluded). Gross = path contains a `/gross/` segment."
+        },
+        {
+          "characteristic": "Microscopic reporting templates, malignant (CAP-aligned)",
+          "value": 19,
+          "rule": "Count of `*.core.json` files under packages/shared/src/templates/assets (language overlay files excluded). Microscopic = non-gross, family does not end in `_cytology`."
+        },
+        {
+          "characteristic": "Cytology reporting templates (Bethesda, Milan, Paris, Yokohama)",
+          "value": 7,
+          "rule": "Count of `*.core.json` files under packages/shared/src/templates/assets (language overlay files excluded). Cytology = non-gross, family ends in `_cytology`."
+        },
+        {
+          "characteristic": "Total structured reporting templates",
+          "value": 35,
+          "rule": "Count of `*.core.json` files under packages/shared/src/templates/assets (language overlay files excluded)."
+        }
+      ]
+    },
+    {
+      "group": "Ancillary testing catalog",
+      "metrics": [
+        {
+          "characteristic": "Ancillary test categories",
+          "value": 5,
+          "rule": "Distinct categories present in the seeded catalog (HE_LEVELS, IHC, MOLECULAR, SEND_OUT, SPECIAL_STAIN). The AncillaryCategory enum additionally defines HE, which is applied to per-block H&E orders created at accessioning rather than ordered from the catalog."
+        },
+        {
+          "characteristic": "Individual immunohistochemistry orderables",
+          "value": 27,
+          "rule": "Rows in the `ancillary_orderable` INSERT of prisma/migrations/20260609000000_seed_reference_data/migration.sql. Category = IHC."
+        },
+        {
+          "characteristic": "Immunohistochemistry panels",
+          "value": 9,
+          "rule": "Rows in the `ancillary_panel` INSERT of the same migration. Category = IHC."
+        },
+        {
+          "characteristic": "Molecular panels (colorectal, lung, PD-L1)",
+          "value": 3,
+          "rule": "Rows in the `ancillary_panel` INSERT of the same migration. Category = MOLECULAR."
+        },
+        {
+          "characteristic": "Special stains",
+          "value": 5,
+          "rule": "Rows in the `ancillary_orderable` INSERT of prisma/migrations/20260609000000_seed_reference_data/migration.sql. Category = SPECIAL_STAIN."
+        },
+        {
+          "characteristic": "Send-out categories",
+          "value": 3,
+          "rule": "Rows in the `ancillary_orderable` INSERT of prisma/migrations/20260609000000_seed_reference_data/migration.sql. Category = SEND_OUT."
+        },
+        {
+          "characteristic": "Total preconfigured panels",
+          "value": 12,
+          "rule": "Rows in the `ancillary_panel` INSERT of the same migration."
+        }
+      ]
+    },
+    {
+      "group": "Data model",
+      "metrics": [
+        {
+          "characteristic": "Relational entities in the data model",
+          "value": 19,
+          "rule": "`model` blocks in prisma/schema.prisma (22) excluding 3 structural tables: OrderSequenceYear (identifier-sequence counter); CustomTemplateTranslation (translation side-table); AncillaryPanelItem (pure join table (panel ↔ orderable)). Enums are not counted as entities."
+        },
+        {
+          "characteristic": "Total database tables",
+          "value": 22,
+          "rule": "All `model` blocks in prisma/schema.prisma, including join, sequence, and translation tables."
+        },
+        {
+          "characteristic": "Enumerated types",
+          "value": 7,
+          "rule": "All `enum` blocks in prisma/schema.prisma."
+        }
+      ]
+    },
+    {
+      "group": "Data model and demonstration data",
+      "metrics": [
+        {
+          "characteristic": "Synthetic demonstration cases",
+          "value": 300,
+          "rule": "`ORDER_COUNT` in prisma/seed.ts. Run `pnpm db:characterize` against a seeded database for the realized case mix and stage distribution."
+        },
+        {
+          "characteristic": "Pseudo-random generator seed",
+          "value": 42,
+          "rule": "Seed passed to `makeRng` in prisma/seed.ts. Fixing this value is what makes the synthetic corpus byte-reproducible."
+        }
+      ]
+    }
+  ]
+}

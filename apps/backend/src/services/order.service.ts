@@ -29,16 +29,23 @@ export class OrderService {
     let patientId: string;
     if (data.patientId) {
       patientId = data.patientId;
-      // Ensure patient exists
-      await patientService.findById(patientId);
+      // Ensure the patient exists, and that it is the patient the caller meant.
+      // Any demographics sent alongside the ID must agree with the stored
+      // record, so a mistyped or stale identifier fails loudly instead of
+      // filing this case against someone else.
+      await patientService.assertDemographicsMatch(patientId, {
+        lastName: data.patientLastName,
+        firstName: data.patientFirstName,
+        dateOfBirth: data.patientDateOfBirth,
+        sex: data.patientSex,
+      });
     } else {
       if (!data.patientLastName || !data.patientFirstName || !data.patientDateOfBirth || !data.patientSex) {
         throw new AppError(400, 'BAD_REQUEST', 'New patient requires lastName, firstName, dateOfBirth, and sex');
       }
-      // Generate a patient ID if creating new
-      const newPatientId = 'P' + Date.now().toString().slice(-7);
-      const patient = await patientService.findOrCreate({
-        patientId: newPatientId,
+      // Identifier comes from the sequence, so it is new by construction — no
+      // lookup, and therefore no chance of merging into an existing record.
+      const patient = await patientService.createWithGeneratedId({
         lastName: data.patientLastName,
         firstName: data.patientFirstName,
         dateOfBirth: data.patientDateOfBirth,

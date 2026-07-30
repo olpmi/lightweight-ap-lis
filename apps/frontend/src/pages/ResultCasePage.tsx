@@ -865,7 +865,25 @@ export default function ResultCasePage() {
       {success && <Alert severity="success" sx={{ mb: 2 }} onClose={() => setSuccess(null)}>{success}</Alert>}
 
       {/* Tabs */}
-      <Tabs value={tab} onChange={(_, v: ResultTabId) => setTab(v)} sx={{ mb: 2 }}>
+      {/*
+        Labels wrap rather than being clipped. Tab text is translated, and several
+        languages need noticeably more room than English — "Patient Summary" is
+        "Muhtasari wa Mgonjwa" in Kiswahili — so on a narrower window the last tab
+        was being cut off mid-word with nothing to indicate more tabs existed.
+        Allowing the labels to wrap, with the scrollable variant as a backstop for
+        even longer translations, keeps every tab readable.
+      */}
+      <Tabs
+        value={tab}
+        onChange={(_, v: ResultTabId) => setTab(v)}
+        variant="scrollable"
+        scrollButtons="auto"
+        allowScrollButtonsMobile
+        sx={{
+          mb: 2,
+          '& .MuiTab-root': { minWidth: 'auto', px: 1.5, whiteSpace: 'normal' },
+        }}
+      >
         <Tab value="result-entry" label={t('rc_resultEntry')} />
         <Tab value="materials" label={t('pc_materials')} />
         <Tab value="ancillary" label={t('rc_ancillaryTab')} />

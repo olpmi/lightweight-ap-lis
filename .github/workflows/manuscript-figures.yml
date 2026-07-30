@@ -1,0 +1,96 @@
+name: Manuscript Figures
+
+# Manual only. Figure generation is not a test — it builds the stack, seeds a
+# deterministic corpus, drives a browser and composes multi-megapixel images, so
+# running it per pull request would cost time without gating anything.
+on:
+  workflow_dispatch:
+
+jobs:
+  figures:
+    name: Capture and compose manuscript figures
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: lis_user
+          POSTGRES_PASSWORD: lis_password
+          POSTGRES_DB: lis_figures
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      DATABASE_URL: postgresql://lis_user:lis_password@localhost:5432/lis_figures
+      SESSION_SECRET: figures-ci-secret
+      PORT: 3001
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+
+      - name: Apply migrations and seed the deterministic corpus
+        run: |
+          pnpm exec prisma migrate deploy --schema=prisma/schema.prisma
+          pnpm exec tsx prisma/seed.ts
+
+      - name: Record the corpus used for the figures
+        run: pnpm db:characterize
+
+      - name: Build backend
+        run: pnpm --filter @lis/backend build
+
+      # Deliberately not NODE_ENV=production. The login route is rate-limited to 20
+      # attempts per IP per 15 minutes in production, and a capture run signs in
+      # once per panel — enough to trip it and hang on the login screen. The limiter
+      # is written to skip outside production for exactly this reason. Nothing in
+      # the figures depends on the backend's NODE_ENV; the interface they show is
+      # the production frontend build, which is built separately below.
+      - name: Start backend
+        run: node apps/backend/dist/server.js &
+
+      - name: Build frontend
+        run: pnpm --filter @lis/frontend build
+        env:
+          VITE_PASSWORD_AUTH: 'true'
+
+      - name: Serve the built frontend
+        run: pnpm --filter @lis/frontend exec vite preview --host 127.0.0.1 --port 5173 --strictPort &
+
+      - name: Wait for backend and frontend
+        run: pnpm dlx wait-on@7 http://localhost:3001/health http://127.0.0.1:5173 --timeout 60000
+
+      - name: Install the pinned Chromium
+        run: pnpm --filter @lis/frontend exec playwright install --with-deps chromium
+
+      - name: Capture source panels
+        run: pnpm figures:manuscript
+        env:
+          GENERATE_MANUSCRIPT_FIGURES: '1'
+          CI: 'true'
+          PLAYWRIGHT_BASE_URL: http://127.0.0.1:5173
+          PLAYWRIGHT_BACKEND_URL: http://localhost:3001
+
+      - name: Build composites, captions and README
+        run: pnpm figures:compose
+
+      # Only the generated figure outputs. Every value in them comes from
+      # prisma/seed.ts, so the artifact carries no clinical data or secrets.
+      - uses: actions/upload-artifact@v4
+        with:
+          name: manuscript-figures
+          path: docs/manuscript/figures/
+          if-no-files-found: error
+
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: manuscript-figures-playwright-report
+          path: apps/frontend/playwright-report/
+          if-no-files-found: ignore

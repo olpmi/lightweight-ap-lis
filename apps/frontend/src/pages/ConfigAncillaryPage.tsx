@@ -96,7 +96,14 @@ function OrderableDialog({ open, onClose, initial, onSave, saving, error }: Orde
               label={t('anc_category')}
               onChange={(e) => setCategory(e.target.value as AncillaryCategory)}
             >
-              {ANCILLARY_CATEGORIES.map((cat) => (
+              {/*
+                HE is excluded: it holds the routine "H&E Staining" order created
+                automatically for every block, and the config API rejects it as a
+                category for user-created orderables. Offering it here let the form
+                submit something the server would refuse. The ordering dialog
+                already filters it out the same way.
+              */}
+              {ANCILLARY_CATEGORIES.filter((cat) => cat !== 'HE').map((cat) => (
                 <MenuItem key={cat} value={cat}>
                   {categoryLabel(cat)}
                 </MenuItem>

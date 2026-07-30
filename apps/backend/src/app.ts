@@ -125,14 +125,14 @@ export function createApp(): express.Application {
 
   app.post('/api/orders/:orderId/reports/draft', requireAuth, validateBody(createDraftReportSchema), async (req, res, next) => {
     try {
-      const data = await reportService.createDraft(req.params.orderId, req.body);
+      const data = await reportService.createDraft(req.params.orderId, req.body, req.session.employeeId);
       res.status(201).json({ data });
     } catch (err) { next(err); }
   });
 
   app.post('/api/orders/:orderId/reactivate', requireAuth, validateBody(reactivateOrderSchema), async (req, res, next) => {
     try {
-      const data = await reportService.reactivate(req.params.orderId, req.body);
+      const data = await reportService.reactivate(req.params.orderId, req.body, req.session.employeeId);
       res.json({ data });
     } catch (err) { next(err); }
   });

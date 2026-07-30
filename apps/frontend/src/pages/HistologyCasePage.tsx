@@ -284,7 +284,10 @@ export default function HistologyCasePage() {
                   onChange={(e) =>
                     setBlockCounts({ ...blockCounts, [spec.specimenId]: parseInt(e.target.value) || 1 })
                   }
-                  sx={{ width: 80 }}
+                  // Wide enough for the label: at 80px "Blocks to add" was
+                  // ellipsised to "Blocks t...", losing the word that says what
+                  // the number does.
+                  sx={{ width: 150 }}
                   inputProps={{ min: 1, max: 10 }}
                 />
                 <Button

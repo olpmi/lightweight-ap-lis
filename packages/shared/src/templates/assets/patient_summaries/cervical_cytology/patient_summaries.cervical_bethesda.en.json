@@ -7,6 +7,13 @@
   "triggerField": "interpretation_result",
   "summaries": {
     "cervical_unsatisfactory_scant_cellularity": {
+      "match": {
+        "adequacy_status": {
+          "equals": [
+            "unsatisfactory_scant_cellularity"
+          ]
+        }
+      },
       "professionalLabel": "Unsatisfactory for evaluation - scant cellularity",
       "patientTitle": "The Pap smear sample did not have enough cells",
       "plainLanguageSummary": "The Pap smear could not be fully evaluated because there were too few cells in the sample.",
@@ -15,6 +22,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, HPV results, previous Pap smear results, and current cervical screening guidelines."
     },
     "cervical_unsatisfactory_obscuring_blood_inflammation": {
+      "match": {
+        "adequacy_status": {
+          "equals": [
+            "unsatisfactory_obscuring_blood_inflammation"
+          ]
+        }
+      },
       "professionalLabel": "Unsatisfactory for evaluation - obscuring blood / inflammation",
       "patientTitle": "The Pap smear sample was obscured by blood or inflammation",
       "plainLanguageSummary": "The Pap smear could not be fully evaluated because blood or inflammation made the cells difficult to assess.",
@@ -23,6 +37,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, HPV results, previous Pap smear results, and current cervical screening guidelines."
     },
     "cervical_unsatisfactory_poor_preservation": {
+      "match": {
+        "adequacy_status": {
+          "equals": [
+            "unsatisfactory_poor_preservation"
+          ]
+        }
+      },
       "professionalLabel": "Unsatisfactory for evaluation - poor preservation",
       "patientTitle": "The Pap smear sample was poorly preserved",
       "plainLanguageSummary": "The Pap smear could not be fully evaluated because the cells were not well preserved.",
@@ -31,6 +52,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, HPV results, previous Pap smear results, and current cervical screening guidelines."
     },
     "cervical_unsatisfactory_other": {
+      "match": {
+        "adequacy_status": {
+          "equals": [
+            "unsatisfactory_other"
+          ]
+        }
+      },
       "professionalLabel": "Unsatisfactory for evaluation - other",
       "patientTitle": "The Pap smear sample was not adequate for diagnosis",
       "plainLanguageSummary": "The Pap smear could not be fully evaluated for another sample-related reason.",
@@ -39,6 +67,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, HPV results, previous Pap smear results, and current cervical screening guidelines."
     },
     "cervical_satisfactory_limited_obscuring_blood": {
+      "match": {
+        "satisfactory_but_limited_by": {
+          "includes": [
+            "obscuring_blood"
+          ]
+        }
+      },
       "professionalLabel": "Satisfactory but limited by obscuring blood",
       "patientTitle": "The Pap smear was adequate but partly limited by blood",
       "plainLanguageSummary": "The Pap smear could be evaluated, but some areas were harder to assess because of blood.",
@@ -47,6 +82,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, HPV results, previous Pap smear results, and current cervical screening guidelines."
     },
     "cervical_satisfactory_limited_inflammation": {
+      "match": {
+        "satisfactory_but_limited_by": {
+          "includes": [
+            "inflammation"
+          ]
+        }
+      },
       "professionalLabel": "Satisfactory but limited by inflammation",
       "patientTitle": "The Pap smear was adequate but partly limited by inflammation",
       "plainLanguageSummary": "The Pap smear could be evaluated, but inflammation made some cells harder to assess.",
@@ -55,6 +97,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, HPV results, previous Pap smear results, and current cervical screening guidelines."
     },
     "cervical_satisfactory_limited_low_squamous_cellularity": {
+      "match": {
+        "satisfactory_but_limited_by": {
+          "includes": [
+            "low_squamous_cellularity"
+          ]
+        }
+      },
       "professionalLabel": "Satisfactory but limited by low squamous cellularity",
       "patientTitle": "The Pap smear was adequate but had fewer squamous cells than ideal",
       "plainLanguageSummary": "The Pap smear could be evaluated, but the number of squamous cells was lower than ideal.",
@@ -63,6 +112,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, HPV results, previous Pap smear results, and current cervical screening guidelines."
     },
     "cervical_satisfactory_limited_poor_fixation": {
+      "match": {
+        "satisfactory_but_limited_by": {
+          "includes": [
+            "poor_fixation"
+          ]
+        }
+      },
       "professionalLabel": "Satisfactory but limited by poor fixation",
       "patientTitle": "The Pap smear was adequate but partly limited by fixation",
       "plainLanguageSummary": "The Pap smear could be evaluated, but some cells were not preserved as well as ideal.",
@@ -71,6 +127,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, HPV results, previous Pap smear results, and current cervical screening guidelines."
     },
     "cervical_nilm_within_normal_limits": {
+      "match": {
+        "interpretation_result": {
+          "equals": [
+            "nilm_within_normal_limits"
+          ]
+        }
+      },
       "professionalLabel": "Negative for intraepithelial lesion or malignancy: Within normal limits",
       "patientTitle": "No cancer or precancerous changes seen",
       "plainLanguageSummary": "Your Pap smear is within normal limits and does not show cancer or precancerous changes.",
@@ -79,6 +142,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, HPV results, previous Pap smear results, and current cervical screening guidelines."
     },
     "cervical_nilm_reactive_inflammation": {
+      "match": {
+        "interpretation_result": {
+          "equals": [
+            "nilm_reactive_inflammation"
+          ]
+        }
+      },
       "professionalLabel": "Negative for intraepithelial lesion or malignancy, with reactive cellular changes associated with inflammation",
       "patientTitle": "No cancer or precancerous changes seen; inflammation-related changes present",
       "plainLanguageSummary": "Your Pap smear does not show cancer or precancerous changes. Some cell changes related to inflammation are present.",
@@ -87,6 +157,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, HPV results, previous Pap smear results, and current cervical screening guidelines."
     },
     "cervical_nilm_reactive_radiation_iud_atrophy": {
+      "match": {
+        "interpretation_result": {
+          "equals": [
+            "nilm_reactive_radiation_iud_atrophy"
+          ]
+        }
+      },
       "professionalLabel": "Negative for intraepithelial lesion or malignancy, with reactive cellular changes associated with radiation / IUD / atrophy",
       "patientTitle": "No cancer or precancerous changes seen; reactive changes present",
       "plainLanguageSummary": "Your Pap smear does not show cancer or precancerous changes. Some reactive cell changes are present, which may be related to prior radiation, an intrauterine device, or atrophy.",
@@ -95,6 +172,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, HPV results, previous Pap smear results, and current cervical screening guidelines."
     },
     "cervical_organism_trichomonas_vaginalis": {
+      "match": {
+        "interpretation_result": {
+          "equals": [
+            "organism_trichomonas_vaginalis"
+          ]
+        }
+      },
       "professionalLabel": "Organisms identified: Trichomonas vaginalis",
       "patientTitle": "Trichomonas organisms seen",
       "plainLanguageSummary": "The Pap smear shows organisms consistent with Trichomonas vaginalis.",
@@ -103,6 +187,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, HPV results, previous Pap smear results, and current cervical screening guidelines."
     },
     "cervical_organism_candida": {
+      "match": {
+        "interpretation_result": {
+          "equals": [
+            "organism_candida_spp"
+          ]
+        }
+      },
       "professionalLabel": "Organisms identified: Fungal organisms morphologically consistent with Candida spp.",
       "patientTitle": "Candida-type fungal organisms seen",
       "plainLanguageSummary": "The Pap smear shows fungal organisms that look like Candida.",
@@ -111,6 +202,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, HPV results, previous Pap smear results, and current cervical screening guidelines."
     },
     "cervical_organism_bacterial_vaginosis": {
+      "match": {
+        "interpretation_result": {
+          "equals": [
+            "organism_bacterial_vaginosis"
+          ]
+        }
+      },
       "professionalLabel": "Organisms identified: Shift in flora suggestive of bacterial vaginosis",
       "patientTitle": "Changes suggestive of bacterial vaginosis",
       "plainLanguageSummary": "The Pap smear shows a change in vaginal bacteria that may suggest bacterial vaginosis.",
@@ -119,6 +217,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, HPV results, previous Pap smear results, and current cervical screening guidelines."
     },
     "cervical_organism_actinomyces": {
+      "match": {
+        "interpretation_result": {
+          "equals": [
+            "organism_actinomyces_spp"
+          ]
+        }
+      },
       "professionalLabel": "Organisms identified: Bacteria morphologically consistent with Actinomyces spp.",
       "patientTitle": "Actinomyces-like bacteria seen",
       "plainLanguageSummary": "The Pap smear shows bacteria that look like Actinomyces.",
@@ -127,6 +232,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, HPV results, previous Pap smear results, and current cervical screening guidelines."
     },
     "cervical_organism_herpes_simplex_virus": {
+      "match": {
+        "interpretation_result": {
+          "equals": [
+            "organism_herpes_simplex_virus"
+          ]
+        }
+      },
       "professionalLabel": "Organisms identified: Herpes simplex virus changes",
       "patientTitle": "Changes suggestive of herpes virus seen",
       "plainLanguageSummary": "The Pap smear shows cell changes that may be associated with herpes simplex virus.",
@@ -135,6 +247,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, HPV results, previous Pap smear results, and current cervical screening guidelines."
     },
     "cervical_ascus": {
+      "match": {
+        "interpretation_result": {
+          "equals": [
+            "asc_us"
+          ]
+        }
+      },
       "professionalLabel": "ASC-US (Atypical squamous cells of undetermined significance)",
       "patientTitle": "Minor abnormal cells seen",
       "plainLanguageSummary": "Your Pap smear shows minor changes in squamous cells, but the changes are not specific.",
@@ -143,6 +262,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, HPV results, previous Pap smear results, and current cervical screening guidelines."
     },
     "cervical_asc_h": {
+      "match": {
+        "interpretation_result": {
+          "equals": [
+            "asc_h"
+          ]
+        }
+      },
       "professionalLabel": "ASC-H (Atypical squamous cells, cannot exclude HSIL)",
       "patientTitle": "Abnormal cells seen; high-grade changes cannot be excluded",
       "plainLanguageSummary": "Your Pap smear shows abnormal squamous cells, and a higher-grade precancerous change cannot be ruled out.",
@@ -151,6 +277,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, HPV results, previous Pap smear results, and current cervical screening guidelines."
     },
     "cervical_lsil": {
+      "match": {
+        "interpretation_result": {
+          "equals": [
+            "lsil"
+          ]
+        }
+      },
       "professionalLabel": "LSIL (Low-grade squamous intraepithelial lesion)",
       "patientTitle": "Low-grade cervical cell changes",
       "plainLanguageSummary": "Your Pap smear shows low-grade changes in the squamous cells of the cervix.",
@@ -159,6 +292,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, HPV results, previous Pap smear results, and current cervical screening guidelines."
     },
     "cervical_hsil": {
+      "match": {
+        "interpretation_result": {
+          "equals": [
+            "hsil"
+          ]
+        }
+      },
       "professionalLabel": "HSIL (High-grade squamous intraepithelial lesion)",
       "patientTitle": "High-grade cervical cell changes",
       "plainLanguageSummary": "Your Pap smear shows high-grade abnormal cells.",
@@ -167,6 +307,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, HPV results, previous Pap smear results, and current cervical screening guidelines."
     },
     "cervical_squamous_cell_carcinoma": {
+      "match": {
+        "interpretation_result": {
+          "equals": [
+            "squamous_cell_carcinoma"
+          ]
+        }
+      },
       "professionalLabel": "Squamous cell carcinoma",
       "patientTitle": "Cancer cells identified in the Pap smear",
       "plainLanguageSummary": "The Pap smear shows malignant squamous cells, meaning cancer cells were identified.",
@@ -175,6 +322,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, HPV results, previous Pap smear results, and current cervical screening guidelines."
     },
     "cervical_agc": {
+      "match": {
+        "interpretation_result": {
+          "equals": [
+            "agc_nos"
+          ]
+        }
+      },
       "professionalLabel": "Atypical glandular cells (AGC)",
       "patientTitle": "Abnormal glandular cells seen",
       "plainLanguageSummary": "Your Pap smear shows abnormal glandular cells.",
@@ -183,6 +337,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, HPV results, previous Pap smear results, and current cervical screening guidelines."
     },
     "cervical_ais": {
+      "match": {
+        "interpretation_result": {
+          "equals": [
+            "ais"
+          ]
+        }
+      },
       "professionalLabel": "Endocervical adenocarcinoma in situ (AIS)",
       "patientTitle": "High-grade glandular precancerous change",
       "plainLanguageSummary": "The Pap smear shows changes consistent with adenocarcinoma in situ, a high-grade precancerous glandular condition of the cervix.",
@@ -191,6 +352,13 @@
       "safetyNote": "This summary is for general understanding only. Please discuss the full report with your doctor, who will interpret it together with your symptoms, examination findings, HPV results, previous Pap smear results, and current cervical screening guidelines."
     },
     "cervical_adenocarcinoma": {
+      "match": {
+        "interpretation_result": {
+          "equals": [
+            "adenocarcinoma"
+          ]
+        }
+      },
       "professionalLabel": "Adenocarcinoma",
       "patientTitle": "Glandular cancer cells identified",
       "plainLanguageSummary": "The Pap smear shows malignant glandular cells, meaning adenocarcinoma cells were identified.",
