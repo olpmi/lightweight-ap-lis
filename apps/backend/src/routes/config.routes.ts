@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { z } from 'zod';
-import { type AppLanguageCode, APP_LANGUAGE_CODES, TEMPLATE_KINDS } from '@lis/shared';
-import { requireAuth } from '../middleware/auth.middleware.js';
+import { type AppLanguageCode, APP_LANGUAGE_CODES, EMPLOYEE_ROLES, TEMPLATE_KINDS } from '@lis/shared';
+import { requireAuth, requireRole } from '../middleware/auth.middleware.js';
 import {
   listAllTemplates,
   getTemplateFiles,
@@ -9,6 +9,10 @@ import {
 } from '../services/config.service.js';
 
 const router: Router = Router();
+
+// Reading the template catalog is part of ordinary reporting; writing template
+// files to disk is administrative.
+const requireAdmin = requireRole(EMPLOYEE_ROLES.ADMINISTRATOR);
 
 // Validate query language
 function parseLanguage(raw: unknown): AppLanguageCode {
@@ -74,7 +78,7 @@ router.get('/templates/files', requireAuth, async (req, res, next) => {
 // PUT /api/config/templates/files  â€” update an existing template
 // ---------------------------------------------------------------------------
 
-router.put('/templates/files', requireAuth, async (req, res, next) => {
+router.put('/templates/files', requireAuth, requireAdmin, async (req, res, next) => {
   try {
     const parsed = saveTemplateBodySchema.safeParse(req.body);
     if (!parsed.success) {
@@ -101,7 +105,7 @@ router.put('/templates/files', requireAuth, async (req, res, next) => {
 // POST /api/config/templates/files  â€” create a new template
 // ---------------------------------------------------------------------------
 
-router.post('/templates/files', requireAuth, async (req, res, next) => {
+router.post('/templates/files', requireAuth, requireAdmin, async (req, res, next) => {
   try {
     const parsed = saveTemplateBodySchema.safeParse(req.body);
     if (!parsed.success) {

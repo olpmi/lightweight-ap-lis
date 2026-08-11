@@ -1,11 +1,15 @@
 import { Router } from 'express';
-import { requireAuth } from '../middleware/auth.middleware.js';
+import { requireAuth, requireRole } from '../middleware/auth.middleware.js';
 import { validateBody } from '../middleware/validate.middleware.js';
-import { createReportTemplateSchema, updateReportTemplateSchema, REPORT_TEMPLATE_TYPES, type ReportTemplateType } from '@lis/shared';
+import { EMPLOYEE_ROLES, createReportTemplateSchema, updateReportTemplateSchema, REPORT_TEMPLATE_TYPES, type ReportTemplateType } from '@lis/shared';
 import { ConfigReportTemplateService } from '../services/config.reportTemplate.service.js';
 
 const router: Router = Router();
 const service = new ConfigReportTemplateService();
+
+// Reads stay open to any authenticated user — the application itself loads
+// templates to render reports. Writes are administrative.
+const requireAdmin = requireRole(EMPLOYEE_ROLES.ADMINISTRATOR);
 
 // GET /api/config/report-templates[?type=final|preliminary|addendum|revision]
 router.get('/', requireAuth, async (req, res, next) => {
@@ -23,7 +27,7 @@ router.get('/', requireAuth, async (req, res, next) => {
 });
 
 // POST /api/config/report-templates
-router.post('/', requireAuth, validateBody(createReportTemplateSchema), async (req, res, next) => {
+router.post('/', requireAuth, requireAdmin, validateBody(createReportTemplateSchema), async (req, res, next) => {
   try {
     const data = await service.createReportTemplate(req.body);
     res.status(201).json({ data });
@@ -33,7 +37,7 @@ router.post('/', requireAuth, validateBody(createReportTemplateSchema), async (r
 });
 
 // PUT /api/config/report-templates/:id
-router.put('/:id', requireAuth, validateBody(updateReportTemplateSchema), async (req, res, next) => {
+router.put('/:id', requireAuth, requireAdmin, validateBody(updateReportTemplateSchema), async (req, res, next) => {
   try {
     const id = parseInt(req.params.id, 10);
     if (isNaN(id)) {
@@ -48,7 +52,7 @@ router.put('/:id', requireAuth, validateBody(updateReportTemplateSchema), async 
 });
 
 // DELETE /api/config/report-templates/:id
-router.delete('/:id', requireAuth, async (req, res, next) => {
+router.delete('/:id', requireAuth, requireAdmin, async (req, res, next) => {
   try {
     const id = parseInt(req.params.id, 10);
     if (isNaN(id)) {

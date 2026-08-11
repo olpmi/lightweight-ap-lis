@@ -1,7 +1,21 @@
 export const EMPLOYEE_ROLES = {
   PATHOLOGIST: 'Pathologist',
   TECHNOLOGIST: 'Technologist',
+  ADMINISTRATOR: 'Administrator',
 } as const;
+
+/**
+ * Role names as stored in `employee_role.role_name`. These strings are the
+ * authorization subject: `requireRole` compares against them, so they must match
+ * the rows inserted by the reference-data migrations exactly.
+ */
+export const EMPLOYEE_ROLE_NAMES = [
+  EMPLOYEE_ROLES.PATHOLOGIST,
+  EMPLOYEE_ROLES.TECHNOLOGIST,
+  EMPLOYEE_ROLES.ADMINISTRATOR,
+] as const;
+
+export type EmployeeRoleName = (typeof EMPLOYEE_ROLE_NAMES)[number];
 
 export const ORDER_ID_PREFIX = 'SU';
 export const ORDER_ID_SEQUENCE_LENGTH = 7;

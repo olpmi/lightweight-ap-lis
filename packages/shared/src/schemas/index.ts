@@ -4,6 +4,7 @@ import { REPORT_TEMPLATE_TYPES } from '../types/index.js';
 import {
   ANCILLARY_CATEGORIES,
   ANCILLARY_ORDER_STATUSES,
+  EMPLOYEE_ROLE_NAMES,
   IMPORT_DATE_FORMAT_HINT,
   SEX_CSV_ALIASES,
   SEX_OPTIONS,
@@ -20,7 +21,11 @@ export const createEmployeeSchema = z.object({
     .min(1, 'Username is required')
     .max(100)
     .regex(/^[a-zA-Z0-9._-]+$/, 'Username may only contain letters, numbers, dots, hyphens, underscores'),
-  employeeRoleId: z.number().int().positive('Employee role is required'),
+  // Optional because the first-run bootstrap path forces the role to
+  // Administrator and ignores anything submitted. Every other caller must supply
+  // it, which the service enforces — an anonymous caller choosing its own role is
+  // exactly the escalation the bootstrap restriction exists to prevent.
+  employeeRoleId: z.number().int().positive('Employee role is required').optional(),
   defaultLanguage: appLanguageSchema.default('en').optional(),
   // Password is required in production; optional in dev/demo environments.
   password: z.string().min(8, 'Password must be at least 8 characters').optional(),
@@ -28,6 +33,12 @@ export const createEmployeeSchema = z.object({
 
 export const updateEmployeeLanguageSchema = z.object({
   language: appLanguageSchema,
+});
+
+// Role is set by name rather than id: the name is what authorization compares
+// against, and an id would let a typo silently assign a different role.
+export const updateEmployeeRoleSchema = z.object({
+  roleName: z.enum(EMPLOYEE_ROLE_NAMES),
 });
 
 export const loginSchema = z.union([

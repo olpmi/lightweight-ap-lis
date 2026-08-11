@@ -1,7 +1,9 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { CircularProgress, Box } from '@mui/material';
+import { Alert, CircularProgress, Box } from '@mui/material';
+import { EMPLOYEE_ROLES, type EmployeeRoleName } from '@lis/shared';
 import { useAuth } from './hooks/useAuth';
+import { useLanguage } from './hooks/useLanguage';
 import AppShell from './components/layout/AppShell';
 import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
@@ -29,6 +31,29 @@ function RequireAuth({ children }: { children: React.ReactNode }) {
       </Box>
     );
   if (!user) return <Navigate to="/login" replace />;
+  return <>{children}</>;
+}
+
+/**
+ * Route-level role gate.
+ *
+ * Renders a message rather than redirecting: a user who follows a bookmark to a
+ * page their role cannot reach should be told why, not bounced somewhere else
+ * with no explanation. The API enforces the same rule regardless.
+ */
+function RequireRole({ allow, children }: { allow: EmployeeRoleName[]; children: React.ReactNode }) {
+  const { hasRole } = useAuth();
+  const { t } = useLanguage();
+
+  if (!hasRole(...allow)) {
+    return (
+      <Box p={4} display="flex" justifyContent="center">
+        <Alert severity="warning" data-testid="forbidden-notice" sx={{ maxWidth: 600 }}>
+          {t('errorForbidden')}
+        </Alert>
+      </Box>
+    );
+  }
   return <>{children}</>;
 }
 
@@ -61,13 +86,25 @@ export default function App() {
                 <Route path="/histology/:orderId" element={<HistologyCasePage />} />
                 <Route path="/ancillary" element={<AncillaryQueuePage />} />
                 <Route path="/query" element={<QueryPage />} />
-                <Route path="/config" element={<Navigate to="/config/templates" replace />} />
-                <Route path="/config/templates/*" element={<ConfigTemplatesPage />} />
-                <Route path="/config/reports" element={<ConfigReportManagerPage />} />
-                <Route path="/config/reports/:id" element={<ConfigReportManagerPage />} />
-                <Route path="/config/ancillary" element={<ConfigAncillaryPage />} />
-                <Route path="/config/patient-summaries" element={<ConfigPatientSummariesPage />} />
-                <Route path="/config/data-import" element={<ConfigDataImportPage />} />
+                {/* The configuration surface is Administrator-only, matching the
+                    guards on /api/config/*. Data Import in particular creates
+                    staff accounts. */}
+                <Route
+                  path="/config/*"
+                  element={
+                    <RequireRole allow={[EMPLOYEE_ROLES.ADMINISTRATOR]}>
+                      <Routes>
+                        <Route path="/" element={<Navigate to="/config/templates" replace />} />
+                        <Route path="templates/*" element={<ConfigTemplatesPage />} />
+                        <Route path="reports" element={<ConfigReportManagerPage />} />
+                        <Route path="reports/:id" element={<ConfigReportManagerPage />} />
+                        <Route path="ancillary" element={<ConfigAncillaryPage />} />
+                        <Route path="patient-summaries" element={<ConfigPatientSummariesPage />} />
+                        <Route path="data-import" element={<ConfigDataImportPage />} />
+                      </Routes>
+                    </RequireRole>
+                  }
+                />
               </Routes>
             </AppShell>
           </RequireAuth>

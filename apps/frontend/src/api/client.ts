@@ -12,7 +12,12 @@ export interface ConflictEventDetail {
   url?: string;
 }
 
-// Redirect to login on 401; broadcast 409s for the global ConflictToast.
+export interface ForbiddenEventDetail {
+  message: string;
+  url?: string;
+}
+
+// Redirect to login on 401; broadcast 403s and 409s for their global toasts.
 apiClient.interceptors.response.use(
   (res) => res,
   (error: AxiosError<{ error?: { code?: string; message?: string } }>) => {
@@ -20,6 +25,18 @@ apiClient.interceptors.response.use(
 
     if (status === 401 && window.location.pathname !== '/login') {
       window.location.href = '/login';
+    }
+
+    // A 403 means the user's role does not permit the action. Broadcast it the
+    // way 409 is handled rather than redirecting like 401: the session is valid,
+    // the user is simply not allowed, and a full page reload would discard
+    // whatever they were working on for no reason.
+    if (status === 403 && typeof window !== 'undefined') {
+      const detail: ForbiddenEventDetail = {
+        message: error.response?.data?.error?.message ?? '',
+        url: error.config?.url,
+      };
+      window.dispatchEvent(new CustomEvent('lis:forbidden', { detail }));
     }
 
     if (status === 409) {

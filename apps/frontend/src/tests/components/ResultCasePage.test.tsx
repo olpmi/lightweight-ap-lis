@@ -8,6 +8,7 @@ import { theme } from '../../theme/theme';
 import { LanguageProvider } from '../../hooks/useLanguage';
 import ResultCasePage from '../../pages/ResultCasePage';
 import * as api from '../../api';
+import { EMPLOYEE_ROLES } from '@lis/shared';
 
 const windowOpenSpy = vi.spyOn(window, 'open').mockImplementation(() => null);
 
@@ -185,10 +186,20 @@ vi.mock('../../api', () => {
   };
 });
 
+// Mutable so a test can vary the signed-in role. `vi.mock` factories are hoisted
+// and evaluated once, so the role has to be reachable through a binding rather
+// than captured by value.
+let mockRole: string = EMPLOYEE_ROLES.PATHOLOGIST;
+
 vi.mock('../../hooks/useAuth', () => ({
   useAuth: () => ({
-    user: { employeeId: 1 },
+    user: { employeeId: 1, userName: 'tester', role: mockRole, defaultLanguage: 'en' },
     loading: false,
+    hasRole: (...roles: string[]) => roles.includes(mockRole),
+    isPathologist: mockRole === EMPLOYEE_ROLES.PATHOLOGIST,
+    isAdministrator: mockRole === EMPLOYEE_ROLES.ADMINISTRATOR,
+    login: vi.fn(),
+    logout: vi.fn(),
   }),
 }));
 
@@ -221,6 +232,7 @@ function renderWithProviders() {
 
 describe('ResultCasePage patient summary', () => {
   beforeEach(() => {
+    mockRole = EMPLOYEE_ROLES.PATHOLOGIST;
     setDirty.mockReset();
     guardedNavigate.mockReset();
     windowOpenSpy.mockClear();

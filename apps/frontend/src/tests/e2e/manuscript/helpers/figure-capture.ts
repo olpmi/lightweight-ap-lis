@@ -57,6 +57,15 @@ export const SKIP_REASON = 'Run only when generating manuscript figures';
 const SEEDED_USER = process.env.FIGURES_USER ?? 'asmith';
 const SEEDED_PASSWORD = process.env.FIGURES_PASSWORD ?? 'Pathology1!';
 
+/**
+ * The seeded administrator.
+ *
+ * The configuration figures capture the /config surface, which is
+ * Administrator-only, so they cannot be captured as the seeded pathologist.
+ * All seeded accounts share SEED_PASSWORD.
+ */
+export const SEEDED_ADMIN = process.env.FIGURES_ADMIN_USER ?? 'padmin';
+
 let cachedCommit: string | null = null;
 
 function commit(): string {
@@ -97,11 +106,11 @@ export async function apiLogin(request: APIRequestContext): Promise<number> {
  * Setting it here also persists it for the user, which is why the specs that need
  * another language set it themselves and the README records the side effect.
  */
-export async function browserLogin(page: Page, language = 'en'): Promise<void> {
+export async function browserLogin(page: Page, language = 'en', userName = SEEDED_USER): Promise<void> {
   await page.goto('/login');
-  await page.getByTestId('employee-search-input').fill(SEEDED_USER);
-  await page.waitForSelector(`[data-testid="employee-option-${SEEDED_USER}"]`);
-  await page.getByTestId(`employee-option-${SEEDED_USER}`).click();
+  await page.getByTestId('employee-search-input').fill(userName);
+  await page.waitForSelector(`[data-testid="employee-option-${userName}"]`);
+  await page.getByTestId(`employee-option-${userName}`).click();
   await page.getByTestId('login-password').fill(SEEDED_PASSWORD);
   await page.getByTestId('login-submit').click();
   await page.waitForURL((url) => !url.pathname.startsWith('/login'));

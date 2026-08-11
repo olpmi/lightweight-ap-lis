@@ -271,14 +271,60 @@ Passwords are hashed with bcrypt at a cost factor of 12 using the `bcryptjs` lib
 
 The session stores the authenticated employee's ID, username, role name, and default language.
 
-### 7.2 Employee roles
+### 7.2 Employee roles and authorization
 
-Employees are linked to an `EmployeeRole`. The seed/configuration model supports role-based labels such as at least:
+Employees are linked to an `EmployeeRole`. Three roles are inserted by the
+reference-data migrations and declared once in `packages/shared/src/constants/index.ts`:
 
 - `Pathologist`
 - `Technologist`
+- `Administrator`
 
-These roles are part of the data model and user interface. The current route registration primarily enforces authentication rather than a broad fine-grained authorization layer, so manuscript text should describe the current implementation carefully.
+Role names are the authorization subject: guards compare against these exact
+strings, so the seeded rows and the shared constants must agree.
+
+Authorization is enforced server-side, per route, by two middlewares in
+`apps/backend/src/middleware/auth.middleware.ts` placed immediately after
+`requireAuth`:
+
+- `requireRole(...allowed)` compares the role captured in the session at login.
+- `requireCurrentRole(...allowed)` re-reads the role from the database, so a role
+  that is changed or revoked applies to the live session rather than at next
+  login. It guards the privileged operations: diagnostic drafting, preliminary and
+  final sign-out, amendment, CSV roster import, account creation and role
+  assignment.
+
+Clinically privileged acts — draft authorship, preliminary and final sign-out,
+amendment, and setting a case to a terminal status — require `Pathologist`. The
+configuration surface (`/api/config/*`), which includes report templates, report
+layouts, the ancillary catalog and CSV roster import, requires `Administrator`;
+roster import is placed there rather than with clinical work because importing the
+`staff` entity provisions login accounts. Routine technical work — accessioning,
+specimen, block and slide handling, H&E status transitions and ancillary ordering
+— is available to `Pathologist` and `Technologist` alike. Reads remain open to any
+authenticated user, since report rendering itself loads templates.
+
+Two supporting rules close escalation paths that would otherwise leave the guards
+without effect. First, unauthenticated account creation is permitted only while
+the employee table is empty, and that first account is forced to `Administrator`
+regardless of the role requested; the same restriction applies to the
+`newEmployee` variant of `POST /api/auth/login`, which creates an account and
+establishes a session atomically. Second, because the signing pathologist is named
+in the sign-out request body rather than taken from the session, sign-out
+additionally requires the two to match, so a report cannot be signed out under
+another pathologist's name.
+
+Authorization is covered by unit tests over both middlewares and by an
+integration suite (`apps/backend/src/tests/integration/authorization.test.ts`)
+that exercises the matrix over HTTP with one authenticated actor per role,
+including refusal of a wrong-role sign-out, of configuration writes by clinical
+staff, and of anonymous account creation, and including that a role revoked
+mid-session takes effect on the next request.
+
+The interface hides controls a role cannot use — the configuration entry is absent
+from the navigation for non-administrators, and sign-out, preliminary sign-out and
+amendment are disabled for non-pathologists — but this is convenience rather than
+a control: the API refuses regardless of what the client renders.
 
 ### 7.3 Session cookie behavior
 

@@ -22,6 +22,7 @@ import {
   GENERATE_FIGURES,
   SKIP_REASON,
   browserLogin,
+  SEEDED_ADMIN,
   capturePanel,
 } from './helpers/figure-capture';
 
@@ -45,7 +46,8 @@ test.describe('Figures S2-S3 — configuration interfaces', () => {
   test.describe.configure({ mode: 'serial', timeout: 240_000 });
 
   test.beforeEach(async ({ page }) => {
-    await browserLogin(page);
+    // The configuration surface is Administrator-only.
+    await browserLogin(page, 'en', SEEDED_ADMIN);
   });
 
   test('template manager with a template selected', async ({ page }) => {

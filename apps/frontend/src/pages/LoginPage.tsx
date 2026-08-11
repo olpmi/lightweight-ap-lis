@@ -12,10 +12,6 @@ import {
   ListItemText,
   ListItemAvatar,
   Avatar,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
   Alert,
   CircularProgress,
   Stack,
@@ -28,16 +24,19 @@ import { Add, Translate, Visibility, VisibilityOff, ArrowBack } from '@mui/icons
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
-import { useDemoMode } from '../hooks/useDemoMode';
+import { useDemoMode, useBootstrapAvailable } from '../hooks/useDemoMode';
 import { type Lang, useLanguage } from '../hooks/useLanguage';
-import { employeeApi, lookupApi } from '../api';
+import { employeeApi } from '../api';
 import { qk } from '../api/queryKeys';
-import type { Employee, EmployeeRole } from '@lis/shared';
+import type { Employee } from '@lis/shared';
 
 export default function LoginPage() {
   const { login } = useAuth();
-  const { t, languageOptions, tRole } = useLanguage();
+  const { t, languageOptions } = useLanguage();
   const demoMode = useDemoMode();
+  // Self-registration is the first-run bootstrap path only; once an account
+  // exists the server rejects it, so the form is not offered.
+  const bootstrapAvailable = useBootstrapAvailable();
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [mode, setMode] = useState<'search' | 'new'>('search');
@@ -56,17 +55,11 @@ export default function LoginPage() {
     firstName: '',
     lastName: '',
     userName: '',
-    employeeRoleId: '' as number | '',
     defaultLanguage: 'en' as Lang,
     password: '',
     confirmPassword: '',
   });
   const [showNewPassword, setShowNewPassword] = useState(false);
-
-  const { data: roles } = useQuery<EmployeeRole[]>({
-    queryKey: qk.employeeRoles,
-    queryFn: lookupApi.employeeRoles,
-  });
 
   const { data: searchResults, isLoading: searching } = useQuery<Employee[]>({
     queryKey: qk.employeeSearch(searchQuery),
@@ -109,7 +102,7 @@ export default function LoginPage() {
   const handleNewEmployeeSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-    if (!newForm.firstName || !newForm.lastName || !newForm.userName || !newForm.employeeRoleId) {
+    if (!newForm.firstName || !newForm.lastName || !newForm.userName) {
       setError(t('login_allFieldsRequired'));
       return;
     }
@@ -128,7 +121,6 @@ export default function LoginPage() {
         firstName: newForm.firstName,
         lastName: newForm.lastName,
         userName: newForm.userName,
-        employeeRoleId: Number(newForm.employeeRoleId),
         defaultLanguage: newForm.defaultLanguage,
         ...(passwordAuthEnabled && newForm.password ? { password: newForm.password } : {}),
       },
@@ -187,15 +179,17 @@ export default function LoginPage() {
             >
               {t('login_findEmployee')}
             </Button>
-            <Button
-              variant={mode === 'new' ? 'contained' : 'outlined'}
-              fullWidth
-              onClick={() => handleModeChange('new')}
-              startIcon={<Add />}
-              size="small"
-            >
-              {t('login_newEmployee')}
-            </Button>
+            {bootstrapAvailable && (
+              <Button
+                variant={mode === 'new' ? 'contained' : 'outlined'}
+                fullWidth
+                onClick={() => handleModeChange('new')}
+                startIcon={<Add />}
+                size="small"
+              >
+                {t('login_newEmployee')}
+              </Button>
+            )}
           </Stack>
 
           <Divider sx={{ mb: 2 }} />
@@ -228,7 +222,7 @@ export default function LoginPage() {
                       </ListItemAvatar>
                       <ListItemText
                         primary={`${emp.lastName}, ${emp.firstName}`}
-                        secondary={`${emp.userName} — ${tRole((emp.employeeRole as { roleName?: string })?.roleName ?? '')}`}
+                        secondary={emp.userName}
                       />
                     </ListItemButton>
                   ))}
@@ -254,7 +248,7 @@ export default function LoginPage() {
                       {selectedEmployee.lastName}, {selectedEmployee.firstName}
                     </Typography>
                     <Typography variant="caption" color="text.secondary">
-                      {selectedEmployee.userName} — {tRole((selectedEmployee.employeeRole as { roleName?: string })?.roleName ?? '')}
+                      {selectedEmployee.userName}
                     </Typography>
                   </Box>
                 </Stack>
@@ -323,21 +317,9 @@ export default function LoginPage() {
                   size="small"
                   inputProps={{ 'data-testid': 'new-employee-username' }}
                 />
-                <FormControl size="small" required fullWidth>
-                  <InputLabel>{t('login_role')}</InputLabel>
-                  <Select
-                    label={t('login_role')}
-                    value={newForm.employeeRoleId}
-                    onChange={(e) => setNewForm({ ...newForm, employeeRoleId: e.target.value as number })}
-                    data-testid="new-employee-role"
-                  >
-                    {roles?.map((r) => (
-                      <MenuItem key={r.employeeRoleId} value={r.employeeRoleId}>
-                        {tRole(r.roleName)}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
+                <Alert severity="info" data-testid="bootstrap-role-notice">
+                  {t('login_firstAccountIsAdmin')}
+                </Alert>
                 {passwordAuthEnabled && (
                   <>
                     <TextField

@@ -23,6 +23,8 @@ import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import request from 'supertest';
 import { createApp } from '../../app.js';
 import { prisma } from '../../lib/prisma.js';
+import { EMPLOYEE_ROLES } from '@lis/shared';
+import { createEmployeeAndLogin } from '../helpers/auth.js';
 
 const hasDb = Boolean(process.env.DATABASE_URL && process.env.SESSION_SECRET);
 
@@ -59,12 +61,6 @@ describe.skipIf(!hasDb)('Ancillary order pipelines', () => {
   }
 
   beforeAll(async () => {
-    const role = await prisma.employeeRole.upsert({
-      where: { roleName: 'pathologist' },
-      update: {},
-      create: { roleName: 'pathologist' },
-    });
-    roleId = role.employeeRoleId;
     const bodySite = await prisma.bodySite.upsert({
       where: { bodySiteName: 'Test Site' },
       update: {},
@@ -72,11 +68,12 @@ describe.skipIf(!hasDb)('Ancillary order pipelines', () => {
     });
     bodySiteId = bodySite.bodySiteId;
 
-    const login = await agent.post('/api/auth/login').send({
-      newEmployee: { userName, firstName: 'Anc', lastName: 'Tester', employeeRoleId: roleId, password: 'Integration1!' },
+    const actor = await createEmployeeAndLogin(agent, EMPLOYEE_ROLES.PATHOLOGIST, userName, {
+      firstName: 'Anc',
+      lastName: 'Tester',
     });
-    expect(login.status).toBe(200);
-    employeeId = Number(login.body.data.employeeId);
+    employeeId = actor.employeeId;
+    roleId = actor.employeeRoleId;
 
     // Build the case + a block to attach ancillary orders to.
     const orderRes = await agent.post('/api/orders').send({
