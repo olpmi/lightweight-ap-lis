@@ -1,0 +1,5 @@
+user_name,last_name,first_name,role,default_language,password
+zzexample.sotieno,ZZZTEST-EXAMPLE,Samuel,Pathologist,en,ChangeMeAtFirstLogin1
+zzexample.anjeri,ZZZTEST-EXAMPLE,Alice,Technologist,sw,ChangeMeAtFirstLogin2
+zzexample.frahman,"ZZZTEST-EXAMPLE, Jr.",Fatima,pathologist,ur,ChangeMeAtFirstLogin3
+zzexample.pmendes,ZZZTEST-EXAMPLE,Paulo,Technologist,pt,ChangeMeAtFirstLogin4

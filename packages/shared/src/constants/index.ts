@@ -107,3 +107,67 @@ export const BODY_SITE_HIERARCHY: Record<string, readonly string[]> = {
   'Central Nervous System (CNS)': ['Brain', 'Spinal cord', 'Meninges'],
   'Placenta / Products of Conception': ['Placenta', 'Products of conception'],
 };
+
+// ---------------------------------------------------------------------------
+// CSV data import
+//
+// Production deployments start with an empty database (no seeding), so a lab
+// loads its own roster through the admin CSV import. Column names are matched
+// after normalization, so `Last Name`, `last-name` and `LAST_NAME` are the same
+// column.
+// ---------------------------------------------------------------------------
+
+export const DATA_IMPORT_ENTITIES = ['patients', 'doctors', 'staff'] as const;
+export type DataImportEntity = (typeof DATA_IMPORT_ENTITIES)[number];
+
+export interface ImportColumnSpec {
+  /** Every column the file may contain, in the order the example CSV uses. */
+  all: readonly string[];
+  /** Columns that must be present as headers. */
+  required: readonly string[];
+}
+
+export const IMPORT_COLUMNS: Record<DataImportEntity, ImportColumnSpec> = {
+  patients: {
+    all: ['patient_id', 'last_name', 'first_name', 'date_of_birth', 'sex'],
+    required: ['last_name', 'first_name', 'date_of_birth'],
+  },
+  doctors: {
+    all: ['last_name', 'first_name'],
+    required: ['last_name', 'first_name'],
+  },
+  staff: {
+    all: ['user_name', 'last_name', 'first_name', 'role', 'default_language', 'password'],
+    required: ['user_name', 'last_name', 'first_name', 'role'],
+  },
+};
+
+/**
+ * Per-upload row ceilings.
+ *
+ * Staff is far lower than the others on purpose: every account is bcrypt-hashed
+ * at 12 rounds, which is deliberately slow, so a large staff file would be a
+ * minutes-long synchronous request. Patients and doctors are bounded only by
+ * transaction time and are cheap by comparison.
+ */
+export const IMPORT_ROW_LIMITS: Record<DataImportEntity, number> = {
+  patients: 5000,
+  doctors: 2000,
+  staff: 200,
+};
+
+/** Accepted `sex` spellings, lower-cased. Blank maps to the domain's `Unknown`. */
+export const SEX_CSV_ALIASES: Record<string, (typeof SEX_OPTIONS)[number]> = {
+  m: 'Male',
+  male: 'Male',
+  f: 'Female',
+  female: 'Female',
+  o: 'Other',
+  other: 'Other',
+  u: 'Unknown',
+  unk: 'Unknown',
+  unknown: 'Unknown',
+  '': 'Unknown',
+};
+
+export const IMPORT_DATE_FORMAT_HINT = 'YYYY-MM-DD (for example 1984-03-17)';

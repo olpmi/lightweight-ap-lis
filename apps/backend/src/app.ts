@@ -5,6 +5,7 @@ import session from 'express-session';
 import helmet from 'helmet';
 import pinoHttp from 'pino-http';
 import { logger } from './lib/logger.js';
+import { isDemoMode } from './lib/demoMode.js';
 import { notFound, errorHandler } from './middleware/error.middleware.js';
 
 // Route imports
@@ -23,6 +24,7 @@ import configReportTemplateRoutes from './routes/config.reportTemplate.routes.js
 import { configReportLayoutRoutes } from './routes/config.reportLayout.routes.js';
 import ancillaryRoutes from './routes/ancillary.routes.js';
 import configAncillaryRoutes from './routes/config.ancillary.routes.js';
+import configDataImportRoutes from './routes/config.dataImport.routes.js';
 import { ReportService } from './services/report.service.js';
 import { validateBody } from './middleware/validate.middleware.js';
 import { createDraftReportSchema, reactivateOrderSchema } from '@lis/shared';
@@ -96,6 +98,11 @@ export function createApp(): express.Application {
   // Health check
   app.get('/health', (_req, res) => res.json({ status: 'ok' }));
 
+  // Deployment facts the client needs before anyone has logged in. Deliberately
+  // unauthenticated: the login page is where a demo audience looks first, so the
+  // demo-data notice has to render there too.
+  app.get('/api/meta', (_req, res) => res.json({ data: { demoMode: isDemoMode() } }));
+
   // API routes
   app.use('/api/auth', authRoutes);
   app.use('/api/employees', employeeRoutes);
@@ -111,6 +118,7 @@ export function createApp(): express.Application {
   app.use('/api/config/report-templates', configReportTemplateRoutes);
   app.use('/api/config/report-layouts', configReportLayoutRoutes);
   app.use('/api/config/ancillary', configAncillaryRoutes);
+  app.use('/api/config/data-import', configDataImportRoutes);
   app.use('/api/ancillary', ancillaryRoutes);
 
   // Order-scoped report routes

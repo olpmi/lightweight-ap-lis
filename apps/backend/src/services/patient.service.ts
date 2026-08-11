@@ -5,15 +5,34 @@ import { SEX_OPTIONS } from '@lis/shared';
 type SexValue = (typeof SEX_OPTIONS)[number];
 
 export class PatientService {
+  /**
+   * Find patients for the order-entry typeahead.
+   *
+   * An empty query returns the first page rather than nothing. That matters on
+   * a freshly provisioned deployment: the database starts empty and the roster
+   * arrives by CSV import, so the first thing an administrator does is open
+   * order entry to confirm the import landed. Returning nothing until they
+   * happen to type a matching character reads as "the import failed".
+   *
+   * This exposes no more than a one-character query already did, and the
+   * employee typeahead has always behaved this way.
+   */
   async search(query: string): Promise<object[]> {
+    const trimmed = query.trim();
+
     return prisma.patient.findMany({
-      where: {
-        OR: [
-          { patientId: { contains: query, mode: 'insensitive' } },
-          { firstName: { contains: query, mode: 'insensitive' } },
-          { lastName: { contains: query, mode: 'insensitive' } },
-        ],
-      },
+      where: trimmed
+        ? {
+            OR: [
+              { patientId: { contains: trimmed, mode: 'insensitive' } },
+              { firstName: { contains: trimmed, mode: 'insensitive' } },
+              { lastName: { contains: trimmed, mode: 'insensitive' } },
+            ],
+          }
+        : undefined,
+      // Without an explicit order the 20 rows returned are whatever the planner
+      // happens to emit, so the same query can list different people run to run.
+      orderBy: [{ lastName: 'asc' }, { firstName: 'asc' }, { patientId: 'asc' }],
       take: 20,
     });
   }
@@ -59,13 +78,36 @@ export class PatientService {
    * beyond that simply grow longer.
    */
   async generatePatientId(): Promise<string> {
+    return (await this.generatePatientIds(1))[0];
+  }
+
+  /**
+   * Reserve a contiguous block of `count` patient identifiers in one atomic
+   * increment.
+   *
+   * The bulk CSV import needs hundreds of identifiers at once; allocating them
+   * one at a time would be N sequential UPDATEs each taking a row lock. A single
+   * `increment: count` reserves the whole block and returns it.
+   *
+   * A caller that then fails leaves its block unused — identifiers are skipped,
+   * never reissued. That is the same trade-off accession numbers already make,
+   * and it is the right way round: a gap in a sequence is cosmetic, whereas
+   * reusing an identifier attaches one patient's record to another's.
+   */
+  async generatePatientIds(count: number): Promise<string[]> {
+    if (count < 1) return [];
+
     const sequence = await prisma.patientSequence.update({
       where: { id: 1 },
-      data: { lastValue: { increment: 1 } },
+      data: { lastValue: { increment: count } },
       select: { lastValue: true },
     });
 
-    return `P${String(sequence.lastValue).padStart(7, '0')}`;
+    const firstValue = sequence.lastValue - count + 1;
+    return Array.from(
+      { length: count },
+      (_, offset) => `P${String(firstValue + offset).padStart(7, '0')}`,
+    );
   }
 
   /**

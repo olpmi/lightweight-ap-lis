@@ -13,6 +13,7 @@ import {
   Divider,
   Button,
   Avatar,
+  Chip,
   Tooltip,
   ToggleButtonGroup,
   ToggleButton,
@@ -36,6 +37,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { type Lang, useLanguage } from '../../hooks/useLanguage';
 import { useNavigationGuard } from '../../hooks/useNavigationGuard';
+import { useDemoMode } from '../../hooks/useDemoMode';
 import { employeeApi } from '../../api';
 
 const DRAWER_WIDTH = 220;
@@ -47,6 +49,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const { user, logout } = useAuth();
   const { lang, setLang, t, languageOptions, tRole } = useLanguage();
   const { guardedNavigate } = useNavigationGuard();
+  const demoMode = useDemoMode();
 
   // Apply the employee's saved language preference on login / session restore
   useEffect(() => {
@@ -87,9 +90,31 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
             {open ? <ChevronLeft /> : <Menu />}
           </IconButton>
           <Assignment sx={{ mr: 1 }} />
-          <Typography variant="h6" noWrap sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" noWrap>
             {t('appName')}
           </Typography>
+          {/*
+            Deliberately inside the AppBar rather than a strip above it: several
+            pages size themselves against the 64px bar (ConfigLayout uses
+            `calc(100vh - 64px)`), so adding height here would break their scroll
+            containers.
+          */}
+          {demoMode && (
+            <Chip
+              size="small"
+              label={t('demo_banner')}
+              data-testid="demo-mode-chip"
+              sx={{
+                ml: 1.5,
+                fontWeight: 700,
+                letterSpacing: 0.5,
+                color: '#fff',
+                bgcolor: 'error.dark',
+                border: '1px solid rgba(255,255,255,0.5)',
+              }}
+            />
+          )}
+          <Box sx={{ flexGrow: 1 }} />
           <Divider orientation="vertical" flexItem sx={{ mx: 1.5, borderColor: 'rgba(255,255,255,0.25)' }} />
           <Box
             display="flex"

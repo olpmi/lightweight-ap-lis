@@ -1,4 +1,5 @@
 import Handlebars from 'handlebars';
+import { isDemoMode } from '../lib/demoMode.js';
 // puppeteer-core v25+ is ESM-only; use dynamic import to load it in the CJS backend
 
 export interface ReportLayoutData {
@@ -171,6 +172,47 @@ export const DEFAULT_REPORT_HTML_TEMPLATE = `<!DOCTYPE html>
 </html>`;
 
 // ---------------------------------------------------------------------------
+// Demo watermark
+// ---------------------------------------------------------------------------
+
+/**
+ * Stamp rendered report HTML as demo output.
+ *
+ * Applied to the compiled HTML rather than added to
+ * `DEFAULT_REPORT_HTML_TEMPLATE` as a `{{#if demoMode}}` block, because report
+ * layouts are editable (see config.reportLayout.service.ts): a customized
+ * template must not be able to drop the marking, whether by accident or intent.
+ *
+ * `position: fixed` repeats the overlay on every page in Chromium's print
+ * renderer. Kept to a centred diagonal with no top bar — page margins are 0 and
+ * the template supplies its own padding, so a banner would land on the header.
+ */
+export function withDemoWatermark(html: string): string {
+  const overlay = `
+<style>
+  .lis-demo-overlay {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    display: flex; align-items: center; justify-content: center;
+    pointer-events: none; z-index: 9999;
+  }
+  .lis-demo-overlay span {
+    transform: rotate(-35deg);
+    font: bold 56px/1.1 Helvetica, Arial, sans-serif;
+    color: rgba(183, 28, 28, 0.16);
+    letter-spacing: 6px; text-align: center; white-space: nowrap;
+  }
+</style>
+<div class="lis-demo-overlay"><span>DEMO DATA<br>NOT A REAL PATIENT REPORT</span></div>
+`;
+
+  // Append rather than insert-before-</body> so HTML without a closing body tag
+  // (a hand-edited layout, say) still gets stamped.
+  return html.includes('</body>')
+    ? html.replace('</body>', `${overlay}</body>`)
+    : html + overlay;
+}
+
+// ---------------------------------------------------------------------------
 // Handlebars helpers
 // ---------------------------------------------------------------------------
 Handlebars.registerHelper('isPrelim',    (rt: string) => rt === 'preliminary');
@@ -222,7 +264,8 @@ export class PdfLayoutService {
     };
 
     const template = Handlebars.compile(htmlTemplate);
-    const html = template(templateData);
+    const rendered = template(templateData);
+    const html = isDemoMode() ? withDemoWatermark(rendered) : rendered;
 
     const browser = await this.getBrowser();
     try {

@@ -16,8 +16,10 @@ const createDoctorSchema = z.object({
 router.get('/search', requireAuth, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const q = String(req.query.q ?? '').trim();
-    if (q.length === 0 || q.length > 100) {
-      res.status(400).json({ error: { code: 'BAD_REQUEST', message: 'q must be 1-100 characters' } });
+    // Empty q lists the first page rather than erroring — see the equivalent
+    // note in patient.routes.ts.
+    if (q.length > 100) {
+      res.status(400).json({ error: { code: 'BAD_REQUEST', message: 'q must be 100 characters or fewer' } });
       return;
     }
     const data = await service.search(q);

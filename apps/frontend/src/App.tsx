@@ -16,6 +16,7 @@ import ConfigReportManagerPage from './pages/ConfigReportManagerPage';
 import AncillaryQueuePage from './pages/AncillaryQueuePage';
 import ConfigAncillaryPage from './pages/ConfigAncillaryPage';
 import ConfigPatientSummariesPage from './pages/ConfigPatientSummariesPage';
+import ConfigDataImportPage from './pages/ConfigDataImportPage';
 import HistologyQueuePage from './pages/HistologyQueuePage';
 import HistologyCasePage from './pages/HistologyCasePage';
 
@@ -66,6 +67,7 @@ export default function App() {
                 <Route path="/config/reports/:id" element={<ConfigReportManagerPage />} />
                 <Route path="/config/ancillary" element={<ConfigAncillaryPage />} />
                 <Route path="/config/patient-summaries" element={<ConfigPatientSummariesPage />} />
+                <Route path="/config/data-import" element={<ConfigDataImportPage />} />
               </Routes>
             </AppShell>
           </RequireAuth>
