@@ -28,6 +28,7 @@ import { Add, Translate, Visibility, VisibilityOff, ArrowBack } from '@mui/icons
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
+import { useDemoMode } from '../hooks/useDemoMode';
 import { type Lang, useLanguage } from '../hooks/useLanguage';
 import { employeeApi, lookupApi } from '../api';
 import { qk } from '../api/queryKeys';
@@ -36,6 +37,7 @@ import type { Employee, EmployeeRole } from '@lis/shared';
 export default function LoginPage() {
   const { login } = useAuth();
   const { t, languageOptions, tRole } = useLanguage();
+  const demoMode = useDemoMode();
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [mode, setMode] = useState<'search' | 'new'>('search');
@@ -161,6 +163,13 @@ export default function LoginPage() {
               {t('appFull')}
             </Typography>
           </Box>
+
+          {/* The first screen a demo audience sees, and it renders outside AppShell. */}
+          {demoMode && (
+            <Alert severity="warning" sx={{ mb: 3 }} data-testid="demo-mode-notice">
+              {t('demo_loginNotice')}
+            </Alert>
+          )}
 
           {error && (
             <Alert severity="error" sx={{ mb: 2 }} onClose={() => setError(null)}>

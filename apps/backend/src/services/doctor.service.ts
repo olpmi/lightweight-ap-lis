@@ -2,14 +2,26 @@ import { prisma } from '../lib/prisma.js';
 import { AppError } from '../middleware/error.middleware.js';
 
 export class DoctorService {
+  /**
+   * Find referring clinicians for the order-entry typeahead.
+   *
+   * Empty query returns the first page rather than nothing, for the same reason
+   * as PatientService.search: on a fresh deployment the roster arrives by CSV
+   * import, and an empty dropdown reads as a failed import.
+   */
   async search(query: string): Promise<object[]> {
+    const trimmed = query.trim();
+
     return prisma.doctor.findMany({
-      where: {
-        OR: [
-          { firstName: { contains: query, mode: 'insensitive' } },
-          { lastName: { contains: query, mode: 'insensitive' } },
-        ],
-      },
+      where: trimmed
+        ? {
+            OR: [
+              { firstName: { contains: trimmed, mode: 'insensitive' } },
+              { lastName: { contains: trimmed, mode: 'insensitive' } },
+            ],
+          }
+        : undefined,
+      orderBy: [{ lastName: 'asc' }, { firstName: 'asc' }, { doctorId: 'asc' }],
       take: 20,
     });
   }

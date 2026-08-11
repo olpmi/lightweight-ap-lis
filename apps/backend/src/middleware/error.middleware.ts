@@ -36,6 +36,29 @@ export function errorHandler(err: unknown, req: Request, res: Response, _next: N
     return;
   }
 
+  // body-parser rejections. Without this an over-limit upload — the most likely
+  // way a user meets a size cap — reports "an unexpected error occurred" with a
+  // 500, telling them nothing about what to do. Applies to every route, not
+  // just the CSV import that surfaced it.
+  if (typeof err === 'object' && err !== null && 'type' in err) {
+    const { type } = err as { type?: string };
+    if (type === 'entity.too.large') {
+      res.status(413).json({
+        error: {
+          code: 'PAYLOAD_TOO_LARGE',
+          message: 'The uploaded content is too large. Split it into smaller files and retry.',
+        },
+      });
+      return;
+    }
+    if (type === 'entity.parse.failed') {
+      res.status(400).json({
+        error: { code: 'BAD_REQUEST', message: 'The request body could not be parsed' },
+      });
+      return;
+    }
+  }
+
   // Normalize Prisma concurrency-related errors to 409 so the frontend can
   // surface a single "another user updated this" toast.
   if (err instanceof Prisma.PrismaClientKnownRequestError) {

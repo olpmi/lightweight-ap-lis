@@ -27,6 +27,10 @@ vi.mock('../../api', () => ({
     me: vi.fn().mockResolvedValue({ employeeId: 1, userName: 'asmith', role: 'Pathologist' }),
     logout: vi.fn(),
   },
+  // The page reads this to decide whether to show the demo-data notice.
+  metaApi: {
+    get: vi.fn().mockResolvedValue({ demoMode: false }),
+  },
 }));
 
 vi.mock('../../hooks/useAuth', () => ({
@@ -62,6 +66,22 @@ describe('LoginPage', () => {
   it('shows search input in find employee mode', () => {
     renderWithProviders(<LoginPage />);
     expect(screen.getByTestId('employee-search-input')).toBeInTheDocument();
+  });
+
+  it('hides the demo-data notice when the deployment is not a demo', async () => {
+    renderWithProviders(<LoginPage />);
+    await waitFor(() => expect(api.metaApi.get).toHaveBeenCalled());
+    expect(screen.queryByTestId('demo-mode-notice')).not.toBeInTheDocument();
+  });
+
+  it('shows the demo-data notice when the deployment is a demo', async () => {
+    // This is the screen a demo audience sees first, and it renders outside
+    // AppShell — so it needs its own notice rather than relying on the app bar.
+    vi.mocked(api.metaApi.get).mockResolvedValueOnce({ demoMode: true });
+    renderWithProviders(<LoginPage />);
+    await waitFor(() => {
+      expect(screen.getByTestId('demo-mode-notice')).toBeInTheDocument();
+    });
   });
 
   it('switches to new employee form', async () => {

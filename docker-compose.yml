@@ -34,6 +34,10 @@ services:
       NODE_ENV: development
       PORT: 3001
       CORS_ORIGIN: http://localhost:5173
+      # This stack seeds synthetic patients, referrers and staff. Stated
+      # explicitly rather than relying on the NODE_ENV default, so the guarantee
+      # is visible where the stack is defined.
+      DEMO_MODE: 'true'
     ports:
       - '3001:3001'
     volumes:

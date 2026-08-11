@@ -32,6 +32,9 @@ import type {
   AncillaryOrder,
   AncillaryCategory,
   AncillaryOrderStatus,
+  DataImportEntity,
+  ImportPreview,
+  ImportResult,
 } from '@lis/shared';
 
 // Queue rows include patient, doctor, and specimens (with body-site / specimen-type)
@@ -87,6 +90,17 @@ export interface SessionEmployee {
   role: string;
   defaultLanguage: AppLanguageCode;
 }
+
+export interface AppMeta {
+  /** True when this deployment holds synthetic demo data, not real records. */
+  demoMode: boolean;
+}
+
+export const metaApi = {
+  // Unauthenticated, so the login page can render the demo notice too.
+  get: (): Promise<AppMeta> =>
+    apiClient.get<{ data: AppMeta }>('/meta').then((r) => r.data.data),
+};
 
 export const authApi = {
   login: (payload: { employeeId?: number; newEmployee?: CreateEmployeeDto }) =>
@@ -525,3 +539,26 @@ export const ancillaryApi = {
     apiClient.delete(`/config/ancillary/panels/${id}`).then(() => undefined),
 };
 
+
+// ---------------------------------------------------------------------------
+// CSV data import
+// ---------------------------------------------------------------------------
+
+/**
+ * The CSV goes up as a raw `text/csv` body, so the per-request Content-Type
+ * overrides the instance default set in client.ts. Axios passes string bodies
+ * through untouched.
+ */
+const csvRequest = { headers: { 'Content-Type': 'text/csv' } } as const;
+
+export const dataImportApi = {
+  preview: (entity: DataImportEntity, csv: string): Promise<ImportPreview> =>
+    apiClient
+      .post<{ data: ImportPreview }>(`/config/data-import/${entity}/preview`, csv, csvRequest)
+      .then((r) => r.data.data),
+
+  commit: (entity: DataImportEntity, csv: string): Promise<ImportResult> =>
+    apiClient
+      .post<{ data: ImportResult }>(`/config/data-import/${entity}`, csv, csvRequest)
+      .then((r) => r.data.data),
+};

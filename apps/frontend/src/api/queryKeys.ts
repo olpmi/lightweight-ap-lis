@@ -102,5 +102,7 @@ export const qk = {
 
   // ----- Misc ----------------------------------------------------------------
   query: (params: unknown, page: number) => ['query', params, page] as const,
+  /** Deployment facts (demo mode). Fixed for the lifetime of the page load. */
+  meta: ['meta'] as const,
 } as const;
 

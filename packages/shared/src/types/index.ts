@@ -339,3 +339,50 @@ export interface UpdateAncillaryPanelDto {
   sortOrder?: number;
   isActive?: boolean;
 }
+
+// ---------------------------------------------------------------------------
+// CSV data import
+// ---------------------------------------------------------------------------
+
+/** What the import will do with a row. */
+export type ImportRowAction = 'create' | 'skip' | 'error';
+
+export interface ImportRowIssue {
+  /** 1-based line in the uploaded file — the number shown in a spreadsheet. */
+  line: number;
+  /** 1-based data-row index, header excluded. */
+  row: number;
+  /** Normalized column name, when the problem is scoped to one field. */
+  column?: string;
+  /** INVALID_VALUE | COLUMN_COUNT | DUPLICATE_IN_FILE | PATIENT_MISMATCH | ... */
+  code: string;
+  message: string;
+  /** The offending cell, truncated. Never populated for `password`. */
+  value?: string;
+}
+
+export interface ImportRowSummary {
+  line: number;
+  row: number;
+  action: ImportRowAction;
+  /** Human-readable identification of the record, e.g. "Mwangi, Grace". */
+  label: string;
+  /** ALREADY_EXISTS | DUPLICATE_IN_FILE, when the action is `skip`. */
+  reason?: string;
+}
+
+export interface ImportPreview {
+  entity: string;
+  columns: { expected: string[]; required: string[]; found: string[] };
+  counts: { total: number; create: number; skip: number; error: number };
+  rows: ImportRowSummary[];
+  errors: ImportRowIssue[];
+  /** True when any list above was capped for response size. */
+  truncated: boolean;
+  canCommit: boolean;
+}
+
+export interface ImportResult extends ImportPreview {
+  created: number;
+  skipped: number;
+}

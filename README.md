@@ -183,6 +183,24 @@ The prod stack runs **two local PostgreSQL 16 containers** with streaming (physi
 Backend startup runs `prisma migrate deploy` only — **no `db push`, no seeding**.
 Reference lookup data (employee roles, specimen types, body sites, ancillary tests and panels) is inserted automatically by the `20260609000000_seed_reference_data` migration, which is idempotent.
 
+A fresh production database therefore contains **reference lookup data only — no patients, no referring clinicians, no staff accounts, and no cases**. Two independent guards keep it that way: `prisma/seed.ts` refuses to run when `NODE_ENV=production` (override with `ALLOW_PROD_SEED=1` for a deliberate staging reset), and the prod Compose command never invokes it.
+
+Loading a real roster:
+
+1. Create the first account through the login page's **New employee** flow, which is why `POST /api/employees` is the one unauthenticated write endpoint.
+2. Log in, then go to **Config → Data Import** to bulk-load patients, referring clinicians and staff from CSV. Example files are downloadable from that page and committed at [`apps/frontend/public/csv-templates/`](apps/frontend/public/csv-templates/).
+
+Import behaviour worth knowing before you upload:
+
+- Files are validated whole before anything is written. A single bad row rejects the entire file — nothing is partially imported.
+- Dates must be `YYYY-MM-DD`. Ambiguous formats like `03/04/1990` are rejected rather than guessed at.
+- Re-uploading the same file is a no-op: patients match on `patient_id`, referring clinicians on name, staff on `user_name`. Existing records are **skipped, never updated**, and an existing staff account's password is never reset. Patient rows with a blank `patient_id` always create a new record, so supply the column if you may re-run the import.
+- Staff passwords are required in production, since an account with no password hash cannot log in. Delete the CSV once imported.
+
+To confirm an import landed, open **Order Entry** — the patient and referring-clinician typeaheads list the first 20 records (alphabetical) as soon as the field is focused, before anything is typed.
+
+> **Known gap:** the whole `/api/config/*` surface, data import included, is guarded by `requireAuth` only. There is no role-based authorization anywhere in the codebase, so any logged-in user can reach it.
+
 Prerequisites on the host:
 
 1. Docker + Docker Compose v2.
@@ -256,8 +274,18 @@ The backend and frontend **images are identical** in both stacks. Runtime and bu
 |---|---|---|---|
 | `NODE_ENV` | `development` | `production` | Enables bcrypt password verification in the backend |
 | `VITE_PASSWORD_AUTH` | *(unset)* | `true` (build arg) | Shows the password field in the login UI |
+| `DEMO_MODE` | `true` | *(unset → off)* | Marks the UI and every generated PDF as synthetic demo output |
 
 In dev, login is passwordless (any registered employee username works). In prod, `NODE_ENV=production` enforces bcrypt checks and the login UI exposes the password field via `VITE_PASSWORD_AUTH=true`.
+
+### Demo-data marking
+
+The dev stack seeds a corpus of fabricated patients, referring clinicians and staff. Nothing about a record on screen or in an exported PDF otherwise says it is not real, which matters as soon as a screenshot or a report leaves the machine that produced it. Two layers address that:
+
+- **The data says so.** Seeded records use unmistakably synthetic names (`ZZZTEST-PATIENT`, `ZZZTEST-REFERRER`, `ZZZTEST-STAFF`) and patient identifiers in a separate `DEMO#######` namespace, outside the `P#######` range the runtime allocator uses. The `ZZZTEST-` prefix also sorts them to the end of any alphabetical list. Only display names changed — `userName` values (`asmith`, `rjones`, …) are unchanged, because the E2E suites and manuscript figure capture log in with them.
+- **The app says so.** When `DEMO_MODE` is on, a red *DEMO DATA* chip sits in the app bar, the login page carries a notice, and every generated PDF gets a diagonal watermark. The watermark is applied to rendered output rather than to the report template, so a customized report layout cannot drop it.
+
+`DEMO_MODE` defaults to on whenever `NODE_ENV != production`, so a stack is never mistaken for a real one by omission. Set `DEMO_MODE=false` to force it off, or `DEMO_MODE=true` to mark a production-mode training instance.
 
 ### Promotion workflow
 

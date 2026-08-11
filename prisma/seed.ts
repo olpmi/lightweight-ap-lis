@@ -343,43 +343,55 @@ function buildStructuredSeedPayload(template: StructuredSeedReport): string {
 
 const EMPLOYEE_ROLES = ['Pathologist', 'Technologist'];
 
+// ---------------------------------------------------------------------------
+// Synthetic identities
+//
+// Every name below is deliberately impossible to mistake for a real person.
+// This corpus drives demos, screenshots and manuscript figures, so a plausible
+// name like "Dr. Emily Johnson" on a report PDF is a hazard: nothing about the
+// record itself would say "this is not a patient".
+//
+// The ZZZTEST- prefix also sorts these records to the end of any alphabetical
+// list, a long-standing convention for test records in clinical systems.
+//
+// `userName` values are intentionally left alone. The E2E suites and the
+// manuscript figure capture log in as `asmith`, so renaming them would break
+// tests for no gain — the display names are what appears on screen and on PDFs.
+// ---------------------------------------------------------------------------
+
 const EMPLOYEES = [
-  { lastName: 'Smith', firstName: 'Dr. Alice', userName: 'asmith', role: 'Pathologist' },
-  { lastName: 'Jones', firstName: 'Dr. Robert', userName: 'rjones', role: 'Pathologist' },
-  { lastName: 'Williams', firstName: 'Dr. Carol', userName: 'cwilliams', role: 'Pathologist' },
-  { lastName: 'Brown', firstName: 'Dr. Daniel', userName: 'dbrown', role: 'Pathologist' },
-  { lastName: 'Davis', firstName: 'Maria', userName: 'mdavis', role: 'Technologist' },
-  { lastName: 'Miller', firstName: 'James', userName: 'jmiller', role: 'Technologist' },
-  { lastName: 'Wilson', firstName: 'Linda', userName: 'lwilson', role: 'Technologist' },
-  { lastName: 'Moore', firstName: 'Thomas', userName: 'tmoore', role: 'Technologist' },
-  { lastName: 'Taylor', firstName: 'Sarah', userName: 'staylor', role: 'Technologist' },
-  { lastName: 'Anderson', firstName: 'Kevin', userName: 'kanderson', role: 'Technologist' },
+  { lastName: 'ZZZTEST-STAFF', firstName: 'Dr. Alpha', userName: 'asmith', role: 'Pathologist' },
+  { lastName: 'ZZZTEST-STAFF', firstName: 'Dr. Bravo', userName: 'rjones', role: 'Pathologist' },
+  { lastName: 'ZZZTEST-STAFF', firstName: 'Dr. Charlie', userName: 'cwilliams', role: 'Pathologist' },
+  { lastName: 'ZZZTEST-STAFF', firstName: 'Dr. Delta', userName: 'dbrown', role: 'Pathologist' },
+  { lastName: 'ZZZTEST-STAFF', firstName: 'Echo', userName: 'mdavis', role: 'Technologist' },
+  { lastName: 'ZZZTEST-STAFF', firstName: 'Foxtrot', userName: 'jmiller', role: 'Technologist' },
+  { lastName: 'ZZZTEST-STAFF', firstName: 'Golf', userName: 'lwilson', role: 'Technologist' },
+  { lastName: 'ZZZTEST-STAFF', firstName: 'Hotel', userName: 'tmoore', role: 'Technologist' },
+  { lastName: 'ZZZTEST-STAFF', firstName: 'India', userName: 'staylor', role: 'Technologist' },
+  { lastName: 'ZZZTEST-STAFF', firstName: 'Juliett', userName: 'kanderson', role: 'Technologist' },
 ];
 
 const DOCTORS = [
-  { lastName: 'Johnson', firstName: 'Dr. Emily' },
-  { lastName: 'Garcia', firstName: 'Dr. Michael' },
-  { lastName: 'Martinez', firstName: 'Dr. Jennifer' },
-  { lastName: 'Lee', firstName: 'Dr. Christopher' },
-  { lastName: 'Harris', firstName: 'Dr. Ashley' },
-  { lastName: 'Thompson', firstName: 'Dr. Matthew' },
-  { lastName: 'White', firstName: 'Dr. Jessica' },
-  { lastName: 'Jackson', firstName: 'Dr. Joshua' },
+  { lastName: 'ZZZTEST-REFERRER', firstName: 'Dr. Alpha' },
+  { lastName: 'ZZZTEST-REFERRER', firstName: 'Dr. Bravo' },
+  { lastName: 'ZZZTEST-REFERRER', firstName: 'Dr. Charlie' },
+  { lastName: 'ZZZTEST-REFERRER', firstName: 'Dr. Delta' },
+  { lastName: 'ZZZTEST-REFERRER', firstName: 'Dr. Echo' },
+  { lastName: 'ZZZTEST-REFERRER', firstName: 'Dr. Foxtrot' },
+  { lastName: 'ZZZTEST-REFERRER', firstName: 'Dr. Golf' },
+  { lastName: 'ZZZTEST-REFERRER', firstName: 'Dr. Hotel' },
 ];
 
+// Kept at 30 entries so `pick()` draws from the same-sized pool as before.
 const PATIENT_FIRST_NAMES = [
-  'James', 'John', 'Robert', 'Michael', 'William', 'David', 'Richard', 'Joseph',
-  'Thomas', 'Mary', 'Patricia', 'Jennifer', 'Linda', 'Barbara', 'Elizabeth',
-  'Susan', 'Jessica', 'Sarah', 'Karen', 'Lisa', 'Nancy', 'Betty', 'Margaret',
-  'Sandra', 'Ashley', 'Dorothy', 'Kimberly', 'Emily', 'Donna', 'Michelle',
+  'Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo', 'Foxtrot', 'Golf', 'Hotel',
+  'India', 'Juliett', 'Kilo', 'Lima', 'Mike', 'November', 'Oscar', 'Papa',
+  'Quebec', 'Romeo', 'Sierra', 'Tango', 'Uniform', 'Victor', 'Whiskey',
+  'Xray', 'Yankee', 'Zulu', 'Anton', 'Bertha', 'Caesar', 'Dora',
 ];
 
-const PATIENT_LAST_NAMES = [
-  'Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Garcia', 'Miller', 'Davis',
-  'Rodriguez', 'Martinez', 'Hernandez', 'Lopez', 'Gonzalez', 'Wilson', 'Anderson',
-  'Thomas', 'Taylor', 'Moore', 'Jackson', 'Martin', 'Lee', 'Perez', 'Thompson',
-  'White', 'Harris', 'Sanchez', 'Clark', 'Ramirez', 'Lewis', 'Robinson',
-];
+const PATIENT_LAST_NAMES = ['ZZZTEST-PATIENT'];
 
 const SEX_OPTIONS = ['Male', 'Female'];
 
@@ -445,8 +457,20 @@ function incrementCode(code: string): string {
 // ---------------------------------------------------------------------------
 // Seed helpers
 // ---------------------------------------------------------------------------
+/**
+ * Demo patient identifiers live in their own `DEMO` namespace, outside the `P`
+ * sequence that `PatientService.generatePatientId` allocates from. That makes a
+ * seeded record self-evidently synthetic wherever the identifier is displayed,
+ * and it removes a collision hazard: previously seeded IDs were random values
+ * inside the same `P` namespace, so the seed had to defensively advance the
+ * runtime counter past whatever it happened to generate.
+ *
+ * The single `rng()` draw is deliberate. It keeps the deterministic stream
+ * byte-identical to the pre-rename corpus, so specimen, block and slide counts
+ * still match the committed evidence in docs/verification/.
+ */
 function generatePatientId(): string {
-  return 'P' + String(Math.floor(rng() * 9000000 + 1000000));
+  return 'DEMO' + String(Math.floor(rng() * 9000000 + 1000000));
 }
 
 function generateDob(): Date {
@@ -505,9 +529,20 @@ async function main() {
   console.log('  ✓ Employees');
 
   // 3. Doctors
+  //
+  // Find-or-create rather than create: `Doctor` has no unique constraint on the
+  // name, and the dev stack re-runs this seed on every `docker compose up`
+  // (docker-compose.yml), so an unconditional create accumulated eight more
+  // duplicate referrers per restart. Matches DoctorService.findOrCreate.
   const doctorIds: bigint[] = [];
   for (const doc of DOCTORS) {
-    const record = await prisma.doctor.create({ data: doc });
+    const existing = await prisma.doctor.findFirst({
+      where: {
+        lastName: { equals: doc.lastName, mode: 'insensitive' },
+        firstName: { equals: doc.firstName, mode: 'insensitive' },
+      },
+    });
+    const record = existing ?? (await prisma.doctor.create({ data: doc }));
     doctorIds.push(record.doctorId);
   }
   console.log('  ✓ Doctors');
@@ -560,8 +595,11 @@ async function main() {
     await prisma.patient.create({
       data: {
         patientId: pid,
+        // The index suffix keeps the 50 demo patients individually
+        // distinguishable in queues and search results even when `pick` draws
+        // the same word twice.
         lastName: pick(PATIENT_LAST_NAMES),
-        firstName: pick(PATIENT_FIRST_NAMES),
+        firstName: `${pick(PATIENT_FIRST_NAMES)}-${String(i + 1).padStart(2, '0')}`,
         dateOfBirth: generateDob(),
         sex: pick(SEX_OPTIONS),
       },
@@ -569,18 +607,15 @@ async function main() {
     patientIds.push(pid);
   }
 
-  // Advance the patient-ID counter past the demo data. Seeded IDs are random
-  // 7-digit values, so an allocator starting from zero would eventually walk
-  // into them and collide. The migration does the same thing for databases that
-  // already held patients; this covers the case where seeding happens after it.
-  const highestSeededPatientId = patientIds.reduce((highest, patientId) => {
-    const numeric = Number(patientId.slice(1));
-    return Number.isFinite(numeric) && numeric > highest ? numeric : highest;
-  }, 0);
+  // Make sure the allocator row exists, but never move it. Demo identifiers are
+  // in the `DEMO` namespace and the `patient_sequence` migration only counts
+  // `^P[0-9]{1,9}$` values, so seeding has no bearing on where the runtime
+  // allocator is — and rewinding a counter that a real database had already
+  // advanced would hand out identifiers that are in use.
   await prisma.patientSequence.upsert({
     where: { id: 1 },
-    create: { id: 1, lastValue: highestSeededPatientId },
-    update: { lastValue: highestSeededPatientId },
+    create: { id: 1, lastValue: 0 },
+    update: {},
   });
   console.log('  ✓ Patients');
 

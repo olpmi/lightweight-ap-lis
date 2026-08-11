@@ -1,7 +1,13 @@
 import { z } from 'zod';
 import { APP_LANGUAGE_CODES } from '../templates/index.js';
 import { REPORT_TEMPLATE_TYPES } from '../types/index.js';
-import { ANCILLARY_CATEGORIES, ANCILLARY_ORDER_STATUSES, SEX_OPTIONS } from '../constants/index.js';
+import {
+  ANCILLARY_CATEGORIES,
+  ANCILLARY_ORDER_STATUSES,
+  IMPORT_DATE_FORMAT_HINT,
+  SEX_CSV_ALIASES,
+  SEX_OPTIONS,
+} from '../constants/index.js';
 
 const appLanguageSchema = z.enum(APP_LANGUAGE_CODES);
 const sexSchema = z.enum(SEX_OPTIONS);
@@ -193,3 +199,131 @@ export type UpdateAncillaryOrderableInput = z.infer<typeof updateAncillaryOrdera
 export type CreateAncillaryPanelInput = z.infer<typeof createAncillaryPanelSchema>;
 export type UpdateAncillaryPanelInput = z.infer<typeof updateAncillaryPanelSchema>;
 export type CreateAncillaryOrdersBatchInput = z.infer<typeof createAncillaryOrdersBatchSchema>;
+
+// ---------------------------------------------------------------------------
+// CSV data-import row schemas
+//
+// Every field arrives as a string from the CSV, so these schemas do the
+// coercion as well as the validation. They are deliberately strict: an import
+// writes hundreds of records at once with nobody reading each one, so a value
+// this layer guesses at is a value nobody will ever notice is wrong.
+// ---------------------------------------------------------------------------
+
+/** Trim and collapse internal runs of whitespace. */
+const csvName = (label: string) =>
+  z
+    .string()
+    .transform((v) => v.trim().replace(/\s+/g, ' '))
+    .pipe(z.string().min(1, `${label} is required`).max(100, `${label} must be 100 characters or fewer`));
+
+/**
+ * Dates must be ISO `YYYY-MM-DD`, and nothing else.
+ *
+ * Accepting `03/04/1990` would mean guessing between 3 April and 4 March. A
+ * wrong date of birth is invisible at import time and surfaces years later
+ * attached to the wrong person, so this rejects rather than infers. The message
+ * tells the user exactly what to do instead.
+ */
+const csvIsoDate = z
+  .string()
+  .transform((v) => v.trim())
+  .superRefine((v, ctx) => {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(v)) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: `date_of_birth must be formatted ${IMPORT_DATE_FORMAT_HINT}`,
+      });
+      return;
+    }
+    const [year, month, day] = v.split('-').map(Number);
+    const date = new Date(Date.UTC(year, month - 1, day));
+    // Round-tripping catches 2023-02-30 and 2024-13-01, which Date would
+    // otherwise roll forward into a different, plausible-looking day.
+    const roundTrips =
+      date.getUTCFullYear() === year &&
+      date.getUTCMonth() === month - 1 &&
+      date.getUTCDate() === day;
+    if (!roundTrips) {
+      ctx.addIssue({ code: z.ZodIssueCode.custom, message: `${v} is not a real calendar date` });
+      return;
+    }
+    if (date.getTime() > Date.now()) {
+      ctx.addIssue({ code: z.ZodIssueCode.custom, message: 'date_of_birth is in the future' });
+      return;
+    }
+    if (year < 1900) {
+      ctx.addIssue({ code: z.ZodIssueCode.custom, message: 'date_of_birth is before 1900' });
+    }
+  });
+
+const csvSex = z
+  .string()
+  .transform((v) => v.trim().toLowerCase())
+  .superRefine((v, ctx) => {
+    if (!(v in SEX_CSV_ALIASES)) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: `sex must be one of ${SEX_OPTIONS.join(', ')} (or M/F/O/U); leave blank for Unknown`,
+      });
+    }
+  })
+  // Annotated so the inferred output is the Sex union rather than `string` —
+  // the import service assigns it straight to a Prisma enum column.
+  .transform((v): (typeof SEX_OPTIONS)[number] => SEX_CSV_ALIASES[v] ?? 'Unknown');
+
+export const importPatientRowSchema = z.object({
+  // Optional: a blank cell means "allocate an identifier from the sequence".
+  patient_id: z
+    .string()
+    .transform((v) => v.trim())
+    .pipe(z.string().max(50, 'patient_id must be 50 characters or fewer')),
+  last_name: csvName('last_name'),
+  first_name: csvName('first_name'),
+  date_of_birth: csvIsoDate,
+  sex: csvSex,
+});
+
+export const importDoctorRowSchema = z.object({
+  last_name: csvName('last_name'),
+  first_name: csvName('first_name'),
+});
+
+export const importStaffRowSchema = z.object({
+  user_name: z
+    .string()
+    .transform((v) => v.trim())
+    .pipe(
+      z
+        .string()
+        .min(1, 'user_name is required')
+        .max(100, 'user_name must be 100 characters or fewer')
+        // Same rule as createEmployeeSchema, so an imported account cannot
+        // differ from one created through the login page.
+        .regex(
+          /^[a-zA-Z0-9._-]+$/,
+          'user_name may only contain letters, numbers, dots, hyphens, underscores',
+        ),
+    ),
+  last_name: csvName('last_name'),
+  first_name: csvName('first_name'),
+  role: z
+    .string()
+    .transform((v) => v.trim())
+    .pipe(z.string().min(1, 'role is required')),
+  default_language: z
+    .string()
+    .transform((v) => (v.trim() === '' ? 'en' : v.trim().toLowerCase()))
+    .pipe(appLanguageSchema),
+  // Required in production is enforced in the service, which knows NODE_ENV.
+  password: z
+    .string()
+    .transform((v) => v.trim())
+    .refine(
+      (v) => v === '' || v.length >= 8,
+      'password must be at least 8 characters',
+    ),
+});
+
+export type ImportPatientRow = z.infer<typeof importPatientRowSchema>;
+export type ImportDoctorRow = z.infer<typeof importDoctorRowSchema>;
+export type ImportStaffRow = z.infer<typeof importStaffRowSchema>;

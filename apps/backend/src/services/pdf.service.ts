@@ -1,7 +1,8 @@
-﻿import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
+﻿import { PDFDocument, degrees, rgb, StandardFonts } from 'pdf-lib';
 import fs from 'fs';
 import path from 'path';
 import { GENERATED_PDFS_DIR } from '../utils/storageDirs.js';
+import { isDemoMode } from '../lib/demoMode.js';
 import { formatOrderIdDisplay, formatMaterialIdDisplay, type ResolvedPatientSummary } from '@lis/shared';
 
 interface OrderForPdf {
@@ -125,6 +126,7 @@ export class PdfService {
     const fileName = `${formatOrderIdDisplay(order.orderId)}-worksheet.pdf`;
     const storagePath = path.join(GENERATED_PDFS_DIR, fileName);
 
+    await this.stampDemoWatermark(pdfDoc);
     const pdfBytes = await pdfDoc.save();
     fs.writeFileSync(storagePath, pdfBytes);
 
@@ -185,6 +187,7 @@ export class PdfService {
 
     const fileName = `${formatOrderIdDisplay(orderId)}-reference-strips.pdf`;
     const storagePath = path.join(GENERATED_PDFS_DIR, fileName);
+    await this.stampDemoWatermark(pdfDoc);
     const pdfBytes = await pdfDoc.save();
     fs.writeFileSync(storagePath, pdfBytes);
 
@@ -273,6 +276,7 @@ export class PdfService {
     const fileName = `${formatOrderIdDisplay(report.orderId)}-report-v${report.versionNumber}${suffix}${typeSuffix}.pdf`;
     const storagePath = path.join(GENERATED_PDFS_DIR, fileName);
 
+    await this.stampDemoWatermark(pdfDoc);
     const pdfBytes = await pdfDoc.save();
     fs.writeFileSync(storagePath, pdfBytes);
 
@@ -350,6 +354,7 @@ export class PdfService {
       color: rgb(0.6, 0.3, 0),
     });
 
+    await this.stampDemoWatermark(pdfDoc);
     return pdfDoc.save();
   }
 
@@ -393,12 +398,48 @@ export class PdfService {
     this.drawParagraph(page, input.summary.safetyNote, y, regularFont);
 
     const fileName = `${formatOrderIdDisplay(input.orderId)}-patient-summary-${input.summary.language}.pdf`;
+    await this.stampDemoWatermark(pdfDoc);
     const pdfBytes = await pdfDoc.save();
 
     return { fileName, pdfBytes };
   }
 
   // ----- Helpers -----
+
+  /**
+   * Stamp every page of a document as demo output, immediately before saving.
+   *
+   * Covers the pdf-lib generators — worksheets, reference strips, draft
+   * previews, patient summaries and the legacy report fallback. The Puppeteer
+   * report path has its own equivalent in `pdf.layout.service.ts`.
+   *
+   * A no-op outside demo mode, so production output is untouched.
+   */
+  private async stampDemoWatermark(pdfDoc: PDFDocument): Promise<void> {
+    if (!isDemoMode()) return;
+
+    const font = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
+    const text = 'DEMO DATA — NOT A REAL PATIENT RECORD';
+    const size = 20;
+    const angle = -35;
+    const radians = (angle * Math.PI) / 180;
+    const textWidth = font.widthOfTextAtSize(text, size);
+
+    for (const page of pdfDoc.getPages()) {
+      const { width, height } = page.getSize();
+      // drawText rotates about the baseline origin, so stepping back half the
+      // string's length along the rotated axis is what actually centres it.
+      page.drawText(text, {
+        x: width / 2 - (textWidth / 2) * Math.cos(radians),
+        y: height / 2 - (textWidth / 2) * Math.sin(radians),
+        font,
+        size,
+        color: rgb(0.72, 0.11, 0.11),
+        opacity: 0.16,
+        rotate: degrees(angle),
+      });
+    }
+  }
 
   private drawSection(page: ReturnType<PDFDocument['addPage']>, title: string, y: number, boldFont: Awaited<ReturnType<PDFDocument['embedFont']>>): number {
     page.drawText(title, { x: MARGIN, y, font: boldFont, size: 11, color: rgb(0.2, 0.2, 0.6) });
