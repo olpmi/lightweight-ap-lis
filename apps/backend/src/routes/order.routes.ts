@@ -5,9 +5,10 @@ import { PdfService } from '../services/pdf.service.js';
 import { PdfLayoutService, DEFAULT_REPORT_HTML_TEMPLATE, type ReportLayoutData } from '../services/pdf.layout.service.js';
 import { ConfigReportLayoutService } from '../services/config.reportLayout.service.js';
 import { OrderLockService } from '../services/orderLock.service.js';
+import { EmployeeService } from '../services/employee.service.js';
 import { requireAuth } from '../middleware/auth.middleware.js';
 import { validateBody } from '../middleware/validate.middleware.js';
-import { createOrderSchema, normalizeOrderId, formatOrderIdDisplay } from '@lis/shared';
+import { EMPLOYEE_ROLES, createOrderSchema, normalizeOrderId, formatOrderIdDisplay } from '@lis/shared';
 import { prisma } from '../lib/prisma.js';
 import fs from 'fs';
 import { GENERATED_PDFS_DIR } from '../utils/storageDirs.js';
@@ -20,6 +21,7 @@ const pdfService = new PdfService();
 const pdfLayoutService = new PdfLayoutService();
 const layoutConfigService = new ConfigReportLayoutService();
 const lockService = new OrderLockService();
+const employeeService = new EmployeeService();
 
 // GET /api/orders/processing-queue
 router.get('/processing-queue', requireAuth, async (req: Request, res: Response, next: NextFunction) => {
@@ -114,6 +116,14 @@ router.patch('/:orderId/clinical-history', requireAuth, async (req: Request, res
 });
 
 // PATCH /api/orders/:orderId/status
+//
+// This writes `order.status` directly, so COMPLETED / CANCELLED / REACTIVATED
+// reach the same terminal states as sign-out and amendment without passing
+// through any ReportService guard. Restricting those three to a pathologist keeps
+// the back door closed; PENDING and HOLD are routine triage and stay open to any
+// authenticated user.
+const PATHOLOGIST_ONLY_STATUSES = ['COMPLETED', 'CANCELLED', 'REACTIVATED'];
+
 router.patch('/:orderId/status', requireAuth, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { status } = req.body as { status?: string };
@@ -121,6 +131,18 @@ router.patch('/:orderId/status', requireAuth, async (req: Request, res: Response
     if (!status || !VALID.includes(status)) {
       res.status(400).json({ error: { code: 'BAD_REQUEST', message: 'Invalid status' } });
       return;
+    }
+    if (PATHOLOGIST_ONLY_STATUSES.includes(status)) {
+      const roleName = await employeeService.findRoleName(req.session.employeeId);
+      if (roleName !== EMPLOYEE_ROLES.PATHOLOGIST) {
+        res.status(403).json({
+          error: {
+            code: 'FORBIDDEN',
+            message: `Setting a case to ${status} requires the ${EMPLOYEE_ROLES.PATHOLOGIST} role.`,
+          },
+        });
+        return;
+      }
     }
     const updated = await prisma.order.update({
       where: { orderId: req.params.orderId },

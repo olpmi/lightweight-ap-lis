@@ -5,13 +5,18 @@ import { test, expect, Page } from '@playwright/test';
 const DEFAULT_USER = process.env.E2E_USER ?? 'asmith';
 const DEFAULT_PASSWORD = process.env.E2E_PASSWORD ?? 'Pathology1!';
 
-async function loginAsExistingEmployee(page: Page, userName = DEFAULT_USER) {
+// The seeded administrator. /api/config/* is Administrator-only, so the
+// configuration specs need an account the seeded pathologists cannot provide.
+const ADMIN_USER = process.env.E2E_ADMIN_USER ?? 'padmin';
+const ADMIN_PASSWORD = process.env.E2E_ADMIN_PASSWORD ?? DEFAULT_PASSWORD;
+
+async function loginAsExistingEmployee(page: Page, userName = DEFAULT_USER, password = DEFAULT_PASSWORD) {
   await page.goto('/login');
   await page.getByTestId('employee-search-input').fill(userName);
   await page.waitForSelector(`[data-testid="employee-option-${userName}"]`);
   await page.getByTestId(`employee-option-${userName}`).click();
   // Password prompt appears after selecting an existing employee.
-  await page.getByTestId('login-password').fill(DEFAULT_PASSWORD);
+  await page.getByTestId('login-password').fill(password);
   await page.getByTestId('login-submit').click();
   // Different roles land on different pages (Pathologist -> /, others -> /order-entry).
   // Just wait for navigation away from /login.
@@ -28,23 +33,37 @@ test.describe('Authentication', () => {
     await expect(page.getByRole('button', { name: 'Logout' })).toBeVisible();
   });
 
-  test('create new employee and login', async ({ page }) => {
+  test('self-registration is not offered once accounts exist', async ({ page }) => {
+    // This spec used to create an account through the login page and sign in as
+    // it. That path is now the first-run bootstrap only: it is open while the
+    // employee table is empty and closes permanently after the first account, so
+    // that an anonymous caller cannot mint itself a privileged one. The seeded
+    // database has staff, so the form must not be on offer.
     await page.goto('/login');
-    await page.getByText(/New employee/i).click();
-    await page.getByTestId('new-employee-firstname').fill('Test');
-    await page.getByTestId('new-employee-lastname').fill('E2EUser');
-    await page.getByTestId('new-employee-username').fill(`e2euser_${Date.now()}`);
-    await page.getByTestId('new-employee-role').click();
-    // MUI Select renders options as role="option"; using getByText would
-    // also match the label, which can be ambiguous.
-    await page.getByRole('option', { name: 'Technologist' }).click();
-    await page.getByTestId('new-employee-password').fill('NewEmployee1!');
-    await page.getByTestId('new-employee-confirm-password').fill('NewEmployee1!');
-    await page.getByTestId('new-employee-submit').click();
-    // Different roles land on different pages; just verify navigation
-    // away from /login and that we are authenticated.
-    await page.waitForURL((url) => !url.pathname.startsWith('/login'));
+    await expect(page.getByTestId('employee-search-input')).toBeVisible();
+    await expect(page.getByText(/New employee/i)).toHaveCount(0);
+  });
+});
+
+test.describe('Role-based authorization', () => {
+  test('a pathologist has no access to the configuration surface', async ({ page }) => {
+    // /api/config/* is Administrator-only. The seeded pathologist should not see
+    // the entry, and reaching the route directly should not render the page.
+    await loginAsExistingEmployee(page);
     await expect(page.getByRole('button', { name: 'Logout' })).toBeVisible();
+
+    await expect(page.getByText('Configuration')).toHaveCount(0);
+
+    await page.goto('/config/data-import');
+    await expect(page.getByTestId('forbidden-notice')).toBeVisible();
+  });
+
+  test('an administrator can reach the configuration surface', async ({ page }) => {
+    await loginAsExistingEmployee(page, ADMIN_USER, ADMIN_PASSWORD);
+    await expect(page.getByText('Configuration')).toBeVisible();
+
+    await page.goto('/config/data-import');
+    await expect(page.getByTestId('forbidden-notice')).toHaveCount(0);
   });
 });
 

@@ -17,6 +17,7 @@ import { LanguageProvider } from './hooks/useLanguage';
 import { NavigationGuardProvider } from './hooks/useNavigationGuard';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { ConflictToast } from './components/ConflictToast';
+import { ForbiddenToast } from './components/ForbiddenToast';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -36,6 +37,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                   <NavigationGuardProvider>
                     <App />
                     <ConflictToast />
+                    <ForbiddenToast />
                   </NavigationGuardProvider>
                 </LanguageProvider>
               </AuthProvider>

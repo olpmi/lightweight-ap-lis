@@ -3,7 +3,8 @@ import { z } from 'zod';
 import { ConfigReportLayoutService } from '../services/config.reportLayout.service.js';
 import { PdfLayoutService } from '../services/pdf.layout.service.js';
 import { validateBody } from '../middleware/validate.middleware.js';
-import { requireAuth } from '../middleware/auth.middleware.js';
+import { requireAuth, requireRole } from '../middleware/auth.middleware.js';
+import { EMPLOYEE_ROLES } from '@lis/shared';
 
 const router: Router = Router();
 const layoutService = new ConfigReportLayoutService();
@@ -23,6 +24,12 @@ const upsertSchema = z.object({
 });
 
 router.use(requireAuth);
+
+// Report rendering reads the active layout, so GETs stay open to any
+// authenticated user. Editing, resetting and previewing a layout are
+// administrative — preview included, since it renders arbitrary submitted
+// HTML through headless Chromium.
+const requireAdmin = requireRole(EMPLOYEE_ROLES.ADMINISTRATOR);
 
 // GET /api/config/report-layouts
 router.get('/', async (_req, res, next) => {
@@ -48,7 +55,7 @@ router.get('/:reportType', async (req, res, next) => {
 });
 
 // PUT /api/config/report-layouts  (upsert by reportType in body)
-router.put('/', validateBody(upsertSchema), async (req, res, next) => {
+router.put('/', requireAdmin, validateBody(upsertSchema), async (req, res, next) => {
   try {
     const { reportType, name, htmlTemplate, isActive } = req.body;
     const layout = await layoutService.upsertLayout(reportType, { name, htmlTemplate, isActive });
@@ -59,7 +66,7 @@ router.put('/', validateBody(upsertSchema), async (req, res, next) => {
 });
 
 // POST /api/config/report-layouts/:reportType/reset  â€” reset to built-in default template
-router.post('/:reportType/reset', async (req, res, next) => {
+router.post('/:reportType/reset', requireAdmin, async (req, res, next) => {
   try {
     const { reportType } = req.params;
     if (!isReportType(reportType)) {
@@ -73,7 +80,7 @@ router.post('/:reportType/reset', async (req, res, next) => {
 });
 
 // POST /api/config/report-layouts/:reportType/preview â€” render a sample PDF
-router.post('/:reportType/preview', async (req, res, next) => {
+router.post('/:reportType/preview', requireAdmin, async (req, res, next) => {
   try {
     const { reportType } = req.params;
     if (!isReportType(reportType)) return res.status(400).json({ message: 'Invalid report type' });

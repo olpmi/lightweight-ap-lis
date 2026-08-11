@@ -16,6 +16,8 @@ import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import request from 'supertest';
 import { createApp } from '../../app.js';
 import { prisma } from '../../lib/prisma.js';
+import { EMPLOYEE_ROLES } from '@lis/shared';
+import { createEmployeeAndLogin } from '../helpers/auth.js';
 
 const hasDb = Boolean(process.env.DATABASE_URL && process.env.SESSION_SECRET);
 
@@ -36,12 +38,6 @@ describe.skipIf(!hasDb)('Order edit-lock', () => {
   const agentB = request.agent(app);
 
   beforeAll(async () => {
-    const role = await prisma.employeeRole.upsert({
-      where: { roleName: 'pathologist' },
-      update: {},
-      create: { roleName: 'pathologist' },
-    });
-    roleId = role.employeeRoleId;
     const bodySite = await prisma.bodySite.upsert({
       where: { bodySiteName: 'Test Site' },
       update: {},
@@ -49,17 +45,18 @@ describe.skipIf(!hasDb)('Order edit-lock', () => {
     });
     bodySiteId = bodySite.bodySiteId;
 
-    const loginA = await agentA.post('/api/auth/login').send({
-      newEmployee: { userName: userA, firstName: 'Lock', lastName: 'A', employeeRoleId: roleId, password: 'Integration1!' },
+    const actorA = await createEmployeeAndLogin(agentA, EMPLOYEE_ROLES.PATHOLOGIST, userA, {
+      firstName: 'Lock',
+      lastName: 'A',
     });
-    expect(loginA.status).toBe(200);
-    employeeAId = Number(loginA.body.data.employeeId);
+    employeeAId = actorA.employeeId;
+    roleId = actorA.employeeRoleId;
 
-    const loginB = await agentB.post('/api/auth/login').send({
-      newEmployee: { userName: userB, firstName: 'Lock', lastName: 'B', employeeRoleId: roleId, password: 'Integration1!' },
+    const actorB = await createEmployeeAndLogin(agentB, EMPLOYEE_ROLES.PATHOLOGIST, userB, {
+      firstName: 'Lock',
+      lastName: 'B',
     });
-    expect(loginB.status).toBe(200);
-    employeeBId = Number(loginB.body.data.employeeId);
+    employeeBId = actorB.employeeId;
   });
 
   async function createOrder(): Promise<string> {

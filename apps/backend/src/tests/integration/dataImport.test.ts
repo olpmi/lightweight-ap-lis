@@ -14,6 +14,8 @@ import request from 'supertest';
 import bcrypt from 'bcryptjs';
 import { createApp } from '../../app.js';
 import { prisma } from '../../lib/prisma.js';
+import { EMPLOYEE_ROLES } from '@lis/shared';
+import { createEmployeeAndLogin, ensureRole } from '../helpers/auth.js';
 
 const hasDb = Boolean(process.env.DATABASE_URL && process.env.SESSION_SECRET);
 
@@ -38,24 +40,18 @@ describe.skipIf(!hasDb)('CSV data import', () => {
     ['patient_id,last_name,first_name,date_of_birth,sex', ...rows].join('\n');
 
   beforeAll(async () => {
-    const role = await prisma.employeeRole.upsert({
-      where: { roleName: 'pathologist' },
-      update: {},
-      create: { roleName: 'pathologist' },
+    // Roster import provisions staff accounts, so the whole /api/config/data-import
+    // surface is Administrator-only.
+    const actor = await createEmployeeAndLogin(agent, EMPLOYEE_ROLES.ADMINISTRATOR, userName, {
+      firstName: 'Import',
+      lastName: 'Tester',
     });
-    roleId = role.employeeRoleId;
+    employeeId = actor.employeeId;
 
-    const loginRes = await agent.post('/api/auth/login').send({
-      newEmployee: {
-        userName,
-        firstName: 'Import',
-        lastName: 'Tester',
-        employeeRoleId: roleId,
-        password: 'Integration1!',
-      },
-    });
-    expect(loginRes.status).toBe(200);
-    employeeId = Number(loginRes.body.data.employeeId);
+    // The staff-import test asserts that a lower-cased `pathologist` in the CSV
+    // resolves to the canonical Pathologist role, which is a different row from
+    // the importing administrator's own.
+    roleId = await ensureRole(EMPLOYEE_ROLES.PATHOLOGIST);
   });
 
   afterAll(async () => {

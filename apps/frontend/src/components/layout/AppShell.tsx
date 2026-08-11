@@ -46,7 +46,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
-  const { user, logout } = useAuth();
+  const { user, logout, isAdministrator } = useAuth();
   const { lang, setLang, t, languageOptions, tRole } = useLanguage();
   const { guardedNavigate } = useNavigationGuard();
   const demoMode = useDemoMode();
@@ -65,6 +65,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     }
   };
 
+  // Config is Administrator-only, so it is omitted rather than shown and refused.
   const NAV_ITEMS = [
     { label: t('nav_home'), path: '/', icon: <Home /> },
     { label: t('nav_orderEntry'), path: '/order-entry', icon: <Add /> },
@@ -73,7 +74,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     { label: t('nav_result'), path: '/result', icon: <Description /> },
     { label: t('nav_ancillary'), path: '/ancillary', icon: <Output /> },
     { label: t('nav_query'), path: '/query', icon: <Search /> },
-    { label: t('nav_config'), path: '/config', icon: <Settings /> },
+    ...(isAdministrator ? [{ label: t('nav_config'), path: '/config', icon: <Settings /> }] : []),
   ];
 
   const handleLogout = async () => {

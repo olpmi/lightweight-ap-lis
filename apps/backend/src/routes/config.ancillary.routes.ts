@@ -1,7 +1,8 @@
 import { Router } from 'express';
-import { requireAuth } from '../middleware/auth.middleware.js';
+import { requireAuth, requireRole } from '../middleware/auth.middleware.js';
 import { validateBody } from '../middleware/validate.middleware.js';
 import {
+  EMPLOYEE_ROLES,
   createAncillaryOrderableSchema,
   updateAncillaryOrderableSchema,
   createAncillaryPanelSchema,
@@ -11,6 +12,10 @@ import { ConfigAncillaryService } from '../services/config.ancillary.service.js'
 
 const router: Router = Router();
 const service = new ConfigAncillaryService();
+
+// Reads stay open to any authenticated user — ordering screens need the
+// catalog. Editing the catalog is administrative.
+const requireAdmin = requireRole(EMPLOYEE_ROLES.ADMINISTRATOR);
 
 // ---------------------------------------------------------------------------
 // Orderables
@@ -27,7 +32,7 @@ router.get('/orderables', requireAuth, async (_req, res, next) => {
 });
 
 // POST /api/config/ancillary/orderables
-router.post('/orderables', requireAuth, validateBody(createAncillaryOrderableSchema), async (req, res, next) => {
+router.post('/orderables', requireAuth, requireAdmin, validateBody(createAncillaryOrderableSchema), async (req, res, next) => {
   try {
     const data = await service.createOrderable(req.body);
     res.status(201).json({ data });
@@ -37,7 +42,7 @@ router.post('/orderables', requireAuth, validateBody(createAncillaryOrderableSch
 });
 
 // PUT /api/config/ancillary/orderables/:id
-router.put('/orderables/:id', requireAuth, validateBody(updateAncillaryOrderableSchema), async (req, res, next) => {
+router.put('/orderables/:id', requireAuth, requireAdmin, validateBody(updateAncillaryOrderableSchema), async (req, res, next) => {
   try {
     const id = parseInt(req.params.id, 10);
     if (isNaN(id)) { res.status(400).json({ error: 'Invalid id' }); return; }
@@ -49,7 +54,7 @@ router.put('/orderables/:id', requireAuth, validateBody(updateAncillaryOrderable
 });
 
 // DELETE /api/config/ancillary/orderables/:id
-router.delete('/orderables/:id', requireAuth, async (req, res, next) => {
+router.delete('/orderables/:id', requireAuth, requireAdmin, async (req, res, next) => {
   try {
     const id = parseInt(req.params.id, 10);
     if (isNaN(id)) { res.status(400).json({ error: 'Invalid id' }); return; }
@@ -75,7 +80,7 @@ router.get('/panels', requireAuth, async (_req, res, next) => {
 });
 
 // POST /api/config/ancillary/panels
-router.post('/panels', requireAuth, validateBody(createAncillaryPanelSchema), async (req, res, next) => {
+router.post('/panels', requireAuth, requireAdmin, validateBody(createAncillaryPanelSchema), async (req, res, next) => {
   try {
     const data = await service.createPanel(req.body);
     res.status(201).json({ data });
@@ -85,7 +90,7 @@ router.post('/panels', requireAuth, validateBody(createAncillaryPanelSchema), as
 });
 
 // PUT /api/config/ancillary/panels/:id
-router.put('/panels/:id', requireAuth, validateBody(updateAncillaryPanelSchema), async (req, res, next) => {
+router.put('/panels/:id', requireAuth, requireAdmin, validateBody(updateAncillaryPanelSchema), async (req, res, next) => {
   try {
     const id = parseInt(req.params.id, 10);
     if (isNaN(id)) { res.status(400).json({ error: 'Invalid id' }); return; }
@@ -97,7 +102,7 @@ router.put('/panels/:id', requireAuth, validateBody(updateAncillaryPanelSchema),
 });
 
 // DELETE /api/config/ancillary/panels/:id
-router.delete('/panels/:id', requireAuth, async (req, res, next) => {
+router.delete('/panels/:id', requireAuth, requireAdmin, async (req, res, next) => {
   try {
     const id = parseInt(req.params.id, 10);
     if (isNaN(id)) { res.status(400).json({ error: 'Invalid id' }); return; }

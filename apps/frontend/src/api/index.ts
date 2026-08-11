@@ -8,6 +8,7 @@ import type {
   Doctor,
   Employee,
   EmployeeRole,
+  EmployeeRoleName,
   Order,
   OrderMaterials,
   OrderWithDetails,
@@ -87,13 +88,18 @@ export interface SignOutReportPayload {
 export interface SessionEmployee {
   employeeId: number;
   userName: string;
-  role: string;
+  role: EmployeeRoleName;
   defaultLanguage: AppLanguageCode;
 }
 
 export interface AppMeta {
   /** True when this deployment holds synthetic demo data, not real records. */
   demoMode: boolean;
+  /**
+   * True only while no account exists. Self-registration is the first-run
+   * bootstrap path, so the login page offers "New employee" only in this state.
+   */
+  bootstrapAvailable: boolean;
 }
 
 export const metaApi = {

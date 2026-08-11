@@ -27,7 +27,17 @@ export class AuthService {
     let employee: Awaited<ReturnType<typeof prisma.employee.findUnique>>;
 
     if (payload.newEmployee) {
-      employee = (await employeeService.create(payload.newEmployee)) as typeof employee;
+      // Self-registration is the bootstrap path only. Once any account exists
+      // this closes, otherwise the login endpoint would remain an anonymous way
+      // to mint an account of any role and every role guard would be moot.
+      if (!(await employeeService.isBootstrapAvailable())) {
+        throw new AppError(
+          403,
+          'FORBIDDEN',
+          'An account already exists. Ask an administrator to create your account.'
+        );
+      }
+      employee = (await employeeService.createFirstAdministrator(payload.newEmployee)) as typeof employee;
     } else if (payload.employeeId != null) {
       if (process.env.NODE_ENV === 'production') {
         if (!payload.password) {

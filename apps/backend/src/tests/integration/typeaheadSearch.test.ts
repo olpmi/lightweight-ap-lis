@@ -13,6 +13,8 @@ import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import request from 'supertest';
 import { createApp } from '../../app.js';
 import { prisma } from '../../lib/prisma.js';
+import { EMPLOYEE_ROLES } from '@lis/shared';
+import { createEmployeeAndLogin } from '../helpers/auth.js';
 
 const hasDb = Boolean(process.env.DATABASE_URL && process.env.SESSION_SECRET);
 
@@ -21,28 +23,24 @@ describe.skipIf(!hasDb)('Order-entry typeahead search', () => {
   const userName = `tah_${nonce}`;
   const surname = `ZZTYPEAHEAD_${nonce}`;
   let employeeId = 0;
+  let adminEmployeeId = 0;
 
   const app = createApp();
   const agent = request.agent(app);
+  const adminAgent = request.agent(app);
 
   beforeAll(async () => {
-    const role = await prisma.employeeRole.upsert({
-      where: { roleName: 'pathologist' },
-      update: {},
-      create: { roleName: 'pathologist' },
+    const actor = await createEmployeeAndLogin(agent, EMPLOYEE_ROLES.PATHOLOGIST, userName, {
+      firstName: 'Typeahead',
+      lastName: 'Tester',
     });
+    employeeId = actor.employeeId;
 
-    const loginRes = await agent.post('/api/auth/login').send({
-      newEmployee: {
-        userName,
-        firstName: 'Typeahead',
-        lastName: 'Tester',
-        employeeRoleId: role.employeeRoleId,
-        password: 'Integration1!',
-      },
+    const admin = await createEmployeeAndLogin(adminAgent, EMPLOYEE_ROLES.ADMINISTRATOR, `${userName}_adm`, {
+      firstName: 'Typeahead',
+      lastName: 'Admin',
     });
-    expect(loginRes.status).toBe(200);
-    employeeId = Number(loginRes.body.data.employeeId);
+    adminEmployeeId = admin.employeeId;
 
     await prisma.patient.create({
       data: {
@@ -59,8 +57,9 @@ describe.skipIf(!hasDb)('Order-entry typeahead search', () => {
   afterAll(async () => {
     await prisma.patient.deleteMany({ where: { lastName: surname } });
     await prisma.doctor.deleteMany({ where: { lastName: surname } });
-    if (employeeId) {
-      await prisma.employee.deleteMany({ where: { employeeId: BigInt(employeeId) } });
+    const actorIds = [employeeId, adminEmployeeId].filter(Boolean).map((id) => BigInt(id));
+    if (actorIds.length) {
+      await prisma.employee.deleteMany({ where: { employeeId: { in: actorIds } } });
     }
   });
 
@@ -123,7 +122,9 @@ describe.skipIf(!hasDb)('Order-entry typeahead search', () => {
       `IMP_${nonce},${surname},Imported,1990-04-04,Female`,
     ].join('\n');
 
-    const imported = await agent
+    // Import is Administrator-only; the typeahead that has to surface the result
+    // is used by everyone. Two actors, which is how this runs in a real lab.
+    const imported = await adminAgent
       .post('/api/config/data-import/patients')
       .set('Content-Type', 'text/csv')
       .send(csv);

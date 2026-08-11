@@ -1,8 +1,8 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { ReportService } from '../services/report.service.js';
-import { requireAuth } from '../middleware/auth.middleware.js';
+import { requireAuth, requireCurrentRole } from '../middleware/auth.middleware.js';
 import { validateBody } from '../middleware/validate.middleware.js';
-import { APP_LANGUAGE_CODES, createDraftReportSchema, signOutReportSchema, reactivateOrderSchema, type AppLanguageCode } from '@lis/shared';
+import { APP_LANGUAGE_CODES, EMPLOYEE_ROLES, createDraftReportSchema, signOutReportSchema, reactivateOrderSchema, type AppLanguageCode } from '@lis/shared';
 import { prisma } from '../lib/prisma.js';
 import fs from 'fs';
 import { AppError } from '../middleware/error.middleware.js';
@@ -75,26 +75,61 @@ router.get('/:reportId/patient-summary.pdf', requireAuth, async (req: Request, r
   }
 });
 
-// POST /api/reports/:reportId/signout
-router.post('/:reportId/signout', requireAuth, validateBody(signOutReportSchema), async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const reportId = parseReportId(req.params.reportId);
-    const data = await service.signOut(reportId, req.body, req.session.employeeId);
-    res.json({ data });
-  } catch (err) {
-    next(err);
+/**
+ * Sign-out attributes the diagnosis to `pathologistEmployeeId` from the request
+ * body, not the session — the session is passed separately, and only for the edit
+ * lock. A role gate alone would therefore still let one pathologist sign a report
+ * out under a colleague's name. Requiring the two to agree makes the recorded
+ * signatory the person who actually authenticated.
+ */
+function assertSelfAttributed(req: Request, res: Response): boolean {
+  const claimed = Number(req.body?.pathologistEmployeeId);
+  if (claimed !== req.session.employeeId) {
+    res.status(403).json({
+      error: {
+        code: 'FORBIDDEN',
+        message: 'A report may only be signed out under the signing pathologist’s own account.',
+      },
+    });
+    return false;
   }
-});
+  return true;
+}
+
+// POST /api/reports/:reportId/signout
+router.post(
+  '/:reportId/signout',
+  requireAuth,
+  requireCurrentRole(EMPLOYEE_ROLES.PATHOLOGIST),
+  validateBody(signOutReportSchema),
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      if (!assertSelfAttributed(req, res)) return;
+      const reportId = parseReportId(req.params.reportId);
+      const data = await service.signOut(reportId, req.body, req.session.employeeId);
+      res.json({ data });
+    } catch (err) {
+      next(err);
+    }
+  }
+);
 
 // POST /api/reports/:reportId/signprelim
-router.post('/:reportId/signprelim', requireAuth, validateBody(signOutReportSchema), async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const reportId = parseReportId(req.params.reportId);
-    const data = await service.signPrelim(reportId, req.body, req.session.employeeId);
-    res.json({ data });
-  } catch (err) {
-    next(err);
+router.post(
+  '/:reportId/signprelim',
+  requireAuth,
+  requireCurrentRole(EMPLOYEE_ROLES.PATHOLOGIST),
+  validateBody(signOutReportSchema),
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      if (!assertSelfAttributed(req, res)) return;
+      const reportId = parseReportId(req.params.reportId);
+      const data = await service.signPrelim(reportId, req.body, req.session.employeeId);
+      res.json({ data });
+    } catch (err) {
+      next(err);
+    }
   }
-});
+);
 
 export default router;

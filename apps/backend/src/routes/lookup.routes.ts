@@ -163,7 +163,12 @@ router.post('/patient-summary-resolve', requireAuth, async (req: Request, res: R
 });
 
 // GET /api/lookups/employee-roles
-router.get('/employee-roles', async (_req: Request, res: Response, next: NextFunction) => {
+//
+// Authenticated as of role-based authorization: this list supplied the valid
+// employeeRoleId values that unauthenticated account creation needed, and the
+// bootstrap path no longer offers a role choice (the first account is always an
+// Administrator), so nothing pre-login needs it.
+router.get('/employee-roles', requireAuth, async (_req: Request, res: Response, next: NextFunction) => {
   try {
     const data = await prisma.employeeRole.findMany({ orderBy: { roleName: 'asc' } });
     res.json({ data });

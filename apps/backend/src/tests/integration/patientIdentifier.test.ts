@@ -19,6 +19,8 @@ import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import request from 'supertest';
 import { createApp } from '../../app.js';
 import { prisma } from '../../lib/prisma.js';
+import { EMPLOYEE_ROLES } from '@lis/shared';
+import { createEmployeeAndLogin } from '../helpers/auth.js';
 
 const hasDb = Boolean(process.env.DATABASE_URL && process.env.SESSION_SECRET);
 
@@ -79,12 +81,6 @@ describe.skipIf(!hasDb)('Patient identifier allocation', () => {
   }
 
   beforeAll(async () => {
-    const role = await prisma.employeeRole.upsert({
-      where: { roleName: 'pathologist' },
-      update: {},
-      create: { roleName: 'pathologist' },
-    });
-    roleId = role.employeeRoleId;
 
     const bodySite = await prisma.bodySite.upsert({
       where: { bodySiteName: 'Test Site' },
@@ -93,17 +89,12 @@ describe.skipIf(!hasDb)('Patient identifier allocation', () => {
     });
     bodySiteId = bodySite.bodySiteId;
 
-    const loginRes = await agent.post('/api/auth/login').send({
-      newEmployee: {
-        userName,
-        firstName: 'Patient',
-        lastName: 'IdTester',
-        employeeRoleId: roleId,
-        password: 'Integration1!',
-      },
+    const actor = await createEmployeeAndLogin(agent, EMPLOYEE_ROLES.PATHOLOGIST, userName, {
+      firstName: 'Patient',
+      lastName: 'IdTester',
     });
-    expect(loginRes.status).toBe(200);
-    employeeId = Number(loginRes.body.data.employeeId);
+    employeeId = actor.employeeId;
+    roleId = actor.employeeRoleId;
   });
 
   afterAll(async () => {

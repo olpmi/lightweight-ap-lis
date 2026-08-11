@@ -1,10 +1,20 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { authApi } from '../api';
-import type { AppLanguageCode } from '@lis/shared';
+import { EMPLOYEE_ROLES, type AppLanguageCode, type EmployeeRoleName } from '@lis/shared';
 
 interface AuthContextValue {
-  user: { employeeId: number; userName: string; role: string; defaultLanguage: AppLanguageCode } | null;
+  user: { employeeId: number; userName: string; role: EmployeeRoleName; defaultLanguage: AppLanguageCode } | null;
   loading: boolean;
+  /**
+   * Whether the signed-in user holds one of `roles`.
+   *
+   * Convenience for hiding controls the server would reject anyway — the guards
+   * in the API are the enforcement. Returns false when signed out, so callers
+   * need no separate null check.
+   */
+  hasRole: (...roles: EmployeeRoleName[]) => boolean;
+  isPathologist: boolean;
+  isAdministrator: boolean;
   login: (payload: object) => Promise<void>;
   logout: () => Promise<void>;
 }
@@ -34,7 +44,23 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser(null);
   };
 
-  return <AuthContext.Provider value={{ user, loading, login, logout }}>{children}</AuthContext.Provider>;
+  const hasRole = (...roles: EmployeeRoleName[]) => (user ? roles.includes(user.role) : false);
+
+  return (
+    <AuthContext.Provider
+      value={{
+        user,
+        loading,
+        hasRole,
+        isPathologist: hasRole(EMPLOYEE_ROLES.PATHOLOGIST),
+        isAdministrator: hasRole(EMPLOYEE_ROLES.ADMINISTRATOR),
+        login,
+        logout,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 }
 
 export function useAuth(): AuthContextValue {

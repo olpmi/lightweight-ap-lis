@@ -1,13 +1,22 @@
 import express, { Router, Request, Response, NextFunction } from 'express';
 import rateLimit from 'express-rate-limit';
-import { DATA_IMPORT_ENTITIES, type DataImportEntity } from '@lis/shared';
-import { requireAuth } from '../middleware/auth.middleware.js';
+import { DATA_IMPORT_ENTITIES, EMPLOYEE_ROLES, type DataImportEntity } from '@lis/shared';
+import { requireAuth, requireCurrentRole } from '../middleware/auth.middleware.js';
 import { AppError } from '../middleware/error.middleware.js';
 import { DataImportService } from '../services/dataImport.service.js';
 import { logger } from '../lib/logger.js';
 
 const router: Router = Router();
 const service = new DataImportService();
+
+/**
+ * Roster import is account provisioning: the `staff` entity creates login
+ * accounts with a role and a bcrypt-hashed password. Leaving it to any
+ * authenticated user would reopen the escalation that first-run bootstrap
+ * closes, so it is Administrator-only and re-read from the database rather
+ * than trusted from the session.
+ */
+const requireAdmin = requireCurrentRole(EMPLOYEE_ROLES.ADMINISTRATOR);
 
 /**
  * The CSV arrives as a raw `text/csv` body rather than multipart.
@@ -69,6 +78,7 @@ function readCsv(req: Request): string {
 router.post(
   '/:entity/preview',
   requireAuth,
+  requireAdmin,
   csvBody,
   async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -84,6 +94,7 @@ router.post(
 router.post(
   '/:entity',
   requireAuth,
+  requireAdmin,
   importLimiter,
   csvBody,
   async (req: Request, res: Response, next: NextFunction) => {

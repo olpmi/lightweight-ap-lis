@@ -97,7 +97,7 @@ export default function ResultCasePage() {
   const { orderId } = useParams<{ orderId: string }>();
   const navigate = useNavigate();
   const qc = useQueryClient();
-  const { user } = useAuth();
+  const { user, isPathologist } = useAuth();
   const { t, lang, direction, tSite, tOrgan, tCaseType, tSex } = useLanguage();
   const showKeyboardLayoutHint = lang === 'ar' || lang === 'ur';
   const narrativeInputProps = { lang, dir: direction };
@@ -923,6 +923,7 @@ export default function ResultCasePage() {
                   color="warning"
                   size="small"
                   onClick={() => setReactivateDialogOpen(true)}
+                  disabled={!isPathologist || isLockedByOther}
                   data-testid="reactivate-btn"
                 >
                   {t('rc_reactivate')}
@@ -997,7 +998,7 @@ export default function ResultCasePage() {
                 <Button
                   variant="outlined"
                   color="secondary"
-                  disabled={!canSignOut || signPrelimMutation.isPending || isLockedByOther}
+                  disabled={!isPathologist || !canSignOut || signPrelimMutation.isPending || isLockedByOther}
                   onClick={() => setSignPrelimDialogOpen(true)}
                   data-testid="sign-prelim-btn"
                 >
@@ -1006,7 +1007,7 @@ export default function ResultCasePage() {
                 <Button
                   variant="contained"
                   startIcon={<Send />}
-                  disabled={!canSignOut || isLockedByOther}
+                  disabled={!isPathologist || !canSignOut || isLockedByOther}
                   onClick={() => setSignOutDialogOpen(true)}
                   data-testid="sign-out-btn"
                 >

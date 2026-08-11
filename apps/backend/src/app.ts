@@ -26,9 +26,10 @@ import ancillaryRoutes from './routes/ancillary.routes.js';
 import configAncillaryRoutes from './routes/config.ancillary.routes.js';
 import configDataImportRoutes from './routes/config.dataImport.routes.js';
 import { ReportService } from './services/report.service.js';
+import { EmployeeService } from './services/employee.service.js';
 import { validateBody } from './middleware/validate.middleware.js';
-import { createDraftReportSchema, reactivateOrderSchema } from '@lis/shared';
-import { requireAuth } from './middleware/auth.middleware.js';
+import { EMPLOYEE_ROLES, createDraftReportSchema, reactivateOrderSchema } from '@lis/shared';
+import { requireAuth, requireCurrentRole } from './middleware/auth.middleware.js';
 
 export function createApp(): express.Application {
   const app = express();
@@ -101,7 +102,25 @@ export function createApp(): express.Application {
   // Deployment facts the client needs before anyone has logged in. Deliberately
   // unauthenticated: the login page is where a demo audience looks first, so the
   // demo-data notice has to render there too.
-  app.get('/api/meta', (_req, res) => res.json({ data: { demoMode: isDemoMode() } }));
+  //
+  // `bootstrapAvailable` reports whether the employee table is still empty, which
+  // is the only state in which self-registration is permitted. The login page uses
+  // it to show the New employee flow on a fresh deployment and hide it afterwards,
+  // rather than offering a form that would be rejected. It leaks only whether any
+  // account exists, which an attempt to register would reveal anyway.
+  const metaEmployeeService = new EmployeeService();
+  app.get('/api/meta', async (_req, res, next) => {
+    try {
+      res.json({
+        data: {
+          demoMode: isDemoMode(),
+          bootstrapAvailable: await metaEmployeeService.isBootstrapAvailable(),
+        },
+      });
+    } catch (err) {
+      next(err);
+    }
+  });
 
   // API routes
   app.use('/api/auth', authRoutes);
@@ -131,14 +150,16 @@ export function createApp(): express.Application {
     } catch (err) { next(err); }
   });
 
-  app.post('/api/orders/:orderId/reports/draft', requireAuth, validateBody(createDraftReportSchema), async (req, res, next) => {
+  // Diagnostic authorship and amendment are pathologist acts: the draft carries the
+  // diagnosis, and reactivation supersedes an already-signed-out final report.
+  app.post('/api/orders/:orderId/reports/draft', requireAuth, requireCurrentRole(EMPLOYEE_ROLES.PATHOLOGIST), validateBody(createDraftReportSchema), async (req, res, next) => {
     try {
       const data = await reportService.createDraft(req.params.orderId, req.body, req.session.employeeId);
       res.status(201).json({ data });
     } catch (err) { next(err); }
   });
 
-  app.post('/api/orders/:orderId/reactivate', requireAuth, validateBody(reactivateOrderSchema), async (req, res, next) => {
+  app.post('/api/orders/:orderId/reactivate', requireAuth, requireCurrentRole(EMPLOYEE_ROLES.PATHOLOGIST), validateBody(reactivateOrderSchema), async (req, res, next) => {
     try {
       const data = await reportService.reactivate(req.params.orderId, req.body, req.session.employeeId);
       res.json({ data });

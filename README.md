@@ -187,7 +187,7 @@ A fresh production database therefore contains **reference lookup data only — 
 
 Loading a real roster:
 
-1. Create the first account through the login page's **New employee** flow, which is why `POST /api/employees` is the one unauthenticated write endpoint.
+1. Create the first account through the login page's **New employee** flow. This is the one unauthenticated write endpoint, and it is open only while the employee table is empty — the account it creates is always an **Administrator**, whatever the request asks for. Once any account exists the flow disappears from the login page and the endpoint refuses.
 2. Log in, then go to **Config → Data Import** to bulk-load patients, referring clinicians and staff from CSV. Example files are downloadable from that page and committed at [`apps/frontend/public/csv-templates/`](apps/frontend/public/csv-templates/).
 
 Import behaviour worth knowing before you upload:
@@ -199,7 +199,7 @@ Import behaviour worth knowing before you upload:
 
 To confirm an import landed, open **Order Entry** — the patient and referring-clinician typeaheads list the first 20 records (alphabetical) as soon as the field is focused, before anything is typed.
 
-> **Known gap:** the whole `/api/config/*` surface, data import included, is guarded by `requireAuth` only. There is no role-based authorization anywhere in the codebase, so any logged-in user can reach it.
+> **Data Import is Administrator-only**, because importing the `staff` entity provisions login accounts. See [Roles and authorization](#roles-and-authorization).
 
 Prerequisites on the host:
 
@@ -254,6 +254,59 @@ docker exec lis-postgres-standby psql -U $POSTGRES_USER \
 ```
 
 > **Security:** never commit `.env.production` or anything in `secrets/` — both are listed in `.gitignore`.
+
+## Roles and authorization
+
+Three roles, seeded by the reference-data migrations and defined once in
+[`packages/shared/src/constants/index.ts`](packages/shared/src/constants/index.ts):
+
+| Capability | Pathologist | Technologist | Administrator |
+|---|:--:|:--:|:--:|
+| Accessioning, patients, referring clinicians, specimens, blocks, slides, H&E status, discards | ✓ | ✓ | — |
+| Ancillary ordering and status transitions | ✓ | ✓ | — |
+| Draft authorship, preliminary sign-out, final sign-out, amendment | ✓ | — | — |
+| Setting a case `COMPLETED` / `CANCELLED` / `REACTIVATED` | ✓ | — | — |
+| `/api/config/*` — templates, report layouts, ancillary catalog | — | — | ✓ |
+| CSV roster import, account creation, role assignment | — | — | ✓ |
+| All queues, case detail, worksheets, report PDFs | ✓ | ✓ | ✓ |
+
+Reads stay open to every authenticated user — report rendering itself loads
+templates — so only writes are role-gated.
+
+Enforcement lives in `requireRole` and `requireCurrentRole`
+([`auth.middleware.ts`](apps/backend/src/middleware/auth.middleware.ts)), applied
+per route beside `requireAuth`. `requireCurrentRole` re-reads the role from the
+database instead of trusting the copy captured at login, so revoking or changing
+a role takes effect immediately rather than whenever the user's 8-hour session
+expires; it guards the privileged acts — sign-out, amendment, roster import,
+account and role changes. The interface hides controls a role cannot use, but
+that is convenience: the API refuses regardless.
+
+Two related rules close the escalation paths that would otherwise make the guards
+decorative:
+
+- **Account creation is first-run only** (above), and the first account is forced
+  to Administrator. The same rule covers `POST /api/auth/login` with a
+  `newEmployee` body, which creates and logs in atomically.
+- **A report is signed out under the signing pathologist's own account.** The
+  signatory arrives in the request body, so sign-out additionally requires it to
+  match the session.
+
+> **Upgrading an existing deployment:** production applies migrations but never
+> the seed, so the Administrator role arrives with nobody holding it — and
+> `PATCH /api/employees/:id/role` is itself Administrator-only. Promote one
+> account by hand before deploying, or the configuration surface is unreachable:
+>
+> ```sql
+> UPDATE employee SET employee_role_id =
+>   (SELECT employee_role_id FROM employee_role WHERE role_name = 'Administrator')
+> WHERE user_name = '<your-admin-username>';
+> ```
+
+`GET /api/employees/search` remains unauthenticated because the login page needs
+it before a session exists; it returns only the name and username needed to
+identify an account, not the role. It still discloses that a staff member exists,
+which is an accepted trade-off of the account-picker login.
 
 ## Branch structure
 

@@ -341,7 +341,7 @@ function buildStructuredSeedPayload(template: StructuredSeedReport): string {
   });
 }
 
-const EMPLOYEE_ROLES = ['Pathologist', 'Technologist'];
+const EMPLOYEE_ROLES = ['Pathologist', 'Technologist', 'Administrator'];
 
 // ---------------------------------------------------------------------------
 // Synthetic identities
@@ -370,6 +370,10 @@ const EMPLOYEES = [
   { lastName: 'ZZZTEST-STAFF', firstName: 'Hotel', userName: 'tmoore', role: 'Technologist' },
   { lastName: 'ZZZTEST-STAFF', firstName: 'India', userName: 'staylor', role: 'Technologist' },
   { lastName: 'ZZZTEST-STAFF', firstName: 'Juliett', userName: 'kanderson', role: 'Technologist' },
+  // The /api/config/* surface is Administrator-only, so a dev stack needs an
+  // account that can reach it. E2E specs and manuscript figure capture that
+  // exercise configuration log in as this user.
+  { lastName: 'ZZZTEST-STAFF', firstName: 'Kilo', userName: 'padmin', role: 'Administrator' },
 ];
 
 const DOCTORS = [

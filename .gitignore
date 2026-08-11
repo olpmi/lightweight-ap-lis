@@ -35,6 +35,11 @@ apps/frontend/cookies.txt
 cookies.txt
 e2e-debug*/
 
+# Manuscript drafts. The paper is authored in Word and exported to PDF; the
+# repository tracks the code and the generated verification artifacts the
+# manuscript cites, not the manuscript itself.
+docs/*.pdf
+
 # Generated manuscript figures. Rebuild with:
 #   GENERATE_MANUSCRIPT_FIGURES=1 pnpm figures:manuscript && pnpm figures:compose
 # The panels, composites and their captions are all reproducible output, so only

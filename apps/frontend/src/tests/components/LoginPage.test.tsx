@@ -27,9 +27,11 @@ vi.mock('../../api', () => ({
     me: vi.fn().mockResolvedValue({ employeeId: 1, userName: 'asmith', role: 'Pathologist' }),
     logout: vi.fn(),
   },
-  // The page reads this to decide whether to show the demo-data notice.
+  // The page reads this for the demo-data notice and to decide whether
+  // self-registration is still available. Default to a bootstrappable
+  // deployment so the New employee flow is exercised.
   metaApi: {
-    get: vi.fn().mockResolvedValue({ demoMode: false }),
+    get: vi.fn().mockResolvedValue({ demoMode: false, bootstrapAvailable: true }),
   },
 }));
 
@@ -38,6 +40,9 @@ vi.mock('../../hooks/useAuth', () => ({
   useAuth: () => ({
     user: null,
     loading: false,
+    hasRole: () => false,
+    isPathologist: false,
+    isAdministrator: false,
     login: vi.fn().mockResolvedValue(undefined),
     logout: vi.fn(),
   }),
@@ -57,10 +62,19 @@ function renderWithProviders(ui: React.ReactElement) {
 }
 
 describe('LoginPage', () => {
-  it('renders find employee and new employee tabs', () => {
+  it('renders find employee and new employee tabs', async () => {
     renderWithProviders(<LoginPage />);
     expect(screen.getByText(/Find employee/i)).toBeInTheDocument();
-    expect(screen.getByText(/New employee/i)).toBeInTheDocument();
+    await waitFor(() => expect(screen.getByText(/New employee/i)).toBeInTheDocument());
+  });
+
+  it('hides self-registration once an account exists', async () => {
+    // Self-registration is the first-run bootstrap path. Offering it on a
+    // populated deployment would present a form the server always rejects.
+    vi.mocked(api.metaApi.get).mockResolvedValueOnce({ demoMode: false, bootstrapAvailable: false });
+    renderWithProviders(<LoginPage />);
+    await waitFor(() => expect(api.metaApi.get).toHaveBeenCalled());
+    expect(screen.queryByText(/New employee/i)).not.toBeInTheDocument();
   });
 
   it('shows search input in find employee mode', () => {
@@ -77,7 +91,7 @@ describe('LoginPage', () => {
   it('shows the demo-data notice when the deployment is a demo', async () => {
     // This is the screen a demo audience sees first, and it renders outside
     // AppShell — so it needs its own notice rather than relying on the app bar.
-    vi.mocked(api.metaApi.get).mockResolvedValueOnce({ demoMode: true });
+    vi.mocked(api.metaApi.get).mockResolvedValueOnce({ demoMode: true, bootstrapAvailable: true });
     renderWithProviders(<LoginPage />);
     await waitFor(() => {
       expect(screen.getByTestId('demo-mode-notice')).toBeInTheDocument();
@@ -86,7 +100,7 @@ describe('LoginPage', () => {
 
   it('switches to new employee form', async () => {
     renderWithProviders(<LoginPage />);
-    fireEvent.click(screen.getByText(/New employee/i));
+    fireEvent.click(await screen.findByText(/New employee/i));
     await waitFor(() => {
       expect(screen.getByTestId('new-employee-firstname')).toBeInTheDocument();
     });
@@ -94,7 +108,7 @@ describe('LoginPage', () => {
 
   it('shows validation error when new employee form is incomplete', async () => {
     renderWithProviders(<LoginPage />);
-    fireEvent.click(screen.getByText(/New employee/i));
+    fireEvent.click(await screen.findByText(/New employee/i));
     const submitButton = await waitFor(() => screen.getByTestId('new-employee-submit'));
     fireEvent.submit(submitButton.closest('form') as HTMLFormElement);
     await waitFor(() => {
