@@ -1,0 +1,73 @@
+# Resource-profiling override for the REPLICATED topology — layer on
+# docker-compose.prod.yml (which is standalone; do NOT also include
+# docker-compose.yml):
+#
+#   docker compose -p lis-profile-repl --env-file .env.profile-replicated \
+#     -f docker-compose.prod.yml -f docker-compose.profile-replicated.yml \
+#     up -d --build --wait
+#
+# Driven by `pnpm metrics:deployment`, which generates .env.profile-replicated
+# with throwaway credentials and removes it afterwards.
+#
+# Scope: this topology is profiled for its IDLE resident footprint only, and that
+# is a deliberate limit rather than an omission. docker/postgres/primary-init.sh
+# sets wal_level=replica and hot_standby=on but never sets
+# synchronous_standby_names, so replication is asynchronous and the standby takes
+# no part in the commit path — latency measured against the single-node stack
+# therefore transfers. What the standby does change is resident memory and disk,
+# which is exactly what an idle profile measures. Running the load benchmark here
+# would additionally require defeating the production seed guard, publishing the
+# primary's port, and disabling the login rate limiter — three fidelity
+# compromises for no analytic gain.
+#
+# No workload means no seeding, no host database access and no logins, so the
+# NODE_ENV=production seed guard and the 20-per-15-min login limiter are both
+# irrelevant here.
+#
+# GCS archiving stays off: WALG_GCS_PREFIX is left empty in the generated env
+# file, so docker/postgres/archive-wrapper.sh falls back to copying WAL into the
+# local wal_archive volume and GOOGLE_APPLICATION_CREDENTIALS is never read. The
+# ./secrets mount inherited from the production file therefore only needs to
+# exist; `secrets/` is gitignored.
+#
+# backup_cron is not listed: it stays behind `profiles: ['backup']` in the
+# production file and is not started, so this stack is four containers.
+
+services:
+  postgres_primary:
+    container_name: lis-profile-repl-postgres-primary
+
+  postgres_standby:
+    container_name: lis-profile-repl-postgres-standby
+
+  backend:
+    container_name: lis-profile-repl-backend
+    # Compose appends sequences on merge, so both env_file and ports need the
+    # `!override` tag: without it the real .env.production would still be read
+    # and 3001 would still be bound, colliding with the dev stack.
+    env_file: !override
+      - .env.profile-replicated
+    ports: !override
+      - '3102:3001'
+    # The production file defines no backend healthcheck, so `--wait` would return
+    # while migrations were still running and the idle sample would catch a busy
+    # stack. Added here rather than in docker-compose.prod.yml to leave the
+    # production definition untouched. No curl or wget in the runtime image, hence
+    # Node's global fetch.
+    healthcheck:
+      test:
+        [
+          'CMD',
+          'node',
+          '-e',
+          "fetch('http://localhost:3001/health').then((r) => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 60s
+
+  frontend:
+    container_name: lis-profile-repl-frontend
+    ports: !override
+      - '5274:80'

@@ -48,6 +48,23 @@ services:
         npx tsx prisma/seed.ts &&
         node apps/backend/dist/server.js
       "
+    # Without this there is no container-level signal for "migrated, seeded and
+    # listening", so anything waiting on the stack has to poll /health from the
+    # host. The runtime image carries no curl or wget (docker/backend.Dockerfile
+    # installs only openssl, chromium and fonts), so the probe uses Node's own
+    # global fetch. start_period covers migrations plus the 300-case seed.
+    healthcheck:
+      test:
+        [
+          'CMD',
+          'node',
+          '-e',
+          "fetch('http://localhost:3001/health').then((r) => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 90s
 
   # ─── Frontend ────────────────────────────────────────────────────────────
   frontend:
@@ -57,7 +74,8 @@ services:
     container_name: lis-frontend
     restart: unless-stopped
     depends_on:
-      - backend
+      backend:
+        condition: service_healthy
     environment:
       VITE_API_BASE_URL: http://backend:3001
     ports:

@@ -1,0 +1,499 @@
+{
+  "host": {
+    "commit": "782b5ffcf17a5231833368a7478f52f2d6de4c02",
+    "node": "v22.19.0",
+    "platform": "Windows_NT 10.0.22631 (x64)",
+    "cpu": "Intel(R) Xeon(R) w5-2555X",
+    "logicalCores": "28",
+    "totalMemoryGiB": "63.25",
+    "postgres": "PostgreSQL 16.14 on x86_64-pc-linux-musl",
+    "baseUrl": "http://localhost:3101",
+    "pathologist": "asmith",
+    "administrator": "padmin"
+  },
+  "generatedAt": "2026-08-12T16:27:04.187Z",
+  "measurements": [
+    {
+      "group": "Concurrent sessions",
+      "scenario": "Authenticated login",
+      "detail": "concurrency 1",
+      "summary": {
+        "samples": 1,
+        "errors": 0,
+        "minMs": 7.5,
+        "p50Ms": 7.5,
+        "p95Ms": 7.5,
+        "p99Ms": 7.5,
+        "maxMs": 7.5,
+        "meanMs": 7.5,
+        "throughputPerSecond": 132.5
+      }
+    },
+    {
+      "group": "Concurrent sessions",
+      "scenario": "Authenticated login",
+      "detail": "concurrency 5",
+      "summary": {
+        "samples": 5,
+        "errors": 0,
+        "minMs": 11.1,
+        "p50Ms": 12.8,
+        "p95Ms": 17.6,
+        "p99Ms": 17.6,
+        "maxMs": 17.6,
+        "meanMs": 14,
+        "throughputPerSecond": 263.7
+      }
+    },
+    {
+      "group": "Concurrent sessions",
+      "scenario": "Authenticated login",
+      "detail": "concurrency 10",
+      "summary": {
+        "samples": 10,
+        "errors": 0,
+        "minMs": 12.2,
+        "p50Ms": 19.9,
+        "p95Ms": 33.1,
+        "p99Ms": 33.1,
+        "maxMs": 33.1,
+        "meanMs": 19.2,
+        "throughputPerSecond": 290.3
+      }
+    },
+    {
+      "group": "Concurrent sessions",
+      "scenario": "Authenticated login",
+      "detail": "concurrency 25",
+      "summary": {
+        "samples": 25,
+        "errors": 0,
+        "minMs": 19.6,
+        "p50Ms": 27.7,
+        "p95Ms": 48.1,
+        "p99Ms": 50.7,
+        "maxMs": 50.7,
+        "meanMs": 30.8,
+        "throughputPerSecond": 468.5
+      }
+    },
+    {
+      "group": "Query latency",
+      "scenario": "Query by accession number",
+      "summary": {
+        "samples": 30,
+        "errors": 0,
+        "minMs": 4.7,
+        "p50Ms": 5.5,
+        "p95Ms": 6.9,
+        "p99Ms": 7,
+        "maxMs": 7,
+        "meanMs": 5.6,
+        "throughputPerSecond": 173.2
+      }
+    },
+    {
+      "group": "Query latency",
+      "scenario": "Query by patient identifier",
+      "summary": {
+        "samples": 30,
+        "errors": 0,
+        "minMs": 5.7,
+        "p50Ms": 6.6,
+        "p95Ms": 9.4,
+        "p99Ms": 10,
+        "maxMs": 10,
+        "meanMs": 6.9,
+        "throughputPerSecond": 135.4
+      }
+    },
+    {
+      "group": "Query latency",
+      "scenario": "Processing queue, first page",
+      "summary": {
+        "samples": 30,
+        "errors": 0,
+        "minMs": 10.3,
+        "p50Ms": 12.6,
+        "p95Ms": 17.1,
+        "p99Ms": 17.7,
+        "maxMs": 17.7,
+        "meanMs": 13.2,
+        "throughputPerSecond": 72.5
+      }
+    },
+    {
+      "group": "Query latency",
+      "scenario": "Result queue, first page",
+      "summary": {
+        "samples": 30,
+        "errors": 0,
+        "minMs": 13.5,
+        "p50Ms": 15.8,
+        "p95Ms": 21.6,
+        "p99Ms": 23.2,
+        "maxMs": 23.2,
+        "meanMs": 16.3,
+        "throughputPerSecond": 59.3
+      }
+    },
+    {
+      "group": "Query latency",
+      "scenario": "Histology queue, distributed",
+      "summary": {
+        "samples": 30,
+        "errors": 0,
+        "minMs": 16.1,
+        "p50Ms": 18.9,
+        "p95Ms": 22.2,
+        "p99Ms": 22.3,
+        "maxMs": 22.3,
+        "meanMs": 18.9,
+        "throughputPerSecond": 50.5
+      }
+    },
+    {
+      "group": "Case creation",
+      "scenario": "Create case, sequential",
+      "detail": "One specimen per case; accession number allocated server-side",
+      "summary": {
+        "samples": 30,
+        "errors": 0,
+        "minMs": 14.1,
+        "p50Ms": 15.6,
+        "p95Ms": 20.1,
+        "p99Ms": 22.2,
+        "maxMs": 22.2,
+        "meanMs": 16.4,
+        "throughputPerSecond": 60.4
+      }
+    },
+    {
+      "group": "Case creation",
+      "scenario": "Create case, concurrent",
+      "detail": "concurrency 1",
+      "summary": {
+        "samples": 1,
+        "errors": 0,
+        "minMs": 20,
+        "p50Ms": 20,
+        "p95Ms": 20,
+        "p99Ms": 20,
+        "maxMs": 20,
+        "meanMs": 20,
+        "throughputPerSecond": 49
+      }
+    },
+    {
+      "group": "Case creation",
+      "scenario": "Create case, concurrent",
+      "detail": "concurrency 5",
+      "summary": {
+        "samples": 5,
+        "errors": 0,
+        "minMs": 38.8,
+        "p50Ms": 42.5,
+        "p95Ms": 45.8,
+        "p99Ms": 45.8,
+        "maxMs": 45.8,
+        "meanMs": 42.8,
+        "throughputPerSecond": 108
+      }
+    },
+    {
+      "group": "Case creation",
+      "scenario": "Create case, concurrent",
+      "detail": "concurrency 10",
+      "summary": {
+        "samples": 10,
+        "errors": 0,
+        "minMs": 50,
+        "p50Ms": 66.4,
+        "p95Ms": 72.9,
+        "p99Ms": 72.9,
+        "maxMs": 72.9,
+        "meanMs": 64.4,
+        "throughputPerSecond": 135.9
+      }
+    },
+    {
+      "group": "Case creation",
+      "scenario": "Create case, concurrent",
+      "detail": "concurrency 25",
+      "summary": {
+        "samples": 25,
+        "errors": 0,
+        "minMs": 133.2,
+        "p50Ms": 187.3,
+        "p95Ms": 201.2,
+        "p99Ms": 202.9,
+        "maxMs": 202.9,
+        "meanMs": 183.5,
+        "throughputPerSecond": 122.8
+      }
+    },
+    {
+      "group": "Case lifecycle",
+      "scenario": "Create case (accessioning)",
+      "detail": "15 cases",
+      "summary": {
+        "samples": 15,
+        "errors": 0,
+        "minMs": 17.8,
+        "p50Ms": 21.5,
+        "p95Ms": 42.9,
+        "p99Ms": 42.9,
+        "maxMs": 42.9,
+        "meanMs": 24.8
+      }
+    },
+    {
+      "group": "Case lifecycle",
+      "scenario": "Create block",
+      "detail": "15 cases",
+      "summary": {
+        "samples": 15,
+        "errors": 0,
+        "minMs": 17.6,
+        "p50Ms": 20.1,
+        "p95Ms": 26.3,
+        "p99Ms": 26.3,
+        "maxMs": 26.3,
+        "meanMs": 20.8
+      }
+    },
+    {
+      "group": "Case lifecycle",
+      "scenario": "Create slide",
+      "detail": "15 cases",
+      "summary": {
+        "samples": 15,
+        "errors": 0,
+        "minMs": 7.2,
+        "p50Ms": 10.8,
+        "p95Ms": 21.9,
+        "p99Ms": 21.9,
+        "maxMs": 21.9,
+        "meanMs": 13.4
+      }
+    },
+    {
+      "group": "Case lifecycle",
+      "scenario": "Distribute block (H&E)",
+      "detail": "15 cases",
+      "summary": {
+        "samples": 15,
+        "errors": 0,
+        "minMs": 4.7,
+        "p50Ms": 7.2,
+        "p95Ms": 17.6,
+        "p99Ms": 17.6,
+        "maxMs": 17.6,
+        "meanMs": 9.8
+      }
+    },
+    {
+      "group": "Case lifecycle",
+      "scenario": "Create draft report",
+      "detail": "15 cases",
+      "summary": {
+        "samples": 15,
+        "errors": 0,
+        "minMs": 16.9,
+        "p50Ms": 23.1,
+        "p95Ms": 30,
+        "p99Ms": 30,
+        "maxMs": 30,
+        "meanMs": 23.9
+      }
+    },
+    {
+      "group": "Case lifecycle",
+      "scenario": "Sign out (generates report PDF)",
+      "detail": "15 cases",
+      "summary": {
+        "samples": 15,
+        "errors": 0,
+        "minMs": 518.1,
+        "p50Ms": 576.3,
+        "p95Ms": 810.7,
+        "p99Ms": 810.7,
+        "maxMs": 810.7,
+        "meanMs": 581.4
+      }
+    },
+    {
+      "group": "Case lifecycle",
+      "scenario": "Full case lifecycle, accessioning to sign-out",
+      "detail": "15 cases",
+      "summary": {
+        "samples": 15,
+        "errors": 0,
+        "minMs": 608,
+        "p50Ms": 663.4,
+        "p95Ms": 924.9,
+        "p99Ms": 924.9,
+        "maxMs": 924.9,
+        "meanMs": 674.1,
+        "throughputPerSecond": 1.5
+      }
+    },
+    {
+      "group": "PDF generation",
+      "scenario": "Download generated report PDF",
+      "detail": "GET /api/reports/:reportId/pdf for a report signed out during this run",
+      "summary": {
+        "samples": 30,
+        "errors": 0,
+        "minMs": 3.2,
+        "p50Ms": 4.2,
+        "p95Ms": 7.1,
+        "p99Ms": 9.1,
+        "maxMs": 9.1,
+        "meanMs": 4.5,
+        "throughputPerSecond": 205.8
+      }
+    },
+    {
+      "group": "PDF generation",
+      "scenario": "Report layout render (Handlebars + headless Chromium)",
+      "detail": "Administrator session; requires PUPPETEER_EXECUTABLE_PATH to point at a Chromium binary",
+      "summary": {
+        "samples": 30,
+        "errors": 0,
+        "minMs": 482.1,
+        "p50Ms": 513.1,
+        "p95Ms": 551.6,
+        "p99Ms": 561.1,
+        "maxMs": 561.1,
+        "meanMs": 513.5,
+        "throughputPerSecond": 1.9
+      }
+    }
+  ],
+  "storage": {
+    "cases": 300,
+    "databaseBytes": 11346447,
+    "caseScalingBytes": 1818624,
+    "referenceBytes": 1007616,
+    "bytesPerCase": 6062.08,
+    "tables": [
+      {
+        "table": "slide",
+        "totalBytes": 409600,
+        "caseScaling": true
+      },
+      {
+        "table": "ancillary_order",
+        "totalBytes": 376832,
+        "caseScaling": true
+      },
+      {
+        "table": "block",
+        "totalBytes": 286720,
+        "caseScaling": true
+      },
+      {
+        "table": "report",
+        "totalBytes": 278528,
+        "caseScaling": true
+      },
+      {
+        "table": "specimen",
+        "totalBytes": 196608,
+        "caseScaling": true
+      },
+      {
+        "table": "orders",
+        "totalBytes": 188416,
+        "caseScaling": true
+      },
+      {
+        "table": "employee",
+        "totalBytes": 98304,
+        "caseScaling": false
+      },
+      {
+        "table": "body_site",
+        "totalBytes": 81920,
+        "caseScaling": false
+      },
+      {
+        "table": "report_layout",
+        "totalBytes": 81920,
+        "caseScaling": false
+      },
+      {
+        "table": "specimen_type",
+        "totalBytes": 81920,
+        "caseScaling": false
+      },
+      {
+        "table": "report_template",
+        "totalBytes": 81920,
+        "caseScaling": false
+      },
+      {
+        "table": "employee_role",
+        "totalBytes": 73728,
+        "caseScaling": false
+      },
+      {
+        "table": "ancillary_panel_item",
+        "totalBytes": 73728,
+        "caseScaling": false
+      },
+      {
+        "table": "ancillary_orderable",
+        "totalBytes": 73728,
+        "caseScaling": false
+      },
+      {
+        "table": "ancillary_panel",
+        "totalBytes": 73728,
+        "caseScaling": false
+      },
+      {
+        "table": "_prisma_migrations",
+        "totalBytes": 65536,
+        "caseScaling": false
+      },
+      {
+        "table": "doctor",
+        "totalBytes": 57344,
+        "caseScaling": false
+      },
+      {
+        "table": "order_sequence_year",
+        "totalBytes": 57344,
+        "caseScaling": false
+      },
+      {
+        "table": "patient_sequence",
+        "totalBytes": 57344,
+        "caseScaling": false
+      },
+      {
+        "table": "patient",
+        "totalBytes": 57344,
+        "caseScaling": true
+      },
+      {
+        "table": "custom_template",
+        "totalBytes": 24576,
+        "caseScaling": false
+      },
+      {
+        "table": "report_file",
+        "totalBytes": 24576,
+        "caseScaling": true
+      },
+      {
+        "table": "custom_template_translation",
+        "totalBytes": 24576,
+        "caseScaling": false
+      }
+    ],
+    "quiesced": true
+  }
+}
