@@ -37,6 +37,7 @@ A lightweight **Anatomic Pathology Laboratory Information System** prototype imp
     dataset-characteristics.ts  Synthetic-corpus composition, measured from the DB
     verification-report.ts      Aggregated test results and coverage
     benchmark.ts                Performance benchmark against a running stack
+    deployment-profile.ts       Container memory/CPU at idle and under load
   docs/verification/   Generated verification and benchmark artifacts
   docker/              Dockerfiles + nginx config
   .github/workflows/   CI pipeline
@@ -52,6 +53,7 @@ pnpm metrics:system        # template, catalog, and data-model counts
 pnpm db:characterize       # synthetic-corpus composition (needs a seeded DB)
 pnpm verify:report         # test results + coverage; --e2e adds Playwright
 pnpm bench                 # performance benchmark (needs a running backend)
+pnpm metrics:deployment    # container memory/CPU + storage (needs Docker)
 ```
 
 Output lands in [docs/verification/](docs/verification/). See
@@ -71,6 +73,65 @@ numbers name the run that produced them. Per-push CI does not regenerate them: i
 ran the suites a second time against a database the E2E suite had already mutated,
 which reported contention as test failures and published a table describing a
 different execution than the one that gated the change.
+
+## Deployment resource profile
+
+Container memory and CPU — at idle and under load — plus storage per case. Needs
+Docker Desktop (or a local engine); everything else it brings up itself.
+
+```bash
+pnpm metrics:deployment
+```
+
+```powershell
+pnpm metrics:deployment
+```
+
+Flags: `--keep-up` leaves the stacks running, `--skip-load` gives an idle-only
+profile, `--skip-replicated` skips the second topology, and `--samples=N`,
+`--interval=MS`, `--settle=SECONDS` tune the idle windows.
+
+Idle windows are polled; the load window is streamed from a single long-lived
+`docker stats` process at roughly a reading per second. That asymmetry is
+deliberate — each `docker stats --no-stream` call costs several seconds because
+Docker needs two reads for a CPU delta, and polling at that cadence stepped over
+the phase where headless Chromium is resident, reporting peak stack memory of
+574 MB on one run and 391 MB on the next.
+
+`--settle` is not a formality: on one host the same stack measured 157.7 MB after
+5 s and 126.3 MB after 25 s, because PostgreSQL is still working through the seed.
+The settle period is recorded in the artifact for that reason.
+
+Output is `docs/verification/deployment-profile-<stamp>.{md,json}`, paired with the
+`benchmark-<stamp>` files from the same run. Files are timestamped rather than
+fixed-name so profiles from different machines accumulate side by side.
+
+**This one is not produced by any workflow, deliberately.** It measures a host, so a
+shared CI runner would yield a footprint with no deployment meaning. Run it on a
+machine you can name in a paper.
+
+What it does, and why in that order:
+
+1. Brings up an isolated stack — its own Compose project, own volumes, remapped
+   ports (`55432`/`3101`/`5273`) — via
+   [docker-compose.profile.yml](docker-compose.profile.yml). It starts from
+   `down -v` so the corpus is always the deterministic 300-case seed, which is why
+   it must not share a project with your dev stack. Yours is left untouched and can
+   stay running.
+2. Captures its own environment: Docker version and backend, kernel, cgroup
+   version, the CPU/memory ceiling the engine sees, and `.wslconfig` — or the fact
+   that it is absent, in which case WSL2 defaults to about 50% of host RAM.
+3. Samples an **idle** window after a settling period.
+4. Runs `pnpm bench` while sampling a **load** window, so peak memory is measured
+   against a known workload rather than guessed.
+5. Brings up the replicated topology
+   ([docker-compose.profile-replicated.yml](docker-compose.profile-replicated.yml))
+   for a second idle window. Only idle: replication is asynchronous
+   (`wal_level = replica`, no `synchronous_standby_names`), so the standby changes
+   resident memory and disk but not latency.
+
+Memory totals are per-container cgroup working sets and **exclude** the overhead of
+the VM the engine runs in, so treat them as a lower bound on what a host provides.
 
 ## Manuscript figures
 
