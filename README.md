@@ -100,7 +100,21 @@ the phase where headless Chromium is resident, reporting peak stack memory of
 
 `--settle` is not a formality: on one host the same stack measured 157.7 MB after
 5 s and 126.3 MB after 25 s, because PostgreSQL is still working through the seed.
-The settle period is recorded in the artifact for that reason.
+The settle period is recorded in the artifact for that reason, a `CHECKPOINT` is
+issued before each idle window so the flush is forced rather than waited for, and
+the default is 90 s — 30 s proved too short on slower storage, where the same stack
+read 98.7 MB against 42.7 MB elsewhere.
+
+Because no settle period can be right for every machine, each window also reports
+its own drift. If stack memory is still trending down by more than 2% between the
+first and last third of the window, the artifact carries a **Not settled** callout
+and the console prints `[NOT SETTLED]`. Treat a flagged idle figure as an
+overestimate and re-run with a longer `--settle`.
+
+Both topologies are seeded to the same 300-case corpus before sampling. Without
+that the replicated stack would hold reference data and no cases, since
+`docker-compose.prod.yml` runs `prisma migrate deploy` only — and the comparison
+would then attribute a data-volume difference to the hot standby.
 
 Output is `docs/verification/deployment-profile-<stamp>.{md,json}`, paired with the
 `benchmark-<stamp>` files from the same run. Files are timestamped rather than

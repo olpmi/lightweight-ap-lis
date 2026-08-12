@@ -9,7 +9,7 @@
  *   --skip-replicated    skip the replicated-topology idle profile
  *   --samples=N          samples per window        (default 12)
  *   --interval=MS        gap between samples       (default 5000)
- *   --settle=SECONDS     quiet period before the idle window (default 30)
+ *   --settle=SECONDS     quiet period before each idle window (default 90)
  *
  * Writes docs/verification/deployment-profile-<stamp>.{md,json}, and pairs with
  * the benchmark-<stamp>.{md,json} written by the run it drives.
@@ -57,7 +57,10 @@ const skipLoad = flag('skip-load');
 const skipReplicated = flag('skip-replicated');
 const SAMPLES = option('samples', 12);
 const INTERVAL_MS = option('interval', 5000);
-const SETTLE_SECONDS = option('settle', 30);
+// 30s proved too short on slower storage: the idle stack was still flushing the
+// seed, so the figure tracked recent I/O rather than a stack at rest. A CHECKPOINT
+// now precedes each idle window, and this gives active page cache time to age out.
+const SETTLE_SECONDS = option('settle', 90);
 
 // ─── Topologies ─────────────────────────────────────────────────────────────
 
@@ -73,6 +76,18 @@ interface Topology {
   backendUrl: string;
   /** Host DSN for the database, used by the benchmark's Prisma client. */
   databaseUrl?: string;
+  /** Compose service holding the writable database, for CHECKPOINT and seeding. */
+  dbService: string;
+  dbUser: string;
+  dbName: string;
+  /**
+   * True when the stack's own startup does not seed. docker-compose.prod.yml runs
+   * `prisma migrate deploy` only, so without this its database holds reference data
+   * and no cases — and an idle comparison against the single-node stack would then
+   * measure data volume as much as topology. That confound produced a replicated
+   * total *below* the single-node total on one host and above it on another.
+   */
+  needsSeeding?: boolean;
 }
 
 const SINGLE_NODE: Topology = {
@@ -82,6 +97,9 @@ const SINGLE_NODE: Topology = {
   files: ['docker-compose.yml', 'docker-compose.profile.yml'],
   backendUrl: 'http://localhost:3101',
   databaseUrl: 'postgresql://lis_user:lis_password@localhost:55432/lis_db',
+  dbService: 'postgres',
+  dbUser: 'lis_user',
+  dbName: 'lis_db',
 };
 
 const REPLICATED: Topology = {
@@ -91,6 +109,10 @@ const REPLICATED: Topology = {
   files: ['docker-compose.prod.yml', 'docker-compose.profile-replicated.yml'],
   envFile: REPLICATED_ENV_FILE,
   backendUrl: 'http://localhost:3102',
+  dbService: 'postgres_primary',
+  dbUser: 'lis_user',
+  dbName: 'lis_db',
+  needsSeeding: true,
 };
 
 function composeArgs(topology: Topology, ...rest: string[]): string[] {
@@ -218,6 +240,30 @@ interface ResourceWindow {
   containers: ContainerProfile[];
   totalMemoryBytes: Distribution;
   totalCpuPercent: Distribution;
+  /**
+   * False when stack memory was still trending down across the window, which means
+   * the stack had not reached rest and the figure is an overestimate. Reported so a
+   * measurement taken too early announces itself instead of being quoted as fact.
+   */
+  stabilised: boolean;
+  driftPercent: number;
+}
+
+/**
+ * Compares the first and last thirds of a window to detect a stack still settling.
+ * A monotonic decline is the signature of page cache aging out and buffers
+ * flushing; a settled stack drifts by well under a percent.
+ */
+function assessDrift(totals: number[]): { stabilised: boolean; driftPercent: number } {
+  if (totals.length < 6) return { stabilised: true, driftPercent: 0 };
+  const third = Math.floor(totals.length / 3);
+  const mean = (values: number[]): number =>
+    values.reduce((sum, value) => sum + value, 0) / values.length;
+  const first = mean(totals.slice(0, third));
+  const last = mean(totals.slice(-third));
+  if (first <= 0) return { stabilised: true, driftPercent: 0 };
+  const driftPercent = Math.round(((last - first) / first) * 1000) / 10;
+  return { stabilised: Math.abs(driftPercent) < 2, driftPercent };
 }
 
 /**
@@ -330,6 +376,8 @@ async function streamWindow(
       containers: [],
       totalMemoryBytes: distribution([]),
       totalCpuPercent: distribution([]),
+      stabilised: true,
+      driftPercent: 0,
     };
   }
 
@@ -425,6 +473,7 @@ async function streamWindow(
       })),
     totalMemoryBytes: distribution(totalsMemory),
     totalCpuPercent: distribution(totalsCpu),
+    ...assessDrift(totalsMemory),
   };
 }
 
@@ -472,6 +521,7 @@ async function sampleWindow(topology: Topology, label: string): Promise<Resource
       })),
     totalMemoryBytes: distribution(totalsMemory),
     totalCpuPercent: distribution(totalsCpu),
+    ...assessDrift(totalsMemory),
   };
 }
 
@@ -494,6 +544,69 @@ function bringUp(topology: Topology): void {
   // these volumes from the developer's default stack.
   docker(composeArgs(topology, 'down', '-v', '--remove-orphans'));
   docker(composeArgs(topology, 'up', '-d', '--build', '--wait', '--wait-timeout', '600'));
+}
+
+/**
+ * Seeds a stack whose own startup does not.
+ *
+ * Runs inside the backend container, which already carries tsx and prisma/seed.ts —
+ * the dev compose file invokes exactly this command on startup. ALLOW_PROD_SEED is
+ * required because the replicated stack runs with NODE_ENV=production and the seed
+ * refuses to touch a production database without it. That guard is doing its job;
+ * this is the deliberate override it exists for.
+ */
+function seedStack(topology: Topology): void {
+  console.log(`[${topology.key}] seeding the 300-case corpus…`);
+  docker(
+    composeArgs(
+      topology,
+      'exec',
+      '-T',
+      'backend',
+      'sh',
+      '-c',
+      'ALLOW_PROD_SEED=1 npx tsx prisma/seed.ts'
+    )
+  );
+}
+
+/**
+ * Forces a checkpoint before an idle window is sampled.
+ *
+ * `docker stats` memory is the cgroup working set, which counts dirty buffers and
+ * active page cache. Immediately after seeding — or after pg_basebackup clones the
+ * primary — PostgreSQL is still flushing, so the figure reports recent I/O rather
+ * than a stack at rest. That is why the same stack read 98.70 MB on one host and
+ * 42.70 MB on another, and why the two hosts disagreed on whether the replicated
+ * topology costs more or less than the single-node one. Forcing the flush removes
+ * the largest source of that variance instead of waiting and hoping.
+ */
+function quiesceDatabase(topology: Topology): void {
+  try {
+    docker(
+      composeArgs(
+        topology,
+        'exec',
+        '-T',
+        topology.dbService,
+        'psql',
+        '-U',
+        topology.dbUser,
+        '-d',
+        topology.dbName,
+        '-c',
+        'CHECKPOINT'
+      ),
+      { quiet: true }
+    );
+  } catch (error) {
+    // Reported, not fatal: the window is still measured, just less repeatable.
+    console.error(
+      `[${topology.key}] CHECKPOINT failed (${
+        error instanceof Error ? error.message : String(error)
+      }); the idle window may include unflushed buffers.`
+    );
+  }
 }
 
 function tearDown(topology: Topology): void {
@@ -638,6 +751,14 @@ function renderWindow(window: ResourceWindow): string[] {
       window.totalMemoryBytes.max
     )} MB** | **${window.totalCpuPercent.p50}%** | **${window.totalCpuPercent.max}%** |`,
     '',
+    ...(window.stabilised
+      ? []
+      : [
+          `> **Not settled.** Stack memory drifted ${window.driftPercent}% between the first and`,
+          '> last third of this window, so it had not reached rest and these figures are an',
+          '> overestimate. Re-run with a longer `--settle`.',
+          '',
+        ]),
   ];
 }
 
@@ -761,6 +882,7 @@ async function main(): Promise<void> {
     started.push(SINGLE_NODE);
     await waitForBackend(SINGLE_NODE.backendUrl, 300);
 
+    quiesceDatabase(SINGLE_NODE);
     console.log(`\n[single-node] settling ${SETTLE_SECONDS}s before the idle window…`);
     await sleep(SETTLE_SECONDS * 1000);
     windows.push(await sampleWindow(SINGLE_NODE, 'Idle, single-node'));
@@ -783,6 +905,12 @@ async function main(): Promise<void> {
         bringUp(REPLICATED);
         started.push(REPLICATED);
         await waitForBackend(REPLICATED.backendUrl, 420);
+        // Seeded so both idle windows describe a stack holding the same 300 cases.
+        // Without this the production stack carries reference data and no cases, and
+        // the comparison would attribute a data-volume difference to the standby.
+        if (REPLICATED.needsSeeding) seedStack(REPLICATED);
+        quiesceDatabase(REPLICATED);
+        environment.replicatedCorpus = 'seeded to the same 300-case corpus as single-node';
         console.log(`\n[replicated] settling ${SETTLE_SECONDS}s before the idle window…`);
         await sleep(SETTLE_SECONDS * 1000);
         windows.push(await sampleWindow(REPLICATED, 'Idle, replicated (primary + hot standby)'));
@@ -825,7 +953,8 @@ async function main(): Promise<void> {
     console.log(
       `\n${window.label}: stack total memory p50 ${mib(window.totalMemoryBytes.p50)} MB, ` +
         `max ${mib(window.totalMemoryBytes.max)} MB; CPU p50 ${window.totalCpuPercent.p50}%, ` +
-        `max ${window.totalCpuPercent.max}% (${window.samples} samples)`
+        `max ${window.totalCpuPercent.max}% (${window.samples} samples)` +
+        (window.stabilised ? '' : `  [NOT SETTLED: drifted ${window.driftPercent}%]`)
     );
   }
   console.log(`\nWrote ${path.relative(repoRoot, markdownPath)} and ${path.relative(repoRoot, jsonPath)}`);
