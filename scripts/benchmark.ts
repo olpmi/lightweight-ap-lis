@@ -6,15 +6,20 @@
  * Requires a running backend and a seeded database:
  *   BENCH_BASE_URL   backend origin           (default http://localhost:3001)
  *   BENCH_PASSWORD   seeded employee password (default Pathology1!)
- *   DATABASE_URL     used only for database-size measurements
+ *   DATABASE_URL     used for the storage measurement and role lookups
+ *   PROFILE_STAMP    output filename stamp    (default: the generated timestamp)
  *
- * Writes docs/verification/benchmark-<timestamp>.{md,json}.
+ * Writes docs/verification/benchmark-<stamp>.{md,json}.
  *
  * This measures the five things a reviewer asked for — concurrent sessions,
- * case creation, query latency, PDF generation, and database growth — under
- * load, and is deliberately distinct from the idle-footprint figures reported
- * in the manuscript's system-characteristics table. Those describe a stack at
- * rest; these describe it doing work.
+ * case creation, query latency, PDF generation, and storage — under load, and is
+ * deliberately distinct from the idle-footprint figures reported in the
+ * manuscript's system-characteristics table. Those describe a stack at rest;
+ * these describe it doing work.
+ *
+ * For container memory and CPU alongside these timings, run `pnpm
+ * metrics:deployment`, which drives this script inside an isolated Docker stack
+ * and samples the containers while it runs.
  *
  * Run it on a documented host and commit the JSON. Shared CI runners are too
  * noisy for timings that will be published.
@@ -415,6 +420,7 @@ async function runCaseLifecycle(
 
 async function benchmarkLifecycleAndPdf(
   session: Session,
+  adminSession: Session | null,
   bodySiteId: number,
   pathologistEmployeeId: number,
   createdOrderIds: string[]
@@ -497,11 +503,31 @@ async function benchmarkLifecycleAndPdf(
   // The Handlebars + headless-Chromium path is the production report renderer.
   // It needs a Chromium binary, so it is measured separately and reported as
   // unavailable rather than silently folded into the pdf-lib numbers.
+  //
+  // It is also the one scenario that needs a different identity. The preview route
+  // became Administrator-only in 782b5ff (requireAdmin, config.reportLayout.routes.ts),
+  // so driving it with the pathologist session records 30 × HTTP 403 and quietly
+  // drops the production renderer — the dominant cost of sign-out — out of the
+  // table. That is a silent regression, so the absence of an admin is reported.
+  if (!adminSession) {
+    measurements.push({
+      group: 'PDF generation',
+      scenario: 'Report layout render (Handlebars + headless Chromium)',
+      detail: 'Administrator session unavailable',
+      summary: null,
+      note:
+        'Not measured: the preview route requires the Administrator role and no ' +
+        'usable Administrator employee was available. Seed the database (prisma/seed.ts ' +
+        'creates one) and re-run.',
+    });
+    return;
+  }
+
   await measureSequential(
     'PDF generation',
     'Report layout render (Handlebars + headless Chromium)',
     async () => {
-      const { status, durationMs, response } = await session.request(
+      const { status, durationMs, response } = await adminSession.request(
         'POST',
         '/api/config/report-layouts/final/preview',
         {}
@@ -511,20 +537,121 @@ async function benchmarkLifecycleAndPdf(
       if (bytes.byteLength === 0) throw new Error('Empty PDF body');
       return durationMs;
     },
-    'Requires PUPPETEER_EXECUTABLE_PATH to point at a Chromium binary'
+    'Administrator session; requires PUPPETEER_EXECUTABLE_PATH to point at a Chromium binary'
   );
 }
 
-interface DatabaseSizeSample {
+// ─── Storage ────────────────────────────────────────────────────────────────
+
+/**
+ * Tables whose row count grows with case volume. Everything else in the schema is
+ * reference or configuration data whose size is independent of how many cases a
+ * laboratory has accessioned, so folding it into a per-case figure would
+ * misattribute fixed overhead to marginal cost.
+ *
+ * These are the `@@map` names from prisma/schema.prisma. The list is written out
+ * rather than derived because "does this grow per case" is a domain judgement the
+ * schema does not encode. Keep it in step with the schema.
+ */
+const CASE_SCALING_TABLES = [
+  'orders',
+  'specimen',
+  'block',
+  'slide',
+  'report',
+  'report_file',
+  'ancillary_order',
+  'patient',
+] as const;
+
+interface TableSize {
+  table: string;
   totalBytes: number;
-  orders: number;
+  caseScaling: boolean;
 }
 
-async function readDatabaseSize(prisma: PrismaClient): Promise<DatabaseSizeSample> {
-  const rows = await prisma.$queryRaw<Array<{ size: bigint }>>`
+interface StorageProfile {
+  cases: number;
+  databaseBytes: number;
+  caseScalingBytes: number;
+  referenceBytes: number;
+  bytesPerCase: number;
+  tables: TableSize[];
+  quiesced: boolean;
+  quiesceNote?: string;
+}
+
+/**
+ * Measures how much disk the corpus occupies, per table.
+ *
+ * This replaces a before/after `pg_database_size` delta, which could not work:
+ * whole-database size includes catalogue churn, the free-space map, and space
+ * autovacuum has reclaimed, so the 91 cases the benchmark inserts sat inside the
+ * noise floor. The committed run at `d83f39b` reported growth of **-56.0 KB** —
+ * the database shrank while cases were being added — while an earlier run of the
+ * same code reported *+2 KB per case*. A metric that cannot reproduce its own
+ * sign is not a measurement.
+ *
+ * Measuring the absolute size of a known, deterministic corpus is monotonic and
+ * needs no delta. It must therefore run *before* the benchmark inserts cases of
+ * its own.
+ */
+async function readStorageProfile(prisma: PrismaClient): Promise<StorageProfile> {
+  // CHECKPOINT flushes dirty buffers so the on-disk numbers are settled rather
+  // than dependent on bgwriter timing; VACUUM (ANALYZE) makes the figure
+  // repeatable on a database that has already been written to. Both are
+  // permitted because the compose stacks connect as the bootstrap superuser.
+  // Neither is required for correctness on a freshly seeded corpus, so a failure
+  // is recorded and reported rather than aborting the run.
+  let quiesced = true;
+  let quiesceNote: string | undefined;
+  try {
+    await prisma.$executeRawUnsafe('VACUUM (ANALYZE)');
+    await prisma.$executeRawUnsafe('CHECKPOINT');
+  } catch (error) {
+    quiesced = false;
+    quiesceNote = error instanceof Error ? error.message : String(error);
+  }
+
+  // pg_total_relation_size covers the heap, its indexes and any TOAST overflow,
+  // which is what a deployment actually has to store.
+  const rows = await prisma.$queryRaw<Array<{ table_name: string; total_bytes: bigint }>>`
+    SELECT c.relname AS table_name,
+           pg_total_relation_size(c.oid) AS total_bytes
+      FROM pg_class c
+      JOIN pg_namespace n ON n.oid = c.relnamespace
+     WHERE n.nspname = 'public'
+       AND c.relkind = 'r'
+     ORDER BY pg_total_relation_size(c.oid) DESC
+  `;
+
+  const scaling: Set<string> = new Set(CASE_SCALING_TABLES);
+  const tables: TableSize[] = rows.map((row) => ({
+    table: row.table_name,
+    totalBytes: Number(row.total_bytes),
+    caseScaling: scaling.has(row.table_name),
+  }));
+
+  const databaseRows = await prisma.$queryRaw<Array<{ size: bigint }>>`
     SELECT pg_database_size(current_database()) AS size
   `;
-  return { totalBytes: Number(rows[0]?.size ?? 0), orders: await prisma.order.count() };
+
+  const sumBytes = (predicate: (table: TableSize) => boolean): number =>
+    tables.filter(predicate).reduce((sum, table) => sum + table.totalBytes, 0);
+
+  const caseScalingBytes = sumBytes((table) => table.caseScaling);
+  const cases = await prisma.order.count();
+
+  return {
+    cases,
+    databaseBytes: Number(databaseRows[0]?.size ?? 0),
+    caseScalingBytes,
+    referenceBytes: sumBytes((table) => !table.caseScaling),
+    bytesPerCase: cases > 0 ? caseScalingBytes / cases : 0,
+    tables,
+    quiesced,
+    quiesceNote,
+  };
 }
 
 // ─── Host description ───────────────────────────────────────────────────────
@@ -563,8 +690,7 @@ async function describeHost(prisma: PrismaClient): Promise<Record<string, string
 
 function renderMarkdown(
   host: Record<string, string>,
-  sizeBefore: DatabaseSizeSample,
-  sizeAfter: DatabaseSizeSample,
+  storage: StorageProfile,
   generatedAt: string
 ): string {
   const lines = [
@@ -622,27 +748,50 @@ function renderMarkdown(
     }
   }
 
-  const casesAdded = sizeAfter.orders - sizeBefore.orders;
-  const bytesAdded = sizeAfter.totalBytes - sizeBefore.totalBytes;
+  const mib = (bytes: number): string => (bytes / 1024 ** 2).toFixed(2);
 
   lines.push(
     '',
-    '## Database growth',
+    '## Storage',
+    '',
+    'Measured on the seeded corpus **before** this run inserted any cases of its own.',
     '',
     '| Measure | Value |',
     '| --- | ---: |',
-    `| Cases before | ${sizeBefore.orders} |`,
-    `| Cases after | ${sizeAfter.orders} |`,
-    `| Cases added during benchmark | ${casesAdded} |`,
-    `| Database size before | ${(sizeBefore.totalBytes / 1024 ** 2).toFixed(2)} MB |`,
-    `| Database size after | ${(sizeAfter.totalBytes / 1024 ** 2).toFixed(2)} MB |`,
-    `| Growth | ${(bytesAdded / 1024).toFixed(1)} KB |`,
-    `| Growth per case added | ${casesAdded > 0 ? `${(bytesAdded / casesAdded / 1024).toFixed(1)} KB` : '—'} |`,
+    `| Cases in the corpus | ${storage.cases} |`,
+    `| Case-scaling tables, total | ${mib(storage.caseScalingBytes)} MB |`,
+    `| Reference and configuration tables, total | ${mib(storage.referenceBytes)} MB |`,
+    '| Whole database (`pg_database_size`) | ' + `${mib(storage.databaseBytes)} MB |`,
+    `| **Storage per case** | **${(storage.bytesPerCase / 1024).toFixed(1)} KB** |`,
     '',
-    'Database size is `pg_database_size(current_database())`. Growth per case is a',
-    'coarse figure: it includes index and write-ahead overhead and is measured on cases',
-    'that carry one specimen and no slides or reports, so it is a floor rather than a',
-    'projection for fully reported cases.',
+    '### By table',
+    '',
+    '| Table | Total size | Scales per case |',
+    '| --- | ---: | :---: |',
+    ...storage.tables
+      .filter((table) => table.totalBytes > 0)
+      .map(
+        (table) =>
+          `| \`${table.table}\` | ${mib(table.totalBytes)} MB | ${table.caseScaling ? 'yes' : 'no'} |`
+      ),
+    '',
+    'Sizes are `pg_total_relation_size`, which covers the heap, its indexes and any',
+    'TOAST overflow — what a deployment actually has to store. Storage per case divides',
+    'only the case-scaling tables by the case count; reference and configuration data is',
+    'fixed overhead and would otherwise be misattributed to marginal cost.',
+    '',
+    'Read it as an average at corpus scale over the documented stage mix — half the',
+    'cases signed out, a fifth still awaiting blocks — and not as the marginal cost of',
+    'one further case. Two specifics understate it against a real deployment: the corpus',
+    'reuses 50 patients across all cases, so the `patient` contribution per case is lower',
+    'than where every case is a distinct patient; and no case carries an addendum or a',
+    'preliminary report.',
+    '',
+    'For the replicated production topology, double these figures: the hot standby is a',
+    'physical replica, so its on-disk size tracks the primary.',
+    storage.quiesced
+      ? '\nThe database was quiesced with `VACUUM (ANALYZE)` and `CHECKPOINT` before measurement, so the figures do not depend on background-writer timing.'
+      : `\nThe database could **not** be quiesced before measurement (\`${storage.quiesceNote ?? 'unknown error'}\`), so these figures may include unreclaimed dead tuples and unflushed buffers.`,
     ''
   );
 
@@ -665,9 +814,45 @@ async function main(): Promise<void> {
     const host = await describeHost(prisma);
     const employees = await resolveEmployees();
 
+    // Sign-out requires both the Pathologist role and self-attribution
+    // (report.routes.ts), so the signing identity is selected by role. It used to
+    // be `employees[0]` from /api/employees/search, which returns 20 rows with no
+    // ORDER BY — the lifecycle group worked only because the seed happens to list
+    // pathologists first.
+    const pathologist = await prisma.employee.findFirst({
+      where: { employeeRole: { roleName: 'Pathologist' } },
+      select: { employeeId: true, userName: true },
+      orderBy: { employeeId: 'asc' },
+    });
+    if (!pathologist) {
+      throw new Error('No employee holds the Pathologist role; seed the database first.');
+    }
+    const pathologistEmployeeId = Number(pathologist.employeeId);
     const session = new Session();
-    const pathologistEmployeeId = Number(employees[0].employeeId);
     await session.login(pathologistEmployeeId);
+    host.pathologist = pathologist.userName;
+
+    // The report-layout preview route is Administrator-only, so it needs its own
+    // session. A missing or unusable admin is reported against that one scenario
+    // rather than failing the run.
+    const administrator = await prisma.employee.findFirst({
+      where: { employeeRole: { roleName: 'Administrator' } },
+      select: { employeeId: true, userName: true },
+      orderBy: { employeeId: 'asc' },
+    });
+    let adminSession: Session | null = null;
+    if (administrator) {
+      try {
+        const candidate = new Session();
+        await candidate.login(Number(administrator.employeeId));
+        adminSession = candidate;
+        host.administrator = administrator.userName;
+      } catch (error) {
+        host.administrator = `login failed (${error instanceof Error ? error.message : String(error)})`;
+      }
+    } else {
+      host.administrator = 'none seeded';
+    }
 
     const sampleOrder = await prisma.order.findFirst({ select: { orderId: true, patientId: true } });
     if (!sampleOrder) throw new Error('No orders in the database; seed first.');
@@ -675,27 +860,36 @@ async function main(): Promise<void> {
     const bodySite = await prisma.bodySite.findFirst({ select: { bodySiteId: true } });
     if (!bodySite) throw new Error('No body sites in the database; run migrations first.');
 
-    const sizeBefore = await readDatabaseSize(prisma);
+    // Before any scenario runs: the benchmark inserts 91 cases of its own, and
+    // counting those would describe a corpus nobody published.
+    const storage = await readStorageProfile(prisma);
     const createdOrderIds: string[] = [];
 
     await benchmarkConcurrentSessions(employees);
     await benchmarkQueries(session, sampleOrder.orderId, sampleOrder.patientId);
     await benchmarkCaseCreation(session, bodySite.bodySiteId, createdOrderIds);
-    await benchmarkLifecycleAndPdf(session, bodySite.bodySiteId, pathologistEmployeeId, createdOrderIds);
+    await benchmarkLifecycleAndPdf(
+      session,
+      adminSession,
+      bodySite.bodySiteId,
+      pathologistEmployeeId,
+      createdOrderIds
+    );
 
-    const sizeAfter = await readDatabaseSize(prisma);
     const generatedAt = new Date().toISOString();
-    const stamp = generatedAt.replace(/[:.]/g, '-');
+    // PROFILE_STAMP lets `pnpm metrics:deployment` pair this file with the
+    // deployment profile from the same run instead of two adjacent timestamps.
+    const stamp = process.env.PROFILE_STAMP ?? generatedAt.replace(/[:.]/g, '-');
 
     mkdirSync(outputDir, { recursive: true });
     writeFileSync(
       path.join(outputDir, `benchmark-${stamp}.json`),
-      `${JSON.stringify({ host, generatedAt, measurements, databaseGrowth: { sizeBefore, sizeAfter } }, null, 2)}\n`,
+      `${JSON.stringify({ host, generatedAt, measurements, storage }, null, 2)}\n`,
       'utf8'
     );
     writeFileSync(
       path.join(outputDir, `benchmark-${stamp}.md`),
-      renderMarkdown(host, sizeBefore, sizeAfter, generatedAt),
+      renderMarkdown(host, storage, generatedAt),
       'utf8'
     );
 
@@ -707,6 +901,11 @@ async function main(): Promise<void> {
       );
     }
 
+    console.log(
+      `\nStorage: ${storage.cases} cases, ${(storage.bytesPerCase / 1024).toFixed(1)} KB per case ` +
+        `(${(storage.caseScalingBytes / 1024 ** 2).toFixed(2)} MB case-scaling, ` +
+        `${(storage.referenceBytes / 1024 ** 2).toFixed(2)} MB reference)`
+    );
     console.log(
       `\nBenchmark created ${createdOrderIds.length} cases. Wrote docs/verification/benchmark-${stamp}.md`
     );
