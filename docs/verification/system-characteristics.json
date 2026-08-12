@@ -1,6 +1,6 @@
 {
   "commit": "2d03e1ced5a7daee5df02e5e12dd66e69806bfcc",
-  "generatedAt": "2026-08-13T15:14:22.476Z",
+  "generatedAt": "2026-08-12T20:53:07.832Z",
   "groups": [
     {
       "group": "Structured reporting content",
@@ -72,8 +72,8 @@
       "metrics": [
         {
           "characteristic": "Relational entities in the data model",
-          "value": 19,
-          "rule": "`model` blocks in prisma/schema.prisma (22) excluding 3 structural tables: OrderSequenceYear (identifier-sequence counter); CustomTemplateTranslation (translation side-table); AncillaryPanelItem (pure join table (panel ↔ orderable)). Enums are not counted as entities."
+          "value": 18,
+          "rule": "`model` blocks in prisma/schema.prisma (22) excluding 4 structural tables: OrderSequenceYear (identifier-sequence counter); PatientSequence (identifier-sequence counter); CustomTemplateTranslation (translation side-table); AncillaryPanelItem (pure join table (panel ↔ orderable)). Enums are not counted as entities."
         },
         {
           "characteristic": "Total database tables",
