@@ -1,63 +1,70 @@
 {
   "hasDb": true,
-  "commit": "d83f39b05f993dfa0e0c652f0efb792db2b6f5c1",
-  "node": "v22.19.0",
-  "generatedAt": "2026-07-28T14:54:14.920Z",
+  "commit": "782b5ffcf17a5231833368a7478f52f2d6de4c02",
+  "node": "v22.23.1",
+  "run": {
+    "url": "https://github.com/olpmi/lightweight-ap-lis/actions/runs/31533298242",
+    "attempt": "1"
+  },
+  "generatedAt": "2026-08-11T20:35:14.679Z",
   "results": [
     {
       "suite": "Backend unit and integration",
       "runner": "Vitest",
       "scope": "Identifier generation, ancillary state machine, middleware, PDF generation, and HTTP integration against PostgreSQL",
-      "files": 18,
-      "cases": 104,
-      "passed": 103,
+      "files": 28,
+      "cases": 248,
+      "passed": 248,
       "failed": 0,
-      "skipped": 1,
+      "skipped": 0,
       "erroredFiles": 0,
-      "durationSeconds": 34.2,
+      "failures": [],
+      "durationSeconds": 50.6,
       "executed": true
     },
     {
       "suite": "Frontend component and unit",
       "runner": "Vitest",
       "scope": "React components, template normalisation, patient-summary rule matching, and conflict handling",
-      "files": 6,
-      "cases": 38,
-      "passed": 38,
+      "files": 8,
+      "cases": 54,
+      "passed": 54,
       "failed": 0,
       "skipped": 0,
       "erroredFiles": 0,
-      "durationSeconds": 40.2,
+      "failures": [],
+      "durationSeconds": 46.5,
       "executed": true
     },
     {
       "suite": "End-to-end (browser)",
       "runner": "Playwright",
       "scope": "Authenticated browser workflows against a built frontend and backend",
-      "durationSeconds": 24.9,
-      "files": 4,
-      "cases": 26,
-      "passed": 19,
+      "durationSeconds": 41.4,
+      "files": 3,
+      "cases": 27,
+      "passed": 21,
       "failed": 0,
-      "skipped": 7,
+      "skipped": 6,
       "erroredFiles": 0,
+      "failures": [],
       "executed": true
     }
   ],
   "coverage": [
     {
       "suite": "Backend unit and integration",
-      "statements": 63.61,
-      "branches": 68.31,
-      "functions": 54.23,
-      "lines": 63.61
+      "statements": 72.36,
+      "branches": 75.08,
+      "functions": 66.66,
+      "lines": 72.36
     },
     {
       "suite": "Frontend component and unit",
-      "statements": 40.78,
-      "branches": 56.68,
-      "functions": 31.65,
-      "lines": 40.78
+      "statements": 44.54,
+      "branches": 59.25,
+      "functions": 35.8,
+      "lines": 44.54
     }
   ]
 }

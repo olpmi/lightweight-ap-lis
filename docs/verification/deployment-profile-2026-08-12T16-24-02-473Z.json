@@ -1,0 +1,361 @@
+{
+  "commit": "782b5ffcf17a5231833368a7478f52f2d6de4c02",
+  "node": "v22.19.0",
+  "platform": "Windows_NT 10.0.22631 (x64)",
+  "hostCpu": "Intel(R) Xeon(R) w5-2555X",
+  "hostLogicalCores": "28",
+  "hostTotalMemoryGiB": "63.25",
+  "dockerVersion": "29.6.1",
+  "dockerOperatingSystem": "Docker Desktop",
+  "dockerKernel": "6.18.33.2-microsoft-standard-WSL2",
+  "dockerCgroupVersion": "2",
+  "dockerNCPU": "28",
+  "dockerMemTotalGiB": "30.97",
+  "dockerBackend": "Docker Desktop, WSL2 backend",
+  "settleSeconds": "30",
+  "idleSampling": "polled, 12 samples at 5000 ms",
+  "loadSampling": "streamed from one `docker stats` process, ~1 reading/s, for the benchmark’s duration",
+  "wslConfig": "absent — WSL2 defaults apply (memory ≈ 50% of host RAM, all logical processors)",
+  "generatedAt": "2026-08-12T16:24:02.473Z",
+  "windows": [
+    {
+      "label": "Idle, single-node",
+      "topology": "Single-node (docker-compose.yml)",
+      "samples": 12,
+      "intervalMs": 5000,
+      "containers": [
+        {
+          "container": "lis-profile-backend",
+          "memoryBytes": {
+            "samples": 12,
+            "min": 63082332.16,
+            "p50": 64193822.72,
+            "max": 65892515.84
+          },
+          "cpuPercent": {
+            "samples": 12,
+            "min": 0.02,
+            "p50": 0.03,
+            "max": 16.83
+          }
+        },
+        {
+          "container": "lis-profile-frontend",
+          "memoryBytes": {
+            "samples": 12,
+            "min": 23918018.56,
+            "p50": 23980933.12,
+            "max": 24232591.36
+          },
+          "cpuPercent": {
+            "samples": 12,
+            "min": 0,
+            "p50": 0,
+            "max": 0
+          }
+        },
+        {
+          "container": "lis-profile-postgres",
+          "memoryBytes": {
+            "samples": 12,
+            "min": 43452989.44,
+            "p50": 44543508.48,
+            "max": 45371883.52
+          },
+          "cpuPercent": {
+            "samples": 12,
+            "min": 0,
+            "p50": 0.02,
+            "max": 2.37
+          }
+        }
+      ],
+      "totalMemoryBytes": {
+        "samples": 12,
+        "min": 130516254.72,
+        "p50": 132697292.8,
+        "max": 135182417.92
+      },
+      "totalCpuPercent": {
+        "samples": 12,
+        "min": 0.02,
+        "p50": 0.06,
+        "max": 16.85
+      }
+    },
+    {
+      "label": "Under load (pnpm bench)",
+      "topology": "Single-node (docker-compose.yml)",
+      "samples": 66,
+      "intervalMs": 1000,
+      "containers": [
+        {
+          "container": "lis-profile-backend",
+          "memoryBytes": {
+            "samples": 66,
+            "min": 65651343.36,
+            "p50": 214328934.4,
+            "max": 280913510.4
+          },
+          "cpuPercent": {
+            "samples": 66,
+            "min": 0.1,
+            "p50": 262.96,
+            "max": 297.24
+          }
+        },
+        {
+          "container": "lis-profile-frontend",
+          "memoryBytes": {
+            "samples": 66,
+            "min": 23907532.8,
+            "p50": 23907532.8,
+            "max": 23918018.56
+          },
+          "cpuPercent": {
+            "samples": 66,
+            "min": 0,
+            "p50": 0,
+            "max": 0
+          }
+        },
+        {
+          "container": "lis-profile-postgres",
+          "memoryBytes": {
+            "samples": 66,
+            "min": 45267025.92,
+            "p50": 118489088,
+            "max": 118908518.4
+          },
+          "cpuPercent": {
+            "samples": 66,
+            "min": 0,
+            "p50": 0.09,
+            "max": 43.52
+          }
+        }
+      ],
+      "totalMemoryBytes": {
+        "samples": 66,
+        "min": 134825902.08,
+        "p50": 356620697.6,
+        "max": 423729561.6
+      },
+      "totalCpuPercent": {
+        "samples": 66,
+        "min": 0.13,
+        "p50": 264.69,
+        "max": 300.59
+      }
+    },
+    {
+      "label": "Idle, replicated (primary + hot standby)",
+      "topology": "Replicated primary + hot standby (docker-compose.prod.yml)",
+      "samples": 12,
+      "intervalMs": 5000,
+      "containers": [
+        {
+          "container": "lis-profile-repl-backend",
+          "memoryBytes": {
+            "samples": 12,
+            "min": 53445918.72,
+            "p50": 54809067.52,
+            "max": 55815700.48
+          },
+          "cpuPercent": {
+            "samples": 12,
+            "min": 0,
+            "p50": 0,
+            "max": 18.59
+          }
+        },
+        {
+          "container": "lis-profile-repl-frontend",
+          "memoryBytes": {
+            "samples": 12,
+            "min": 23813160.96,
+            "p50": 23823646.72,
+            "max": 23928504.32
+          },
+          "cpuPercent": {
+            "samples": 12,
+            "min": 0,
+            "p50": 0,
+            "max": 0
+          }
+        },
+        {
+          "container": "lis-profile-repl-postgres-primary",
+          "memoryBytes": {
+            "samples": 12,
+            "min": 83854622.72,
+            "p50": 84148224,
+            "max": 84546682.88
+          },
+          "cpuPercent": {
+            "samples": 12,
+            "min": 0,
+            "p50": 0.02,
+            "max": 4.41
+          }
+        },
+        {
+          "container": "lis-profile-repl-postgres-standby",
+          "memoryBytes": {
+            "samples": 12,
+            "min": 29905387.52,
+            "p50": 30723276.8,
+            "max": 31006392.32
+          },
+          "cpuPercent": {
+            "samples": 12,
+            "min": 0,
+            "p50": 0.02,
+            "max": 4.32
+          }
+        }
+      ],
+      "totalMemoryBytes": {
+        "samples": 12,
+        "min": 192067665.92,
+        "p50": 193567129.6,
+        "max": 193839759.36
+      },
+      "totalCpuPercent": {
+        "samples": 12,
+        "min": 0.01,
+        "p50": 0.06,
+        "max": 18.63
+      }
+    }
+  ],
+  "benchmark": {
+    "ran": true,
+    "exitCode": 0,
+    "storage": {
+      "cases": 300,
+      "databaseBytes": 11346447,
+      "caseScalingBytes": 1818624,
+      "referenceBytes": 1007616,
+      "bytesPerCase": 6062.08,
+      "tables": [
+        {
+          "table": "slide",
+          "totalBytes": 409600,
+          "caseScaling": true
+        },
+        {
+          "table": "ancillary_order",
+          "totalBytes": 376832,
+          "caseScaling": true
+        },
+        {
+          "table": "block",
+          "totalBytes": 286720,
+          "caseScaling": true
+        },
+        {
+          "table": "report",
+          "totalBytes": 278528,
+          "caseScaling": true
+        },
+        {
+          "table": "specimen",
+          "totalBytes": 196608,
+          "caseScaling": true
+        },
+        {
+          "table": "orders",
+          "totalBytes": 188416,
+          "caseScaling": true
+        },
+        {
+          "table": "employee",
+          "totalBytes": 98304,
+          "caseScaling": false
+        },
+        {
+          "table": "body_site",
+          "totalBytes": 81920,
+          "caseScaling": false
+        },
+        {
+          "table": "report_layout",
+          "totalBytes": 81920,
+          "caseScaling": false
+        },
+        {
+          "table": "specimen_type",
+          "totalBytes": 81920,
+          "caseScaling": false
+        },
+        {
+          "table": "report_template",
+          "totalBytes": 81920,
+          "caseScaling": false
+        },
+        {
+          "table": "employee_role",
+          "totalBytes": 73728,
+          "caseScaling": false
+        },
+        {
+          "table": "ancillary_panel_item",
+          "totalBytes": 73728,
+          "caseScaling": false
+        },
+        {
+          "table": "ancillary_orderable",
+          "totalBytes": 73728,
+          "caseScaling": false
+        },
+        {
+          "table": "ancillary_panel",
+          "totalBytes": 73728,
+          "caseScaling": false
+        },
+        {
+          "table": "_prisma_migrations",
+          "totalBytes": 65536,
+          "caseScaling": false
+        },
+        {
+          "table": "doctor",
+          "totalBytes": 57344,
+          "caseScaling": false
+        },
+        {
+          "table": "order_sequence_year",
+          "totalBytes": 57344,
+          "caseScaling": false
+        },
+        {
+          "table": "patient_sequence",
+          "totalBytes": 57344,
+          "caseScaling": false
+        },
+        {
+          "table": "patient",
+          "totalBytes": 57344,
+          "caseScaling": true
+        },
+        {
+          "table": "custom_template",
+          "totalBytes": 24576,
+          "caseScaling": false
+        },
+        {
+          "table": "report_file",
+          "totalBytes": 24576,
+          "caseScaling": true
+        },
+        {
+          "table": "custom_template_translation",
+          "totalBytes": 24576,
+          "caseScaling": false
+        }
+      ],
+      "quiesced": true
+    }
+  }
+}
