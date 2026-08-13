@@ -671,9 +671,9 @@ The published copies come from the manual **Verification Report** workflow
 and runs the `--e2e` form once, so the report records the CI run that produced it.
 Per-push CI gates only; it no longer regenerates these files.
 
-This writes `docs/verification/verification-report.{md,json}` with per-suite files, cases, passed, failed, skipped, setup errors, and coverage. At commit `d83f39b` the suite comprised 154 cases across 26 files: 147 passed, 0 failed, 7 skipped. Backend statement coverage was 61.8%, frontend 40.8%.
+This writes `docs/verification/verification-report.{md,json}` with per-suite files, cases, passed, failed, skipped, setup errors, and coverage. The current figures live in that file, which records the commit and the CI run that produced them. Do not restate them here — this paragraph previously carried a count that was two releases out of date and disagreed with two other documents.
 
-The skipped count matters and is reported deliberately. Six skips are opt-in Playwright specs (`RUN_DEMO`, `RUN_I18N_AUDIT`) that record demos and audit translations rather than verify behaviour. One is a report render gated on a launchable Chromium, which is present only in the backend container image.
+The skipped count matters and is reported deliberately. The skips are opt-in Playwright specs (`RUN_DEMO`, `RUN_I18N_AUDIT`) that record demos and audit translations rather than verify behaviour. A report render gated on a launchable Chromium also skips wherever no browser is available; it executes in the Verification Report workflow, which installs the pinned one.
 
 Two caveats worth knowing before citing numbers:
 
@@ -686,11 +686,32 @@ Two caveats worth knowing before citing numbers:
 
 ## 12A. Performance Benchmarking
 
-`scripts/benchmark.ts` (`pnpm bench`) drives a running backend over HTTP and measures concurrent authenticated sessions, case creation, query latency, the full accessioning-to-sign-out lifecycle, PDF generation, and database growth. It records host CPU, core count, memory, PostgreSQL version, Node version, and commit hash alongside the timings, and writes `docs/verification/benchmark-<timestamp>.{md,json}`.
+`scripts/benchmark.ts` (`pnpm bench`) drives a running backend over HTTP and measures concurrent authenticated sessions, case creation, query latency, the full accessioning-to-sign-out lifecycle, PDF generation, and storage. It records host CPU, core count, memory, PostgreSQL version, Node version, commit hash, and the employees used for the pathologist and administrator sessions alongside the timings, and writes `docs/verification/benchmark-<stamp>.{md,json}`.
 
-Run it on a documented fixed host rather than in CI — shared runners are too noisy for publishable timings — and against the containerised backend, which is the configuration the deployment section describes.
+Run it on a documented fixed host rather than in CI — shared runners are too noisy for publishable timings — and against the containerised backend, which is the configuration the deployment section describes. `pnpm metrics:deployment` (§12B) does both, and drives this script inside an isolated container stack while sampling the containers.
 
-These are loaded measurements and are distinct from the idle memory footprint reported elsewhere, which describes a stack at rest.
+Two scenarios need identities rather than one. Sign-out requires the Pathologist role and self-attribution, so the signing employee is selected by role; the report-layout preview route is Administrator-only, so it gets its own session. Both were previously taken from an unordered employee search, which worked by luck for the first and returned 403 on every call for the second — silently dropping the production renderer, the dominant cost of sign-out, out of the results table.
+
+Storage is measured as an absolute quiesced figure rather than a before/after delta: `VACUUM (ANALYZE)` and `CHECKPOINT`, then `pg_total_relation_size` summed over the tables that scale with case volume, divided by the case count, with a per-table breakdown. The delta it replaced could not work — only 1.73 MB of the 10.8 MB corpus database is case data, so the benchmark's own 91 inserted cases sat inside the noise floor of catalogue churn and vacuum reclamation, and consecutive runs reported −56.0 KB and +2 KB per case. The measurement therefore runs before the benchmark inserts anything.
+
+These are loaded measurements and are distinct from the idle memory footprint, which describes a stack at rest. Both come from `pnpm metrics:deployment`, which reports them as separate windows from one run so they can be compared without mixing hosts.
+
+## 12B. Deployment Resource Profile
+
+`scripts/deployment-profile.ts` (`pnpm metrics:deployment`) measures what the stack costs to run. It brings up an isolated Compose project with its own volumes and remapped ports, captures the Docker and WSL configuration that determines how the containers are constrained, samples container memory and CPU at idle and while the benchmark runs, and profiles the replicated production topology at idle as well. Output is `docs/verification/deployment-profile-<stamp>.{md,json}`, timestamped so profiles from different machines accumulate rather than overwrite.
+
+Nothing else in the repository measured container consumption. `describeHost` in `benchmark.ts` records host *capacity* (`os.totalmem`, `os.cpus`), never what the stack uses, and measuring a container footprint requires the app to run in containers — which neither CI nor the documented local recipe does, since both run backend and frontend as host processes.
+
+Four details decide whether the numbers mean anything:
+
+- **Both topologies are seeded.** `docker-compose.prod.yml` runs `prisma migrate deploy` only, so without a deliberate seed its database holds reference data and no cases, and an idle comparison against the single-node stack measures data volume as much as topology. That confound once produced a replicated total *below* the single-node total on one host and above it on another.
+- **Idle windows are quiesced and settled.** A `CHECKPOINT` precedes each one and the default settle is 90 s. Container memory counts dirty buffers and active page cache, so a stack sampled too early reports recent I/O: the same stack read 42.7 MB on one host and 98.7 MB on another, and 157.7 MB at 5 s against 126.3 MB at 25 s on a third. Each window also reports its own drift and marks itself unsettled past 2%.
+- **The loaded window is streamed, not polled.** Each `docker stats --no-stream` call costs seconds because Docker needs two reads for a CPU delta, and polling at that cadence stepped over the phase where headless Chromium is resident — reporting a peak of 574 MB on one run and 391 MB on the next.
+- **Loaded peak is not a constant.** Chromium retains memory across the benchmark's render iterations, so the peak is a property of the workload at its configured iteration count. Two runs on one machine differed by roughly half. Report it as an order of magnitude, or qualitatively.
+
+Container figures are cgroup working sets and exclude the overhead of the virtual machine the engine runs in, so a stack total is a lower bound on what a host must provide, not the host cost.
+
+Unlike the Verification Report workflow, this is deliberately not a CI job. It characterises a host; a shared runner would produce a footprint with no deployment meaning.
 
 ## 13. Reproducibility and Seed Data
 
@@ -716,7 +737,7 @@ Do not quote corpus figures from prose. Regenerate them against a seeded databas
 pnpm db:reset && pnpm db:seed && pnpm db:characterize
 ```
 
-This writes `docs/verification/dataset-characteristics.{md,json}`, measuring the realized composition rather than restating the seed's constants. At commit `d83f39b`:
+This writes `docs/verification/dataset-characteristics.{md,json}`, measuring the realized composition rather than restating the seed's constants. The values below have held across every regeneration since the seed was fixed; the artifact is authoritative:
 
 | Measure | n |
 | --- | ---: |
@@ -730,7 +751,12 @@ This writes `docs/verification/dataset-characteristics.{md,json}`, measuring the
 | Patients / specimens / blocks / slides | 50 / 595 / 1078 / 1809 |
 | Reports (all versions) | 260 |
 
-Because the generator is seeded, the corpus is byte-reproducible: two independent reseeds were confirmed to produce identical characterization JSON.
+Because the generator is seeded, the corpus is byte-reproducible: regeneration on a
+different host and Node version, two weeks after the original run, produced
+byte-identical characterization JSON apart from the commit and timestamp stamps.
+That is a cross-host reproduction and a stronger claim than the "two independent
+reseeds" this sentence used to make, which were two runs of one script on one
+machine.
 
 Three properties of the corpus should be disclosed rather than glossed:
 
@@ -845,4 +871,4 @@ The repository can describe the software system, but a publishable manuscript wi
 
 One concise description that could be adapted for a journal methods section is:
 
-"We implemented a lightweight anatomic pathology laboratory information system as a TypeScript monorepo with a React/Vite/MUI frontend, an Express/Node.js backend, PostgreSQL persistence via Prisma, and shared Zod-validated data contracts. The system models the pathology workflow from case accessioning through specimen, block, and slide tracking; ancillary testing; draft, preliminary, and final report generation; and case query. Accession, specimen, block, slide, and report identifiers were generated server-side, with serializable database transactions and optimistic locking used to prevent versioning and concurrent-edit conflicts. Report layouts were configurable through database-stored HTML templates rendered to PDF, with `pdf-lib` used for worksheet and fallback report generation. Employee authentication used password-based session login with bcrypt-hashed credentials (cost factor 12). In production, the system ran on two locally containerized PostgreSQL 16 instances with streaming physical replication (primary and hot standby), with optional WAL archiving and scheduled base backups to Google Cloud Storage via wal-g. The prototype was containerized with Docker Compose for local deployment and validated with automated unit, integration, component, and end-to-end tests executed in GitHub Actions." 
+"We implemented a lightweight anatomic pathology laboratory information system as a TypeScript monorepo with a React/Vite/MUI frontend, an Express/Node.js backend, PostgreSQL persistence via Prisma, and shared Zod-validated data contracts. The system models the pathology workflow from case accessioning through specimen, block, and slide tracking; ancillary testing; draft, preliminary, and final report generation; and case query. Accession, specimen, block, slide, and report identifiers were generated server-side, with serializable database transactions and optimistic locking used to prevent versioning and concurrent-edit conflicts. Report layouts were configurable through database-stored HTML templates rendered to PDF, with `pdf-lib` used for worksheet and fallback report generation. Employee authentication used password-based session login with bcrypt-hashed credentials (cost factor 12). In production, the system ran on two locally containerized PostgreSQL 16 instances with streaming physical replication (primary and hot standby), with optional WAL archiving and scheduled base backups to Google Cloud Storage via wal-g. The prototype was containerized with Docker Compose for local deployment and verified by automated unit, integration, component, and end-to-end tests executed in GitHub Actions." 

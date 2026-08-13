@@ -58,7 +58,8 @@ pnpm metrics:deployment    # container memory/CPU + storage (needs Docker)
 
 Output lands in [docs/verification/](docs/verification/). See
 [manuscript_verification_section.md](docs/verification/manuscript_verification_section.md)
-for how these map onto the paper.
+for which manuscript table each artifact feeds, what the paper reports, and which
+figures are deliberately not published.
 
 The committed copies are produced by the **Verification Report** workflow
 ([.github/workflows/verification.yml](.github/workflows/verification.yml)), run manually:
