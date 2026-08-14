@@ -106,11 +106,19 @@ issued before each idle window so the flush is forced rather than waited for, an
 the default is 90 s — 30 s proved too short on slower storage, where the same stack
 read 98.7 MB against 42.7 MB elsewhere.
 
-Because no settle period can be right for every machine, each window also reports
-its own drift. If stack memory is still trending down by more than 2% between the
-first and last third of the window, the artifact carries a **Not settled** callout
-and the console prints `[NOT SETTLED]`. Treat a flagged idle figure as an
-overestimate and re-run with a longer `--settle`.
+Because no settle period can be right for every machine, every window reports how
+much stack memory moved between its first and last third — and the two kinds of
+window are read differently.
+
+An **idle** window should be stationary, so movement is a defect: past 2% the
+artifact carries a **Not settled** callout, the console prints `[NOT SETTLED]`, and
+the figure should be re-measured with a longer `--settle`.
+
+A **load** window is non-stationary by design and is not flagged. Memory climbs
+while the benchmark runs because headless Chromium retains memory across its render
+iterations, so the peak reflects this workload at its configured iteration count
+rather than a fixed property of the host — two runs on one machine differed by
+roughly half. Treat it as the order of magnitude a render-heavy burst demands.
 
 Both topologies are seeded to the same 300-case corpus before sampling. Without
 that the replicated stack would hold reference data and no cases, since

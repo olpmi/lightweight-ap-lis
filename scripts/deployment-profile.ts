@@ -235,35 +235,45 @@ interface ContainerProfile {
 interface ResourceWindow {
   label: string;
   topology: string;
+  /**
+   * Which question the window answers, because drift means opposite things in each.
+   * An idle window should be stationary, so movement is a defect. A load window is
+   * non-stationary by design — the workload starts a browser and memory climbs —
+   * so movement there is the finding, not a fault.
+   */
+  kind: 'idle' | 'load';
   samples: number;
   intervalMs: number;
   containers: ContainerProfile[];
   totalMemoryBytes: Distribution;
   totalCpuPercent: Distribution;
-  /**
-   * False when stack memory was still trending down across the window, which means
-   * the stack had not reached rest and the figure is an overestimate. Reported so a
-   * measurement taken too early announces itself instead of being quoted as fact.
-   */
-  stabilised: boolean;
+  /** Change in stack memory from the first third of the window to the last. */
   driftPercent: number;
 }
 
 /**
- * Compares the first and last thirds of a window to detect a stack still settling.
- * A monotonic decline is the signature of page cache aging out and buffers
- * flushing; a settled stack drifts by well under a percent.
+ * Compares the first and last thirds of a window's stack-memory readings.
+ *
+ * For an idle window a decline is the signature of page cache aging out and buffers
+ * flushing, i.e. a stack that had not reached rest when it was measured. For a load
+ * window a rise is expected and informative: it is how much the workload accumulates
+ * while running, which for this benchmark is dominated by headless Chromium across
+ * its render iterations.
  */
-function assessDrift(totals: number[]): { stabilised: boolean; driftPercent: number } {
-  if (totals.length < 6) return { stabilised: true, driftPercent: 0 };
+function assessDrift(totals: number[]): number {
+  if (totals.length < 6) return 0;
   const third = Math.floor(totals.length / 3);
   const mean = (values: number[]): number =>
     values.reduce((sum, value) => sum + value, 0) / values.length;
   const first = mean(totals.slice(0, third));
   const last = mean(totals.slice(-third));
-  if (first <= 0) return { stabilised: true, driftPercent: 0 };
-  const driftPercent = Math.round(((last - first) / first) * 1000) / 10;
-  return { stabilised: Math.abs(driftPercent) < 2, driftPercent };
+  if (first <= 0) return 0;
+  return Math.round(((last - first) / first) * 1000) / 10;
+}
+
+/** An idle window is only trustworthy if it barely moved while being sampled. */
+function idleWindowSettled(window: ResourceWindow): boolean {
+  return window.kind !== 'idle' || Math.abs(window.driftPercent) < 2;
 }
 
 /**
@@ -376,7 +386,7 @@ async function streamWindow(
       containers: [],
       totalMemoryBytes: distribution([]),
       totalCpuPercent: distribution([]),
-      stabilised: true,
+      kind: 'load',
       driftPercent: 0,
     };
   }
@@ -473,7 +483,10 @@ async function streamWindow(
       })),
     totalMemoryBytes: distribution(totalsMemory),
     totalCpuPercent: distribution(totalsCpu),
-    ...assessDrift(totalsMemory),
+    // streamWindow only ever samples a running workload, so drift here is the
+    // workload accumulating and must not be reported as an unsettled measurement.
+    kind: 'load',
+    driftPercent: assessDrift(totalsMemory),
   };
 }
 
@@ -521,7 +534,10 @@ async function sampleWindow(topology: Topology, label: string): Promise<Resource
       })),
     totalMemoryBytes: distribution(totalsMemory),
     totalCpuPercent: distribution(totalsCpu),
-    ...assessDrift(totalsMemory),
+    // sampleWindow is only used between workloads, so this window is meant to be
+    // stationary and any drift is a sign it was sampled too early.
+    kind: 'idle',
+    driftPercent: assessDrift(totalsMemory),
   };
 }
 
@@ -751,14 +767,27 @@ function renderWindow(window: ResourceWindow): string[] {
       window.totalMemoryBytes.max
     )} MB** | **${window.totalCpuPercent.p50}%** | **${window.totalCpuPercent.max}%** |`,
     '',
-    ...(window.stabilised
-      ? []
-      : [
-          `> **Not settled.** Stack memory drifted ${window.driftPercent}% between the first and`,
-          '> last third of this window, so it had not reached rest and these figures are an',
-          '> overestimate. Re-run with a longer `--settle`.',
-          '',
-        ]),
+    ...(window.kind === 'idle'
+      ? idleWindowSettled(window)
+        ? []
+        : [
+            `> **Not settled.** Stack memory moved ${window.driftPercent}% between the first and`,
+            '> last third of this window, so it had not reached rest when it was sampled and',
+            `> these figures are an ${window.driftPercent < 0 ? 'overestimate' : 'underestimate'}.`,
+            '> Re-run with a longer `--settle`.',
+            '',
+          ]
+      : Math.abs(window.driftPercent) >= 5
+        ? [
+            `Stack memory rose ${window.driftPercent}% across this window. That is the workload`,
+            'accumulating, not a measurement fault: the benchmark starts headless Chromium and',
+            'renders repeatedly, and the browser retains memory across iterations. Peak here is',
+            'therefore a property of this workload at its configured iteration count, and it',
+            'varies between runs — two runs on one host differed by roughly half. Read it as',
+            'the order of magnitude a render-heavy burst demands, not a constant.',
+            '',
+          ]
+        : []),
   ];
 }
 
@@ -954,7 +983,8 @@ async function main(): Promise<void> {
       `\n${window.label}: stack total memory p50 ${mib(window.totalMemoryBytes.p50)} MB, ` +
         `max ${mib(window.totalMemoryBytes.max)} MB; CPU p50 ${window.totalCpuPercent.p50}%, ` +
         `max ${window.totalCpuPercent.max}% (${window.samples} samples)` +
-        (window.stabilised ? '' : `  [NOT SETTLED: drifted ${window.driftPercent}%]`)
+        (idleWindowSettled(window) ? '' : `  [NOT SETTLED: moved ${window.driftPercent}%]`) +
+        (window.kind === 'load' ? `  [rose ${window.driftPercent}% while running]` : '')
     );
   }
   console.log(`\nWrote ${path.relative(repoRoot, markdownPath)} and ${path.relative(repoRoot, jsonPath)}`);
