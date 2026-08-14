@@ -73,7 +73,16 @@ interface PanelMetadata {
   viewport: { width: number; height: number };
   deviceScaleFactor: number;
   browser: string;
+  /** Captured region, viewport-relative — what the raster panel shows. */
   clip: { x: number; y: number; width: number; height: number };
+  /**
+   * The same region measured from the top of the document.
+   *
+   * Optional only because this is parsed from JSON on disk: panels captured before
+   * the field existed have none, and the vector pass says so rather than cropping
+   * from the wrong offset.
+   */
+  documentClip?: { x: number; y: number; width: number; height: number };
   generatedAt: string;
 }
 
@@ -461,6 +470,11 @@ ${cells}
  * Assembles the vector figure by embedding each panel's PDF page, cropped to the
  * region the raster panel used. Cropping through an embed bounding box is a
  * coordinate change rather than a re-render, so vector content survives intact.
+ *
+ * The crop is taken from `documentClip`, not `clip`: a panel PDF is the whole
+ * document printed as one tall page, so the region has to be measured from the
+ * document's top, whereas `clip` is measured from the top of the viewport. They
+ * agree only for an unscrolled page.
  */
 async function composeVector(figure: FigureSpec, layout: Layout, outputPath: string): Promise<void> {
   const requireFromBackend = createRequire(path.join(repoRoot, 'apps', 'backend', 'package.json'));
@@ -480,7 +494,13 @@ async function composeVector(figure: FigureSpec, layout: Layout, outputPath: str
     const source = await PDFDocument.load(readFileSync(vectorPath));
     const [sourcePage] = source.getPages();
     const sourceHeightPt = sourcePage.getHeight();
-    const { clip } = panel.metadata;
+    const clip = panel.metadata.documentClip;
+    if (!clip) {
+      throw new Error(
+        `${panel.metadata.name} carries no documentClip, so its vector crop cannot be placed. ` +
+          `Re-capture the panels: GENERATE_MANUSCRIPT_FIGURES=1 pnpm figures:manuscript`
+      );
+    }
 
     const embedded = await document.embedPage(sourcePage, {
       left: clip.x * PT_PER_CSS_PX,
@@ -638,6 +658,13 @@ function writeReadme(outputs: ComposedOutput[]): void {
     .flatMap((output) => output.panels)
     .map((panel) => panel.caseId)
     .find((value): value is string => Boolean(value));
+  const viewports = [
+    ...new Set(
+      outputs
+        .flatMap((output) => output.panels)
+        .map((panel) => `${panel.viewport.width} x ${panel.viewport.height}`)
+    ),
+  ];
 
   // Derived rather than written out, so renumbering the figures cannot leave the
   // prose pointing at the wrong ones.
@@ -753,7 +780,10 @@ function writeReadme(outputs: ComposedOutput[]): void {
     '',
     `- Commit: \`${readCommit()}\``,
     `- Generated: ${new Date().toISOString()}`,
-    `- Viewport: ${first?.viewport.width ?? 1920} x ${first?.viewport.height ?? 1080}`,
+    // Every viewport used, not just the first panel's: the patient summaries are
+    // captured narrow on purpose, and a provenance line naming one size would say
+    // the figures were produced at a width two of them were not.
+    `- Viewport: ${formatList(viewports)}`,
     `- Device scale factor: ${first?.deviceScaleFactor ?? 2}`,
     `- Browser: ${first?.browser ?? 'unknown'}`,
     '- Synthetic data seed: 42',

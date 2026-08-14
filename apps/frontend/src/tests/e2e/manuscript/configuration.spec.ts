@@ -68,6 +68,19 @@ test.describe('Figures S2-S3 — configuration interfaces', () => {
     await expect(page.getByRole('main')).not.toContainText('Select a template to edit');
     await page.waitForLoadState('networkidle');
 
+    // And wait for the JSON editor to have painted something.
+    //
+    // The definition is edited in Monaco, which fetches its own bundle at runtime
+    // and renders the string "Loading…" until that arrives. Those requests start
+    // only once React has mounted the editor, so they can begin after the network
+    // has already gone idle once — long enough for a capture to slip through and
+    // show an empty pane where the caption promises the template's structured
+    // definition. Asserting on a rendered JSON key waits for the editor itself
+    // rather than for a network state that has already been satisfied.
+    const editorLines = page.locator('.monaco-editor .view-lines').first();
+    await editorLines.waitFor({ state: 'visible', timeout: 60_000 });
+    await expect(editorLines).toHaveText(/"\w+"/, { timeout: 60_000 });
+
     await capturePanel(page, {
       figure: 'figure-s2',
       label: 'A',
