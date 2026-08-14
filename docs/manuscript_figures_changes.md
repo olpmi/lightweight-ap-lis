@@ -115,7 +115,7 @@ submission. Nothing in the figures or captions claims the translations are valid
 - **S2** — caption now describes a JSON-backed template editor, not a no-code one.
 - **S3** — the catalogue holds two distinct H&E entries, and neither is legacy:
   `HE` → `H&E Staining` is the routine per-block stain, system-managed and excluded
-  from the user-facing category selector; it carries **1080 orders** in the seeded
+  from the user-facing category selector; it carries **1078 orders** in the seeded
   corpus, one per block, so removing it would break the routine workflow.
   `HE_LEVELS` → `H&E Levels` is the user-orderable deeper-levels test. The panel
   expands the immunohistochemistry category, so only `H&E Levels` is in frame; the

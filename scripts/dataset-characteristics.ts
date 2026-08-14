@@ -125,7 +125,7 @@ async function collectWorkflowStages(totalCases: number): Promise<Section> {
 
   return {
     title: 'Workflow stage distribution',
-    note: 'Derived from material and report state in the database, not read back from the seed script\'s stage plan, so this table validates the seed rather than restating it. Amended cases are counted separately and are also signed out.',
+    note: 'Derived from material and report state in the database, not read back from the seed script\'s stage plan, so this table checks the seed rather than restating it. Amended cases are counted separately and are also signed out.',
     rows,
   };
 }

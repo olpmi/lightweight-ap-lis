@@ -1,5 +1,5 @@
 /**
- * Regenerates the "Implemented system characteristics" table (manuscript Table 2)
+ * Regenerates the "Implemented system characteristics" table (manuscript Table 3)
  * directly from the repository, so every published figure has a reproducible source.
  *
  * Reads only static repository content — no database connection is required.
@@ -303,7 +303,7 @@ function renderMarkdown(groups: MetricGroup[], commit: string, generatedAt: stri
     `- Generated: ${generatedAt}`,
     '',
     'This table is derived from repository content at the commit above. It corresponds to',
-    'Table 2 of the manuscript, excluding the idle deployment footprint rows, which are',
+    'Table 3 of the manuscript, excluding the idle resource utilization rows, which are',
     'host measurements rather than repository facts.',
     '',
     '| Characteristic | Value | Counting rule |',
