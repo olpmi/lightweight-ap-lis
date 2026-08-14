@@ -203,10 +203,18 @@ function collectAncillaryMetrics(): MetricGroup {
  * Tables excluded from the "relational entities" headline count. These are
  * structural rather than domain entities; the exclusion is published alongside
  * the number so the count can be reproduced or contested.
+ *
+ * This list is hand-maintained, which is its weakness: PatientSequence was added
+ * by the 20260727000000_patient_id_sequence migration and went unlisted, so the
+ * published count read 19 while the published rule — which calls an
+ * identifier-sequence counter structural — implied 18. A number that disagrees
+ * with the rule printed beside it is worse than either answer alone. When a
+ * migration adds a join, sequence or side table, add it here.
  */
 const NON_DOMAIN_MODELS: Record<string, string> = {
   AncillaryPanelItem: 'pure join table (panel ↔ orderable)',
   OrderSequenceYear: 'identifier-sequence counter',
+  PatientSequence: 'identifier-sequence counter',
   CustomTemplateTranslation: 'translation side-table',
 };
 
