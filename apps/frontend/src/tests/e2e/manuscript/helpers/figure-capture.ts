@@ -161,6 +161,10 @@ async function assertPanelHealthy(page: Page, target: Locator): Promise<void> {
   // Word-boundary matched so legitimate content is not mistaken for a placeholder.
   expect(text).not.toMatch(/\b(undefined|NaN)\b/);
   expect(text).not.toMatch(/\bnull\b/);
+  // A component that loads its own bundle at runtime renders this instead of a
+  // spinner, so the progressbar check above does not see it. No panel legitimately
+  // shows it: the application's loading text only ever stands in for content.
+  expect(text, 'panel still shows a loading placeholder').not.toMatch(/Loading\.\.\./);
 }
 
 export interface PanelOptions {
@@ -278,15 +282,52 @@ export async function capturePanel(page: Page, options: PanelOptions): Promise<v
   const top = Math.max(anchorTop ?? box.y, 0);
   const left = Math.max(box.x, 0);
   const contentHeight = Math.max(contentBottom - top, 0) + 24; // 24px breathing room
-  const heightLimit = Math.min(
-    options.maxHeight ?? Number.POSITIVE_INFINITY,
-    (viewport?.height ?? box.height) - top
-  );
+  const wantedHeight = Math.min(box.height, contentHeight);
+  const budget = options.maxHeight ?? Number.POSITIVE_INFINITY;
+
+  // A screenshot clip is viewport-relative, so the viewport height is a hard
+  // ceiling on a panel however much of the target is laid out below the fold.
+  const viewportLimit = (viewport?.height ?? box.height) - top;
+
+  // A panel that declares a height budget is meant to be cropped, and cropped to
+  // that budget — the composer's arithmetic depends on it. Height the viewport
+  // takes off on top of that is truncation nobody asked for: a line of body text
+  // cut through the middle, a card missing its lower edge, a safety note ending
+  // mid-sentence. It is invisible in the composite, because the crop looks like a
+  // deliberate one, so it fails the capture rather than shipping the panel.
+  if (viewportLimit < Math.min(wantedHeight, budget)) {
+    throw new Error(
+      `Panel ${options.name} is truncated by the capture viewport: it needs ` +
+        `${Math.ceil(Math.min(wantedHeight, budget))} CSS px below y=${Math.round(top)}, but a ` +
+        `${viewport?.height ?? 0} px viewport leaves only ${Math.floor(viewportLimit)}. ` +
+        `Raise the viewport height for this figure, or declare a maxHeight if the crop is intended.`
+    );
+  }
+
   const clip = {
     x: left,
     y: top,
     width: Math.min(box.width, (viewport?.width ?? box.width) - left),
-    height: Math.min(box.height, contentHeight, heightLimit),
+    height: Math.min(wantedHeight, budget),
+  };
+
+  // The same region in document coordinates.
+  //
+  // `clip` is viewport-relative, because that is what page.screenshot takes. The
+  // vector pass below prints the whole document as one tall page, so a crop of it
+  // has to be measured from the document's top — and the two differ by however far
+  // the page has been scrolled, which an anchored panel scrolls on purpose. Left
+  // unrecorded, the composer had only the viewport figure to crop the PDF with, and
+  // a scrolled panel's vector artwork was taken from that many pixels too high:
+  // the sign-out panel's PDF showed the case header instead of the authorization
+  // controls its raster twin shows. Scroll-invariant by construction — scrolling
+  // moves the element up by exactly what it adds here.
+  const scroll = await page.evaluate(() => ({ x: window.scrollX, y: window.scrollY }));
+  const documentClip = {
+    x: clip.x + scroll.x,
+    y: clip.y + scroll.y,
+    width: clip.width,
+    height: clip.height,
   };
 
   await page.screenshot({
@@ -324,10 +365,14 @@ export async function capturePanel(page: Page, options: PanelOptions): Promise<v
     caseId: options.caseId ?? null,
     language: options.language ?? 'en',
     commit: commit(),
-    viewport: FIGURE_CONTEXT.viewport,
+    // The page's own viewport, not the shared default: the patient-summary panels
+    // override it, and a metadata file recording the width they were not captured
+    // at is the one place a reader would go to check the crop against it.
+    viewport: viewport ?? FIGURE_CONTEXT.viewport,
     deviceScaleFactor: FIGURE_CONTEXT.deviceScaleFactor,
     browser: `Chromium ${page.context().browser()?.version() ?? 'unknown'}`,
     clip,
+    documentClip,
     generatedAt: new Date().toISOString(),
   };
   writeFileSync(

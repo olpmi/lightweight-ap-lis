@@ -57,10 +57,21 @@ const SUMMARY_PANELS = [
  *
  * The card measures the viewport less 268 px of drawer and page padding, so 658
  * yields a 390 px card: two of them plus the gutter and margins compose to 828 CSS
- * px, which prints at 9.1 pt. The card is 612 px tall at that width, well inside the
- * height such a figure may occupy, so both summaries are shown whole.
+ * px, which prints at 9.1 pt.
+ *
+ * Tall, and deliberately taller than the shared 900. Narrowing the viewport is what
+ * makes the card tall — the text reflows into more lines, to about 630 px — and these
+ * are the only panels captured whole rather than cropped to a height budget, so all
+ * of it has to be on screen at once. 900 left the card 40 px short, so Playwright
+ * scrolled to bring it into view, and the scroll was a defect of its own: the vector
+ * pass prints from the top of the document, so it cropped that artwork 40 px high and
+ * the supplementary PDF ended mid-way through the last line of the safety note. 1200
+ * needs no scrolling and leaves room for summary content to grow; `capturePanel`
+ * fails the capture if it ever runs short again. A figure 828 px wide may be 880 px
+ * tall before a journal shrinks it, and the label row and margins take 58 of that, so
+ * the card has until 822.
  */
-const SUMMARY_VIEWPORT = { width: 658, height: 900 } as const;
+const SUMMARY_VIEWPORT = { width: 658, height: 1200 } as const;
 
 test.describe('Figure 6 — multilingual interface', () => {
   test.skip(!GENERATE_FIGURES, SKIP_REASON);
@@ -168,6 +179,21 @@ test.describe('Figure S1 — patient-facing summaries', () => {
       // rather than by editing the screenshot.
       await summaryCard.getByRole('button', { name: panel.toggle, exact: true }).click();
       await page.waitForLoadState('networkidle');
+
+      // Drop the tab strip, after using it.
+      //
+      // Not for the raster panel's sake: the crop is the summary card, and the strip
+      // sits above and outside it. The vector pass is what needs it gone. Blink lays a
+      // printed page out at least as wide as its content and, unlike the screen,
+      // expands a horizontally scrollable box to its full extent instead of clipping
+      // it — and the tab strip is exactly that, five tabs that fit the 976 px main
+      // region of a full-width capture but not the 390 px one this viewport gives. So
+      // printing laid the page out at 738 px and Chromium scaled it by 0.89 to fit the
+      // 658 px paper, while the composer's crop is in screen coordinates: the vector
+      // panel came out cropped 26 px left of the card, shaving the first characters off
+      // every line of the supplementary PDF. Hidden, the printed layout is 658 px like
+      // the screen's, and both formats show the same card.
+      await page.addStyleTag({ content: '.MuiTabs-root { display: none !important; }' });
 
       await capturePanel(page, {
         figure: 'figure-s1',
