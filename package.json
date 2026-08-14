@@ -2,6 +2,7 @@
   "name": "lightweight-ap-lis",
   "version": "1.0.0",
   "private": true,
+  "license": "MIT",
   "scripts": {
     "dev:backend": "pnpm --filter @lis/backend dev",
     "dev:frontend": "pnpm --filter @lis/frontend dev",
