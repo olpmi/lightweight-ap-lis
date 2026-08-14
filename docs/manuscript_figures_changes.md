@@ -149,3 +149,21 @@ versioning) is now Figure 5C, and the former Figure 7 (multilingual) is Figure 6
 
 Every figure reproduces at the full 190 mm double-column width, fits a 247 mm page
 with 45 mm reserved for its legend, and exceeds 300 dpi.
+
+## Web copies in the repository README
+
+The root README embeds Figures 3, 5 and 6. Those images are not a separate capture
+and involve no post-processing: `pnpm figures:compose` renders each one a second time
+from the *same* composed layout at a lower device scale factor, so the only difference
+from the journal PNG is pixel density.
+
+| Figure | Journal PNG | Web copy |
+| --- | --- | --- |
+| 3 Accessioning | 3344 × 3552 | 1200 × 1275, 95 KB |
+| 5 Ancillary, reporting, versioning | 3152 × 3308 | 1200 × 1259, 150 KB |
+| 6 Multilingual interfaces | 3344 × 3544 | 1200 × 1272, 188 KB |
+
+They are written to `docs/images/`, which is tracked, unlike `docs/manuscript/`. The
+composer refuses to write a web copy over 250 KB, so the tracked set cannot quietly
+grow. Checksums are recorded in `docs/images/README.md` and in the checksum table of
+`docs/manuscript/figures/README.md`.

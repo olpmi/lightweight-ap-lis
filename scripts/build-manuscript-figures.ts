@@ -17,7 +17,7 @@
  */
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -27,6 +27,12 @@ const figuresDir = path.join(repoRoot, 'docs', 'manuscript', 'figures');
 const sourceDir = path.join(figuresDir, 'source');
 const compositesDir = path.join(figuresDir, 'composites');
 const captionsDir = path.join(figuresDir, 'captions');
+/**
+ * Web-sized copies of a few figures, outside docs/manuscript/ because that whole
+ * tree is gitignored. The root README embeds these, so they have to live where
+ * git — and therefore GitHub — can see them.
+ */
+const webDir = path.join(repoRoot, 'docs', 'images');
 
 /**
  * Minimum reproduction resolution for combination art, in dpi at the print width.
@@ -44,6 +50,25 @@ const MIN_DPI = 300;
  * density has to rise to keep dpi above the floor.
  */
 const RASTER_SCALE = 4;
+
+/**
+ * Width of the web copies, in device pixels.
+ *
+ * A fixed width rather than a fixed scale factor: the figures differ in CSS width,
+ * so a shared scale would render them at different pixel widths and GitHub would
+ * show them at inconsistent sizes down the README. 1200 px is about 1.4x GitHub's
+ * content column, so it stays sharp on a high-density display without carrying
+ * print resolution into a tracked directory.
+ */
+const WEB_WIDTH_PX = 1200;
+
+/**
+ * Ceiling for a tracked web copy, in bytes.
+ *
+ * Not a style preference: these enter git history permanently, so a figure that
+ * grows past this is one to render narrower rather than commit.
+ */
+const MAX_WEB_BYTES = 250 * 1024;
 
 /** CSS pixels are 1/96 in; PDF points are 1/72 in. */
 const PT_PER_CSS_PX = 0.75;
@@ -93,6 +118,14 @@ interface FigureSpec {
   caption: string;
   /** Column counts to try; the one with the least wasted space wins. */
   columnOptions: number[];
+  /**
+   * Also written to docs/images/ at web resolution, for the root README.
+   *
+   * A curated subset: the README shows the workflow, not the whole figure set. The
+   * flag lives on the spec rather than in a separate list of ids so renumbering a
+   * figure cannot silently desync the two.
+   */
+  web?: boolean;
 }
 
 /** Journal figure geometry, used to report how large the interface text will print. */
@@ -170,6 +203,7 @@ const FIGURES: FigureSpec[] = [
     caption:
       '**(A)** Entry of synthetic patient and referring-clinician information. **(B)** Selection of case type, specimen site, organ, and cytology preparation details. All displayed names and data are synthetic.',
     columnOptions: [1],
+    web: true,
   },
   {
     id: 'figure-4',
@@ -186,6 +220,7 @@ const FIGURES: FigureSpec[] = [
     caption:
       '**(A)** An immunohistochemical study linked to its originating tissue block and tracked through an explicit workflow state. **(B)** Structured result entry and report-authorization controls for the same synthetic case. **(C)** Report history preserving the original finalized report and PDF while representing a subsequent revision as a separate draft version. All displayed names and data are synthetic.',
     columnOptions: [1],
+    web: true,
   },
   {
     id: 'figure-6',
@@ -194,6 +229,7 @@ const FIGURES: FigureSpec[] = [
     caption:
       'The same synthetic case is displayed in **(A)** Arabic and **(B)** Kiswahili, demonstrating right-to-left rendering for Arabic and consistent case identifiers, report-version state, workflow controls, and structured reporting behavior across languages. Interface and structured-template translations use curated language resources. Free-text report content remains in the language the pathologist entered it in — the application translates the interface and its structured fields, not narrative text — which is why the diagnosis and comment appear in English in both panels. All displayed names and data are synthetic.',
     columnOptions: [1],
+    web: true,
   },
   {
     id: 'figure-s1',
@@ -538,6 +574,10 @@ interface ComposedOutput {
   panels: PanelMetadata[];
   rasterFile: string;
   vectorFile: string;
+  /** Set only for the figures the root README embeds. */
+  webFile?: string;
+  webWidth?: number;
+  webHeight?: number;
   width: number;
   height: number;
   fill: number;
@@ -546,6 +586,7 @@ interface ComposedOutput {
 async function build(): Promise<void> {
   mkdirSync(compositesDir, { recursive: true });
   mkdirSync(captionsDir, { recursive: true });
+  mkdirSync(webDir, { recursive: true });
 
   // Resolved from the frontend package, which owns @playwright/test, so the
   // raster composition renders in the browser used for capture without adding a
@@ -560,12 +601,14 @@ async function build(): Promise<void> {
       const panels = loadPanels(figure.id);
       const layout = computeLayout(figure, panels);
 
+      const viewport = { width: Math.ceil(layout.width), height: Math.ceil(layout.height) };
+      // Built once and reused by the web pass below: buildHtml base64-encodes every
+      // source panel, and the two passes differ only in pixel density.
+      const html = buildHtml(figure, layout);
+
       const rasterFile = path.join(compositesDir, `${figure.output}.png`);
-      const page = await browser.newPage({
-        viewport: { width: Math.ceil(layout.width), height: Math.ceil(layout.height) },
-        deviceScaleFactor: RASTER_SCALE,
-      });
-      await page.setContent(buildHtml(figure, layout), { waitUntil: 'load' });
+      const page = await browser.newPage({ viewport, deviceScaleFactor: RASTER_SCALE });
+      await page.setContent(html, { waitUntil: 'load' });
       await page.evaluate(() => document.fonts.ready);
       await page.screenshot({ path: rasterFile });
       await page.close();
@@ -578,6 +621,35 @@ async function build(): Promise<void> {
         );
       }
 
+      // Web copy: same layout and same markup, lower pixel density. Rendered rather
+      // than downsampled from the composite above, so Chromium resamples the 4x
+      // source panels once instead of resampling an already-resampled image. The
+      // MIN_DPI floor deliberately does not apply — it governs print reproduction,
+      // which is not what this copy is for.
+      let webFile: string | undefined;
+      let webSize: { width: number; height: number } | undefined;
+      if (figure.web) {
+        webFile = path.join(webDir, `${figure.output}.png`);
+        const webPage = await browser.newPage({
+          viewport,
+          // Fixed at page creation, so the web copy needs a page of its own.
+          deviceScaleFactor: WEB_WIDTH_PX / viewport.width,
+        });
+        await webPage.setContent(html, { waitUntil: 'load' });
+        await webPage.evaluate(() => document.fonts.ready);
+        await webPage.screenshot({ path: webFile });
+        await webPage.close();
+
+        webSize = readPngSize(webFile);
+        const bytes = statSync(webFile).size;
+        if (bytes > MAX_WEB_BYTES) {
+          throw new Error(
+            `docs/images/${figure.output}.png is ${Math.round(bytes / 1024)} KB, over the ` +
+              `${MAX_WEB_BYTES / 1024} KB ceiling for a tracked file. Lower WEB_WIDTH_PX.`
+          );
+        }
+      }
+
       const vectorFile = path.join(compositesDir, `${figure.output}.pdf`);
       await composeVector(figure, layout, vectorFile);
 
@@ -586,6 +658,9 @@ async function build(): Promise<void> {
         panels,
         rasterFile,
         vectorFile,
+        webFile,
+        webWidth: webSize?.width,
+        webHeight: webSize?.height,
         width: size.width,
         height: size.height,
         fill: layout.fill,
@@ -593,7 +668,8 @@ async function build(): Promise<void> {
 
       const legibility = describeLegibility(layout);
       console.log(
-        `${figure.output}: ${panels.length} panels, ${size.width} x ${size.height} png + vector pdf ` +
+        `${figure.output}: ${panels.length} panels, ${size.width} x ${size.height} png + vector pdf` +
+          `${webSize ? ` + ${webSize.width} x ${webSize.height} web png` : ''} ` +
           `(panel fill ${(layout.fill * 100).toFixed(1)}%, ${legibility.summary})`
       );
 
@@ -613,6 +689,7 @@ async function build(): Promise<void> {
 
   writeCaptions(outputs);
   writeReadme(outputs);
+  if (outputs.some((output) => output.webFile)) writeWebReadme(outputs);
 }
 
 function writeCaptions(outputs: ComposedOutput[]): void {
@@ -720,6 +797,9 @@ function writeReadme(outputs: ComposedOutput[]): void {
     '├── composites/    composed figures, PNG and vector PDF',
     '├── captions/      final captions',
     '└── README.md      this file',
+    '',
+    'docs/images/       web-sized copies of the figures the root README embeds —',
+    '                   tracked, because this directory is not',
     '```',
     '',
     '## Synthetic case',
@@ -818,6 +898,13 @@ function writeReadme(outputs: ComposedOutput[]): void {
     lines.push(`| composites/${output.figure.output}.png | \`${sha256(output.rasterFile)}\` |`);
     lines.push(`| composites/${output.figure.output}.pdf | \`${sha256(output.vectorFile)}\` |`);
   }
+  // Path-labelled from the repository root, so they read as what they are: files
+  // outside this directory, written by the same run.
+  for (const output of outputs) {
+    if (output.webFile) {
+      lines.push(`| docs/images/${output.figure.output}.png | \`${sha256(output.webFile)}\` |`);
+    }
+  }
 
   lines.push(
     '',
@@ -839,6 +926,59 @@ function writeReadme(outputs: ComposedOutput[]): void {
   );
 
   writeFileSync(path.join(figuresDir, 'README.md'), lines.join('\n'), 'utf8');
+}
+
+/**
+ * Manifest for the tracked web copies.
+ *
+ * The checksum table in the figures README covers these too, but that file sits
+ * inside the ignored tree and so is invisible to anyone reading the repository on
+ * GitHub. This manifest is what shows a reader that the PNGs beside it were
+ * generated from the manuscript figures rather than dropped in by hand.
+ */
+function writeWebReadme(outputs: ComposedOutput[]): void {
+  const web = outputs.filter(
+    (output): output is ComposedOutput & { webFile: string } => Boolean(output.webFile)
+  );
+  const first = web[0]?.panels[0];
+
+  const lines = [
+    '# Figures for the README',
+    '',
+    'Generated by `pnpm figures:compose` — do not edit by hand.',
+    '',
+    `- Commit: \`${readCommit()}\``,
+    `- Generated: ${new Date().toISOString()}`,
+    `- Browser: ${first?.browser ?? 'unknown'}`,
+    '',
+    'Web-sized copies of the manuscript figures, rendered from the same layout in the',
+    'same run as the journal-resolution originals. The journal PNG and the vector PDF',
+    'are written to `docs/manuscript/figures/`, which is not tracked; these are, because',
+    'the root README embeds them. Captions, panel provenance and the full figure set',
+    'live with the originals — rebuild them with the commands in that README.',
+    '',
+    '| File | Figure | Pixels | Size | SHA-256 |',
+    '| --- | --- | ---: | ---: | --- |',
+  ];
+
+  for (const output of web) {
+    const bytes = statSync(output.webFile).size;
+    lines.push(
+      `| ${output.figure.output}.png | ${shortLabel(output.figure)} | ` +
+        `${output.webWidth} x ${output.webHeight} | ${Math.round(bytes / 1024)} KB | ` +
+        `\`${sha256(output.webFile)}\` |`
+    );
+  }
+
+  lines.push(
+    '',
+    'Every value visible in these figures is synthetic, originating either from',
+    '`prisma/seed.ts` or from the API-created figure case. No clinical or',
+    'patient-identifiable data appears in any panel.',
+    ''
+  );
+
+  writeFileSync(path.join(webDir, 'README.md'), lines.join('\n'), 'utf8');
 }
 
 build().catch((error: unknown) => {

@@ -49,3 +49,8 @@ docs/*.pdf
 # the code that generates them is tracked. The figure change record lives in
 # docs/manuscript_figures_changes.md.
 docs/manuscript/
+
+# docs/images/ is deliberately absent from this file. The same figures:compose run
+# writes web-sized copies of three figures there, and the root README embeds them,
+# so they have to be tracked. Do not tidy them under docs/manuscript/ — they would
+# be ignored and the README would render broken images on GitHub.
