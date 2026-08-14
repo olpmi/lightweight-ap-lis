@@ -139,6 +139,7 @@ jobs:
           name: backend-coverage
           path: apps/backend/coverage/
           if-no-files-found: warn
+          retention-days: 7
 
   # ─── Frontend tests ───────────────────────────────────────────────────────
   frontend-tests:
@@ -168,6 +169,7 @@ jobs:
           name: frontend-coverage
           path: apps/frontend/coverage/
           if-no-files-found: warn
+          retention-days: 7
 
   # ─── Prisma schema-drift guard ────────────────────────────────────────────
   prisma-drift:
@@ -291,9 +293,11 @@ jobs:
         with:
           name: playwright-report
           path: apps/frontend/playwright-report/
+          retention-days: 7
 
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: playwright-test-results
           path: apps/frontend/test-results/
+          retention-days: 7
