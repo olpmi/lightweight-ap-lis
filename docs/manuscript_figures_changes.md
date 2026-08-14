@@ -159,11 +159,38 @@ from the journal PNG is pixel density.
 
 | Figure | Journal PNG | Web copy |
 | --- | --- | --- |
-| 3 Accessioning | 3344 × 3552 | 1200 × 1275, 95 KB |
-| 5 Ancillary, reporting, versioning | 3152 × 3308 | 1200 × 1259, 150 KB |
-| 6 Multilingual interfaces | 3344 × 3544 | 1200 × 1272, 188 KB |
+| 3 Accessioning | 3344 × 3552 | 1200 × 1275, 93 KB |
+| 5 Ancillary, reporting, versioning | 3152 × 3308 | 1200 × 1259, 149 KB |
+| 6 Multilingual interfaces | 3344 × 3544 | 1200 × 1272, 186 KB |
 
 They are written to `docs/images/`, which is tracked, unlike `docs/manuscript/`. The
 composer refuses to write a web copy over 250 KB, so the tracked set cannot quietly
 grow. Checksums are recorded in `docs/images/README.md` and in the checksum table of
 `docs/manuscript/figures/README.md`.
+
+## The figure case now uses placeholder names
+
+The figure patient and referring clinician were `Achieng, Grace` and `Mwangi, Joseph`
+— plausible names. They are now **`PATIENT, Test`** and **`REFERRER, Test`**.
+
+The repository already made this judgement for the seeded corpus. `prisma/seed.ts`
+says it outright: "a plausible name like 'Dr. Emily Johnson' on a report PDF is a
+hazard: nothing about the record itself would say 'this is not a patient'." The
+figure fixture was the one place that did not follow it, and the figures are the part
+of this work most likely to be read outside the repository — in a paper, and now on
+the repository landing page beside the pathologist `ZZZTEST-STAFF, Dr. Alpha`, whose
+obvious artificiality made the patient look real by contrast.
+
+The repository had also been arguing both sides. `figure-case.ts` claimed
+"deliberately unmistakable placeholders rather than plausible names" while holding
+plausible ones; the generated figures README claimed the opposite, that the names were
+"plausible-looking on purpose". Both now state the same rule.
+
+Only the two name constants changed. All seven figures were re-captured and
+re-composed from a freshly seeded corpus; panel geometry, printed text size and dpi
+are identical to the table above, and the diagnosis, comment, material hierarchy and
+report versions are unchanged. The patient name is visible in Figures 3 and 6 only —
+Figures 4, 5, S1, S2 and S3 never had it in frame.
+
+**Journal figures are affected too**, not only the README copies: both come from the
+same capture. Figures uploaded to the journal need replacing with this set.

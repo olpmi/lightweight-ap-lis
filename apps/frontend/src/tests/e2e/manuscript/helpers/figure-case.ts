@@ -23,20 +23,25 @@ import { expect, type APIRequestContext } from '@playwright/test';
  *
  * A figure in a published paper should not be able to be read as a real person's
  * record, however synthetic the data behind it is. Names that look like names
- * invite that reading; "Last, First" cannot be mistaken for anyone, and doubles as
- * a key to the surname-first display format. They are also distinctive enough for
- * the fixture to find its own case again on a re-run.
+ * invite that reading; "PATIENT, Test" cannot be mistaken for anyone, and doubles
+ * as a key to the surname-first format the panels display. This is the same
+ * judgement `prisma/seed.ts` makes for the corpus — a plausible name on a report
+ * PDF is a hazard, because nothing about the record itself would say it is not a
+ * patient.
+ *
+ * The surnames are distinct from the corpus's own `ZZZTEST-PATIENT`, which all 300
+ * seeded patients share, so the surname still identifies this one case on a re-run.
  */
 export const FIGURE_PATIENT = {
-  lastName: 'Achieng',
-  firstName: 'Grace',
+  lastName: 'PATIENT',
+  firstName: 'Test',
   dateOfBirth: '1968-03-12',
   sex: 'Female',
 } as const;
 
 export const FIGURE_CLINICIAN = {
-  lastName: 'Mwangi',
-  firstName: 'Joseph',
+  lastName: 'REFERRER',
+  firstName: 'Test',
 } as const;
 
 /**
