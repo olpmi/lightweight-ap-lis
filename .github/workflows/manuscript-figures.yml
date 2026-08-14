@@ -87,6 +87,26 @@ jobs:
           name: manuscript-figures
           path: docs/manuscript/figures/
           if-no-files-found: error
+          retention-days: 30
+
+      # The web copies land outside docs/manuscript/figures/ because they are
+      # tracked — the root README embeds them. Their own artifact rather than a
+      # second path on the step above: upload-artifact roots a multi-path artifact
+      # at the least common ancestor, which would silently re-shape the artifact
+      # above from figures/... to manuscript/figures/...
+      - name: Upload web-sized figures for the README
+        uses: actions/upload-artifact@v4
+        with:
+          name: manuscript-figures-web
+          path: docs/images/
+          if-no-files-found: error
+          retention-days: 30
+
+      # Not a gate: Chromium's PNG output is only byte-stable for a fixed browser
+      # build, so a Playwright bump would fail a drift check for no real reason.
+      # Printed so the operator can see whether docs/images/ is worth committing.
+      - name: Report whether the tracked figures changed
+        run: git status --porcelain docs/images
 
       - uses: actions/upload-artifact@v4
         if: failure()
@@ -94,3 +114,4 @@ jobs:
           name: manuscript-figures-playwright-report
           path: apps/frontend/playwright-report/
           if-no-files-found: ignore
+          retention-days: 7
