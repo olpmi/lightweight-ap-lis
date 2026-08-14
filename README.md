@@ -392,7 +392,17 @@ which is an accepted trade-off of the account-picker login.
 
 **Never commit directly to `main`.** All changes go through `dev` first. This prevents `main`'s package.json and lockfile drifting out of sync, which breaks `pnpm install --frozen-lockfile` in CI for both branches.
 
-> **This is convention, not enforcement.** Branch protection and rulesets are unavailable on this repository — the GitHub API returns `403 Upgrade to GitHub Pro or make this repository public`, because it is a private repo on a free personal account. Nothing server-side prevents a direct push to `main`, a squashed promotion, or a merge with red CI. Enforcement (protected branches, required status checks, `CODEOWNERS` review routing) becomes possible only if the account is upgraded or the repo is made public.
+**This is enforced server-side.** A repository ruleset protects both `dev` and `main`: changes must arrive by pull request, the CI checks below must pass, and force-pushes and branch deletion are blocked. Rulesets became available when the repository was made public — on a free personal account the API previously returned `403 Upgrade to GitHub Pro or make this repository public`.
+
+| Rule | `dev` and `main` |
+|---|---|
+| Pull request required | Yes — direct pushes are rejected |
+| Required approvals | 0 — the author may merge their own PR once CI is green |
+| Required status checks | `Detect changes`, `Typecheck`, `Lint`, `Backend Tests`, `Frontend Tests`, `Prisma schema drift`, `Playwright E2E`, `Gitleaks scan`, `OSV scan` |
+| Force-push | Blocked |
+| Branch deletion | Blocked |
+
+Jobs that the `Detect changes` path filter skips report a `skipped` conclusion, which GitHub counts as a pass — so a docs-only PR is not held up waiting for the backend suite. `CodeQL` is deliberately **not** a required check: it does not run on `pull_request`, so requiring it would leave every PR permanently unmergeable.
 
 ### Environment-driven behaviour
 
@@ -423,8 +433,14 @@ feature branch → dev (CI: lint, unit tests, e2e, Prisma drift check)
                     main  (production deploy)
 ```
 
-1. Work on a feature branch or directly on `dev`.
+1. Work on a feature branch — `dev` no longer accepts direct pushes.
 2. Open a PR targeting `dev`; CI must pass.
 3. When ready to release, open a PR `dev → main`; merge once CI is green. **Use a merge commit** (`gh pr merge <n> --merge`) — squashing rewrites the promoted commits into a new SHA and diverges `main` from `dev`, forcing a reverse merge back into `dev`.
 4. Deploy from `main` using `docker-compose.prod.yml`.
+
+## License
+
+Released under the [MIT License](LICENSE).
+
+This is a research prototype, not a cleared or certified medical device. The seeded corpus is entirely synthetic — no real patient data is present in this repository or its history. Anyone adapting it for clinical use is responsible for the applicable regulatory, privacy and validation requirements in their jurisdiction.
 
