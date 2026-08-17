@@ -32,3 +32,8 @@ overrides:
   # against its own line rather than collapsed onto one version.
   brace-expansion@1: '1.1.16' # minimatch
   brace-expansion@5: '5.0.7' # glob
+  # vitest accepts vite ^5 || ^6 || ^7 and bundles its own copy, so the backend
+  # — which has no vite of its own — would otherwise resolve vite 5 and drag
+  # the unpatched vite 5 line (and esbuild 0.21) back in behind the frontend's
+  # vite 6. A range, not a pin: vite 6 patches should still flow.
+  vite: '^6.4.3'
