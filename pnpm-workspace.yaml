@@ -8,3 +8,27 @@ allowBuilds:
   '@prisma/engines': true
   esbuild: true
   prisma: true
+
+# Security pins for transitive dependencies. Each of these is pulled in by
+# something we depend on rather than declared by us, so the only way to move
+# them is from here. Every entry closes one or more Dependabot advisories;
+# the parenthetical names the package that drags it in.
+#
+# Remove an entry once the parent ships a version that resolves at or above
+# the pin on its own — an override that no longer changes anything is dead
+# config, and pnpm will not warn you about it.
+overrides:
+  dompurify: '3.4.13' # monaco-editor pins 3.2.7; 14 advisories
+  postcss: '8.5.23' # vite
+  ws: '8.21.0' # puppeteer-core, jsdom
+  nanoid: '3.3.18' # postcss
+  js-yaml: '4.3.1' # eslint
+  form-data: '4.0.6' # axios, supertest, jsdom
+  qs: '6.15.2' # express
+  body-parser: '1.20.6' # express
+  follow-redirects: '1.16.0' # axios
+  '@babel/core': '7.29.6' # @vitejs/plugin-react
+  # Two major lines are installed and both are vulnerable, so each is pinned
+  # against its own line rather than collapsed onto one version.
+  brace-expansion@1: '1.1.16' # minimatch
+  brace-expansion@5: '5.0.7' # glob
