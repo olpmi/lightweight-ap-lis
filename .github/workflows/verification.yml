@@ -44,7 +44,7 @@ jobs:
       PORT: 3001
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: ./.github/actions/setup
 
       - name: Apply migrations and seed the deterministic corpus
@@ -97,7 +97,7 @@ jobs:
 
       # Every value here derives from prisma/seed.ts or from the repository itself,
       # so the artifact carries no clinical data or secrets.
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: verification-artifacts

@@ -25,7 +25,7 @@ jobs:
     # cannot be uploaded to the Security tab. We invoke osv-scanner directly
     # and publish JSON + table reports as build artifacts.
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Install osv-scanner
         run: |
@@ -51,7 +51,7 @@ jobs:
 
       - name: Upload OSV scan artifact
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: osv-scan-results
           path: |

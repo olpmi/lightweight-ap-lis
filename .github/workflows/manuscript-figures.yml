@@ -32,7 +32,7 @@ jobs:
       PORT: 3001
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: ./.github/actions/setup
 
       - name: Apply migrations and seed the deterministic corpus
@@ -82,7 +82,7 @@ jobs:
 
       # Only the generated figure outputs. Every value in them comes from
       # prisma/seed.ts, so the artifact carries no clinical data or secrets.
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: manuscript-figures
           path: docs/manuscript/figures/
@@ -95,7 +95,7 @@ jobs:
       # at the least common ancestor, which would silently re-shape the artifact
       # above from figures/... to manuscript/figures/...
       - name: Upload web-sized figures for the README
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: manuscript-figures-web
           path: docs/images/
@@ -108,7 +108,7 @@ jobs:
       - name: Report whether the tracked figures changed
         run: git status --porcelain docs/images
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: failure()
         with:
           name: manuscript-figures-playwright-report
