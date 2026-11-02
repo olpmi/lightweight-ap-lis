@@ -29,11 +29,18 @@ export default defineConfig({
       // Conservative starting floor — ratchet up as tests are added.
       // Run `npm run test:coverage` locally to see current numbers; CI uses
       // the same thresholds via the `--coverage` flag in .github/workflows/ci.yml.
+      //
+      // Re-baselined for vitest 4. Its v8 provider maps coverage through the
+      // source AST (ast-v8-to-istanbul) instead of source maps, which counts
+      // statements and branches more strictly: the same tests over the same
+      // files measured 62.7/65.3/62.7/75.2 (lines/functions/statements/branches)
+      // under vitest 3 and 61.2/56.1/60.0/44.5 under vitest 4. The floors moved
+      // with the measurement, keeping roughly the same margin below it.
       thresholds: {
-        lines: 50,
-        functions: 35,
-        statements: 50,
-        branches: 55,
+        lines: 56,
+        functions: 51,
+        statements: 55,
+        branches: 40,
       },
       include: ['src/**/*.ts'],
       exclude: [
