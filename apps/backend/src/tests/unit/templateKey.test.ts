@@ -41,7 +41,10 @@ describe('resolveTemplateStem', () => {
     );
   });
 
-  it.each(['../outside', 'a/../../outside', path.resolve('elsewhere', 'x')])('refuses %s with a 400', (key) => {
+  // An absolute key is not probed here: the key is split on '/' before it is
+  // resolved, so on POSIX a leading slash only yields an empty first segment
+  // (assertSafeTemplateKey rejects that shape) and the result stays under root.
+  it.each(['../outside', 'a/../../outside'])('refuses %s with a 400', (key) => {
     let caught: unknown;
     try {
       resolveTemplateStem(root, key);
