@@ -27,7 +27,7 @@
     "@mui/material": "^5.15.15",
     "@tanstack/react-query": "^5.28.0",
     "@tanstack/react-query-devtools": "^5.28.0",
-    "axios": "^1.18.0",
+    "axios": "^1.21.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.51.2",
@@ -46,7 +46,7 @@
     "@vitest/coverage-v8": "^3.2.7",
     "jsdom": "^24.0.0",
     "typescript": "*",
-    "vite": "^6.4.3",
+    "vite": "^6.4.5",
     "vitest": "^3.2.7"
   }
 }
