@@ -24,7 +24,6 @@ const hasDb = Boolean(process.env.DATABASE_URL && process.env.SESSION_SECRET);
 describe.skipIf(!hasDb)('Case type and accession prefix', () => {
   const nonce = Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
   const userName = `ctype_${nonce}`;
-  let roleId = 0;
   let employeeId = 0;
   let bodySiteId = 0;
   const createdOrderIds: string[] = [];
@@ -76,7 +75,6 @@ describe.skipIf(!hasDb)('Case type and accession prefix', () => {
       lastName: 'Tester',
     });
     employeeId = actor.employeeId;
-    roleId = actor.employeeRoleId;
   });
 
   afterAll(async () => {

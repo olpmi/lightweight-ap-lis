@@ -32,7 +32,6 @@ interface TestCase {
 describe.skipIf(!hasDb)('Concurrency / conflict paths', () => {
   const nonce = Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
   const userName = `conf_${nonce}`;
-  let roleId = 0;
   let employeeId = 0;
   let bodySiteId = 0;
   const createdOrderIds: string[] = [];
@@ -56,7 +55,6 @@ describe.skipIf(!hasDb)('Concurrency / conflict paths', () => {
       lastName: 'Tester',
     });
     employeeId = actor.employeeId;
-    roleId = actor.employeeRoleId;
     expect(employeeId).toBeGreaterThan(0);
   }
 

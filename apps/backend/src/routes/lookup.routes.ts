@@ -1,15 +1,12 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { prisma } from '../lib/prisma.js';
-import { ReportService } from '../services/report.service.js';
 import { requireAuth } from '../middleware/auth.middleware.js';
-import { validateBody } from '../middleware/validate.middleware.js';
-import { APP_LANGUAGE_CODES, createDraftReportSchema, reactivateOrderSchema, type AppLanguageCode, PATIENT_SUMMARY_LANGUAGE_CODES, resolvePatientSummary, type PatientSummaryLanguageCode } from '@lis/shared';
+import { APP_LANGUAGE_CODES, type AppLanguageCode, PATIENT_SUMMARY_LANGUAGE_CODES, resolvePatientSummary, type PatientSummaryLanguageCode } from '@lis/shared';
 import { getTemplateDefinition, listTemplateCatalog } from '@lis/shared/templates/server';
 import { getPatientSummaryDefinition, listPatientSummaryCatalog } from '@lis/shared/patient-summaries/server';
 import { AppError } from '../middleware/error.middleware.js';
 
 const router: Router = Router();
-const reportService = new ReportService();
 
 function resolveLanguage(req: Request): AppLanguageCode {
   const requested = typeof req.query.language === 'string'

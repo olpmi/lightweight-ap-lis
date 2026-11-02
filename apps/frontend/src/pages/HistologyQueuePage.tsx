@@ -21,7 +21,6 @@ import {
   ToggleButtonGroup,
   Tabs,
   Tab,
-  Collapse,
   Pagination,
   TextField,
   InputAdornment,
@@ -83,7 +82,6 @@ interface HistGroupRowsProps {
   setSlideCounts: React.Dispatch<React.SetStateAction<Record<string, number>>>;
   bulkAddSlides: (orders: AncillaryOrder[]) => void;
   bulkAdvance: (orders: AncillaryOrder[]) => void;
-  bulkCancel: (orders: AncillaryOrder[]) => void;
   bulkNextLabel: (orders: AncillaryOrder[]) => string;
   bulkPending: boolean;
   canAdvance: (o: AncillaryOrder) => boolean;
@@ -104,7 +102,6 @@ function HistGroupRowsImpl({
   setSlideCounts,
   bulkAddSlides,
   bulkAdvance,
-  bulkCancel,
   bulkNextLabel,
   bulkPending,
   fmtDateTime,
@@ -311,7 +308,6 @@ const HistGroupRows = React.memo(HistGroupRowsImpl, (prev, next) => {
 
 function AncillaryCaseTable({ category }: { category: AncillaryCategory }) {
   const { t } = useLanguage();
-  const navigate = useNavigate();
   const qc = useQueryClient();
   const [statusFilter, setStatusFilter] = useState<AncillaryOrderStatus>(
     category === 'HE' ? 'MICROTOMY' : 'PULL_BLOCK'
@@ -439,26 +435,6 @@ function AncillaryCaseTable({ category }: { category: AncillaryCategory }) {
       for (const o of actionable) {
         try {
           await ancillaryApi.updateStatus(o.id, { status: NEXT_STATUS[o.status]! });
-        } catch {
-          failures++;
-        }
-      }
-    } finally {
-      setBulkPending(false);
-      qc.invalidateQueries({ queryKey: qk.ancillaryQueue.all });
-      if (failures > 0) setActionError(t('errorGeneric'));
-    }
-  };
-
-  const bulkCancel = async (caseOrders: AncillaryOrder[]) => {
-    const actionable = caseOrders.filter((o) => o.status === 'PULL_BLOCK' || o.status === 'MICROTOMY' || o.status === 'SLIDE_STAIN');
-    if (actionable.length === 0) return;
-    setBulkPending(true);
-    let failures = 0;
-    try {
-      for (const o of actionable) {
-        try {
-          await ancillaryApi.updateStatus(o.id, { status: 'CANCELLED' });
         } catch {
           failures++;
         }
@@ -606,7 +582,6 @@ function AncillaryCaseTable({ category }: { category: AncillaryCategory }) {
                 setSlideCounts={setSlideCounts}
                 bulkAddSlides={bulkAddSlides}
                 bulkAdvance={bulkAdvance}
-                bulkCancel={bulkCancel}
                 bulkNextLabel={bulkNextLabel}
                 bulkPending={bulkPending}
                 canAdvance={canAdvance}

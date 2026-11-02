@@ -1211,69 +1211,6 @@ async function previewAndSignPrelim(page: Page): Promise<void> {
   });
 }
 
-/**
- * Generic worklist advancer: switch the status filter to `value`, expand any
- * collapsed group rows, then click each enabled action button on the action
- * column (last cell) of every visible row. This works for both the H&E
- * worklist and the IHC / Molecular ancillary tables, which all use a MUI
- * ToggleButtonGroup whose buttons carry the locale-independent `value=` attr.
- */
-async function advanceWorklistPhase(
-  page: Page,
-  filterValue: string,
-  opts: { addSlidesFirst?: boolean } = {},
-): Promise<void> {
-  // Switch the filter.
-  const filterBtn = page.locator(`button[value="${filterValue}"]`).first();
-  if (await filterBtn.isVisible({ timeout: 2_000 }).catch(() => false)) {
-    await filterBtn.click().catch(() => {});
-    await sleep(LONG_PAUSE);
-  }
-
-  // Expand any collapsed groups so per-block status chips/actions are visible.
-  const collapsedToggles = page.locator('table tbody tr svg[data-testid="KeyboardArrowRightIcon"]');
-  const cN = await collapsedToggles.count();
-  for (let i = 0; i < Math.min(cN, 6); i++) {
-    await collapsedToggles.nth(i).click().catch(() => {});
-    await sleep(250);
-  }
-
-  if (opts.addSlidesFirst) {
-    // First button on each group row is "Add Slides to All" when MICROTOMY.
-    const groupRows = page.locator('table tbody tr').filter({ has: page.locator('.MuiChip-root[class*="colorPrimary"]') });
-    const gN = await groupRows.count();
-    for (let i = 0; i < Math.min(gN, 6); i++) {
-      const btn = groupRows.nth(i).locator('td:last-child button').first();
-      if (await btn.isEnabled().catch(() => false)) {
-        await btn.click().catch(() => {});
-        await sleep(700);
-      }
-    }
-  }
-
-  // Click the "advance" action on each group row. For MICROTOMY this is the
-  // 2nd button (1st is Add Slides); for every other phase, the only enabled
-  // group-action button advances the row.
-  const groupRows = page.locator('table tbody tr').filter({ has: page.locator('.MuiChip-root[class*="colorPrimary"]') });
-  const gN = await groupRows.count();
-  for (let i = 0; i < Math.min(gN, 6); i++) {
-    const row = groupRows.nth(i);
-    const btns = row.locator('td:last-child button');
-    const cnt = await btns.count();
-    // Try each button in turn until one advances the row.
-    for (let j = 0; j < cnt; j++) {
-      const b = btns.nth(j);
-      if (!(await b.isEnabled().catch(() => false))) continue;
-      // Skip the first button on MICROTOMY rows (already-clicked Add Slides).
-      if (opts.addSlidesFirst && j === 0) continue;
-      await b.click().catch(() => {});
-      await sleep(700);
-      break;
-    }
-  }
-  await sleep(LONG_PAUSE);
-}
-
 async function advanceMmrIhc(page: Page, orderId: string): Promise<void> {
   await step('Open Histology page → IHC tab', async () => {
     await page.goto('/histology');

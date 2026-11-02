@@ -158,7 +158,6 @@ function SendoutGroupRows({ orderId, caseOrders, updateMutation, statusLabel, fm
 
 function SendoutCaseTable({ category }: { category: AncillaryCategory }) {
   const { t } = useLanguage();
-  const navigate = useNavigate();
   const qc = useQueryClient();
 
   const [statusFilter, setStatusFilter] = useState<AncillaryOrderStatus>('PULL_MATERIAL');

@@ -34,7 +34,6 @@ const hasDb = Boolean(process.env.DATABASE_URL && process.env.SESSION_SECRET);
 describe.skipIf(!hasDb)('Order → sign-out workflow', () => {
   const nonce = Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
   const userName = `wf_${nonce}`;
-  let roleId = 0;
   let employeeId = 0;
   let bodySiteId = 0;
   let orderId = '';
@@ -58,7 +57,6 @@ describe.skipIf(!hasDb)('Order → sign-out workflow', () => {
       lastName: 'Tester',
     });
     employeeId = actor.employeeId;
-    roleId = actor.employeeRoleId;
     expect(employeeId).toBeGreaterThan(0);
   });
 

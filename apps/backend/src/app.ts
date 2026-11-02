@@ -45,8 +45,20 @@ export function createApp(): express.Application {
   // requires this to bucket attempts per-client instead of per-proxy.
   app.set('trust proxy', 1);
 
-  // Security headers
-  app.use(helmet({ contentSecurityPolicy: false }));
+  // Security headers. The API serves JSON and PDFs and never HTML, so helmet's
+  // default content-security policy costs nothing and closes the obvious gap.
+  // upgrade-insecure-requests is dropped because deployments behind a plain
+  // HTTP nginx are supported (see COOKIE_SECURE). Routes that answer with a
+  // PDF strip the header again (see pdfResponse): a document policy means
+  // nothing to a PDF, and some built-in viewers honour it anyway.
+  app.use(
+    helmet({
+      contentSecurityPolicy: {
+        useDefaults: true,
+        directives: { 'upgrade-insecure-requests': null },
+      },
+    })
+  );
 
   // CORS - allow frontend dev origin
   app.use(

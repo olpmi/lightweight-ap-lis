@@ -25,7 +25,6 @@ describe.skipIf(!hasDb)('Order edit-lock', () => {
   const nonce = Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
   const userA = `lockA_${nonce}`;
   const userB = `lockB_${nonce}`;
-  let roleId = 0;
   let bodySiteId = 0;
   let employeeAId = 0;
   let employeeBId = 0;
@@ -50,7 +49,6 @@ describe.skipIf(!hasDb)('Order edit-lock', () => {
       lastName: 'A',
     });
     employeeAId = actorA.employeeId;
-    roleId = actorA.employeeRoleId;
 
     const actorB = await createEmployeeAndLogin(agentB, EMPLOYEE_ROLES.PATHOLOGIST, userB, {
       firstName: 'Lock',

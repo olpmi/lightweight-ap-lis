@@ -7,7 +7,6 @@ import {
   type CreateDraftReportInput,
   type PatientSummaryValues,
   type ReactivateOrderInput,
-  type ResolvedPatientSummary,
   type SignOutReportInput,
   resolvePatientSummary,
   formatOrderIdDisplay,

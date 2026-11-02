@@ -32,7 +32,6 @@ interface SignedCase {
 describe.skipIf(!hasDb)('Report amendment (reactivation)', () => {
   const nonce = Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
   const userName = `amend_${nonce}`;
-  let roleId = 0;
   let employeeId = 0;
   let bodySiteId = 0;
   const createdOrderIds: string[] = [];
@@ -116,7 +115,6 @@ describe.skipIf(!hasDb)('Report amendment (reactivation)', () => {
       lastName: 'Tester',
     });
     employeeId = actor.employeeId;
-    roleId = actor.employeeRoleId;
   });
 
   afterAll(async () => {
