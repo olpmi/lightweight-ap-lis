@@ -48,11 +48,18 @@ export default defineConfig({
       provider: 'v8',
       reporter: ['text', 'lcov', 'json-summary'],
       // Conservative starting floor — ratchet up as more component tests land.
+      //
+      // Re-baselined for vitest 4. Its v8 provider maps coverage through the
+      // source AST (ast-v8-to-istanbul) instead of source maps, which counts
+      // statements and branches more strictly: the same tests over the same
+      // files measured 45.7/37.1/45.7/59.8 (lines/functions/statements/branches)
+      // under vitest 3 and 21.7/13.0/20.0/19.3 under vitest 4. The floors moved
+      // with the measurement, keeping roughly the same margin below it.
       thresholds: {
-        lines: 30,
-        functions: 25,
-        statements: 30,
-        branches: 45,
+        lines: 17,
+        functions: 9,
+        statements: 15,
+        branches: 15,
       },
       include: ['src/**/*.{ts,tsx}'],
       exclude: ['src/tests/**', 'src/**/*.test.{ts,tsx}', 'src/main.tsx'],
