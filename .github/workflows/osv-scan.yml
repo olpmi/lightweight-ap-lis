@@ -15,15 +15,20 @@ concurrency:
 permissions:
   contents: read
   actions: read
+  security-events: write
 
 jobs:
   scan:
     name: OSV scan
     runs-on: ubuntu-latest
     timeout-minutes: 15
-    # NOTE: this repo is private without GitHub Advanced Security, so SARIF
-    # cannot be uploaded to the Security tab. We invoke osv-scanner directly
-    # and publish JSON + table reports as build artifacts.
+    # Results upload to the Security tab as code-scanning alerts (category
+    # "osv-scanner"), beside CodeQL's. That matters here because Dependabot's
+    # alert list has been incomplete for this repository: OSV reported
+    # GitHub-reviewed advisories (axios, tinypool and body-parser among them)
+    # that Dependabot never raised. The JSON and table reports stay as a build
+    # artifact for anyone who wants the raw data. Findings still do not fail
+    # the build; the Security tab is where they get triaged.
     steps:
       - uses: actions/checkout@v4
 
@@ -36,11 +41,16 @@ jobs:
           chmod +x osv-scanner
           ./osv-scanner --version
 
+      - name: Run OSV-Scanner (SARIF, for the Security tab)
+        run: |
+          set +e
+          ./osv-scanner --recursive --lockfile=./pnpm-lock.yaml --format=sarif --output=osv-results.sarif ./
+          exit 0
+
       - name: Run OSV-Scanner (JSON)
         run: |
           set +e
           ./osv-scanner --recursive --lockfile=./pnpm-lock.yaml --format=json --output=osv-results.json ./
-          # Don't fail the build on transitive CVEs (matches Trivy gating pattern).
           exit 0
 
       - name: Run OSV-Scanner (table, for log readability)
@@ -48,6 +58,15 @@ jobs:
           set +e
           ./osv-scanner --recursive --lockfile=./pnpm-lock.yaml --format=table ./ | tee osv-results.txt
           exit 0
+
+      - name: Upload OSV results to code scanning
+        # Guarded on the file so a scanner that failed to run (network, rate
+        # limit) does not turn a required check red for an unrelated reason.
+        if: always() && hashFiles('osv-results.sarif') != ''
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: osv-results.sarif
+          category: osv-scanner
 
       - name: Upload OSV scan artifact
         if: always()
@@ -57,4 +76,5 @@ jobs:
           path: |
             osv-results.json
             osv-results.txt
+            osv-results.sarif
           retention-days: 30
