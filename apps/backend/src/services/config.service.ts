@@ -16,6 +16,7 @@ import {
 } from '@lis/shared/templates/server';
 import { type Prisma } from '@prisma/client';
 import { prisma } from '../lib/prisma.js';
+import { AppError } from '../middleware/error.middleware.js';
 
 type RawJson = Record<string, unknown>;
 
@@ -30,6 +31,26 @@ function isDevFileMode(): boolean {
 function getTemplateWriteRoot(): string {
   const dir = process.env.TEMPLATE_SOURCE_DIR!;
   return path.isAbsolute(dir) ? dir : path.resolve(process.cwd(), dir);
+}
+
+/**
+ * In dev-file mode a template key doubles as a path under the template root
+ * (`family/stem`), so it must stay a plain list of file-name segments: letters,
+ * digits, dots, underscores and hyphens, separated by single slashes. That is
+ * the shape every catalog key already has, and it leaves no room for `..`,
+ * absolute paths or backslashes to read or write outside the root.
+ */
+const TEMPLATE_KEY_SEGMENT = /^[A-Za-z0-9][A-Za-z0-9._-]*$/;
+
+export function assertSafeTemplateKey(templateKey: string): void {
+  const segments = templateKey.split('/');
+  if (segments.some((segment) => !TEMPLATE_KEY_SEGMENT.test(segment))) {
+    throw new AppError(
+      400,
+      'INVALID_TEMPLATE_KEY',
+      `Template key "${templateKey}" must be slash-separated file-name segments`,
+    );
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -179,6 +200,7 @@ export async function listAllTemplates(
  */
 export async function getTemplateFiles(templateKey: string): Promise<TemplateFiles> {
   if (isDevFileMode()) {
+    assertSafeTemplateKey(templateKey);
     const root = getTemplateWriteRoot();
     const corePath = path.join(root, ...templateKey.split('/')) + '.core.json';
 
@@ -243,6 +265,7 @@ export async function saveTemplate(params: {
   const { templateKey, family, kind, schemaStyle, title, coreJson, translations } = params;
 
   if (isDevFileMode()) {
+    assertSafeTemplateKey(templateKey);
     const root = getTemplateWriteRoot();
     const segments = templateKey.split('/');
     const stem = segments[segments.length - 1]!;

@@ -216,7 +216,7 @@ router.get('/:orderId/materials', requireAuth, async (req: Request, res: Respons
 // GET /api/orders/:orderId/worksheet-pdf
 router.get('/:orderId/worksheet-pdf', requireAuth, async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const order = await prisma.order.findUniqueOrThrow({
+    const order = await prisma.order.findUnique({
       where: { orderId: req.params.orderId },
       include: {
         patient: true,
@@ -224,6 +224,10 @@ router.get('/:orderId/worksheet-pdf', requireAuth, async (req: Request, res: Res
         specimens: { include: { bodySite: true, specimenType: true } },
       },
     });
+    if (!order) {
+      res.status(404).json({ error: { code: 'NOT_FOUND', message: 'Order not found' } });
+      return;
+    }
 
     const { fileName, storagePath } = await pdfService.generateWorksheetPdf(order);
     res.setHeader('Content-Type', 'application/pdf');
@@ -237,8 +241,20 @@ router.get('/:orderId/worksheet-pdf', requireAuth, async (req: Request, res: Res
 // GET /api/orders/:orderId/reference-strips-pdf
 router.get('/:orderId/reference-strips-pdf', requireAuth, async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const specimens = await prisma.specimen.findMany({
+    // The order ID becomes part of a file name, and formatOrderIdDisplay passes
+    // anything non-canonical through unchanged, so only an ID that names an
+    // existing order may reach the PDF service. An unknown ID used to fall
+    // through with an empty specimen list and still write a file.
+    const order = await prisma.order.findUnique({
       where: { orderId: req.params.orderId },
+      select: { orderId: true },
+    });
+    if (!order) {
+      res.status(404).json({ error: { code: 'NOT_FOUND', message: 'Order not found' } });
+      return;
+    }
+    const specimens = await prisma.specimen.findMany({
+      where: { orderId: order.orderId },
       include: {
         bodySite: true,
         blocks: {
@@ -249,7 +265,7 @@ router.get('/:orderId/reference-strips-pdf', requireAuth, async (req: Request, r
       orderBy: { specimenCode: 'asc' },
     });
 
-    const { fileName, storagePath } = await pdfService.generateReferenceStripsPdf(req.params.orderId, specimens);
+    const { fileName, storagePath } = await pdfService.generateReferenceStripsPdf(order.orderId, specimens);
     res.setHeader('Content-Type', 'application/pdf');
     res.setHeader('Content-Disposition', `attachment; filename="${fileName}"`);
     fs.createReadStream(storagePath).pipe(res);
