@@ -32,8 +32,8 @@ const saveTemplateBodySchema = z.object({
   kind: z.enum(TEMPLATE_KINDS),
   schemaStyle: z.enum(['flat', 'nested']),
   title: z.string().min(1),
-  coreJson: z.record(z.unknown()),
-  translations: z.record(z.record(z.unknown())).optional().default({}),
+  coreJson: z.record(z.string(), z.unknown()),
+  translations: z.record(z.string(), z.record(z.string(), z.unknown())).optional().default({}),
 });
 
 // ---------------------------------------------------------------------------

@@ -11,7 +11,7 @@ import {
   parseCsv,
   type DataImportEntity,
 } from '@lis/shared';
-import type { ZodType, ZodTypeDef } from 'zod';
+import type { ZodType } from 'zod';
 
 /**
  * The example CSVs are downloadable from the import page and are the first
@@ -24,7 +24,7 @@ const TEMPLATE_DIR = path.resolve(
   '../../../../frontend/public/csv-templates',
 );
 
-const SCHEMAS: Record<DataImportEntity, ZodType<unknown, ZodTypeDef, Record<string, string>>> = {
+const SCHEMAS: Record<DataImportEntity, ZodType<unknown, Record<string, string>>> = {
   patients: importPatientRowSchema,
   doctors: importDoctorRowSchema,
   staff: importStaffRowSchema,

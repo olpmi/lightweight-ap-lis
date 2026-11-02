@@ -101,7 +101,7 @@ export const createDraftReportSchema = z.object({
   // Optimistic-locking token: ISO timestamp of the draft the client loaded.
   // When provided and an editable draft already exists, the update only
   // succeeds if the row's updatedAt still matches; otherwise -> 409 DRAFT_STALE.
-  expectedUpdatedAt: z.string().datetime().optional(),
+  expectedUpdatedAt: z.iso.datetime().optional(),
 });
 
 export const signOutReportSchema = z.object({
@@ -113,7 +113,7 @@ export const signOutReportSchema = z.object({
   synopticPayload: z.string().optional(),
   pathologistEmployeeId: z.number().int().positive('Pathologist is required for sign-out'),
   // Optimistic-locking token, see createDraftReportSchema.
-  expectedUpdatedAt: z.string().datetime().optional(),
+  expectedUpdatedAt: z.iso.datetime().optional(),
 });
 
 export const reactivateOrderSchema = z.object({
@@ -241,7 +241,7 @@ const csvIsoDate = z
   .superRefine((v, ctx) => {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(v)) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: 'custom',
         message: `date_of_birth must be formatted ${IMPORT_DATE_FORMAT_HINT}`,
       });
       return;
@@ -255,15 +255,15 @@ const csvIsoDate = z
       date.getUTCMonth() === month - 1 &&
       date.getUTCDate() === day;
     if (!roundTrips) {
-      ctx.addIssue({ code: z.ZodIssueCode.custom, message: `${v} is not a real calendar date` });
+      ctx.addIssue({ code: 'custom', message: `${v} is not a real calendar date` });
       return;
     }
     if (date.getTime() > Date.now()) {
-      ctx.addIssue({ code: z.ZodIssueCode.custom, message: 'date_of_birth is in the future' });
+      ctx.addIssue({ code: 'custom', message: 'date_of_birth is in the future' });
       return;
     }
     if (year < 1900) {
-      ctx.addIssue({ code: z.ZodIssueCode.custom, message: 'date_of_birth is before 1900' });
+      ctx.addIssue({ code: 'custom', message: 'date_of_birth is before 1900' });
     }
   });
 
@@ -273,7 +273,7 @@ const csvSex = z
   .superRefine((v, ctx) => {
     if (!(v in SEX_CSV_ALIASES)) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: 'custom',
         message: `sex must be one of ${SEX_OPTIONS.join(', ')} (or M/F/O/U); leave blank for Unknown`,
       });
     }
