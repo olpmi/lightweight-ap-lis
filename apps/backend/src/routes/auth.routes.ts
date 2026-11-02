@@ -24,6 +24,12 @@ router.post('/login', loginLimiter, validateBody(loginSchema), async (req: Reque
   try {
     const employee = await authService.login(req.body);
 
+    // Issue a fresh session ID on login, so a session fixed in the browser
+    // before authentication cannot be promoted into an authenticated one.
+    await new Promise<void>((resolve, reject) => {
+      req.session.regenerate((err) => (err ? reject(err) : resolve()));
+    });
+
     req.session.employeeId = employee.employeeId;
     req.session.employeeUserName = employee.userName;
     req.session.employeeRole = employee.roleName;

@@ -373,14 +373,15 @@ const SELECT_RULES: SelectRule[] = [
   { detect: /^Mucinous adenocarcinoma$/, prefer: [/^Adenocarcinoma$/i] },
   // histologic_grade
   { detect: /^G2, moderately differentiated$/, prefer: [/^G2, moderately differentiated$/i] },
-  // multiple_primary_sites
-  { detect: /^Not applicable$.*Present|^Present$/, prefer: [/^Not applicable$/i] },
+  // multiple_primary_sites, and any other field whose option set includes a
+  // bare "Present" (macroscopic_tumor_perforation): prefer Not applicable,
+  // else Not identified. A detect regex is tested against one option value at
+  // a time, so it must describe a single option, never a sequence of them.
+  { detect: /^Present$/, prefer: [/^Not applicable$/i, /^Not identified$/i] },
   // tumor_extent: detect by "Invades through muscularis propria into pericolic"
   { detect: /muscularis propria into pericolic/i, prefer: [/Invades through muscularis propria into pericolic/i] },
   // submucosal_invasion.status (pT1 only): pick Not applicable
-  { detect: /Not applicable.*Not identified.*Present|^Not identified$.*Present|Less than 1 mm|Upper one third/, prefer: [/^Not applicable$/i, /Cannot be determined/i] },
-  // macroscopic_tumor_perforation
-  { detect: /^Not identified$.*Present.*Cannot be determined/, prefer: [/^Not identified$/i] },
+  { detect: /Less than 1 mm|Upper one third/, prefer: [/^Not applicable$/i, /Cannot be determined/i] },
   // lymphovascular: detect by Small vessel option (multi_select)
   { detect: /^Small vessel$|Large vessel \(venous\)/, prefer: [/^Not identified$/i] },
   // perineural_invasion
@@ -940,7 +941,7 @@ async function advanceHistologyHE(page: Page, orderId: string): Promise<void> {
   });
 
   await step('Add 1 slide to all blocks (group action)', async () => {
-    await clickGroupAction(page, /^Add Slides|Add slides|Ongeza|Ajouter|إضافة|سلائیڈز/i, 0);
+    await clickGroupAction(page, /Add slides|Ongeza|Ajouter|إضافة|سلائیڈز/i, 0);
     await sleep(LONG_PAUSE);
   });
 

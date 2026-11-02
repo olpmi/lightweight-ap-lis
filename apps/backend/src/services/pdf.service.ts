@@ -5,6 +5,22 @@ import { GENERATED_PDFS_DIR } from '../utils/storageDirs.js';
 import { isDemoMode } from '../lib/demoMode.js';
 import { formatOrderIdDisplay, formatMaterialIdDisplay, type ResolvedPatientSummary } from '@lis/shared';
 
+/**
+ * Resolve a generated-PDF file name to its on-disk path, refusing anything
+ * that would land outside GENERATED_PDFS_DIR. File names are built from order
+ * IDs, and formatOrderIdDisplay passes a non-canonical ID through unchanged,
+ * so this is the last line of defence should a raw request parameter ever
+ * reach a generator: `../../x` must not become a write outside storage.
+ */
+export function generatedPdfPath(fileName: string): string {
+  const root = path.resolve(GENERATED_PDFS_DIR);
+  const resolved = path.resolve(root, fileName);
+  if (path.basename(fileName) !== fileName || path.dirname(resolved) !== root) {
+    throw new Error(`Refusing to write a generated PDF outside the storage directory: ${fileName}`);
+  }
+  return resolved;
+}
+
 interface OrderForPdf {
   orderId: string;
   registeredDate: Date;
@@ -124,7 +140,7 @@ export class PdfService {
     y = this.drawBlankSection(page, 'CLINICAL NOTES', y, boldFont, 100);
 
     const fileName = `${formatOrderIdDisplay(order.orderId)}-worksheet.pdf`;
-    const storagePath = path.join(GENERATED_PDFS_DIR, fileName);
+    const storagePath = generatedPdfPath(fileName);
 
     await this.stampDemoWatermark(pdfDoc);
     const pdfBytes = await pdfDoc.save();
@@ -186,7 +202,7 @@ export class PdfService {
     }
 
     const fileName = `${formatOrderIdDisplay(orderId)}-reference-strips.pdf`;
-    const storagePath = path.join(GENERATED_PDFS_DIR, fileName);
+    const storagePath = generatedPdfPath(fileName);
     await this.stampDemoWatermark(pdfDoc);
     const pdfBytes = await pdfDoc.save();
     fs.writeFileSync(storagePath, pdfBytes);
@@ -274,7 +290,7 @@ export class PdfService {
     const suffix = report.reactivationType ? `-${report.reactivationType}` : '';
     const typeSuffix = reportType === 'preliminary' ? '-prelim' : '';
     const fileName = `${formatOrderIdDisplay(report.orderId)}-report-v${report.versionNumber}${suffix}${typeSuffix}.pdf`;
-    const storagePath = path.join(GENERATED_PDFS_DIR, fileName);
+    const storagePath = generatedPdfPath(fileName);
 
     await this.stampDemoWatermark(pdfDoc);
     const pdfBytes = await pdfDoc.save();
