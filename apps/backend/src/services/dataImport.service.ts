@@ -14,10 +14,10 @@ import {
   type ImportRowIssue,
   type ImportRowSummary,
 } from '@lis/shared';
-// `ZodSchema<T>` fixes the schema's *input* type to T as well, which these row
-// schemas do not satisfy — they take a record of raw strings and transform it
-// into typed values. Naming the input explicitly keeps the output inference.
-import type { ZodType, ZodTypeDef } from 'zod';
+// `ZodType<T>` alone would leave the schema's *input* type as `unknown`; these
+// row schemas take a record of raw strings and transform it into typed values,
+// so the input is named explicitly to keep the output inference honest.
+import type { ZodType } from 'zod';
 import { prisma } from '../lib/prisma.js';
 import { AppError } from '../middleware/error.middleware.js';
 import { PatientService } from './patient.service.js';
@@ -84,7 +84,7 @@ export class DataImportService {
   private validateRows<T>(
     entity: DataImportEntity,
     csv: string,
-    schema: ZodType<T, ZodTypeDef, Record<string, string>>,
+    schema: ZodType<T, Record<string, string>>,
   ): ValidatedRows<T> {
     const spec = IMPORT_COLUMNS[entity];
 

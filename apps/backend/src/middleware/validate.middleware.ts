@@ -1,11 +1,11 @@
 import { Request, Response, NextFunction } from 'express';
-import { ZodSchema, ZodError } from 'zod';
+import { ZodType, ZodError } from 'zod';
 
 /**
  * Validates request.body against the provided Zod schema.
  * Returns 400 with structured error on validation failure.
  */
-export function validateBody<T>(schema: ZodSchema<T>) {
+export function validateBody<T>(schema: ZodType<T>) {
   return (req: Request, res: Response, next: NextFunction): void => {
     const result = schema.safeParse(req.body);
     if (!result.success) {
@@ -26,7 +26,7 @@ export function validateBody<T>(schema: ZodSchema<T>) {
 /**
  * Validates request.query against the provided Zod schema.
  */
-export function validateQuery<T>(schema: ZodSchema<T>) {
+export function validateQuery<T>(schema: ZodType<T>) {
   return (req: Request, res: Response, next: NextFunction): void => {
     const result = schema.safeParse(req.query);
     if (!result.success) {
