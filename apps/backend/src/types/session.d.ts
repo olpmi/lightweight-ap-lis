@@ -7,5 +7,7 @@ declare module 'express-session' {
     employeeUserName: string;
     employeeRole: string;
     employeeDefaultLanguage: string;
+    /** Minted at login; state-changing requests must echo it (csrf.middleware.ts). */
+    csrfToken?: string;
   }
 }

@@ -2,6 +2,7 @@ import { Router, Request, Response, NextFunction } from 'express';
 import rateLimit from 'express-rate-limit';
 import { AuthService } from '../services/auth.service.js';
 import { validateBody } from '../middleware/validate.middleware.js';
+import { createCsrfToken } from '../middleware/csrf.middleware.js';
 import { loginSchema } from '@lis/shared';
 
 const router: Router = Router();
@@ -35,7 +36,11 @@ router.post('/login', loginLimiter, validateBody(loginSchema), async (req: Reque
     req.session.employeeRole = employee.roleName;
     req.session.employeeDefaultLanguage = employee.defaultLanguage;
 
-    res.json({ data: employee });
+    // The token every state-changing request on this session must echo in
+    // X-CSRF-Token. Minted after regenerate, so it belongs to the new session.
+    req.session.csrfToken = createCsrfToken();
+
+    res.json({ data: { ...employee, csrfToken: req.session.csrfToken } });
   } catch (err) {
     next(err);
   }
@@ -56,12 +61,18 @@ router.get('/me', async (req: Request, res: Response) => {
     res.status(401).json({ error: { code: 'UNAUTHORIZED', message: 'Not authenticated' } });
     return;
   }
+  // Sessions that began before tokens were introduced get one here rather than
+  // forcing a sign-in; the client calls this route on every page load.
+  if (!req.session.csrfToken) {
+    req.session.csrfToken = createCsrfToken();
+  }
   res.json({
     data: {
       employeeId: req.session.employeeId,
       userName: req.session.employeeUserName,
       role: req.session.employeeRole,
       defaultLanguage: req.session.employeeDefaultLanguage ?? 'en',
+      csrfToken: req.session.csrfToken,
     },
   });
 });

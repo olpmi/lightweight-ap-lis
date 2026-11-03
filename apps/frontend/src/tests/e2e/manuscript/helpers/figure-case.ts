@@ -17,6 +17,7 @@
  * duplicates.
  */
 import { expect, type APIRequestContext } from '@playwright/test';
+import { apiCsrfHeaders } from './figure-capture';
 
 /**
  * Deliberately unmistakable placeholders rather than plausible names.
@@ -97,13 +98,13 @@ interface ApiOptions {
 }
 
 async function post<T>(options: ApiOptions, url: string, body: unknown): Promise<T> {
-  const response = await options.request.post(url, { data: body });
+  const response = await options.request.post(url, { data: body, headers: apiCsrfHeaders() });
   expect(response.ok(), `POST ${url} -> ${response.status()} ${await response.text()}`).toBeTruthy();
   return (await response.json()) as T;
 }
 
 async function patch<T>(options: ApiOptions, url: string, body: unknown): Promise<T> {
-  const response = await options.request.patch(url, { data: body });
+  const response = await options.request.patch(url, { data: body, headers: apiCsrfHeaders() });
   expect(response.ok(), `PATCH ${url} -> ${response.status()} ${await response.text()}`).toBeTruthy();
   return (await response.json()) as T;
 }

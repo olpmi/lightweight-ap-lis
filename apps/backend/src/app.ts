@@ -30,6 +30,7 @@ import { EmployeeService } from './services/employee.service.js';
 import { validateBody } from './middleware/validate.middleware.js';
 import { EMPLOYEE_ROLES, createDraftReportSchema, reactivateOrderSchema } from '@lis/shared';
 import { requireAuth, requireCurrentRole } from './middleware/auth.middleware.js';
+import { configuredFrontendOrigin, csrfProtection } from './middleware/csrf.middleware.js';
 
 export function createApp(): express.Application {
   const app = express();
@@ -60,10 +61,11 @@ export function createApp(): express.Application {
     })
   );
 
-  // CORS - allow frontend dev origin
+  // CORS - allow the front end's origin (CORS_ORIGIN), which the CSRF origin
+  // check below trusts as well.
   app.use(
     cors({
-      origin: process.env.CORS_ORIGIN ?? 'http://localhost:5173',
+      origin: configuredFrontendOrigin(),
       credentials: true,
     })
   );
@@ -107,6 +109,12 @@ export function createApp(): express.Application {
       },
     })
   );
+
+  // Cross-site request forgery: an origin check on every state-changing
+  // request, plus a session-bound token once someone is signed in (see
+  // csrf.middleware.ts). Registered right after the session so that every
+  // route below is covered.
+  app.use(csrfProtection);
 
   // Health check
   app.get('/health', (_req, res) => res.json({ status: 'ok' }));
