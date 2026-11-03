@@ -30,7 +30,7 @@ jobs:
     # artifact for anyone who wants the raw data. Findings still do not fail
     # the build; the Security tab is where they get triaged.
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Install osv-scanner
         run: |
@@ -70,7 +70,7 @@ jobs:
 
       - name: Upload OSV scan artifact
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: osv-scan-results
           path: |
