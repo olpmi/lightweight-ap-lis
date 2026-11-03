@@ -29,7 +29,6 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import SaveIcon from '@mui/icons-material/Save';
-import ArticleIcon from '@mui/icons-material/Article';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useLanguage } from '../hooks/useLanguage';
 import { configReportLayoutApi, type ReportLayout, type UpsertReportLayoutPayload } from '../api';

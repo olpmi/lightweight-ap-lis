@@ -1,4 +1,4 @@
-import apiClient from './client';
+import apiClient, { setCsrfToken } from './client';
 import type {
   AppLanguageCode,
   Block,
@@ -90,6 +90,8 @@ export interface SessionEmployee {
   userName: string;
   role: EmployeeRoleName;
   defaultLanguage: AppLanguageCode;
+  /** Echoed in X-CSRF-Token on state-changing requests; the client keeps it. */
+  csrfToken?: string;
 }
 
 export interface AppMeta {
@@ -109,13 +111,27 @@ export const metaApi = {
 };
 
 export const authApi = {
+  // Login and /me both carry the session's CSRF token; the client remembers it
+  // so that every later state-changing request can send it.
   login: (payload: { employeeId?: number; newEmployee?: CreateEmployeeDto }) =>
-    apiClient.post<{ data: Employee }>('/auth/login', payload).then((r) => r.data.data),
+    apiClient
+      .post<{ data: Employee & { csrfToken?: string } }>('/auth/login', payload)
+      .then((r) => {
+        setCsrfToken(r.data.data.csrfToken);
+        return r.data.data;
+      }),
 
-  logout: () => apiClient.post('/auth/logout'),
+  logout: () =>
+    apiClient.post('/auth/logout').then((r) => {
+      setCsrfToken(null);
+      return r;
+    }),
 
   me: () =>
-    apiClient.get<{ data: SessionEmployee }>('/auth/me').then((r) => r.data.data),
+    apiClient.get<{ data: SessionEmployee }>('/auth/me').then((r) => {
+      setCsrfToken(r.data.data.csrfToken);
+      return r.data.data;
+    }),
 };
 
 export const lookupApi = {

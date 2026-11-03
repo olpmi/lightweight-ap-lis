@@ -34,7 +34,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const login = async (payload: object) => {
-    const emp = await authApi.login(payload as Parameters<typeof authApi.login>[0]);
+    await authApi.login(payload as Parameters<typeof authApi.login>[0]);
     const session = await authApi.me();
     setUser(session);
   };

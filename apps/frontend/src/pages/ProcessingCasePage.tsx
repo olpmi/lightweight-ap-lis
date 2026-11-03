@@ -16,20 +16,12 @@ import {
   TableHead,
   TableRow,
   TextField,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
   Stack,
   Chip,
   Breadcrumbs,
   Link,
   IconButton,
   Tooltip,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
 } from '@mui/material';
 import { ExpandMore, Add, Science, Download, Delete, Save, ExitToApp, Description as DescriptionIcon } from '@mui/icons-material';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
@@ -58,26 +50,6 @@ import {
   type RawTemplateDefinition,
   type TemplateFormValues,
 } from '../utils/templateForms';
-
-interface Slide {
-  slideId: string;
-  slideNumber: number;
-  slideType?: string;
-  discarded: boolean;
-}
-interface Block {
-  blockId: string;
-  blockNumber: number;
-  slides: Slide[];
-  discarded: boolean;
-}
-interface Specimen {
-  specimenId: string;
-  specimenCode: string;
-  bodySite?: { bodySiteName: string };
-  specimenType?: { specimenTypeName: string };
-  blocks: Block[];
-}
 
 interface ReportSummary {
   reportId: number | bigint;
@@ -125,12 +97,6 @@ export default function ProcessingCasePage() {
     onSuccess: () => qc.invalidateQueries({ queryKey: qk.materials.byOrder(orderId) }),
   });
 
-  const { mutateAsync: createSlides, isPending: creatingSlides } = useMutation({
-    mutationFn: ({ blockId, count, slideType }: { blockId: string; count: number; slideType?: string }) =>
-      blockApi.createSlides(blockId, count, slideType),
-    onSuccess: () => qc.invalidateQueries({ queryKey: qk.materials.byOrder(orderId) }),
-  });
-
   const { mutateAsync: doDiscardBlock } = useMutation({
     mutationFn: (blockId: string) => blockApi.discardBlock(blockId),
     onSuccess: () => qc.invalidateQueries({ queryKey: qk.materials.byOrder(orderId) }),
@@ -148,7 +114,6 @@ export default function ProcessingCasePage() {
   const [saveSuccess, setSaveSuccess] = useState<string | null>(null);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [blockCounts, setBlockCounts] = useState<Record<string, number>>({});
-  const [slideCounts, setSlideCounts] = useState<Record<string, number>>({});
 
   const { data: grossTemplates = [] } = useQuery<TemplateCatalogEntry[]>({
     queryKey: qk.templateCatalog('gross', lang),

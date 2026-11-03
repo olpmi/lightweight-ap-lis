@@ -63,8 +63,6 @@ function asRecord(v) {
   return v != null && typeof v === 'object' && !Array.isArray(v) ? v : null;
 }
 
-function asArray(v) { return Array.isArray(v) ? v : []; }
-
 function asString(v, fallback = '') { return typeof v === 'string' ? v : fallback; }
 
 /** Extract option translations as a parallel array. Handles both array and object formats. */
@@ -696,34 +694,6 @@ function findFlatValue(flat, keys) {
     }
   }
   return '';
-}
-
-/**
- * Collect option translations from flat keys.
- * Looks for all keys under the given prefix that are NOT sub-section labels.
- * Returns values in insertion order.
- */
-function collectFlatOptions(flat, prefixes, coreOptions) {
-  const coreCount = Array.isArray(coreOptions) ? coreOptions.length : 0;
-  if (coreCount === 0) return null;
-
-  for (const prefix of prefixes) {
-    const matching = [];
-    for (const [k, v] of Object.entries(flat)) {
-      if (k.startsWith(prefix) && typeof v === 'string') {
-        const rest = k.slice(prefix.length);
-        // Skip if it's a deeper path (has a dot after the prefix) that ends in .label
-        // or is a metadata key
-        if (rest === 'label' || rest === 'note' || rest === 'comment') continue;
-        // Only collect leaf values (no further dot) to avoid sub-field labels
-        if (!rest.includes('.')) {
-          matching.push(v);
-        }
-      }
-    }
-    if (matching.length > 0) return matching;
-  }
-  return null;
 }
 
 /**

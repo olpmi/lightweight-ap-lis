@@ -92,9 +92,13 @@ function summarize(samplesMs: number[], errors: number, wallClockMs?: number): L
 
 // ─── HTTP session ───────────────────────────────────────────────────────────
 
-/** Minimal cookie-jar session; the API authenticates with an express-session cookie. */
+/**
+ * Minimal cookie-jar session; the API authenticates with an express-session
+ * cookie, and state-changing requests must echo the session's CSRF token.
+ */
 class Session {
   private cookie = '';
+  private csrfToken = '';
 
   async request(
     method: string,
@@ -103,6 +107,7 @@ class Session {
   ): Promise<{ status: number; response: Response; durationMs: number }> {
     const headers: Record<string, string> = {};
     if (this.cookie) headers.cookie = this.cookie;
+    if (this.csrfToken) headers['x-csrf-token'] = this.csrfToken;
     if (body !== undefined) headers['content-type'] = 'application/json';
 
     const startedAt = performance.now();
@@ -120,8 +125,10 @@ class Session {
   }
 
   async login(employeeId: number): Promise<number> {
-    const { status, durationMs } = await this.request('POST', '/api/auth/login', { employeeId, password });
+    const { status, response, durationMs } = await this.request('POST', '/api/auth/login', { employeeId, password });
     if (status !== 200) throw new Error(`Login failed for employee ${employeeId} (HTTP ${status})`);
+    const session = (await response.json()) as { data?: { csrfToken?: string } };
+    this.csrfToken = session.data?.csrfToken ?? '';
     return durationMs;
   }
 }

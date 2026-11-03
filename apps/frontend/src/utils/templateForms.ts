@@ -150,7 +150,6 @@ function humanize(value: string): string {
 function normalizeOptionEntries(
   optionsValue: unknown,
   translatedOptionsValue: unknown,
-  language: AppLanguageCode,
 ): NormalizedTemplateOption[] {
   const translatedOptionsRecord = asRecord(translatedOptionsValue) ?? {};
   const translatedOptionsList = asArray(translatedOptionsValue);
@@ -282,7 +281,7 @@ function normalizeFlatField(
   const path = `${sectionId}.${fieldId}`;
   const options = inputType === 'boolean'
     ? createBooleanOptions(language)
-    : normalizeOptionEntries(fieldRecord.options, translationFieldRecord.options ?? translatedOptions, language);
+    : normalizeOptionEntries(fieldRecord.options, translationFieldRecord.options ?? translatedOptions);
 
   return [
     {
@@ -394,7 +393,7 @@ function normalizeNestedField(
   const inputType = normalizeInputType(fieldRecord.type);
   const options = inputType === 'boolean'
     ? createBooleanOptions(language)
-    : normalizeOptionEntries(fieldRecord.options, translationFieldRecord.options, language);
+    : normalizeOptionEntries(fieldRecord.options, translationFieldRecord.options);
 
   return [
     {

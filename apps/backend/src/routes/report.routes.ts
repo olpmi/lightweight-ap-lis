@@ -2,7 +2,9 @@ import { Router, Request, Response, NextFunction } from 'express';
 import { ReportService } from '../services/report.service.js';
 import { requireAuth, requireCurrentRole } from '../middleware/auth.middleware.js';
 import { validateBody } from '../middleware/validate.middleware.js';
-import { APP_LANGUAGE_CODES, EMPLOYEE_ROLES, createDraftReportSchema, signOutReportSchema, reactivateOrderSchema, type AppLanguageCode } from '@lis/shared';
+import { fileRouteLimiter } from '../middleware/rateLimit.middleware.js';
+import { pdfResponse } from '../middleware/pdfResponse.middleware.js';
+import { APP_LANGUAGE_CODES, EMPLOYEE_ROLES, signOutReportSchema, type AppLanguageCode } from '@lis/shared';
 import { prisma } from '../lib/prisma.js';
 import fs from 'fs';
 import { AppError } from '../middleware/error.middleware.js';
@@ -32,7 +34,7 @@ function resolveLanguage(req: Request): AppLanguageCode {
 // We mount this on /api/reports instead and handle all variants here
 
 // GET /api/reports/:reportId/pdf
-router.get('/:reportId/pdf', requireAuth, async (req: Request, res: Response, next: NextFunction) => {
+router.get('/:reportId/pdf', fileRouteLimiter, requireAuth, pdfResponse, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const reportId = parseReportId(req.params.reportId);
     const report = await prisma.report.findUnique({
@@ -61,7 +63,7 @@ router.get('/:reportId/pdf', requireAuth, async (req: Request, res: Response, ne
 });
 
 // GET /api/reports/:reportId/patient-summary.pdf?language=sw&download=1
-router.get('/:reportId/patient-summary.pdf', requireAuth, async (req: Request, res: Response, next: NextFunction) => {
+router.get('/:reportId/patient-summary.pdf', fileRouteLimiter, requireAuth, pdfResponse, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const reportId = parseReportId(req.params.reportId);
     const language = resolveLanguage(req);

@@ -31,7 +31,6 @@ const hasDb = Boolean(process.env.DATABASE_URL && process.env.SESSION_SECRET);
 describe.skipIf(!hasDb)('Ancillary order pipelines', () => {
   const nonce = Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
   const userName = `anc_${nonce}`;
-  let roleId = 0;
   let employeeId = 0;
   let bodySiteId = 0;
   let orderId = '';
@@ -73,7 +72,6 @@ describe.skipIf(!hasDb)('Ancillary order pipelines', () => {
       lastName: 'Tester',
     });
     employeeId = actor.employeeId;
-    roleId = actor.employeeRoleId;
 
     // Build the case + a block to attach ancillary orders to.
     const orderRes = await agent.post('/api/orders').send({

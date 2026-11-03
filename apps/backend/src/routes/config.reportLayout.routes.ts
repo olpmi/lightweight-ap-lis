@@ -4,6 +4,8 @@ import { ConfigReportLayoutService } from '../services/config.reportLayout.servi
 import { PdfLayoutService } from '../services/pdf.layout.service.js';
 import { validateBody } from '../middleware/validate.middleware.js';
 import { requireAuth, requireRole } from '../middleware/auth.middleware.js';
+import { fileRouteLimiter } from '../middleware/rateLimit.middleware.js';
+import { pdfResponse } from '../middleware/pdfResponse.middleware.js';
 import { EMPLOYEE_ROLES } from '@lis/shared';
 
 const router: Router = Router();
@@ -80,7 +82,7 @@ router.post('/:reportType/reset', requireAdmin, async (req, res, next) => {
 });
 
 // POST /api/config/report-layouts/:reportType/preview â€” render a sample PDF
-router.post('/:reportType/preview', requireAdmin, async (req, res, next) => {
+router.post('/:reportType/preview', fileRouteLimiter, requireAdmin, pdfResponse, async (req, res, next) => {
   try {
     const { reportType } = req.params;
     if (!isReportType(reportType)) return res.status(400).json({ message: 'Invalid report type' });

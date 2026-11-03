@@ -6,6 +6,26 @@ const apiClient = axios.create({
   headers: { 'Content-Type': 'application/json' },
 });
 
+// Cross-site request forgery token. The server mints one per session at login
+// and returns it from /auth/me as well; every state-changing request must
+// echo it in X-CSRF-Token (see csrf.middleware.ts in the backend). It lives in
+// module state, not storage: a reload calls /auth/me and gets it again.
+let csrfToken: string | null = null;
+
+const METHODS_NEEDING_TOKEN = new Set(['post', 'put', 'patch', 'delete']);
+
+/** Remember (or forget, with null) the session's CSRF token. */
+export function setCsrfToken(token: string | null | undefined): void {
+  csrfToken = token ?? null;
+}
+
+apiClient.interceptors.request.use((config) => {
+  if (csrfToken && METHODS_NEEDING_TOKEN.has((config.method ?? 'get').toLowerCase())) {
+    config.headers.set('X-CSRF-Token', csrfToken);
+  }
+  return config;
+});
+
 export interface ConflictEventDetail {
   code: string;
   message: string;

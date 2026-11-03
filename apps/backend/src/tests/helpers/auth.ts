@@ -65,5 +65,10 @@ export async function createEmployeeAndLogin(
     throw new Error(`Test login failed for ${userName} (${roleName}): ${res.status} ${JSON.stringify(res.body)}`);
   }
 
+  // State-changing requests on a signed-in session must echo its CSRF token
+  // (csrf.middleware.ts). A superagent agent applies default headers to every
+  // request it makes, so one call here covers the whole suite.
+  agent.set('x-csrf-token', res.body.data.csrfToken);
+
   return { employeeId, employeeRoleId, userName };
 }

@@ -8,11 +8,11 @@ import { OrderLockService } from '../services/orderLock.service.js';
 import { EmployeeService } from '../services/employee.service.js';
 import { requireAuth } from '../middleware/auth.middleware.js';
 import { validateBody } from '../middleware/validate.middleware.js';
+import { fileRouteLimiter } from '../middleware/rateLimit.middleware.js';
+import { pdfResponse } from '../middleware/pdfResponse.middleware.js';
 import { EMPLOYEE_ROLES, createOrderSchema, normalizeOrderId, formatOrderIdDisplay } from '@lis/shared';
 import { prisma } from '../lib/prisma.js';
 import fs from 'fs';
-import { GENERATED_PDFS_DIR } from '../utils/storageDirs.js';
-import path from 'path';
 
 const router: Router = Router();
 const orderService = new OrderService();
@@ -214,7 +214,7 @@ router.get('/:orderId/materials', requireAuth, async (req: Request, res: Respons
 });
 
 // GET /api/orders/:orderId/worksheet-pdf
-router.get('/:orderId/worksheet-pdf', requireAuth, async (req: Request, res: Response, next: NextFunction) => {
+router.get('/:orderId/worksheet-pdf', fileRouteLimiter, requireAuth, pdfResponse, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const order = await prisma.order.findUnique({
       where: { orderId: req.params.orderId },
@@ -239,7 +239,7 @@ router.get('/:orderId/worksheet-pdf', requireAuth, async (req: Request, res: Res
 });
 
 // GET /api/orders/:orderId/reference-strips-pdf
-router.get('/:orderId/reference-strips-pdf', requireAuth, async (req: Request, res: Response, next: NextFunction) => {
+router.get('/:orderId/reference-strips-pdf', fileRouteLimiter, requireAuth, pdfResponse, async (req: Request, res: Response, next: NextFunction) => {
   try {
     // The order ID becomes part of a file name, and formatOrderIdDisplay passes
     // anything non-canonical through unchanged, so only an ID that names an
@@ -279,7 +279,7 @@ router.get('/:orderId/reference-strips-pdf', requireAuth, async (req: Request, r
 // Returns the PDF bytes inline — no DB writes. Renders using the same HTML
 // template as the signed preliminary/final reports so the preview matches
 // the layout authors see in the configured report layout.
-router.post('/:orderId/preview-report-pdf', requireAuth, async (req: Request, res: Response, next: NextFunction) => {
+router.post('/:orderId/preview-report-pdf', fileRouteLimiter, requireAuth, pdfResponse, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const order = await prisma.order.findUniqueOrThrow({
       where: { orderId: req.params.orderId },

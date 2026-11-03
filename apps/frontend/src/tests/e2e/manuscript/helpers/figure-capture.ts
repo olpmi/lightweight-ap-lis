@@ -81,6 +81,18 @@ function commit(): string {
   return cachedCommit;
 }
 
+/**
+ * The session's CSRF token from the last `apiLogin`. State-changing API calls
+ * must echo it (csrf.middleware.ts in the backend); a Playwright request
+ * context cannot take default headers after creation, so the fixture helpers
+ * fetch it from here per call.
+ */
+let apiCsrfToken = '';
+
+export function apiCsrfHeaders(): Record<string, string> {
+  return apiCsrfToken ? { 'x-csrf-token': apiCsrfToken } : {};
+}
+
 /** Signs in through the API so fixtures can run before a browser is opened. */
 export async function apiLogin(request: APIRequestContext): Promise<number> {
   const search = await request.get(`/api/employees/search?q=${SEEDED_USER}`);
@@ -93,6 +105,8 @@ export async function apiLogin(request: APIRequestContext): Promise<number> {
     data: { employeeId, password: SEEDED_PASSWORD },
   });
   expect(login.ok(), `login failed: ${login.status()}`).toBeTruthy();
+  const session = (await login.json()) as { data: { csrfToken?: string } };
+  apiCsrfToken = session.data.csrfToken ?? '';
   return employeeId;
 }
 

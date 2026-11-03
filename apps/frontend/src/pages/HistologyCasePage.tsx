@@ -19,7 +19,6 @@ import {
   AccordionDetails,
   Breadcrumbs,
   Link,
-  IconButton,
   Tooltip,
   Grid,
 } from '@mui/material';
@@ -31,26 +30,6 @@ import { qk } from '../api/queryKeys';
 import { useLanguage } from '../hooks/useLanguage';
 import { formatOrderIdDisplay, formatMaterialIdDisplay } from '@lis/shared';
 import type { OrderMaterials } from '@lis/shared';
-
-interface Slide {
-  slideId: string;
-  slideNumber: number;
-  slideType?: string;
-  discarded: boolean;
-}
-interface Block {
-  blockId: string;
-  blockNumber: number;
-  slides: Slide[];
-  discarded: boolean;
-}
-interface Specimen {
-  specimenId: string;
-  specimenCode: string;
-  bodySite?: { bodySiteName: string };
-  specimenType?: { specimenTypeName: string };
-  blocks: Block[];
-}
 
 export default function HistologyCasePage() {
   const { orderId } = useParams<{ orderId: string }>();

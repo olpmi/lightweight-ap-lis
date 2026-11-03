@@ -30,6 +30,7 @@ import { EmployeeService } from './services/employee.service.js';
 import { validateBody } from './middleware/validate.middleware.js';
 import { EMPLOYEE_ROLES, createDraftReportSchema, reactivateOrderSchema } from '@lis/shared';
 import { requireAuth, requireCurrentRole } from './middleware/auth.middleware.js';
+import { configuredFrontendOrigin, csrfProtection } from './middleware/csrf.middleware.js';
 
 export function createApp(): express.Application {
   const app = express();
@@ -45,13 +46,26 @@ export function createApp(): express.Application {
   // requires this to bucket attempts per-client instead of per-proxy.
   app.set('trust proxy', 1);
 
-  // Security headers
-  app.use(helmet({ contentSecurityPolicy: false }));
+  // Security headers. The API serves JSON and PDFs and never HTML, so helmet's
+  // default content-security policy costs nothing and closes the obvious gap.
+  // upgrade-insecure-requests is dropped because deployments behind a plain
+  // HTTP nginx are supported (see COOKIE_SECURE). Routes that answer with a
+  // PDF strip the header again (see pdfResponse): a document policy means
+  // nothing to a PDF, and some built-in viewers honour it anyway.
+  app.use(
+    helmet({
+      contentSecurityPolicy: {
+        useDefaults: true,
+        directives: { 'upgrade-insecure-requests': null },
+      },
+    })
+  );
 
-  // CORS - allow frontend dev origin
+  // CORS - allow the front end's origin (CORS_ORIGIN), which the CSRF origin
+  // check below trusts as well.
   app.use(
     cors({
-      origin: process.env.CORS_ORIGIN ?? 'http://localhost:5173',
+      origin: configuredFrontendOrigin(),
       credentials: true,
     })
   );
@@ -95,6 +109,12 @@ export function createApp(): express.Application {
       },
     })
   );
+
+  // Cross-site request forgery: an origin check on every state-changing
+  // request, plus a session-bound token once someone is signed in (see
+  // csrf.middleware.ts). Registered right after the session so that every
+  // route below is covered.
+  app.use(csrfProtection);
 
   // Health check
   app.get('/health', (_req, res) => res.json({ status: 'ok' }));

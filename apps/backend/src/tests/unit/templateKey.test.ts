@@ -4,7 +4,8 @@
  * ones the built-in catalog already uses.
  */
 import { describe, it, expect } from 'vitest';
-import { assertSafeTemplateKey } from '../../services/config.service.js';
+import path from 'path';
+import { assertSafeTemplateKey, resolveTemplateStem } from '../../services/config.service.js';
 import { AppError } from '../../middleware/error.middleware.js';
 
 describe('assertSafeTemplateKey', () => {
@@ -29,4 +30,28 @@ describe('assertSafeTemplateKey', () => {
       expect((caught as AppError).code).toBe('INVALID_TEMPLATE_KEY');
     }
   );
+});
+
+describe('resolveTemplateStem', () => {
+  const root = path.resolve('template-root');
+
+  it('resolves a catalog-shaped key to a stem under the root', () => {
+    expect(resolveTemplateStem(root, 'breast_cytology/breast_cytology')).toBe(
+      path.join(root, 'breast_cytology', 'breast_cytology')
+    );
+  });
+
+  // An absolute key is not probed here: the key is split on '/' before it is
+  // resolved, so on POSIX a leading slash only yields an empty first segment
+  // (assertSafeTemplateKey rejects that shape) and the result stays under root.
+  it.each(['../outside', 'a/../../outside'])('refuses %s with a 400', (key) => {
+    let caught: unknown;
+    try {
+      resolveTemplateStem(root, key);
+    } catch (err) {
+      caught = err;
+    }
+    expect(caught).toBeInstanceOf(AppError);
+    expect((caught as AppError).statusCode).toBe(400);
+  });
 });

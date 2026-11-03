@@ -30,7 +30,8 @@ function isDevFileMode(): boolean {
 
 function getTemplateWriteRoot(): string {
   const dir = process.env.TEMPLATE_SOURCE_DIR!;
-  return path.isAbsolute(dir) ? dir : path.resolve(process.cwd(), dir);
+  // resolve also strips a trailing separator, which resolveTemplateStem relies on.
+  return path.resolve(process.cwd(), dir);
 }
 
 /**
@@ -51,6 +52,26 @@ export function assertSafeTemplateKey(templateKey: string): void {
       `Template key "${templateKey}" must be slash-separated file-name segments`,
     );
   }
+}
+
+/**
+ * Resolve a template key to its file-name stem under `root` (the path without
+ * the `.core.json` / `.i18n_xx.json` suffix), refusing a key that resolves
+ * anywhere else. assertSafeTemplateKey already rejects every shape that could
+ * escape; this states the same guarantee as a check on the resolved path,
+ * which is the form a static analyser can follow. `root` must be absolute and
+ * free of a trailing separator, as getTemplateWriteRoot returns it.
+ */
+export function resolveTemplateStem(root: string, templateKey: string): string {
+  const stem = path.resolve(root, ...templateKey.split('/'));
+  if (!stem.startsWith(root + path.sep)) {
+    throw new AppError(
+      400,
+      'INVALID_TEMPLATE_KEY',
+      `Template key "${templateKey}" resolves outside the template root`,
+    );
+  }
+  return stem;
 }
 
 // ---------------------------------------------------------------------------
@@ -201,8 +222,8 @@ export async function listAllTemplates(
 export async function getTemplateFiles(templateKey: string): Promise<TemplateFiles> {
   if (isDevFileMode()) {
     assertSafeTemplateKey(templateKey);
-    const root = getTemplateWriteRoot();
-    const corePath = path.join(root, ...templateKey.split('/')) + '.core.json';
+    const stem = resolveTemplateStem(getTemplateWriteRoot(), templateKey);
+    const corePath = `${stem}.core.json`;
 
     if (!existsSync(corePath)) {
       // Fall through to DB/built-in
@@ -210,8 +231,7 @@ export async function getTemplateFiles(templateKey: string): Promise<TemplateFil
       const coreJson = JSON.parse(readFileSync(corePath, 'utf8')) as RawJson;
       const translations: Partial<Record<AppLanguageCode, RawJson>> = {};
       for (const lang of TEMPLATE_OVERLAY_LANGUAGE_CODES) {
-        const overlayPath =
-          path.join(root, ...templateKey.split('/')) + `.i18n_${lang}.json`;
+        const overlayPath = `${stem}.i18n_${lang}.json`;
         if (existsSync(overlayPath)) {
           translations[lang] = JSON.parse(readFileSync(overlayPath, 'utf8')) as RawJson;
         }
@@ -266,21 +286,14 @@ export async function saveTemplate(params: {
 
   if (isDevFileMode()) {
     assertSafeTemplateKey(templateKey);
-    const root = getTemplateWriteRoot();
-    const segments = templateKey.split('/');
-    const stem = segments[segments.length - 1]!;
-    const dir = path.join(root, ...segments.slice(0, -1));
+    const stem = resolveTemplateStem(getTemplateWriteRoot(), templateKey);
 
-    mkdirSync(dir, { recursive: true });
+    mkdirSync(path.dirname(stem), { recursive: true });
 
-    writeFileSync(
-      path.join(dir, `${stem}.core.json`),
-      JSON.stringify(coreJson, null, 2),
-      'utf8',
-    );
+    writeFileSync(`${stem}.core.json`, JSON.stringify(coreJson, null, 2), 'utf8');
 
     for (const lang of TEMPLATE_OVERLAY_LANGUAGE_CODES) {
-      const overlayPath = path.join(dir, `${stem}.i18n_${lang}.json`);
+      const overlayPath = `${stem}.i18n_${lang}.json`;
       const json = translations[lang] ?? buildI18nSkeleton(coreJson, lang, templateKey);
       writeFileSync(overlayPath, JSON.stringify(json, null, 2), 'utf8');
     }

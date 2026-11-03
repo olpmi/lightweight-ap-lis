@@ -137,7 +137,7 @@ export class PdfService {
 
     // Blank areas
     y = this.drawBlankSection(page, 'GROSS DESCRIPTION', y, boldFont, 150);
-    y = this.drawBlankSection(page, 'CLINICAL NOTES', y, boldFont, 100);
+    this.drawBlankSection(page, 'CLINICAL NOTES', y, boldFont, 100);
 
     const fileName = `${formatOrderIdDisplay(order.orderId)}-worksheet.pdf`;
     const storagePath = generatedPdfPath(fileName);
@@ -284,7 +284,7 @@ export class PdfService {
       : 'Unknown';
     y = this.drawField(page, 'Signed out by', pathologistName, y, boldFont, regularFont);
     if (report.signedOutDatetime) {
-      y = this.drawField(page, 'Signed out on', report.signedOutDatetime.toISOString().replace('T', ' ').slice(0, 19), y, boldFont, regularFont);
+      this.drawField(page, 'Signed out on', report.signedOutDatetime.toISOString().replace('T', ' ').slice(0, 19), y, boldFont, regularFont);
     }
 
     const suffix = report.reactivationType ? `-${report.reactivationType}` : '';
@@ -360,7 +360,7 @@ export class PdfService {
     page.drawLine({ start: { x: MARGIN, y }, end: { x: PAGE_WIDTH - MARGIN, y }, thickness: 0.5 });
     y -= 14;
     if (input.pathologistName) {
-      y = this.drawField(page, 'Pathologist', input.pathologistName, y, boldFont, regularFont);
+      this.drawField(page, 'Pathologist', input.pathologistName, y, boldFont, regularFont);
     }
     page.drawText('*** THIS IS A DRAFT PREVIEW — NOT A SIGNED REPORT ***', {
       x: MARGIN,
