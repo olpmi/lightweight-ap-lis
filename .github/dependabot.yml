@@ -9,12 +9,29 @@ updates:
       timezone: Etc/UTC
     open-pull-requests-limit: 10
     groups:
+      # Packages that only work when bumped together. Listed before the
+      # catch-all because a package joins the first group that matches it, and
+      # given no update-types so that a major arrives with its partners too.
+      # (vitest 4 without @vitest/coverage-v8 4, and pino 10 without
+      # pino-http 11, each failed CI as single-package PRs.)
+      vitest:
+        patterns: ['vitest', '@vitest/*']
+      pino:
+        patterns: ['pino', 'pino-http', 'pino-pretty']
+      prisma:
+        patterns: ['prisma', '@prisma/*']
+      express:
+        patterns: ['express', '@types/express', '@types/express-serve-static-core']
+      testing-library:
+        patterns: ['@testing-library/*']
       minor-and-patch:
         update-types:
           - minor
           - patch
     ignore:
-      # Hold back ecosystem majors that require deliberate migrations.
+      # Hold back ecosystem majors that require deliberate migrations. Alerts
+      # for these still appear in the Security tab; only the automatic PR is
+      # suppressed. Revisit quarterly (next: February 2027).
       - dependency-name: react
         update-types: [version-update:semver-major]
       - dependency-name: react-dom
@@ -24,6 +41,22 @@ updates:
       - dependency-name: '@types/react'
         update-types: [version-update:semver-major]
       - dependency-name: '@types/react-dom'
+        update-types: [version-update:semver-major]
+      # Prisma 7 changes the client architecture (config file, driver adapters).
+      - dependency-name: prisma
+        update-types: [version-update:semver-major]
+      - dependency-name: '@prisma/client'
+        update-types: [version-update:semver-major]
+      # express 5 changes route path syntax and request/response APIs.
+      - dependency-name: express
+        update-types: [version-update:semver-major]
+      - dependency-name: '@types/express'
+        update-types: [version-update:semver-major]
+      # vite is held at 6 by the workspace override; @vitejs/plugin-react 6
+      # needs vite 8, so both move together when that upgrade is planned.
+      - dependency-name: vite
+        update-types: [version-update:semver-major]
+      - dependency-name: '@vitejs/plugin-react'
         update-types: [version-update:semver-major]
 
   - package-ecosystem: github-actions
