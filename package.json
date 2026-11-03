@@ -28,7 +28,7 @@
     "figures:compose": "tsx scripts/build-manuscript-figures.ts"
   },
   "dependencies": {
-    "bcryptjs": "^2.4.3"
+    "bcryptjs": "^3.0.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.0.0",
