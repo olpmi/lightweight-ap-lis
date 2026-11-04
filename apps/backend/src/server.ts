@@ -1,9 +1,10 @@
 import path from 'path';
 import dotenv from 'dotenv';
 
-// Load .env from repo root when running locally, then fallback to local .env
-dotenv.config({ path: path.resolve(__dirname, '../../../../.env') });
-dotenv.config();
+// Load .env from repo root when running locally, then fallback to local .env.
+// quiet: dotenv 17+ otherwise prints an "injected env" line on every start.
+dotenv.config({ path: path.resolve(__dirname, '../../../../.env'), quiet: true });
+dotenv.config({ quiet: true });
 import { createApp } from './app.js';
 import { logger } from './lib/logger.js';
 import { ensureStorageDirs } from './utils/storageDirs.js';

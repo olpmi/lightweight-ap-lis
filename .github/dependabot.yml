@@ -58,6 +58,17 @@ updates:
         update-types: [version-update:semver-major]
       - dependency-name: '@vitejs/plugin-react'
         update-types: [version-update:semver-major]
+      # vitest 5 changed the Assertion type parameters; @testing-library/jest-dom
+      # (through 7.0.1) still augments the old shape, so the frontend typecheck
+      # fails until jest-dom catches up.
+      - dependency-name: vitest
+        update-types: [version-update:semver-major]
+      - dependency-name: '@vitest/*'
+        update-types: [version-update:semver-major]
+      # @types/node tracks the Node 22 runtime. It moves together with the
+      # Docker base image, the engines field, and the CI setup default.
+      - dependency-name: '@types/node'
+        update-types: [version-update:semver-major]
 
   - package-ecosystem: github-actions
     directory: /
@@ -77,3 +88,9 @@ updates:
       day: monday
       time: '06:00'
       timezone: Etc/UTC
+    ignore:
+      # The Node runtime moves as one planned change together with @types/node,
+      # the engines field, and the CI setup default. Revisit with the npm
+      # majors above (next: February 2027).
+      - dependency-name: node
+        update-types: [version-update:semver-major]
