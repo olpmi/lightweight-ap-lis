@@ -20,7 +20,7 @@
     "@fontsource/noto-naskh-arabic": "^5.3.0",
     "@fontsource/noto-nastaliq-urdu": "^5.3.0",
     "@fontsource/roboto": "^5.3.0",
-    "@hookform/resolvers": "^3.3.4",
+    "@hookform/resolvers": "^7.0.1",
     "@lis/shared": "workspace:*",
     "@monaco-editor/react": "^4.6.0",
     "@mui/icons-material": "^5.15.15",
